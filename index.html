@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>M Transport & Reinigung Service</title>
+<!-- Flatpickr CSS pro německý kalendář -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+  /* Reset & Global Box Sizing */
+  * { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+  }
+
+  /* --- OPRAVA SCROLLOVÁNÍ PRO VŠECHNA ZAŘÍZENÍ --- */
+  html {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #002266; 
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Skrytí vnitřního posuvníku (scrollbaru), ale zachování funkce scrollování */
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  /* Fix pro iOS - zabrání automatickému zoomu při kliknutí do formuláře */
+  input, select, textarea {
+    font-size: 16px !important; 
+  }
+
+  .page-wrapper {
+    background-color: #f4f6f9;
+    color: #333333;
+    line-height: 1.5;
+    width: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 1. Záhlaví / Header */
+  .top-header {
+    background-color: #ffffff;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-bottom: 3px solid #0051C7;
+  }
+  .brand-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .brand-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #002266;
+    letter-spacing: -0.3px;
+  }
+
+  /* 2. Hero Banner */
+  .hero-section {
+    background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px 45px 20px;
+  }
+  .hero-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .hero-title {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+    opacity: 0.95;
+  }
+  .service-badge {
+    background-color: #FFA000;
+    color: #002266;
+    padding: 8px 20px;
+    font-weight: bold;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 22px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+  .btn-cta {
+    background-color: #FF6A00;
+    color: #ffffff;
+    padding: 14px 30px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.4);
+  }
+  .btn-cta:hover {
+    background-color: #e05d00;
+    transform: translateY(-2px);
+  }
+
+  /* 3. Služby / Services */
+  .services-section {
+    padding: 35px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .section-heading {
+    text-align: center;
+    color: #002266;
+    font-size: 22px;
+    margin-bottom: 25px;
+    font-weight: bold;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+  .service-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 22px 15px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    border-top: 4px solid #0051C7;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card-icon {
+    font-size: 34px;
+    margin-bottom: 10px;
+  }
+  .card-title {
+    color: #0051C7;
+    font-size: 17px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  .card-text {
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.4;
+  }
+  .service-card.disabled {
+    filter: blur(1.5px) grayscale(85%) opacity(0.55);
+    background: #f0f2f5;
+    border-top-color: #888888;
+    cursor: not-allowed;
+    user-select: none;
+    pointer-events: none;
+  }
+  .unavailable-tag {
+    background-color: #6c757d;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-top: 10px;
+    text-transform: uppercase;
+  }
+
+  /* 4. WhatsApp Section */
+  .whatsapp-section {
+    max-width: 800px;
+    margin: 0 auto 25px auto;
+    padding: 0 20px;
+    width: 100%;
+  }
+  .whatsapp-card {
+    background-color: #002266;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 22px 20px;
+    text-align: center;
+  }
+  .whatsapp-title {
+    font-size: 19px;
+    margin-bottom: 6px;
+    font-weight: bold;
+  }
+  .whatsapp-desc {
+    font-size: 14px;
+    margin-bottom: 16px;
+    opacity: 0.9;
+  }
+  .btn-whatsapp {
+    background-color: #25D366;
+    color: #ffffff;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+  }
+  .btn-whatsapp:hover {
+    background-color: #1eb957;
+  }
+
+  /* 5. Formulář / Form Section */
+  .form-section {
+    max-width: 800px;
+    margin: 0 auto 40px auto;
+    padding: 0 20px;
+    width: 100%;
+  }
+  .form-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 28px 24px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    border-top: 5px solid #FF6A00;
+    width: 100%;
+  }
+  .form-header {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .form-title {
+    color: #002266;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+  .form-subtitle {
+    color: #666666;
+    font-size: 14px;
+  }
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    width: 100%;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .form-group.full-width {
+    grid-column: span 2;
+  }
+  .form-group label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #002266;
+    margin-bottom: 5px;
+  }
+  .form-group label span {
+    color: #FF6A00;
+  }
+  .form-control {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    background-color: #fafafa;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .form-control:focus {
+    border-color: #0051C7;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(0, 81, 199, 0.15);
+  }
+  textarea.form-control {
+    resize: vertical;
+    min-height: 75px;
+  }
+  .btn-submit {
+    background-color: #FF6A00;
+    color: #ffffff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 12px;
+    transition: background-color 0.2s ease;
+  }
+  .btn-submit:hover {
+    background-color: #e05d00;
+  }
+
+  /* 6. Footer & Sociální sítě */
+  .footer-section {
+    background-color: #002266;
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 20px;
+    width: 100%;
+  }
+  .footer-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  .btn-social {
+    padding: 12px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  .btn-social:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+  }
+  .btn-facebook {
+    background-color: #1877F2;
+  }
+  .btn-instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  }
+
+  @media (max-width: 768px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .form-group.full-width {
+      grid-column: span 1;
+    }
+    .hero-title {
+      font-size: 21px;
+    }
+    .brand-title {
+      font-size: 17px;
+    }
+    .form-card {
+      padding: 20px 15px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Záhlaví s logem -->
+  <header class="top-header">
+    <div class="brand-container">
+      <img src="https://i.postimg.cc/YSrZcdZr/7DBC4E2C-DFE6-4C4A-998B-962A891B7F9A.png" alt="M Transport & Reinigung Service Logo" class="logo-img">
+      <div class="brand-title">M Transport & Reinigung Service</div>
+    </div>
+  </header>
+
+  <!-- Main Hero Banner -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <h1 class="hero-title">Zuverlässige Reinigungsdienste & Service<br>im Kanton Thurgau!</h1>
+      <p class="hero-subtitle">Sauber, pünktlich und sorgenfrei in Ihr neues Zuhause.</p>
+      <div class="service-badge">✓ 48 Stunden kostenloser Reklamations-Service</div>
+      <br>
+      <button type="button" onclick="scrollToForm()" class="btn-cta">Jetzt Offerte anfordern</button>
+    </div>
+  </section>
+
+  <!-- Nabídka služeb -->
+  <section class="services-section">
+    <h2 class="section-heading">Unsere Dienstleistungen</h2>
+    <div class="services-grid">
+      
+      <div class="service-card">
+        <div>
+          <div class="card-icon">🧹</div>
+          <h3 class="card-title">Umzugsreinigung</h3>
+          <p class="card-text">Kompletter Endreinigungsservice für Wohnungen und Häuser. Inklusive 48h kostenlosem Reklamations-Service.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div>
+          <div class="card-icon">🧼</div>
+          <h3 class="card-title">Unterhaltsreinigung</h3>
+          <p class="card-text">Regelmässige und gründliche Reinigung für Privathaushalte, Büros und Gewerberäume nach Ihren Wünschen.</p>
+        </div>
+      </div>
+
+      <div class="service-card disabled">
+        <div>
+          <div class="card-icon">🚚</div>
+          <h3 class="card-title">Transport & Räumung</h3>
+          <p class="card-text">Möbeltransporte, Räumungen und Entsorgungen im Kanton Thurgau und der Umgebung.</p>
+        </div>
+        <div>
+          <span class="unavailable-tag">Derzeit nicht verfügbar</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WhatsApp kontakt -->
+  <div class="whatsapp-section">
+    <div class="whatsapp-card">
+      <h2 class="whatsapp-title">Lieber direkt per WhatsApp schreiben?</h2>
+      <p class="whatsapp-desc">Haben Sie Fragen oder möchten Sie uns direkt schreiben? Schreiben Sie uns unkompliziert!</p>
+      <a href="https://wa.me/41783458072" class="btn-whatsapp" target="_blank" rel="noopener">Direkt per WhatsApp schreiben</a>
+    </div>
+  </div>
+
+ <!-- Poptávkový formulář -->
+  <div id="offerte-form" class="form-section">
+    <div class="form-card">
+      <div class="form-header">
+        <h2 class="form-title">Unverbindliche Offerte anfordern</h2>
+        <p class="form-subtitle">Füllen Sie das Formular aus – wir senden Ihnen schnellstmöglich ein Angebot.</p>
+      </div>
+<form action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="e319a32a-b002-4a69-a3d0-c77fc3169d40">
+
+        <input type="hidden" name="_subject" value="Neue Offertenanfrage - M Transport & Reinigung">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+
+        <div class="form-grid">
+          
+          <div class="form-group">
+            <label for="vorname">Vorname <span>*</span></label>
+            <input type="text" id="vorname" name="Vorname" class="form-control" placeholder="z. B. Thomas" required>
+          </div>
+
+          <div class="form-group">
+            <label for="nachname">Nachname <span>*</span></label>
+            <input type="text" id="nachname" name="Nachname" class="form-control" placeholder="z. B. Muster" required>
+          </div>
+
+          <div class="form-group">
+            <label for="telefon">Telefonnummer <span>*</span></label>
+            <input type="tel" id="telefon" name="Telefonnummer" class="form-control" placeholder="+41 78 000 00 00" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-Mail-Adresse <span>*</span></label>
+            <input type="email" id="email" name="Email_Adresse" class="form-control" placeholder="ihre.email@beispiel.ch" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="adresse_kunde">Wohnadresse des Kunden <span>*</span></label>
+            <input type="text" id="adresse_kunde" name="Wohnadresse_Kunde" class="form-control" placeholder="Strasse, Hausnummer, PLZ, Ort" required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="adresse_objekt">Objektadresse (zu reinigendes Objekt) <span>*</span></label>
+            <input type="text" id="adresse_objekt" name="Objektadresse" class="form-control" placeholder="Strasse, Hausnummer, PLZ, Ort" required>
+          </div>
+
+          <div class="form-group">
+            <label for="objektart">Typ des Objekt <span>*</span></label>
+            <select id="objektart" name="Typ_Objekt" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="Wohnung">Wohnung</option>
+              <option value="Einfamilienhaus">Einfamilienhaus</option>
+              <option value="Reihenhaus">Reihenhaus</option>
+              <option value="Büro / Gewerbe">Büro / Gewerbe</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="reinigungsart">Typ der Reinigung <span>*</span></label>
+            <select id="reinigungsart" name="Typ_Reinigung" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="Umzugsreinigung">Umzugsreinigung</option>
+              <option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
+              <option value="Einmalige Grundreinigung">Einmalige Grundreinigung</option>
+              <option value="Sonstiges">Sonstiges</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="zimmer">Anzahl der Zimmer <span>*</span></label>
+            <select id="zimmer" name="Anzahl_Zimmer" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="1.0 - 1.5 Zimmer">1.0 - 1.5 Zimmer</option>
+              <option value="2.0 - 2.5 Zimmer">2.0 - 2.5 Zimmer</option>
+              <option value="3.0 - 3.5 Zimmer">3.0 - 3.5 Zimmer</option>
+              <option value="4.0 - 4.5 Zimmer">4.0 - 4.5 Zimmer</option>
+              <option value="5.0 - 5.5 Zimmer">5.0 - 5.5 Zimmer</option>
+              <option value="6.0+ Zimmer / Haus">6.0+ Zimmer / Haus</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="badezimmer">Anzahl Badezimmer / WC <span>*</span></label>
+            <select id="badezimmer" name="Anzahl_Badezimmer_WC" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="1 Badezimmer / WC">1 Badezimmer / WC</option>
+              <option value="2 Badezimmer / WC">2 Badezimmer / WC</option>
+              <option value="3+ Badezimmer / WC">3+ Badezimmer / WC</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="fenster">Fenster (Grösse) <span>*</span></label>
+            <select id="fenster" name="Fenster_Groesse" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="Standard Fenster">Standard Fenster</option>
+              <option value="Grosse Fenster">Grosse Fenster</option>
+              <option value="Gemischt (standart und gross)">Gemischt (standart und gross)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="storen">Storen<span>*</span></label>
+            <select id="storen" name="Storen" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="Keine">Keine</option>
+              <option value="Lamellenstoren">Lamellenstoren</option>
+              <option value="Rollläden">Rollläden</option>
+              <option value="Einklappbare Läden">Einklappbare Läden</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="balkon">Balkon / Terrasse <span>*</span></label>
+            <select id="balkon" name="Balkon_Terrasse" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="Kein Balkon / Keine Terrasse">Kein Balkon / Keine Terrasse</option>
+              <option value="Balkon">Balkon</option>
+              <option value="Terrasse">Terrasse</option>
+              <option value="Balkon und Terrasse">Balkon und Terrasse</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="waschkuche">Waschküche / Keller <span>*</span></label>
+            <select id="waschkuche" name="Waschkuche_Keller" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="Keine eigene Waschküche">Keine eigene Waschküche</option>
+              <option value="Eigene Waschküche in der Wohnung / Haus">Eigene Waschküche in der Wohnung / Haus</option>
+              <option value="Waschküche + Kellerraum">Waschküche + Kellerraum</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="boden">Typ des Bodenbelags <span>*</span></label>
+            <select id="boden" name="Bodenbelag" class="form-control" required>
+              <option value="" disabled selected>Bitte wählen...</option>
+              <option value="Parkett / Laminat">Parkett / Laminat</option>
+              <option value="Platten / Fliesen">Platten / Fliesen</option>
+              <option value="Teppichböden">Teppichböden</option>
+              <option value="Gemischt (Parkett, Fliesen, Teppich)">Gemischt (Parkett, Fliesen, Teppich)</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="wunschtermin">Wunschtermin (tt.mm.jjjj) <span>*</span></label>
+            <input type="text" id="wunschtermin" name="Wunschtermin" class="form-control" placeholder="Datum auswählen..." required>
+          </div>
+
+          <div class="form-group full-width">
+            <label for="anmerkungen">Bemerkungen / Zusätzliche Wünsche</label>
+            <textarea id="anmerkungen" name="Bemerkungen" class="form-control" placeholder="Zusätzliche Informationen, Details zur Reinigung..."></textarea>
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn-submit">Offerte jetzt anfordern</button>
+
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<!-- Patička -->
+<footer class="footer-section">
+  <div class="footer-title">Folgen Sie uns auf</div>
+  <div class="social-buttons">
+    <a href="https://www.facebook.com/m.transportreinigung" class="btn-social btn-facebook" target="_blank" rel="noopener">
+      Facebook
+    </a>
+    <a href="https://www.instagram.com/m.transportreinigung" class="btn-social btn-instagram" target="_blank" rel="noopener">
+      Instagram
+    </a>
+  </div>
+  <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
+    &copy; 2026 M Transport & Reinigung Service.
+  </div>
+</footer>
+
+<!-- Flatpickr JS pro německý kalendář -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
+<script>
+  // Inicializace kalendáře v němčině s formátem tt.mm.jjjj (d.m.Y)
+  flatpickr("#wunschtermin", {
+    dateFormat: "d.m.Y",
+    locale: "de",
+    allowInput: true
+  });
+
+  function scrollToForm() {
+    document.getElementById('offerte-form').scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+  }
+</script>
+
+</body>
+</html>
