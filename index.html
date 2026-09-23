@@ -1,516 +1,489 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<header class="top-header">
-  <a href="index.html" class="logo-link" aria-label="Startseite">
-    <img src="https://i.postimg.cc/YSrZcdZr/7DBC4E2C-DFE6-4C4A-998B-962A891B7F9A.png" alt="M Transport & Reinigung Service" class="logo-img">
-  </a>
-
-  <nav class="main-nav">
-    <a href="index.html" class="nav-btn nav-btn-secondary">Startseite</a>
-    <a href="kontakt.html" class="nav-btn nav-btn-primary">Kontakt</a>
-  </nav>
-</header>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>M Transport & Reinigung Service</title>
-<!-- Flatpickr CSS pro německý kalendář -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<style>
-  /* Kompaktní hlavička s rozostřeným pozadím */
-.top-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 28px;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-/* Klikací logo */
-.logo-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.logo-img {
-  height: 48px;
-  width: auto;
-  object-fit: contain;
-  transition: transform 0.2s ease;
-}
-
-.logo-link:hover .logo-img {
-  transform: scale(1.04);
-}
-
-/* Navigace na pravé straně */
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Základní styl moderních tlačítek */
-.nav-btn {
-  text-decoration: none;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 10px 22px;
-  border-radius: 50px;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Tlačítko Startseite (Jemné světlé) */
-.nav-btn-secondary {
-  color: #334155;
-  background-color: #f1f5f9;
-  border: 1px solid #e2e8f0;
-}
-
-.nav-btn-secondary:hover {
-  background-color: #e2e8f0;
-  color: #0f172a;
-}
-
-.nav-btn-secondary.active {
-  background-color: #e0f2fe;
-  color: #0284c7;
-  border-color: #bae6fd;
-}
-
-/* Tlačítko Kontakt (Výrazné modré tlačítko) */
-.nav-btn-primary {
-  color: #ffffff;
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
-}
-
-.nav-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.38);
-}
-
-/* Úprava pro mobilní telefony */
-@media (max-width: 480px) {
-  .top-header {
-    padding: 10px 16px;
-  }
-  .logo-img {
-    height: 38px;
-  }
-  .nav-btn {
-    padding: 8px 16px;
-    font-size: 13px;
-  }
-}
-  /* Reset & Global Box Sizing */
-  * { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-  }
-
-  /* --- OPRAVA SCROLLOVÁNÍ PRO VŠECHNA ZAŘÍZENÍ --- */
-  html {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-  }
-
-  body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #002266; 
-    -webkit-font-smoothing: antialiased;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Skrytí vnitřního posuvníku (scrollbaru), ale zachování funkce scrollování */
-  ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-  }
-
-  /* Fix pro iOS - zabrání automatickému zoomu při kliknutí do formuláře */
-  input, select, textarea {
-    font-size: 16px !important; 
-  }
-
-  .page-wrapper {
-    background-color: #f4f6f9;
-    color: #333333;
-    line-height: 1.5;
-    width: 100%;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* 1. Záhlaví / Header */
-  .top-header {
-    background-color: #ffffff;
-    padding: 12px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    border-bottom: 3px solid #0051C7;
-  }
-  .brand-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-  .logo-img {
-    height: 48px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-  }
-  .brand-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #002266;
-    letter-spacing: -0.3px;
-  }
-
-  /* 2. Hero Banner */
-  .hero-section {
-    background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
-    color: #ffffff;
-    text-align: center;
-    padding: 40px 20px 45px 20px;
-  }
-  .hero-container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  .hero-title {
-    font-size: 26px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    line-height: 1.25;
-  }
-  .hero-subtitle {
-    font-size: 16px;
-    margin-bottom: 20px;
-    opacity: 0.95;
-  }
-  .service-badge {
-    background-color: #FFA000;
-    color: #002266;
-    padding: 8px 20px;
-    font-weight: bold;
-    border-radius: 50px;
-    display: inline-block;
-    font-size: 14px;
-    margin-bottom: 22px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-  }
-  .btn-cta {
-    background-color: #FF6A00;
-    color: #ffffff;
-    padding: 14px 30px;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 17px;
-    font-weight: bold;
-    display: inline-block;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(255, 106, 0, 0.4);
-  }
-  .btn-cta:hover {
-    background-color: #e05d00;
-    transform: translateY(-2px);
-  }
-
-  /* 3. Služby / Services */
-  .services-section {
-    padding: 35px 20px;
-    max-width: 900px;
-    margin: 0 auto;
-    width: 100%;
-  }
-  .section-heading {
-    text-align: center;
-    color: #002266;
-    font-size: 22px;
-    margin-bottom: 25px;
-    font-weight: bold;
-  }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-  }
-  .service-card {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 22px 15px;
-    text-align: center;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    border-top: 4px solid #0051C7;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .card-icon {
-    font-size: 34px;
-    margin-bottom: 10px;
-  }
-  .card-title {
-    color: #0051C7;
-    font-size: 17px;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  .card-text {
-    font-size: 13px;
-    color: #555555;
-    line-height: 1.4;
-  }
-  .service-card.disabled {
-    filter: blur(1.5px) grayscale(85%) opacity(0.55);
-    background: #f0f2f5;
-    border-top-color: #888888;
-    cursor: not-allowed;
-    user-select: none;
-    pointer-events: none;
-  }
-  .unavailable-tag {
-    background-color: #6c757d;
-    color: #ffffff;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 4px 8px;
-    border-radius: 8px;
-    display: inline-block;
-    margin-top: 10px;
-    text-transform: uppercase;
-  }
-
-  /* 4. WhatsApp Section */
-  .whatsapp-section {
-    max-width: 800px;
-    margin: 0 auto 25px auto;
-    padding: 0 20px;
-    width: 100%;
-  }
-  .whatsapp-card {
-    background-color: #002266;
-    color: #ffffff;
-    border-radius: 8px;
-    padding: 22px 20px;
-    text-align: center;
-  }
-  .whatsapp-title {
-    font-size: 19px;
-    margin-bottom: 6px;
-    font-weight: bold;
-  }
-  .whatsapp-desc {
-    font-size: 14px;
-    margin-bottom: 16px;
-    opacity: 0.9;
-  }
-  .btn-whatsapp {
-    background-color: #25D366;
-    color: #ffffff;
-    padding: 12px 24px;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 15px;
-    font-weight: bold;
-    display: inline-block;
-    transition: background-color 0.2s ease;
-  }
-  .btn-whatsapp:hover {
-    background-color: #1eb957;
-  }
-
-  /* 5. Formulář / Form Section */
-  .form-section {
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    padding: 0 20px;
-    width: 100%;
-  }
-  .form-card {
-    background: #ffffff;
-    border-radius: 8px;
-    padding: 28px 24px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-    border-top: 5px solid #FF6A00;
-    width: 100%;
-  }
-  .form-header {
-    text-align: center;
-    margin-bottom: 22px;
-  }
-  .form-title {
-    color: #002266;
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 6px;
-  }
-  .form-subtitle {
-    color: #666666;
-    font-size: 14px;
-  }
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    width: 100%;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-  .form-group.full-width {
-    grid-column: span 2;
-  }
-  .form-group label {
-    font-size: 13px;
-    font-weight: bold;
-    color: #002266;
-    margin-bottom: 5px;
-  }
-  .form-group label span {
-    color: #FF6A00;
-  }
-  .form-control {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-    outline: none;
-    background-color: #fafafa;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .form-control:focus {
-    border-color: #0051C7;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(0, 81, 199, 0.15);
-  }
-  textarea.form-control {
-    resize: vertical;
-    min-height: 75px;
-  }
-  .btn-submit {
-    background-color: #FF6A00;
-    color: #ffffff;
-    padding: 15px;
-    border: none;
-    border-radius: 5px;
-    font-size: 17px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 12px;
-    transition: background-color 0.2s ease;
-  }
-  .btn-submit:hover {
-    background-color: #e05d00;
-  }
-
-  /* 6. Footer & Sociální sítě */
-  .footer-section {
-    background-color: #002266;
-    color: #ffffff;
-    text-align: center;
-    padding: 40px 20px;
-    width: 100%;
-  }
-  .footer-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-  .social-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-  }
-  .btn-social {
-    padding: 12px 25px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 15px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    transition: transform 0.2s ease, opacity 0.2s ease;
-  }
-  .btn-social:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
-  }
-  .btn-facebook {
-    background-color: #1877F2;
-  }
-  .btn-instagram {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-  }
-
-  @media (max-width: 768px) {
-    .services-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>M Transport & Reinigung Service - Startseite</title>
+  
+  <!-- Flatpickr CSS pro německý kalendář -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  
+  <style>
+    /* Reset & Global Box Sizing */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
     }
-    .form-grid {
-      grid-template-columns: 1fr;
-      gap: 12px;
+
+    html {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
-    .form-group.full-width {
-      grid-column: span 1;
+
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #002266; 
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Skrytí vnitřního posuvníku (scrollbaru) */
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    /* Fix pro iOS - zabrání automatickému zoomu při kliknutí do formuláře */
+    input, select, textarea {
+      font-size: 16px !important; 
+    }
+
+    .page-wrapper {
+      background-color: #f4f6f9;
+      color: #333333;
+      line-height: 1.5;
+      width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 1. Záhlaví / Sticky Top Header */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 3px solid #0051C7;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .brand-container:hover .logo-img {
+      transform: scale(1.04);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #002266;
+      letter-spacing: -0.3px;
+    }
+
+    /* Navigace */
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 50px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-btn-secondary {
+      color: #334155;
+      background-color: #f1f5f9;
+      border: 1px solid #e2e8f0;
+    }
+
+    .nav-btn-secondary:hover {
+      background-color: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .nav-btn-secondary.active {
+      background-color: #e0f2fe;
+      color: #0284c7;
+      border-color: #bae6fd;
+    }
+
+    .nav-btn-primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
+    }
+
+    .nav-btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(2, 132, 199, 0.38);
+    }
+
+    /* 2. Hero Banner */
+    .hero-section {
+      background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px 45px 20px;
+    }
+    .hero-container {
+      max-width: 800px;
+      margin: 0 auto;
     }
     .hero-title {
-      font-size: 21px;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      line-height: 1.25;
     }
-    .brand-title {
+    .hero-subtitle {
+      font-size: 16px;
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+    .service-badge {
+      background-color: #FFA000;
+      color: #002266;
+      padding: 8px 20px;
+      font-weight: bold;
+      border-radius: 50px;
+      display: inline-block;
+      font-size: 14px;
+      margin-bottom: 22px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    }
+    .btn-cta {
+      background-color: #FF6A00;
+      color: #ffffff;
+      padding: 14px 30px;
+      text-decoration: none;
+      border-radius: 6px;
       font-size: 17px;
+      font-weight: bold;
+      display: inline-block;
+      transition: background-color 0.2s ease, transform 0.2s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 106, 0, 0.4);
+    }
+    .btn-cta:hover {
+      background-color: #e05d00;
+      transform: translateY(-2px);
+    }
+
+    /* 3. Služby / Services */
+    .services-section {
+      padding: 35px 20px;
+      max-width: 900px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .section-heading {
+      text-align: center;
+      color: #002266;
+      font-size: 22px;
+      margin-bottom: 25px;
+      font-weight: bold;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+    .service-card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 22px 15px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      border-top: 4px solid #0051C7;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card-icon {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+    .card-title {
+      color: #0051C7;
+      font-size: 17px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    .card-text {
+      font-size: 13px;
+      color: #555555;
+      line-height: 1.4;
+    }
+    .service-card.disabled {
+      filter: blur(1.5px) grayscale(85%) opacity(0.55);
+      background: #f0f2f5;
+      border-top-color: #888888;
+      cursor: not-allowed;
+      user-select: none;
+      pointer-events: none;
+    }
+    .unavailable-tag {
+      background-color: #6c757d;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+
+    /* 4. WhatsApp Section */
+    .whatsapp-section {
+      max-width: 800px;
+      margin: 0 auto 25px auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+    .whatsapp-card {
+      background-color: #002266;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 22px 20px;
+      text-align: center;
+    }
+    .whatsapp-title {
+      font-size: 19px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    .whatsapp-desc {
+      font-size: 14px;
+      margin-bottom: 16px;
+      opacity: 0.9;
+    }
+    .btn-whatsapp {
+      background-color: #25D366;
+      color: #ffffff;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: bold;
+      display: inline-block;
+      transition: background-color 0.2s ease;
+    }
+    .btn-whatsapp:hover {
+      background-color: #1eb957;
+    }
+
+    /* 5. Formulář / Form Section */
+    .form-section {
+      max-width: 800px;
+      margin: 0 auto 40px auto;
+      padding: 0 20px;
+      width: 100%;
     }
     .form-card {
-      padding: 20px 15px;
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      border-top: 5px solid #FF6A00;
+      width: 100%;
     }
-  }
-</style>
+    .form-header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .form-title {
+      color: #002266;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .form-subtitle {
+      color: #666666;
+      font-size: 14px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      width: 100%;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+    .form-group label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #002266;
+      margin-bottom: 5px;
+    }
+    .form-group label span {
+      color: #FF6A00;
+    }
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      outline: none;
+      background-color: #fafafa;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .form-control:focus {
+      border-color: #0051C7;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(0, 81, 199, 0.15);
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 75px;
+    }
+    .btn-submit {
+      background-color: #FF6A00;
+      color: #ffffff;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 12px;
+      transition: background-color 0.2s ease;
+    }
+    .btn-submit:hover {
+      background-color: #e05d00;
+    }
+
+    /* 6. Footer & Sociální sítě */
+    .footer-section {
+      background-color: #002266;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      width: 100%;
+    }
+    .footer-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .btn-social {
+      padding: 12px 25px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .btn-social:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+    .btn-facebook {
+      background-color: #1877F2;
+    }
+    .btn-instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    /* Úpravy pro mobilní zařízení */
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      .form-group.full-width {
+        grid-column: span 1;
+      }
+      .hero-title {
+        font-size: 21px;
+      }
+      .form-card {
+        padding: 20px 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .top-header {
+        padding: 10px 16px;
+      }
+      .logo-img {
+        height: 38px;
+      }
+      .brand-title {
+        display: none; /* Skryje text v logu na velmi malých displejích */
+      }
+      .nav-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="page-wrapper">
 
-  <!-- Záhlaví s logem -->
+  <!-- Záhlaví s logem a navigací -->
   <header class="top-header">
-    <div class="brand-container">
+    <a href="index.html" class="brand-container" aria-label="Startseite">
       <img src="https://i.postimg.cc/YSrZcdZr/7DBC4E2C-DFE6-4C4A-998B-962A891B7F9A.png" alt="M Transport & Reinigung Service Logo" class="logo-img">
-      <div class="brand-title">M Transport & Reinigung Service</div>
-    </div>
+      <span class="brand-title">M Transport & Reinigung Service</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-btn nav-btn-secondary active">Startseite</a>
+      <a href="kontakt.html" class="nav-btn nav-btn-primary">Kontakt</a>
+    </nav>
   </header>
 
   <!-- Main Hero Banner -->
@@ -568,20 +541,19 @@
     </div>
   </div>
 
- <!-- Poptávkový formulář -->
+  <!-- Poptávkový formulář -->
   <div id="offerte-form" class="form-section">
     <div class="form-card">
       <div class="form-header">
         <h2 class="form-title">Unverbindliche Offerte anfordern</h2>
         <p class="form-subtitle">Füllen Sie das Formular aus – wir senden Ihnen schnellstmöglich ein Angebot.</p>
       </div>
-<form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="e319a32a-b002-4a69-a3d0-c77fc3169d40">
 
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="e319a32a-b002-4a69-a3d0-c77fc3169d40">
         <input type="hidden" name="_subject" value="Neue Offertenanfrage - M Transport & Reinigung">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-
 
         <div class="form-grid">
           
@@ -667,12 +639,12 @@
               <option value="" disabled selected>Bitte wählen...</option>
               <option value="Standard Fenster">Standard Fenster</option>
               <option value="Grosse Fenster">Grosse Fenster</option>
-              <option value="Gemischt (standart und gross)">Gemischt (standart und gross)</option>
+              <option value="Gemischt (Standard und gross)">Gemischt (Standard und gross)</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="storen">Storen<span>*</span></label>
+            <label for="storen">Storen <span>*</span></label>
             <select id="storen" name="Storen" class="form-control" required>
               <option value="" disabled selected>Bitte wählen...</option>
               <option value="Keine">Keine</option>
@@ -754,7 +726,7 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 <script>
-  // Inicializace kalendáře v němčině s formátem tt.mm.jjjj (d.m.Y)
+  // Inicializace kalendáře v němčině s formátem d.m.Y
   flatpickr("#wunschtermin", {
     dateFormat: "d.m.Y",
     locale: "de",
