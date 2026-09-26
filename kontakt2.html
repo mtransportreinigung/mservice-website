@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Kontakt - M Transport & Reinigung Service</title>
+  
+  <style>
+    /* Reset & Global Box Sizing */
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    html {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      height: 100%;
+    }
+
+    body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #002266; 
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Skrytí vnitřního posuvníku (scrollbaru) */
+    ::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+
+    /* Fix pro iOS - zabrání automatickému zoomu */
+    input, select, textarea {
+      font-size: 16px !important; 
+    }
+
+    .page-wrapper {
+      background-color: #f4f6f9;
+      color: #333333;
+      line-height: 1.5;
+      width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-top: 75px; /* Kompenzace pro fixní hlavičku */
+    }
+
+    /* 1. Záhlaví / Fixed Top Header */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 3px solid #0051C7;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .brand-container:hover .logo-img {
+      transform: scale(1.04);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #002266;
+      letter-spacing: -0.3px;
+    }
+
+    /* Navigace */
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 50px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      /* Neaktivní tlačítka: Modré s bílým textem */
+      color: #ffffff;
+      background-color: #0051C7;
+      border: 1px solid #0051C7;
+      box-shadow: 0 2px 8px rgba(0, 81, 199, 0.2);
+    }
+
+    .nav-btn:hover {
+      background-color: #003da1;
+      border-color: #003da1;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    /* Vybraná / Aktivní položka: Šedivá s černým textem */
+    .nav-btn.active {
+      color: #000000;
+      background-color: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      box-shadow: none;
+      cursor: pointer;
+    }
+
+    .nav-btn.active:hover {
+      background-color: #cbd5e1;
+      color: #000000;
+      transform: none;
+    }
+
+    /* HLAVNÍ SEKTOR KONTAKTU */
+    .main-content {
+      background-color: #f4f6f9;
+      flex: 1 0 auto;
+      padding: 35px 15px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .contact-wrapper {
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .contact-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 35px 30px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      border-top: 5px solid #FF6A00;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 1px solid #eeeeee;
+      padding-bottom: 20px;
+    }
+
+    .contact-title {
+      color: #002266;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .contact-subtitle {
+      color: #555555;
+      font-size: 15px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+    }
+
+    /* KONTAKTNÍ INFORMACE A MAPA */
+    .info-section {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .info-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #002266;
+      color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .info-content strong {
+      display: block;
+      color: #002266;
+      font-size: 14px;
+    }
+
+    .info-content p, .info-content a {
+      color: #333333;
+      font-size: 15px;
+      text-decoration: none;
+    }
+
+    .info-content a:hover {
+      color: #0284c7;
+      text-decoration: underline;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #dddddd;
+      margin-top: 10px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* FORMULÁŘ */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: bold;
+      color: #002266;
+      margin-bottom: 6px;
+    }
+
+    .form-group label span {
+      color: #FF6A00;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      outline: none;
+      background-color: #fafafa;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .form-control:focus {
+      border-color: #0284c7;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .btn-submit {
+      background-color: #FF6A00;
+      color: #ffffff;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 5px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 4px 12px rgba(255, 106, 0, 0.25);
+    }
+
+    .btn-submit:hover {
+      background-color: #e05d00;
+      transform: translateY(-1px);
+    }
+
+    /* ZÁPATÍ STRÁNKY */
+    .footer-section {
+      background-color: #002266;
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .footer-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-social {
+      padding: 12px 25px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn-social:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .btn-facebook {
+      background-color: #1877F2;
+    }
+
+    .btn-instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    /* Úpravy pro mobilní zařízení */
+    @media (max-width: 768px) {
+      .page-wrapper {
+        padding-top: 65px;
+      }
+      .top-header {
+        padding: 10px 16px;
+      }
+      .nav-btn {
+        padding: 8px 14px;
+        font-size: 13px;
+      }
+      .main-nav {
+        gap: 6px;
+      }
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      .contact-card {
+        padding: 22px 18px;
+      }
+      .contact-title {
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-title {
+        display: none; /* Skryje text v logu na velmi malých displejích */
+      }
+      .logo-img {
+        height: 38px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- HORNÍ LIŠTA -->
+  <header class="top-header">
+    <a href="index.html" class="brand-container" aria-label="Startseite">
+      <img src="https://i.postimg.cc/YSrZcdZr/7DBC4E2C-DFE6-4C4A-998B-962A891B7F9A.png" alt="M Transport & Reinigung Service Logo" class="logo-img">
+      <span class="brand-title">M Transport & Reinigung Service</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-btn">Startseite</a>
+      <a href="offerte.html" class="nav-btn">Anfrageformular</a>
+      <a href="kontakt.html" class="nav-btn active">Kontakt</a>
+    </nav>
+  </header>
+
+  <!-- HLAVNÍ OBSAH -->
+  <main class="main-content">
+    <div class="contact-wrapper">
+      <div class="contact-card">
+        
+        <div class="contact-header">
+          <h1 class="contact-title">Kontaktieren Sie uns</h1>
+          <p class="contact-subtitle">Wir freuen uns auf Ihre Anfrage – Schnell & zuverlässig</p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- LEVÝ SLOUPEC: Kontaktní údaje a mapa -->
+          <div class="info-section">
+            
+            <div class="info-item">
+              <div class="info-icon">🏢</div>
+              <div class="info-content">
+                <strong>Firma:</strong>
+                <p>M Transport & Reinigung Service</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">📍</div>
+              <div class="info-content">
+                <strong>Tätigkeitsgebiet:</strong>
+                <p>Kanton Thurgau & Umgebung</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <div class="info-icon">📞</div>
+              <div class="info-content">
+                <strong>Telefon / WhatsApp:</strong>
+                <p><a href="tel:+41783458072">+41 78 345 80 72</a></p>
+              </div>
+            </div>
+
+            <!-- Interaktivní Google Mapa - 8586 Ennetaach -->
+            <div class="map-container">
+              <iframe 
+                src="https://maps.google.com/maps?q=8586%20Ennetaach&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                allowfullscreen="" 
+                loading="lazy">
+              </iframe>
+            </div>
+
+          </div>
+
+          <!-- PRAVÝ SLOUPEC: Formulář -->
+          <div>
+            <form action="https://api.web3forms.com/submit" method="POST">
+              
+              <!-- Web3Forms Konfigurace -->
+              <input type="hidden" name="access_key" value="e319a32a-b002-4a69-a3d0-c77fc3169d40">
+              <input type="hidden" name="_subject" value="Neue Nachricht über Kontaktformular - M Transport & Reinigung">
+              <input type="hidden" name="_captcha" value="false">
+
+              <div class="form-group">
+                <label for="vorname">Vorname <span>*</span></label>
+                <input type="text" id="vorname" name="Vorname" class="form-control" placeholder="Ihr Vorname" required>
+              </div>
+
+              <div class="form-group">
+                <label for="nachname">Nachname <span>*</span></label>
+                <input type="text" id="nachname" name="Nachname" class="form-control" placeholder="Ihr Nachname" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">E-Mail-Adresse <span>*</span></label>
+                <input type="email" id="email" name="Email" class="form-control" placeholder="ihre.email@beispiel.ch" required>
+              </div>
+
+              <div class="form-group">
+                <label for="nachricht">Ihre Nachricht <span>*</span></label>
+                <textarea id="nachricht" name="Nachricht" class="form-control" placeholder="Schreiben Sie uns Ihre Nachricht..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn-submit">Nachricht senden</button>
+
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ZÁPATÍ STRÁNKY -->
+  <footer class="footer-section">
+    <div class="footer-title">Folgen Sie uns auf</div>
+    <div class="social-buttons">
+      <a href="https://www.facebook.com/m.transportreinigung" class="btn-social btn-facebook" target="_blank" rel="noopener">
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/m.transportreinigung" class="btn-social btn-instagram" target="_blank" rel="noopener">
+        Instagram
+      </a>
+    </div>
+    <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
+      &copy; 2026 M Transport & Reinigung Service.
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
