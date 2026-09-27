@@ -494,7 +494,7 @@
 
       <div id="tab-gebaeude" class="tab-card" onclick="switchService('gebaeude')">
         <span class="tab-icon">🏢</span>
-        <span class="tab-title">Gebäude</span>
+        <span class="tab-title">Gebäudereinigung</span>
       </div>
 
       <div id="tab-unterhalt" class="tab-card" onclick="switchService('unterhalt')">
@@ -528,11 +528,16 @@
           <div id="fields-umzug" class="service-fields active-fieldset">
             
             <!-- Kontaktdaten des Auftraggebers -->
-            <div class="form-section-title">👤 Kontaktdaten des Auftraggebers</div>
+            <div class="form-section-title">👤 Kontaktdaten des Kunden</div>
 
             <div class="form-group">
-              <label for="u_fullname">Vorname & Name <span>*</span></label>
-              <input type="text" id="u_fullname" name="Auftraggeber_Name" class="form-control" placeholder="z. B. Max Muster" required>
+              <label for="un_vorname">Vorname <span>*</span></label>
+              <input type="text" id="un_vorname" name="Vorname" class="form-control" placeholder="z. B. Thomas" required>
+            </div>
+
+            <div class="form-group">
+              <label for="un_nachname">Nachname <span>*</span></label>
+              <input type="text" id="un_nachname" name="Nachname" class="form-control" placeholder="z. B. Muster" required>
             </div>
 
             <div class="form-group">
@@ -630,6 +635,7 @@
               <select name="Moeblierung" class="form-control" required>
                 <option value="" disabled selected>Bitte wählen...</option>
                 <option value="Leer">Leer</option>
+                <option value="Möbliert">Möbliert</option>
                 <option value="Teilmöbliert">Teilmöbliert</option>
               </select>
             </div>
@@ -668,7 +674,7 @@
             </div>
 
             <div class="form-group full-width group-kochfeld">
-              <label>Kochfeld Typ: <span>*</span></label>
+              <label>Kochfeldtyp: <span>*</span></label>
               <div class="checkbox-grid cols-3">
                 <label class="checkbox-label"><input type="checkbox" name="Kochfeld_Glaskeramik_Induktion" value="Ja"> Glaskeramik / Induktion</label>
                 <label class="checkbox-label"><input type="checkbox" name="Kochfeld_Gussplatten_Gas" value="Ja"> Gussplatten / Gas</label>
@@ -708,7 +714,7 @@
 
             <!-- Sonderflächen Fenster -->
             <div class="form-group full-width">
-              <label>Sonderflächen Fenster (Optional):</label>
+              <label>Fenster-Sonderflächen (Optional):</label>
               <div class="checkbox-grid cols-3">
                 <label class="checkbox-label"><input type="checkbox" name="Sonderflaeche_Dachfenster" value="Ja"> Dachfenster</label>
                 <label class="checkbox-label"><input type="checkbox" name="Sonderflaeche_Verglasung" value="Ja"> Sitzplatz- / Balkonverglasung</label>
@@ -754,12 +760,12 @@
             <div class="form-section-title">🔑 Übergabe & Bemerkungen</div>
 
             <div class="form-group">
-              <label for="u_ubergabe_datum">Übergabetermin Datum:</label>
+              <label for="u_ubergabe_datum">Übergabedatum:</label>
               <input type="text" id="u_ubergabe_datum" name="Uebergabetermin_Datum" class="form-control date-picker" placeholder="Datum auswählen...">
             </div>
 
             <div class="form-group">
-              <label for="u_ubergabe_zeit">Übergabetermin Uhrzeit:</label>
+              <label for="u_ubergabe_zeit">Übergabezeit:</label>
               <input type="text" id="u_ubergabe_zeit" name="Uebergabetermin_Uhrzeit" class="form-control" placeholder="z. B. 14:00 Uhr">
             </div>
 
@@ -779,11 +785,11 @@
           </div>
 
           <!-- ======================================================= -->
-          <!-- SPECIFICKÁ POLE: 2. GEBÄUDE                            -->
+          <!-- SPECIFICKÁ POLE: 2. GEBÄUDEREINIGUNG                    -->
           <!-- ======================================================= -->
           <div id="fields-gebaeude" class="service-fields">
             
-            <div class="form-section-title">👤 Kontaktdaten des Auftraggebers</div>
+            <div class="form-section-title">👤 Kontaktdaten des Kunden</div>
 
             <div class="form-group">
               <label for="g_firma">Firma / Immobilienverwaltung</label>
@@ -864,7 +870,7 @@
             </div>
 
             <div class="form-group">
-              <label for="g_stockwerke">Anzahl Stockwerke / Etagen <span>*</span></label>
+              <label for="g_stockwerke">Anzahl Etagen <span>*</span></label>
               <select id="g_stockwerke" name="Stockwerke_Etagen" class="form-control" required>
                 <option value="" disabled selected>Bitte wählen...</option>
                 <option value="1 Etage">1 Etage</option>
@@ -931,7 +937,7 @@
                 <label class="checkbox-label"><input type="checkbox" name="Bereich_Waschkuche" value="Ja"> Gemeinschaftliche Waschküche</label>
                 <label class="checkbox-label"><input type="checkbox" name="Bereich_Keller_Tiefgarage" value="Ja"> Keller- / Tiefgaragenbereich</label>
                 <label class="checkbox-label"><input type="checkbox" name="Bereich_Kueche" value="Ja"> Pausenraum / Teeküche</label>
-                <label class="checkbox-label"><input type="checkbox" name="Bereich_Fenster" value="Ja"> Regelmässige Fenster & Glasfronten</label>
+                <label class="checkbox-label"><input type="checkbox" name="Bereich_Fenster" value="Ja"> Fenster & Glasfronten</label>
                 <label class="checkbox-label"><input type="checkbox" name="Bereich_Aussen" value="Ja"> Aussenbereich / Terrassen</label>
               </div>
             </div>
@@ -1024,8 +1030,8 @@
               <label for="un_tageszeit">Bevorzugte Tageszeit: <span>*</span></label>
               <select id="un_tageszeit" name="Bevorzugte_Tageszeit" class="form-control" required>
                 <option value="" disabled selected>Bitte wählen...</option>
-                <option value="Vormittags (Morgen)">Vormittags (Morgen)</option>
-                <option value="Nachmittags (Nachmittag)">Nachmittags (Nachmittag)</option>
+                <option value="Vormittags">Vormittags</option>
+                <option value="Nachmittags">Nachmittags</option>
                 <option value="Flexibel / Egal">Flexibel / Egal</option>
               </select>
             </div>
