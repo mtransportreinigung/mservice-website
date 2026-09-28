@@ -1352,26 +1352,40 @@
       }
     }
 
-    // Příprava odesílání
-    submitBtn.disabled = true;
-    submitBtn.innerText = 'Wird gesendet...';
-    resultDiv.className = 'form-result';
-    resultDiv.innerHTML = '';
-    resultDiv.style.display = 'none';
+            // Obsluha odeslání Web3Forms formuláře
+  const form = document.getElementById('web3-contact-form');
+  const result = document.getElementById('form-result');
 
-    const formData = new FormData(mainForm);
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+    
+    result.textContent = "Wird gesendet...";
 
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
-      body: formData
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: json
     })
     .then(async (response) => {
       let json = await response.json();
-      if (response.status === 200) {
-        resultDiv.className = 'form-result success';
-        resultDiv.innerHTML = 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir werden uns kurzfristig bei Ihnen melden.';
-        mainForm.reset();
-        
+      if (response.status == 200) {
+        result.textContent = "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
+        form.reset();
+      } else {
+        result.textContent = json.message || "Ein Fehler ist aufgetreten.";
+      }
+    })
+    .catch(error => {
+      result.textContent = "Etwas ist schiefgelaufen! Bitte versuchen Sie es später.";
+    });
+  });
+          
         // Znovu spustíme nastavení výchozího stavu po resetu
         if (activeTab) {
           const activeId = activeTab.id.replace('tab-', '');
