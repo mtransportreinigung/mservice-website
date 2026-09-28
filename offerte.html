@@ -457,6 +457,36 @@
     }
   </style>
 </head>
+    <script>
+    function switchTab(tabId) {
+        document.querySelectorAll('.form-section').forEach(section => {
+            section.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
+        const targetSection = document.getElementById(tabId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+        
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabId)) {
+                btn.classList.add('active');
+            }
+        });
+    }
+
+    // Automatické zachycení parametru z URL při načtení stránky
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const service = urlParams.get('service');
+        if (service) {
+            switchTab(service);
+        }
+    });
+</script>
 <body>
 
 <div class="page-wrapper">
