@@ -1359,7 +1359,8 @@
       let json = await response.json();
       if (response.status === 200) {
         resultDiv.className = 'form-result success';
-        resultDiv.innerHTML = 'Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.';
+        resultDiv.innerText = 'Ihre Anfrage wurde erfolgreich gesendet.';
+        resultDiv.innerHTML = '';
         mainForm.reset();
         
         // Znovu spustíme nastavení výchozího stavu po resetu
