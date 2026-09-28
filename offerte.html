@@ -1368,9 +1368,12 @@
     .then(async (response) => {
       let json = await response.json();
       if (response.status === 200) {
-        resultDiv.className = 'form-result success';
-        resultDiv.innerHTML = 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir werden uns kurzfristig bei Ihnen melden.';
-        mainForm.reset();
+          submitBtn.disabled = true;
+          submitBtn.innerText = 'Fertig!';
+          resultDiv.className = 'form-result success';
+          resultDiv.innerHTML = '';
+          resultDiv.style.display = 'none';
+          mainForm.reset();
         
         // Znovu spustíme nastavení výchozího stavu po resetu
         if (activeTab) {
