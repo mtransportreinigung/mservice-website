@@ -1369,11 +1369,10 @@
       let json = await response.json();
       if (response.status === 200) {
           submitBtn.disabled = true;
-          submitBtn.innerText = 'Fertig!';
+          submitBtn.innerText = 'Gesendet!';
           resultDiv.className = 'form-result success';
           resultDiv.innerHTML = '';
           resultDiv.style.display = 'none';
-          mainForm.reset();
         
         // Znovu spustíme nastavení výchozího stavu po resetu
         if (activeTab) {
