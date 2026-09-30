@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutzerklärung | M Transport & Reinigung Service</title>
+    
+    <!-- Profilová fotka / Favicona -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/G4fqGxbV/image.png">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/G4fqGxbV/image.png">
+
+    <meta name="description" content="Datenschutzerklärung von M Transport & Reinigung Service. Information über die Bearbeitung Ihrer Personendaten.">
+
+    <style>
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-color: #002266;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333333;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-top: 75px;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      flex-direction: column;
+      background-color: #f4f6f9;
+    }
+
+    /* Záhlaví / Header */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 3px solid #0051C7;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .brand-container:hover .logo-img {
+      transform: scale(1.04);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #002266;
+      letter-spacing: -0.3px;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 50px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0051C7;
+      color: #ffffff;
+      border: 1px solid #0051C7;
+      box-shadow: 0 2px 8px rgba(0, 81, 199, 0.2);
+    }
+
+    .nav-btn:hover {
+      background-color: #003da1;
+      color: #ffffff;
+      border-color: #003da1;
+      transform: translateY(-1px);
+    }
+
+    /* Hero Sekce */
+    .hero-section {
+      background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px 45px 20px;
+    }
+
+    .hero-section h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .hero-section p {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Hlavní obsah */
+    .content-container {
+      max-width: 850px;
+      margin: 30px auto 50px auto;
+      padding: 0 20px;
+      width: 100%;
+      flex: 1 0 auto;
+    }
+
+    .document-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 40px 35px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      border-top: 6px solid #FF6A00;
+    }
+
+    .doc-intro {
+      font-size: 15px;
+      color: #334155;
+      margin-bottom: 25px;
+      background: #f8fafc;
+      padding: 15px;
+      border-radius: 6px;
+      border-left: 4px solid #0051C7;
+    }
+
+    .doc-section {
+      margin-bottom: 24px;
+    }
+
+    .doc-section h2 {
+      font-size: 17px;
+      color: #002266;
+      font-weight: bold;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .doc-section h3 {
+      font-size: 15px;
+      color: #0051C7;
+      font-weight: bold;
+      margin: 12px 0 4px 0;
+    }
+
+    .doc-section p {
+      font-size: 14.5px;
+      color: #475569;
+      margin-bottom: 8px;
+    }
+
+    .doc-section a {
+      color: #0051C7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .doc-section a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link-wrapper {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #0051C7;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 11px 26px;
+      border-radius: 50px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 3px 10px rgba(0, 81, 199, 0.2);
+    }
+
+    .btn-back:hover {
+      background-color: #003da1;
+      transform: translateY(-1px);
+    }
+
+    /* Čistá patička */
+    .footer-section {
+      background-color: #002266;
+      color: #ffffff;
+      text-align: center;
+      padding: 25px 20px;
+      margin-top: auto;
+      width: 100%;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      .document-card { padding: 25px 20px; }
+      .hero-section h1 { font-size: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding-top: 65px; }
+      .top-header { padding: 10px 12px; }
+      .logo-img { height: 36px; }
+      .brand-title { display: none; }
+      .nav-btn { padding: 8px 16px; font-size: 13px; }
+    }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Záhlaví pouze s tlačítkem Startseite -->
+  <header class="top-header">
+    <a href="index.html" class="brand-container">
+      <img src="https://i.postimg.cc/YSrZcdZr/7DBC4E2C-DFE6-4C4A-998B-962A891B7F9A.png" alt="Logo" class="logo-img">
+      <span class="brand-title">M Transport & Reinigung Service</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-btn">Startseite</a>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <h1>Datenschutzerklärung</h1>
+    <p>Stand: 01.10.2026</p>
+  </section>
+
+  <!-- Obsah dokumentu -->
+  <main class="content-container">
+    <div class="document-card">
+
+      <div class="doc-intro">
+        Wir nehmen den Schutz Ihrer Personendaten ernst. Diese Erklärung informiert darüber, welche Daten wir beim Besuch dieser Website und bei der Nutzung unserer Formulare bearbeiten. Sie richtet sich nach dem schweizerischen Datenschutzgesetz (DSG).
+      </div>
+
+      <div class="doc-section">
+        <h2>1. Verantwortliche Stelle</h2>
+        <p><strong>Mejstrik Transport & Reinigung Service</strong></p>
+        <p>Inhaber/in: Daniel Mejstrik</p>
+        <p>Bädlistrasse 4, 8586 Ennetaach, Schweiz</p>
+        <p>E-Mail: <a href="mailto:m.transportreinigung@gmail.com">m.transportreinigung@gmail.com</a></p>
+        <p>Telefon: <a href="tel:+41783458072">+41 78 345 80 72</a></p>
+      </div>
+
+      <div class="doc-section">
+        <h2>2. Welche Daten wir bearbeiten und wofür</h2>
+        
+        <h3>a) Anfrage- und Kontaktformulare</h3>
+        <p>Wenn Sie eines unserer Formulare (Offerte, Kontakt, Partneranfrage) absenden, bearbeiten wir die von Ihnen eingegebenen Angaben, insbesondere: Name, Telefonnummer, E-Mail-Adresse, Adresse des Objekts, Angaben zum Objekt (z. B. Grösse, Ausstattung), Wunschtermine sowie Ihre Bemerkungen. Bei der Partneranfrage zusätzlich Firmenname, Ansprechperson und Angaben zu Ihrem Unternehmen.</p>
+        <p><strong>Zweck:</strong> Beantwortung Ihrer Anfrage, Erstellung einer Offerte, Vorbereitung und Abwicklung eines Auftrags sowie Kundenbetreuung.</p>
+
+        <h3>b) Kontakt per Telefon, E-Mail oder WhatsApp</h3>
+        <p>Wenn Sie uns per Telefon, E-Mail oder WhatsApp kontaktieren, bearbeiten wir Ihre Kontaktdaten und den Inhalt der Nachricht, um Ihr Anliegen zu beantworten.</p>
+
+        <h3>c) Technische Daten beim Besuch der Website</h3>
+        <p>Beim Aufruf der Website werden technisch bedingt Daten wie IP-Adresse, Datum und Uhrzeit, aufgerufene Seite, Browsertyp und Betriebssystem übermittelt und vom Hosting-Anbieter in sogenannten Server-Logfiles gespeichert. Dies dient dem sicheren und stabilen Betrieb der Website.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>3. Aufbewahrung</h2>
+        <p>Wir bewahren Ihre Daten nur so lange auf, wie es für die genannten Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten (z. B. für Geschäftsunterlagen, in der Regel 10 Jahre) bestehen. Anfragen, aus denen kein Auftrag entsteht, löschen wir in der Regel nach 12 Monaten.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>4. Hosting und technische Dienstleister</h2>
+        <p>Diese Website wird betrieben bei: <strong>Infomaniak Network AG</strong>, Rue Eugène Marziano 25, 1227 Les Acacias (GE). Dieser bearbeitet Daten in unserem Auftrag.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>5. Versand der Formulare</h2>
+        <p>Die Daten aus unseren Formularen werden über <strong>Web3Forms</strong>, unseren Hosting-Anbieter per E-Mail an uns übermittelt. Dabei können Daten auch ins Ausland gelangen.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>6. Weitere Dienste Dritter</h2>
+        <p><strong>Karte (OpenStreetMap):</strong> Auf der Kontaktseite binden wir eine Karte von OpenStreetMap ein. Beim Laden der Karte wird Ihre IP-Adresse an die OpenStreetMap Foundation (Sitz: Grossbritannien) übermittelt. Weitere Informationen finden Sie in der OpenStreetMap Privacy Policy.</p>
+        <p><strong>Logo / Bilder:</strong> Unser Logo wird derzeit vom Bilderdienst postimg.cc geladen. Dabei wird Ihre IP-Adresse an diesen Dienst übermittelt, der sich im Ausland befinden kann.</p>
+        <p><strong>WhatsApp:</strong> Wenn Sie uns über den WhatsApp-Link kontaktieren, verlassen Sie unsere Website und nutzen den Dienst WhatsApp (Meta Platforms Ireland Ltd., Irland, bzw. Meta Platforms, Inc., USA). Es gelten die Datenschutzbestimmungen von WhatsApp.</p>
+        <p><strong>Facebook und Instagram:</strong> Unsere Website enthält Links zu unseren Profilen bei Facebook und Instagram (Meta). Erst wenn Sie einen Link anklicken, werden Daten an Meta übermittelt. Es gelten die Datenschutzbestimmungen von Meta.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>7. Cookies und Analyse</h2>
+        <p>Diese Website verwendet keine Tracking- oder Analyse-Tools und keine Marketing-Cookies.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>8. Datenweitergabe und Ausland</h2>
+        <p>Wir verkaufen Ihre Daten nicht. Wir geben sie nur an die oben genannten Dienstleister weiter, soweit dies zur Erbringung unserer Leistungen oder für den Betrieb der Website nötig ist, oder wenn wir gesetzlich dazu verpflichtet sind. Einzelne genannte Dienste haben ihren Sitz im Ausland (z. B. USA, Grossbritannien).</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>9. Datensicherheit</h2>
+        <p>Wir treffen angemessene technische und organisatorische Massnahmen, um Ihre Daten zu schützen. Die Übertragung über das Internet (z. B. per E-Mail) kann jedoch nie vollständig sicher sein.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>10. Ihre Rechte</h2>
+        <p>Sie haben das Recht auf Auskunft über Ihre bei uns gespeicherten Daten, auf Berichtigung, Löschung und Einschränkung der Bearbeitung sowie auf Herausgabe Ihrer Daten. Wenden Sie sich dazu an die oben genannte E-Mail-Adresse. Sie können sich zudem beim Eidgenössischen Datenschutz- und Öffentlichkeitsbeauftragten (EDÖB, <a href="https://www.edoeb.admin.ch" target="_blank" rel="noopener">www.edoeb.admin.ch</a>) beschweren.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>11. Änderungen</h2>
+        <p>Wir können diese Datenschutzerklärung jederzeit anpassen. Es gilt die jeweils auf der Website veröffentlichte Fassung.</p>
+      </div>
+
+      <div class="back-link-wrapper">
+        <a href="index.html" class="btn-back">&larr; Zurück zur Startseite</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Čistá patička (bez sociálních sítí) -->
+  <footer class="footer-section">
+    &copy; 2026 M Transport & Reinigung Service.
+  </footer>
+
+</div>
+
+</body>
+</html>

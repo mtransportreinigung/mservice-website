@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum | M Transport & Reinigung Service</title>
+    
+    <!-- Profilová fotka / Favicona -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/G4fqGxbV/image.png">
+    <link rel="apple-touch-icon" href="https://i.postimg.cc/G4fqGxbV/image.png">
+
+    <meta name="description" content="Impressum von M Transport & Reinigung Service, Thurgau.">
+
+    <style>
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-color: #002266;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333333;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding-top: 75px;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      flex-direction: column;
+      background-color: #f4f6f9;
+    }
+
+    /* Záhlaví / Header */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+      border-bottom: 3px solid #0051C7;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .brand-container:hover .logo-img {
+      transform: scale(1.04);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #002266;
+      letter-spacing: -0.3px;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 50px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0051C7;
+      color: #ffffff;
+      border: 1px solid #0051C7;
+      box-shadow: 0 2px 8px rgba(0, 81, 199, 0.2);
+    }
+
+    .nav-btn:hover {
+      background-color: #003da1;
+      color: #ffffff;
+      border-color: #003da1;
+      transform: translateY(-1px);
+    }
+
+    /* Hero Sekce */
+    .hero-section {
+      background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px 45px 20px;
+    }
+
+    .hero-section h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .hero-section p {
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    /* Hlavní obsah */
+    .content-container {
+      max-width: 800px;
+      margin: 30px auto 50px auto;
+      padding: 0 20px;
+      width: 100%;
+      flex: 1 0 auto;
+    }
+
+    .document-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 40px 35px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      border-top: 6px solid #FF6A00;
+    }
+
+    .doc-section {
+      margin-bottom: 25px;
+    }
+
+    .doc-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .doc-section h2 {
+      font-size: 18px;
+      color: #002266;
+      font-weight: bold;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .doc-section p, .doc-section address {
+      font-size: 14.5px;
+      color: #475569;
+      font-style: normal;
+      margin-bottom: 8px;
+    }
+
+    .doc-section a {
+      color: #0051C7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .doc-section a:hover {
+      text-decoration: underline;
+    }
+
+    .back-link-wrapper {
+      margin-top: 35px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+      text-align: center;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #0051C7;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      padding: 11px 26px;
+      border-radius: 50px;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+      box-shadow: 0 3px 10px rgba(0, 81, 199, 0.2);
+    }
+
+    .btn-back:hover {
+      background-color: #003da1;
+      transform: translateY(-1px);
+    }
+
+    /* Čistá patička */
+    .footer-section {
+      background-color: #002266;
+      color: #ffffff;
+      text-align: center;
+      padding: 25px 20px;
+      margin-top: auto;
+      width: 100%;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 600px) {
+      .document-card { padding: 25px 20px; }
+      .hero-section h1 { font-size: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding-top: 65px; }
+      .top-header { padding: 10px 12px; }
+      .logo-img { height: 36px; }
+      .brand-title { display: none; }
+      .nav-btn { padding: 8px 16px; font-size: 13px; }
+    }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Záhlaví pouze s tlačítkem Startseite -->
+  <header class="top-header">
+    <a href="index.html" class="brand-container">
+      <img src="https://i.postimg.cc/YSrZcdZr/7DBC4E2C-DFE6-4C4A-998B-962A891B7F9A.png" alt="Logo" class="logo-img">
+      <span class="brand-title">M Transport & Reinigung Service</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="index.html" class="nav-btn">Startseite</a>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <h1>Impressum</h1>
+    <p>Rechtliche Informationen und Anbieterkennzeichnung</p>
+  </section>
+
+  <!-- Obsah dokumentu -->
+  <main class="content-container">
+    <div class="document-card">
+
+      <div class="doc-section">
+        <h2>Betreiber der Website</h2>
+        <p><strong>Mejstrik Transport & Reinigung Service</strong></p>
+        <p>Inhaber/in: Daniel Mejstrik</p>
+        <p>Bädlistrasse 4</p>
+        <p>8586 Ennetaach, Schweiz</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>Kontakt</h2>
+        <p>Telefon: <a href="tel:+41783458072">+41 78 345 80 72</a></p>
+        <p>E-Mail: <a href="mailto:m.transportreinigung@gmail.com">m.transportreinigung@gmail.com</a></p>
+      </div>
+
+      <div class="doc-section">
+        <h2>Unternehmensangaben</h2>
+        <p><strong>Rechtsform:</strong> Einzelunternehmen</p>
+        <p><strong>UID-Nummer:</strong> Verifizierungsphase</p>
+        <p><strong>MWST-Nummer:</strong> Verifizierungsphase</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>Haftungsausschluss</h2>
+        <p>Die Inhalte dieser Website wurden mit grösstmöglicher Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte übernehmen wir jedoch keine Gewähr. Die Angaben auf dieser Website stellen keine verbindliche Offerte dar. Verbindlich ist ausschliesslich eine schriftlich bestätigte Offerte oder ein Auftrag.</p>
+        <p style="margin-top: 10px;">Diese Website enthält Links zu externen Websites Dritter (z. B. Facebook, Instagram, WhatsApp). Auf deren Inhalte haben wir keinen Einfluss. Für diese fremden Inhalte übernehmen wir keine Haftung; verantwortlich ist jeweils der Anbieter der verlinkten Seite.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>Urheberrecht</h2>
+        <p>Texte, Bilder, Logo und weitere Inhalte dieser Website sind urheberrechtlich geschützt. Eine Verwendung, Vervielfältigung oder Weitergabe ist nur mit vorheriger schriftlicher Zustimmung gestattet.</p>
+        <p style="margin-top: 6px;">Kartendaten: OpenStreetMap-Mitwirkende.</p>
+      </div>
+
+      <div class="doc-section">
+        <h2>Datenschutz</h2>
+        <p>Informationen zum Umgang mit Ihren Personendaten finden Sie in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+      </div>
+
+      <div class="back-link-wrapper">
+        <a href="index.html" class="btn-back">&larr; Zurück zur Startseite</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Čistá patička (bez sociálních sítí) -->
+  <footer class="footer-section">
+    &copy; 2026 M Transport & Reinigung Service.
+  </footer>
+
+</div>
+
+</body>
+</html>
