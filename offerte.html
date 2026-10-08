@@ -1193,6 +1193,15 @@
               </select>
             </div>
 
+            <div class="form-group full-width">
+              <label>Objektart: <span>*</span></label>
+              <div class="checkbox-grid cols-3">
+                <label class="checkbox-label"><input type="radio" name="Objektart" value="Wohnung" required checked> Wohnung</label>
+                <label class="checkbox-label"><input type="radio" name="Objektart" value="Einfamilienhaus"> Einfamilienhaus</label>
+                <label class="checkbox-label"><input type="radio" name="Objektart" value="Mehrfamilienhaus"> Mehrfamilienhaus</label>
+              </div>
+            </div>
+              
             <div class="form-group">
               <label for="gr_objekt">Objektart & Grösse <span>*</span></label>
               <select id="gr_objekt" name="Grundreinigung_Objekt_Groesse" class="form-control" required>
@@ -1200,13 +1209,11 @@
                 <option value="1.0 - 2.5 Zimmer">1.0 - 2.5 Zimmer</option>
                 <option value="3.0 - 4.5 Zimmer">3.0 - 4.5 Zimmer</option>
                 <option value="5.0+ Zimmer">5.0+ Zimmer</option>
-                <option value="Einfamilienhaus">Einfamilienhaus</option>
-                <option value="Mehrfamilienhaus">Mehrfamilienhaus</option>
               </select>
             </div>
 
             <div class="form-group full-width">
-              <label>Fokus der Grundreinigung:</label>
+              <label>Fokus der Grundreinigung: <span>*</span></label>
               <div class="checkbox-grid">
                 <label class="checkbox-label"><input type="checkbox" name="Fokus_Fenster_Rahmen" value="Ja"> Fenster & Fensterrahmen</label>
                 <label class="checkbox-label"><input type="checkbox" name="Fokus_Storen_Rolladen" value="Ja"> Storen & Rollläden / Klappläden</label>
