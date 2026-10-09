@@ -18,8 +18,7 @@
 
     <!-- Lákavý text specifický pro kontakt -->
     <meta name="description" content="Kontaktieren Sie M Transport & Reinigung Service in Thurgau. Wir sind per E-Mail oder WhatsApp für Sie erreichbar – schnell, unkompliziert und zuverlässig!">
-</head>
-  
+
   <style>
     * { 
       box-sizing: border-box; 
@@ -30,11 +29,8 @@
     html, body {
       width: 100%;
       max-width: 100%;
-      margin: 0;
-      padding: 0;
       overflow-x: hidden;
       background-color: #002266;
-      /* Odstraněno scroll-behavior: smooth - brání skokům při zaměření (fokusu) inputů na mobilech */
     }
 
     body {
@@ -274,6 +270,7 @@
       text-align: left;
       border-top: 1px solid #e2e8f0;
       padding-top: 15px;
+      cursor: default; /* Vrátí standardní kurzor uvnitř formuláře */
     }
 
     .expandable-content.active {
@@ -316,41 +313,40 @@
       transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-.form-privacy-check {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
+    .form-privacy-check {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
 
-.privacy-label {
-  display: flex !important;
-  align-items: flex-start !important;
-  gap: 8px !important;
-  font-size: 12px !important;
-  font-weight: normal !important;
-  color: #475569 !important;
-  cursor: pointer;
-  line-height: 1.4;
-}
+    .privacy-label {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 8px !important;
+      font-size: 12px !important;
+      font-weight: normal !important;
+      color: #475569 !important;
+      cursor: pointer;
+      line-height: 1.4;
+    }
 
-.privacy-checkbox {
-  width: 16px !important;
-  height: 16px !important;
-  margin-top: 1px;
-  cursor: pointer;
-  flex-shrink: 0;
-}
+    .privacy-checkbox {
+      width: 16px !important;
+      height: 16px !important;
+      margin-top: 1px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
 
-.privacy-link {
-  color: #0051C7;
-  text-decoration: underline;
-  font-weight: bold;
-}
+    .privacy-link {
+      color: #0051C7;
+      text-decoration: underline;
+      font-weight: bold;
+    }
 
-.privacy-link:hover {
-  color: #002266;
-}
+    .privacy-link:hover {
+      color: #002266;
+    }
 
-    /* Čistý fokus bez posunu stránky */
     .form-input:focus, .form-textarea:focus {
       border-color: #0051C7;
       box-shadow: 0 0 0 2px rgba(0, 81, 199, 0.25);
@@ -380,10 +376,18 @@
     }
 
     .form-result {
-      font-size: 12px;
-      margin-top: 5px;
+      font-size: 13px;
+      margin-top: 8px;
       color: #002266;
       font-weight: bold;
+    }
+
+    .form-result.success {
+      color: #0f5132;
+    }
+
+    .form-result.error {
+      color: #842029;
     }
 
     /* Styl pro mapu */
@@ -445,32 +449,32 @@
     .btn-facebook { background-color: #1877F2; }
     .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
-.legal-links {
-  margin-top: 18px;
-  margin-bottom: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-}
+    .legal-links {
+      margin-top: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
 
-.legal-text-link {
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.2s ease, text-decoration 0.2s ease;
-}
+    .legal-text-link {
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, text-decoration 0.2s ease;
+    }
 
-.legal-text-link:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
+    .legal-text-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
 
-.legal-separator {
-  color: #ffffff;
-  opacity: 0.5;
-}
+    .legal-separator {
+      color: #ffffff;
+      opacity: 0.5;
+    }
 
     /* Responsivita */
     @media (max-width: 768px) {
@@ -537,43 +541,43 @@
         </div>
         <span class="card-link-btn" id="email-btn-text">Formular öffnen &rarr;</span>
 
-        <!-- Rozbalovací formulář Web3Forms -->
-        <div class="expandable-content" id="email-expandable">
-          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="web3-contact-form" onclick="event.stopPropagation()">
+        <!-- Rozbalovací formulář Web3Forms (stopPropagate přímo na kontejneru) -->
+        <div class="expandable-content" id="email-expandable" onclick="event.stopPropagation()">
+          <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="web3-contact-form">
             <!-- Web3Forms Access Key -->
             <input type="hidden" name="access_key" value="e319a32a-b002-4a69-a3d0-c77fc3169d40">
             <input type="hidden" id="email_subject" name="_subject" value="Neue Nachricht über Kontakt-Formular">
 
             <div class="form-row">
               <div class="form-group">
-                <label for="first_name" onclick="event.stopPropagation()">Vorname *</label>
-                <input type="text" id="first_name" name="vorname" class="form-input" required placeholder="Ihr Vorname" onclick="event.stopPropagation()">
+                <label for="first_name">Vorname *</label>
+                <input type="text" id="first_name" name="vorname" class="form-input" required placeholder="Ihr Vorname">
               </div>
               <div class="form-group">
-                <label for="last_name" onclick="event.stopPropagation()">Nachname *</label>
-                <input type="text" id="last_name" name="nachname" class="form-input" required placeholder="Ihr Nachname" onclick="event.stopPropagation()">
+                <label for="last_name">Nachname *</label>
+                <input type="text" id="last_name" name="nachname" class="form-input" required placeholder="Ihr Nachname">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="email" onclick="event.stopPropagation()">E-Mail-Adresse *</label>
-              <input type="email" id="email" name="email" class="form-input" required placeholder="ihre.email@example.ch" onclick="event.stopPropagation()">
+              <label for="email">E-Mail-Adresse *</label>
+              <input type="email" id="email" name="email" class="form-input" required placeholder="ihre.email@example.ch">
             </div>
 
             <div class="form-group">
-              <label for="message" onclick="event.stopPropagation()">Nachricht *</label>
-              <textarea id="message" name="nachricht" class="form-textarea" required placeholder="Ihre Nachricht an uns..." onclick="event.stopPropagation()"></textarea>
+              <label for="message">Nachricht *</label>
+              <textarea id="message" name="nachricht" class="form-textarea" required placeholder="Ihre Nachricht an uns..."></textarea>
             </div>
 
-<!-- Souhlas s Datenschutzerklärung -->
-<div class="form-group form-privacy-check" onclick="event.stopPropagation()">
-  <label class="privacy-label">
-    <input type="checkbox" name="privacy_consent" required class="privacy-checkbox" onclick="event.stopPropagation()">
-    <span>Ich habe die <a href="datenschutz.html" target="_blank" class="privacy-link">Datenschutzerklärung</a> gelesen und stimme dieser zu. *</span>
-  </label>
-</div>
+            <!-- Souhlas s Datenschutzerklärung -->
+            <div class="form-group form-privacy-check">
+              <label class="privacy-label">
+                <input type="checkbox" name="privacy_consent" required class="privacy-checkbox">
+                <span>Ich habe die <a href="datenschutz.html" target="_blank" class="privacy-link">Datenschutzerklärung</a> gelesen und stimme dieser zu. *</span>
+              </label>
+            </div>
 
-            <button type="submit" class="form-submit-btn" onclick="event.stopPropagation()">Nachricht senden</button>
+            <button type="submit" class="form-submit-btn" id="contact-submit-btn">Nachricht senden</button>
             <div id="form-result" class="form-result"></div>
           </form>
         </div>
@@ -598,9 +602,9 @@
         </div>
         <span class="card-link-btn" id="map-btn-text">Karte anzeigen &rarr;</span>
 
-        <!-- Rozbalovací mapa -->
-        <div class="expandable-content" id="map-expandable">
-          <div class="map-container" onclick="event.stopPropagation()">
+        <!-- Rozbalovací mapa (stopPropagate přímo na kontejneru) -->
+        <div class="expandable-content" id="map-expandable" onclick="event.stopPropagation()">
+          <div class="map-container">
             <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=9.264%2C47.534%2C9.294%2C47.550&layer=mapnik" allowfullscreen=""></iframe>
           </div>
         </div>
@@ -617,12 +621,12 @@
       <a href="https://www.instagram.com/m.transportreinigung" class="btn-social btn-instagram" target="_blank" rel="noopener">Instagram</a>
     </div>
 
-<!-- Textové odkazy na Impressum a Datenschutz -->
-<div class="legal-links">
-  <a href="impressum.html" class="legal-text-link">Impressum</a>
-  <span class="legal-separator">|</span>
-  <a href="datenschutz.html" class="legal-text-link">Datenschutzerklärung</a>
-</div>
+    <!-- Textové odkazy na Impressum a Datenschutz -->
+    <div class="legal-links">
+      <a href="impressum.html" class="legal-text-link">Impressum</a>
+      <span class="legal-separator">|</span>
+      <a href="datenschutz.html" class="legal-text-link">Datenschutzerklärung</a>
+    </div>
     <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
       &copy; 2026 M Transport & Reinigung Service.
     </div>
@@ -663,39 +667,47 @@
     }
   }
 
-  // Obsluha odeslání Web3Forms formuláře
+  // Obsluha odeslání Web3Forms formuláře přes FormData
   const form = document.getElementById('web3-contact-form');
   const result = document.getElementById('form-result');
+  const submitBtn = document.getElementById('contact-submit-btn');
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-    
-    result.textContent = "Wird gesendet...";
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      submitBtn.disabled = true;
+      submitBtn.innerText = "Wird gesendet...";
+      result.className = "form-result";
+      result.textContent = "";
 
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: json
-    })
-    .then(async (response) => {
-      let json = await response.json();
-      if (response.status == 200) {
-        result.textContent = "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
-        form.reset();
-      } else {
-        result.textContent = json.message || "Ein Fehler ist aufgetreten.";
-      }
-    })
-    .catch(error => {
-      result.textContent = "Etwas ist schiefgelaufen! Bitte versuchen Sie es später.";
+      const formData = new FormData(form);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status === 200) {
+          result.className = "form-result success";
+          result.textContent = "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
+          form.reset();
+        } else {
+          result.className = "form-result error";
+          result.textContent = json.message || "Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.";
+        }
+      })
+      .catch(error => {
+        result.className = "form-result error";
+        result.textContent = "Etwas ist schiefgelaufen! Bitte versuchen Sie es später erneut.";
+      })
+      .then(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Nachricht senden";
+      });
     });
-  });
+  }
 </script>
 
 </body>
