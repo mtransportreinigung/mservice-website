@@ -652,13 +652,13 @@
             </div>
 
             <div class="form-group">
-              <label for="u_aktuelle_strasse">Objekt Strasse & Nr. <span>*</span></label>
+              <label for="u_objekt_strasse">Objekt Strasse & Nr. <span>*</span></label>
               <input type="text" id="u_objekt_strasse" name="Objekt_Strasse" class="form-control" placeholder="Musterstrasse 12" required>
             </div>
 
             <div class="form-group">
-              <label for="u_aktuelle_plz">Objekt PLZ & Ort <span>*</span></label>
-              <input type="text" id="u_Objekt_plz" name="Objekt_PLZ_Ort" class="form-control" placeholder="8000 Zürich" required>
+              <label for="u_objekt_plz">Objekt PLZ & Ort <span>*</span></label>
+              <input type="text" id="u_objekt_plz" name="Objekt_PLZ_Ort" class="form-control" placeholder="8000 Zürich" required>
             </div>
 
             <div class="form-group">
@@ -1290,7 +1290,12 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 
 <script>
-  // Inicializace německého kalendáře na všech datových polích
+  // Deklarace globálních prvků formuláře nahoře
+  const mainForm = document.getElementById('main-anfrage-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const resultDiv = document.getElementById('form-result');
+
+  // Inicializace německého kalendáře
   flatpickr(".date-picker", {
     dateFormat: "d.m.Y",
     locale: "de",
@@ -1318,12 +1323,19 @@
       gebaeudeSpecWrapper.style.display = 'grid';
       if (gebaeudeMultiInfo) gebaeudeMultiInfo.style.display = 'none';
       
-      document.getElementById('g_objekt_strasse').required = true;
-      document.getElementById('g_objekt_plz').required = true;
-      document.getElementById('g_flache').required = true;
-      document.getElementById('g_stockwerke').required = true;
-      document.getElementById('g_lift').required = true;
-      document.getElementById('g_sanitaer').required = true;
+      const elStrasse = document.getElementById('g_objekt_strasse');
+      const elPlz = document.getElementById('g_objekt_plz');
+      const elFlache = document.getElementById('g_flache');
+      const elStock = document.getElementById('g_stockwerke');
+      const elLift = document.getElementById('g_lift');
+      const elSanitaer = document.getElementById('g_sanitaer');
+
+      if (elStrasse) elStrasse.required = true;
+      if (elPlz) elPlz.required = true;
+      if (elFlache) elFlache.required = true;
+      if (elStock) elStock.required = true;
+      if (elLift) elLift.required = true;
+      if (elSanitaer) elSanitaer.required = true;
     }
   }
 
@@ -1354,7 +1366,7 @@
 
   // Obnovení stavu tlačítka na původní
   function resetButtonState() {
-    if (submitBtn.innerText === 'Gesendet \u2713') {
+    if (submitBtn && submitBtn.innerText === 'Gesendet \u2713') {
       submitBtn.disabled = false;
       submitBtn.innerText = 'Anfrage jetzt absenden \u2192';
     }
@@ -1362,10 +1374,8 @@
 
   // Přepínání služeb a aktivace/deaktivace vstupů
   function switchService(serviceKey) {
-    // Resetujeme stav tlačítka
     resetButtonState();
 
-    // 1. Schováme všechny sekce a vypneme jejich vstupy
     const allFieldsets = document.querySelectorAll('.service-fields');
     allFieldsets.forEach(fieldset => {
       fieldset.classList.remove('active-fieldset');
@@ -1374,7 +1384,6 @@
       });
     });
 
-    // 2. Zapneme vybranou sekci a její vstupy
     const targetFieldset = document.getElementById('fields-' + serviceKey);
     if (targetFieldset) {
       targetFieldset.classList.add('active-fieldset');
@@ -1383,18 +1392,15 @@
       });
     }
 
-    // Pro Gebäude zaktualizujeme stav zobrazení adresy a kanceláří
     if (serviceKey === 'gebaeude') {
       updateGebaeudeAddressVisibility();
       toggleBueroAnzahl();
     }
 
-    // 3. Aktualizujeme vizuální stav záložek
     document.querySelectorAll('.tab-card').forEach(card => card.classList.remove('active'));
     const activeTab = document.getElementById('tab-' + serviceKey);
     if (activeTab) activeTab.classList.add('active');
 
-    // 4. Nastavíme skrytá pole pro Web3Forms
     const subjectInput = document.getElementById('email_subject');
     const serviceNameInput = document.getElementById('selected_service_name');
 
@@ -1412,8 +1418,6 @@
       if (serviceNameInput) serviceNameInput.value = 'Einmalige Grundreinigung';
     }
 
-    // Schovat případnou předchozí hlášku po přepnutí záložky
-    const resultDiv = document.getElementById('form-result');
     if (resultDiv) {
       resultDiv.className = 'form-result';
       resultDiv.innerHTML = '';
@@ -1421,7 +1425,6 @@
     }
   }
 
-  // Inicializace při načtení stránky (včetně kontroly URL parametrů)
   document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const serviceParam = urlParams.get('service');
@@ -1433,100 +1436,88 @@
     }
   });
 
-  // Validace a AJAX odeslání přes Web3Forms
-  const mainForm = document.getElementById('main-anfrage-form');
-  const submitBtn = document.getElementById('submit-btn');
-  const resultDiv = document.getElementById('form-result');
+  if (mainForm) {
+    mainForm.addEventListener('focusin', resetButtonState);
+    mainForm.addEventListener('click', function(e) {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
+        resetButtonState();
+      }
+    });
 
-  // Po kliknutí/interakci s formulářem po resetu vrátíme tlačítko do původního stavu
-  mainForm.addEventListener('focusin', resetButtonState);
-  mainForm.addEventListener('click', function(e) {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT' || e.target.tagName === 'TEXTAREA') {
-      resetButtonState();
-    }
-  });
+    mainForm.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-  mainForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+      const activeTab = document.querySelector('.tab-card.active');
+      const activeId = activeTab ? activeTab.id.replace('tab-', '') : 'umzug';
 
-    // Custom validace pro Umzugsreinigung - vyžadování alespoň 1 zaškrtnutí v povinných sekcích
-    const activeTab = document.querySelector('.tab-card.active');
-    if (activeTab && activeTab.id === 'tab-umzug') {
-      const requiredGroups = [
-        { name: 'Nasszellen / Bäder', selector: '.group-nasszellen' },
-        { name: 'Küche & Geräte', selector: '.group-kueche' },
-        { name: 'Kochfeld Typ', selector: '.group-kochfeld' },
-        { name: 'Fenster & Storen', selector: '.group-storen' },
-        { name: 'Fensterart', selector: '.group-fensterart' },
-        { name: 'Bodenbeläge', selector: '.group-boden' },
-        { name: 'Nebennutzflächen', selector: '.group-neben' },
-        { name: 'Waschraum & Sonstiges', selector: '.group-waschraum' }
-      ];
+      if (activeId === 'umzug') {
+        const requiredGroups = [
+          { name: 'Nasszellen / Bäder', selector: '.group-nasszellen' },
+          { name: 'Küche & Geräte', selector: '.group-kueche' },
+          { name: 'Kochfeld Typ', selector: '.group-kochfeld' },
+          { name: 'Fenster & Storen', selector: '.group-storen' },
+          { name: 'Fensterart', selector: '.group-fensterart' },
+          { name: 'Bodenbeläge', selector: '.group-boden' },
+          { name: 'Nebennutzflächen', selector: '.group-neben' },
+          { name: 'Waschraum & Sonstiges', selector: '.group-waschraum' }
+        ];
 
-      for (let group of requiredGroups) {
-        const container = document.querySelector(group.selector);
-        if (container) {
-          const checked = container.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
-          if (checked.length === 0) {
-            alert('Bitte wählen Sie mindestens eine Option im Bereich: ' + group.name);
-            return;
+        for (let group of requiredGroups) {
+          const container = document.querySelector(group.selector);
+          if (container) {
+            const checked = container.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
+            if (checked.length === 0) {
+              alert('Bitte wählen Sie mindestens eine Option im Bereich: ' + group.name);
+              return;
+            }
           }
         }
       }
-    }
 
-    // Příprava odesílání
-    submitBtn.disabled = true;
-    submitBtn.innerText = 'Wird gesendet...';
-    resultDiv.className = 'form-result';
-    resultDiv.innerHTML = '';
-    resultDiv.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Wird gesendet...';
+      resultDiv.className = 'form-result';
+      resultDiv.innerHTML = '';
+      resultDiv.style.display = 'none';
 
-    const formData = new FormData(mainForm);
+      const formData = new FormData(mainForm);
 
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    })
-    .then(async (response) => {
-      let json = await response.json();
-      if (response.status === 200) {
-        resultDiv.className = 'form-result success';
-        resultDiv.innerHTML = 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir werden uns kurzfristig bei Ihnen melden.';
-        mainForm.reset();
-        
-        // Nastavení tlačítka do stavu "Odesláno"
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'Gesendet \u2713';
-
-        // Znovu spustíme nastavení výchozího stavu po resetu
-        if (activeTab) {
-          const activeId = activeTab.id.replace('tab-', '');
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status === 200) {
+          resultDiv.className = 'form-result success';
+          resultDiv.innerHTML = 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir werden uns kurzfristig bei Ihnen melden.';
+          
+          mainForm.reset();
           switchService(activeId);
-          // Znovu zajistíme nastavení odeslaného stavu tlačítka po switchService
+          
+          // Nastavení stavu "Gesendet" až PO resetu a switchService
           submitBtn.disabled = true;
           submitBtn.innerText = 'Gesendet \u2713';
+        } else {
+          resultDiv.className = 'form-result error';
+          resultDiv.innerHTML = json.message || 'Beim Senden der Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Anfrage jetzt absenden \u2192';
         }
-      } else {
+      })
+      .catch(error => {
         resultDiv.className = 'form-result error';
-        resultDiv.innerHTML = json.message || 'Beim Senden der Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+        resultDiv.innerHTML = 'Beim Senden der Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
         submitBtn.disabled = false;
         submitBtn.innerText = 'Anfrage jetzt absenden \u2192';
-      }
-    })
-    .catch(error => {
-      resultDiv.className = 'form-result error';
-      resultDiv.innerHTML = 'Beim Senden der Nachricht ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
-      submitBtn.disabled = false;
-      submitBtn.innerText = 'Anfrage jetzt absenden \u2192';
-    })
-    .then(() => {
-      // Sanfter Scroll zur Bestätigungsnachricht
-      setTimeout(() => {
-        resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 100);
+      })
+      .then(() => {
+        setTimeout(() => {
+          resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      });
     });
-  });
+  }
 </script>
 
 </body>
