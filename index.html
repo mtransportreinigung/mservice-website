@@ -12,7 +12,6 @@
     if (p !== location.pathname) history.replaceState(null, '', p + location.search + location.hash);
     </script>
 
-    
     <!-- Profilová fotka / Favicona -->
     <link rel="icon" type="image/png" href="/logo.PNG?v=1">
     <link rel="apple-touch-icon" href="/logo.PNG?v=1">
@@ -30,8 +29,6 @@
     html, body {
       width: 100%;
       max-width: 100%;
-      margin: 0;
-      padding: 0;
       overflow-x: hidden;
       background-color: #002266;
       scroll-behavior: smooth;
@@ -478,46 +475,46 @@
     <div class="services-grid">
       
       <!-- 1. Umzugsreinigung -->
-      <div class="service-card" onclick="redirectToOfferte('umzug')">
+      <a href="offerte.html?service=umzug" class="service-card">
         <div class="card-content-top">
           <span class="service-icon">🧹</span>
           <h3 class="service-title">Umzugsreinigung</h3>
           <p class="service-desc">Gründliche Endreinigung Ihrer Wohnung oder Ihres Hauses für eine erfolgreiche Wohnungsabgabe.</p>
         </div>
         <span class="card-link-btn">Offerte anfordern &rarr;</span>
-      </div>
+      </a>
 
       <!-- 2. Gebäudereinigung -->
-      <div class="service-card" onclick="redirectToOfferte('gebaeude')">
+      <a href="offerte.html?service=gebaeude" class="service-card">
         <div class="card-content-top">
           <span class="service-icon">🏢</span>
           <h3 class="service-title">Gebäudereinigung</h3>
           <p class="service-desc">Regelmässige oder einmalige Reinigung von Liegenschaften, Treppenhäusern oder Büros.</p>
         </div>
         <span class="card-link-btn">Offerte anfordern &rarr;</span>
-      </div>
+      </a>
 
       <!-- 3. Unterhaltsreinigung -->
-      <div class="service-card" onclick="redirectToOfferte('unterhalt')">
+      <a href="offerte.html?service=unterhalt" class="service-card">
         <div class="card-content-top">
           <span class="service-icon">🧼</span>
           <h3 class="service-title">Unterhaltsreinigung</h3>
           <p class="service-desc">Fortlaufende, periodische Wohnungsreinigung nach Ihren individuellen Wünschen und Intervallen.</p>
         </div>
         <span class="card-link-btn">Offerte anfordern &rarr;</span>
-      </div>
+      </a>
 
       <!-- 4. Grundreinigung -->
-      <div class="service-card" onclick="redirectToOfferte('grund')">
+      <a href="offerte.html?service=grund" class="service-card">
         <div class="card-content-top">
           <span class="service-icon">✨</span>
           <h3 class="service-title">Grundreinigung</h3>
           <p class="service-desc">Intensive Tiefenreinigung oder Frühlingsputz für hartnäckige Verschmutzungen im gesamten Objekt.</p>
         </div>
         <span class="card-link-btn">Offerte anfordern &rarr;</span>
-      </div>
+      </a>
 
-      <!-- 5. Transport & Räumung (Rozmazaná, neaktivní) -->
+      <!-- 5. Transport & Räumung (Neaktivní) -->
       <div class="service-card blur-card">
         <div class="card-content-top">
           <span class="service-icon">🚚</span>
@@ -578,24 +575,18 @@
       <a href="https://www.instagram.com/m.transportreinigung" class="btn-social btn-instagram" target="_blank" rel="noopener">Instagram</a>
     </div>
 
-<!-- Textové odkazy na Impressum a Datenschutz -->
-<div class="legal-links">
-  <a href="impressum.html" class="legal-text-link">Impressum</a>
-  <span class="legal-separator">|</span>
-  <a href="datenschutz.html" class="legal-text-link">Datenschutzerklärung</a>
-</div>
+    <!-- Textové odkazy na Impressum a Datenschutz -->
+    <div class="legal-links">
+      <a href="impressum.html" class="legal-text-link">Impressum</a>
+      <span class="legal-separator">|</span>
+      <a href="datenschutz.html" class="legal-text-link">Datenschutzerklärung</a>
+    </div>
     <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
       &copy; 2026 M Transport & Reinigung Service.
     </div>
   </footer>
 
 </div>
-
-<script>
-  function redirectToOfferte(serviceType) {
-    window.location.href = 'offerte.html?service=' + serviceType;
-  }
-</script>
 
 </body>
 </html>
