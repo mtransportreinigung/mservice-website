@@ -898,7 +898,6 @@
               <input type="number" id="g_anzahl_gebaeude" name="Anzahl_Gebaeude" class="form-control" placeholder="z. B. 1" min="1" value="1" required>
             </div>
 
-            <div id="gebaeude_details_wrapper" class="nested-grid">
             <div id="gebaeude_adresse_wrapper" class="nested-grid">
               <div class="form-group">
                 <label for="g_objekt_strasse">Gebäude Strasse & Nr. <span>*</span></label>
@@ -972,22 +971,6 @@
               </select>
             </div>
 
-                 <option value="4+ Sanitärräume">4 oder mehr Sanitärräume</option>
-              </select>
-            </div>
-
-            </div>
-
-            <div id="mehrere_gebaeude_hinweis" class="form-group full-width" style="display: none;">
-              <label class="checkbox-label" style="background:#f8fafc;padding:12px 15px;border:1px solid #e2e8f0;border-radius:6px;line-height:1.4;">
-                <input type="checkbox" id="g_mehrere_email" name="Mehrere_Gebaeude_Details_per_Email" value="Ja" disabled>
-                <span>Bei mehreren Gebäuden klären wir alle Details (Adressen, Objektart, Fläche, Etagen, Lift, WCs) gemeinsam per E-Mail oder Telefon. <span style="color:#FF6A00;">*</span></span>
-              </label>
-            </div>
-
-            <div class="form-group">
-              <label for="g_turnus">
-  
             <div class="form-group">
               <label for="g_turnus">Gewünschte Reinigungshäufigkeit <span>*</span></label>
               <select id="g_turnus" name="Reinigungshaeufigkeit" class="form-control" required>
@@ -1307,27 +1290,25 @@
     locale: "de",
     allowInput: true
   });
-    
-  // Mehrere Gebäude: Details ausblenden, Hinweis-Checkbox einblenden
+
+  // Dynamická skrývačka adresy u Gebäude
   const anzahlGebaeudeInput = document.getElementById('g_anzahl_gebaeude');
-  const gebaeudeDetailsWrapper = document.getElementById('gebaeude_details_wrapper');
-  const mehrereHinweis = document.getElementById('mehrere_gebaeude_hinweis');
-  const mehrereCheckbox = document.getElementById('g_mehrere_email');
+  const gebaeudeAdresseWrapper = document.getElementById('gebaeude_adresse_wrapper');
+  const gebaeudeStrasseInput = document.getElementById('g_objekt_strasse');
+  const gebaeudePlzInput = document.getElementById('g_objekt_plz');
 
   function updateGebaeudeAddressVisibility() {
-    if (!anzahlGebaeudeInput || !gebaeudeDetailsWrapper) return;
-    const mehrere = parseInt(anzahlGebaeudeInput.value, 10) > 1;
-
-    gebaeudeDetailsWrapper.style.display = mehrere ? 'none' : '';
-    gebaeudeDetailsWrapper.querySelectorAll('input, select, textarea').forEach(function(el) {
-      el.disabled = mehrere;
-    });
-
-    if (mehrereHinweis) mehrereHinweis.style.display = mehrere ? 'flex' : 'none';
-    if (mehrereCheckbox) {
-      mehrereCheckbox.disabled = !mehrere;
-      mehrereCheckbox.required = mehrere;
-      if (!mehrere) mehrereCheckbox.checked = false;
+    if (!anzahlGebaeudeInput || !gebaeudeAdresseWrapper) return;
+    const count = parseInt(anzahlGebaeudeInput.value, 10);
+    
+    if (count > 1) {
+      gebaeudeAdresseWrapper.style.display = 'none';
+      if (gebaeudeStrasseInput) { gebaeudeStrasseInput.required = false; gebaeudeStrasseInput.value = ''; }
+      if (gebaeudePlzInput) { gebaeudePlzInput.required = false; gebaeudePlzInput.value = ''; }
+    } else {
+      gebaeudeAdresseWrapper.style.display = 'grid';
+      if (gebaeudeStrasseInput) gebaeudeStrasseInput.required = true;
+      if (gebaeudePlzInput) gebaeudePlzInput.required = true;
     }
   }
 
