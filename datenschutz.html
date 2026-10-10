@@ -50,7 +50,7 @@
       background-color: #f4f6f9;
     }
 
-    /* Pevná horní lišta naučeného typu */
+    /* Pevná horní lišta s rozbalovacím menu */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -97,7 +97,7 @@
     .main-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .nav-btn {
@@ -105,7 +105,7 @@
       font-family: Arial, sans-serif;
       font-size: 14px;
       font-weight: 600;
-      padding: 10px 22px;
+      padding: 8px 18px;
       border-radius: 50px;
       transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       display: inline-flex;
@@ -122,6 +122,49 @@
       color: #ffffff;
       border-color: #003da1;
       transform: translateY(-1px);
+    }
+
+    /* Tlačítko mobilního menu */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      color: #002266;
+    }
+
+    /* Mobilní verze a rozbalovací menu */
+    @media (max-width: 820px) {
+      .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #ffffff;
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border-bottom: 3px solid #0051C7;
+      }
+
+      .main-nav.open {
+        display: flex;
+      }
+
+      .nav-btn {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 15px;
+      }
     }
 
     /* Hero Sekce */
@@ -255,8 +298,6 @@
       .top-header { padding: 10px 12px; }
       .logo-img { height: 36px; }
       .brand-title { display: none; }
-      .nav-btn { padding: 8px 14px; font-size: 13px; }
-      .main-nav { gap: 6px; }
     }
     </style>
 </head>
@@ -264,15 +305,27 @@
 
 <div class="page-wrapper">
 
-  <!-- Naučená pevná horní lišta (Startseite & Kontakt) -->
+  <!-- Pevná horní lišta s kompletním navigačním menu -->
   <header class="top-header">
     <a href="index.html" class="brand-container">
       <img src="/logo.PNG" alt="M Transport & Reinigung Service" class="logo-img">
       <span class="brand-title">M Transport & Reinigung Service</span>
     </a>
 
+    <!-- Tlačítko pro rozbalení na mobilech -->
+    <button class="menu-toggle" onclick="document.querySelector('.main-nav').classList.toggle('open')" aria-label="Menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Rozbalovací navigace se všemi hlavními stránkami -->
     <nav class="main-nav">
       <a href="index.html" class="nav-btn">Startseite</a>
+      <a href="ueberuns.html" class="nav-btn">Über uns</a>
+      <a href="offerte.html" class="nav-btn">Offerte anfordern</a>
       <a href="kontakt.html" class="nav-btn">Kontakt</a>
     </nav>
   </header>
