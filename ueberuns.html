@@ -198,7 +198,7 @@
       margin: 0 auto;
     }
 
-    /* Nadpis a Filtry dlaždic */
+    /* Nadpis a sekce výběru */
     .section-heading {
       max-width: 950px;
       margin: 35px auto 15px auto;
@@ -220,41 +220,39 @@
       margin-bottom: 20px;
     }
 
-    /* Listovací/Filtrovací tlačítka */
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 25px;
+    /* Interaktivní rozklikávací select (Dropdown) pro výběr služeb */
+    .selector-container {
+      max-width: 500px;
+      margin: 0 auto 30px auto;
+      padding: 0 20px;
+      position: relative;
     }
 
-    .filter-btn {
+    .service-dropdown {
+      width: 100%;
+      padding: 14px 18px;
       background-color: #ffffff;
       color: #002266;
-      border: 1px solid #cbd5e1;
-      padding: 8px 18px;
+      border: 2px solid #0051C7;
       border-radius: 50px;
-      font-size: 13px;
+      font-size: 15px;
       font-weight: bold;
+      outline: none;
       cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 81, 199, 0.15);
       transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%230051C7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 20px center;
+      padding-right: 45px;
     }
 
-    .filter-btn:hover {
-      border-color: #0051C7;
-      color: #0051C7;
-      background-color: #f1f5f9;
-    }
-
-    .filter-btn.active {
-      background-color: #002266;
-      color: #ffffff;
-      border-color: #002266;
-      box-shadow: 0 2px 8px rgba(0, 34, 102, 0.2);
+    .service-dropdown:hover {
+      background-color: #f8fafc;
+      box-shadow: 0 6px 20px rgba(0, 81, 199, 0.25);
     }
 
     /* Mřížka dlaždic služeb */
@@ -276,7 +274,7 @@
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 10px;
-      padding: 22px 20px;
+      padding: 24px 22px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.04);
       transition: all 0.25s ease;
       display: flex;
@@ -324,16 +322,16 @@
     }
 
     .tile-list {
-      margin-top: 6px;
+      margin-top: 8px;
       padding-left: 18px;
       color: #334155;
     }
 
     .tile-list li {
-      margin-bottom: 4px;
+      margin-bottom: 5px;
     }
 
-    /* Tlačítko pro akce dolů */
+    /* Tlačítko pro akci dolů */
     .cta-container {
       text-align: center;
       margin-top: 35px;
@@ -485,35 +483,60 @@
     </div>
   </section>
 
-  <!-- Nadpis a listovací/filtrovací záložky -->
+  <!-- Nadpis a rozklikávací selektor služeb -->
   <div class="section-heading">
-    <h2>Unsere Reinigungsleistungen im Detail</h2>
-    <p>Wählen Sie eine Kategorie, um die Details der einzelnen Arbeiten zu sehen:</p>
+    <h2>Unsere Leistungen im Detail</h2>
+    <p>Wählen Sie im Dropdown-Menü den gewünschten Bereich aus:</p>
 
-    <div class="filter-tabs">
-      <button class="filter-btn active" onclick="filterServices('all')">
-        Alle anzeigen
-      </button>
-      <button class="filter-btn" onclick="filterServices('kueche')">
-        Küchen
-      </button>
-      <button class="filter-btn" onclick="filterServices('bad')">
-        Bäder & Nasszellen
-      </button>
-      <button class="filter-btn" onclick="filterServices('fenster')">
-        Fenster, Storen & Türen
-      </button>
-      <button class="filter-btn" onclick="filterServices('raeume')">
-        Räume, Böden & Treppen
-      </button>
+    <div class="selector-container">
+      <select id="serviceSelector" class="service-dropdown" onchange="filterServices(this.value)">
+        <option value="all">🔍 Alle Leistungsbereiche anzeigen</option>
+        <option value="pokoje">🛏️ Pokoje & Wohnbereiche</option>
+        <option value="kueche">🍳 Küchen</option>
+        <option value="kueche_geraete">⚡ Küchengeräte (Backofen, Steamer etc.)</option>
+        <option value="bad">🚿 Koupelnen & Nasszellen</option>
+        <option value="okna">🪟 Fenster & Verglasungen</option>
+        <option value="rolety">🛡️ Rolety, Storen & Klappläden</option>
+        <option value="tueren">🚪 Türen & Schränke</option>
+        <option value="boeden">🧹 Böden & Sockelleisten</option>
+        <option value="balkon">🌿 Balkone & Terrassen</option>
+        <option value="sklepy">📦 Sklepy, Estrich & Nebenräume</option>
+        <option value="pradelny">🫧 Prádelny & Waschküchen</option>
+        <option value="chodby">🏢 Chodby & Treppenhäuser</option>
+        <option value="vstupy">🔑 Vstupy & Eingangsbereiche</option>
+        <option value="kancelare">💻 Kanceláře & Gewerberäume</option>
+      </select>
     </div>
   </div>
 
-  <!-- Detailní dlaždice služeb -->
+  <!-- Detailní dlaždice služeb (Péče o detail) -->
   <main class="services-detail-container">
     <div class="details-grid">
 
-      <!-- 1. Küchenreinigung -->
+      <!-- 1. Pokoje -->
+      <div class="detail-tile" data-category="pokoje">
+        <div class="tile-header">
+          <div class="tile-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="tile-title">Pokoje & Wohnbereiche</div>
+        </div>
+        <div class="tile-body">
+          Sorgfältige und staubfreie Reinigung aller Wohn- und Schlafräume für ein rundum gesundes Raumklima.
+          <ul class="tile-list">
+            <li>Gründliches Abstauben aller Möbel, Regale & Oberflächen</li>
+            <li>Reinigung von Steckdosen, Lichtschaltern & Fussleisten</li>
+            <li>Entfernung von Spinnweben an Decken und Wänden</li>
+            <li>Heizkörperzwischenräume feucht auswischen</li>
+            <li>Säuberung von Sesselleisten & Türrahmen</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2. Küche -->
       <div class="detail-tile" data-category="kueche">
         <div class="tile-header">
           <div class="tile-icon-box">
@@ -523,21 +546,46 @@
               <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"></path>
             </svg>
           </div>
-          <div class="tile-title">Küchenreinigung</div>
+          <div class="tile-title">Küchen (Grundreinigung)</div>
         </div>
         <div class="tile-body">
-          Intensivreinigung der gesamten Küche inklusive aller Einbaugeräte. Wir entfernen eingebrannte Fett- und Speisereste gründlich.
+          Intensive Entfettung und hygienische Säuberung aller Arbeitsflächen, Fronten und Nischen.
           <ul class="tile-list">
-            <li>Backofen & Steamer (Entfettung & Innenreinigung)</li>
-            <li>Dunstabzugshaube & Filterreinigung</li>
-            <li>Kühlschrank & Gefrierfach (inkl. Entfrostung)</li>
-            <li>Geschirrspüler & Spülbecken (Entkalkung)</li>
-            <li>Schränke & Schubladen (innen & aussen)</li>
+            <li>Reinigung der Küchenfronten & Schrankinnenseiten</li>
+            <li>Arbeitsplatten & Fliesenspiegel gründlich abwischen</li>
+            <li>Spülbecken & Armaturen entkalken und polieren</li>
+            <li>Dunstabzugshaube inklusive Metallfilter entfetten</li>
+            <li>Sockelleisten & Unterbauten reinigen</li>
           </ul>
         </div>
       </div>
 
-      <!-- 2. Badezimmer- & Nasszellenreinigung -->
+      <!-- 3. Küchengeräte -->
+      <div class="detail-tile" data-category="kueche_geraete">
+        <div class="tile-header">
+          <div class="tile-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+              <line x1="7" y1="2" x2="7" y2="22"></line>
+              <line x1="17" y1="2" x2="17" y2="22"></line>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+            </svg>
+          </div>
+          <div class="tile-title">Küchengeräte (Backofen & Co.)</div>
+        </div>
+        <div class="tile-body">
+          Spezielle Tiefenreinigung für eingebrannte Haushaltsgeräte. Inklusive Abnahme der Abgabegarantie.
+          <ul class="tile-list">
+            <li>Backofen (Innenraum, Bleche & Rost intensiv entfettet)</li>
+            <li>Steamer & Combi-Dampfgarer entkalken und reinigen</li>
+            <li>Kühlschrank & Gefrierfach (abgetaut & hygienisch sauber)</li>
+            <li>Geschirrspüler (Siebe, Arme & Dichtungen reinigen)</li>
+            <li>Kochfeld (Glaskeramik, Induktion oder Gas)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. Koupelny -->
       <div class="detail-tile" data-category="bad">
         <div class="tile-header">
           <div class="tile-icon-box">
@@ -547,22 +595,22 @@
               <path d="M5 12h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2z"></path>
             </svg>
           </div>
-          <div class="tile-title">Badezimmer & Nasszellen</div>
+          <div class="tile-title">Koupelny & Nasszellen</div>
         </div>
         <div class="tile-body">
-          Hygienische Tiefenreinigung und gründliche Entkalkung aller Sanitäranlagen für makellose Sauberkeit.
+          Kompromisslose Entfernung von Kalkablagerungen, Seifenresten und Schimmelspuren.
           <ul class="tile-list">
-            <li>Gründliche Entkalkung von Armaturen, Brausen & Fliesen</li>
-            <li>Reinigung von Dusche, Badewanne & Duschtrennwänden</li>
-            <li>Desinfektion & Reinigung von WC-Anlagen</li>
-            <li>Spiegel, Schränke & Belüftungsgitter</li>
-            <li>Tiefenreinigung der Fugen & Abflüsse</li>
+            <li>Sanitärkeramik (Waschbecken, WC, Bidet) desinfizieren</li>
+            <li>Badewanne & Dusche inklusive Trennwände entkalken</li>
+            <li>Armaturen und Duschbrausen zum Glänzen bringen</li>
+            <li>Wandfliesen vollflächig abwaschen und Fugen reinigen</li>
+            <li>Spiegelschränke und Ablagen staub- und streifenfrei putzen</li>
           </ul>
         </div>
       </div>
 
-      <!-- 3. Fenster- & Storenreinigung -->
-      <div class="detail-tile" data-category="fenster">
+      <!-- 5. Okna -->
+      <div class="detail-tile" data-category="okna">
         <div class="tile-header">
           <div class="tile-icon-box">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -571,22 +619,48 @@
               <line x1="3" y1="12" x2="21" y2="12"></line>
             </svg>
           </div>
-          <div class="tile-title">Fenster & Storen</div>
+          <div class="tile-title">Okna & Verglasungen</div>
         </div>
         <div class="tile-body">
-          Streifenfreier Durchblick für alle Glasflächen sowie fachgerechte Säuberung aller Sonnenschutzsysteme.
+          Streifenfreie und glasklare Reinigung für alle Arten von Fenstern und Glasfronten.
           <ul class="tile-list">
-            <li>Streifenfreie Reinigung aller Glasscheiben (innen & aussen)</li>
-            <li>Reinigung der Fensterrahmen, Simse & Dichtungen</li>
-            <li>Lamellenstoren, Rollläden & Klappläden</li>
-            <li>Dachfenster & Wintergartenverglasungen</li>
-            <li>Sitzplatz- & Balkonverglasungen</li>
+            <li>Glasscheiben innen und aussen professionell putzen</li>
+            <li>Fensterrahmen, Falze & Nuten gründlich auswischen</li>
+            <li>Fenstersimse und Dichtungen säubern</li>
+            <li>Dachfenster und grossflächige Verglasungen</li>
+            <li>Sitzplatz- und Balkonverglasungen</li>
           </ul>
         </div>
       </div>
 
-      <!-- 4. Türen & Einbauschränke -->
-      <div class="detail-tile" data-category="fenster">
+      <!-- 6. Rolety -->
+      <div class="detail-tile" data-category="rolety">
+        <div class="tile-header">
+          <div class="tile-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 2v20"></path>
+              <path d="M20 2v20"></path>
+              <path d="M4 6h16"></path>
+              <path d="M4 10h16"></path>
+              <path d="M4 14h16"></path>
+              <path d="M4 18h16"></path>
+            </svg>
+          </div>
+          <div class="tile-title">Rolety, Storen & Klappläden</div>
+        </div>
+        <div class="tile-body">
+          Sorgfältige Schmutz- und Staubentfernung an allen Beschattungssystemen.
+          <ul class="tile-list">
+            <li>Lamellenstoren (jede einzelne Lamelle abgewischt)</li>
+            <li>Rollläden und Führungsschienen reinigen</li>
+            <li>Klappläden (Holz oder Metall) von Verunreinigungen befreien</li>
+            <li>Insektenschutzgitter säubern</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7. Türen & Schränke -->
+      <div class="detail-tile" data-category="tueren">
         <div class="tile-header">
           <div class="tile-icon-box">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -598,18 +672,18 @@
           <div class="tile-title">Türen & Einbauschränke</div>
         </div>
         <div class="tile-body">
-          Sorgfältige Säuberung aller Türelemente und Schrankflächen von Fingerabdrücken, Staub und Flecken.
+          Befreiung aller Türelemente und Schränke von Griffspuren, Staub und Fett.
           <ul class="tile-list">
-            <li>Abwaschen von Türblättern, Türrahmen & Zargen</li>
-            <li>Desinfizierende Reinigung aller Türgriffe & Klinken</li>
-            <li>Einbauschränke & Garderoben (innen & aussen)</li>
-            <li>Säuberung von Schrankoberseiten & Regalböden</li>
+            <li>Türblätter, Zargen und Türrahmen feucht reinigen</li>
+            <li>Klinken und Griffmulden hygienisch desinfizieren</li>
+            <li>Einbauschränke, Garderoben und Gestelle (innen und aussen)</li>
+            <li>Regalböden und Schrankoberseiten abstauben</li>
           </ul>
         </div>
       </div>
 
-      <!-- 5. Bodenbeläge & Teppiche -->
-      <div class="detail-tile" data-category="raeume">
+      <!-- 8. Böden -->
+      <div class="detail-tile" data-category="boeden">
         <div class="tile-header">
           <div class="tile-icon-box">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -617,42 +691,64 @@
               <line x1="2" y1="10" x2="22" y2="10"></line>
             </svg>
           </div>
-          <div class="tile-title">Bodenbeläge & Sockelleisten</div>
+          <div class="tile-title">Böden & Sockelleisten</div>
         </div>
         <div class="tile-body">
-          Materialgerechte Pflege und Reinigung für jeden Bodentyp – vom Holzparkett bis zum Teppichboden.
+          Fachgerechte Pflege und Reinigung angepasst an die jeweilige Bodenart.
           <ul class="tile-list">
-            <li>Saugen & feuchtes Wischen von Parkett & Laminat</li>
-            <li>Intensivreinigung von Fliesen & Natursteinböden</li>
-            <li>Tiefensaugen von Teppichen & Teppichböden</li>
-            <li>Gründliches Abwischen aller Sockelleisten</li>
+            <li>Parkett und Laminat staubsaugen und materialschonend wischen</li>
+            <li>Platten, Fliesen und Natursteinböden intensiv reinigen</li>
+            <li>Teppichböden tiefenwirksam absaugen</li>
+            <li>Sockelleisten und Fussleisten komplett abstauben und wischen</li>
           </ul>
         </div>
       </div>
 
-      <!-- 6. Treppenhaus & Gebäudereinigung -->
-      <div class="detail-tile" data-category="raeume">
+      <!-- 9. Balkone & Terrassen -->
+      <div class="detail-tile" data-category="balkon">
         <div class="tile-header">
           <div class="tile-icon-box">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 20h4v-4h4v-4h4V8h4"></path>
+              <path d="M3 3h18v18H3z"></path>
+              <path d="M3 9h18"></path>
+              <path d="M9 21V9"></path>
             </svg>
           </div>
-          <div class="tile-title">Treppenhäuser & Eingänge</div>
+          <div class="tile-title">Balkone & Terrassen</div>
         </div>
         <div class="tile-body">
-          Repräsentative Sauberkeit für Mehrfamilienhäuser und Firmengebäude. Der erste Eindruck zählt!
+          Aussenbereiche sauber und einladend für die Übergabe herrichten.
           <ul class="tile-list">
-            <li>Kehren & Wischen von Treppenstufen & Podesten</li>
-            <li>Abwischen von Handläufen, Geländern & Lichtschaltern</li>
-            <li>Eingangstüren, Briefkastenanlagen & Gegensprechanlagen</li>
-            <li>Personenlifte (Spiegel, Wände & Rufknöpfe)</li>
+            <li>Balkonböden und Terrassenplatten kehren und wischen</li>
+            <li>Geländer und Handläufe gründlich säubern</li>
+            <li>Aussenbeleuchtung und Steckdosen abwischen</li>
+            <li>Entfernung von grobem Schmutz und Spinnweben</li>
           </ul>
         </div>
       </div>
 
-      <!-- 7. Waschräume & Gemeinschaftsräume -->
-      <div class="detail-tile" data-category="raeume">
+      <!-- 10. Sklepy -->
+      <div class="detail-tile" data-category="sklepy">
+        <div class="tile-header">
+          <div class="tile-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+            </svg>
+          </div>
+          <div class="tile-title">Sklepy, Estrich & Nebenräume</div>
+        </div>
+        <div class="tile-body">
+          Saubere Übergabe von Kellerabteilen, Dachböden und Nebenräumen.
+          <ul class="tile-list">
+            <li>Kellerabteile und Lattenroste besenrein oder feucht reinigen</li>
+            <li>Estrich und Dachboden von Staub und Spinnweben befreien</li>
+            <li>Abstellräume und Technikräume gründlich säubern</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 11. Prádelny -->
+      <div class="detail-tile" data-category="pradelny">
         <div class="tile-header">
           <div class="tile-icon-box">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -661,37 +757,82 @@
               <path d="M12 8v1"></path>
             </svg>
           </div>
-          <div class="tile-title">Waschküchen & Technikräume</div>
+          <div class="tile-title">Prádelny & Waschküchen</div>
         </div>
         <div class="tile-body">
-          Saubere Verhältnisse in gemeinschaftlich genutzten Räumen für ein angenehmes Miteinander.
+          Hygienische Säuberung von Waschräumen und den dazugehörigen Geräten.
           <ul class="tile-list">
-            <li>Waschmaschinen & Wäschetrockner (Aussenreinigung & Flusensiebe)</li>
-            <li>Seifenschubladen & Waschbecken</li>
-            <li>Böden, Podeste & Trocknungsräume</li>
-            <li>Entstaubung von Rohrleitungen & Schaltern</li>
+            <li>Waschmaschinen und Tumbler (Aussenreinigung, Siebe & Schubladen)</li>
+            <li>Waschtröge und Seifenablagen entkalken</li>
+            <li>Böden und Abflüsse gründlich reinigen</li>
+            <li>Trocknungsräume und Seile säubern</li>
           </ul>
         </div>
       </div>
 
-      <!-- 8. Nebennutzflächen & Außenbereich -->
-      <div class="detail-tile" data-category="raeume">
+      <!-- 12. Chodby & Treppenhäuser -->
+      <div class="detail-tile" data-category="chodby">
         <div class="tile-header">
           <div class="tile-icon-box">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              <path d="M6 20h4v-4h4v-4h4V8h4"></path>
             </svg>
           </div>
-          <div class="tile-title">Keller, Garagen & Balkone</div>
+          <div class="tile-title">Chodby & Treppenhäuser</div>
         </div>
         <div class="tile-body">
-          Vollständige Säuberung aller Nebenräume inklusive Aussenflächen für eine lückenlose Übergabe.
+          Repräsentative Sauberkeit für Gemeinschafts- und Flurbereiche.
           <ul class="tile-list">
-            <li>Kellerabteile, Estrich & Dachböden (besenrein/feucht)</li>
-            <li>Garage & Einstellplätze</li>
-            <li>Balkone, Terrassen & Gartenhäuser</li>
-            <li>Entfernung von Spinnweben an Decken & Wänden</li>
+            <li>Treppenstufen und Podeste kehren und feucht aufnehmen</li>
+            <li>Handläufe und Geländer abwischen</li>
+            <li>Wände von Griffspuren befreien</li>
+            <li>Lichtschalter und Briefkastenanlagen säubern</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 13. Vstupy -->
+      <div class="detail-tile" data-category="vstupy">
+        <div class="tile-header">
+          <div class="tile-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+              <polyline points="10 17 15 12 10 7"></polyline>
+              <line x1="15" y1="12" x2="3" y2="12"></line>
+            </svg>
+          </div>
+          <div class="tile-title">Vstupy & Eingangsbereiche</div>
+        </div>
+        <div class="tile-body">
+          Der erste Eindruck zählt – makellose Eingangszonen für Besucher und Bewohner.
+          <ul class="tile-list">
+            <li>Eingangstüren (Glas und Rahmen) streifenfrei putzen</li>
+            <li>Gegensprechanlagen und Klingeltableaus reinigen</li>
+            <li>Schmutzschleusen und Bodenmatten absaugen</li>
+            <li>Vordächer und Beleuchtungskörper abstauben</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 14. Kanceláře -->
+      <div class="detail-tile" data-category="kancelare">
+        <div class="tile-header">
+          <div class="tile-icon-box">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <div class="tile-title">Kanceláře & Gewerberäume</div>
+        </div>
+        <div class="tile-body">
+          Professionelle Unterhalts- und Grundreinigung für produktives Arbeiten.
+          <ul class="tile-list">
+            <li>Schreibtische, Ablagen und Möbel abstauben</li>
+            <li>Bodenbeläge (Teppich/Hartboden) gründlich pflegen</li>
+            <li>Gewerbliche Sanitäreinrichtungen reinigen</li>
+            <li>Pausenräume und Teeküchen hygienisch instand halten</li>
           </ul>
         </div>
       </div>
@@ -734,13 +875,6 @@
 
 <script>
   function filterServices(category) {
-    // Aktualizace aktivního tlačítka
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => btn.classList.remove('active'));
-    
-    event.currentTarget.classList.add('active');
-
-    // Filtrování dlaždic
     const tiles = document.querySelectorAll('.detail-tile');
     tiles.forEach(tile => {
       if (category === 'all' || tile.getAttribute('data-category') === category) {
