@@ -3,26 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Über uns & Unsere Leistungen im Detail | M Transport & Reinigung Service</title>
+    <title>Über uns &amp; Unsere Leistungen im Detail | M Transport &amp; Reinigung Service Thurgau</title>
+
+    <meta name="description" content="Lernen Sie M Transport &amp; Reinigung Service kennen: Umzugs-, Grund- und Gebäudereinigung im Kanton Thurgau. Alle Leistungen im Detail – jetzt unverbindliche Offerte anfordern.">
 
     <link rel="canonical" href="https://www.mservice.ch/ueberuns">
-    
+
     <script>
     var p = location.pathname.replace(/index\.html$/, '').replace(/\.html$/, '');
     if (p !== location.pathname) history.replaceState(null, '', p + location.search + location.hash);
     </script>
-    
-    <!-- Profilová fotka / Favicona -->
+
+    <!-- Favicon (ideálně čtvercové PNG min. 48x48 px) -->
     <link rel="icon" type="image/png" href="/logo.PNG?v=1">
     <link rel="apple-touch-icon" href="/logo.PNG?v=1">
 
-    <meta name="description" content="Lernen Sie M Transport & Reinigung Service kennen. Ihr verlässlicher Partner im Kanton Thurgau für gründliche und professionelle Reinigungsarbeiten aller Art.">
+    <!-- Náhled při sdílení odkazu (WhatsApp, Facebook, ...) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_CH">
+    <meta property="og:site_name" content="M Transport &amp; Reinigung Service">
+    <meta property="og:title" content="Über uns &amp; Unsere Leistungen im Detail | M Transport &amp; Reinigung Service">
+    <meta property="og:description" content="Umzugs-, Grund- und Gebäudereinigung im Kanton Thurgau. Alle Leistungen im Detail.">
+    <meta property="og:url" content="https://www.mservice.ch/ueberuns">
+    <meta property="og:image" content="https://www.mservice.ch/logo.PNG">
+
+    <!-- Strukturovaná data pro Google (údaje převzaté z Impressum) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "M Transport & Reinigung Service",
+      "legalName": "Mejstrik Transport & Reinigung Service",
+      "url": "https://www.mservice.ch/",
+      "logo": "https://www.mservice.ch/logo.PNG",
+      "telephone": "+41783458072",
+      "email": "m.transportreinigung@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Bädlistrasse 4",
+        "postalCode": "8586",
+        "addressLocality": "Ennetaach",
+        "addressCountry": "CH"
+      },
+      "areaServed": "Kanton Thurgau",
+      "sameAs": [
+        "https://www.facebook.com/m.transportreinigung",
+        "https://www.instagram.com/m.transportreinigung"
+      ]
+    }
+    </script>
 
     <style>
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     html, body {
@@ -43,6 +78,12 @@
       padding-top: 75px;
     }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #FF6A00;
+      outline-offset: 2px;
+    }
+
     .page-wrapper {
       width: 100%;
       min-height: calc(100vh - 75px);
@@ -51,7 +92,7 @@
       background-color: #f4f6f9;
     }
 
-    /* Pevná horní lišta - pouze Startseite a Kontakt */
+    /* Pevná horní lišta */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -95,34 +136,50 @@
       letter-spacing: -0.3px;
     }
 
+    /* Horní menu */
     .main-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 4px;
     }
 
-    .nav-btn {
+    .nav-link {
       text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
-      padding: 10px 22px;
-      border-radius: 50px;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-flex;
+      color: #002266;
+      padding: 9px 14px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background-color: #e0f2fe;
+      color: #0051C7;
+    }
+
+    /* Aktuální stránka */
+    .nav-link.active {
+      color: #0051C7;
+      background-color: #e0f2fe;
+      box-shadow: inset 0 -3px 0 #FF6A00;
+    }
+
+    /* Tlačítko hamburger (jen mobil) */
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
       align-items: center;
       justify-content: center;
-      background-color: #0051C7;
-      color: #ffffff;
-      border: 1px solid #0051C7;
-      box-shadow: 0 2px 8px rgba(0, 81, 199, 0.2);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
-    .nav-btn:hover {
-      background-color: #003da1;
-      color: #ffffff;
-      border-color: #003da1;
-      transform: translateY(-1px);
+    .menu-toggle svg {
+      stroke: #002266;
     }
 
     /* Hero Banner */
@@ -198,6 +255,36 @@
       margin: 0 auto;
     }
 
+    /* Tři zásady firmy (pouze ověřitelná fakta z webu) */
+    .promise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .promise-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .promise-item h3 {
+      color: #002266;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .promise-item p {
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0;
+      max-width: none;
+    }
+
     /* Nadpis sekce */
     .section-heading {
       max-width: 950px;
@@ -220,7 +307,7 @@
       margin-bottom: 20px;
     }
 
-    /* Přehledné záložky pro přepínání / listování služeb */
+    /* Záložky pro filtrování služeb */
     .filter-scroll-wrapper {
       max-width: 950px;
       margin: 0 auto 25px auto;
@@ -236,6 +323,7 @@
     }
 
     .filter-btn {
+      font-family: inherit;
       background-color: #ffffff;
       color: #002266;
       border: 1px solid #cbd5e1;
@@ -272,6 +360,73 @@
     }
 
     .filter-btn.active svg {
+      stroke: #ffffff;
+    }
+
+    /* Rozbalovací menu kategorií */
+    .filter-dropdown {
+      position: relative;
+    }
+
+    .filter-dropdown-toggle .chevron {
+      transition: transform 0.2s ease;
+    }
+
+    .filter-dropdown-toggle[aria-expanded="true"] .chevron {
+      transform: rotate(180deg);
+    }
+
+    .filter-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 300px;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0, 34, 102, 0.18);
+      padding: 6px;
+      z-index: 50;
+    }
+
+    .filter-dropdown-menu.open {
+      display: block;
+    }
+
+    .filter-option {
+      font-family: inherit;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: left;
+      background: transparent;
+      color: #002266;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 14px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .filter-option svg {
+      stroke: #0051C7;
+      flex-shrink: 0;
+    }
+
+    .filter-option:hover {
+      background-color: #e0f2fe;
+    }
+
+    .filter-option.active {
+      background-color: #002266;
+      color: #ffffff;
+    }
+
+    .filter-option.active svg {
       stroke: #ffffff;
     }
 
@@ -351,7 +506,7 @@
       margin-bottom: 5px;
     }
 
-    /* Tlačítko pro akce dolů */
+    /* Tlačítko pro akce dole */
     .cta-container {
       text-align: center;
       margin-top: 35px;
@@ -377,6 +532,7 @@
       background-color: #e05e00;
       transform: translateY(-1px);
     }
+
 
     .footer-section {
       background-color: #002266;
@@ -427,6 +583,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
       gap: 8px;
       font-size: 13px;
     }
@@ -449,18 +606,45 @@
     }
 
     @media (max-width: 768px) {
-      .details-grid { grid-template-columns: 1fr; }
-      
-      .filter-tabs {
-        justify-content: flex-start;
-        overflow-x: auto;
-        padding-bottom: 8px;
-        -webkit-overflow-scrolling: touch;
-        flex-wrap: nowrap;
+      .menu-toggle { display: inline-flex; }
+
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 3px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #ffffff;
+        padding: 6px 16px 12px 16px;
+        box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+        border-bottom: 3px solid #0051C7;
       }
 
-      .filter-btn {
-        flex-shrink: 0;
+      .main-nav.open { display: flex; }
+
+      .nav-link {
+        padding: 14px 8px;
+        font-size: 16px;
+        border-radius: 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .nav-link:last-child { border-bottom: none; }
+
+      .details-grid { grid-template-columns: 1fr; }
+      .promise-grid { grid-template-columns: 1fr; }
+
+      /* Menu kategorií přes šířku obrazovky (kotveno k wrapperu) */
+      .filter-scroll-wrapper { position: relative; }
+      .filter-dropdown { position: static; }
+      .filter-dropdown-menu {
+        left: 20px;
+        right: 20px;
+        min-width: 0;
+        top: calc(100% + 8px);
       }
     }
 
@@ -469,8 +653,7 @@
       .top-header { padding: 10px 12px; }
       .logo-img { height: 36px; }
       .brand-title { display: none; }
-      .nav-btn { padding: 8px 14px; font-size: 13px; }
-      .main-nav { gap: 6px; }
+      .about-card { padding: 22px 16px; }
     }
     </style>
 </head>
@@ -478,30 +661,41 @@
 
 <div class="page-wrapper">
 
-  <!-- Záhlaví - Pouze Startseite & Kontakt -->
+  <!-- Záhlaví -->
   <header class="top-header">
     <a href="index.html" class="brand-container">
-      <img src="/logo.PNG" alt="M Transport & Reinigung Service" style="height:48px;width:auto;">
-      <span class="brand-title">M Transport & Reinigung Service</span>
+      <img src="/logo.PNG" alt="M Transport &amp; Reinigung Service" class="logo-img" height="48">
+      <span class="brand-title">M Transport &amp; Reinigung Service</span>
     </a>
 
-    <nav class="main-nav">
-      <a href="index.html" class="nav-btn">Startseite</a>
-      <a href="kontakt.html" class="nav-btn">Kontakt</a>
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
+      <svg id="menu-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg id="menu-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none;">
+        <line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line>
+      </svg>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-link">Startseite</a>
+      <a href="ueberuns.html" class="nav-link active" aria-current="page">Über uns</a>
+      <a href="offerte.html" class="nav-link">Anfrageformular</a>
+      <a href="kontakt.html" class="nav-link">Kontakt</a>
     </nav>
   </header>
 
   <!-- Hero Banner -->
   <section class="page-hero">
-    <h1>Über M Transport & Reinigung Service</h1>
-    <p>Ihr zuverlässiger und gründlicher Dienstleistungspartner für Umzugs- und Gebäudereinigung im Kanton Thurgau und der gesamten Ostschweiz.</p>
+    <h1>Über M Transport &amp; Reinigung Service</h1>
+    <p>Ihr zuverlässiger Partner für Umzugs-, Grund- und Gebäudereinigung im Kanton Thurgau und Umgebung.</p>
     <div class="service-badge">
-      <span class="badge-icon">
+      <span class="badge-icon" aria-hidden="true">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <polyline points="20 6 9 17 4 12"></polyline>
         </svg>
       </span>
-      Qualität & Zufriedenheitsgarantie
+      Qualität &amp; 48 Stunden kostenlose Reklamationsfrist
     </div>
   </section>
 
@@ -510,8 +704,35 @@
     <div class="about-card">
       <h2>Wer wir sind</h2>
       <p>
-        <strong>M Transport & Reinigung Service</strong> steht für Präzision, Verlässlichkeit und höchste Hygienestandards. Wir bieten massgeschneiderte Reinigungslösungen für Privathaushalte und Gewerbekunden. Unser Ziel ist es, Ihnen Arbeit abzunehmen und für blitzblanke Ergebnisse zu sorgen – immer pünktlich, transparent und mit persönlicher Betreuung.
+        <strong>M Transport &amp; Reinigung Service</strong> steht für Sorgfalt, Verlässlichkeit und eine hygienische Arbeitsweise. Wir bieten massgeschneiderte Reinigungslösungen für Privathaushalte und Gewerbekunden. Unser Ziel ist es, Ihnen Arbeit abzunehmen und für ein sauberes Ergebnis zu sorgen – zuverlässig, transparent und mit persönlicher Betreuung.
       </p>
+
+      <!--
+        ================================================================
+        OPTIONÁLNÍ OSOBNÍ ČÁST (doporučeno – budí důvěru)
+        Odkomentuj, doplň vlastní text a fotku a nahraj foto na web.
+        Piš jen to, co je pravda (od kdy podnikáš, proč, jak pracuješ).
+        ================================================================
+        <div style="margin-top:24px; display:flex; gap:20px; align-items:center; justify-content:center; flex-wrap:wrap; text-align:left;">
+          <img src="/foto-team.jpg" alt="Inhaber von M Transport &amp; Reinigung Service bei der Arbeit" width="160" height="160" style="border-radius:50%; object-fit:cover;">
+          <p style="max-width:520px;">Hier ein bis zwei Sätze über Sie persönlich: seit wann Sie tätig sind, was Ihnen bei der Arbeit wichtig ist.</p>
+        </div>
+      -->
+
+      <div class="promise-grid">
+        <div class="promise-item">
+          <h3>Unverbindliche Offerte</h3>
+          <p>Sie erhalten eine Offerte, ohne sich zu etwas zu verpflichten.</p>
+        </div>
+        <div class="promise-item">
+          <h3>48 Stunden Reklamationsfrist</h3>
+          <p>Etwas übersehen? Melden Sie es innert 48 Stunden – kostenlos.</p>
+        </div>
+        <div class="promise-item">
+          <h3>Direkter Kontakt</h3>
+          <p>Telefon, WhatsApp oder Formular – Sie erreichen uns auf dem Weg, der Ihnen passt.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -521,43 +742,48 @@
     <p>Wählen Sie eine Kategorie, um die detaillierten Aufgabenbereiche zu durchsuchen:</p>
   </div>
 
-  <!-- Přehledné záložky dlaždic -->
+  <!-- Výběr kategorií: dlaždice "Alle anzeigen" + rozbalovací menu ostatních kategorií -->
   <div class="filter-scroll-wrapper">
-    <div class="filter-tabs">
-      <button class="filter-btn active" onclick="filterServices('all')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+    <div class="filter-tabs" role="group" aria-label="Leistungen filtern">
+      <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
         Alle anzeigen
       </button>
 
-      <button class="filter-btn" onclick="filterServices('wohnen')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-        Wohnen & Zimmer
-      </button>
+      <div class="filter-dropdown" id="filter-dropdown">
+        <button type="button" class="filter-btn filter-dropdown-toggle" id="filter-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="filter-dropdown-menu">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          <span id="filter-dropdown-label">Kategorie wählen</span>
+          <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
 
-      <button class="filter-btn" onclick="filterServices('kueche')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path></svg>
-        Küchen & Geräte
-      </button>
-
-      <button class="filter-btn" onclick="filterServices('bad')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v13"></path><path d="M5 12h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2z"></path></svg>
-        Bäder & Nasszellen
-      </button>
-
-      <button class="filter-btn" onclick="filterServices('fenster')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line><line x1="3" y1="12" x2="21" y2="12"></line></svg>
-        Fenster, Storen & Türen
-      </button>
-
-      <button class="filter-btn" onclick="filterServices('aussen')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"></path><path d="M9 21V9"></path></svg>
-        Balkone & Keller
-      </button>
-
-      <button class="filter-btn" onclick="filterServices('gebaeude')">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20h4v-4h4v-4h4V8h4"></path></svg>
-        Gänge, Treppen & Büros
-      </button>
+        <div class="filter-dropdown-menu" id="filter-dropdown-menu" role="group" aria-label="Kategorien">
+        <button type="button" class="filter-option" data-filter="wohnen" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+          Wohnräume &amp; Böden
+        </button>
+        <button type="button" class="filter-option" data-filter="kueche" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path></svg>
+          Küche &amp; Geräte
+        </button>
+        <button type="button" class="filter-option" data-filter="bad" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v13"></path><path d="M5 12h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2z"></path></svg>
+          Bäder &amp; Nasszellen
+        </button>
+        <button type="button" class="filter-option" data-filter="fenster" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"></rect><line x1="12" y1="3" x2="12" y2="21"></line><line x1="3" y1="12" x2="21" y2="12"></line></svg>
+          Fenster, Storen &amp; Türen
+        </button>
+        <button type="button" class="filter-option" data-filter="aussen" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h18v18H3z"></path><path d="M9 21V9"></path></svg>
+          Balkon, Keller &amp; Waschküche
+        </button>
+        <button type="button" class="filter-option" data-filter="gebaeude" aria-pressed="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 20h4v-4h4v-4h4V8h4"></path></svg>
+          Treppenhaus, Eingang &amp; Büros
+        </button>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -569,21 +795,21 @@
       <div class="detail-tile" data-category="wohnen">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
               <polyline points="9 22 9 12 15 12 15 22"></polyline>
             </svg>
           </div>
-          <div class="tile-title">Zimmer & Wohnbereiche</div>
+          <h3 class="tile-title">Zimmer &amp; Wohnbereiche</h3>
         </div>
         <div class="tile-body">
-          Sorgfältige und staubfreie Reinigung aller Wohn- und Schlafräume für ein rundum gesundes Raumklima.
+          Sorgfältige Reinigung aller Wohn- und Schlafräume für saubere, angenehme Wohnräume.
           <ul class="tile-list">
-            <li>Gründliches Abstauben aller Möbel, Regale & Oberflächen</li>
-            <li>Reinigung von Steckdosen, Lichtschaltern & Sockelleisten</li>
+            <li>Gründliches Abstauben aller Möbel, Regale &amp; Oberflächen</li>
+            <li>Reinigung von Steckdosen, Lichtschaltern &amp; Sockelleisten</li>
             <li>Entfernung von Spinnweben an Decken und Wänden</li>
             <li>Heizkörperzwischenräume feucht auswischen</li>
-            <li>Säuberung von Türrahmen & Zargen</li>
+            <li>Säuberung von Türrahmen &amp; Zargen</li>
           </ul>
         </div>
       </div>
@@ -592,19 +818,19 @@
       <div class="detail-tile" data-category="wohnen">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="5" width="20" height="14" rx="2"></rect>
               <line x1="2" y1="10" x2="22" y2="10"></line>
             </svg>
           </div>
-          <div class="tile-title">Böden & Sockelleisten</div>
+          <h3 class="tile-title">Böden &amp; Sockelleisten</h3>
         </div>
         <div class="tile-body">
-          Fachgerechte Pflege und Reinigung angepasst an die jeweilige Bodenart.
+          Fachgerechte Pflege und Reinigung, angepasst an die jeweilige Bodenart.
           <ul class="tile-list">
             <li>Parkett und Laminat staubsaugen und materialschonend wischen</li>
             <li>Platten, Fliesen und Natursteinböden intensiv reinigen</li>
-            <li>Teppichböden tiefenwirksam absaugen</li>
+            <li>Teppichböden gründlich absaugen</li>
             <li>Sockelleisten und Fussleisten komplett abstauben und wischen</li>
           </ul>
         </div>
@@ -614,22 +840,22 @@
       <div class="detail-tile" data-category="kueche">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
               <path d="M7 2v20"></path>
               <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"></path>
             </svg>
           </div>
-          <div class="tile-title">Küchen (Grundreinigung)</div>
+          <h3 class="tile-title">Küchen (Grundreinigung)</h3>
         </div>
         <div class="tile-body">
-          Intensive Entfettung und hygienische Säuberung aller Arbeitsflächen, Fronten und Nischen.
+          Intensive Entfettung und hygienische Reinigung aller Arbeitsflächen, Fronten und Nischen.
           <ul class="tile-list">
-            <li>Reinigung der Küchenfronten & Schrankinnenseiten</li>
-            <li>Arbeitsplatten & Fliesenspiegel gründlich abwischen</li>
-            <li>Spülbecken & Armaturen entkalken und polieren</li>
+            <li>Reinigung der Küchenfronten &amp; Schrankinnenseiten</li>
+            <li>Arbeitsplatten &amp; Fliesenspiegel gründlich abwischen</li>
+            <li>Spülbecken &amp; Armaturen entkalken und polieren</li>
             <li>Dunstabzugshaube inklusive Metallfilter entfetten</li>
-            <li>Sockelleisten & Unterbauten reinigen</li>
+            <li>Sockelleisten &amp; Unterbauten reinigen</li>
           </ul>
         </div>
       </div>
@@ -638,22 +864,22 @@
       <div class="detail-tile" data-category="kueche">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
               <line x1="7" y1="2" x2="7" y2="22"></line>
               <line x1="17" y1="2" x2="17" y2="22"></line>
               <line x1="2" y1="12" x2="22" y2="12"></line>
             </svg>
           </div>
-          <div class="tile-title">Küchengeräte (Backofen & Co.)</div>
+          <h3 class="tile-title">Küchengeräte (Backofen &amp; Co.)</h3>
         </div>
         <div class="tile-body">
-          Spezielle Tiefenreinigung für eingebrannte Haushaltsgeräte. Inklusive Abnahme der Abgabegarantie.
+          Spezielle Tiefenreinigung für eingebrannte Haushaltsgeräte – ideal vor der Wohnungsabgabe.
           <ul class="tile-list">
-            <li>Backofen (Innenraum, Bleche & Rost intensiv entfettet)</li>
-            <li>Steamer & Combi-Dampfgarer entkalken und reinigen</li>
-            <li>Kühlschrank & Gefrierfach (abgetaut & hygienisch sauber)</li>
-            <li>Geschirrspüler (Siebe, Arme & Dichtungen reinigen)</li>
+            <li>Backofen (Innenraum, Bleche &amp; Rost intensiv entfettet)</li>
+            <li>Steamer &amp; Combi-Dampfgarer entkalken und reinigen</li>
+            <li>Kühlschrank &amp; Gefrierfach (abgetaut &amp; hygienisch sauber)</li>
+            <li>Geschirrspüler (Siebe, Arme &amp; Dichtungen reinigen)</li>
             <li>Kochfeld (Glaskeramik, Induktion oder Gas)</li>
           </ul>
         </div>
@@ -663,22 +889,22 @@
       <div class="detail-tile" data-category="bad">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-2.12 0 1.5 1.5 0 0 0 0 2.12L7 8"></path>
               <path d="M12 9v13"></path>
               <path d="M5 12h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2z"></path>
             </svg>
           </div>
-          <div class="tile-title">Bäder & Nasszellen</div>
+          <h3 class="tile-title">Bäder &amp; Nasszellen</h3>
         </div>
         <div class="tile-body">
-          Kompromisslose Entfernung von Kalkablagerungen, Seifenresten und Schimmelspuren.
+          Gründliche Entfernung von Kalkablagerungen, Seifenresten und oberflächlichen Schimmelspuren.
           <ul class="tile-list">
-            <li>Sanitärkeramik (Waschbecken, WC, Bidet) desinfizieren</li>
-            <li>Badewanne & Dusche inklusive Trennwände entkalken</li>
+            <li>Sanitärkeramik (Waschbecken, WC, Bidet) hygienisch reinigen</li>
+            <li>Badewanne &amp; Dusche inklusive Trennwände entkalken</li>
             <li>Armaturen und Duschbrausen zum Glänzen bringen</li>
             <li>Wandfliesen vollflächig abwaschen und Fugen reinigen</li>
-            <li>Spiegelschränke und Ablagen staub- und streifenfrei putzen</li>
+            <li>Spiegelschränke und Ablagen sorgfältig reinigen</li>
           </ul>
         </div>
       </div>
@@ -687,19 +913,19 @@
       <div class="detail-tile" data-category="fenster">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="2"></rect>
               <line x1="12" y1="3" x2="12" y2="21"></line>
               <line x1="3" y1="12" x2="21" y2="12"></line>
             </svg>
           </div>
-          <div class="tile-title">Fenster & Verglasungen</div>
+          <h3 class="tile-title">Fenster &amp; Verglasungen</h3>
         </div>
         <div class="tile-body">
-          Streifenfreie und glasklare Reinigung für alle Arten von Fenstern und Glasfronten.
+          Sorgfältige Reinigung für alle Arten von Fenstern und Glasfronten.
           <ul class="tile-list">
             <li>Glasscheiben innen und aussen professionell putzen</li>
-            <li>Fensterrahmen, Falze & Nuten gründlich auswischen</li>
+            <li>Fensterrahmen, Falze &amp; Nuten gründlich auswischen</li>
             <li>Fenstersimse und Dichtungen säubern</li>
             <li>Dachfenster und grossflächige Verglasungen</li>
             <li>Sitzplatz- und Balkonverglasungen</li>
@@ -711,7 +937,7 @@
       <div class="detail-tile" data-category="fenster">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4 2v20"></path>
               <path d="M20 2v20"></path>
               <path d="M4 6h16"></path>
@@ -720,7 +946,7 @@
               <path d="M4 18h16"></path>
             </svg>
           </div>
-          <div class="tile-title">Rollläden, Storen & Klappläden</div>
+          <h3 class="tile-title">Rollläden, Storen &amp; Klappläden</h3>
         </div>
         <div class="tile-body">
           Sorgfältige Schmutz- und Staubentfernung an allen Beschattungssystemen.
@@ -737,19 +963,19 @@
       <div class="detail-tile" data-category="fenster">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 21h18"></path>
               <path d="M5 21V3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v18"></path>
               <circle cx="15" cy="12" r="1"></circle>
             </svg>
           </div>
-          <div class="tile-title">Türen & Einbauschränke</div>
+          <h3 class="tile-title">Türen &amp; Einbauschränke</h3>
         </div>
         <div class="tile-body">
           Befreiung aller Türelemente und Schränke von Griffspuren, Staub und Fett.
           <ul class="tile-list">
             <li>Türblätter, Zargen und Türrahmen feucht reinigen</li>
-            <li>Klinken und Griffmulden hygienisch desinfizieren</li>
+            <li>Klinken und Griffmulden hygienisch reinigen</li>
             <li>Einbauschränke, Garderoben und Gestelle (innen und aussen)</li>
             <li>Regalböden und Schrankoberseiten abstauben</li>
           </ul>
@@ -760,13 +986,13 @@
       <div class="detail-tile" data-category="aussen">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M3 3h18v18H3z"></path>
               <path d="M3 9h18"></path>
               <path d="M9 21V9"></path>
             </svg>
           </div>
-          <div class="tile-title">Balkone & Terrassen</div>
+          <h3 class="tile-title">Balkone &amp; Terrassen</h3>
         </div>
         <div class="tile-body">
           Aussenbereiche sauber und einladend für die Übergabe herrichten.
@@ -783,11 +1009,11 @@
       <div class="detail-tile" data-category="aussen">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
             </svg>
           </div>
-          <div class="tile-title">Keller, Estrich & Nebenräume</div>
+          <h3 class="tile-title">Keller, Estrich &amp; Nebenräume</h3>
         </div>
         <div class="tile-body">
           Saubere Übergabe von Kellerabteilen, Dachböden und Nebenräumen.
@@ -803,18 +1029,18 @@
       <div class="detail-tile" data-category="aussen">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="2"></rect>
               <circle cx="12" cy="13" r="5"></circle>
               <path d="M12 8v1"></path>
             </svg>
           </div>
-          <div class="tile-title">Waschküchen & Waschräume</div>
+          <h3 class="tile-title">Waschküchen &amp; Waschräume</h3>
         </div>
         <div class="tile-body">
-          Hygienische Säuberung von Waschräumen und den dazugehörigen Geräten.
+          Hygienische Reinigung von Waschräumen und den dazugehörigen Geräten.
           <ul class="tile-list">
-            <li>Waschmaschinen und Tumbler (Aussenreinigung, Siebe & Schubladen)</li>
+            <li>Waschmaschinen und Tumbler (Aussenreinigung, Siebe &amp; Schubladen)</li>
             <li>Waschtröge und Seifenablagen entkalken</li>
             <li>Böden und Abflüsse gründlich reinigen</li>
             <li>Trocknungsräume und Seile säubern</li>
@@ -826,14 +1052,14 @@
       <div class="detail-tile" data-category="gebaeude">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M6 20h4v-4h4v-4h4V8h4"></path>
             </svg>
           </div>
-          <div class="tile-title">Gänge & Treppenhäuser</div>
+          <h3 class="tile-title">Gänge &amp; Treppenhäuser</h3>
         </div>
         <div class="tile-body">
-          Repräsentative Sauberkeit für Gemeinschafts- und Flurbereiche.
+          Gepflegte Sauberkeit für Gemeinschafts- und Flurbereiche.
           <ul class="tile-list">
             <li>Treppenstufen und Podeste kehren und feucht aufnehmen</li>
             <li>Handläufe und Geländer abwischen</li>
@@ -847,18 +1073,18 @@
       <div class="detail-tile" data-category="gebaeude">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
               <polyline points="10 17 15 12 10 7"></polyline>
               <line x1="15" y1="12" x2="3" y2="12"></line>
             </svg>
           </div>
-          <div class="tile-title">Eingangsbereiche</div>
+          <h3 class="tile-title">Eingangsbereiche</h3>
         </div>
         <div class="tile-body">
-          Der erste Eindruck zählt – makellose Eingangszonen für Besucher und Bewohner.
+          Der erste Eindruck zählt – gepflegte Eingangszonen für Besucher und Bewohner.
           <ul class="tile-list">
-            <li>Eingangstüren (Glas und Rahmen) streifenfrei putzen</li>
+            <li>Eingangstüren (Glas und Rahmen) sorgfältig reinigen</li>
             <li>Gegensprechanlagen und Klingeltableaus reinigen</li>
             <li>Schmutzschleusen und Bodenmatten absaugen</li>
             <li>Vordächer und Beleuchtungskörper abstauben</li>
@@ -870,13 +1096,13 @@
       <div class="detail-tile" data-category="gebaeude">
         <div class="tile-header">
           <div class="tile-icon-box">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
               <line x1="8" y1="21" x2="16" y2="21"></line>
               <line x1="12" y1="17" x2="12" y2="21"></line>
             </svg>
           </div>
-          <div class="tile-title">Büros & Gewerberäume</div>
+          <h3 class="tile-title">Büros &amp; Gewerberäume</h3>
         </div>
         <div class="tile-body">
           Professionelle Unterhalts- und Grundreinigung für produktives Arbeiten.
@@ -891,11 +1117,11 @@
 
     </div>
 
-    <!-- Tlačítko samostatně dole s přesměrováním na formuláře -->
+    <!-- Tlačítko dole s přesměrováním na formulář -->
     <div class="cta-container">
       <a href="offerte.html" class="cta-btn">
         Jetzt unverbindliche Offerte anfordern
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
         </svg>
@@ -912,37 +1138,119 @@
       <a href="https://www.instagram.com/m.transportreinigung" class="btn-social btn-instagram" target="_blank" rel="noopener">Instagram</a>
     </div>
 
-    <!-- Textové odkazy na Impressum a Datenschutz -->
+    <!-- Textové odkazy -->
     <div class="legal-links">
+      <a href="ueberuns.html" class="legal-text-link">Über uns</a>
+      <span class="legal-separator">|</span>
       <a href="impressum.html" class="legal-text-link">Impressum</a>
       <span class="legal-separator">|</span>
       <a href="datenschutz.html" class="legal-text-link">Datenschutzerklärung</a>
     </div>
     <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
-      &copy; 2026 M Transport & Reinigung Service.
+      &copy; 2026 M Transport &amp; Reinigung Service.
     </div>
   </footer>
 
 </div>
 
 <script>
-  function filterServices(category) {
-    // Aktivační logika tlačítek
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => btn.classList.remove('active'));
-    
-    event.currentTarget.classList.add('active');
+  // Mobilní menu (hamburger)
+  (function () {
+    var toggle = document.getElementById('menu-toggle');
+    var nav = document.getElementById('main-nav');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
 
-    // Filtrování dlaždic podle kategorie
-    const tiles = document.querySelectorAll('.detail-tile');
-    tiles.forEach(tile => {
-      if (category === 'all' || tile.getAttribute('data-category') === category) {
-        tile.classList.remove('hidden');
-      } else {
-        tile.classList.add('hidden');
-      }
+    function setMenu(open) {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+      iconOpen.style.display = open ? 'none' : '';
+      iconClose.style.display = open ? '' : 'none';
+    }
+
+    toggle.addEventListener('click', function () {
+      setMenu(!nav.classList.contains('open'));
     });
-  }
+
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setMenu(false);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) setMenu(false);
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) setMenu(false);
+    });
+  })();
+
+  // Filtrování dlaždic: "Alle anzeigen" + rozbalovací menu kategorií
+  (function () {
+    var DEFAULT_LABEL = 'Kategorie wählen';
+    var allBtn = document.querySelector('.filter-btn[data-filter="all"]');
+    var options = document.querySelectorAll('.filter-option');
+    var dropdown = document.getElementById('filter-dropdown');
+    var toggle = document.getElementById('filter-dropdown-toggle');
+    var menu = document.getElementById('filter-dropdown-menu');
+    var label = document.getElementById('filter-dropdown-label');
+    var tiles = document.querySelectorAll('.detail-tile');
+
+    function setDropdown(open) {
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    function applyFilter(category) {
+      var isAll = category === 'all';
+
+      allBtn.classList.toggle('active', isAll);
+      allBtn.setAttribute('aria-pressed', isAll ? 'true' : 'false');
+      toggle.classList.toggle('active', !isAll);
+      label.textContent = DEFAULT_LABEL;
+
+      options.forEach(function (o) {
+        var on = o.getAttribute('data-filter') === category;
+        o.classList.toggle('active', on);
+        o.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if (on) label.textContent = o.textContent.replace(/\s+/g, ' ').trim();
+      });
+
+      tiles.forEach(function (tile) {
+        var show = isAll || tile.getAttribute('data-category') === category;
+        tile.classList.toggle('hidden', !show);
+      });
+    }
+
+    allBtn.addEventListener('click', function () {
+      applyFilter('all');
+      setDropdown(false);
+    });
+
+    options.forEach(function (o) {
+      o.addEventListener('click', function () {
+        applyFilter(o.getAttribute('data-filter'));
+        setDropdown(false);
+      });
+    });
+
+    toggle.addEventListener('click', function () {
+      setDropdown(!menu.classList.contains('open'));
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!dropdown.contains(e.target)) setDropdown(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setDropdown(false);
+    });
+  })();
 </script>
 
 </body>
