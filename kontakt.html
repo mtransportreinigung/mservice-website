@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kontakt & Standort | M Transport & Reinigung Service Thurgau</title>
+    <title>Kontakt &amp; Standort | M Transport &amp; Reinigung Service Thurgau</title>
 
     <link rel="canonical" href="https://www.mservice.ch/kontakt">
     
@@ -17,7 +17,7 @@
     <link rel="apple-touch-icon" href="/logo.PNG?v=1">
 
     <!-- Lákavý text specifický pro kontakt -->
-    <meta name="description" content="Kontaktieren Sie M Transport & Reinigung Service in Thurgau. Wir sind per E-Mail oder WhatsApp für Sie erreichbar – schnell, unkompliziert und zuverlässig!">
+    <meta name="description" content="Kontaktieren Sie M Transport &amp; Reinigung Service in Thurgau. Wir sind per E-Mail oder WhatsApp für Sie erreichbar – schnell, unkompliziert und zuverlässig!">
 
   <style>
     * { 
@@ -31,6 +31,7 @@
       max-width: 100%;
       overflow-x: hidden;
       background-color: #002266;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -39,6 +40,12 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       padding-top: 75px; /* Kompenzace pro fixní horní lištu */
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #FF6A00;
+      outline-offset: 2px;
     }
 
     /* Ochrana proti přiblížení (zoomu) na mobilních zařízeních iOS/Android */
@@ -54,7 +61,7 @@
       background-color: #f4f6f9;
     }
 
-    /* Záhlaví / Header - Pevně přichycené při scrollu */
+    /* Záhlaví / Header - Pevně přichycené při scrollu (přesně podle vzoru) */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -98,47 +105,49 @@
       letter-spacing: -0.3px;
     }
 
+    /* Horní menu */
     .main-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 4px;
     }
 
-    /* Tlačítka v menu */
-    .nav-btn {
+    .nav-link {
       text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
-      padding: 10px 22px;
-      border-radius: 50px;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-flex;
+      color: #002266;
+      padding: 9px 14px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background-color: #e0f2fe;
+      color: #0051C7;
+    }
+
+    .nav-link.active {
+      color: #0051C7;
+      background-color: #e0f2fe;
+      box-shadow: inset 0 -3px 0 #FF6A00;
+    }
+
+    /* Tlačítko hamburger (jen mobil) */
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
       align-items: center;
       justify-content: center;
-      background-color: #0051C7;
-      color: #ffffff;
-      border: 1px solid #0051C7;
-      box-shadow: 0 2px 8px rgba(0, 81, 199, 0.2);
-    }
-
-    .nav-btn:hover {
-      background-color: #003da1;
-      color: #ffffff;
-      border-color: #003da1;
-      transform: translateY(-1px);
-    }
-
-    .nav-btn.active {
-      background-color: #e2e8f0;
-      color: #000000;
+      background: #ffffff;
       border: 1px solid #cbd5e1;
-      box-shadow: none;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
-    .nav-btn.active:hover {
-      background-color: #cbd5e1;
-      transform: none;
+    .menu-toggle svg {
+      stroke: #002266;
     }
 
     /* Hero sekce */
@@ -270,7 +279,7 @@
       text-align: left;
       border-top: 1px solid #e2e8f0;
       padding-top: 15px;
-      cursor: default; /* Vrátí standardní kurzor uvnitř formuláře */
+      cursor: default;
     }
 
     .expandable-content.active {
@@ -308,7 +317,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 6px;
       font-family: Arial, sans-serif;
-      font-size: 16px !important; /* Zabraňuje auto-zoomu na mobilech */
+      font-size: 16px !important;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
@@ -499,6 +508,34 @@
 
     /* Responsivita */
     @media (max-width: 768px) {
+      .menu-toggle { display: inline-flex; }
+
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 3px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #ffffff;
+        padding: 6px 16px 12px 16px;
+        box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+        border-bottom: 3px solid #0051C7;
+      }
+
+      .main-nav.open { display: flex; }
+
+      .nav-link {
+        padding: 14px 8px;
+        font-size: 16px;
+        border-radius: 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .nav-link:last-child { border-bottom: none; }
+
       .contact-grid { grid-template-columns: 1fr; }
       .hero-section h1 { font-size: 26px; }
       .hero-section p { font-size: 14px; }
@@ -510,8 +547,6 @@
       .top-header { padding: 10px 12px; }
       .logo-img { height: 36px; }
       .brand-title { display: none; }
-      .nav-btn { padding: 8px 14px; font-size: 13px; }
-      .main-nav { gap: 6px; }
     }
   </style>
 </head>
@@ -519,17 +554,27 @@
 
 <div class="page-wrapper">
 
-  <!-- Záhlaví - Pevná lišta -->
+  <!-- Záhlaví -->
   <header class="top-header">
     <a href="index.html" class="brand-container">
-      <img src="/logo.PNG" alt="M Transport & Reinigung Service" style="height:48px;width:auto;">
-      <span class="brand-title">M Transport & Reinigung Service</span>
+      <img src="/logo.PNG" alt="M Transport &amp; Reinigung Service" class="logo-img" height="48">
+      <span class="brand-title">M Transport &amp; Reinigung Service</span>
     </a>
 
-    <nav class="main-nav">
-      <a href="index.html" class="nav-btn">Startseite</a>
-      <a href="offerte.html" class="nav-btn">Anfrageformular</a>
-      <a href="kontakt.html" class="nav-btn active">Kontakt</a>
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
+      <svg id="menu-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg id="menu-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none;">
+        <line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line>
+      </svg>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-link">Startseite</a>
+      <a href="ueberuns.html" class="nav-link">Über uns</a>
+      <a href="offerte.html" class="nav-link">Anfrageformular</a>
+      <a href="kontakt.html" class="nav-link active" aria-current="page">Kontakt</a>
     </nav>
   </header>
 
@@ -571,7 +616,7 @@
         </div>
         <span class="card-link-btn" id="email-btn-text">Formular öffnen &rarr;</span>
 
-        <!-- Rozbalovací formulář Web3Forms (stopPropagate přímo na kontejneru) -->
+        <!-- Rozbalovací formulář Web3Forms -->
         <div class="expandable-content" id="email-expandable" onclick="event.stopPropagation()">
           <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="web3-contact-form">
             <!-- Web3Forms Access Key -->
@@ -627,7 +672,7 @@
         <span class="card-link-btn">WhatsApp öffnen &rarr;</span>
       </a>
 
-      <!-- Einsatzgebiet (s rozbalovací zprávou bez mapy) -->
+      <!-- Einsatzgebiet -->
       <div class="contact-card" onclick="toggleAreaInfo(event)">
         <div class="card-content-top">
           <span class="contact-icon">
@@ -641,7 +686,7 @@
         </div>
         <span class="card-link-btn" id="area-btn-text">Details anzeigen &rarr;</span>
 
-        <!-- Rozbalovací zpráva místo mapy -->
+        <!-- Rozbalovací zpráva -->
         <div class="expandable-content" id="area-expandable" onclick="event.stopPropagation()">
           <div class="einsatz-info-box">
             <p><strong>ℹ️ Hinweis zu unserem Einsatzgebiet:</strong></p>
@@ -665,20 +710,58 @@
       <a href="https://www.instagram.com/m.transportreinigung" class="btn-social btn-instagram" target="_blank" rel="noopener">Instagram</a>
     </div>
 
-    <!-- Textové odkazy na Impressum a Datenschutz -->
+    <!-- Textové odkazy -->
     <div class="legal-links">
+      <a href="ueberuns.html" class="legal-text-link">Über uns</a>
+      <span class="legal-separator">|</span>
       <a href="impressum.html" class="legal-text-link">Impressum</a>
       <span class="legal-separator">|</span>
       <a href="datenschutz.html" class="legal-text-link">Datenschutzerklärung</a>
     </div>
     <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
-      &copy; 2026 M Transport & Reinigung Service.
+      &copy; 2026 M Transport &amp; Reinigung Service.
     </div>
   </footer>
 
 </div>
 
 <script>
+  // Mobilní menu (hamburger)
+  (function () {
+    var toggle = document.getElementById('menu-toggle');
+    var nav = document.getElementById('main-nav');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
+
+    function setMenu(open) {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+      iconOpen.style.display = open ? 'none' : '';
+      iconClose.style.display = open ? '' : 'none';
+    }
+
+    toggle.addEventListener('click', function () {
+      setMenu(!nav.classList.contains('open'));
+    });
+
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setMenu(false);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) setMenu(false);
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) setMenu(false);
+    });
+  })();
+
   function toggleEmailForm(event) {
     const expandable = document.getElementById('email-expandable');
     const btnText = document.getElementById('email-btn-text');
@@ -689,7 +772,6 @@
     } else {
       expandable.classList.add('active');
       btnText.textContent = 'Formular schliessen ✕';
-      // Zavřít rozbalenou kartu oblasti, pokud je otevřená
       document.getElementById('area-expandable').classList.remove('active');
       document.getElementById('area-btn-text').textContent = 'Details anzeigen →';
     }
@@ -705,7 +787,6 @@
     } else {
       expandable.classList.add('active');
       btnText.textContent = 'Details schliessen ✕';
-      // Zavřít e-mail formulář, pokud je otevřený
       document.getElementById('email-expandable').classList.remove('active');
       document.getElementById('email-btn-text').textContent = 'Formular öffnen →';
     }
@@ -715,15 +796,11 @@
     const emailExpandable = document.getElementById('email-expandable');
     const emailBtnText = document.getElementById('email-btn-text');
     
-    // Zavře infobox oblasti
     document.getElementById('area-expandable').classList.remove('active');
     document.getElementById('area-btn-text').textContent = 'Details anzeigen →';
 
-    // Otevře e-mail formulář
     emailExpandable.classList.add('active');
     emailBtnText.textContent = 'Formular schliessen ✕';
-
-    // Plynule posune obrazovku k formuláři
     emailExpandable.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
