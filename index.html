@@ -294,9 +294,11 @@
     }
 
     .service-icon {
-      font-size: 38px;
       margin-bottom: 12px;
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 42px;
     }
 
     .service-title {
@@ -389,32 +391,32 @@
     .btn-facebook { background-color: #1877F2; }
     .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
 
-.legal-links {
-  margin-top: 18px;
-  margin-bottom: 12px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-}
+    .legal-links {
+      margin-top: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
 
-.legal-text-link {
-  color: #ffffff;
-  text-decoration: none;
-  opacity: 0.8;
-  transition: opacity 0.2s ease, text-decoration 0.2s ease;
-}
+    .legal-text-link {
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, text-decoration 0.2s ease;
+    }
 
-.legal-text-link:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
+    .legal-text-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
 
-.legal-separator {
-  color: #ffffff;
-  opacity: 0.5;
-}
+    .legal-separator {
+      color: #ffffff;
+      opacity: 0.5;
+    }
 
     /* Responsivita */
     @media (max-width: 900px) {
@@ -477,7 +479,11 @@
       <!-- 1. Umzugsreinigung -->
       <a href="offerte.html?service=umzug" class="service-card">
         <div class="card-content-top">
-          <span class="service-icon">🧹</span>
+          <span class="service-icon">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 11.5L6 23M16 4L11 9M18 2l4 4-11 11-4-4L18 2z"></path>
+            </svg>
+          </span>
           <h3 class="service-title">Umzugsreinigung</h3>
           <p class="service-desc">Gründliche Endreinigung Ihrer Wohnung oder Ihres Hauses für eine erfolgreiche Wohnungsabgabe.</p>
         </div>
@@ -487,106 +493,7 @@
       <!-- 2. Gebäudereinigung -->
       <a href="offerte.html?service=gebaeude" class="service-card">
         <div class="card-content-top">
-          <span class="service-icon">🏢</span>
-          <h3 class="service-title">Gebäudereinigung</h3>
-          <p class="service-desc">Regelmässige oder einmalige Reinigung von Liegenschaften, Treppenhäusern oder Büros.</p>
-        </div>
-        <span class="card-link-btn">Offerte anfordern &rarr;</span>
-      </a>
-
-      <!-- 3. Unterhaltsreinigung -->
-      <a href="offerte.html?service=unterhalt" class="service-card">
-        <div class="card-content-top">
-          <span class="service-icon">🧼</span>
-          <h3 class="service-title">Unterhaltsreinigung</h3>
-          <p class="service-desc">Fortlaufende, periodische Wohnungsreinigung nach Ihren individuellen Wünschen und Intervallen.</p>
-        </div>
-        <span class="card-link-btn">Offerte anfordern &rarr;</span>
-      </a>
-
-      <!-- 4. Grundreinigung -->
-      <a href="offerte.html?service=grund" class="service-card">
-        <div class="card-content-top">
-          <span class="service-icon">✨</span>
-          <h3 class="service-title">Grundreinigung</h3>
-          <p class="service-desc">Intensive Tiefenreinigung oder Frühlingsputz für hartnäckige Verschmutzungen im gesamten Objekt.</p>
-        </div>
-        <span class="card-link-btn">Offerte anfordern &rarr;</span>
-      </a>
-
-      <!-- 5. Transport & Räumung (Neaktivní) -->
-      <div class="service-card blur-card">
-        <div class="card-content-top">
-          <span class="service-icon">🚚</span>
-          <h3 class="service-title">Transport & Räumung</h3>
-          <p class="service-desc">Sichere Umzüge, Warentransporte sowie fachgerechte Entrümpelungen und Hausräumungen.</p>
-        </div>
-        <span class="card-link-btn">Demnächst verfügbar</span>
-      </div>
-
-      <!-- 6. WhatsApp Kontakt -->
-      <a href="https://wa.me/41783458072" target="_blank" rel="noopener" class="service-card whatsapp-card">
-        <div class="card-content-top">
-          <span class="service-icon">💬</span>
-          <h3 class="service-title">Direkt per WhatsApp</h3>
-          <p class="service-desc">Schreiben Sie uns unkompliziert über WhatsApp für eine schnelle Auskunft oder Offerte.</p>
-        </div>
-        <span class="card-link-btn">WhatsApp öffnen &rarr;</span>
-      </a>
-
-    </div>
-
-    <!-- 2. Sekce Aktuálně / Aktuell -->
-    <h2 class="section-title">Aktuell</h2>
-
-    <div class="aktuell-grid">
-      
-      <!-- B2B Partner karta -->
-      <a href="partner.html" class="aktuell-card partner-card">
-        <div class="card-content-top">
-          <span class="service-icon">🤝</span>
-          <h3 class="service-title">Partner werden</h3>
-          <p class="service-desc">Für Umzugsunternehmen, Hauswartungen und Immobilienverwaltungen. Werden Sie unser B2B-Partner!</p>
-        </div>
-        <span class="card-link-btn">Partnerschaft anfragen &rarr;</span>
-      </a>
-
-      <!-- Volná pracovní místa -->
-      <div class="aktuell-card jobs-card">
-        <div class="card-content-top">
-          <span class="service-icon">💼</span>
-          <h3 class="service-title">Offene Stellen</h3>
-          <p class="service-desc">Zurzeit haben wir leider keine offenen Stellen zu besetzen. Schauen Sie später wieder vorbei.</p>
-        </div>
-        <div>
-          <span class="badge-disabled">Keine offenen Stellen</span>
-        </div>
-      </div>
-
-    </div>
-
-  </main>
-
-  <!-- Patička -->
-  <footer class="footer-section">
-    <div class="footer-title">Folgen Sie uns auf</div>
-    <div class="social-buttons">
-      <a href="https://www.facebook.com/m.transportreinigung" class="btn-social btn-facebook" target="_blank" rel="noopener">Facebook</a>
-      <a href="https://www.instagram.com/m.transportreinigung" class="btn-social btn-instagram" target="_blank" rel="noopener">Instagram</a>
-    </div>
-
-    <!-- Textové odkazy na Impressum a Datenschutz -->
-    <div class="legal-links">
-      <a href="impressum.html" class="legal-text-link">Impressum</a>
-      <span class="legal-separator">|</span>
-      <a href="datenschutz.html" class="legal-text-link">Datenschutzerklärung</a>
-    </div>
-    <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
-      &copy; 2026 M Transport & Reinigung Service.
-    </div>
-  </footer>
-
-</div>
-
-</body>
-</html>
+          <span class="service-icon">
+            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+              <line x1="9" y1="6" x2="9" y2
