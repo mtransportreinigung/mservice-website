@@ -196,6 +196,10 @@
       transition: all 0.25s ease;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       user-select: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
     .tab-card:hover {
@@ -210,10 +214,29 @@
       box-shadow: 0 6px 18px rgba(0, 34, 102, 0.25);
     }
 
+    .tab-card.active .tab-icon svg {
+      stroke: #ffffff;
+    }
+
     .tab-icon {
-      font-size: 26px;
       margin-bottom: 6px;
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+    }
+
+    .tab-icon svg {
+      stroke: #0051C7;
+      transition: stroke 0.25s ease;
+    }
+
+    .tab-card.active .tab-icon svg path,
+    .tab-card.active .tab-icon svg circle,
+    .tab-card.active .tab-icon svg polyline,
+    .tab-card.active .tab-icon svg line,
+    .tab-card.active .tab-icon svg rect {
+      stroke: #ffffff;
     }
 
     .tab-title {
@@ -254,6 +277,14 @@
 
     .form-section-title:first-child {
       margin-top: 0;
+    }
+
+    .section-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
     }
 
     .form-grid {
@@ -583,22 +614,48 @@
     <div class="tabs-grid">
       
       <div id="tab-umzug" class="tab-card active" onclick="switchService('umzug')">
-        <span class="tab-icon">🧹</span>
+        <span class="tab-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            <path d="M18 10l2 2 4-4" stroke="#FF6A00" stroke-width="2.5"></path>
+          </svg>
+        </span>
         <span class="tab-title">Umzugsreinigung</span>
       </div>
 
       <div id="tab-gebaeude" class="tab-card" onclick="switchService('gebaeude')">
-        <span class="tab-icon">🏢</span>
+        <span class="tab-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+            <line x1="9" y1="6" x2="9" y2="6.01"></line>
+            <line x1="15" y1="6" x2="15" y2="6.01"></line>
+            <line x1="9" y1="10" x2="9" y2="10.01"></line>
+            <line x1="15" y1="10" x2="15" y2="10.01"></line>
+            <line x1="9" y1="14" x2="9" y2="14.01"></line>
+            <line x1="15" y1="14" x2="15" y2="14.01"></line>
+            <line x1="9" y1="18" x2="15" y2="18"></line>
+          </svg>
+        </span>
         <span class="tab-title">Gebäudereinigung</span>
       </div>
 
       <div id="tab-unterhalt" class="tab-card" onclick="switchService('unterhalt')">
-        <span class="tab-icon">🧼</span>
+        <span class="tab-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path>
+            <circle cx="12" cy="12" r="4" fill="#e0f2fe"></circle>
+          </svg>
+        </span>
         <span class="tab-title">Unterhaltsreinigung</span>
       </div>
 
       <div id="tab-grund" class="tab-card" onclick="switchService('grund')">
-        <span class="tab-icon">✨</span>
+        <span class="tab-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+          </svg>
+        </span>
         <span class="tab-title">Grundreinigung</span>
       </div>
 
@@ -622,7 +679,12 @@
           <!-- ======================================================= -->
           <div id="fields-umzug" class="service-fields active-fieldset">
             
-            <div class="form-section-title">👤 Kontaktdaten des Kunden</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              Kontaktdaten des Kunden
+            </div>
 
             <div class="form-group">
               <label for="u_vorname">Vorname <span>*</span></label>
@@ -669,7 +731,12 @@
               <input type="text" id="u_neue_plz" name="Neue_PLZ_Ort" class="form-control" placeholder="8500 Frauenfeld">
             </div>
 
-            <div class="form-section-title">📋 Angaben zum Reinigungsobjekt</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </span>
+              Angaben zum Reinigungsobjekt
+            </div>
 
             <div class="form-group full-width">
               <label>Objektart: <span>*</span></label>
@@ -720,7 +787,12 @@
               </select>
             </div>
 
-            <div class="form-section-title">🏠 Räumlichkeiten & Details zum Objekt</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+              </span>
+              Räumlichkeiten & Details zum Objekt
+            </div>
 
             <div class="form-group full-width group-nasszellen">
               <label>Nasszellen / Bäder: <span>*</span></label>
@@ -825,7 +897,12 @@
               </div>
             </div>
 
-            <div class="form-section-title">🔑 Übergabe & Bemerkungen</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+              </span>
+              Übergabe & Bemerkungen
+            </div>
 
             <div class="form-group">
               <label for="u_ubergabe_datum">Übergabedatum: <span>*</span></label>
@@ -857,7 +934,12 @@
           <!-- ======================================================= -->
           <div id="fields-gebaeude" class="service-fields">
             
-            <div class="form-section-title">👤 Kontaktdaten des Kunden</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              Kontaktdaten des Kunden
+            </div>
 
             <div class="form-group">
               <label for="g_firma">Firma / Immobilienverwaltung</label>
@@ -889,7 +971,12 @@
               <input type="text" id="g_auftraggeber_plz" name="Auftraggeber_PLZ_Ort" class="form-control" placeholder="8000 Zürich" required>
             </div>
 
-            <div class="form-section-title">🏢 Details zum Gebäude</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="6" x2="9" y2="6.01"></line><line x1="15" y1="6" x2="15" y2="6.01"></line><line x1="9" y1="10" x2="9" y2="10.01"></line><line x1="15" y1="10" x2="15" y2="10.01"></line><line x1="9" y1="14" x2="9" y2="14.01"></line><line x1="15" y1="14" x2="15" y2="14.01"></line><line x1="9" y1="18" x2="15" y2="18"></line></svg>
+              </span>
+              Details zum Gebäude
+            </div>
 
             <div class="form-group full-width">
               <label for="g_anzahl_gebaeude">Anzahl Gebäude <span>*</span></label>
@@ -1031,7 +1118,12 @@
           <!-- ======================================================= -->
           <div id="fields-unterhalt" class="service-fields">
             
-            <div class="form-section-title">👤 Kontaktdaten des Kunden</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              Kontaktdaten des Kunden
+            </div>
 
             <div class="form-group">
               <label for="un_vorname">Vorname <span>*</span></label>
@@ -1063,7 +1155,12 @@
               <input type="text" id="un_plz" name="Objekt_PLZ_Ort" class="form-control" placeholder="8000 Zürich" required>
             </div>
 
-            <div class="form-section-title">🧼 Details zur Unterhaltsreinigung</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path><circle cx="12" cy="12" r="4" fill="#e0f2fe"></circle></svg>
+              </span>
+              Details zur Unterhaltsreinigung
+            </div>
 
             <div class="form-group full-width">
               <label>Objektart: <span>*</span></label>
@@ -1151,7 +1248,12 @@
           <!-- ======================================================= -->
           <div id="fields-grund" class="service-fields">
             
-            <div class="form-section-title">👤 Kontaktdaten des Kunden</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </span>
+              Kontaktdaten des Kunden
+            </div>
 
             <div class="form-group">
               <label for="gr_vorname">Vorname <span>*</span></label>
@@ -1183,7 +1285,12 @@
               <input type="text" id="gr_plz" name="Objekt_PLZ_Ort" class="form-control" placeholder="8000 Zürich" required>
             </div>
 
-            <div class="form-section-title">✨ Details zur Grundreinigung</div>
+            <div class="form-section-title">
+              <span class="section-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+              </span>
+              Details zur Grundreinigung
+            </div>
 
             <div class="form-group">
               <label for="gr_anlass">Anlass der Grundreinigung <span>*</span></label>
