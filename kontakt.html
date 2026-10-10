@@ -262,7 +262,7 @@
       background-color: #e05e00;
     }
 
-    /* Rozbalovací sekce uvnitř karet (Formulář a Mapa) */
+    /* Rozbalovací sekce uvnitř karet (Formulář a Info o oblasti) */
     .expandable-content {
       display: none;
       width: 100%;
@@ -390,19 +390,40 @@
       color: #842029;
     }
 
-    /* Styl pro mapu */
-    .map-container {
-      width: 100%;
-      height: 220px;
+    /* Styl pro rozbalovací infobox Einsatzgebiet */
+    .einsatz-info-box {
+      background-color: #f0f7ff;
+      border-left: 4px solid #0051C7;
+      padding: 16px;
       border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid #cbd5e1;
+      font-size: 13px;
+      color: #1e293b;
+      line-height: 1.6;
     }
 
-    .map-container iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
+    .einsatz-info-box p {
+      margin-bottom: 12px;
+    }
+
+    .einsatz-info-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .einsatz-cta-btn {
+      background-color: #0051C7;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 50px;
+      display: inline-block;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .einsatz-cta-btn:hover {
+      background-color: #003da1;
     }
 
     /* Patička */
@@ -593,19 +614,24 @@
         <span class="card-link-btn">WhatsApp öffnen &rarr;</span>
       </a>
 
-      <!-- Einsatzgebiet (s rozbalovací mapou) -->
-      <div class="contact-card" onclick="toggleMap(event)">
+      <!-- Einsatzgebiet (s rozbalovací zprávou bez mapy) -->
+      <div class="contact-card" onclick="toggleAreaInfo(event)">
         <div class="card-content-top">
           <span class="contact-icon">📍</span>
           <h3 class="contact-title">Einsatzgebiet</h3>
           <p class="contact-desc">Wir sind von 8586 Ennetaach aus im Kanton Thurgau und in der gesamten Umgebung für Sie im Einsatz.</p>
         </div>
-        <span class="card-link-btn" id="map-btn-text">Karte anzeigen &rarr;</span>
+        <span class="card-link-btn" id="area-btn-text">Details anzeigen &rarr;</span>
 
-        <!-- Rozbalovací mapa (stopPropagate přímo na kontejneru) -->
-        <div class="expandable-content" id="map-expandable" onclick="event.stopPropagation()">
-          <div class="map-container">
-            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=9.264%2C47.534%2C9.294%2C47.550&layer=mapnik" allowfullscreen=""></iframe>
+        <!-- Rozbalovací zpráva místo mapy -->
+        <div class="expandable-content" id="area-expandable" onclick="event.stopPropagation()">
+          <div class="einsatz-info-box">
+            <p><strong>ℹ️ Hinweis zu unserem Einsatzgebiet:</strong></p>
+            <p>Wir bedienen den gesamten Kanton Thurgau sowie angrenzende Regionen in der Ostschweiz.</p>
+            <p>Möchten Sie wissen, ob wir auch an Ihrem Standort tätig sind? Zögern Sie nicht, uns über das Kontaktformular oder per E-Mail zu kontaktieren!</p>
+            <p style="margin-top: 12px;">
+              <span class="einsatz-cta-btn" onclick="openFormDirectly()">Zum Kontaktformular &uarr;</span>
+            </p>
           </div>
         </div>
       </div>
@@ -645,26 +671,42 @@
     } else {
       expandable.classList.add('active');
       btnText.textContent = 'Formular schliessen ✕';
-      // Zavřít mapu, pokud je otevřená
-      document.getElementById('map-expandable').classList.remove('active');
-      document.getElementById('map-btn-text').textContent = 'Karte anzeigen →';
+      // Zavřít rozbalenou kartu oblasti, pokud je otevřená
+      document.getElementById('area-expandable').classList.remove('active');
+      document.getElementById('area-btn-text').textContent = 'Details anzeigen →';
     }
   }
 
-  function toggleMap(event) {
-    const expandable = document.getElementById('map-expandable');
-    const btnText = document.getElementById('map-btn-text');
+  function toggleAreaInfo(event) {
+    const expandable = document.getElementById('area-expandable');
+    const btnText = document.getElementById('area-btn-text');
     
     if (expandable.classList.contains('active')) {
       expandable.classList.remove('active');
-      btnText.textContent = 'Karte anzeigen →';
+      btnText.textContent = 'Details anzeigen →';
     } else {
       expandable.classList.add('active');
-      btnText.textContent = 'Karte verbergen ✕';
+      btnText.textContent = 'Details schliessen ✕';
       // Zavřít e-mail formulář, pokud je otevřený
       document.getElementById('email-expandable').classList.remove('active');
       document.getElementById('email-btn-text').textContent = 'Formular öffnen →';
     }
+  }
+
+  function openFormDirectly() {
+    const emailExpandable = document.getElementById('email-expandable');
+    const emailBtnText = document.getElementById('email-btn-text');
+    
+    // Zavře infobox oblasti
+    document.getElementById('area-expandable').classList.remove('active');
+    document.getElementById('area-btn-text').textContent = 'Details anzeigen →';
+
+    // Otevře e-mail formulář
+    emailExpandable.classList.add('active');
+    emailBtnText.textContent = 'Formular schliessen ✕';
+
+    // Plynule posune obrazovku k formuláři
+    emailExpandable.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
   // Obsluha odeslání Web3Forms formuláře přes FormData
