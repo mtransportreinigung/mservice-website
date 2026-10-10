@@ -50,7 +50,7 @@
       background-color: #f4f6f9;
     }
 
-    /* Záhlaví / Header */
+    /* Pevná horní lišta naučeného typu */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -97,6 +97,7 @@
     .main-nav {
       display: flex;
       align-items: center;
+      gap: 10px;
     }
 
     .nav-btn {
@@ -242,7 +243,8 @@
       .top-header { padding: 10px 12px; }
       .logo-img { height: 36px; }
       .brand-title { display: none; }
-      .nav-btn { padding: 8px 16px; font-size: 13px; }
+      .nav-btn { padding: 8px 14px; font-size: 13px; }
+      .main-nav { gap: 6px; }
     }
     </style>
 </head>
@@ -250,15 +252,16 @@
 
 <div class="page-wrapper">
 
-  <!-- Záhlaví pouze s tlačítkem Startseite -->
+  <!-- Naučená pevná horní lišta (Startseite & Kontakt) -->
   <header class="top-header">
     <a href="index.html" class="brand-container">
-      <img src="/logo.PNG" alt="M Transport & Reinigung Service" style="height:48px;width:auto;">
+      <img src="/logo.PNG" alt="M Transport & Reinigung Service" class="logo-img">
       <span class="brand-title">M Transport & Reinigung Service</span>
     </a>
 
     <nav class="main-nav">
       <a href="index.html" class="nav-btn">Startseite</a>
+      <a href="kontakt.html" class="nav-btn">Kontakt</a>
     </nav>
   </header>
 
@@ -289,7 +292,6 @@
       <div class="doc-section">
         <h2>Unternehmensangaben</h2>
         <p><strong>Rechtsform:</strong> Einzelunternehmen</p>
-
       </div>
 
       <div class="doc-section">
@@ -315,7 +317,7 @@
     </div>
   </main>
 
-  <!-- Čistá patička (bez sociálních sítí) -->
+  <!-- Čistá patička -->
   <footer class="footer-section">
     &copy; 2026 M Transport & Reinigung Service.
   </footer>
