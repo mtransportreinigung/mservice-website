@@ -44,6 +44,12 @@
       padding-top: 75px;
     }
 
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #FF6A00;
+      outline-offset: 2px;
+    }
+
     input, select, textarea {
       font-size: 16px !important; 
     }
@@ -56,6 +62,7 @@
       background-color: #f4f6f9;
     }
 
+    /* Pevná horní lišta (přesně podle vzoru Über uns) */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -99,34 +106,49 @@
       letter-spacing: -0.3px;
     }
 
+    /* Horní menu */
     .main-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 4px;
     }
 
-    .nav-btn {
+    .nav-link {
       text-decoration: none;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 600;
-      padding: 10px 22px;
-      border-radius: 50px;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-flex;
+      color: #002266;
+      padding: 9px 14px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background-color: #e0f2fe;
+      color: #0051C7;
+    }
+
+    .nav-link.active {
+      color: #0051C7;
+      background-color: #e0f2fe;
+      box-shadow: inset 0 -3px 0 #FF6A00;
+    }
+
+    /* Tlačítko hamburger (jen mobil) */
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
       align-items: center;
       justify-content: center;
-      background-color: #0051C7;
-      color: #ffffff;
-      border: 1px solid #0051C7;
-      box-shadow: 0 2px 8px rgba(0, 81, 199, 0.2);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
     }
 
-    .nav-btn:hover {
-      background-color: #003da1;
-      color: #ffffff;
-      border-color: #003da1;
-      transform: translateY(-1px);
+    .menu-toggle svg {
+      stroke: #002266;
     }
 
     .page-hero {
@@ -452,6 +474,36 @@
       opacity: 0.5;
     }
 
+    @media (max-width: 768px) {
+      .menu-toggle { display: inline-flex; }
+
+      .main-nav {
+        display: none;
+        position: absolute;
+        top: calc(100% + 3px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #ffffff;
+        padding: 6px 16px 12px 16px;
+        box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+        border-bottom: 3px solid #0051C7;
+      }
+
+      .main-nav.open { display: flex; }
+
+      .nav-link {
+        padding: 14px 8px;
+        font-size: 16px;
+        border-radius: 0;
+        border-bottom: 1px solid #e2e8f0;
+      }
+
+      .nav-link:last-child { border-bottom: none; }
+    }
+
     @media (max-width: 600px) {
       .form-grid { grid-template-columns: 1fr; }
       .form-group.full-width, .form-section-title { grid-column: span 1; }
@@ -464,8 +516,6 @@
       .top-header { padding: 10px 12px; }
       .logo-img { height: 36px; }
       .brand-title { display: none; }
-      .nav-btn { padding: 8px 14px; font-size: 13px; }
-      .main-nav { gap: 6px; }
     }
     </style>
 </head>
@@ -476,19 +526,30 @@
   <!-- Záhlaví -->
   <header class="top-header">
     <a href="index.html" class="brand-container">
-      <img src="/logo.PNG" alt="M Transport & Reinigung Service" style="height:48px;width:auto;">
-      <span class="brand-title">M Transport & Reinigung Service</span>
+      <img src="/logo.PNG" alt="M Transport &amp; Reinigung Service" class="logo-img" height="48">
+      <span class="brand-title">M Transport &amp; Reinigung Service</span>
     </a>
 
-    <nav class="main-nav">
-      <a href="index.html" class="nav-btn">Startseite</a>
-      <a href="kontakt.html" class="nav-btn">Kontakt</a>
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
+      <svg id="menu-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg id="menu-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none;">
+        <line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line>
+      </svg>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-link">Startseite</a>
+      <a href="ueberuns.html" class="nav-link">Über uns</a>
+      <a href="offerte.html" class="nav-link">Anfrageformular</a>
+      <a href="kontakt.html" class="nav-link">Kontakt</a>
     </nav>
   </header>
 
   <!-- Hero Banner -->
   <section class="page-hero">
-    <h1>B2B Partnerschaft & Kooperation</h1>
+    <h1>B2B Partnerschaft &amp; Kooperation</h1>
     <p>Bieten Sie Umzüge, Immobilienbetreuung oder Handwerksservice an? Lassen Sie uns zusammenarbeiten! Wir übernehmen für Ihre Kunden die professionelle Reinigungsdienstleistung.</p>
     <div class="service-badge">
       <span class="badge-icon">
@@ -508,7 +569,7 @@
     <div class="form-card">
       <form id="partner-anfrage-form" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="e319a32a-b002-4a69-a3d0-c77fc3169d40">
-        <input type="hidden" name="_subject" value="Neue B2B Partneranfrage - M Transport & Reinigung Service">
+        <input type="hidden" name="_subject" value="Neue B2B Partneranfrage - M Transport &amp; Reinigung Service">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="Anfrage_Typ" value="B2B Kooperation / Partnerschaft">
@@ -539,7 +600,7 @@
 
           <div class="form-group">
             <label for="p_ansprechperson">Ansprechperson <span>*</span></label>
-            <input type="text" id="p_ansprechperson" name="Ansprechperson" class="form-control" placeholder="Vorname & Nachname" required>
+            <input type="text" id="p_ansprechperson" name="Ansprechperson" class="form-control" placeholder="Vorname &amp; Nachname" required>
           </div>
 
           <div class="form-group">
@@ -575,10 +636,10 @@
           <div class="form-group full-width">
             <label>Wählen Sie Ihre Haupttätigkeiten aus: <span>*</span></label>
             <div class="checkbox-grid">
-              <label class="checkbox-label"><input type="checkbox" name="Angebot_Umzug_Transport" value="Ja"> Umzugs- & Transportdienstleistungen</label>
-              <label class="checkbox-label"><input type="checkbox" name="Angebot_Hauswartung_Liegenschaft" value="Ja"> Hauswartung & Liegenschaftsservice</label>
+              <label class="checkbox-label"><input type="checkbox" name="Angebot_Umzug_Transport" value="Ja"> Umzugs- &amp; Transportdienstleistungen</label>
+              <label class="checkbox-label"><input type="checkbox" name="Angebot_Hauswartung_Liegenschaft" value="Ja"> Hauswartung &amp; Liegenschaftsservice</label>
               <label class="checkbox-label"><input type="checkbox" name="Angebot_Immobilienverwaltung" value="Ja"> Immobilienverwaltung / Vermietung</label>
-              <label class="checkbox-label"><input type="checkbox" name="Angebot_Entruempelung_Raeumung" value="Ja"> Räumung & Entsorgung</label>
+              <label class="checkbox-label"><input type="checkbox" name="Angebot_Entruempelung_Raeumung" value="Ja"> Räumung &amp; Entsorgung</label>
               <label class="checkbox-label"><input type="checkbox" name="Angebot_Bauunternehmung" value="Ja"> Bauunternehmung / Renovation</label>
               <label class="checkbox-label"><input type="checkbox" name="Angebot_Sonstiges" value="Ja"> Sonstige Dienstleistung</label>
             </div>
@@ -636,18 +697,57 @@
 
     <!-- Textové odkazy na Impressum a Datenschutz -->
     <div class="legal-links">
+      <a href="ueberuns.html" class="legal-text-link">Über uns</a>
+      <span class="legal-separator">|</span>
       <a href="impressum.html" class="legal-text-link">Impressum</a>
       <span class="legal-separator">|</span>
       <a href="datenschutz.html" class="legal-text-link">Datenschutzerklärung</a>
     </div>
     <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
-      &copy; 2026 M Transport & Reinigung Service.
+      &copy; 2026 M Transport &amp; Reinigung Service.
     </div>
   </footer>
 
 </div>
 
 <script>
+  // Mobilní menu (hamburger)
+  (function () {
+    var toggle = document.getElementById('menu-toggle');
+    var nav = document.getElementById('main-nav');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
+
+    function setMenu(open) {
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+      iconOpen.style.display = open ? 'none' : '';
+      iconClose.style.display = open ? '' : 'none';
+    }
+
+    toggle.addEventListener('click', function () {
+      setMenu(!nav.classList.contains('open'));
+    });
+
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setMenu(false);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) setMenu(false);
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) setMenu(false);
+    });
+  })();
+
+  // Odesílání formuláře
   const submitBtn = document.getElementById('submit-btn');
   const resultDiv = document.getElementById('form-result');
   const mainForm = document.getElementById('partner-anfrage-form');
