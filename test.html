@@ -400,7 +400,7 @@
       border-left: 5px solid #25D366;
       border-radius: 8px;
       padding: 15px 18px;
-      margin-top: 5px;
+      margin-top: 20px;
     }
 
     .whatsapp-info-title {
@@ -1009,21 +1009,6 @@
               <textarea id="u_bemerkungen" name="Bemerkungen_Kundenwuensche" class="form-control" placeholder="Haben Sie besondere Wünsche oder Vorgaben?"></textarea>
             </div>
 
-            <!-- WhatsApp Fotodokumentation Hinweis Box -->
-            <div class="form-group full-width">
-              <div class="whatsapp-info-box">
-                <div class="whatsapp-info-title">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366">
-                    <path d="M12.012 2c-5.508 0-9.989 4.481-9.989 9.99 0 1.762.459 3.479 1.332 5.003l-1.355 4.953 5.074-1.331c1.472.802 3.134 1.222 4.832 1.222 5.509 0 9.99-4.481 9.99-9.992 0-5.509-4.481-9.99-9.984-9.99zm0 18.254c-1.5 0-2.972-.403-4.258-1.166l-.305-.181-3.167.831.845-3.088-.199-.317c-.838-1.339-1.282-2.898-1.282-4.492 0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25z"/>
-                  </svg>
-                  Fotodokumentation für eine präzise Offerte
-                </div>
-                <div class="whatsapp-info-text">
-                  Für eine möglichst genaue Preisberechnung können Sie uns nach dem Absenden des Formulars gerne Fotos des Objekts (z. B. Küche, Bad, Fenster) direkt per <a href="https://wa.me/41783458072" target="_blank" rel="noopener" class="whatsapp-link">WhatsApp senden</a>.
-                </div>
-              </div>
-            </div>
-
           </div>
 
           <!-- ======================================================= -->
@@ -1462,6 +1447,19 @@
         <!-- Eigenständiges Resultat-Element direkt unter dem Absende-Button -->
         <div id="form-result" class="form-result"></div>
 
+        <!-- WhatsApp Fotodokumentation Hinweis Box (zobrazí se jen u Umzugsreinigung) -->
+        <div id="whatsapp-umzug-box" class="whatsapp-info-box">
+          <div class="whatsapp-info-title">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366">
+              <path d="M12.012 2c-5.508 0-9.989 4.481-9.989 9.99 0 1.762.459 3.479 1.332 5.003l-1.355 4.953 5.074-1.331c1.472.802 3.134 1.222 4.832 1.222 5.509 0 9.99-4.481 9.99-9.992 0-5.509-4.481-9.99-9.984-9.99zm0 18.254c-1.5 0-2.972-.403-4.258-1.166l-.305-.181-3.167.831.845-3.088-.199-.317c-.838-1.339-1.282-2.898-1.282-4.492 0-4.549 3.701-8.25 8.25-8.25s8.25 3.701 8.25 8.25-3.701 8.25-8.25 8.25z"/>
+            </svg>
+            Fotodokumentation für eine noch präzisere Offerte
+          </div>
+          <div class="whatsapp-info-text">
+            Für eine noch genauere Preisberechnung können Sie uns nach dem Absenden gerne Fotos des Objekts per <a href="https://wa.me/41783458072" target="_blank" rel="noopener" class="whatsapp-link">WhatsApp senden</a>. Bitte geben Sie in der Nachricht Ihren <strong>Namen aus dem Formular</strong> an, damit wir die Fotos zuordnen können.
+          </div>
+        </div>
+
       </form>
     </div>
   </main>
@@ -1547,6 +1545,7 @@
   const mainForm = document.getElementById('main-anfrage-form');
   const submitBtn = document.getElementById('submit-btn');
   const resultDiv = document.getElementById('form-result');
+  const waBox = document.getElementById('whatsapp-umzug-box');
 
   // Inicializace německého kalendáře
   flatpickr(".date-picker", {
@@ -1654,6 +1653,11 @@
     document.querySelectorAll('.tab-card').forEach(card => card.classList.remove('active'));
     const activeTab = document.getElementById('tab-' + serviceKey);
     if (activeTab) activeTab.classList.add('active');
+
+    // Zobrazení / skrývání WhatsApp boxu pod tlačítkem pouze pro Umzugsreinigung
+    if (waBox) {
+      waBox.style.display = (serviceKey === 'umzug') ? 'block' : 'none';
+    }
 
     const subjectInput = document.getElementById('email_subject');
     const serviceNameInput = document.getElementById('selected_service_name');
