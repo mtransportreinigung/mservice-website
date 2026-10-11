@@ -888,7 +888,7 @@
 
             <div class="form-group">
               <label for="u_bad_anzahl">Anzahl Nasszellen gesamt: <span>*</span></label>
-              <input type="number" id="u_bad_anzahl" name="Anzahl_Nasszellen" class="form-control" placeholder="z. B. 2" min="1" max="10">
+              <input type="number" id="u_bad_anzahl" name="Anzahl_Nasszellen" class="form-control" placeholder="z. B. 2" min="1" max="10" required>
             </div>
 
             <div class="form-group"></div>
@@ -924,8 +924,8 @@
             </div>
 
             <div class="form-group">
-              <label for="u_fenster_anzahl">Anzahl Fenster (ca.):<span>*</span></label>
-              <input type="text" id="u_fenster_anzahl" name="Anzahl_Fenster_ca" class="form-control" placeholder="z. B. 8 Fenster">
+              <label for="u_fenster_anzahl">Anzahl Fenster (ca.): <span>*</span></label>
+              <input type="text" id="u_fenster_anzahl" name="Anzahl_Fenster_ca" class="form-control" placeholder="z. B. 8 Fenster" required>
             </div>
 
             <div class="form-group"></div>
@@ -988,7 +988,7 @@
 
             <div class="form-group">
               <label for="u_ubergabe_datum">Übergabedatum: <span>*</span></label>
-              <input type="text" id="u_ubergabe_datum" name="Uebergabetermin_Datum" class="form-control date-picker" placeholder="Datum auswählen...">
+              <input type="text" id="u_ubergabe_datum" name="Uebergabetermin_Datum" class="form-control date-picker" placeholder="Datum auswählen..." required>
             </div>
 
             <div class="form-group">
@@ -1703,6 +1703,7 @@
       const activeTab = document.querySelector('.tab-card.active');
       const activeId = activeTab ? activeTab.id.replace('tab-', '') : 'umzug';
 
+      // Speciální validace pro povinné skupiny zaškrtávátek u Umzugsreinigung
       if (activeId === 'umzug') {
         const requiredGroups = [
           { name: 'Nasszellen / Bäder', selector: '.group-nasszellen' },
@@ -1721,10 +1722,30 @@
             const checked = container.querySelectorAll('input[type="checkbox"]:checked, input[type="radio"]:checked');
             if (checked.length === 0) {
               alert('Bitte wählen Sie mindestens eine Option im Bereich: ' + group.name);
+              container.scrollIntoView({ behavior: 'smooth', block: 'center' });
               return;
             }
           }
         }
+      }
+
+      // Validace standardních HTML5 required prvků v aktivním poli
+      const activeFieldset = document.getElementById('fields-' + activeId);
+      if (activeFieldset) {
+        const invalidInput = activeFieldset.querySelector('input:invalid, select:invalid, textarea:invalid');
+        if (invalidInput) {
+          invalidInput.focus();
+          invalidInput.reportValidity();
+          return;
+        }
+      }
+
+      // Kontrola souhlasu s ochranou osobních údajů
+      const privacyCheck = mainForm.querySelector('input[name="privacy_consent"]');
+      if (privacyCheck && !privacyCheck.checked) {
+        privacyCheck.reportValidity();
+        privacyCheck.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
       }
 
       submitBtn.disabled = true;
