@@ -176,10 +176,10 @@
       font-size: 13px;
     }
 
-    /* Hlavní obsah */
+    /* Hlavní obsah - posunutý čistě pod modrou sekci */
     .content-container {
       max-width: 1100px;
-      margin: -35px auto 50px auto;
+      margin: 40px auto 50px auto;
       padding: 0 20px;
       width: 100%;
       flex: 1 0 auto;
@@ -248,7 +248,7 @@
       background-color: #128C7E;
     }
 
-    /* SEKCE: Výhody & Reklamační garance (Bod 3) */
+    /* SEKCE: Výhody & Reklamační garance (neaktivní při najetí) */
     .benefits-section {
       margin-bottom: 45px;
     }
@@ -266,12 +266,6 @@
       padding: 22px 15px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .benefit-card:hover {
-      transform: translateY(-3px);
-      border-color: #0051C7;
     }
 
     .benefit-icon {
@@ -295,7 +289,7 @@
       line-height: 1.4;
     }
 
-    /* SEKCE: Jak to funguje v 3 krocích (Bod 5) */
+    /* SEKCE: Jak to funguje v 3 krocích */
     .steps-section {
       margin-bottom: 45px;
     }
@@ -372,18 +366,8 @@
       cursor: pointer;
     }
 
-    .aktuell-card.partner-card:hover {
-      border-color: #002266;
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0, 81, 199, 0.2);
-    }
-
     .aktuell-card.partner-card .card-link-btn {
       background-color: #0051C7;
-    }
-
-    .aktuell-card.partner-card:hover .card-link-btn {
-      background-color: #002266;
     }
 
     .aktuell-card.jobs-card {
@@ -720,7 +704,7 @@
 
     </div>
 
-    <!-- BOHD 3 Z PRODEJNÍ STRUKTURY: Výhody & Garanční slib -->
+    <!-- WIRKLICH WARUM SIE UNS WÄHLEN SOLLTEN (Statické dlaždice bez hover efektu) -->
     <section class="benefits-section">
       <h2 class="section-title">Warum Sie uns wählen sollten</h2>
       <div class="benefits-grid">
@@ -773,7 +757,7 @@
       </div>
     </section>
 
-    <!-- BOD 5 Z PRODEJNÍ STRUKTURY: Jak to funguje v 3 krocích -->
+    <!-- Jak to funguje v 3 krocích -->
     <section class="steps-section">
       <h2 class="section-title">In 3 einfachen Schritten zur sauberen Wohnung</h2>
       <div class="steps-grid">
@@ -804,7 +788,7 @@
 
     <div class="aktuell-grid">
       
-      <!-- B2B Partner karta -->
+      <!-- B2B Partner karta (bez hover animace, funguje po kliknutí) -->
       <a href="partner.html" class="aktuell-card partner-card">
         <div class="card-content-top">
           <span class="service-icon">
