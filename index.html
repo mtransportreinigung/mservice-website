@@ -233,7 +233,7 @@
       background: #e2e8f0;
     }
 
-    /* Speciální WhatsApp dlaždice (také klikací ➔ oranžová) */
+    /* Speciální WhatsApp dlaždice (také klikací ➔ oranžová při najetí) */
     .service-card.whatsapp-card {
       border-color: #25D366;
       background: #f0fdf4;
@@ -249,7 +249,7 @@
       background-color: #128C7E;
     }
 
-    /* INFORMAČNÍ DLAŽDICE (Výhody) – při najetí MODRÉ */
+    /* INFORMAČNÍ DLAŽDICE (Výhody) – ZCELA STATICKÉ */
     .benefits-section {
       margin-bottom: 45px;
     }
@@ -267,13 +267,6 @@
       padding: 22px 15px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-      transition: all 0.25s ease;
-    }
-
-    .benefit-card:hover {
-      border-color: #0051C7;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 81, 199, 0.12);
     }
 
     .benefit-icon {
@@ -297,7 +290,7 @@
       line-height: 1.4;
     }
 
-    /* INFORMAČNÍ DLAŽDICE (Kroky) – při najetí MODRÉ */
+    /* INFORMAČNÍ DLAŽDICE (Kroky) – ZCELA STATICKÉ */
     .steps-section {
       margin-bottom: 45px;
     }
@@ -316,13 +309,6 @@
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       position: relative;
-      transition: all 0.25s ease;
-    }
-
-    .step-card:hover {
-      border-color: #0051C7;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 81, 199, 0.12);
     }
 
     .step-number {
@@ -368,7 +354,6 @@
       text-align: center;
       text-decoration: none;
       color: #333333;
-      transition: all 0.25s ease;
       box-shadow: 0 6px 18px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
@@ -380,6 +365,7 @@
       border-color: #0051C7;
       background: #f0f7ff;
       cursor: pointer;
+      transition: all 0.25s ease;
     }
 
     .aktuell-card.partner-card:hover {
@@ -396,17 +382,10 @@
       background-color: #FF6A00;
     }
 
-    /* INFORMAČNÍ KARTA JOBS (modrá při najetí) */
+    /* INFORMAČNÍ KARTA JOBS – ZCELA STATICKÁ */
     .aktuell-card.jobs-card {
       border-color: #cbd5e1;
       background: #f8fafc;
-      transition: all 0.25s ease;
-    }
-
-    .aktuell-card.jobs-card:hover {
-      border-color: #0051C7;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 81, 199, 0.12);
     }
 
     .card-content-top {
@@ -738,7 +717,7 @@
 
     </div>
 
-    <!-- INFORMAČNÍ DLAŽDICE (Výhody) – označené modře při najetí -->
+    <!-- INFORMAČNÍ DLAŽDICE (Výhody) – zcela statické -->
     <section class="benefits-section">
       <h2 class="section-title">Warum Sie uns wählen sollten</h2>
       <div class="benefits-grid">
@@ -791,7 +770,7 @@
       </div>
     </section>
 
-    <!-- INFORMAČNÍ DLAŽDICE (Kroky) – označené modře při najetí -->
+    <!-- INFORMAČNÍ DLAŽDICE (Kroky) – zcela statické -->
     <section class="steps-section">
       <h2 class="section-title">In 3 einfachen Schritten zur sauberen Wohnung</h2>
       <div class="steps-grid">
@@ -799,7 +778,7 @@
         <div class="step-card">
           <div class="step-number">1</div>
           <h3 class="step-title">Anfrage senden</h3>
-          <p class="step-desc">Füllen Sie unser Anfrageformular aus nebo schreiben Sie uns unkompliziert direkt per WhatsApp.</p>
+          <p class="step-desc">Füllen Sie unser Anfrageformular aus oder schreiben Sie uns unkompliziert direkt per WhatsApp.</p>
         </div>
 
         <div class="step-card">
@@ -839,7 +818,7 @@
         <span class="card-link-btn">Partnerschaft anfragen &rarr;</span>
       </a>
 
-      <!-- INFORMAČNÍ KARTA JOBS (modrá při najetí) -->
+      <!-- INFORMAČNÍ KARTA JOBS – zcela statická -->
       <div class="aktuell-card jobs-card">
         <div class="card-content-top">
           <span class="service-icon">
