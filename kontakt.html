@@ -61,7 +61,7 @@
       background-color: #f4f6f9;
     }
 
-    /* Záhlaví / Header - Pevně přichycené při scrollu (přesně podle vzoru) */
+    /* Záhlaví / Header - Pevně přichycené při scrollu */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -171,10 +171,10 @@
       opacity: 0.95;
     }
 
-    /* Hlavní obsah - Kontakty */
+    /* Hlavní obsah - Kontakty (umístěno pod modrým polem jako na indexu) */
     .content-container {
-      max-width: 900px;
-      margin: -35px auto 40px auto;
+      max-width: 1100px;
+      margin: 40px auto 50px auto;
       padding: 0 20px;
       width: 100%;
       flex: 1 0 auto;
@@ -186,15 +186,16 @@
       gap: 20px;
     }
 
+    /* Standardní kontaktní karty (modré, při najetí oranžové jako na indexu) */
     .contact-card {
-      background: #ffffff;
-      border: 2px solid #e2e8f0;
+      background: #f0f7ff;
+      border: 2px solid #0051C7;
       border-radius: 10px;
-      padding: 30px 25px;
+      padding: 25px 20px;
       text-align: center;
       text-decoration: none;
       color: #333333;
-      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+      transition: all 0.25s ease;
       box-shadow: 0 6px 18px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
@@ -208,7 +209,15 @@
       box-shadow: 0 10px 25px rgba(255, 106, 0, 0.15);
     }
 
-    /* Speciální WhatsApp karta */
+    .contact-card .card-link-btn {
+      background-color: #0051C7;
+    }
+
+    .contact-card:hover .card-link-btn {
+      background-color: #FF6A00;
+    }
+
+    /* Speciální WhatsApp karta (zůstává zelená) */
     .contact-card.whatsapp-card {
       border-color: #25D366;
       background: #f0fdf4;
@@ -255,7 +264,6 @@
     }
 
     .card-link-btn {
-      background-color: #FF6A00;
       color: #ffffff;
       font-size: 13px;
       font-weight: bold;
@@ -264,11 +272,7 @@
       display: inline-block;
       transition: background-color 0.2s ease;
       margin-top: auto;
-      box-shadow: 0 2px 6px rgba(255, 106, 0, 0.25);
-    }
-
-    .contact-card:hover .card-link-btn {
-      background-color: #e05e00;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     /* Rozbalovací sekce uvnitř karet (Formulář a Info o oblasti) */
@@ -277,7 +281,7 @@
       width: 100%;
       margin-top: 15px;
       text-align: left;
-      border-top: 1px solid #e2e8f0;
+      border-top: 1px solid #cbd5e1;
       padding-top: 15px;
       cursor: default;
     }
@@ -401,7 +405,7 @@
 
     /* Styl pro rozbalovací infobox Einsatzgebiet */
     .einsatz-info-box {
-      background-color: #f0f7ff;
+      background-color: #ffffff;
       border-left: 4px solid #0051C7;
       padding: 16px;
       border-radius: 6px;
@@ -705,7 +709,7 @@
   <!-- Patička -->
   <footer class="footer-section">
     <div class="footer-title">Folgen Sie uns auf</div>
-        <div class="social-buttons">
+    <div class="social-buttons">
       <!-- Facebook Tlačítko s SVG Ikonou -->
       <a href="https://www.facebook.com/m.transportreinigung" class="btn-social btn-facebook" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
@@ -722,7 +726,6 @@
         <span>Instagram</span>
       </a>
     </div>
-
 
     <!-- Textové odkazy -->
     <div class="legal-links">
