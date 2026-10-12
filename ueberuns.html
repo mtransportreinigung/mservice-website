@@ -430,7 +430,7 @@
       stroke: #ffffff;
     }
 
-    /* Mřížka dlaždic služeb */
+    /* Mřížka dlaždic služeb (ZCELA STATICKÉ BEZ HOVER EFEKTU) */
     .services-detail-container {
       max-width: 950px;
       margin: 0 auto 50px auto;
@@ -451,7 +451,6 @@
       border-radius: 10px;
       padding: 24px 22px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -459,12 +458,6 @@
 
     .detail-tile.hidden {
       display: none !important;
-    }
-
-    .detail-tile:hover {
-      transform: translateY(-3px);
-      border-color: #0051C7;
-      box-shadow: 0 8px 25px rgba(0, 81, 199, 0.12);
     }
 
     .tile-header {
@@ -707,18 +700,6 @@
         <strong>M Transport &amp; Reinigung Service</strong> steht für Sorgfalt, Verlässlichkeit und eine hygienische Arbeitsweise. Wir bieten massgeschneiderte Reinigungslösungen für Privathaushalte und Gewerbekunden. Unser Ziel ist es, Ihnen Arbeit abzunehmen und für ein sauberes Ergebnis zu sorgen – zuverlässig, transparent und mit persönlicher Betreuung.
       </p>
 
-      <!--
-        ================================================================
-        OPTIONÁLNÍ OSOBNÍ ČÁST (doporučeno – budí důvěru)
-        Odkomentuj, doplň vlastní text a fotku a nahraj foto na web.
-        Piš jen to, co je pravda (od kdy podnikáš, proč, jak pracuješ).
-        ================================================================
-        <div style="margin-top:24px; display:flex; gap:20px; align-items:center; justify-content:center; flex-wrap:wrap; text-align:left;">
-          <img src="/foto-team.jpg" alt="Inhaber von M Transport &amp; Reinigung Service bei der Arbeit" width="160" height="160" style="border-radius:50%; object-fit:cover;">
-          <p style="max-width:520px;">Hier ein bis zwei Sätze über Sie persönlich: seit wann Sie tätig sind, was Ihnen bei der Arbeit wichtig ist.</p>
-        </div>
-      -->
-
       <div class="promise-grid">
         <div class="promise-item">
           <h3>Unverbindliche Offerte</h3>
@@ -787,7 +768,7 @@
     </div>
   </div>
 
-  <!-- Detailní dlaždice služeb -->
+  <!-- Detailní dlaždice služeb (zcela statické bez hover efektu) -->
   <main class="services-detail-container">
     <div class="details-grid">
 
@@ -1133,7 +1114,7 @@
   <!-- Patička -->
   <footer class="footer-section">
     <div class="footer-title">Folgen Sie uns auf</div>
-        <div class="social-buttons">
+    <div class="social-buttons">
       <!-- Facebook Tlačítko s SVG Ikonou -->
       <a href="https://www.facebook.com/m.transportreinigung" class="btn-social btn-facebook" target="_blank" rel="noopener">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
@@ -1150,7 +1131,6 @@
         <span>Instagram</span>
       </a>
     </div>
-
 
     <!-- Textové odkazy -->
     <div class="legal-links">
