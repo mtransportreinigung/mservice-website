@@ -202,6 +202,7 @@
       margin-bottom: 45px;
     }
 
+    /* KLIKACÍ DLAŽDICE – při najetí ORANŽOVÉ */
     .service-card {
       background: #ffffff;
       border: 2px solid #e2e8f0;
@@ -232,14 +233,14 @@
       background: #e2e8f0;
     }
 
-    /* Speciální WhatsApp dlaždice */
+    /* Speciální WhatsApp dlaždice (také klikací ➔ oranžová) */
     .service-card.whatsapp-card {
       border-color: #25D366;
       background: #f0fdf4;
     }
     .service-card.whatsapp-card:hover {
-      border-color: #128C7E;
-      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.2);
+      border-color: #FF6A00;
+      box-shadow: 0 10px 25px rgba(255, 106, 0, 0.15);
     }
     .service-card.whatsapp-card .card-link-btn {
       background-color: #25D366;
@@ -248,7 +249,7 @@
       background-color: #128C7E;
     }
 
-    /* SEKCE: Výhody & Reklamační garance (neaktivní při najetí) */
+    /* INFORMAČNÍ DLAŽDICE (Výhody) – při najetí MODRÉ */
     .benefits-section {
       margin-bottom: 45px;
     }
@@ -266,6 +267,13 @@
       padding: 22px 15px;
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: all 0.25s ease;
+    }
+
+    .benefit-card:hover {
+      border-color: #0051C7;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 81, 199, 0.12);
     }
 
     .benefit-icon {
@@ -289,7 +297,7 @@
       line-height: 1.4;
     }
 
-    /* SEKCE: Jak to funguje v 3 krocích */
+    /* INFORMAČNÍ DLAŽDICE (Kroky) – při najetí MODRÉ */
     .steps-section {
       margin-bottom: 45px;
     }
@@ -308,6 +316,13 @@
       text-align: center;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .step-card:hover {
+      border-color: #0051C7;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 81, 199, 0.12);
     }
 
     .step-number {
@@ -360,19 +375,38 @@
       justify-content: space-between;
     }
 
+    /* KLIKACÍ KARTA PARTNER (oranžová při najetí) */
     .aktuell-card.partner-card {
       border-color: #0051C7;
       background: #f0f7ff;
       cursor: pointer;
     }
 
+    .aktuell-card.partner-card:hover {
+      border-color: #FF6A00;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(255, 106, 0, 0.15);
+    }
+
     .aktuell-card.partner-card .card-link-btn {
       background-color: #0051C7;
     }
 
+    .aktuell-card.partner-card:hover .card-link-btn {
+      background-color: #FF6A00;
+    }
+
+    /* INFORMAČNÍ KARTA JOBS (modrá při najetí) */
     .aktuell-card.jobs-card {
       border-color: #cbd5e1;
       background: #f8fafc;
+      transition: all 0.25s ease;
+    }
+
+    .aktuell-card.jobs-card:hover {
+      border-color: #0051C7;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 81, 199, 0.12);
     }
 
     .card-content-top {
@@ -704,7 +738,7 @@
 
     </div>
 
-    <!-- WIRKLICH WARUM SIE UNS WÄHLEN SOLLTEN (Statické dlaždice bez hover efektu) -->
+    <!-- INFORMAČNÍ DLAŽDICE (Výhody) – označené modře při najetí -->
     <section class="benefits-section">
       <h2 class="section-title">Warum Sie uns wählen sollten</h2>
       <div class="benefits-grid">
@@ -757,7 +791,7 @@
       </div>
     </section>
 
-    <!-- Jak to funguje v 3 krocích -->
+    <!-- INFORMAČNÍ DLAŽDICE (Kroky) – označené modře při najetí -->
     <section class="steps-section">
       <h2 class="section-title">In 3 einfachen Schritten zur sauberen Wohnung</h2>
       <div class="steps-grid">
@@ -765,7 +799,7 @@
         <div class="step-card">
           <div class="step-number">1</div>
           <h3 class="step-title">Anfrage senden</h3>
-          <p class="step-desc">Füllen Sie unser Anfrageformular aus oder schreiben Sie uns unkompliziert direkt per WhatsApp.</p>
+          <p class="step-desc">Füllen Sie unser Anfrageformular aus nebo schreiben Sie uns unkompliziert direkt per WhatsApp.</p>
         </div>
 
         <div class="step-card">
@@ -788,7 +822,7 @@
 
     <div class="aktuell-grid">
       
-      <!-- B2B Partner karta (bez hover animace, funguje po kliknutí) -->
+      <!-- KLIKACÍ KARTA PARTNER (oranžová při najetí) -->
       <a href="partner.html" class="aktuell-card partner-card">
         <div class="card-content-top">
           <span class="service-icon">
@@ -805,7 +839,7 @@
         <span class="card-link-btn">Partnerschaft anfragen &rarr;</span>
       </a>
 
-      <!-- Volná pracovní místa -->
+      <!-- INFORMAČNÍ KARTA JOBS (modrá při najetí) -->
       <div class="aktuell-card jobs-card">
         <div class="card-content-top">
           <span class="service-icon">
