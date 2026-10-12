@@ -19,13 +19,13 @@
             font-family: Arial, Helvetica, sans-serif;
             color: #333333;
             background-color: #475569;
-            font-size: 8.5pt;
+            font-size: 8pt;
             line-height: 1.15;
             -webkit-print-color-adjust: exact;
             print-color-adjust: exact;
         }
 
-        /* Přesný rozměr A4 */
+        /* Přesný rozměr A4 s pevnou výškou */
         .pdf-page {
             width: 210mm;
             height: 297mm;
@@ -82,11 +82,11 @@
             border-left: 3px solid #FF6A00;
         }
 
-        /* Mřížka formuláře */
+        /* Pravidelná mřížka 50% / 50% */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3px 6px;
+            gap: 3px 8px;
             align-content: start;
         }
 
@@ -123,7 +123,7 @@
             color: #FF6A00;
         }
 
-        /* Vstupní prvky - Interaktivní pole */
+        /* Vstupní prvky - Zamezení skákání a zvětšování při kliknutí */
         input[type="text"],
         input[type="tel"],
         input[type="email"],
@@ -131,14 +131,24 @@
         select,
         textarea {
             width: 100%;
-            height: 16px;
-            padding: 1px 4px;
+            height: 18px;
+            padding: 2px 4px;
             border: 1px solid #94a3b8;
             border-radius: 2px;
-            font-size: 7.5pt;
+            font-size: 8pt;
             font-family: inherit;
             background-color: #f8fafc;
             color: #000000;
+            outline: none;
+            box-shadow: none;
+            transition: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #0051C7;
+            background-color: #ffffff;
+            outline: none;
+            box-shadow: none;
         }
 
         textarea {
@@ -197,7 +207,7 @@
 <body>
 
     <!-- ======================================================= -->
-    <!-- STRÁNKA 1: 1. UMZUGSREINIGUNG (KOMPLETNÍ A4)           -->
+    <!-- STRÁNKA 1: 1. UMZUGSREINIGUNG                           -->
     <!-- ======================================================= -->
     <div class="pdf-page">
         <div>
@@ -243,7 +253,7 @@
                         <label>Neue Strasse &amp; Nr. (nach Umzug)</label>
                         <input type="text" name="Neue_Strasse">
                     </div>
-                    <div class="form-group full-width">
+                    <div class="form-group">
                         <label>Neue PLZ &amp; Ort (nach Umzug)</label>
                         <input type="text" name="Neue_PLZ_Ort">
                     </div>
@@ -311,9 +321,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group full-width">
+                    <div class="form-group">
                         <label>Anzahl Nasszellen gesamt: <span>*</span></label>
                         <input type="number" name="Anzahl_Nasszellen" min="1" max="10">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Anzahl Fenster (ca.): <span>*</span></label>
+                        <input type="text" name="Anzahl_Fenster_ca">
                     </div>
 
                     <div class="form-group full-width">
@@ -344,11 +359,6 @@
                             <label class="checkbox-label"><input type="checkbox" name="Storen_Klapplaeden"> Klappläden</label>
                             <label class="checkbox-label"><input type="checkbox" name="Storen_Keine"> Keine Storen</label>
                         </div>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label>Anzahl Fenster (ca.): <span>*</span></label>
-                        <input type="text" name="Anzahl_Fenster_ca">
                     </div>
 
                     <div class="form-group full-width">
@@ -473,11 +483,10 @@
 
                     <div class="section-title">Details zum Gebäude</div>
 
-                    <div class="form-group full-width">
+                    <div class="form-group">
                         <label>Anzahl Gebäude <span>*</span></label>
                         <input type="number" name="Anzahl_Gebaeude" value="1" min="1">
                     </div>
-
                     <div class="form-group">
                         <label>Gebäude Strasse &amp; Nr. <span>*</span></label>
                         <input type="text" name="Gebaeude_Strasse">
@@ -486,7 +495,6 @@
                         <label>Gebäude PLZ &amp; Ort <span>*</span></label>
                         <input type="text" name="Gebaeude_PLZ_Ort">
                     </div>
-
                     <div class="form-group">
                         <label>Geschätzte Fläche (m²) <span>*</span></label>
                         <select name="Gebaeude_Flache">
@@ -537,7 +545,7 @@
                         <label>Art des Objekts <span>*</span></label>
                         <select name="Gebaeude_Art">
                             <option value="">Bitte wählen...</option>
-                            <option value="Liegenschaft / Mehrfamilienhaus (Treppenhaus)">Liegenschaft / Mehrfamilienhaus (Treppenhaus)</option>
+                            <option value="Liegenschaft / Mehrfamilienhaus (Treppenhaus)">Liegenschaft / Mehrfamilienhaus</option>
                             <option value="Büroräume / Kanzlei">Büroräume / Kanzlei</option>
                             <option value="Sonstiges Gebäude">Sonstiges Gebäude</option>
                         </select>
@@ -548,7 +556,7 @@
                         <input type="number" name="Anzahl_Bueros" min="1">
                     </div>
 
-                    <div class="form-group full-width">
+                    <div class="form-group">
                         <label>Gewünschte Reinigungshäufigkeit <span>*</span></label>
                         <select name="Reinigungshaeufigkeit">
                             <option value="">Bitte wählen...</option>
@@ -697,7 +705,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Startdatum (ab wann begonnen werden soll) <span>*</span></label>
+                        <label>Startdatum (ab wann begonnen) <span>*</span></label>
                         <input type="text" name="Startdatum_Ab_Wann">
                     </div>
 
@@ -715,8 +723,8 @@
                         <label>Reinigungsmittel &amp; Geräte <span>*</span></label>
                         <select name="Reinigungsmittel_Beistellung">
                             <option value="">Bitte wählen...</option>
-                            <option value="Werden vom Kunden bereitgestellt">Werden von Ihnen bereitgestellt</option>
-                            <option value="Sollen vom Reinigungsservice mitgebracht werden">Sollen vom Service mitgebracht werden</option>
+                            <option value="Werden vom Kunden bereitgestellt">Werden vom Kunden gestellt</option>
+                            <option value="Sollen vom Reinigungsservice mitgebracht werden">Sollen mitgebracht werden</option>
                         </select>
                     </div>
 
