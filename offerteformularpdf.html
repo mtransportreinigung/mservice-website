@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Offerte Formulare - M Transport &amp; Reinigung Service</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #333333;
+            background-color: #475569;
+            font-size: 10px;
+            line-height: 1.2;
+        }
+
+        /* Formát A4 pro tisk do PDF */
+        .pdf-page {
+            width: 210mm;
+            height: 297mm;
+            padding: 10mm 12mm;
+            margin: 10mm auto;
+            background: #ffffff;
+            page-break-after: always;
+            break-after: page;
+            position: relative;
+            box-shadow: 0 0 12px rgba(0,0,0,0.3);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+            .pdf-page {
+                margin: 0;
+                box-shadow: none;
+                width: 100%;
+                height: 100vh;
+                page-break-after: always;
+                break-after: page;
+            }
+        }
+
+        /* Hlavička */
+        .pdf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #0051C7;
+            padding-bottom: 4px;
+            margin-bottom: 6px;
+        }
+
+        .brand-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #002266;
+        }
+
+        .form-badge {
+            background-color: #002266;
+            color: #ffffff;
+            padding: 3px 10px;
+            font-size: 10px;
+            font-weight: bold;
+            border-radius: 4px;
+            border-left: 3px solid #FF6A00;
+        }
+
+        /* Mřížka formuláře */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px 8px;
+            align-content: start;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .section-title {
+            color: #002266;
+            font-size: 9.5px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 2px;
+            margin-top: 5px;
+            margin-bottom: 3px;
+            grid-column: span 2;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: bold;
+            font-size: 8.5px;
+            color: #002266;
+            margin-bottom: 1px;
+        }
+
+        .form-group label span {
+            color: #FF6A00;
+        }
+
+        /* Vstupní prvky */
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 3px 5px;
+            border: 1px solid #94a3b8;
+            border-radius: 3px;
+            font-size: 9.5px;
+            font-family: inherit;
+            background-color: #f8fafc;
+        }
+
+        textarea {
+            height: 28px;
+            resize: none;
+        }
+
+        .inline-inputs {
+            display: flex;
+            gap: 5px;
+        }
+
+        /* Checkbox a Radio mřížky */
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2px 4px;
+            background: #f1f5f9;
+            padding: 4px 6px;
+            border-radius: 3px;
+            border: 1px solid #cbd5e1;
+        }
+
+        .checkbox-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .checkbox-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 8.5px;
+            color: #334155;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .checkbox-label input[type="checkbox"],
+        .checkbox-label input[type="radio"] {
+            width: 10px;
+            height: 10px;
+            accent-color: #FF6A00;
+            cursor: pointer;
+        }
+
+        .pdf-footer {
+            margin-top: 4px;
+            font-size: 8px;
+            color: #64748b;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 3px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ======================================================= -->
+    <!-- STRÁNKA 1: 1. UMZUGSREINIGUNG                           -->
+    <!-- ======================================================= -->
+    <div class="pdf-page">
+        <div>
+            <div class="pdf-header">
+                <span class="brand-title">M Transport &amp; Reinigung Service</span>
+                <span class="form-badge">1. Umzugsreinigung (Endreinigung)</span>
+            </div>
+
+            <form>
+                <div class="form-grid">
+                    
+                    <div class="section-title">Kontaktdaten des Kunden</div>
+
+                    <div class="form-group">
+                        <label>Vorname <span>*</span></label>
+                        <input type="text" name="Vorname">
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname <span>*</span></label>
+                        <input type="text" name="Nachname">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefonnummer <span>*</span></label>
+                        <input type="tel" name="Telefon_Mobile">
+                    </div>
+                    <div class="form-group">
+                        <label>E-Mail-Adresse <span>*</span></label>
+                        <input type="email" name="Email_Adresse">
+                    </div>
+                    <div class="form-group">
+                        <label>Wunschtermin <span>*</span></label>
+                        <input type="text" name="Wunschtermin" placeholder="TT.MM.JJJJ">
+                    </div>
+                    <div class="form-group">
+                        <label>Objekt Strasse &amp; Nr. <span>*</span></label>
+                        <input type="text" name="Objekt_Strasse">
+                    </div>
+                    <div class="form-group">
+                        <label>Objekt PLZ &amp; Ort <span>*</span></label>
+                        <input type="text" name="Objekt_PLZ_Ort">
+                    </div>
+                    <div class="form-group">
+                        <label>Neue Strasse &amp; Nr. (nach Umzug)</label>
+                        <input type="text" name="Neue_Strasse">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Neue PLZ &amp; Ort (nach Umzug)</label>
+                        <input type="text" name="Neue_PLZ_Ort">
+                    </div>
+
+                    <div class="section-title">Angaben zum Reinigungsobjekt</div>
+
+                    <div class="form-group full-width">
+                        <label>Objektart: <span>*</span></label>
+                        <div class="checkbox-grid cols-3">
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Wohnung"> Wohnung</label>
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Einfamilienhaus"> Einfamilienhaus</label>
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Reiheneinfamilienhaus"> Reiheneinfamilienhaus</label>
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Maisonette"> Maisonette</label>
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Gewerbe"> Gewerbe</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Anzahl Zimmer: <span>*</span></label>
+                        <select name="Anzahl_Zimmer">
+                            <option value="">Bitte wählen...</option>
+                            <option value="1.0 - 2.5">1.0 - 2.5 Zimmer</option>
+                            <option value="3.0 - 3.5">3.0 - 3.5 Zimmer</option>
+                            <option value="4.0 - 4.5">4.0 - 4.5 Zimmer</option>
+                            <option value="5.0+">5.0+ Zimmer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Wohnfläche (ca. m²):</label>
+                        <input type="text" name="Wohnflaeche_m2">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Stockwerk / Lift: <span>*</span></label>
+                        <div class="inline-inputs">
+                            <input type="text" name="Stockwerk" placeholder="z.B. 2. OG">
+                            <select name="Lift_Vorhanden">
+                                <option value="">Lift?</option>
+                                <option value="Ja">Ja</option>
+                                <option value="Nein">Nein</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Möblierung: <span>*</span></label>
+                        <select name="Moeblierung">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Leer">Leer</option>
+                            <option value="Möbliert">Möbliert</option>
+                            <option value="Teilmöbliert">Teilmöbliert</option>
+                        </select>
+                    </div>
+
+                    <div class="section-title">Räumlichkeiten &amp; Details zum Objekt</div>
+
+                    <div class="form-group full-width">
+                        <label>Nasszellen / Bäder: <span>*</span></label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="checkbox" name="Bad_Typ_Bad_WC"> Bad / WC</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Bad_Typ_Dusche_WC"> Dusche / WC</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Bad_Typ_Gaeste_WC"> Gäste-WC</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Bad_Starke_Kalkablagerungen"> Starke Kalkablagerungen</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Anzahl Nasszellen gesamt: <span>*</span></label>
+                        <input type="number" name="Anzahl_Nasszellen" min="1" max="10">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Küche &amp; Geräte: <span>*</span></label>
+                        <div class="checkbox-grid cols-3">
+                            <label class="checkbox-label"><input type="checkbox" name="Kueche_Backofen"> Backofen</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Kueche_Steamer"> Steamer</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Kueche_Geschirrspueler"> Geschirrspüler</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Kueche_Kuehlschrank"> Kühlschrank / Gefrierfach</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Kueche_Keine"> Keine Geräte</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Kochfeldtyp: <span>*</span></label>
+                        <div class="checkbox-grid cols-3">
+                            <label class="checkbox-label"><input type="checkbox" name="Kochfeld_Glaskeramik_Induktion"> Glaskeramik / Induktion</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Kochfeld_Gussplatten_Gas"> Gussplatten / Gas</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Kochfeld_Keines"> Kein Kochfeld</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Fenster &amp; Storen: <span>*</span></label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="checkbox" name="Storen_Lamellenstoren"> Lamellenstoren</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Storen_Rolllaeden"> Rollläden</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Storen_Klapplaeden"> Klappläden</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Storen_Keine"> Keine Storen</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Anzahl Fenster (ca.): <span>*</span></label>
+                        <input type="text" name="Anzahl_Fenster_ca">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Fensterart: <span>*</span></label>
+                        <div class="checkbox-grid cols-3">
+                            <label class="checkbox-label"><input type="checkbox" name="Fensterart_Standard"> Standardfenster</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fensterart_Grosse"> Grosse Fenster</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fensterart_Beides"> Atypische Fenster</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Fenster-Sonderflächen (Optional):</label>
+                        <div class="checkbox-grid cols-3">
+                            <label class="checkbox-label"><input type="checkbox" name="Sonderflaeche_Dachfenster"> Dachfenster</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Sonderflaeche_Verglasung"> Sitzplatz- / Balkonverglasung</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Sonderflaeche_Wintergarten"> Wintergarten</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Bodenbeläge: <span>*</span></label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="checkbox" name="Boden_Parkett_Laminat"> Parkett / Laminat</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Boden_Fliesen_Platten"> Fliesen / Platten</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Boden_Teppich"> Teppich</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Boden_Naturstein"> Naturstein</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Nebennutzflächen: <span>*</span></label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="checkbox" name="Neben_Balkon_Terrasse"> Balkon / Terrasse</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Neben_Keller_Souterrain"> Keller / Souterrain</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Neben_Estrich_Dachboden"> Estrich / Dachboden</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Neben_Garage_Einstellplatz"> Garage / Einstellplatz</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Neben_Gartenhaus_Sitzplatz"> Gartenhaus / gedeckter Sitzplatz</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Neben_Keine"> Keine Nebennutzflächen</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Waschraum &amp; Sonstiges: <span>*</span></label>
+                        <div class="checkbox-grid cols-3">
+                            <label class="checkbox-label"><input type="checkbox" name="Waschraum_Waschmaschine_Tumbler"> Waschmaschine / Tumbler</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Einbauschraenke"> Einbauschränke</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Waschraum_Keine"> Keine / Nicht vorhanden</label>
+                        </div>
+                    </div>
+
+                    <div class="section-title">Übergabe &amp; Bemerkungen</div>
+
+                    <div class="form-group">
+                        <label>Übergabedatum: <span>*</span></label>
+                        <input type="text" name="Uebergabetermin_Datum">
+                    </div>
+                    <div class="form-group">
+                        <label>Übergabezeit:</label>
+                        <input type="text" name="Uebergabetermin_Uhrzeit">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Tiere / Sonstiges:</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="checkbox" name="Haustiere_im_Haushalt"> Haustiere im Haushalt</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Raucherhaushalt"> Raucherhaushalt</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Bemerkungen / Besondere Wünsche:</label>
+                        <textarea name="Bemerkungen_Kundenwuensche"></textarea>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div class="pdf-footer">www.mservice.ch | M Transport &amp; Reinigung Service Thurgau</div>
+    </div>
+
+
+    <!-- ======================================================= -->
+    <!-- STRÁNKA 2: 2. GEBÄUDEREINIGUNG                          -->
+    <!-- ======================================================= -->
+    <div class="pdf-page">
+        <div>
+            <div class="pdf-header">
+                <span class="brand-title">M Transport &amp; Reinigung Service</span>
+                <span class="form-badge">2. Gebäudereinigung</span>
+            </div>
+
+            <form>
+                <div class="form-grid">
+                    
+                    <div class="section-title">Kontaktdaten des Kunden</div>
+
+                    <div class="form-group">
+                        <label>Firma / Immobilienverwaltung</label>
+                        <input type="text" name="Firma_Verwaltung">
+                    </div>
+                    <div class="form-group">
+                        <label>Ansprechperson <span>*</span></label>
+                        <input type="text" name="Ansprechperson">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefonnummer <span>*</span></label>
+                        <input type="tel" name="Telefonnummer">
+                    </div>
+                    <div class="form-group">
+                        <label>E-Mail-Adresse <span>*</span></label>
+                        <input type="email" name="Email_Adresse">
+                    </div>
+                    <div class="form-group">
+                        <label>Strasse &amp; Nr. <span>*</span></label>
+                        <input type="text" name="Auftraggeber_Strasse">
+                    </div>
+                    <div class="form-group">
+                        <label>PLZ &amp; Ort <span>*</span></label>
+                        <input type="text" name="Auftraggeber_PLZ_Ort">
+                    </div>
+
+                    <div class="section-title">Details zum Gebäude</div>
+
+                    <div class="form-group full-width">
+                        <label>Anzahl Gebäude <span>*</span></label>
+                        <input type="number" name="Anzahl_Gebaeude" value="1" min="1">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gebäude Strasse &amp; Nr. <span>*</span></label>
+                        <input type="text" name="Gebaeude_Strasse">
+                    </div>
+                    <div class="form-group">
+                        <label>Gebäude PLZ &amp; Ort <span>*</span></label>
+                        <input type="text" name="Gebaeude_PLZ_Ort">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Geschätzte Fläche (m²) <span>*</span></label>
+                        <select name="Gebaeude_Flache">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Bis 100 m²">Bis 100 m²</option>
+                            <option value="100 - 250 m²">100 - 250 m²</option>
+                            <option value="250 - 500 m²">250 - 500 m²</option>
+                            <option value="500 - 1000 m²">500 - 1000 m²</option>
+                            <option value="Über 1000 m²">Über 1000 m²</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Anzahl Etagen <span>*</span></label>
+                        <select name="Stockwerke_Etagen">
+                            <option value="">Bitte wählen...</option>
+                            <option value="1 Etage">1 Etage</option>
+                            <option value="2 Etagen">2 Etagen</option>
+                            <option value="3 Etagen">3 Etagen</option>
+                            <option value="4 Etagen">4 Etagen</option>
+                            <option value="5 Etagen">5 Etagen</option>
+                            <option value="6 Etagen">6 Etagen</option>
+                            <option value="7 oder mehr Etagen">7 oder mehr Etagen</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Personenlift / Warenlift vorhanden? <span>*</span></label>
+                        <select name="Lift_Vorhanden">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Ja - Lift vorhanden">Ja, Lift vorhanden</option>
+                            <option value="Nein - Kein Lift">Nein, kein Lift</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Anzahl WCs / Sanitärräume <span>*</span></label>
+                        <select name="Anzahl_Sanitaerraume">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Keine WCs / Sanitärräume">Keine WCs / Sanitärräume</option>
+                            <option value="1 Sanitärraum / WC">1 Sanitärraum / WC</option>
+                            <option value="2-3 Sanitärräume">2-3 Sanitärräume</option>
+                            <option value="4+ Sanitärräume">4 oder mehr Sanitärräume</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Art des Objekts <span>*</span></label>
+                        <select name="Gebaeude_Art">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Liegenschaft / Mehrfamilienhaus (Treppenhaus)">Liegenschaft / Mehrfamilienhaus (Treppenhaus)</option>
+                            <option value="Büroräume / Kanzlei">Büroräume / Kanzlei</option>
+                            <option value="Sonstiges Gebäude">Sonstiges Gebäude</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Anzahl Büros (falls Büroräume):</label>
+                        <input type="number" name="Anzahl_Bueros" min="1">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Gewünschte Reinigungshäufigkeit <span>*</span></label>
+                        <select name="Reinigungshaeufigkeit">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Täglich (Mo-Fr)">Täglich (Mo - Fr)</option>
+                            <option value="2-3x pro Woche">2-3x pro Woche</option>
+                            <option value="1x pro Woche">1x pro Woche</option>
+                            <option value="Alle 2 Wochen">Alle 2 Wochen</option>
+                            <option value="Monatlich">Monatlich</option>
+                            <option value="Einmalig / Nach Bedarf">Einmalig / Nach Bedarf</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Welche Tage wären für die Reinigung geeignet?:</label>
+                        <div class="checkbox-grid cols-4">
+                            <label class="checkbox-label"><input type="checkbox" name="Tag_Montag"> Montag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Tag_Dienstag"> Dienstag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Tag_Mittwoch"> Mittwoch</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Tag_Donnerstag"> Donnerstag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Tag_Freitag"> Freitag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Tag_Samstag"> Samstag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Tag_Sonntag"> Sonntag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Tag_Flexibel"> Nach Vereinbarung</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Zu reinigende Bereiche im Gebäude:</label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="checkbox" name="Bereich_Treppenhaus"> Treppenhaus &amp; Eingangsbereich</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Bereich_Waschkuche"> Gemeinschaftliche Waschküche</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Bereich_Keller_Tiefgarage"> Keller- / Tiefgaragenbereich</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Bereich_Kueche"> Pausenraum / Teeküche</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Bereich_Fenster"> Fenster &amp; Glasfronten</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Bereich_Aussen"> Aussenbereich / Terrassen</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Gewünschtes Startdatum <span>*</span></label>
+                        <input type="text" name="Startdatum">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Bemerkungen / Besondere Wünsche:</label>
+                        <textarea name="Bemerkungen"></textarea>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div class="pdf-footer">www.mservice.ch | M Transport &amp; Reinigung Service Thurgau</div>
+    </div>
+
+
+    <!-- ======================================================= -->
+    <!-- STRÁNKA 3: 3. UNTERHALTSREINIGUNG                       -->
+    <!-- ======================================================= -->
+    <div class="pdf-page">
+        <div>
+            <div class="pdf-header">
+                <span class="brand-title">M Transport &amp; Reinigung Service</span>
+                <span class="form-badge">3. Unterhaltsreinigung</span>
+            </div>
+
+            <form>
+                <div class="form-grid">
+                    
+                    <div class="section-title">Kontaktdaten des Kunden</div>
+
+                    <div class="form-group">
+                        <label>Vorname <span>*</span></label>
+                        <input type="text" name="Vorname">
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname <span>*</span></label>
+                        <input type="text" name="Nachname">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefonnummer <span>*</span></label>
+                        <input type="tel" name="Telefonnummer">
+                    </div>
+                    <div class="form-group">
+                        <label>E-Mail-Adresse <span>*</span></label>
+                        <input type="email" name="Email_Adresse">
+                    </div>
+                    <div class="form-group">
+                        <label>Objekt Strasse &amp; Nr. <span>*</span></label>
+                        <input type="text" name="Objekt_Strasse">
+                    </div>
+                    <div class="form-group">
+                        <label>Objekt PLZ &amp; Ort <span>*</span></label>
+                        <input type="text" name="Objekt_PLZ_Ort">
+                    </div>
+
+                    <div class="section-title">Details zur Unterhaltsreinigung</div>
+
+                    <div class="form-group full-width">
+                        <label>Objektart: <span>*</span></label>
+                        <div class="checkbox-grid cols-2">
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Wohnung"> Wohnung</label>
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Einfamilienhaus"> Einfamilienhaus</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Grösse der Wohnung / Haus <span>*</span></label>
+                        <select name="Unterhalt_Groesse">
+                            <option value="">Bitte wählen...</option>
+                            <option value="1.0 - 2.5 Zimmer">1.0 - 2.5 Zimmer</option>
+                            <option value="3.0 - 4.5 Zimmer">3.0 - 4.5 Zimmer</option>
+                            <option value="5.0+ Zimmer">5.0+ Zimmer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Intervall der Reinigung <span>*</span></label>
+                        <select name="Unterhalt_Intervall">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Wöchentlich">Wöchentlich</option>
+                            <option value="Alle 2 Wochen">Alle 2 Wochen</option>
+                            <option value="Monatlich">Monatlich</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Wunschtage in der Woche:</label>
+                        <div class="checkbox-grid cols-3">
+                            <label class="checkbox-label"><input type="checkbox" name="Wunschtag_Montag"> Montag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Wunschtag_Dienstag"> Dienstag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Wunschtag_Mittwoch"> Mittwoch</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Wunschtag_Donnerstag"> Donnerstag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Wunschtag_Freitag"> Freitag</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Wunschtag_Samstag"> Samstag</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Bevorzugte Tageszeit: <span>*</span></label>
+                        <select name="Bevorzugte_Tageszeit">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Vormittags">Vormittags</option>
+                            <option value="Nachmittags">Nachmittags</option>
+                            <option value="Flexibel / Egal">Flexibel / Egal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Startdatum (ab wann begonnen werden soll) <span>*</span></label>
+                        <input type="text" name="Startdatum_Ab_Wann">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Haustiere im Haushalt? <span>*</span></label>
+                        <select name="Haustiere">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Nein">Nein, keine Haustiere</option>
+                            <option value="Ja - Hunde/Katzen">Ja, Hunde oder Katzen</option>
+                            <option value="Ja - Andere">Ja, andere Haustiere</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Reinigungsmittel &amp; Geräte <span>*</span></label>
+                        <select name="Reinigungsmittel_Beistellung">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Werden vom Kunden bereitgestellt">Werden von Ihnen bereitgestellt</option>
+                            <option value="Sollen vom Reinigungsservice mitgebracht werden">Sollen vom Service mitgebracht werden</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Bemerkungen / Besondere Wünsche:</label>
+                        <textarea name="Bemerkungen"></textarea>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div class="pdf-footer">www.mservice.ch | M Transport &amp; Reinigung Service Thurgau</div>
+    </div>
+
+
+    <!-- ======================================================= -->
+    <!-- STRÁNKA 4: 4. EINMALIGE GRUNDREINIGUNG                  -->
+    <!-- ======================================================= -->
+    <div class="pdf-page">
+        <div>
+            <div class="pdf-header">
+                <span class="brand-title">M Transport &amp; Reinigung Service</span>
+                <span class="form-badge">4. Einmalige Grundreinigung</span>
+            </div>
+
+            <form>
+                <div class="form-grid">
+                    
+                    <div class="section-title">Kontaktdaten des Kunden</div>
+
+                    <div class="form-group">
+                        <label>Vorname <span>*</span></label>
+                        <input type="text" name="Vorname">
+                    </div>
+                    <div class="form-group">
+                        <label>Nachname <span>*</span></label>
+                        <input type="text" name="Nachname">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefonnummer <span>*</span></label>
+                        <input type="tel" name="Telefonnummer">
+                    </div>
+                    <div class="form-group">
+                        <label>E-Mail-Adresse <span>*</span></label>
+                        <input type="email" name="Email_Adresse">
+                    </div>
+                    <div class="form-group">
+                        <label>Objekt Strasse &amp; Nr. <span>*</span></label>
+                        <input type="text" name="Objekt_Strasse">
+                    </div>
+                    <div class="form-group">
+                        <label>Objekt PLZ &amp; Ort <span>*</span></label>
+                        <input type="text" name="Objekt_PLZ_Ort">
+                    </div>
+
+                    <div class="section-title">Details zur Grundreinigung</div>
+
+                    <div class="form-group full-width">
+                        <label>Anlass der Grundreinigung <span>*</span></label>
+                        <select name="Grundreinigung_Anlass">
+                            <option value="">Bitte wählen...</option>
+                            <option value="Frühjahrsputz / Intensivreinigung">Frühjahrsputz / Intensivreinigung</option>
+                            <option value="Nach Renovation / Umbau">Nach Renovation / Umbau</option>
+                            <option value="Erstreinigung nach Neubau">Erstreinigung nach Neubau</option>
+                            <option value="Periodische Grundreinigung">Periodische Grundreinigung</option>
+                            <option value="Sonstiges">Sonstiges</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Objektart: <span>*</span></label>
+                        <div class="checkbox-grid cols-3">
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Wohnung"> Wohnung</label>
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Einfamilienhaus"> Einfamilienhaus</label>
+                            <label class="checkbox-label"><input type="radio" name="Objektart" value="Mehrfamilienhaus"> Mehrfamilienhaus</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Objektart &amp; Grösse <span>*</span></label>
+                        <select name="Grundreinigung_Objekt_Groesse">
+                            <option value="">Bitte wählen...</option>
+                            <option value="1.0 - 2.5 Zimmer">1.0 - 2.5 Zimmer</option>
+                            <option value="3.0 - 4.5 Zimmer">3.0 - 4.5 Zimmer</option>
+                            <option value="5.0+ Zimmer">5.0+ Zimmer</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Fokus der Grundreinigung: <span>*</span></label>
+                        <div class="checkbox-grid">
+                            <label class="checkbox-label"><input type="checkbox" name="Fokus_Fenster_Rahmen"> Fenster &amp; Fensterrahmen</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fokus_Storen_Rolladen"> Storen &amp; Rollläden / Klappläden</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fokus_Badezimmer_WC"> Badezimmer &amp; WC (Entkalkung / Tiefenreinigung)</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fokus_Kueche_Geraete"> Küche &amp; Küchengeräte (Backofen, Dunstabzug etc.)</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fokus_Wohn_Schlafzimmer"> Wohn- &amp; Schlafzimmer</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fokus_Balkon_Terrasse"> Balkon / Terrasse / Sitzplatz</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fokus_Keller_Waschkuche"> Keller / Estrich / Waschküche</label>
+                            <label class="checkbox-label"><input type="checkbox" name="Fokus_Gesamtes_Objekt"> Gesamtes Objekt</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Wunschtermin für die Grundreinigung <span>*</span></label>
+                        <input type="text" name="Wunschtermin">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Bemerkungen / Besondere Wünsche:</label>
+                        <textarea name="Bemerkungen"></textarea>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+        <div class="pdf-footer">www.mservice.ch | M Transport &amp; Reinigung Service Thurgau</div>
+    </div>
+
+</body>
+</html>
