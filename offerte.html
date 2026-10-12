@@ -63,7 +63,7 @@
       background-color: #f4f6f9;
     }
 
-    /* Pevná horní lišta (přesně podle vzoru) */
+    /* Pevná horní lišta */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -181,9 +181,10 @@
       margin-top: 14px;
     }
 
+    /* Kontejner pro výběrové záložky (umístěn čistě pod modrým polem) */
     .service-tabs-container {
       max-width: 950px;
-      margin: -25px auto 20px auto;
+      margin: 35px auto 25px auto;
       padding: 0 20px;
       width: 100%;
     }
@@ -191,28 +192,33 @@
     .tabs-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 15px;
     }
 
+    /* Dlaždice služeb (nyní jako odkazy) */
     .tab-card {
-      background: #ffffff;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 15px 10px;
+      background: #f0f7ff;
+      border: 2px solid #0051C7;
+      border-radius: 10px;
+      padding: 20px 15px;
       text-align: center;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
       user-select: none;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-decoration: none;
+      color: #333333;
     }
 
     .tab-card:hover {
-      border-color: #0051C7;
-      transform: translateY(-2px);
+      border-color: #FF6A00;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 106, 0, 0.15);
+      color: #333333;
     }
 
     .tab-card.active {
@@ -227,7 +233,7 @@
     }
 
     .tab-icon {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -494,7 +500,6 @@
       transform: none;
     }
 
-    /* Resultat-Element pod tlačítkem */
     .form-result {
       display: none;
       width: 100%;
@@ -691,11 +696,11 @@
     <div class="service-badge">✓ 48 Stunden kostenlose Reklamationsfrist</div>
   </section>
 
-  <!-- Výběrové dlaždice služeb (Tabs) -->
+  <!-- Výběrové dlaždice služeb (Tabs) jako odkazy s URL parametry -->
   <div class="service-tabs-container">
     <div class="tabs-grid">
       
-      <div id="tab-umzug" class="tab-card active" onclick="switchService('umzug')">
+      <a href="?service=umzug" id="tab-umzug" class="tab-card active" onclick="switchService(event, 'umzug')">
         <span class="tab-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -704,9 +709,9 @@
           </svg>
         </span>
         <span class="tab-title">Umzugsreinigung</span>
-      </div>
+      </a>
 
-      <div id="tab-gebaeude" class="tab-card" onclick="switchService('gebaeude')">
+      <a href="?service=gebaeude" id="tab-gebaeude" class="tab-card" onclick="switchService(event, 'gebaeude')">
         <span class="tab-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
@@ -720,9 +725,9 @@
           </svg>
         </span>
         <span class="tab-title">Gebäudereinigung</span>
-      </div>
+      </a>
 
-      <div id="tab-unterhalt" class="tab-card" onclick="switchService('unterhalt')">
+      <a href="?service=unterhalt" id="tab-unterhalt" class="tab-card" onclick="switchService(event, 'unterhalt')">
         <span class="tab-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path>
@@ -730,16 +735,16 @@
           </svg>
         </span>
         <span class="tab-title">Unterhaltsreinigung</span>
-      </div>
+      </a>
 
-      <div id="tab-grund" class="tab-card" onclick="switchService('grund')">
+      <a href="?service=grund" id="tab-grund" class="tab-card" onclick="switchService(event, 'grund')">
         <span class="tab-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
           </svg>
         </span>
         <span class="tab-title">Grundreinigung</span>
-      </div>
+      </a>
 
     </div>
   </div>
@@ -1065,7 +1070,7 @@
               <input type="number" id="g_anzahl_gebaeude" name="Anzahl_Gebaeude" class="form-control" placeholder="z. B. 1" min="1" value="1" required>
             </div>
 
-            <!-- Kontejner pro specifikace budovy (při >1 budově se skryje) -->
+            <!-- Kontejner pro specifikace budovy -->
             <div id="gebaeude_spec_wrapper" class="nested-grid">
               <div class="form-group">
                 <label for="g_objekt_strasse">Gebäude Strasse &amp; Nr. <span>*</span></label>
@@ -1124,7 +1129,6 @@
               </div>
             </div>
 
-            <!-- Informační zpráva při vybrání více než 1 budovy -->
             <div id="gebaeude_multi_info" class="form-group full-width" style="display: none; background: #e0f2fe; padding: 15px; border-radius: 8px; border-left: 4px solid #0051C7; color: #0369a1; font-weight: bold; font-size: 14px;">
               ℹ️ Bei mehreren Gebäuden werden die genauen Details direkt per E-Mail oder telefonisch mit Ihnen besprochen.
             </div>
@@ -1444,10 +1448,10 @@
         <!-- Submit Button -->
         <button type="submit" id="submit-btn" class="form-submit-btn">Anfrage jetzt absenden &rarr;</button>
         
-        <!-- Eigenständiges Resultat-Element direkt unter dem Absende-Button -->
+        <!-- Výsledek odeslání -->
         <div id="form-result" class="form-result"></div>
 
-        <!-- WhatsApp Fotodokumentation Hinweis Box (zobrazí se jen u Umzugsreinigung) -->
+        <!-- WhatsApp Box -->
         <div id="whatsapp-umzug-box" class="whatsapp-info-box">
           <div class="whatsapp-info-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366">
@@ -1485,7 +1489,7 @@
       </a>
     </div>
 
-    <!-- Textové odkazy na Impressum a Datenschutz -->
+    <!-- Textové odkazy -->
     <div class="legal-links">
       <a href="ueberuns.html" class="legal-text-link">Über uns</a>
       <span class="legal-separator">|</span>
@@ -1500,7 +1504,7 @@
 
 </div>
 
-<!-- Flatpickr JS pro německý kalendář -->
+<!-- Flatpickr JS -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/de.js"></script>
 
@@ -1541,20 +1545,17 @@
     });
   })();
 
-  // Deklarace globálních prvků formuláře nahoře
   const mainForm = document.getElementById('main-anfrage-form');
   const submitBtn = document.getElementById('submit-btn');
   const resultDiv = document.getElementById('form-result');
   const waBox = document.getElementById('whatsapp-umzug-box');
 
-  // Inicializace německého kalendáře
   flatpickr(".date-picker", {
     dateFormat: "d.m.Y",
     locale: "de",
     allowInput: true
   });
 
-  // Skrývání podrobností u Gebäudereinigung při více než 1 budově
   const anzahlGebaeudeInput = document.getElementById('g_anzahl_gebaeude');
   const gebaeudeSpecWrapper = document.getElementById('gebaeude_spec_wrapper');
   const gebaeudeMultiInfo = document.getElementById('gebaeude_multi_info');
@@ -1596,7 +1597,6 @@
     anzahlGebaeudeInput.addEventListener('change', updateGebaeudeAddressVisibility);
   }
 
-  // Dynamické zobrazení počtu kanceláří při výběru "Büroräume / Kanzlei"
   const artSelect = document.getElementById('g_art');
   const bueroWrapper = document.getElementById('buero_anzahl_wrapper');
   const bueroInput = document.getElementById('g_anzahl_bueros');
@@ -1616,7 +1616,6 @@
     artSelect.addEventListener('change', toggleBueroAnzahl);
   }
 
-  // Obnovení stavu tlačítka na původní
   function resetButtonState() {
     if (submitBtn && submitBtn.innerText === 'Gesendet \u2713') {
       submitBtn.disabled = false;
@@ -1624,8 +1623,12 @@
     }
   }
 
-  // Přepínání služeb a aktivace/deaktivace vstupů
-  function switchService(serviceKey) {
+  function switchService(event, serviceKey) {
+    if (event) {
+      event.preventDefault();
+      history.pushState(null, '', '?service=' + serviceKey);
+    }
+
     resetButtonState();
 
     const allFieldsets = document.querySelectorAll('.service-fields');
@@ -1654,7 +1657,6 @@
     const activeTab = document.getElementById('tab-' + serviceKey);
     if (activeTab) activeTab.classList.add('active');
 
-    // Zobrazení / skrývání WhatsApp boxu pod tlačítkem pouze pro Umzugsreinigung
     if (waBox) {
       waBox.style.display = (serviceKey === 'umzug') ? 'block' : 'none';
     }
@@ -1683,14 +1685,24 @@
     }
   }
 
+  // Načtení stránky podle URL parametru
   document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const serviceParam = urlParams.get('service');
     
     if (serviceParam && ['umzug', 'gebaeude', 'unterhalt', 'grund'].includes(serviceParam)) {
-      switchService(serviceParam);
+      switchService(null, serviceParam);
     } else {
-      switchService('umzug');
+      switchService(null, 'umzug');
+    }
+  });
+
+  // Reakce na tlačítka Zpět / Vpřed v prohlížeči
+  window.addEventListener('popstate', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const serviceParam = urlParams.get('service') || 'umzug';
+    if (['umzug', 'gebaeude', 'unterhalt', 'grund'].includes(serviceParam)) {
+      switchService(null, serviceParam);
     }
   });
 
@@ -1703,7 +1715,6 @@
       const activeTab = document.querySelector('.tab-card.active');
       const activeId = activeTab ? activeTab.id.replace('tab-', '') : 'umzug';
 
-      // Speciální validace pro povinné skupiny zaškrtávátek u Umzugsreinigung
       if (activeId === 'umzug') {
         const requiredGroups = [
           { name: 'Nasszellen / Bäder', selector: '.group-nasszellen' },
@@ -1729,7 +1740,6 @@
         }
       }
 
-      // Validace standardních HTML5 required prvků v aktivním poli
       const activeFieldset = document.getElementById('fields-' + activeId);
       if (activeFieldset) {
         const invalidInput = activeFieldset.querySelector('input:invalid, select:invalid, textarea:invalid');
@@ -1740,7 +1750,6 @@
         }
       }
 
-      // Kontrola souhlasu s ochranou osobních údajů
       const privacyCheck = mainForm.querySelector('input[name="privacy_consent"]');
       if (privacyCheck && !privacyCheck.checked) {
         privacyCheck.reportValidity();
@@ -1767,7 +1776,7 @@
           resultDiv.innerHTML = 'Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet. Wir werden uns kurzfristig bei Ihnen melden.';
           
           mainForm.reset();
-          switchService(activeId);
+          switchService(null, activeId);
           
           submitBtn.disabled = true;
           submitBtn.innerText = 'Gesendet \u2713';
