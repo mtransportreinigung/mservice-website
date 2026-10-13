@@ -1072,17 +1072,7 @@
 
             <!-- Kontejner pro specifikace budovy -->
             <div id="gebaeude_spec_wrapper" class="nested-grid">
-              <div class="form-group">
-                <label for="g_objekt_strasse">Gebäude Strasse &amp; Nr. <span>*</span></label>
-                <input type="text" id="g_objekt_strasse" name="Gebaeude_Strasse" class="form-control" placeholder="Musterstrasse 12" required>
-              </div>
-
-              <div class="form-group">
-                <label for="g_objekt_plz">Gebäude PLZ &amp; Ort <span>*</span></label>
-                <input type="text" id="g_objekt_plz" name="Gebaeude_PLZ_Ort" class="form-control" placeholder="8000 Zürich" required>
-              </div>
-
-              <div class="form-group">
+            <div class="form-group">
                 <label for="g_flache">Geschätzte Fläche (m²) <span>*</span></label>
                 <select id="g_flache" name="Gebaeude_Flache" class="form-control" required>
                   <option value="" disabled selected>Bitte wählen...</option>
@@ -1092,6 +1082,16 @@
                   <option value="500 - 1000 m²">500 - 1000 m²</option>
                   <option value="Über 1000 m²">Über 1000 m²</option>
                 </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="g_objekt_strasse">Gebäude Strasse &amp; Nr. <span>*</span></label>
+                <input type="text" id="g_objekt_strasse" name="Gebaeude_Strasse" class="form-control" placeholder="Musterstrasse 12" required>
+              </div>
+
+              <div class="form-group">
+                <label for="g_objekt_plz">Gebäude PLZ &amp; Ort <span>*</span></label>
+                <input type="text" id="g_objekt_plz" name="Gebaeude_PLZ_Ort" class="form-control" placeholder="8000 Zürich" required>
               </div>
 
               <div class="form-group">
