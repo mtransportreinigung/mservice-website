@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preise &amp; Individuelle Angebote | M Transport &amp; Reinigung Service Thurgau</title>
 
-    <meta name="description" content="Transparente und faire Preise durch massgeschneiderte Offerten. Entdecken Sie unsere Leistungen für Umzugsreinigung, Gebäudereinigung, Unterhaltsreinigung & Grundreinigung im Kanton Thurgau.">
+    <meta name="description" content="Transparente und faire Preise durch massgeschneiderte Offerten. Wählen Sie Ihre Dienstleistung für Umzugsreinigung, Gebäudereinigung, Unterhaltsreinigung oder Grundreinigung im Kanton Thurgau.">
 
     <link rel="canonical" href="https://www.mservice.ch/preise">
 
@@ -292,7 +292,7 @@
     /* Nadpis sekce */
     .section-heading {
       max-width: 950px;
-      margin: 35px auto 15px auto;
+      margin: 40px auto 20px auto;
       padding: 0 20px;
       width: 100%;
       text-align: center;
@@ -307,135 +307,11 @@
     .section-heading p {
       color: #64748b;
       font-size: 14px;
-      margin-top: 4px;
-      margin-bottom: 20px;
+      margin-top: 6px;
     }
 
-    /* Záložky pro filtrování služeb */
-    .filter-scroll-wrapper {
-      max-width: 950px;
-      margin: 0 auto 25px auto;
-      padding: 0 20px;
-      width: 100%;
-    }
-
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .filter-btn {
-      font-family: inherit;
-      background-color: #ffffff;
-      color: #002266;
-      border: 1px solid #cbd5e1;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-size: 13.5px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.25s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      white-space: nowrap;
-    }
-
-    .filter-btn svg {
-      stroke: #0051C7;
-      transition: stroke 0.25s ease;
-    }
-
-    .filter-btn:hover {
-      border-color: #0051C7;
-      color: #0051C7;
-      background-color: #f8fafc;
-      transform: translateY(-1px);
-    }
-
-    .filter-btn.active {
-      background-color: #002266;
-      color: #ffffff;
-      border-color: #FF6A00;
-      box-shadow: 0 4px 12px rgba(0, 34, 102, 0.25);
-    }
-
-    .filter-btn.active svg {
-      stroke: #ffffff;
-    }
-
-    /* Rozbalovací menu kategorií */
-    .filter-dropdown {
-      position: relative;
-    }
-
-    .filter-dropdown-toggle .chevron {
-      transition: transform 0.2s ease;
-    }
-
-    .filter-dropdown-toggle[aria-expanded="true"] .chevron {
-      transform: rotate(180deg);
-    }
-
-    .filter-dropdown-menu {
-      display: none;
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 0;
-      min-width: 300px;
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0, 34, 102, 0.18);
-      padding: 6px;
-      z-index: 50;
-    }
-
-    .filter-dropdown-menu.open {
-      display: block;
-    }
-
-    .filter-option {
-      font-family: inherit;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-align: left;
-      background: transparent;
-      color: #002266;
-      border: none;
-      border-radius: 8px;
-      padding: 11px 14px;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.2s ease, color 0.2s ease;
-    }
-
-    .filter-option svg {
-      stroke: #0051C7;
-      flex-shrink: 0;
-    }
-
-    .filter-option:hover {
-      background-color: #e0f2fe;
-    }
-
-    .filter-option.active {
-      background-color: #002266;
-      color: #ffffff;
-    }
-
-    .filter-option.active svg {
-      stroke: #ffffff;
-    }
-
-    /* Mřížka dlaždic hlavních služeb */
-    .services-detail-container {
+    /* Mřížka 4 klikacích karet služeb (ikona + název) */
+    .services-grid-container {
       max-width: 950px;
       margin: 0 auto 50px auto;
       padding: 0 20px;
@@ -443,95 +319,69 @@
       flex: 1 0 auto;
     }
 
-    .details-grid {
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
 
-    .detail-tile {
+    .service-click-card {
       background: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 10px;
-      padding: 24px 22px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 35px 25px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
       gap: 16px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .detail-tile:hover {
-      border-color: #0051C7;
-      box-shadow: 0 8px 25px rgba(0, 81, 199, 0.1);
-    }
-
-    .detail-tile.hidden {
-      display: none !important;
-    }
-
-    .tile-header {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .tile-icon-box {
-      width: 44px;
-      height: 44px;
-      background-color: #e0f2fe;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      border: 1px solid #0051C7;
-    }
-
-    .tile-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #002266;
-    }
-
-    .tile-body {
-      color: #475569;
-      font-size: 14px;
-      line-height: 1.55;
-      flex-grow: 1;
-    }
-
-    .tile-list {
-      margin-top: 10px;
-      padding-left: 18px;
-      color: #334155;
-    }
-
-    .tile-list li {
-      margin-bottom: 6px;
-      font-size: 13.5px;
-    }
-
-    /* Tlačítko uvnitř dlaždice směřující na formulář */
-    .tile-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #0051C7;
-      color: #ffffff;
-      padding: 11px 18px;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 14px;
       text-decoration: none;
-      transition: background-color 0.2s ease;
-      text-align: center;
-      margin-top: 10px;
+      color: #002266;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      transition: all 0.25s ease;
+      cursor: pointer;
     }
 
-    .detail-tile:hover .tile-btn {
+    .service-click-card:hover {
+      border-color: #FF6A00;
+      background-color: #f0f7ff;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 81, 199, 0.12);
+    }
+
+    .service-icon-box {
+      width: 60px;
+      height: 60px;
+      background-color: #e0f2fe;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #0051C7;
+      transition: background-color 0.25s ease;
+    }
+
+    .service-click-card:hover .service-icon-box {
       background-color: #002266;
+    }
+
+    .service-click-card:hover .service-icon-box svg {
+      stroke: #ffffff;
+    }
+
+    .service-title {
+      font-size: 19px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .action-arrow {
+      font-size: 14px;
+      font-weight: bold;
+      color: #FF6A00;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* Výzva k akci dole */
@@ -542,7 +392,7 @@
       padding: 40px 30px;
       text-align: center;
       box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     .cta-container h2 {
@@ -680,17 +530,8 @@
 
       .nav-link:last-child { border-bottom: none; }
 
-      .details-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
       .promise-grid { grid-template-columns: 1fr; }
-
-      .filter-scroll-wrapper { position: relative; }
-      .filter-dropdown { position: static; }
-      .filter-dropdown-menu {
-        left: 20px;
-        right: 20px;
-        min-width: 0;
-        top: calc(100% + 8px);
-      }
     }
 
     @media (max-width: 480px) {
@@ -775,148 +616,62 @@
 
   <!-- Nadpis sekce -->
   <div class="section-heading">
-    <h2>Unsere Leistungsbereiche im Überblick</h2>
-    <p>Wählen Sie eine Dienstleistung aus, um direkt zum passenden Offerte-Formular zu gelangen oder filtrierten Sie nach Bereichen:</p>
+    <h2>Wählen Sie Ihre Dienstleistung</h2>
+    <p>Klicken Sie auf den gewünschten Bereich, um direkt zum passenden Offerte-Formular zu gelangen:</p>
   </div>
 
-  <!-- Výběr kategorií (Filtrování) -->
-  <div class="filter-scroll-wrapper">
-    <div class="filter-tabs" role="group" aria-label="Dienstleistungen filtern">
-      <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-        Alle anzeigen
-      </button>
-
-      <div class="filter-dropdown" id="filter-dropdown">
-        <button type="button" class="filter-btn filter-dropdown-toggle" id="filter-dropdown-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="filter-dropdown-menu">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
-          <span id="filter-dropdown-label">Kategorie wählen</span>
-          <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-
-        <div class="filter-dropdown-menu" id="filter-dropdown-menu" role="group" aria-label="Kategorien">
-          <button type="button" class="filter-option" data-filter="umzug" aria-pressed="false">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
-            Umzugsreinigung
-          </button>
-          <button type="button" class="filter-option" data-filter="gebaeude" aria-pressed="false">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect><line x1="9" y1="6" x2="15" y2="6"></line></svg>
-            Gebäudereinigung
-          </button>
-          <button type="button" class="filter-option" data-filter="unterhalt" aria-pressed="false">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle></svg>
-            Unterhaltsreinigung
-          </button>
-          <button type="button" class="filter-option" data-filter="grund" aria-pressed="false">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
-            Grundreinigung
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Hlavní 4 služby (dlaždice) -->
-  <main class="services-detail-container">
-    <div class="details-grid">
+  <!-- Hlavní 4 klikací karty služeb (pouze ikona + název) -->
+  <main class="services-grid-container">
+    <div class="services-grid">
 
       <!-- 1. Umzugsreinigung -->
-      <div class="detail-tile" data-category="umzug">
-        <div>
-          <div class="tile-header">
-            <div class="tile-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                <polyline points="9 22 9 12 15 12 15 22"></polyline>
-              </svg>
-            </div>
-            <h3 class="tile-title">Umzugsreinigung</h3>
-          </div>
-          <div class="tile-body" style="margin-top: 12px;">
-            Gründliche Endreinigung Ihrer Wohnung oder Ihres Hauses für eine reibungslose Übergabe an den Vermieter.
-            <ul class="tile-list">
-              <li>Inklusive 48 Stunden Reklamationsfrist</li>
-              <li>Präzise Berechnung nach Zimmern, Nasszellen &amp; Geräten</li>
-              <li>Auf Wunsch mit Fotodokumentation via WhatsApp</li>
-            </ul>
-          </div>
+      <a href="offerte.html?service=umzug" class="service-click-card">
+        <div class="service-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
         </div>
-        <a href="offerte.html?service=umzug" class="tile-btn">Offerte anfordern &rarr;</a>
-      </div>
+        <div class="service-title">Umzugsreinigung</div>
+        <div class="action-arrow">Offerte anfordern &rarr;</div>
+      </a>
 
       <!-- 2. Gebäudereinigung -->
-      <div class="detail-tile" data-category="gebaeude">
-        <div>
-          <div class="tile-header">
-            <div class="tile-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
-                <line x1="9" y1="6" x2="9" y2="6.01"></line>
-                <line x1="15" y1="6" x2="15" y2="6.01"></line>
-                <line x1="9" y1="10" x2="9" y2="10.01"></line>
-                <line x1="15" y1="10" x2="15" y2="10.01"></line>
-              </svg>
-            </div>
-            <h3 class="tile-title">Gebäudereinigung</h3>
-          </div>
-          <div class="tile-body" style="margin-top: 12px;">
-            Professionelle Pflege und Reinigung für Liegenschaften, Mehrfamilienhäuser (Treppenhaus) und Bürokomplexe.
-            <ul class="tile-list">
-              <li>Massgeschneidert für Verwaltungen &amp; Eigentümer</li>
-              <li>Individuelle Reinigungsintervalle nach Bedarf</li>
-              <li>Fokus auf Eingangsbereich, Lift &amp; Allgemeinflächen</li>
-            </ul>
-          </div>
+      <a href="offerte.html?service=gebaeude" class="service-click-card">
+        <div class="service-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+            <line x1="9" y1="6" x2="15" y2="6"></line>
+            <line x1="9" y1="10" x2="15" y2="10"></line>
+            <line x1="9" y1="14" x2="15" y2="14"></line>
+          </svg>
         </div>
-        <a href="offerte.html?service=gebaeude" class="tile-btn">Offerte anfordern &rarr;</a>
-      </div>
+        <div class="service-title">Gebäudereinigung</div>
+        <div class="action-arrow">Offerte anfordern &rarr;</div>
+      </a>
 
       <!-- 3. Unterhaltsreinigung -->
-      <div class="detail-tile" data-category="unterhalt">
-        <div>
-          <div class="tile-header">
-            <div class="tile-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path>
-                <circle cx="12" cy="12" r="4" fill="#e0f2fe"></circle>
-              </svg>
-            </div>
-            <h3 class="tile-title">Unterhaltsreinigung</h3>
-          </div>
-          <div class="tile-body" style="margin-top: 12px;">
-            Regelmässige Sauberkeit in Ihrem Zuhause – wöchentlich, im 2-Wochen-Rhythmus oder nach Ihren Vorgaben.
-            <ul class="tile-list">
-              <li>Feste Wunschtage &amp; flexible Zeiten</li>
-              <li>Zuverlässiges und gründliches Personal</li>
-              <li>Spürbare Entlastung im Alltag</li>
-            </ul>
-          </div>
+      <a href="offerte.html?service=unterhalt" class="service-click-card">
+        <div class="service-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path>
+            <circle cx="12" cy="12" r="4" fill="#e0f2fe"></circle>
+          </svg>
         </div>
-        <a href="offerte.html?service=unterhalt" class="tile-btn">Offerte anfordern &rarr;</a>
-      </div>
+        <div class="service-title">Unterhaltsreinigung</div>
+        <div class="action-arrow">Offerte anfordern &rarr;</div>
+      </a>
 
       <!-- 4. Grundreinigung -->
-      <div class="detail-tile" data-category="grund">
-        <div>
-          <div class="tile-header">
-            <div class="tile-icon-box">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-              </svg>
-            </div>
-            <h3 class="tile-title">Grundreinigung</h3>
-          </div>
-          <div class="tile-body" style="margin-top: 12px;">
-            Intensive Tiefenreinigung (z. B. nach Umbau, Renovation oder als gründlicher Frühjahrsputz).
-            <ul class="tile-list">
-              <li>Befreiung von hartnäckigem Schmutz und Baustaub</li>
-              <li>Fokus auf Fenster, Storen &amp; Sanitäranlagen</li>
-              <li>Individuell auf den jeweiligen Anlass angepasst</li>
-            </ul>
-          </div>
+      <a href="offerte.html?service=grund" class="service-click-card">
+        <div class="service-icon-box">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+          </svg>
         </div>
-        <a href="offerte.html?service=grund" class="tile-btn">Offerte anfordern &rarr;</a>
-      </div>
+        <div class="service-title">Grundreinigung</div>
+        <div class="action-arrow">Offerte anfordern &rarr;</div>
+      </a>
 
     </div>
 
@@ -1005,68 +760,6 @@
 
     window.addEventListener('resize', function () {
       if (window.innerWidth > 768) setMenu(false);
-    });
-  })();
-
-  // Filtrování dlaždic služeb
-  (function () {
-    var DEFAULT_LABEL = 'Kategorie wählen';
-    var allBtn = document.querySelector('.filter-btn[data-filter="all"]');
-    var options = document.querySelectorAll('.filter-option');
-    var dropdown = document.getElementById('filter-dropdown');
-    var toggle = document.getElementById('filter-dropdown-toggle');
-    var menu = document.getElementById('filter-dropdown-menu');
-    var label = document.getElementById('filter-dropdown-label');
-    var tiles = document.querySelectorAll('.detail-tile');
-
-    function setDropdown(open) {
-      menu.classList.toggle('open', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    }
-
-    function applyFilter(category) {
-      var isAll = category === 'all';
-
-      allBtn.classList.toggle('active', isAll);
-      allBtn.setAttribute('aria-pressed', isAll ? 'true' : 'false');
-      toggle.classList.toggle('active', !isAll);
-      label.textContent = DEFAULT_LABEL;
-
-      options.forEach(function (o) {
-        var on = o.getAttribute('data-filter') === category;
-        o.classList.toggle('active', on);
-        o.setAttribute('aria-pressed', on ? 'true' : 'false');
-        if (on) label.textContent = o.textContent.replace(/\s+/g, ' ').trim();
-      });
-
-      tiles.forEach(function (tile) {
-        var show = isAll || tile.getAttribute('data-category') === category;
-        tile.classList.toggle('hidden', !show);
-      });
-    }
-
-    allBtn.addEventListener('click', function () {
-      applyFilter('all');
-      setDropdown(false);
-    });
-
-    options.forEach(function (o) {
-      o.addEventListener('click', function () {
-        applyFilter(o.getAttribute('data-filter'));
-        setDropdown(false);
-      });
-    });
-
-    toggle.addEventListener('click', function () {
-      setDropdown(!menu.classList.contains('open'));
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!dropdown.contains(e.target)) setDropdown(false);
-    });
-
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') setDropdown(false);
     });
   })();
 </script>
