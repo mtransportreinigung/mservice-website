@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preise & Individuelle Angebote – M Transport & Reinigung Service</title>
+    <style>
+        :root {
+            --primary-color: #0d47a1;
+            --primary-hover: #1565c0;
+            --text-color: #333333;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --card-border: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Header */
+        .page-header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 50px 0;
+        }
+
+        .intro-box {
+            background-color: var(--white);
+            border-left: 5px solid var(--primary-color);
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .intro-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .intro-box p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .intro-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Service Cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+        }
+
+        .service-card h3 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            color: #555555;
+            flex-grow: 1;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .service-card ul li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .service-card ul li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            text-align: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Call to Action Banner */
+        .cta-banner {
+            background-color: var(--white);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .cta-banner h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .cta-banner p {
+            max-width: 650px;
+            margin: 0 auto 25px;
+            color: #444444;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            .content-section {
+                padding: 30px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Hero -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Transparente Preise durch individuelle Angebote</h1>
+            <p>Jede Aufgabe ist einzigartig. Wir erstellen Ihnen ein exakt zugeschnittenes Angebot – ohne versteckte Kosten.</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="content-section">
+        <div class="container">
+
+            <!-- Tailored Approach Explanation -->
+            <div class="intro-box">
+                <h2>Warum finden Sie bei uns keine pauschalen Preislisten?</h2>
+                <p>Jeder Umzug, jede Reinigung und jeder Transport bringt ganz eigene Anforderungen mit sich. Faktoren wie Räumlichkeiten, Zugang, Zeitrahmen und spezielle Kundenwünsche variieren stark.</p>
+                <p>Ein fixer Standardpreis würde bedeuten, dass Sie eventuell für Leistungen zahlen, die Sie gar nicht in Anspruch nehmen. Bei <strong>M Transport & Reinigung Service</strong> steht der Kunde im Mittelpunkt. Wir berechnen nur das, was tatsächlich nötig ist, um Ihr Projekt perfekt und effizient umzusetzen.</p>
+            </div>
+
+            <!-- Service Specific Quote Links -->
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary-color);">Wählen Sie Ihren Bereich für ein individuelles Angebot</h2>
+
+            <div class="services-grid">
+                
+                <!-- Card 1: Umzug & Transport -->
+                <div class="service-card">
+                    <div>
+                        <h3>Umzug & Transport</h3>
+                        <p>Egal ob Privatumzug oder Firmenverlegung – wir sorgen für einen reibungslosen Ablauf nach Ihren zeitlichen und logistischen Vorgaben.</p>
+                        <ul>
+                            <li>Exakte Berechnung nach Volumen & Wegstrecke</li>
+                            <li>Sichere Handhabung Ihres Eigentums</li>
+                            <li>Flexibel an Ihren Terminplan angepasst</li>
+                        </ul>
+                    </div>
+                    <a href="offerte.html?service=umzug" class="btn">Angebot für Umzug anfordern</a>
+                </div>
+
+                <!-- Card 2: Reinigung Service -->
+                <div class="service-card">
+                    <div>
+                        <h3>Reinigung Service</h3>
+                        <p>Von der Wohnungsabgabe bis zur regelmässigen Unterhaltsreinigung. Wir garantieren höchste Sauberkeit und termingerechte Ausführung.</p>
+                        <ul>
+                            <li>Faire Kalkulation nach Quadratmetern & Zustand</li>
+                            <li>Transparenter Leistungsumfang</li>
+                            <li>48 Stunden kostenlose Reklamationsfrist</li>
+                        </ul>
+                    </div>
+                    <a href="offerte.html?service=reinigung" class="btn">Angebot für Reinigung anfordern</a>
+                </div>
+
+                <!-- Card 3: Kombi-Paket -->
+                <div class="service-card">
+                    <div>
+                        <h3>Kombi-Paket (Umzug + Reinigung)</h3>
+                        <p>Profitieren Sie von unserem Komplettservice aus einer Hand. Wir übernehmen den Transport und hinterlassen Ihre alten Räume blitzblank.</p>
+                        <ul>
+                            <li>Attraktiver Paketvorteil</li>
+                            <li>Ein fester Ansprechpartner für alles</li>
+                            <li>Kein organisatorischer Stress für Sie</li>
+                        </ul>
+                    </div>
+                    <a href="offerte.html?service=kombi" class="btn">Kombi-Angebot anfordern</a>
+                </div>
+
+            </div>
+
+            <!-- Bottom CTA -->
+            <div class="cta-banner">
+                <h2>In wenigen Schritten zu Ihrem persönlichen Angebot</h2>
+                <p>Füllen Sie einfach unser lückenloses Online-Formular aus. Je detaillierter Ihre Angaben sind, desto genauer und schneller können wir Ihnen ein maßgeschneidertes Festpreisangebot erstellen.</p>
+                <a href="offerte.html" class="btn" style="font-size: 1.1rem; padding: 14px 32px;">Jetzt unverbindliche Offerte anfragen</a>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
