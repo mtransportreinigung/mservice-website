@@ -195,7 +195,7 @@
       stroke: #002266;
     }
 
-    /* Hero Banner (jednotný s preise.html) */
+    /* Hero Banner (identický s preise.html) */
     .page-hero {
       background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
       color: #ffffff;
@@ -217,10 +217,116 @@
       line-height: 1.6;
     }
 
-    /* Hlavní obsah - Kontakty */
+    .service-badge {
+      background-color: #FFA000;
+      color: #002266;
+      padding: 6px 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    .badge-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Úvodní karta (stejný styl jako preise.html) */
+    .about-intro-container {
+      max-width: 950px;
+      margin: 35px auto 10px auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .about-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      border-top: 6px solid #FF6A00;
+      text-align: center;
+    }
+
+    .about-card h2 {
+      color: #002266;
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .about-card p {
+      color: #475569;
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 820px;
+      margin: 0 auto 12px auto;
+    }
+
+    .about-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 3 hlavní pilíře / výhody (promise-grid z preise.html) */
+    .promise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .promise-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+
+    .promise-item h3 {
+      color: #002266;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .promise-item p {
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0;
+      max-width: none;
+    }
+
+    /* Nadpis sekce */
+    .section-heading {
+      max-width: 950px;
+      margin: 40px auto 20px auto;
+      padding: 0 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .section-heading h2 {
+      color: #002266;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .section-heading p {
+      color: #64748b;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    /* Hlavní obsah - Kontaktní mřížka */
     .content-container {
       max-width: 950px;
-      margin: 40px auto 60px auto;
+      margin: 0 auto 60px auto;
       padding: 0 20px;
       width: 100%;
       flex: 1 0 auto;
@@ -232,7 +338,7 @@
       gap: 16px;
     }
 
-    /* Kontaktní karty */
+    /* Kontaktní karty v pilířovém stylu preise.html */
     .contact-card {
       background: #f8fafc;
       border: 1px solid #e2e8f0;
@@ -655,6 +761,7 @@
       }
 
       .contact-grid { grid-template-columns: 1fr; }
+      .promise-grid { grid-template-columns: 1fr; }
       .form-row { flex-direction: column; gap: 12px; }
     }
 
@@ -676,6 +783,7 @@
 
       .logo-img { height: 36px; }
       .brand-title { display: none; }
+      .about-card { padding: 22px 16px; }
     }
     </style>
 </head>
@@ -754,9 +862,48 @@
   <section class="page-hero">
     <h1>Kontaktieren Sie uns</h1>
     <p>Wir sind gerne für Sie da. Haben Sie Fragen zu unseren Dienstleistungen oder wünschen Sie eine persönliche Beratung? Nehmen Sie unkompliziert Kontakt mit uns auf.</p>
+    <div class="service-badge">
+      <span class="badge-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </span>
+      Schnell, unkompliziert &amp; zuverlässig im Kanton Thurgau
+    </div>
   </section>
 
-  <!-- Hlavní obsah - Kontaktní karty -->
+  <!-- Úvodní karta s vysvětlením a 3 pilíři (přesně jako na preise.html) -->
+  <section class="about-intro-container">
+    <div class="about-card">
+      <h2>Wie können Sie uns erreichen?</h2>
+      <p>
+        Egal ob Sie ein schnelles Anliegen haben, eine Offerte anfordern möchten oder eine persönliche Beratung wünschen – wählen Sie einfach den Kontaktweg, der für Sie am bequemsten ist.
+      </p>
+
+      <div class="promise-grid">
+        <div class="promise-item">
+          <h3>Schnelle Rückmeldung</h3>
+          <p>Wir antworten Ihnen so rasch wie möglich auf Ihre Anfragen.</p>
+        </div>
+        <div class="promise-item">
+          <h3>Persönliche Beratung</h3>
+          <p>Wir nehmen uns Zeit für Ihr Anliegen und beraten Sie individuell.</p>
+        </div>
+        <div class="promise-item">
+          <h3>Regional vor Ort</h3>
+          <p>Einsatzbereit in Ennetaach, im gesamten Kanton Thurgau &amp; Umgebung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nadpis sekce -->
+  <div class="section-heading">
+    <h2>Wählen Sie Ihre bevorzugte Kontaktart</h2>
+    <p>Klicken Sie auf den gewünschten Bereich, um direkt Kontakt aufzunehmen:</p>
+  </div>
+
+  <!-- Hlavní obsah - Kontaktní mřížka -->
   <main class="content-container">
     <div class="contact-grid">
       
