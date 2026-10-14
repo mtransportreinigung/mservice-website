@@ -40,6 +40,8 @@
       box-sizing: border-box; 
       margin: 0; 
       padding: 0; 
+      /* Odstranění nechtěného hnědého/šedého mobilního bliknutí při kliknutí */
+      -webkit-tap-highlight-color: transparent;
     }
 
     html, body {
@@ -259,10 +261,11 @@
       justify-content: space-between;
     }
 
+    /* Změna označení dlaždice při najetí na ORANŽOVOU namísto modré */
     .service-card:hover {
-      border-color: #0051C7;
+      border-color: #FF6A00;
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 81, 199, 0.12);
+      box-shadow: 0 8px 20px rgba(255, 106, 0, 0.15);
     }
 
     .service-card.blur-card {
@@ -316,7 +319,7 @@
     }
 
     .card-link-btn {
-      background-color: #0051C7;
+      background-color: #FF6A00;
       color: #ffffff;
       font-size: 13px;
       font-weight: bold;
@@ -325,14 +328,16 @@
       display: inline-block;
       transition: background-color 0.2s ease;
       margin-top: auto;
+      box-shadow: 0 2px 6px rgba(255, 106, 0, 0.25);
     }
 
     .service-card:hover .card-link-btn {
-      background-color: #FF6A00;
+      background-color: #e05e00;
     }
 
     .whatsapp-card .card-link-btn {
       background-color: #25D366;
+      box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
     }
 
     .whatsapp-card:hover .card-link-btn {
@@ -453,9 +458,9 @@
     }
 
     .aktuell-card.partner-card:hover {
-      border-color: #0051C7;
+      border-color: #FF6A00;
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 81, 199, 0.12);
+      box-shadow: 0 8px 20px rgba(255, 106, 0, 0.15);
     }
 
     .aktuell-card.jobs-card {
