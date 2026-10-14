@@ -70,11 +70,10 @@
       scroll-behavior: smooth;
     }
 
-    /* Pevný zámek stránky na pozadí při otevřeném mobilním menu */
+    /* Pevný zámek stránky na pozadí bez rozbíjení scroll pozice */
     body.menu-open {
-      position: fixed;
-      width: 100%;
       overflow: hidden !important;
+      touch-action: none;
     }
 
     body {
@@ -184,6 +183,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       cursor: pointer;
+      z-index: 2001;
     }
 
     .menu-toggle svg {
@@ -482,7 +482,7 @@
         border-bottom: 3px solid #0051C7;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        z-index: 999;
+        z-index: 2000;
       }
 
       .main-nav.open { display: flex; }
@@ -808,23 +808,18 @@
 </div>
 
 <script>
-  // Mobilní menu (hamburger) s pevným uzamčením pozadí
+  // Mobilní menu (hamburger) bez rozbíjení pozice při scrollu na spodku
   (function () {
     var toggle = document.getElementById('menu-toggle');
     var nav = document.getElementById('main-nav');
     var iconOpen = document.getElementById('menu-icon-open');
     var iconClose = document.getElementById('menu-icon-close');
-    var scrollPosition = 0;
 
     function setMenu(open) {
       if (open) {
-        scrollPosition = window.pageYOffset;
-        document.body.style.top = '-' + scrollPosition + 'px';
         document.body.classList.add('menu-open');
       } else {
         document.body.classList.remove('menu-open');
-        document.body.style.top = '';
-        window.scrollTo(0, scrollPosition);
       }
 
       nav.classList.toggle('open', open);
@@ -834,11 +829,12 @@
       iconClose.style.display = open ? '' : 'none';
     }
 
-    toggle.addEventListener('click', function () {
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
       setMenu(!nav.classList.contains('open'));
     });
 
-    nav.querySelectorAll('.nav-link, .mobile-legal-link').forEach(function (a) {
+    nav.querySelectorAll('.nav-link, .mobile-legal-link, .mobile-social-icon').forEach(function (a) {
       a.addEventListener('click', function () { setMenu(false); });
     });
 
