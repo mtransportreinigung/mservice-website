@@ -40,7 +40,7 @@
       box-sizing: border-box; 
       margin: 0; 
       padding: 0; 
-      /* Odstranění nechtěného hnědého/šedého mobilního bliknutí při kliknutí */
+      /* Odstranění nechtěného mobilního bliknutí/zbarvení do hněda při kliknutí */
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -261,7 +261,7 @@
       justify-content: space-between;
     }
 
-    /* Změna označení dlaždice při najetí na ORANŽOVOU namísto modré */
+    /* Při najetí (označení) -> Oranžové zvlnění/rámeček dlaždice */
     .service-card:hover {
       border-color: #FF6A00;
       transform: translateY(-3px);
@@ -318,26 +318,26 @@
       margin-bottom: 20px;
     }
 
+    /* Tlačítka uvnitř dlaždic - výchozí Modrá */
     .card-link-btn {
-      background-color: #FF6A00;
+      background-color: #0051C7;
       color: #ffffff;
       font-size: 13px;
       font-weight: bold;
       padding: 10px 20px;
       border-radius: 50px;
       display: inline-block;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, transform 0.2s ease;
       margin-top: auto;
-      box-shadow: 0 2px 6px rgba(255, 106, 0, 0.25);
     }
 
+    /* Při označení / hoveru dlaždice -> tlačítko zoranžoví */
     .service-card:hover .card-link-btn {
-      background-color: #e05e00;
+      background-color: #FF6A00;
     }
 
     .whatsapp-card .card-link-btn {
       background-color: #25D366;
-      box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
     }
 
     .whatsapp-card:hover .card-link-btn {
@@ -457,10 +457,15 @@
       transition: all 0.25s ease;
     }
 
+    /* Při označení / hoveru karty Partner -> Oranžový rámeček a oranžové tlačítko */
     .aktuell-card.partner-card:hover {
       border-color: #FF6A00;
       transform: translateY(-3px);
       box-shadow: 0 8px 20px rgba(255, 106, 0, 0.15);
+    }
+
+    .aktuell-card.partner-card:hover .card-link-btn {
+      background-color: #FF6A00;
     }
 
     .aktuell-card.jobs-card {
