@@ -297,9 +297,13 @@
     }
 
     .service-card.blur-card {
-      filter: blur(2px);
-      opacity: 0.6;
+      filter: blur(3px);
+      opacity: 0.55;
       pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
       background: #f8fafc;
       border-color: #cbd5e1;
     }
@@ -830,21 +834,23 @@
           <span class="card-link-btn">Offerte anfordern &rarr;</span>
         </a>
 
-        <!-- Transport & Räumung (Neaktivní) -->
-        <div class="service-card blur-card">
-          <div class="card-content-top">
-            <span class="service-icon">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="1" y="3" width="15" height="13"></rect>
-                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                <circle cx="18.5" cy="18.5" r="2.5"></circle>
-              </svg>
-            </span>
-            <h3 class="service-title">Transport &amp; Räumung</h3>
-            <p class="service-desc">Sichere Umzüge, Warentransporte sowie fachgerechte Entrümpelungen und Räumungen.</p>
+        <!-- Transport & Räumung (Neaktivní, zamlžená, neindexovatelná pro Google) -->
+        <div class="noindex" data-nosnippet translate="no" style="display: contents;">
+          <div class="service-card blur-card">
+            <div class="card-content-top">
+              <span class="service-icon">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="3" width="15" height="13"></rect>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                  <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                  <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+              </span>
+              <h3 class="service-title">Transport &amp; Räumung</h3>
+              <p class="service-desc">Sichere Umzüge, Warentransporte sowie fachgerechte Entrümpelungen und Räumungen.</p>
+            </div>
+            <span class="badge-disabled">Demnächst verfügbar</span>
           </div>
-          <span class="badge-disabled">Demnächst verfügbar</span>
         </div>
 
         <!-- WhatsApp Kontakt -->
@@ -925,7 +931,7 @@
         <div class="step-card">
           <div class="step-number">1</div>
           <h3 class="step-title">Anfrage senden</h3>
-          <p class="step-desc">Füllen Sie unser Formular aus oder schreiben Sie uns per WhatsApp.</p>
+          <p class="step-desc">Füllen Sie unser Formular aus nebo schreiben Sie uns per WhatsApp.</p>
         </div>
 
         <div class="step-card">
