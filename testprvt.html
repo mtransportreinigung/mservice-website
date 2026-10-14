@@ -470,7 +470,13 @@
         border-bottom: 3px solid #0051C7;
       }
 
-      .main-nav.open { display: flex; }
+      /* Oprava pro scrollování v menu na výšku i na šířku (landscape) */
+      .main-nav.open { 
+        display: flex;
+        max-height: calc(100vh - 75px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
 
       .nav-link {
         padding: 14px 8px;
@@ -545,7 +551,7 @@
         Der Preis richtet sich nach Ihrem Objekt: Grösse und Aufteilung, Grad der Verschmutzung, Ausstattung (z. B. Backofen, Storen, Fenster oder Nebenräume) sowie gewünschter Termin und Umfang der Arbeiten.
       </p>
       <p>
-        Ein starrer Pauschalpreis würde entweder bedeuten, dass Sie für Leistungen bezahlen, die Sie nicht brauchen, oder dass der tatsächliche Aufwand unterschätzt wird. Mit einer individuellen Kalkulation erhalten Sie faire Preise, die zu Ihrem Objekt passen.
+        Ein starrer Pauschalpreis würde entweder bedeuten, dass Sie für Leistungen zahlen, die Sie nicht brauchen, oder dass der tatsächliche Aufwand unterschätzt wird. Mit einer individuellen Kalkulation erhalten Sie faire Preise, die zu Ihrem Objekt passen.
       </p>
 
       <div class="promise-grid">
