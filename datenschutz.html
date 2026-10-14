@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datenschutzerklärung | M Transport & Reinigung Service</title>
+    <title>Datenschutzerklärung | M Transport &amp; Reinigung Service</title>
 
     <link rel="canonical" href="https://www.mservice.ch/datenschutz">
     
@@ -12,7 +12,7 @@
     if (p !== location.pathname) history.replaceState(null, '', p + location.search + location.hash);
     </script>
     
-    <!-- Profilová fotka / Favicona -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/logo.PNG?v=1">
     <link rel="apple-touch-icon" href="/logo.PNG?v=1">
 
@@ -33,6 +33,12 @@
       overflow-x: hidden;
       background-color: #002266;
       scroll-behavior: smooth;
+    }
+
+    /* Pevný zámek stránky na pozadí bez rozbíjení scroll pozice */
+    body.menu-open {
+      overflow: hidden !important;
+      touch-action: none;
     }
 
     body {
@@ -57,7 +63,7 @@
       background-color: #f4f6f9;
     }
 
-    /* Pevná horní lišta (přesně podle vzoru) */
+    /* Pevná horní lišta */
     .top-header {
       display: flex;
       justify-content: space-between;
@@ -72,6 +78,7 @@
       left: 0;
       right: 0;
       width: 100%;
+      height: 75px;
       z-index: 1000;
       border-bottom: 3px solid #0051C7;
     }
@@ -101,7 +108,7 @@
       letter-spacing: -0.3px;
     }
 
-    /* Horní menu */
+    /* Horní menu (PC) */
     .main-nav {
       display: flex;
       align-items: center;
@@ -140,6 +147,7 @@
       border: 1px solid #cbd5e1;
       border-radius: 8px;
       cursor: pointer;
+      z-index: 2001;
     }
 
     .menu-toggle svg {
@@ -255,7 +263,7 @@
       transform: translateY(-1px);
     }
 
-    /* Patička */
+    /* Patička (PC) */
     .footer-section {
       background-color: #002266;
       color: #ffffff;
@@ -293,40 +301,122 @@
       opacity: 0.5;
     }
 
+    /* Styly pro mobilní menu (hamburger) */
     @media (max-width: 768px) {
       .menu-toggle { display: inline-flex; }
 
       .main-nav {
         display: none;
-        position: absolute;
-        top: calc(100% + 3px);
+        position: fixed;
+        top: 75px;
         left: 0;
         right: 0;
+        bottom: 0;
+        height: calc(100vh - 75px);
+        height: calc(100dvh - 75px);
         flex-direction: column;
         align-items: stretch;
         gap: 0;
         background: #ffffff;
-        padding: 6px 16px 12px 16px;
+        padding: 6px 16px 30px 16px;
         box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
         border-bottom: 3px solid #0051C7;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 2000;
       }
 
       .main-nav.open { display: flex; }
 
       .nav-link {
-        padding: 14px 8px;
+        padding: 15px 12px;
         font-size: 16px;
         border-radius: 0;
         border-bottom: 1px solid #e2e8f0;
+        flex-shrink: 0;
       }
 
-      .nav-link:last-child { border-bottom: none; }
+      /* Patička uvnitř mobilního rozbaleného menu */
+      .mobile-menu-footer {
+        margin-top: auto;
+        padding-top: 25px;
+        padding-bottom: 15px;
+        border-top: 1px solid #cbd5e1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        flex-shrink: 0;
+      }
+
+      .mobile-menu-socials {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .mobile-social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        text-decoration: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .mobile-social-icon:hover {
+        transform: translateY(-2px);
+        opacity: 0.9;
+      }
+
+      .mobile-fb { background-color: #1877F2; }
+      .mobile-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+      .mobile-wa { background-color: #25D366; }
+      .mobile-mail { background-color: #0051C7; }
+
+      .mobile-menu-legal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+      }
+
+      .mobile-legal-link {
+        color: #002266;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .mobile-legal-link:hover {
+        text-decoration: underline;
+        color: #0051C7;
+      }
+
       .document-card { padding: 25px 20px; }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-menu-footer { display: none; }
     }
 
     @media (max-width: 480px) {
       body { padding-top: 65px; }
-      .top-header { padding: 10px 12px; }
+      .top-header { height: 65px; padding: 10px 12px; }
+
+      @media (max-width: 768px) {
+        .main-nav {
+          top: 65px;
+          height: calc(100vh - 65px);
+          height: calc(100dvh - 65px);
+        }
+      }
+
       .logo-img { height: 36px; }
       .brand-title { display: none; }
     }
@@ -355,8 +445,51 @@
     <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
       <a href="index.html" class="nav-link">Startseite</a>
       <a href="ueberuns.html" class="nav-link">Über uns</a>
+      <a href="preise.html" class="nav-link">Preise</a>
       <a href="offerte.html" class="nav-link">Anfrageformular</a>
       <a href="kontakt.html" class="nav-link">Kontakt</a>
+
+      <!-- Patička uvnitř mobilního rozbaleného menu -->
+      <div class="mobile-menu-footer">
+        <!-- 1. Ikony: FB, IG, WA, Email -->
+        <div class="mobile-menu-socials">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/m.transportreinigung" class="mobile-social-icon mobile-fb" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/m.transportreinigung" class="mobile-social-icon mobile-ig" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/41783458072" class="mobile-social-icon mobile-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+
+          <!-- Email -->
+          <a href="mailto:info@mservice.ch" class="mobile-social-icon mobile-mail" aria-label="E-Mail">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- 2. Textové odkazy pod ikonami -->
+        <div class="mobile-menu-legal">
+          <a href="impressum.html" class="mobile-legal-link">Impressum</a>
+          <span style="color: #cbd5e1;">|</span>
+          <a href="datenschutz.html" class="mobile-legal-link">Datenschutzerklärung</a>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -449,7 +582,7 @@
     </div>
   </main>
 
-  <!-- Patička -->
+  <!-- Patička (PC) -->
   <footer class="footer-section">
     <div class="legal-links">
       <a href="ueberuns.html" class="legal-text-link">Über uns</a>
@@ -466,7 +599,7 @@
 </div>
 
 <script>
-  // Mobilní menu (hamburger)
+  // Mobilní menu (hamburger) bez rozbíjení pozice při scrollu na spodku
   (function () {
     var toggle = document.getElementById('menu-toggle');
     var nav = document.getElementById('main-nav');
@@ -474,6 +607,12 @@
     var iconClose = document.getElementById('menu-icon-close');
 
     function setMenu(open) {
+      if (open) {
+        document.body.classList.add('menu-open');
+      } else {
+        document.body.classList.remove('menu-open');
+      }
+
       nav.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
@@ -481,11 +620,12 @@
       iconClose.style.display = open ? '' : 'none';
     }
 
-    toggle.addEventListener('click', function () {
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
       setMenu(!nav.classList.contains('open'));
     });
 
-    nav.querySelectorAll('a').forEach(function (a) {
+    nav.querySelectorAll('.nav-link, .mobile-legal-link, .mobile-social-icon').forEach(function (a) {
       a.addEventListener('click', function () { setMenu(false); });
     });
 
@@ -494,11 +634,15 @@
     });
 
     document.addEventListener('click', function (e) {
-      if (!nav.contains(e.target) && !toggle.contains(e.target)) setMenu(false);
+      if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open')) {
+        setMenu(false);
+      }
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 768) setMenu(false);
+      if (window.innerWidth > 768 && nav.classList.contains('open')) {
+        setMenu(false);
+      }
     });
   })();
 </script>
