@@ -200,19 +200,23 @@
       margin-top: 14px;
     }
 
-    /* Hlavní obsah - Kartový design jako na kontakt.html */
+    /* Hlavní obsah - Kontejner pro samostatné karty */
     .content-container {
       max-width: 950px;
       margin: 30px auto 50px auto;
       padding: 0 20px;
       width: 100%;
       flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
     }
 
+    /* Jednotlivé karty sekcí s oranžovým horním označením a vycentrovaným nadpisem */
     .document-card {
       background: #ffffff;
       border-radius: 10px;
-      padding: 40px 35px;
+      padding: 35px 30px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.06);
       border-top: 6px solid #FF6A00;
     }
@@ -221,22 +225,16 @@
       font-size: 18px;
       color: #002266;
       font-weight: bold;
-      margin-bottom: 16px;
-      padding-bottom: 6px;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
       border-bottom: 2px solid #e2e8f0;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      text-align: center;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
-    }
-
-    .doc-section {
-      margin-bottom: 35px;
-    }
-
-    .doc-section:last-child {
-      margin-bottom: 0;
     }
 
     /* Mřížka Služeb */
@@ -462,48 +460,6 @@
 
     .aktuell-card.jobs-card {
       background: #ffffff;
-    }
-
-    /* CTA banner dole */
-    .cta-banner {
-      margin-top: 30px;
-      padding: 25px 20px;
-      background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
-      border-radius: 10px;
-      color: #ffffff;
-      text-align: center;
-    }
-
-    .cta-banner h3 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-
-    .cta-banner p {
-      font-size: 14px;
-      opacity: 0.9;
-      margin-bottom: 18px;
-    }
-
-    .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background-color: #FF6A00;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 15px;
-      padding: 12px 28px;
-      border-radius: 50px;
-      transition: background-color 0.2s ease, transform 0.1s ease;
-      box-shadow: 0 4px 12px rgba(255, 106, 0, 0.3);
-    }
-
-    .btn-cta:hover {
-      background-color: #e05e00;
-      transform: translateY(-1px);
     }
 
     /* Patička (PC) */
@@ -762,246 +718,235 @@
     <div class="service-badge">✓ 48 Stunden kostenlose Reklamationsfrist</div>
   </section>
 
-  <!-- Hlavní obsah - BÍLÁ KARTA -->
+  <!-- Hlavní obsah - Samostatné karty pro každou sekci -->
   <main class="content-container">
+    
+    <!-- 1. Karta: Služby -->
     <div class="document-card">
-      
-      <!-- 1. Mřížka Služeb -->
-      <div class="doc-section">
-        <h2 class="section-title">Unsere Dienstleistungen</h2>
-
-        <div class="services-grid">
-          
-          <!-- Umzugsreinigung -->
-          <a href="offerte.html?service=umzug" class="service-card">
-            <div class="card-content-top">
-              <span class="service-icon">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                  <path d="M18 10l2 2 4-4" stroke="#FF6A00" stroke-width="2.5"></path>
-                </svg>
-              </span>
-              <h3 class="service-title">Umzugsreinigung</h3>
-              <p class="service-desc">Gründliche Endreinigung Ihrer Wohnung oder Ihres Hauses für eine erfolgreiche Wohnungsabgabe.</p>
-            </div>
-            <span class="card-link-btn">Offerte anfordern &rarr;</span>
-          </a>
-
-          <!-- Gebäudereinigung -->
-          <a href="offerte.html?service=gebaeude" class="service-card">
-            <div class="card-content-top">
-              <span class="service-icon">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
-                  <line x1="9" y1="6" x2="9" y2="6.01"></line>
-                  <line x1="15" y1="6" x2="15" y2="6.01"></line>
-                  <line x1="9" y1="10" x2="9" y2="10.01"></line>
-                  <line x1="15" y1="10" x2="15" y2="10.01"></line>
-                  <line x1="9" y1="14" x2="9" y2="14.01"></line>
-                  <line x1="15" y1="14" x2="15" y2="14.01"></line>
-                  <line x1="9" y1="18" x2="15" y2="18"></line>
-                </svg>
-              </span>
-              <h3 class="service-title">Gebäudereinigung</h3>
-              <p class="service-desc">Regelmässige oder einmalige Reinigung von Liegenschaften, Treppenhäusern oder Büros.</p>
-            </div>
-            <span class="card-link-btn">Offerte anfordern &rarr;</span>
-          </a>
-
-          <!-- Unterhaltsreinigung -->
-          <a href="offerte.html?service=unterhalt" class="service-card">
-            <div class="card-content-top">
-              <span class="service-icon">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path>
-                  <circle cx="12" cy="12" r="4" fill="#e0f2fe"></circle>
-                </svg>
-              </span>
-              <h3 class="service-title">Unterhaltsreinigung</h3>
-              <p class="service-desc">Fortlaufende, periodische Wohnungsreinigung nach Ihren individuellen Wünschen.</p>
-            </div>
-            <span class="card-link-btn">Offerte anfordern &rarr;</span>
-          </a>
-
-          <!-- Grundreinigung -->
-          <a href="offerte.html?service=grund" class="service-card">
-            <div class="card-content-top">
-              <span class="service-icon">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                </svg>
-              </span>
-              <h3 class="service-title">Grundreinigung</h3>
-              <p class="service-desc">Intensive Tiefenreinigung oder Frühlingsputz für hartnäckige Verschmutzungen im Objekt.</p>
-            </div>
-            <span class="card-link-btn">Offerte anfordern &rarr;</span>
-          </a>
-
-          <!-- Transport & Räumung (Neaktivní) -->
-          <div class="service-card blur-card">
-            <div class="card-content-top">
-              <span class="service-icon">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="1" y="3" width="15" height="13"></rect>
-                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
-                  <circle cx="5.5" cy="18.5" r="2.5"></circle>
-                  <circle cx="18.5" cy="18.5" r="2.5"></circle>
-                </svg>
-              </span>
-              <h3 class="service-title">Transport &amp; Räumung</h3>
-              <p class="service-desc">Sichere Umzüge, Warentransporte sowie fachgerechte Entrümpelungen und Räumungen.</p>
-            </div>
-            <span class="badge-disabled">Demnächst verfügbar</span>
+      <h2 class="section-title">Unsere Dienstleistungen</h2>
+      <div class="services-grid">
+        
+        <!-- Umzugsreinigung -->
+        <a href="offerte.html?service=umzug" class="service-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                <path d="M18 10l2 2 4-4" stroke="#FF6A00" stroke-width="2.5"></path>
+              </svg>
+            </span>
+            <h3 class="service-title">Umzugsreinigung</h3>
+            <p class="service-desc">Gründliche Endreinigung Ihrer Wohnung oder Ihres Hauses für eine erfolgreiche Wohnungsabgabe.</p>
           </div>
+          <span class="card-link-btn">Offerte anfordern &rarr;</span>
+        </a>
 
-          <!-- WhatsApp Kontakt -->
-          <a href="https://wa.me/41783458072" target="_blank" rel="noopener" class="service-card whatsapp-card">
-            <div class="card-content-top">
-              <span class="service-icon">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="#25D366">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
-              </span>
-              <h3 class="service-title">Direkt per WhatsApp</h3>
-              <p class="service-desc">Schreiben Sie uns unkompliziert über WhatsApp für eine schnelle Auskunft oder Offerte.</p>
-            </div>
-            <span class="card-link-btn">WhatsApp öffnen &rarr;</span>
-          </a>
+        <!-- Gebäudereinigung -->
+        <a href="offerte.html?service=gebaeude" class="service-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                <line x1="9" y1="6" x2="9" y2="6.01"></line>
+                <line x1="15" y1="6" x2="15" y2="6.01"></line>
+                <line x1="9" y1="10" x2="9" y2="10.01"></line>
+                <line x1="15" y1="10" x2="15" y2="10.01"></line>
+                <line x1="9" y1="14" x2="9" y2="14.01"></line>
+                <line x1="15" y1="14" x2="15" y2="14.01"></line>
+                <line x1="9" y1="18" x2="15" y2="18"></line>
+              </svg>
+            </span>
+            <h3 class="service-title">Gebäudereinigung</h3>
+            <p class="service-desc">Regelmässige oder einmalige Reinigung von Liegenschaften, Treppenhäusern oder Büros.</p>
+          </div>
+          <span class="card-link-btn">Offerte anfordern &rarr;</span>
+        </a>
 
+        <!-- Unterhaltsreinigung -->
+        <a href="offerte.html?service=unterhalt" class="service-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path>
+                <circle cx="12" cy="12" r="4" fill="#e0f2fe"></circle>
+              </svg>
+            </span>
+            <h3 class="service-title">Unterhaltsreinigung</h3>
+            <p class="service-desc">Fortlaufende, periodische Wohnungsreinigung nach Ihren individuellen Wünschen.</p>
+          </div>
+          <span class="card-link-btn">Offerte anfordern &rarr;</span>
+        </a>
+
+        <!-- Grundreinigung -->
+        <a href="offerte.html?service=grund" class="service-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+            </span>
+            <h3 class="service-title">Grundreinigung</h3>
+            <p class="service-desc">Intensive Tiefenreinigung oder Frühlingsputz für hartnäckige Verschmutzungen im Objekt.</p>
+          </div>
+          <span class="card-link-btn">Offerte anfordern &rarr;</span>
+        </a>
+
+        <!-- Transport & Räumung (Neaktivní) -->
+        <div class="service-card blur-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"></rect>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                <circle cx="18.5" cy="18.5" r="2.5"></circle>
+              </svg>
+            </span>
+            <h3 class="service-title">Transport &amp; Räumung</h3>
+            <p class="service-desc">Sichere Umzüge, Warentransporte sowie fachgerechte Entrümpelungen und Räumungen.</p>
+          </div>
+          <span class="badge-disabled">Demnächst verfügbar</span>
         </div>
+
+        <!-- WhatsApp Kontakt -->
+        <a href="https://wa.me/41783458072" target="_blank" rel="noopener" class="service-card whatsapp-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" style="color: #25D366;">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+            </span>
+            <h3 class="service-title">Direkt per WhatsApp</h3>
+            <p class="service-desc">Schreiben Sie uns unkompliziert über WhatsApp für eine schnelle Auskunft oder Offerte.</p>
+          </div>
+          <span class="card-link-btn">WhatsApp öffnen &rarr;</span>
+        </a>
+
       </div>
+    </div>
 
-      <!-- 2. Výhody -->
-      <div class="doc-section">
-        <h2 class="section-title">Warum Sie uns wählen sollten</h2>
-        <div class="benefits-grid">
-          
-          <div class="benefit-card">
-            <span class="benefit-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-              </svg>
-            </span>
-            <h3 class="benefit-title">48h Reklamation</h3>
-            <p class="benefit-desc">Kostenlose Reklamationsfrist innerhalb von 48 Stunden ab Übergabe.</p>
-          </div>
+    <!-- 2. Karta: Výhody -->
+    <div class="document-card">
+      <h2 class="section-title">Warum Sie uns wählen sollten</h2>
+      <div class="benefits-grid">
+        
+        <div class="benefit-card">
+          <span class="benefit-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </span>
+          <h3 class="benefit-title">48h Reklamation</h3>
+          <p class="benefit-desc">Kostenlose Reklamationsfrist innerhalb von 48 Stunden ab Übergabe.</p>
+        </div>
 
-          <div class="benefit-card">
-            <span class="benefit-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <polyline points="12 6 12 12 16 14"></polyline>
-              </svg>
-            </span>
-            <h3 class="benefit-title">Termingerecht</h3>
-            <p class="benefit-desc">Pünktliche und zuverlässige Ausführung genau zum vereinbarten Termin.</p>
-          </div>
+        <div class="benefit-card">
+          <span class="benefit-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </span>
+          <h3 class="benefit-title">Termingerecht</h3>
+          <p class="benefit-desc">Pünktliche und zuverlässige Ausführung genau zum vereinbarten Termin.</p>
+        </div>
 
-          <div class="benefit-card">
-            <span class="benefit-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-              </svg>
-            </span>
-            <h3 class="benefit-title">Komplettausrüstung</h3>
-            <p class="benefit-desc">Profi-Reinigungsmittel und Geräte bringen wir selbstverständlich mit.</p>
-          </div>
+        <div class="benefit-card">
+          <span class="benefit-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </span>
+          <h3 class="benefit-title">Komplettausrüstung</h3>
+          <p class="benefit-desc">Profi-Reinigungsmittel und Geräte bringen wir selbstverständlich mit.</p>
+        </div>
 
-          <div class="benefit-card">
-            <span class="benefit-icon">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <div class="benefit-card">
+          <span class="benefit-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </span>
+          <h3 class="benefit-title">Privat &amp; Gewerbe</h3>
+          <p class="benefit-desc">Massgeschneiderte Lösungen für Wohnungen, Büros und Liegenschaften.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 3. Karta: Kroky -->
+    <div class="document-card">
+      <h2 class="section-title">In 3 einfachen Schritten zur sauberen Wohnung</h2>
+      <div class="steps-grid">
+        
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3 class="step-title">Anfrage senden</h3>
+          <p class="step-desc">Füllen Sie unser Formular aus oder schreiben Sie uns per WhatsApp.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3 class="step-title">Offerte &amp; Termin</h3>
+          <p class="step-desc">Sie erhalten schnell ein transparentes Angebot und Terminbestätigung.</p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3 class="step-title">Reinigung &amp; Übergabe</h3>
+          <p class="step-desc">Pünktliche Ausführung mit 48h kostenlose Reklamationsfrist.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 4. Karta: Aktuálně -->
+    <div class="document-card">
+      <h2 class="section-title">Aktuell</h2>
+      <div class="aktuell-grid">
+        
+        <!-- Partner -->
+        <a href="partner.html" class="aktuell-card partner-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                 <circle cx="9" cy="7" r="4"></circle>
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
               </svg>
             </span>
-            <h3 class="benefit-title">Privat &amp; Gewerbe</h3>
-            <p class="benefit-desc">Massgeschneiderte Lösungen für Wohnungen, Büros und Liegenschaften.</p>
+            <h3 class="service-title">Partner werden</h3>
+            <p class="service-desc">Für Umzugsunternehmen, Hauswartungen und Immobilienverwaltungen. Werden Sie unser B2B-Partner!</p>
           </div>
+          <span class="card-link-btn">Partnerschaft anfragen &rarr;</span>
+        </a>
 
+        <!-- Jobs -->
+        <div class="aktuell-card jobs-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </span>
+            <h3 class="service-title">Offene Stellen</h3>
+            <p class="service-desc">Zurzeit haben wir leider keine offenen Stellen zu besetzen. Schauen Sie später wieder vorbei.</p>
+          </div>
+          <div>
+            <span class="badge-disabled">Keine offenen Stellen</span>
+          </div>
         </div>
+
       </div>
-
-      <!-- 3. Kroky -->
-      <div class="doc-section">
-        <h2 class="section-title">In 3 einfachen Schritten zur sauberen Wohnung</h2>
-        <div class="steps-grid">
-          
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <h3 class="step-title">Anfrage senden</h3>
-            <p class="step-desc">Füllen Sie unser Formular aus oder schreiben Sie uns per WhatsApp.</p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <h3 class="step-title">Offerte &amp; Termin</h3>
-            <p class="step-desc">Sie erhalten schnell ein transparentes Angebot und Terminbestätigung.</p>
-          </div>
-
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <h3 class="step-title">Reinigung &amp; Übergabe</h3>
-            <p class="step-desc">Pünktliche Ausführung mit 48h kostenlose Reklamationsfrist.</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- 4. Aktuálně -->
-      <div class="doc-section">
-        <h2 class="section-title">Aktuell</h2>
-
-        <div class="aktuell-grid">
-          
-          <!-- Partner -->
-          <a href="partner.html" class="aktuell-card partner-card">
-            <div class="card-content-top">
-              <span class="service-icon">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle cx="9" cy="7" r="4"></circle>
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                </svg>
-              </span>
-              <h3 class="service-title">Partner werden</h3>
-              <p class="service-desc">Für Umzugsunternehmen, Hauswartungen und Immobilienverwaltungen. Werden Sie unser B2B-Partner!</p>
-            </div>
-            <span class="card-link-btn">Partnerschaft anfragen &rarr;</span>
-          </a>
-
-          <!-- Jobs -->
-          <div class="aktuell-card jobs-card">
-            <div class="card-content-top">
-              <span class="service-icon">
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                  <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-                </svg>
-              </span>
-              <h3 class="service-title">Offene Stellen</h3>
-              <p class="service-desc">Zurzeit haben wir leider keine offenen Stellen zu besetzen. Schauen Sie später wieder vorbei.</p>
-            </div>
-            <div>
-              <span class="badge-disabled">Keine offenen Stellen</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- spodní CTA banner -->
-      <div class="cta-banner">
-        <h3>Bereit für eine blitzsaubere Lösung?</h3>
-        <p>Fordern Sie noch heute Ihre unverbindliche Offerte für Ihre Reinigung an.</p>
-        <a href="offerte.html" class="btn-cta">Jetzt Offerte anfordern &rarr;</a>
-      </div>
-
     </div>
+
   </main>
 
   <!-- Patička (PC) -->
