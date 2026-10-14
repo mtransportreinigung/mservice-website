@@ -20,10 +20,17 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="de_CH">
     <meta property="og:site_name" content="M Transport &amp; Reinigung Service">
-    <meta property="og:title" content="Preise &amp; individuelle Offerten | M Transport &amp; Reinigung Service">
-    <meta property="og:description" content="Faire Preise durch individuelle Offerten im Kanton Thurgau.">
-    <meta property="og:url" content="https://www.mservice.ch/preise">
+    <meta property="og:title" content="Unverbindliche Offerte anfordern | M Transport &amp; Reinigung Service">
+    <meta property="og:description" content="Fordern Sie Ihre unverbindliche Offerte für Umzugs-, Grund- oder Gebäudereinigung im Kanton Thurgau an.">
+    <meta property="og:url" content="https://www.mservice.ch/offerte">
     <meta property="og:image" content="https://www.mservice.ch/logo.PNG">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.mservice.ch/offerte">
+    <meta name="twitter:title" content="Unverbindliche Offerte anfordern | M Transport &amp; Reinigung Service">
+    <meta name="twitter:description" content="Fordern Sie Ihre unverbindliche Offerte für Umzugs-, Grund- oder Gebäudereinigung im Kanton Thurgau an.">
+    <meta name="twitter:image" content="https://www.mservice.ch/logo.PNG">
 
     <!-- Strukturovaná data pro Google -->
     <script type="application/ld+json">
@@ -59,7 +66,6 @@
       box-sizing: border-box; 
       margin: 0; 
       padding: 0; 
-      /* Odstranění nechtěného mobilního bliknutí/zbarvení do hněda při kliknutí */
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -194,22 +200,26 @@
       stroke: #002266;
     }
 
+    /* Hero Banner */
     .page-hero {
       background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
       color: #ffffff;
       text-align: center;
-      padding: 35px 20px 45px 20px;
+      padding: 40px 20px 45px 20px;
     }
 
     .page-hero h1 {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: bold;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .page-hero p {
-      font-size: 15px;
+      font-size: 16px;
+      max-width: 750px;
+      margin: 0 auto;
       opacity: 0.95;
+      line-height: 1.6;
     }
 
     .service-badge {
@@ -218,15 +228,23 @@
       padding: 6px 18px;
       font-weight: bold;
       border-radius: 50px;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-size: 13px;
-      margin-top: 14px;
+      margin-top: 16px;
+    }
+
+    .badge-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Kontejner pro výběrové záložky (dlaždice služeb) */
     .service-tabs-container {
       max-width: 950px;
-      margin: 35px auto 25px auto;
+      margin: 35px auto 20px auto;
       padding: 0 20px;
       width: 100%;
     }
@@ -239,13 +257,13 @@
 
     .tab-card {
       background: #ffffff;
-      border: 2px solid #e2e8f0;
+      border: 1px solid #e2e8f0;
       border-radius: 10px;
       padding: 20px 15px;
       text-align: center;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
       user-select: none;
       display: flex;
       flex-direction: column;
@@ -256,9 +274,9 @@
     }
 
     .tab-card:hover {
-      border-color: #FF6A00;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255, 106, 0, 0.15);
+      border-color: #0051C7;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 81, 199, 0.1);
       color: #333333;
     }
 
@@ -266,10 +284,18 @@
       background-color: #002266;
       color: #ffffff;
       border-color: #FF6A00;
-      box-shadow: 0 6px 18px rgba(0, 34, 102, 0.25);
+      box-shadow: 0 4px 12px rgba(0, 34, 102, 0.25);
     }
 
     .tab-card.active .tab-icon svg {
+      stroke: #ffffff;
+    }
+
+    .tab-card.active .tab-icon svg path,
+    .tab-card.active .tab-icon svg circle,
+    .tab-card.active .tab-icon svg polyline,
+    .tab-card.active .tab-icon svg line,
+    .tab-card.active .tab-icon svg rect {
       stroke: #ffffff;
     }
 
@@ -286,22 +312,14 @@
       transition: stroke 0.25s ease;
     }
 
-    .tab-card.active .tab-icon svg path,
-    .tab-card.active .tab-icon svg circle,
-    .tab-card.active .tab-icon svg polyline,
-    .tab-card.active .tab-icon svg line,
-    .tab-card.active .tab-icon svg rect {
-      stroke: #ffffff;
-    }
-
     .tab-title {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: bold;
     }
 
     .form-container {
       max-width: 950px;
-      margin: 0 auto 40px auto;
+      margin: 0 auto 50px auto;
       padding: 0 20px;
       width: 100%;
       flex: 1 0 auto;
@@ -310,8 +328,8 @@
     .form-card {
       background: #ffffff;
       border-radius: 10px;
-      padding: 30px 25px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      padding: 30px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
       border-top: 6px solid #FF6A00;
     }
 
@@ -319,8 +337,8 @@
       color: #002266;
       font-size: 16px;
       font-weight: bold;
-      margin: 22px 0 12px 0;
-      padding-bottom: 6px;
+      margin: 24px 0 14px 0;
+      padding-bottom: 8px;
       border-bottom: 2px solid #e2e8f0;
       grid-column: span 2;
       display: flex;
@@ -379,7 +397,7 @@
     .form-control {
       width: 100%;
       padding: 11px 13px;
-      border: 1px solid #cccccc;
+      border: 1px solid #cbd5e1;
       border-radius: 6px;
       font-size: 14px;
       font-family: Arial, sans-serif;
@@ -396,7 +414,7 @@
 
     textarea.form-control {
       resize: vertical;
-      min-height: 85px;
+      min-height: 90px;
     }
 
     .checkbox-grid {
@@ -516,7 +534,7 @@
       color: #ffffff;
       font-size: 15px;
       font-weight: bold;
-      padding: 12px 28px;
+      padding: 14px 34px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
@@ -581,6 +599,7 @@
       gap: 16px;
     }
 
+    /* Patička (PC) */
     .footer-section {
       background-color: #002266;
       color: #ffffff;
@@ -630,6 +649,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
       gap: 8px;
       font-size: 13px;
     }
@@ -762,7 +782,7 @@
       .form-grid, .service-fields.active-fieldset, .nested-grid { grid-template-columns: 1fr; }
       .form-group.full-width, .form-section-title, .nested-grid { grid-column: span 1; }
       .checkbox-grid, .checkbox-grid.cols-3, .checkbox-grid.cols-4 { grid-template-columns: 1fr; }
-      .form-card { padding: 20px 15px; }
+      .form-card { padding: 22px 16px; }
       .inline-inputs { flex-direction: column; }
     }
 
@@ -848,7 +868,14 @@
   <section class="page-hero">
     <h1>Offerte anfordern</h1>
     <p>Wählen Sie die Dienstleistung – das Formular passt sich automatisch an Ihre Wünsche an.</p>
-    <div class="service-badge">✓ 48 Stunden kostenlose Reklamationsfrist</div>
+    <div class="service-badge">
+      <span class="badge-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#002266" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </span>
+      48 Stunden kostenlose Reklamationsfrist
+    </div>
   </section>
 
   <!-- Výběrové dlaždice služeb (Tabs) -->
@@ -860,7 +887,6 @@
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
-            <path d="M18 10l2 2 4-4" stroke="#FF6A00" stroke-width="2.5"></path>
           </svg>
         </span>
         <span class="tab-title">Umzugsreinigung</span>
