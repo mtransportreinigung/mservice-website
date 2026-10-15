@@ -50,14 +50,15 @@
             }
         }
 
-        /* Top Header */
+        /* Top Header - jemnější a zkrácená horní linka */
         .top-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            height: 32mm;
-            border-bottom: 2px solid #002266;
-            padding-bottom: 4mm;
+            height: 30mm;
+            border-bottom: 1.5px solid #002266;
+            padding-bottom: 3mm;
+            width: 100%;
         }
 
         .brand-section {
@@ -67,7 +68,7 @@
         }
 
         .logo-img {
-            height: 42px;
+            height: 40px;
             width: auto;
         }
 
@@ -84,7 +85,7 @@
         }
 
         .company-details {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #475569;
             margin-top: 2px;
             line-height: 1.3;
@@ -97,10 +98,10 @@
             line-height: 1.4;
         }
 
-        /* Okénko pro obálku vpravo (zcela bez nechtěných čar) */
+        /* Okénko pro obálku vpravo (čára pouze uvnitř okénka, ne přes stránku) */
         .window-envelope-address {
             position: absolute;
-            top: 42mm;
+            top: 40mm;
             right: 20mm;
             width: 85mm;
             height: 40mm;
@@ -116,6 +117,7 @@
             margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.35px;
+            width: 100%;
         }
 
         /* Obsahová část */
@@ -127,7 +129,7 @@
         }
 
         .doc-title {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             color: #002266;
             margin-bottom: 8px;
@@ -136,26 +138,26 @@
         }
 
         .section-header {
-            font-size: 11px;
+            font-size: 10.5px;
             font-weight: bold;
             color: #002266;
             text-transform: uppercase;
             border-bottom: 1.5px solid #0051C7;
             padding-bottom: 2px;
-            margin-top: 8px;
-            margin-bottom: 5px;
+            margin-top: 7px;
+            margin-bottom: 4px;
         }
 
         table.service-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-size: 10px;
         }
 
         table.service-table th, table.service-table td {
             border: 1px solid #cbd5e1;
-            padding: 4.5px 7px;
+            padding: 4px 6px;
             text-align: left;
             vertical-align: top;
         }
@@ -169,9 +171,9 @@
         .price-container {
             background: #f0fdf4;
             border: 1.5px solid #86efac;
-            padding: 7px 10px;
-            margin: 7px 0;
-            font-size: 11.5px;
+            padding: 6px 10px;
+            margin: 6px 0;
+            font-size: 11px;
             font-weight: bold;
             color: #166534;
             display: flex;
@@ -181,14 +183,14 @@
         }
 
         .text-block {
-            font-size: 10px;
+            font-size: 9.5px;
             color: #334155;
-            line-height: 1.35;
-            margin-bottom: 5px;
+            line-height: 1.3;
+            margin-bottom: 4px;
         }
 
         .text-block p {
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .bottom-section {
@@ -196,7 +198,7 @@
         }
 
         .signature-container {
-            padding-top: 8px;
+            padding-top: 6px;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -204,12 +206,12 @@
         }
 
         .sig-box {
-            width: 210px;
+            width: 200px;
         }
 
         .sig-line {
             border-top: 1px solid #64748b;
-            margin-top: 28px;
+            margin-top: 25px;
             padding-top: 3px;
             text-align: center;
             color: #475569;
@@ -218,9 +220,9 @@
         }
 
         .footer-bar {
-            margin-top: 8px;
+            margin-top: 6px;
             border-top: 1px solid #cbd5e1;
-            padding-top: 4px;
+            padding-top: 3px;
             display: flex;
             justify-content: space-between;
             font-size: 9px;
@@ -373,6 +375,10 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td><strong>Büroräume & Kanzlei</strong></td>
+                        <td>Regelmässige Büroreinigung, Staubwischen auf Pulten, Tischen, Regalen, Arbeitsflächen und Entleerung der Abfalleimer.</td>
+                    </tr>
+                    <tr>
                         <td><strong>Treppenhaus & Eingang</strong></td>
                         <td>Gründliche Reinigung von Treppenhaus &amp; Eingangsbereich, Handläufen, Briefkastenanlagen und Glastüren.</td>
                     </tr>
@@ -383,10 +389,6 @@
                     <tr>
                         <td><strong>Keller & Tiefgarage</strong></td>
                         <td>Reinigung vom Keller- / Tiefgaragenbereich, Beseitigung von Spinnweben, Staub und grobem Schmutz.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Pausenraum & Teeküche</strong></td>
-                        <td>Reinigung von Pausenraum / Teeküche inklusive Oberflächen und Teekücheneinrichtung (falls im Objekt vorhanden).</td>
                     </tr>
                     <tr>
                         <td><strong>Sanitäranlagen / WCs</strong></td>
