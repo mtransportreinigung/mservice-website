@@ -5,35 +5,43 @@
     <title>M Transport & Reinigung Service - Offerten</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
             color: #111111;
-            line-height: 1.45;
             background-color: #f1f5f9;
-            font-size: 12px;
+            font-size: 11px;
+            line-height: 1.35;
         }
+
         .page {
             width: 210mm;
-            min-height: 297mm;
+            height: 297mm;
+            max-height: 297mm;
             margin: 10mm auto;
             background: #ffffff;
-            padding: 20mm 20mm 20mm 25mm; /* Větší levý okraj kvůli okénku obálky */
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 15mm 15mm 15mm 20mm;
             position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            page-break-after: always;
             display: flex;
             flex-direction: column;
+            overflow: hidden;
         }
+
         @media print {
             body { background: none; }
             .page {
-                width: 100%;
-                height: 100vh;
-                min-height: 100vh;
                 margin: 0;
-                padding: 15mm 15mm 15mm 20mm;
                 box-shadow: none;
-                page-break-after: always;
-                page-break-inside: avoid;
+                width: 210mm;
+                height: 297mm;
+                padding: 15mm 15mm 15mm 20mm;
             }
         }
 
@@ -42,109 +50,125 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 25px;
-            padding-bottom: 12px;
+            height: 32mm;
             border-bottom: 2px solid #002266;
+            padding-bottom: 4mm;
         }
+
         .brand-section {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
+
         .logo-img {
-            height: 48px;
+            height: 42px;
             width: auto;
         }
+
         .brand-text {
             display: flex;
             flex-direction: column;
         }
+
         .company-name {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
             color: #002266;
             line-height: 1.2;
         }
+
         .company-details {
-            font-size: 10.5px;
+            font-size: 10px;
             color: #475569;
             margin-top: 2px;
             line-height: 1.3;
         }
+
         .meta-top-box {
             text-align: right;
-            font-size: 11.5px;
+            font-size: 11px;
             color: #334155;
+            line-height: 1.4;
         }
 
-        /* Okénko pro obálku (Fensterkuvert DIN 5008 - vlevo nahoře pod hlavičkou) */
+        /* Okénko pro obálku (DIN 5008 - levé okénko) */
         .window-envelope-address {
+            position: absolute;
+            top: 42mm;
+            left: 20mm;
             width: 85mm;
-            height: 45mm;
-            margin-bottom: 15px;
-            padding: 5px;
-            font-size: 12px;
+            height: 40mm;
+            padding-top: 2mm;
+            font-size: 11px;
             color: #1e293b;
-            line-height: 1.5;
+            line-height: 1.4;
         }
+
         .window-envelope-address .sender-line {
-            font-size: 8.5px;
+            font-size: 7.5px;
             color: #64748b;
             border-bottom: 1px solid #cbd5e1;
             padding-bottom: 2px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
-        /* Title & Document metadata */
+        /* Dokument Title & Obsah */
+        .content-area {
+            margin-top: 42mm; /* Prostor pod adresním okénkem */
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
         .doc-title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: bold;
             color: #002266;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
 
-        /* Section Headings */
         .section-header {
-            font-size: 12.5px;
+            font-size: 11px;
             font-weight: bold;
             color: #002266;
             text-transform: uppercase;
             border-bottom: 1.5px solid #0051C7;
-            padding-bottom: 3px;
-            margin-top: 15px;
-            margin-bottom: 8px;
+            padding-bottom: 2px;
+            margin-top: 8px;
+            margin-bottom: 5px;
         }
 
-        /* Main Service Table */
         table.service-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 12px;
-            font-size: 11px;
+            margin-bottom: 8px;
+            font-size: 10.5px;
         }
+
         table.service-table th, table.service-table td {
             border: 1px solid #cbd5e1;
-            padding: 7px 9px;
+            padding: 5px 8px;
             text-align: left;
             vertical-align: top;
         }
+
         table.service-table th {
             background-color: #f1f5f9;
             color: #002266;
             font-weight: bold;
         }
 
-        /* Price Box */
         .price-container {
             background: #f0fdf4;
             border: 1.5px solid #86efac;
-            padding: 10px 14px;
-            margin: 12px 0;
-            font-size: 13px;
+            padding: 8px 12px;
+            margin: 8px 0;
+            font-size: 12px;
             font-weight: bold;
             color: #166534;
             display: flex;
@@ -153,52 +177,51 @@
             border-radius: 4px;
         }
 
-        /* Terms & Text */
         .text-block {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #334155;
-            line-height: 1.45;
-            margin-bottom: 10px;
-        }
-        .text-block p {
+            line-height: 1.4;
             margin-bottom: 6px;
         }
-        .text-block ul {
-            margin: 4px 0 8px 16px;
-        }
-        .text-block li {
-            margin-bottom: 3px;
+
+        .text-block p {
+            margin-bottom: 4px;
         }
 
-        /* Signature Section */
-        .signature-container {
+        /* Podpisy a patička pevně u dna */
+        .bottom-section {
             margin-top: auto;
-            padding-top: 15px;
+        }
+
+        .signature-container {
+            padding-top: 10px;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            font-size: 11px;
+            font-size: 10.5px;
         }
+
         .sig-box {
-            width: 240px;
+            width: 220px;
         }
+
         .sig-line {
             border-top: 1px solid #64748b;
-            margin-top: 35px;
-            padding-top: 4px;
+            margin-top: 30px;
+            padding-top: 3px;
             text-align: center;
             color: #475569;
             font-weight: bold;
+            font-size: 10px;
         }
 
-        /* Footer */
         .footer-bar {
-            margin-top: 15px;
+            margin-top: 10px;
             border-top: 1px solid #cbd5e1;
-            padding-top: 6px;
+            padding-top: 5px;
             display: flex;
             justify-content: space-between;
-            font-size: 10px;
+            font-size: 9.5px;
             color: #64748b;
         }
     </style>
@@ -209,7 +232,6 @@
     <!-- 1. UMZUGSREINIGUNG -->
     <!-- ==================================================================== -->
     <div class="page">
-        <!-- Hlavička v levém horním rohu -->
         <div class="top-header">
             <div class="brand-section">
                 <img src="/logo.PNG" alt="M Logo" class="logo-img">
@@ -228,7 +250,6 @@
             </div>
         </div>
 
-        <!-- Adresní okénko pro obálku -->
         <div class="window-envelope-address">
             <div class="sender-line">M Transport &amp; Reinigung Service • Bädlistrasse 4 • 8586 Ennetaach</div>
             <strong>[Kundenname]</strong><br>
@@ -236,71 +257,74 @@
             [PLZ &amp; Ort]
         </div>
 
-        <div class="doc-title">OFFERTE – UMZUGSREINIGUNG (ENDREINIGUNG)</div>
+        <div class="content-area">
+            <div class="doc-title">OFFERTE – UMZUGSREINIGUNG (ENDREINIGUNG)</div>
 
-        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
-        <table class="service-table">
-            <thead>
-                <tr>
-                    <th style="width: 28%;">Bereich</th>
-                    <th style="width: 72%;">Enthaltene Reinigungsarbeiten</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Küche & Geräte</strong></td>
-                    <td>Tiefenreinigung aller Küchenoberflächen, Schränke (innen/aussen), Kochfeld (Glaskeramik/Induktion), Backofen, Dampfabzug, Geschirrspüler sowie Kühlschrank inkl. Gefrierfach.</td>
-                </tr>
-                <tr>
-                    <td><strong>Nasszellen / Bad & WC</strong></td>
-                    <td>Gründliche Reinigung, Entkalkung und Desinfektion aller Badezimmer und separaten WCs. Badewanne, Duschkabine, Armaturen, Spiegel und Fliesen.</td>
-                </tr>
-                <tr>
-                    <td><strong>Fenster & Storen</strong></td>
-                    <td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen, Fensterbänken sowie gründliches Abwischen aller Lamellenstoren / Klappläden.</td>
-                </tr>
-                <tr>
-                    <td><strong>Wohnräume & Böden</strong></td>
-                    <td>Vollständige Säuberung und Pflege aller Bodenbeläge, Saugen und Wischen aller Räume, Treppenaufgänge sowie Innenreinigung aller Einbauschränke, Türen und Fussleisten.</td>
-                </tr>
-                <tr>
-                    <td><strong>Nebennutzflächen</strong></td>
-                    <td>Gründliche Reinigung aller zugehörigen Nebenräume wie Keller, Dachboden, Garage oder Balkon/Terrasse (gemäss Absprache).</td>
-                </tr>
-                <tr>
-                    <td><strong>Material & Anfahrt</strong></td>
-                    <td>Inklusive aller professionellen Reinigungsmittel, Spezialgeräte, Maschinen sowie sämtlicher Anfahrts- und Transportkosten.</td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
+            <table class="service-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Bereich</th>
+                        <th style="width: 72%;">Enthaltene Reinigungsarbeiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Küche & Geräte</strong></td>
+                        <td>Tiefenreinigung aller Küchenoberflächen, Schränke (innen/aussen), Kochfeld, Backofen, Dampfabzug, Geschirrspüler sowie Kühlschrank inkl. Gefrierfach.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nasszellen / Bad & WC</strong></td>
+                        <td>Gründliche Reinigung, Entkalkung und Desinfektion aller Badezimmer und WCs (Badewanne, Dusche, Armaturen, Spiegel, Fliesen).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fenster & Storen</strong></td>
+                        <td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen, Fensterbänken sowie Abwischen aller Lamellenstoren / Klappläden.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wohnräume & Böden</strong></td>
+                        <td>Säuberung aller Bodenbeläge, Saugen und Wischen aller Räume, Treppenaufgänge sowie Innenreinigung der Einbauschränke und Türen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nebennutzflächen</strong></td>
+                        <td>Reinigung von Keller, Dachboden, Garage oder Balkon/Terrasse (gemäss Absprache).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Material & Anfahrt</strong></td>
+                        <td>Inklusive aller professionellen Reinigungsmittel, Spezialgeräte, Maschinen sowie sämtlicher Anfahrts- und Transportkosten.</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
-        <div class="price-container">
-            <span>Pauschalpreis Endreinigung (inkl. Material & Anfahrt):</span>
-            <span>ab CHF [Betrag].-</span>
-        </div>
-
-        <div class="section-header">3. KONDITIONEN & AGB</div>
-        <div class="text-block">
-            <p><strong>Bestimmungen:</strong> Der Preis basiert auf dem besichtigten Zustand. Bei starker Abweichung oder Möblierung erfolgt Absprache vorab. AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
-        </div>
-
-        <div class="section-header">4. GARANTIEREGELUNG</div>
-        <div class="text-block">
-            <p><strong>48-Stunden-Reklamationsfrist ab Übergabe:</strong><br>
-            Da die Reinigung ohne unsere persönliche Anwesenheit beim offiziellen Übergabetermin stattfindet, gewähren wir eine 48-Stunden-Garantie **ab dem Zeitpunkt der offiziellen Übergabe**. Werden innerhalb von 48 Stunden Mängel gemeldet, kommen wir umgehend und beheben alles **vollständig auf unsere Kosten**.</p>
-        </div>
-
-        <div class="signature-container">
-            <div>Datum, Ort: ________________________</div>
-            <div class="sig-box">
-                <div class="sig-line">Bestätigung / Kundenunterschrift</div>
+            <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
+            <div class="price-container">
+                <span>Pauschalpreis Endreinigung (inkl. Material & Anfahrt):</span>
+                <span>ab CHF [Betrag].-</span>
             </div>
-        </div>
 
-        <div class="footer-bar">
-            <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
-            <span>Seite 1 von 1</span>
+            <div class="section-header">3. KONDITIONEN & AGB</div>
+            <div class="text-block">
+                <p>Der Preis basiert auf dem besichtigten Zustand. AGB und Details finden Sie unter <strong>www.mservice.ch/agb</strong>.</p>
+            </div>
+
+            <div class="section-header">4. GARANTIEREGELUNG</div>
+            <div class="text-block">
+                <p><strong>48-Stunden-Reklamationsfrist ab Übergabe:</strong> Da die Reinigung ohne unsere persönliche Anwesenheit beim Übergabetermin stattfindet, gewähren wir eine 48-Stunden-Garantie ab offizieller Übergabe. Eventuelle Mängel werden umgehend und <strong>vollständig auf unsere Kosten</strong> nachgebessert.</p>
+            </div>
+
+            <div class="bottom-section">
+                <div class="signature-container">
+                    <div>Datum, Ort: ________________________</div>
+                    <div class="sig-box">
+                        <div class="sig-line">Bestätigung / Kundenunterschrift</div>
+                    </div>
+                </div>
+
+                <div class="footer-bar">
+                    <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
+                    <span>Seite 1 von 1</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -334,71 +358,74 @@
             [PLZ &amp; Ort]
         </div>
 
-        <div class="doc-title">OFFERTE – GEBÄUDEREINIGUNG &amp; GEWERBERÄUME</div>
+        <div class="content-area">
+            <div class="doc-title">OFFERTE – GEBÄUDEREINIGUNG &amp; GEWERBERÄUME</div>
 
-        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
-        <table class="service-table">
-            <thead>
-                <tr>
-                    <th style="width: 28%;">Bereich</th>
-                    <th style="width: 72%;">Enthaltene Reinigungsarbeiten</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Bodenreinigung</strong></td>
-                    <td>Professionelles Staubsaugen und feuchtes Aufnehmen aller Bodenbeläge (Teppich, Fliesen, Hartböden).</td>
-                </tr>
-                <tr>
-                    <td><strong>Sanitäranlagen</strong></td>
-                    <td>Gründliche Reinigung, Desinfektion und Entkalkung von WCs, Waschbecken, Armaturen und Spiegeln.</td>
-                </tr>
-                <tr>
-                    <td><strong>Mobiliar & Oberflächen</strong></td>
-                    <td>Staubwischen und feuchte Reinigung von Pulten, Tischen, Regalen, Schränken, Griffen und Fensterbänken.</td>
-                </tr>
-                <tr>
-                    <td><strong>Glas- & Fensterflächen</strong></td>
-                    <td>Regelmässige oder einmalige Reinigung der Fensterflächen und Glastüren im Innenbereich.</td>
-                </tr>
-                <tr>
-                    <td><strong>Allgemeine Bereiche</strong></td>
-                    <td>Treppenhausreinigung, Liftreinigung, Entfernung von Spinnweben sowie Entleerung der Abfallbehälter.</td>
-                </tr>
-                <tr>
-                    <td><strong>Material & Anfahrt</strong></td>
-                    <td>Inklusive aller benötigten Profi-Reinigungsmittel, Geräte sowie Anfahrtskosten.</td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
+            <table class="service-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Bereich</th>
+                        <th style="width: 72%;">Enthaltene Reinigungsarbeiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Bodenreinigung</strong></td>
+                        <td>Professionelles Staubsaugen und feuchtes Aufnehmen aller Bodenbeläge (Teppich, Fliesen, Hartböden).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sanitäranlagen</strong></td>
+                        <td>Gründliche Reinigung, Desinfektion und Entkalkung von WCs, Waschbecken, Armaturen und Spiegeln.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mobiliar & Oberflächen</strong></td>
+                        <td>Staubwischen und feuchte Reinigung von Pulten, Tischen, Regalen, Schränken, Griffen und Fensterbänken.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Glasflächen</strong></td>
+                        <td>Regelmässige oder einmalige Reinigung der Fensterflächen und Glastüren im Innenbereich.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Allgemeine Bereiche</strong></td>
+                        <td>Treppenhausreinigung, Liftreinigung, Entfernung von Spinnweben sowie Entleerung der Abfallbehälter.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Material & Anfahrt</strong></td>
+                        <td>Inklusive aller benötigten Profi-Reinigungsmittel, Geräte sowie Anfahrtskosten.</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <div class="section-header">2. PREISZUSAMMENSTELLUNG & TURNUS</div>
-        <div class="price-container">
-            <span>Gewünschter Intervall / Pauschalpreis:</span>
-            <span>ab CHF [Betrag].-</span>
-        </div>
-
-        <div class="section-header">3. KONDITIONEN & AGB</div>
-        <div class="text-block">
-            <p><strong>Bestimmungen:</strong> Flexible Ausführungszeiten nach Absprache. Zahlungsfrist 10 Tage via QR-Rechnung. AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
-        </div>
-
-        <div class="section-header">4. GARANTIEREGELUNG</div>
-        <div class="text-block">
-            <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong><br>
-            Sollten Sie innerhalb von <strong>48 Stunden nach Ausführung / Fertigstellung der Arbeiten</strong> Mängel im vereinbarten Leistungsumfang feststellen, kommen wir umgehend vorbei und korrigieren diese **vollständig auf unsere Kosten**.</p>
-        </div>
-
-        <div class="signature-container">
-            <div>Datum, Ort: ________________________</div>
-            <div class="sig-box">
-                <div class="sig-line">Bestätigung / Kundenunterschrift</div>
+            <div class="section-header">2. PREISZUSAMMENSTELLUNG & TURNUS</div>
+            <div class="price-container">
+                <span>Gewünschter Intervall / Pauschalpreis:</span>
+                <span>ab CHF [Betrag].-</span>
             </div>
-        </div>
 
-        <div class="footer-bar">
-            <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
-            <span>Seite 1 von 1</span>
+            <div class="section-header">3. KONDITIONEN & AGB</div>
+            <div class="text-block">
+                <p>Flexible Ausführungszeiten nach Absprache. Zahlungsfrist 10 Tage via QR-Rechnung. AGB unter <strong>www.mservice.ch/agb</strong>.</p>
+            </div>
+
+            <div class="section-header">4. GARANTIEREGELUNG</div>
+            <div class="text-block">
+                <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong> Sollten Sie innerhalb von <strong>48 Stunden nach Ausführung / Fertigstellung</strong> Mängel feststellen, kommen wir umgehend vorbei und korrigieren diese <strong>vollständig auf unsere Kosten</strong>.</p>
+            </div>
+
+            <div class="bottom-section">
+                <div class="signature-container">
+                    <div>Datum, Ort: ________________________</div>
+                    <div class="sig-box">
+                        <div class="sig-line">Bestätigung / Kundenunterschrift</div>
+                    </div>
+                </div>
+
+                <div class="footer-bar">
+                    <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
+                    <span>Seite 1 von 1</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -432,67 +459,70 @@
             [PLZ &amp; Ort]
         </div>
 
-        <div class="doc-title">OFFERTE – UNTERHALTSREINIGUNG (HAUSHALT)</div>
+        <div class="content-area">
+            <div class="doc-title">OFFERTE – UNTERHALTSREINIGUNG (HAUSHALT)</div>
 
-        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
-        <table class="service-table">
-            <thead>
-                <tr>
-                    <th style="width: 28%;">Bereich</th>
-                    <th style="width: 72%;">Enthaltene Reinigungsarbeiten</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Wohn- & Schlafräume</strong></td>
-                    <td>Böden staubsaugen und feucht aufnehmen, Möbeloberflächen, Regale, Tische und Fensterbänke entstauben.</td>
-                </tr>
-                <tr>
-                    <td><strong>Küche</strong></td>
-                    <td>Aussenreinigung aller Küchenmöbel, Arbeitsflächen, Kochfeld, Spülbecken, Esstisch sowie Elektrogeräte.</td>
-                </tr>
-                <tr>
-                    <td><strong>Bad & WC</strong></td>
-                    <td>Gründliche Reinigung von Badewanne, Dusche, Lavabo, WC, Spiegeln sowie Entkalkung der Armaturen.</td>
-                </tr>
-                <tr>
-                    <td><strong>Zusatzleistungen</strong></td>
-                    <td>Nach Absprache (z. B. Betten beziehen oder Reinigungsmittel bereitstellen).</td>
-                </tr>
-                <tr>
-                    <td><strong>Material & Anfahrt</strong></td>
-                    <td>Inklusive aller benötigten Reinigungsmittel und Geräte sowie Anfahrtskosten im Einsatzgebiet.</td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
+            <table class="service-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Bereich</th>
+                        <th style="width: 72%;">Enthaltene Reinigungsarbeiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Wohn- & Schlafräume</strong></td>
+                        <td>Böden staubsaugen und feucht aufnehmen, Möbeloberflächen, Regale, Tische und Fensterbänke entstauben.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Küche</strong></td>
+                        <td>Aussenreinigung aller Küchenmöbel, Arbeitsflächen, Kochfeld, Spülbecken, Esstisch sowie Elektrogeräte.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bad & WC</strong></td>
+                        <td>Gründliche Reinigung von Badewanne, Dusche, Lavabo, WC, Spiegeln sowie Entkalkung der Armaturen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Zusatzleistungen</strong></td>
+                        <td>Nach Absprache (z. B. Betten beziehen oder Reinigungsmittel bereitstellen).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Material & Anfahrt</strong></td>
+                        <td>Inklusive aller benötigten Reinigungsmittel und Geräte sowie Anfahrtskosten im Einsatzgebiet.</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
-        <div class="price-container">
-            <span>Stundenansatz Unterhaltsreinigung:</span>
-            <span>CHF [Betrag].- / Std.</span>
-        </div>
-
-        <div class="section-header">3. KONDITIONEN & AGB</div>
-        <div class="text-block">
-            <p><strong>Bestimmungen:</strong> Termine bis 48h vorher kostenlos stornierbar. Abrechnung monatlich via QR-Rechnung. AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
-        </div>
-
-        <div class="section-header">4. GARANTIEREGELUNG</div>
-        <div class="text-block">
-            <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong><br>
-            Sollten Sie nach einem Reinigungseinsatz innerhalb von <strong>48 Stunden nach der Ausführung</strong> Mängel feststellen, kommen wir umgehend vorbei und bessern diese **vollständig auf unsere Kosten** nach.</p>
-        </div>
-
-        <div class="signature-container">
-            <div>Datum, Ort: ________________________</div>
-            <div class="sig-box">
-                <div class="sig-line">Bestätigung / Kundenunterschrift</div>
+            <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
+            <div class="price-container">
+                <span>Stundenansatz Unterhaltsreinigung:</span>
+                <span>CHF [Betrag].- / Std.</span>
             </div>
-        </div>
 
-        <div class="footer-bar">
-            <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
-            <span>Seite 1 von 1</span>
+            <div class="section-header">3. KONDITIONEN & AGB</div>
+            <div class="text-block">
+                <p>Termine bis 48h vorher kostenlos stornierbar. Abrechnung monatlich via QR-Rechnung. AGB unter <strong>www.mservice.ch/agb</strong>.</p>
+            </div>
+
+            <div class="section-header">4. GARANTIEREGELUNG</div>
+            <div class="text-block">
+                <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong> Sollten Sie nach einem Einsatz innerhalb von <strong>48 Stunden</strong> Mängel feststellen, kommen wir umgehend vorbei und bessern diese <strong>vollständig auf unsere Kosten</strong> nach.</p>
+            </div>
+
+            <div class="bottom-section">
+                <div class="signature-container">
+                    <div>Datum, Ort: ________________________</div>
+                    <div class="sig-box">
+                        <div class="sig-line">Bestätigung / Kundenunterschrift</div>
+                    </div>
+                </div>
+
+                <div class="footer-bar">
+                    <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
+                    <span>Seite 1 von 1</span>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -526,67 +556,70 @@
             [PLZ &amp; Ort]
         </div>
 
-        <div class="doc-title">OFFERTE – GRUNDREINIGUNG (TIEFENREINIGUNG)</div>
+        <div class="content-area">
+            <div class="doc-title">OFFERTE – GRUNDREINIGUNG (TIEFENREINIGUNG)</div>
 
-        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
-        <table class="service-table">
-            <thead>
-                <tr>
-                    <th style="width: 28%;">Bereich</th>
-                    <th style="width: 72%;">Enthaltene Reinigungsarbeiten</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Tiefenreinigung</strong></td>
-                    <td>Intensive Beseitigung von hartnäckigen Verschmutzungen, Verkrustungen, Kalkablagerungen oder Baustaub.</td>
-                </tr>
-                <tr>
-                    <td><strong>Sanitär & Küche</strong></td>
-                    <td>Detaillierte Grundreinigung aller Fugen, Wandfliesen, Sanitärkeramik sowie Entfettung aller Küchengeräte.</td>
-                </tr>
-                <tr>
-                    <td><strong>Böden & Rahmen</strong></td>
-                    <td>Intensive Grundpflege aller Bodenbeläge, Fussleisten, Türen, Türzargen, Lichtschalter und Steckdosen.</td>
-                </tr>
-                <tr>
-                    <td><strong>Fenster & Storen</strong></td>
-                    <td>Gründliche Fenster- und Rahmenreinigung inklusive Abwischen der Lamellenstoren nach Vereinbarung.</td>
-                </tr>
-                <tr>
-                    <td><strong>Material & Spezialgeräte</strong></td>
-                    <td>Einsatz von professionellen Spezialreinigern, Maschinen und Geräten für intensivste Verschmutzungen.</td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
+            <table class="service-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28%;">Bereich</th>
+                        <th style="width: 72%;">Enthaltene Reinigungsarbeiten</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Tiefenreinigung</strong></td>
+                        <td>Intensive Beseitigung von hartnäckigen Verschmutzungen, Verkrustungen, Kalkablagerungen oder Baustaub.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sanitär & Küche</strong></td>
+                        <td>Detaillierte Grundreinigung aller Fugen, Wandfliesen, Sanitärkeramik sowie Entfettung aller Küchengeräte.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Böden & Rahmen</strong></td>
+                        <td>Intensive Grundpflege aller Bodenbeläge, Fussleisten, Türen, Türzargen, Lichtschalter und Steckdosen.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fenster & Storen</strong></td>
+                        <td>Gründliche Fenster- und Rahmenreinigung inklusive Abwischen der Lamellenstoren nach Vereinbarung.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Material & Spezialgeräte</strong></td>
+                        <td>Einsatz von professionellen Spezialreinigern, Maschinen und Geräten für intensivste Verschmutzungen.</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
-        <div class="price-container">
-            <span>Pauschalpreis Grundreinigung:</span>
-            <span>ab CHF [Betrag].-</span>
-        </div>
-
-        <div class="section-header">3. KONDITIONEN & AGB</div>
-        <div class="text-block">
-            <p><strong>Bestimmungen:</strong> Der Preis deckt den besprochenen Umfang ab. Bezahlung via QR-Rechnung (10 Tage). AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
-        </div>
-
-        <div class="section-header">4. GARANTIEREGELUNG</div>
-        <div class="text-block">
-            <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong><br>
-            Sollten Sie innerhalb von <strong>48 Stunden nach Ausführung / Fertigstellung der Grundreinigung</strong> Mängel feststellen, kommen wir umgehend vorbei und bessern diese **vollständig auf unsere Kosten** nach.</p>
-        </div>
-
-        <div class="signature-container">
-            <div>Datum, Ort: ________________________</div>
-            <div class="sig-box">
-                <div class="sig-line">Bestätigung / Kundenunterschrift</div>
+            <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
+            <div class="price-container">
+                <span>Pauschalpreis Grundreinigung:</span>
+                <span>ab CHF [Betrag].-</span>
             </div>
-        </div>
 
-        <div class="footer-bar">
-            <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
-            <span>Seite 1 von 1</span>
+            <div class="section-header">3. KONDITIONEN & AGB</div>
+            <div class="text-block">
+                <p>Der Preis deckt den besprochenen Umfang ab. Bezahlung via QR-Rechnung (10 Tage). AGB unter <strong>www.mservice.ch/agb</strong>.</p>
+            </div>
+
+            <div class="section-header">4. GARANTIEREGELUNG</div>
+            <div class="text-block">
+                <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong> Sollten Sie innerhalb von <strong>48 Stunden nach Ausführung / Fertigstellung</strong> Mängel feststellen, kommen wir umgehend vorbei und bessern diese <strong>vollständig auf unsere Kosten</strong> nach.</p>
+            </div>
+
+            <div class="bottom-section">
+                <div class="signature-container">
+                    <div>Datum, Ort: ________________________</div>
+                    <div class="sig-box">
+                        <div class="sig-line">Bestätigung / Kundenunterschrift</div>
+                    </div>
+                </div>
+
+                <div class="footer-bar">
+                    <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
+                    <span>Seite 1 von 1</span>
+                </div>
+            </div>
         </div>
     </div>
 
