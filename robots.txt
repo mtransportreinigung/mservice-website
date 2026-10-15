@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Zákaz indexace stránek, které nechcete, aby Google ukazoval ve výsledcích (pokud byste měli např. administraci nebo skryté složky)
+# Disallow: /admin/
+
+# Odkaz na mapu webu (Sitemap)
+Sitemap: https://www.mservice.ch/sitemap.xml
