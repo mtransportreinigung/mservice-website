@@ -1,95 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="#sitemap-style"?>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
-  <html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-      <title>Sitemap | M Transport &amp; Reinigung Service</title>
-      <style id="sitemap-style">
-        body { font-family: Arial, sans-serif; background-color: #f4f6f9; color: #333; margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border-top: 5px solid #FF6A00; }
-        h1 { color: #002266; font-size: 22px; margin-bottom: 5px; }
-        p { color: #64748b; font-size: 14px; margin-bottom: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #e2e8f0; }
-        th { background-color: #002266; color: #ffffff; font-size: 13px; text-transform: uppercase; }
-        tr:hover { background-color: #f1f5f9; }
-        a { color: #0051C7; text-decoration: none; font-weight: bold; }
-        a:hover { color: #FF6A00; text-decoration: underline; }
-        .badge { background: #e0f2fe; color: #0051C7; padding: 3px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <h1>XML Sitemap (Mapa stránek)</h1>
-        <p>Tento soubor slouží pro vyhledávače i pro přehledné klikání na stránky webu.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Stránka / Odkaz</th>
-              <th>Priorita</th>
-              <th>Frekvence zmen</th>
-              <th>Poslední aktualizace</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td><a href="https://www.mservice.ch/">Startseite (Hlavní stránka)</a></td><td><span class="badge">1.0</span></td><td>weekly</td><td>2026-10-15</td></tr>
-            <tr><td><a href="https://www.mservice.ch/offerte.html">Offerte anfordern (Poptávka)</a></td><td><span class="badge">0.9</span></td><td>monthly</td><td>2026-10-15</td></tr>
-            <tr><td><a href="https://www.mservice.ch/ueberuns.html">Über uns (O nás)</a></td><td><span class="badge">0.7</span></td><td>monthly</td><td>2026-10-15</td></tr>
-            <tr><td><a href="https://www.mservice.ch/preise.html">Preise (Ceník)</a></td><td><span class="badge">0.6</span></td><td>monthly</td><td>2026-10-15</td></tr>
-            <tr><td><a href="https://www.mservice.ch/kontakt.html">Kontakt</a></td><td><span class="badge">0.6</span></td><td>monthly</td><td>2026-10-15</td></tr>
-            <tr><td><a href="https://www.mservice.ch/partner.html">Partner werden (Partneři)</a></td><td><span class="badge">0.6</span></td><td>monthly</td><td>2026-10-15</td></tr>
-            <tr><td><a href="https://www.mservice.ch/impressum.html">Impressum</a></td><td><span class="badge">0.1</span></td><td>yearly</td><td>2026-10-15</td></tr>
-            <tr><td><a href="https://www.mservice.ch/datenschutz.html">Datenschutzerklärung</a></td><td><span class="badge">0.1</span></td><td>yearly</td><td>2026-10-15</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </body>
-  </html>
-
-  <!-- Data pro vyhledávače Google / Seznam / Bing -->
+  <!-- Startseite -->
   <url>
     <loc>https://www.mservice.ch/</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Offerte -->
   <url>
     <loc>https://www.mservice.ch/offerte.html</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- Über uns -->
   <url>
     <loc>https://www.mservice.ch/ueberuns.html</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- Preise -->
   <url>
     <loc>https://www.mservice.ch/preise.html</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Kontakt -->
   <url>
     <loc>https://www.mservice.ch/kontakt.html</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Partner -->
   <url>
     <loc>https://www.mservice.ch/partner.html</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+
+  <!-- Impressum -->
   <url>
     <loc>https://www.mservice.ch/impressum.html</loc>
     <lastmod>2026-10-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
+
+  <!-- Datenschutz -->
   <url>
     <loc>https://www.mservice.ch/datenschutz.html</loc>
     <lastmod>2026-10-15</lastmod>
