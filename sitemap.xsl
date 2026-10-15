@@ -21,14 +21,14 @@
       </head>
       <body>
         <div class="container">
-          <h1>Sitemap (Mapa stránek)</h1>
-          <p>Přehledný seznam všech aktivních stránek webu <strong>M Transport &amp; Reinigung Service</strong>.</p>
+          <h1>XML Sitemap</h1>
+          <p>Übersicht aller aktiven Seiten von <strong>M Transport &amp; Reinigung Service</strong>.</p>
           <table>
             <thead>
               <tr>
-                <th>Adresa / Odkaz na stránku</th>
-                <th>Priorita</th>
-                <th>Frekvence změn</th>
+                <th>URL / Seitenlink</th>
+                <th>Priorität</th>
+                <th>Änderungsfrequenz</th>
               </tr>
             </thead>
             <tbody>
