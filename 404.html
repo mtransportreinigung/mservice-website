@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seite nicht gefunden (404) | M Transport &amp; Reinigung Service</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo.PNG?v=1">
+    <link rel="apple-touch-icon" href="/logo.PNG?v=1">
+
+    <!-- SEO & Metadata -->
+    <meta name="robots" content="noindex, follow">
+
+    <style>
+    * { 
+      box-sizing: border-box; 
+      margin: 0; 
+      padding: 0; 
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #002266;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333333;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-top: 75px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      flex-direction: column;
+      background-color: #f4f6f9;
+    }
+
+    /* Pevná horní lišta */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 75px;
+      z-index: 1000;
+      border-bottom: 3px solid #0051C7;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #002266;
+    }
+
+    /* Multi-language / Navigace */
+    .back-nav {
+      font-size: 15px;
+      font-weight: 600;
+      color: #002266;
+      text-decoration: none;
+      padding: 8px 16px;
+      background: #e0f2fe;
+      border-radius: 6px;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .back-nav:hover {
+      background: #0051C7;
+      color: #ffffff;
+    }
+
+    /* Hlavní obsah - 404 Karta */
+    .content-container {
+      max-width: 680px;
+      margin: auto;
+      padding: 40px 20px;
+      width: 100%;
+      flex: 1 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .error-card {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 45px 35px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      border-top: 6px solid #FF6A00;
+      text-align: center;
+      width: 100%;
+    }
+
+    .error-code {
+      font-size: 72px;
+      font-weight: bold;
+      color: #002266;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .error-title {
+      font-size: 22px;
+      color: #002266;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .error-desc {
+      font-size: 15px;
+      color: #64748b;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    /* Tlačítka akcií */
+    .btn-group {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background-color: #FF6A00;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      transition: background-color 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background-color: #e05d00;
+    }
+
+    .btn-secondary {
+      background-color: #0051C7;
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      transition: background-color 0.2s ease;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      background-color: #003da1;
+    }
+
+    /* Patička */
+    .footer-section {
+      background-color: #002266;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      margin-top: auto;
+      width: 100%;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 480px) {
+      .error-code { font-size: 56px; }
+      .error-title { font-size: 19px; }
+      .btn-group { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; }
+      .brand-title { font-size: 15px; }
+    }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Záhlaví -->
+  <header class="top-header">
+    <a href="index.html" class="brand-container">
+      <img src="/logo.PNG" alt="M Transport &amp; Reinigung Service" class="logo-img">
+      <span class="brand-title">M Transport &amp; Reinigung Service</span>
+    </a>
+    <a href="index.html" class="back-nav">&larr; Startseite</a>
+  </header>
+
+  <!-- Hlavní chybový obsah -->
+  <main class="content-container">
+    <div class="error-card">
+      <div class="error-code">404</div>
+      <h1 class="error-title">Seite nicht gefunden</h1>
+      <p class="error-desc">
+        Die von Ihnen gesuchte Seite existiert leider nicht, wurde verschoben oder ist vorübergehend nicht erreichbar.
+      </p>
+      
+      <div class="btn-group">
+        <a href="index.html" class="btn-primary">Zur Startseite</a>
+        <a href="offerte.html" class="btn-secondary">Offerte anfordern</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Patička -->
+  <footer class="footer-section">
+    &copy; 2026 M Transport &amp; Reinigung Service. Alle Rechte vorbehalten.
+  </footer>
+
+</div>
+
+</body>
+</html>
