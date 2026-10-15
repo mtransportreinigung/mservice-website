@@ -7,7 +7,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         
         @page {
-            size: A4;
+            size: A4 portrait;
             margin: 0;
         }
 
@@ -17,6 +17,8 @@
             background-color: #f1f5f9;
             font-size: 11px;
             line-height: 1.35;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .page {
@@ -29,6 +31,7 @@
             position: relative;
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             page-break-after: always;
+            break-after: page;
             display: flex;
             flex-direction: column;
             overflow: hidden;
@@ -42,10 +45,12 @@
                 width: 210mm;
                 height: 297mm;
                 padding: 15mm 20mm 15mm 15mm;
+                page-break-after: always;
+                break-after: page;
             }
         }
 
-        /* Top Header - levý horní roh */
+        /* Top Header */
         .top-header {
             display: flex;
             justify-content: space-between;
@@ -92,7 +97,7 @@
             line-height: 1.4;
         }
 
-        /* Okénko pro obálku vpravo (čára pouze uvnitř okénka) */
+        /* Okénko pro obálku vpravo (zcela bez nechtěných čar) */
         .window-envelope-address {
             position: absolute;
             top: 42mm;
@@ -108,15 +113,12 @@
         .window-envelope-address .sender-line {
             font-size: 7.5px;
             color: #64748b;
-            border-bottom: 1px solid #cbd5e1;
-            padding-bottom: 2px;
             margin-bottom: 4px;
             text-transform: uppercase;
             letter-spacing: 0.35px;
-            width: 100%;
         }
 
-        /* Dokument Title & Obsah */
+        /* Obsahová část */
         .content-area {
             margin-top: 42mm;
             flex: 1;
@@ -189,7 +191,6 @@
             margin-bottom: 3px;
         }
 
-        /* Podpisy a patička pevně u dna */
         .bottom-section {
             margin-top: auto;
         }
@@ -272,23 +273,23 @@
                 <tbody>
                     <tr>
                         <td><strong>Küche & Geräte</strong></td>
-                        <td>Inkl. Backofen, Steamer, Geschirrspüler, Kühlschrank/Gefrierfach[span_4](start_span)[span_4](end_span) sowie Kochfeld (Glaskeramik, Induktion, Gussplatten oder Gas)[span_5](start_span)[span_5](end_span).</td>
+                        <td>Inkl. Backofen, Steamer, Geschirrspüler, Kühlschrank/Gefrierfach sowie Kochfeld (Glaskeramik, Induktion, Gussplatten oder Gas).</td>
                     </tr>
                     <tr>
                         <td><strong>Nasszellen / Bäder</strong></td>
-                        <td>Gründliche Entkalkung und Reinigung von Bad/WC, Dusche/WC oder Gäste-WC[span_6](start_span)[span_6](end_span) (inkl. Behandlung bei starken Kalkablagerungen[span_7](start_span)[span_7](end_span)).</td>
+                        <td>Gründliche Entkalkung und Reinigung von Bad/WC, Dusche/WC oder Gäste-WC (inkl. Behandlung bei starken Kalkablagerungen).</td>
                     </tr>
                     <tr>
                         <td><strong>Fenster & Storen</strong></td>
-                        <td>Standard- oder grosse Fenster[span_8](start_span)[span_8](end_span), Dachfenster, Balkonverglasung, Wintergarten[span_9](start_span)[span_9](end_span) sowie Lamellenstoren, Rollläden oder Klappläden[span_10](start_span)[span_10](end_span).</td>
+                        <td>Standard- oder grosse Fenster, Dachfenster, Balkonverglasung, Wintergarten sowie Lamellenstoren, Rollläden oder Klappläden.</td>
                     </tr>
                     <tr>
                         <td><strong>Wohnräume & Böden</strong></td>
-                        <td>Säuberung aller Bodenbeläge (Parkett, Laminat, Fliesen, Teppich, Naturstein)[span_11](start_span)[span_11](end_span), Einbauschränke[span_12](start_span)[span_12](end_span), Türen und Fussleisten.</td>
+                        <td>Säuberung aller Bodenbeläge (Parkett, Laminat, Fliesen, Teppich, Naturstein), Einbauschränke, Türen und Fussleisten.</td>
                     </tr>
                     <tr>
                         <td><strong>Nebennutzflächen</strong></td>
-                        <td>Balkon/Terrasse, Keller/Souterrain, Estrich/Dachboden, Garage/Einstellplatz[span_13](start_span)[span_13](end_span), Waschmaschine/Tumbler im Objekt[span_14](start_span)[span_14](end_span).</td>
+                        <td>Balkon/Terrasse, Keller/Souterrain, Estrich/Dachboden, Garage/Einstellplatz, Waschmaschine/Tumbler im Objekt.</td>
                     </tr>
                     <tr>
                         <td><strong>Material & Anfahrt</strong></td>
@@ -305,7 +306,7 @@
 
             <div class="section-header">3. KONDITIONEN & AGB</div>
             <div class="text-block">
-                <p>Preis basiert auf den Angaben im Formular (Zimmer, Zustand, Haustiere/Raucher)[span_15](start_span)[span_15](end_span). AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
+                <p>Preis basiert auf den Angaben im Formular (Zimmer, Zustand, Haustiere/Raucher). Details und AGB unter www.mservice.ch/agb.</p>
             </div>
 
             <div class="section-header">4. GARANTIEREGELUNG</div>
@@ -373,27 +374,27 @@
                 <tbody>
                     <tr>
                         <td><strong>Treppenhaus & Eingang</strong></td>
-                        <td>Gründliche Reinigung von Treppenhaus &amp; Eingangsbereich[span_16](start_span)[span_16](end_span), Handläufen, Briefkastenanlagen und Glastüren.</td>
+                        <td>Gründliche Reinigung von Treppenhaus &amp; Eingangsbereich, Handläufen, Briefkastenanlagen und Glastüren.</td>
                     </tr>
                     <tr>
                         <td><strong>Gemeinschaftliche Waschküche</strong></td>
-                        <td>Säuberung und Pflege der gemeinschaftlichen Waschküche[span_17](start_span)[span_17](end_span), Bodenbeläge, Waschmaschinen, Tumbler und Ausgussbecken.</td>
+                        <td>Säuberung und Pflege der gemeinschaftlichen Waschküche, Bodenbeläge, Waschmaschinen, Tumbler und Ausgussbecken.</td>
                     </tr>
                     <tr>
                         <td><strong>Keller & Tiefgarage</strong></td>
-                        <td>Reinigung vom Keller- / Tiefgaragenbereich[span_18](start_span)[span_18](end_span), Beseitigung von Spinnweben, Staub und grobem Schmutz.</td>
+                        <td>Reinigung vom Keller- / Tiefgaragenbereich, Beseitigung von Spinnweben, Staub und grobem Schmutz.</td>
                     </tr>
                     <tr>
                         <td><strong>Pausenraum & Teeküche</strong></td>
-                        <td>Reinigung von Pausenraum / Teeküche[span_19](start_span)[span_19](end_span) inklusive Oberflächen und Teekücheneinrichtung (falls im Objekt vorhanden).</td>
+                        <td>Reinigung von Pausenraum / Teeküche inklusive Oberflächen und Teekücheneinrichtung (falls im Objekt vorhanden).</td>
                     </tr>
                     <tr>
                         <td><strong>Sanitäranlagen / WCs</strong></td>
-                        <td>Gründliche Reinigung, Desinfektion und Entkalkung der gebäudeverbundenen Sanitärräume und WCs[span_20](start_span)[span_20](end_span).</td>
+                        <td>Gründliche Reinigung, Desinfektion und Entkalkung der gebäudeverbundenen Sanitärräume und WCs.</td>
                     </tr>
                     <tr>
                         <td><strong>Fenster, Aussen & Material</strong></td>
-                        <td>Fenster &amp; Glasfronten, Aussenbereich / Terrassen[span_21](start_span)[span_21](end_span) nach Vereinbarung. Inklusive aller professionellen Reinigungsmittel &amp; Geräte.</td>
+                        <td>Fenster &amp; Glasfronten, Aussenbereich / Terrassen nach Vereinbarung. Inklusive aller professionellen Reinigungsmittel &amp; Geräte.</td>
                     </tr>
                 </tbody>
             </table>
@@ -406,7 +407,7 @@
 
             <div class="section-header">3. KONDITIONEN & AGB</div>
             <div class="text-block">
-                <p>Ausführung gemäss vereinbartem Turnus (wöchentlich/monatlich/flexibel)[span_22](start_span)[span_22](end_span). Zahlungsfrist 10 Tage via QR-Rechnung. AGB unter <strong>www.mservice.ch/agb</strong>.</p>
+                <p>Ausführung gemäss vereinbartem Turnus (wöchentlich/monatlich/flexibel). Zahlungsfrist 10 Tage via QR-Rechnung. AGB unter www.mservice.ch/agb.</p>
             </div>
 
             <div class="section-header">4. GARANTIEREGELUNG</div>
@@ -486,11 +487,11 @@
                     </tr>
                     <tr>
                         <td><strong>Intervall & Zeiten</strong></td>
-                        <td>Ausführung nach Wunschintervall (wöchentlich, alle 2 Wochen, monatlich) an bevorzugten Wochentagen[span_23](start_span)[span_23](end_span).</td>
+                        <td>Ausführung nach Wunschintervall (wöchentlich, alle 2 Wochen, monatlich) an bevorzugten Wochentagen.</td>
                     </tr>
                     <tr>
                         <td><strong>Reinigungsmittel</strong></td>
-                        <td>Option: Werden vom Kunden bereitgestellt oder vom Reinigungsservice mitgebracht[span_24](start_span)[span_24](end_span). Inklusive Anfahrtskosten.</td>
+                        <td>Option: Werden vom Kunden bereitgestellt oder vom Reinigungsservice mitgebracht. Inklusive Anfahrtskosten.</td>
                     </tr>
                 </tbody>
             </table>
@@ -503,7 +504,7 @@
 
             <div class="section-header">3. KONDITIONEN & AGB</div>
             <div class="text-block">
-                <p>Termine bis 48h vorher kostenlos stornierbar. Abrechnung monatlich via QR-Rechnung. AGB unter <strong>www.mservice.ch/agb</strong>.</p>
+                <p>Termine bis 48h vorher kostenlos stornierbar. Abrechnung monatlich via QR-Rechnung. AGB unter www.mservice.ch/agb.</p>
             </div>
 
             <div class="section-header">4. GARANTIEREGELUNG</div>
@@ -571,19 +572,19 @@
                 <tbody>
                     <tr>
                         <td><strong>Anlass & Fokus</strong></td>
-                        <td>Intensivreinigung nach Anlass (Frühjahrsputz, nach Renovation/Umbau, Erstreinigung nach Neubau)[span_25](start_span)[span_25](end_span). Fokus nach Wunsch (gesamtes Objekt oder Teilbereiche).</td>
+                        <td>Intensivreinigung nach Anlass (Frühjahrsputz, nach Renovation/Umbau, Erstreinigung nach Neubau). Fokus nach Wunsch (gesamtes Objekt oder Teilbereiche).</td>
                     </tr>
                     <tr>
                         <td><strong>Fenster & Storen</strong></td>
-                        <td>Gründliche Reinigung von Fenster &amp; Fensterrahmen sowie Storen &amp; Rollläden / Klappläden[span_26](start_span)[span_26](end_span).</td>
+                        <td>Gründliche Reinigung von Fenster &amp; Fensterrahmen sowie Storen &amp; Rollläden / Klappläden.</td>
                     </tr>
                     <tr>
                         <td><strong>Sanitär & Küche</strong></td>
-                        <td>Intensive Badezimmer &amp; WC Entkalkung sowie detaillierte Reinigung von Küche &amp; Küchengeräten[span_27](start_span)[span_27](end_span).</td>
+                        <td>Intensive Badezimmer &amp; WC Entkalkung sowie detaillierte Reinigung von Küche &amp; Küchengeräten.</td>
                     </tr>
                     <tr>
                         <td><strong>Räume & Aussen</strong></td>
-                        <td>Wohn- &amp; Schlafzimmer, Balkon / Terrasse / Sitzplatz sowie Keller / Estrich / Waschküche[span_28](start_span)[span_28](end_span).</td>
+                        <td>Wohn- &amp; Schlafzimmer, Balkon / Terrasse / Sitzplatz sowie Keller / Estrich / Waschküche.</td>
                     </tr>
                     <tr>
                         <td><strong>Material & Geräte</strong></td>
@@ -600,7 +601,7 @@
 
             <div class="section-header">3. KONDITIONEN & AGB</div>
             <div class="text-block">
-                <p>Der Preis deckt den im Formular definierten Fokus ab. Bezahlung via QR-Rechnung (10 Tage). AGB unter <strong>www.mservice.ch/agb</strong>.</p>
+                <p>Der Preis deckt den im Formular definierten Fokus ab. Bezahlung via QR-Rechnung (10 Tage). AGB unter www.mservice.ch/agb.</p>
             </div>
 
             <div class="section-header">4. GARANTIEREGELUNG</div>
