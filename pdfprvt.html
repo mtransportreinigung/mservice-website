@@ -8,16 +8,16 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
             color: #111111;
-            line-height: 1.4;
+            line-height: 1.45;
             background-color: #f1f5f9;
-            font-size: 12.5px;
+            font-size: 12px;
         }
         .page {
-            width: 800px;
-            min-height: 1120px;
-            margin: 20px auto;
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
             background: #ffffff;
-            padding: 40px 45px;
+            padding: 20mm 20mm 20mm 25mm; /* Větší levý okraj kvůli okénku obálky */
             box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             position: relative;
             display: flex;
@@ -30,101 +30,105 @@
                 height: 100vh;
                 min-height: 100vh;
                 margin: 0;
-                padding: 35px 40px;
+                padding: 15mm 15mm 15mm 20mm;
                 box-shadow: none;
                 page-break-after: always;
                 page-break-inside: avoid;
             }
         }
 
-        /* Top Header podle vzorového PDF */
-        .top-bar {
+        /* Top Header - levý horní roh */
+        .top-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 25px;
-            padding-bottom: 15px;
+            padding-bottom: 12px;
             border-bottom: 2px solid #002266;
         }
-        .brand-box {
+        .brand-section {
             display: flex;
             align-items: center;
             gap: 12px;
         }
         .logo-img {
-            height: 52px;
+            height: 48px;
             width: auto;
         }
-        .company-title-wrap {
+        .brand-text {
             display: flex;
             flex-direction: column;
         }
         .company-name {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: bold;
             color: #002266;
             line-height: 1.2;
         }
-        .company-sub {
-            font-size: 11.5px;
-            color: #FF6A00;
-            font-weight: bold;
-        }
-        .sender-info {
-            text-align: right;
-            font-size: 11px;
+        .company-details {
+            font-size: 10.5px;
             color: #475569;
-            line-height: 1.35;
+            margin-top: 2px;
+            line-height: 1.3;
         }
-        .sender-info strong {
-            color: #002266;
-            font-size: 12px;
+        .meta-top-box {
+            text-align: right;
+            font-size: 11.5px;
+            color: #334155;
         }
 
-        /* Title & Metadata Block */
+        /* Okénko pro obálku (Fensterkuvert DIN 5008 - vlevo nahoře pod hlavičkou) */
+        .window-envelope-address {
+            width: 85mm;
+            height: 45mm;
+            margin-bottom: 15px;
+            padding: 5px;
+            font-size: 12px;
+            color: #1e293b;
+            line-height: 1.5;
+        }
+        .window-envelope-address .sender-line {
+            font-size: 8.5px;
+            color: #64748b;
+            border-bottom: 1px solid #cbd5e1;
+            padding-bottom: 2px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Title & Document metadata */
         .doc-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
             color: #002266;
             margin-bottom: 12px;
             letter-spacing: 0.5px;
-        }
-        .meta-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            font-size: 12px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-        }
-        .meta-table td {
-            padding: 6px 10px;
-            vertical-align: top;
-            width: 50%;
+            text-transform: uppercase;
         }
 
-        /* Section Headings exact like Muster */
+        /* Section Headings */
         .section-header {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: bold;
             color: #002266;
             text-transform: uppercase;
             border-bottom: 1.5px solid #0051C7;
             padding-bottom: 3px;
             margin-top: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         /* Main Service Table */
         table.service-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 15px;
-            font-size: 11.5px;
+            margin-bottom: 12px;
+            font-size: 11px;
         }
         table.service-table th, table.service-table td {
             border: 1px solid #cbd5e1;
-            padding: 8px 10px;
+            padding: 7px 9px;
             text-align: left;
             vertical-align: top;
         }
@@ -138,9 +142,9 @@
         .price-container {
             background: #f0fdf4;
             border: 1.5px solid #86efac;
-            padding: 12px 15px;
-            margin: 15px 0;
-            font-size: 13.5px;
+            padding: 10px 14px;
+            margin: 12px 0;
+            font-size: 13px;
             font-weight: bold;
             color: #166534;
             display: flex;
@@ -151,19 +155,19 @@
 
         /* Terms & Text */
         .text-block {
-            font-size: 11.5px;
+            font-size: 11px;
             color: #334155;
-            line-height: 1.5;
-            margin-bottom: 12px;
+            line-height: 1.45;
+            margin-bottom: 10px;
         }
         .text-block p {
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
         .text-block ul {
-            margin: 4px 0 10px 18px;
+            margin: 4px 0 8px 16px;
         }
         .text-block li {
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         /* Signature Section */
@@ -173,14 +177,14 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
-            font-size: 11.5px;
+            font-size: 11px;
         }
         .sig-box {
-            width: 250px;
+            width: 240px;
         }
         .sig-line {
             border-top: 1px solid #64748b;
-            margin-top: 40px;
+            margin-top: 35px;
             padding-top: 4px;
             text-align: center;
             color: #475569;
@@ -189,12 +193,12 @@
 
         /* Footer */
         .footer-bar {
-            margin-top: 20px;
+            margin-top: 15px;
             border-top: 1px solid #cbd5e1;
-            padding-top: 8px;
+            padding-top: 6px;
             display: flex;
             justify-content: space-between;
-            font-size: 10.5px;
+            font-size: 10px;
             color: #64748b;
         }
     </style>
@@ -202,43 +206,39 @@
 <body>
 
     <!-- ==================================================================== -->
-    <!-- 1. SERVICE: UMZUGSREINIGUNG (ENDREINIGUNG) - SEITE 1 -->
+    <!-- 1. UMZUGSREINIGUNG -->
     <!-- ==================================================================== -->
     <div class="page">
-        <div class="top-bar">
-            <div class="brand-box">
+        <!-- Hlavička v levém horním rohu -->
+        <div class="top-header">
+            <div class="brand-section">
                 <img src="/logo.PNG" alt="M Logo" class="logo-img">
-                <div class="company-title-wrap">
-                    <span class="company-name">Mejstrik Transport</span>
-                    <span class="company-sub">& Reinigung Service</span>
+                <div class="brand-text">
+                    <span class="company-name">M Transport &amp; Reinigung Service</span>
+                    <span class="company-details">
+                        Bädlistrasse 4, CH-8586 Ennetaach<br>
+                        Tel: +41 78 345 80 72 | E-Mail: info@mservice.ch
+                    </span>
                 </div>
             </div>
-            <div class="sender-info">
-                <strong>Mejstrik Transport & Reinigung Service</strong><br>
-                Daniel Mejstrik<br>
-                CH-8586 Ennetaach
+            <div class="meta-top-box">
+                <strong>Datum:</strong> [DATUM]<br>
+                <strong>Offerten-Nr.:</strong> [#001]<br>
+                <strong>Gültigkeit:</strong> 30 Tage
             </div>
         </div>
 
-        <div class="doc-title">OFFERTE</div>
+        <!-- Adresní okénko pro obálku -->
+        <div class="window-envelope-address">
+            <div class="sender-line">M Transport &amp; Reinigung Service • Bädlistrasse 4 • 8586 Ennetaach</div>
+            <strong>[Kundenname]</strong><br>
+            [Strasse &amp; Hausnummer]<br>
+            [PLZ &amp; Ort]
+        </div>
 
-        <table class="meta-table">
-            <tr>
-                <td>
-                    <strong>Datum:</strong> [DATUM]<br>
-                    <strong>Offerten-Nr.:</strong> [#001]<br>
-                    <strong>Gültigkeit:</strong> 30 Tage
-                </td>
-                <td>
-                    <strong>KUNDENAME:</strong> [Kundenname]<br>
-                    <strong>EMAIL / TELEFON:</strong> [E-Mail] / [Telefon]<br>
-                    <strong>Reinigungsobjekt:</strong> [Adresse, PLZ Ort]<br>
-                    <strong>Möblierung:</strong> [Geräumt / Teilmöbliert]
-                </td>
-            </tr>
-        </table>
+        <div class="doc-title">OFFERTE – UMZUGSREINIGUNG (ENDREINIGUNG)</div>
 
-        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG (ENDREINIGUNG BEZUGSFERTIG)</div>
+        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
         <table class="service-table">
             <thead>
                 <tr>
@@ -253,11 +253,11 @@
                 </tr>
                 <tr>
                     <td><strong>Nasszellen / Bad & WC</strong></td>
-                    <td>Gründliche Reinigung, Entkalkung und Desinfektion aller Badezimmer und separaten WCs. Säuberung von Badewanne, Duschkabine, Armaturen, Spiegeln, Fliesen und Sanitäranlagen.</td>
+                    <td>Gründliche Reinigung, Entkalkung und Desinfektion aller Badezimmer und separaten WCs. Badewanne, Duschkabine, Armaturen, Spiegel und Fliesen.</td>
                 </tr>
                 <tr>
-                    <td><strong>Fenster & Klappläden</strong></td>
-                    <td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen und Fensterbänken sowie gründliches Abwischen aller Lamellenstoren / Klappläden.</td>
+                    <td><strong>Fenster & Storen</strong></td>
+                    <td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen, Fensterbänken sowie gründliches Abwischen aller Lamellenstoren / Klappläden.</td>
                 </tr>
                 <tr>
                     <td><strong>Wohnräume & Böden</strong></td>
@@ -265,7 +265,7 @@
                 </tr>
                 <tr>
                     <td><strong>Nebennutzflächen</strong></td>
-                    <td>Gründliche Reinigung aller zugehörigen Nebenräume wie Keller, Dachboden, Garage, Waschraum (inkl. Aussenreinigung von Waschmaschine & Tumbler) sowie Balkon/Terrasse.</td>
+                    <td>Gründliche Reinigung aller zugehörigen Nebenräume wie Keller, Dachboden, Garage oder Balkon/Terrasse (gemäss Absprache).</td>
                 </tr>
                 <tr>
                     <td><strong>Material & Anfahrt</strong></td>
@@ -280,56 +280,15 @@
             <span>ab CHF [Betrag].-</span>
         </div>
 
-        <div class="footer-bar">
-            <span>Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch</span>
-            <span>Seite 1 von 2</span>
-        </div>
-    </div>
-
-    <!-- 1. SERVICE: UMZUGSREINIGUNG - SEITE 2 -->
-    <div class="page">
-        <div class="top-bar">
-            <div class="brand-box">
-                <img src="/logo.PNG" alt="M Logo" class="logo-img">
-                <div class="company-title-wrap">
-                    <span class="company-name">Mejstrik Transport</span>
-                    <span class="company-sub">& Reinigung Service</span>
-                </div>
-            </div>
-            <div class="sender-info">
-                <strong>Mejstrik Transport & Reinigung Service</strong><br>
-                Daniel Mejstrik<br>
-                CH-8586 Ennetaach
-            </div>
-        </div>
-
-        <div class="section-header">3. VERBINDLICHE BESTIMMUNGEN & ZUSATZVEREINBARUNGEN</div>
+        <div class="section-header">3. KONDITIONEN & AGB</div>
         <div class="text-block">
-            <p><strong>Hinweis zur Preisangabe und Möblierung:</strong></p>
-            <p>Der angegebene Pauschalpreis basiert auf dem Zustand und Umfang des Objekts zum Zeitpunkt der Besichtigung bzw. den vereinbarten Angaben.</p>
-            <ul>
-                <li><strong>Extremverschmutzung:</strong> Sollte es im Zeitraum zwischen der Besichtigung und dem eigentlichen Reinigungstag zu einer aussergewöhnlichen oder extremen Verschmutzung kommen, behalten wir uns eine angemessene Preisanpassung vor.</li>
-                <li><strong>Verbleibender Möbelbestand:</strong> Die Offerte kalkuliert den vereinbarten Zustand. Verbleibt am Reinigungstag eine unerwartet grosse Menge an Möbeln im Objekt, die gereinigt oder verschoben werden müssen, kann sich der Preis entsprechend anpassen.</li>
-                <li><strong>Transparente Absprache:</strong> Eventuelle Preisänderungen werden ausnahmslos vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</li>
-                <li><strong>Bezahlung:</strong> Bar, per TWINT oder per QR-Rechnung (spätestens innert 10 Tagen ab Rechnungsdatum).</li>
-                <li><strong>AGB:</strong> Ergänzend gelten unsere Allgemeinen Geschäftsbedingungen unter <strong>www.mservice.ch/agb.html</strong>.</li>
-            </ul>
+            <p><strong>Bestimmungen:</strong> Der Preis basiert auf dem besichtigten Zustand. Bei starker Abweichung oder Möblierung erfolgt Absprache vorab. AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
         </div>
 
         <div class="section-header">4. GARANTIEREGELUNG</div>
         <div class="text-block">
-            <p><strong>48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</strong></p>
-            <p>Da die Reinigung in diesem Modus ohne unsere persönliche Anwesenheit beim offiziellen Termin der Wohnungsübergabe stattfindet (persönliche Anwesenheit nur nach vorheriger Vereinbarung), bieten wir Ihnen unsere verlässliche 48-Stunden-Zufriedenheitsgarantie:</p>
-            <ul>
-                <li>Falls Sie oder die Liegenschaftsverwaltung innerhalb von <strong>48 Stunden ab der Wohnungsübergabe</strong> Mängel bezüglich des vereinbarten Reinigungsumfangs feststellen sollten, kommen wir umgehend vorbei und beheben diese vollständig auf unsere Kosten.</li>
-            </ul>
-            <p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p>
-        </div>
-
-        <div style="margin-top: 15px; font-size: 12px; color: #002266;">
-            Freundliche Grüsse<br>
-            <strong>Daniel Mejstrik</strong><br>
-            Mejstrik Transport & Reinigung Service
+            <p><strong>48-Stunden-Reklamationsfrist ab Übergabe:</strong><br>
+            Da die Reinigung ohne unsere persönliche Anwesenheit beim offiziellen Übergabetermin stattfindet, gewähren wir eine 48-Stunden-Garantie **ab dem Zeitpunkt der offiziellen Übergabe**. Werden innerhalb von 48 Stunden Mängel gemeldet, kommen wir umgehend und beheben alles **vollständig auf unsere Kosten**.</p>
         </div>
 
         <div class="signature-container">
@@ -340,50 +299,44 @@
         </div>
 
         <div class="footer-bar">
-            <span>Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch</span>
-            <span>Seite 2 von 2</span>
+            <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
+            <span>Seite 1 von 1</span>
         </div>
     </div>
 
 
     <!-- ==================================================================== -->
-    <!-- 2. SERVICE: GEBÄUDEREINIGUNG - SEITE 1 -->
+    <!-- 2. GEBÄUDEREINIGUNG -->
     <!-- ==================================================================== -->
     <div class="page">
-        <div class="top-bar">
-            <div class="brand-box">
+        <div class="top-header">
+            <div class="brand-section">
                 <img src="/logo.PNG" alt="M Logo" class="logo-img">
-                <div class="company-title-wrap">
-                    <span class="company-name">Mejstrik Transport</span>
-                    <span class="company-sub">& Reinigung Service</span>
+                <div class="brand-text">
+                    <span class="company-name">M Transport &amp; Reinigung Service</span>
+                    <span class="company-details">
+                        Bädlistrasse 4, CH-8586 Ennetaach<br>
+                        Tel: +41 78 345 80 72 | E-Mail: info@mservice.ch
+                    </span>
                 </div>
             </div>
-            <div class="sender-info">
-                <strong>Mejstrik Transport & Reinigung Service</strong><br>
-                Daniel Mejstrik<br>
-                CH-8586 Ennetaach
+            <div class="meta-top-box">
+                <strong>Datum:</strong> [DATUM]<br>
+                <strong>Offerten-Nr.:</strong> [#002]<br>
+                <strong>Gültigkeit:</strong> 30 Tage
             </div>
         </div>
 
-        <div class="doc-title">OFFERTE</div>
+        <div class="window-envelope-address">
+            <div class="sender-line">M Transport &amp; Reinigung Service • Bädlistrasse 4 • 8586 Ennetaach</div>
+            <strong>[Firmenname / Kunde]</strong><br>
+            [Strasse &amp; Hausnummer]<br>
+            [PLZ &amp; Ort]
+        </div>
 
-        <table class="meta-table">
-            <tr>
-                <td>
-                    <strong>Datum:</strong> [DATUM]<br>
-                    <strong>Offerten-Nr.:</strong> [#002]<br>
-                    <strong>Gültigkeit:</strong> 30 Tage
-                </td>
-                <td>
-                    <strong>KUNDE / FIRMA:</strong> [Firmenname / Name]<br>
-                    <strong>EMAIL / TELEFON:</strong> [E-Mail] / [Telefon]<br>
-                    <strong>Einsatzort:</strong> [Strasse, PLZ Ort]<br>
-                    <strong>Objektart:</strong> [Büro / Praxis / Treppenhaus]
-                </td>
-            </tr>
-        </table>
+        <div class="doc-title">OFFERTE – GEBÄUDEREINIGUNG &amp; GEWERBERÄUME</div>
 
-        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG (GEBÄUDEREINIGUNG)</div>
+        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
         <table class="service-table">
             <thead>
                 <tr>
@@ -394,19 +347,19 @@
             <tbody>
                 <tr>
                     <td><strong>Bodenreinigung</strong></td>
-                    <td>Professionelles Staubsaugen und feuchtes Aufnehmen aller Bodenbeläge (Teppich, Fliesen, Parkett, Hartböden).</td>
+                    <td>Professionelles Staubsaugen und feuchtes Aufnehmen aller Bodenbeläge (Teppich, Fliesen, Hartböden).</td>
                 </tr>
                 <tr>
                     <td><strong>Sanitäranlagen</strong></td>
-                    <td>Gründliche Reinigung, Desinfektion und Entkalkung aller WCs, Waschbecken, Armaturen, Spiegel und Sanitärbereiche.</td>
+                    <td>Gründliche Reinigung, Desinfektion und Entkalkung von WCs, Waschbecken, Armaturen und Spiegeln.</td>
                 </tr>
                 <tr>
                     <td><strong>Mobiliar & Oberflächen</strong></td>
-                    <td>Staubwischen und feuchte Reinigung von Pulten, Arbeitstischen, Schränken, Regalen, Griffen und Fensterbänken.</td>
+                    <td>Staubwischen und feuchte Reinigung von Pulten, Tischen, Regalen, Schränken, Griffen und Fensterbänken.</td>
                 </tr>
                 <tr>
                     <td><strong>Glas- & Fensterflächen</strong></td>
-                    <td>Regelmässige oder einmalige Reinigung von Fensterflächen, Rahmen und Glastüren im Innen- und Eingangsbereich.</td>
+                    <td>Regelmässige oder einmalige Reinigung der Fensterflächen und Glastüren im Innenbereich.</td>
                 </tr>
                 <tr>
                     <td><strong>Allgemeine Bereiche</strong></td>
@@ -414,62 +367,26 @@
                 </tr>
                 <tr>
                     <td><strong>Material & Anfahrt</strong></td>
-                    <td>Inklusive aller benötigten Profi-Reinigungsmittel, Geräte sowie Anfahrts- und Transportkosten.</td>
+                    <td>Inklusive aller benötigten Profi-Reinigungsmittel, Geräte sowie Anfahrtskosten.</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
+        <div class="section-header">2. PREISZUSAMMENSTELLUNG & TURNUS</div>
         <div class="price-container">
-            <span>Pauschalpreis / Ansatz Gebäudereinigung:</span>
+            <span>Gewünschter Intervall / Pauschalpreis:</span>
             <span>ab CHF [Betrag].-</span>
         </div>
 
-        <div class="footer-bar">
-            <span>Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch</span>
-            <span>Seite 1 von 2</span>
-        </div>
-    </div>
-
-    <!-- 2. SERVICE: GEBÄUDEREINIGUNG - SEITE 2 -->
-    <div class="page">
-        <div class="top-bar">
-            <div class="brand-box">
-                <img src="/logo.PNG" alt="M Logo" class="logo-img">
-                <div class="company-title-wrap">
-                    <span class="company-name">Mejstrik Transport</span>
-                    <span class="company-sub">& Reinigung Service</span>
-                </div>
-            </div>
-            <div class="sender-info">
-                <strong>Mejstrik Transport & Reinigung Service</strong><br>
-                Daniel Mejstrik<br>
-                CH-8586 Ennetaach
-            </div>
-        </div>
-
-        <div class="section-header">3. VERBINDLICHE BESTIMMUNGEN & KONDITIONEN</div>
+        <div class="section-header">3. KONDITIONEN & AGB</div>
         <div class="text-block">
-            <p><strong>Hinweise zur Durchführung und Abrechnung:</strong></p>
-            <ul>
-                <li><strong>Ausführung:</strong> Die Reinigungszeiten werden flexibel vereinbart, um den Geschäftsbetrieb nicht zu stören.</li>
-                <li><strong>Voraussetzungen:</strong> Der Kunde stellt kostenlosen Zugang zu Wasser, Strom und Parkmöglichkeiten bereit.</li>
-                <li><strong>Abrechnung:</strong> Per QR-Rechnung per E-Mail oder Post (Zahlungsfrist 10 Tage rein netto).</li>
-                <li><strong>AGB:</strong> Es gelten unsere Allgemeinen Geschäftsbedingungen unter <strong>www.mservice.ch/agb.html</strong>.</li>
-            </ul>
+            <p><strong>Bestimmungen:</strong> Flexible Ausführungszeiten nach Absprache. Zahlungsfrist 10 Tage via QR-Rechnung. AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
         </div>
 
         <div class="section-header">4. GARANTIEREGELUNG</div>
         <div class="text-block">
-            <p><strong>48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</strong></p>
-            <p>Wir stehen für verlässliche Qualität. Sollten Sie innerhalb von <strong>48 Stunden nach Ausführung / Fertigstellung der Reinigung</strong> Mängel im vereinbarten Leistungsumfang feststellen, kommen wir umgehend vorbei und beheben diese vollständig auf unsere Kosten.</p>
-            <p>Wir bedanken uns herzlich für Ihren Auftrag und freuen uns auf die Zusammenarbeit.</p>
-        </div>
-
-        <div style="margin-top: 15px; font-size: 12px; color: #002266;">
-            Freundliche Grüsse<br>
-            <strong>Daniel Mejstrik</strong><br>
-            Mejstrik Transport & Reinigung Service
+            <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong><br>
+            Sollten Sie innerhalb von <strong>48 Stunden nach Ausführung / Fertigstellung der Arbeiten</strong> Mängel im vereinbarten Leistungsumfang feststellen, kommen wir umgehend vorbei und korrigieren diese **vollständig auf unsere Kosten**.</p>
         </div>
 
         <div class="signature-container">
@@ -480,50 +397,44 @@
         </div>
 
         <div class="footer-bar">
-            <span>Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch</span>
-            <span>Seite 2 von 2</span>
+            <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
+            <span>Seite 1 von 1</span>
         </div>
     </div>
 
 
     <!-- ==================================================================== -->
-    <!-- 3. SERVICE: UNTERHALTSREINIGUNG - SEITE 1 -->
+    <!-- 3. UNTERHALTSREINIGUNG -->
     <!-- ==================================================================== -->
     <div class="page">
-        <div class="top-bar">
-            <div class="brand-box">
+        <div class="top-header">
+            <div class="brand-section">
                 <img src="/logo.PNG" alt="M Logo" class="logo-img">
-                <div class="company-title-wrap">
-                    <span class="company-name">Mejstrik Transport</span>
-                    <span class="company-sub">& Reinigung Service</span>
+                <div class="brand-text">
+                    <span class="company-name">M Transport &amp; Reinigung Service</span>
+                    <span class="company-details">
+                        Bädlistrasse 4, CH-8586 Ennetaach<br>
+                        Tel: +41 78 345 80 72 | E-Mail: info@mservice.ch
+                    </span>
                 </div>
             </div>
-            <div class="sender-info">
-                <strong>Mejstrik Transport & Reinigung Service</strong><br>
-                Daniel Mejstrik<br>
-                CH-8586 Ennetaach
+            <div class="meta-top-box">
+                <strong>Datum:</strong> [DATUM]<br>
+                <strong>Offerten-Nr.:</strong> [#003]<br>
+                <strong>Gültigkeit:</strong> 30 Tage
             </div>
         </div>
 
-        <div class="doc-title">OFFERTE</div>
+        <div class="window-envelope-address">
+            <div class="sender-line">M Transport &amp; Reinigung Service • Bädlistrasse 4 • 8586 Ennetaach</div>
+            <strong>[Kundenname]</strong><br>
+            [Strasse &amp; Hausnummer]<br>
+            [PLZ &amp; Ort]
+        </div>
 
-        <table class="meta-table">
-            <tr>
-                <td>
-                    <strong>Datum:</strong> [DATUM]<br>
-                    <strong>Offerten-Nr.:</strong> [#003]<br>
-                    <strong>Gültigkeit:</strong> 30 Tage
-                </td>
-                <td>
-                    <strong>KUNDENAME:</strong> [Kundenname]<br>
-                    <strong>EMAIL / TELEFON:</strong> [E-Mail] / [Telefon]<br>
-                    <strong>Einsatzort:</strong> [Strasse, PLZ Ort]<br>
-                    <strong>Turnus:</strong> [Wöchentlich / 14-Tägig]
-                </td>
-            </tr>
-        </table>
+        <div class="doc-title">OFFERTE – UNTERHALTSREINIGUNG (HAUSHALT)</div>
 
-        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG (UNTERHALTSREINIGUNG)</div>
+        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
         <table class="service-table">
             <thead>
                 <tr>
@@ -546,65 +457,30 @@
                 </tr>
                 <tr>
                     <td><strong>Zusatzleistungen</strong></td>
-                    <td>Nach Absprache (z. B. Betten beziehen, Bügeln oder Innenreinigung von Kühlschrank/Backofen).</td>
+                    <td>Nach Absprache (z. B. Betten beziehen oder Reinigungsmittel bereitstellen).</td>
                 </tr>
                 <tr>
                     <td><strong>Material & Anfahrt</strong></td>
-                    <td>Inklusive aller benötigten Reinigungsmittel und Geräte sowie der Anfahrtskosten im Einsatzgebiet.</td>
+                    <td>Inklusive aller benötigten Reinigungsmittel und Geräte sowie Anfahrtskosten im Einsatzgebiet.</td>
                 </tr>
             </tbody>
         </table>
 
         <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
         <div class="price-container">
-            <span>Stundenansatz Unterhaltsreinigung (inkl. Material & Anfahrt):</span>
+            <span>Stundenansatz Unterhaltsreinigung:</span>
             <span>CHF [Betrag].- / Std.</span>
         </div>
 
-        <div class="footer-bar">
-            <span>Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch</span>
-            <span>Seite 1 von 2</span>
-        </div>
-    </div>
-
-    <!-- 3. SERVICE: UNTERHALTSREINIGUNG - SEITE 2 -->
-    <div class="page">
-        <div class="top-bar">
-            <div class="brand-box">
-                <img src="/logo.PNG" alt="M Logo" class="logo-img">
-                <div class="company-title-wrap">
-                    <span class="company-name">Mejstrik Transport</span>
-                    <span class="company-sub">& Reinigung Service</span>
-                </div>
-            </div>
-            <div class="sender-info">
-                <strong>Mejstrik Transport & Reinigung Service</strong><br>
-                Daniel Mejstrik<br>
-                CH-8586 Ennetaach
-            </div>
-        </div>
-
-        <div class="section-header">3. VERBINDLICHE BESTIMMUNGEN & KONDITIONEN</div>
+        <div class="section-header">3. KONDITIONEN & AGB</div>
         <div class="text-block">
-            <p><strong>Hinweise zu Stornierung und Abrechnung:</strong></p>
-            <ul>
-                <li><strong>Stornierung:</strong> Termine können bis zu <strong>48 Stunden im Voraus kostenlos</strong> abgesagt werden. Bei späteren Absagen unter 48h berechnen wir 50 %, unter 24h 100 % des Aufwands.</li>
-                <li><strong>Abrechnung:</strong> Monatsabrechnung bequem per QR-Rechnung per E-Mail oder Post (Zahlungsfrist: 10 Tage).</li>
-                <li><strong>AGB:</strong> Es gelten unsere Allgemeinen Geschäftsbedingungen unter <strong>www.mservice.ch/agb.html</strong>.</li>
-            </ul>
+            <p><strong>Bestimmungen:</strong> Termine bis 48h vorher kostenlos stornierbar. Abrechnung monatlich via QR-Rechnung. AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
         </div>
 
         <div class="section-header">4. GARANTIEREGELUNG</div>
         <div class="text-block">
-            <p><strong>48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</strong></p>
-            <p>Sollten Sie nach einem Reinigungseinsatz innerhalb von <strong>48 Stunden nach der Ausführung</strong> Mängel im vereinbarten Leistungsumfang feststellen, kommen wir umgehend vorbei und korrigieren diese vollständig auf unsere Kosten.</p>
-            <p>Vielen Dank für Ihr Vertrauen!</p>
-        </div>
-
-        <div style="margin-top: 15px; font-size: 12px; color: #002266;">
-            Freundliche Grüsse<br>
-            <strong>Daniel Mejstrik</strong><br>
-            Mejstrik Transport & Reinigung Service
+            <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong><br>
+            Sollten Sie nach einem Reinigungseinsatz innerhalb von <strong>48 Stunden nach der Ausführung</strong> Mängel feststellen, kommen wir umgehend vorbei und bessern diese **vollständig auf unsere Kosten** nach.</p>
         </div>
 
         <div class="signature-container">
@@ -615,50 +491,44 @@
         </div>
 
         <div class="footer-bar">
-            <span>Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch</span>
-            <span>Seite 2 von 2</span>
+            <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
+            <span>Seite 1 von 1</span>
         </div>
     </div>
 
 
     <!-- ==================================================================== -->
-    <!-- 4. SERVICE: GRUNDREINIGUNG - SEITE 1 -->
+    <!-- 4. GRUNDREINIGUNG -->
     <!-- ==================================================================== -->
     <div class="page">
-        <div class="top-bar">
-            <div class="brand-box">
+        <div class="top-header">
+            <div class="brand-section">
                 <img src="/logo.PNG" alt="M Logo" class="logo-img">
-                <div class="company-title-wrap">
-                    <span class="company-name">Mejstrik Transport</span>
-                    <span class="company-sub">& Reinigung Service</span>
+                <div class="brand-text">
+                    <span class="company-name">M Transport &amp; Reinigung Service</span>
+                    <span class="company-details">
+                        Bädlistrasse 4, CH-8586 Ennetaach<br>
+                        Tel: +41 78 345 80 72 | E-Mail: info@mservice.ch
+                    </span>
                 </div>
             </div>
-            <div class="sender-info">
-                <strong>Mejstrik Transport & Reinigung Service</strong><br>
-                Daniel Mejstrik<br>
-                CH-8586 Ennetaach
+            <div class="meta-top-box">
+                <strong>Datum:</strong> [DATUM]<br>
+                <strong>Offerten-Nr.:</strong> [#004]<br>
+                <strong>Gültigkeit:</strong> 30 Tage
             </div>
         </div>
 
-        <div class="doc-title">OFFERTE</div>
+        <div class="window-envelope-address">
+            <div class="sender-line">M Transport &amp; Reinigung Service • Bädlistrasse 4 • 8586 Ennetaach</div>
+            <strong>[Kundenname]</strong><br>
+            [Strasse &amp; Hausnummer]<br>
+            [PLZ &amp; Ort]
+        </div>
 
-        <table class="meta-table">
-            <tr>
-                <td>
-                    <strong>Datum:</strong> [DATUM]<br>
-                    <strong>Offerten-Nr.:</strong> [#004]<br>
-                    <strong>Gültigkeit:</strong> 30 Tage
-                </td>
-                <td>
-                    <strong>KUNDENAME:</strong> [Kundenname]<br>
-                    <strong>EMAIL / TELEFON:</strong> [E-Mail] / [Telefon]<br>
-                    <strong>Reinigungsobjekt:</strong> [Adresse, PLZ Ort]<br>
-                    <strong>Anlass:</strong> [Nach Umbau / Frühlingsputz]
-                </td>
-            </tr>
-        </table>
+        <div class="doc-title">OFFERTE – GRUNDREINIGUNG (TIEFENREINIGUNG)</div>
 
-        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG (GRUNDREINIGUNG)</div>
+        <div class="section-header">1. UMFASSENDER LEISTUNGSUMFANG</div>
         <table class="service-table">
             <thead>
                 <tr>
@@ -673,7 +543,7 @@
                 </tr>
                 <tr>
                     <td><strong>Sanitär & Küche</strong></td>
-                    <td>Detaillierte Grundreinigung aller Fugen, Wandfliesen, Sanitärkeramik sowie tiefenwirksame Entfettung aller Küchengeräte.</td>
+                    <td>Detaillierte Grundreinigung aller Fugen, Wandfliesen, Sanitärkeramik sowie Entfettung aller Küchengeräte.</td>
                 </tr>
                 <tr>
                     <td><strong>Böden & Rahmen</strong></td>
@@ -681,7 +551,7 @@
                 </tr>
                 <tr>
                     <td><strong>Fenster & Storen</strong></td>
-                    <td>Gründliche Fenster- und Rahmenreinigung inklusive Abwischen der Lamellenstoren/Rolläden nach Vereinbarung.</td>
+                    <td>Gründliche Fenster- und Rahmenreinigung inklusive Abwischen der Lamellenstoren nach Vereinbarung.</td>
                 </tr>
                 <tr>
                     <td><strong>Material & Spezialgeräte</strong></td>
@@ -692,54 +562,19 @@
 
         <div class="section-header">2. PREISZUSAMMENSTELLUNG</div>
         <div class="price-container">
-            <span>Pauschalpreis Grundreinigung (inkl. Spezialmaterial & Anfahrt):</span>
+            <span>Pauschalpreis Grundreinigung:</span>
             <span>ab CHF [Betrag].-</span>
         </div>
 
-        <div class="footer-bar">
-            <span>Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch</span>
-            <span>Seite 1 von 2</span>
-        </div>
-    </div>
-
-    <!-- 4. SERVICE: GRUNDREINIGUNG - SEITE 2 -->
-    <div class="page">
-        <div class="top-bar">
-            <div class="brand-box">
-                <img src="/logo.PNG" alt="M Logo" class="logo-img">
-                <div class="company-title-wrap">
-                    <span class="company-name">Mejstrik Transport</span>
-                    <span class="company-sub">& Reinigung Service</span>
-                </div>
-            </div>
-            <div class="sender-info">
-                <strong>Mejstrik Transport & Reinigung Service</strong><br>
-                Daniel Mejstrik<br>
-                CH-8586 Ennetaach
-            </div>
-        </div>
-
-        <div class="section-header">3. VERBINDLICHE BESTIMMUNGEN & KONDITIONEN</div>
+        <div class="section-header">3. KONDITIONEN & AGB</div>
         <div class="text-block">
-            <p><strong>Hinweise zur Durchführung und Bezahlung:</strong></p>
-            <ul>
-                <li><strong>Arbeitsumfang:</strong> Der kalkulierte Preis basiert auf der Beschreibung und Vereinbarung des Zustands. Significanter Mehraufwand wird immer vorab abgestimmt.</li>
-                <li><strong>Bezahlung:</strong> Bar, per TWINT oder per QR-Rechnung per E-Mail/Post (Zahlungsfrist 10 Tage ab Rechnungsdatum).</li>
-                <li><strong>AGB:</strong> Ergänzend gelten unsere Allgemeinen Geschäftsbedingungen unter <strong>www.mservice.ch/agb.html</strong>.</li>
-            </ul>
+            <p><strong>Bestimmungen:</strong> Der Preis deckt den besprochenen Umfang ab. Bezahlung via QR-Rechnung (10 Tage). AGB einsehbar unter <strong>www.mservice.ch/agb</strong>.</p>
         </div>
 
         <div class="section-header">4. GARANTIEREGELUNG</div>
         <div class="text-block">
-            <p><strong>48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</strong></p>
-            <p>Wir garantieren gründliche Qualität. Sollten Sie innerhalb von <strong>48 Stunden nach Ausführung / Fertigstellung der Grundreinigung</strong> Mängel im vereinbarten Leistungsumfang feststellen, kommen wir umgehend vorbei und bessern diese vollständig auf unsere Kosten nach.</p>
-            <p>Herzlichen Dank für Ihr Vertrauen!</p>
-        </div>
-
-        <div style="margin-top: 15px; font-size: 12px; color: #002266;">
-            Freundliche Grüsse<br>
-            <strong>Daniel Mejstrik</strong><br>
-            Mejstrik Transport & Reinigung Service
+            <p><strong>48-Stunden-Reklamationsfrist ab Fertigstellung:</strong><br>
+            Sollten Sie innerhalb von <strong>48 Stunden nach Ausführung / Fertigstellung der Grundreinigung</strong> Mängel feststellen, kommen wir umgehend vorbei und bessern diese **vollständig auf unsere Kosten** nach.</p>
         </div>
 
         <div class="signature-container">
@@ -750,8 +585,8 @@
         </div>
 
         <div class="footer-bar">
-            <span>Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch</span>
-            <span>Seite 2 von 2</span>
+            <span>M Transport & Reinigung Service | 8586 Ennetaach | info@mservice.ch | www.mservice.ch</span>
+            <span>Seite 1 von 1</span>
         </div>
     </div>
 
