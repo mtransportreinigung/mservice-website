@@ -65,5 +65,13 @@
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
+ 
+  <!-- AGB --->
+  <url>
+    <loc>https://www.mservice.ch/agb.html</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.1</priority>
+  </url>
 
 </urlset>
