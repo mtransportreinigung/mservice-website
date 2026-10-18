@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lohnbuchhaltung - M Transport & Reinigung Service</title>
+    <title>Lohnbuchhaltung - Mejstrik Transport & Reinigung Service</title>
     <style>
         :root {
             --primary: #1e3a8a;
-            --primary-dark: #1e293b;
+            --primary-dark: #0f172a;
             --accent: #2563eb;
             --bg-body: #f8fafc;
             --card-bg: #ffffff;
@@ -161,7 +161,7 @@
             background-color: #f1f5f9;
         }
 
-        /* TABLE STYLES (BUCHHALTUNG LOOK) */
+        /* TABLE STYLES */
         .table-responsive {
             overflow-x: auto;
         }
@@ -193,13 +193,8 @@
             background-color: #f8fafc;
         }
 
-        .text-right {
-            text-align: right;
-        }
-
-        .text-center {
-            text-align: center;
-        }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
 
         .badge {
             display: inline-block;
@@ -237,7 +232,7 @@
         .btn-sm-print:hover { background: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
         .btn-sm-delete:hover { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
 
-        /* A4 PRINT PAGE STYLING (HIDDEN IN SCREEN VIEW) */
+        /* A4 PRINT PAGE STYLING */
         #print-area {
             display: none;
         }
@@ -254,46 +249,67 @@
                 position: absolute;
                 left: 0;
                 top: 0;
-                width: 210mm;
-                height: 297mm;
-                padding: 15mm 20mm;
+                width: 100%;
+                margin: 0;
+                padding: 0;
                 background: white;
-                font-size: 12px;
+                font-size: 12pt;
                 color: #000;
             }
 
             @page {
                 size: A4 portrait;
-                margin: 0;
+                margin: 20mm;
             }
 
             .a4-header {
                 display: flex;
                 justify-content: space-between;
+                align-items: flex-start;
                 border-bottom: 2px solid #000;
-                padding-bottom: 12px;
-                margin-bottom: 24px;
+                padding-bottom: 16px;
+                margin-bottom: 30px;
             }
 
             .company-title {
-                font-size: 16px;
+                font-size: 18pt;
                 font-weight: bold;
+                color: #000;
+            }
+
+            .company-sub {
+                font-size: 10pt;
+                color: #333;
+                margin-top: 4px;
+                line-height: 1.4;
             }
 
             .doc-title {
-                font-size: 20px;
+                font-size: 22pt;
                 font-weight: bold;
                 text-align: right;
+                letter-spacing: 0.5px;
+            }
+
+            .doc-periode {
+                font-size: 12pt;
+                text-align: right;
+                margin-top: 6px;
+                font-weight: 600;
             }
 
             .meta-grid {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
+                display: flex;
+                justify-content: space-between;
                 gap: 20px;
-                margin-bottom: 30px;
+                margin-bottom: 35px;
                 background: #f8fafc;
-                padding: 12px;
-                border: 1px solid #e2e8f0;
+                padding: 16px;
+                border: 1px solid #cbd5e1;
+            }
+
+            .meta-box {
+                width: 48%;
             }
 
             .meta-box table {
@@ -302,8 +318,8 @@
             }
 
             .meta-box td {
-                padding: 3px 0;
-                font-size: 12px;
+                padding: 4px 0;
+                font-size: 11pt;
             }
 
             .print-table {
@@ -314,37 +330,39 @@
 
             .print-table th {
                 border-bottom: 2px solid #000;
-                padding: 8px 4px;
+                padding: 10px 6px;
                 text-align: left;
-                font-size: 11px;
+                font-size: 10pt;
                 text-transform: uppercase;
+                letter-spacing: 0.5px;
             }
 
             .print-table td {
-                padding: 8px 4px;
+                padding: 10px 6px;
                 border-bottom: 1px solid #e2e8f0;
-                font-size: 12px;
+                font-size: 11pt;
+            }
+
+            .print-table .subtotal-row td {
+                background-color: #fafafa;
+                font-weight: 600;
             }
 
             .print-table .total-row td {
-                border-top: 2px solid #000;
-                border-bottom: 2px solid #000;
+                border-top: 2.5px solid #000;
+                border-bottom: 2.5px solid #000;
                 font-weight: bold;
-                font-size: 13px;
+                font-size: 13pt;
+                padding: 12px 6px;
             }
 
-            .signatures {
-                margin-top: 60px;
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-
-            .sig-line {
-                border-top: 1px solid #000;
-                padding-top: 4px;
-                text-align: center;
-                font-size: 11px;
+            .legal-note {
+                font-size: 9.5pt;
+                color: #475569;
+                margin-top: 40px;
+                line-height: 1.5;
+                border-top: 1px solid #e2e8f0;
+                padding-top: 12px;
             }
         }
     </style>
@@ -355,7 +373,7 @@
     <!-- HEADER -->
     <div class="header-bar">
         <div>
-            <h1>M Transport & Reinigung Service</h1>
+            <h1>Mejstrik Transport & Reinigung Service</h1>
             <p>Lohnbuchhaltung & Lohnabrechnung System (2026 / 2027)</p>
         </div>
         <div>
@@ -463,8 +481,8 @@
 <div id="print-area">
     <div class="a4-header">
         <div>
-            <div class="company-title">M Transport & Reinigung Service</div>
-            <div style="font-size: 11px; color: #475569; margin-top: 4px;">
+            <div class="company-title">Mejstrik Transport & Reinigung Service</div>
+            <div class="company-sub">
                 Daniel Mejstrik<br>
                 Einzelunternehmen<br>
                 Kanton Thurgau, Schweiz
@@ -472,7 +490,7 @@
         </div>
         <div>
             <div class="doc-title">LOHNABRECHNUNG</div>
-            <div style="font-size: 12px; text-align: right; margin-top: 4px;" id="print-periode">Januar 2026</div>
+            <div class="doc-periode" id="print-periode">Januar 2026</div>
         </div>
     </div>
 
@@ -480,11 +498,11 @@
         <div class="meta-box">
             <table>
                 <tr>
-                    <td style="color: #64748b; width: 110px;">Arbeitnehmer/in:</td>
+                    <td style="color: #475569; width: 120px;">Arbeitnehmer/in:</td>
                     <td><strong id="print-employee">Aushilfe</strong></td>
                 </tr>
                 <tr>
-                    <td style="color: #64748b;">Funktion:</td>
+                    <td style="color: #475569;">Funktion:</td>
                     <td>Aushilfe Reinigung / Transport</td>
                 </tr>
             </table>
@@ -492,11 +510,11 @@
         <div class="meta-box">
             <table>
                 <tr>
-                    <td style="color: #64748b; width: 110px;">Auszahlung per:</td>
+                    <td style="color: #475569; width: 120px;">Auszahlung per:</td>
                     <td id="print-paydate">31.01.2026</td>
                 </tr>
                 <tr>
-                    <td style="color: #64748b;">Währung:</td>
+                    <td style="color: #475569;">Währung:</td>
                     <td>CHF</td>
                 </tr>
             </table>
@@ -519,7 +537,7 @@
                 <td class="text-right" id="print-rate">0.00</td>
                 <td class="text-right" id="print-brutto">0.00</td>
             </tr>
-            <tr id="print-row-brutto" style="background-color: #fafafa; font-weight: 500;">
+            <tr id="print-row-brutto" class="subtotal-row">
                 <td><strong>Bruttolohn Total</strong></td>
                 <td></td>
                 <td></td>
@@ -552,27 +570,14 @@
         </tbody>
     </table>
 
-    <div style="font-size: 11px; color: #64748b; margin-top: 20px;">
-        <em>Hinweis: Gemäss Art. 8 Abs. 2 AHVV ist der Lohn im Nebenerwerb bis CHF 2'300 im Kalenderjahr beitragsfrei, sofern der Arbeitnehmer auf den Abzug verzichtet.</em>
-    </div>
-
-    <div class="signatures">
-        <div>
-            <p style="margin-bottom: 40px;">Arbeitgeber (Visum):</p>
-            <div class="sig-line">M Transport & Reinigung Service</div>
-        </div>
-        <div>
-            <p style="margin-bottom: 40px;">Arbeitnehmer/in (Bestätigung Empfang):</p>
-            <div class="sig-line">Unterschrift Mitarbeiter/in</div>
-        </div>
+    <div class="legal-note">
+        <em>Hinweis: Gemäss Art. 8 Abs. 2 AHVV ist der Lohn im Nebenerwerb bis CHF 2'300 im Kalenderjahr beitragsfrei, sofern der Arbeitnehmer auf den Abzug verzichtet. Diese Lohnabrechnung wurde elektronisch erstellt und ist ohne Unterschrift gültig.</em>
     </div>
 </div>
 
 <script>
-    // Nastavení výchozího dneška pro datum výplaty
     document.getElementById('auszahldatum').valueAsDate = new Date();
 
-    // Načtení dat z paměti
     let records = JSON.parse(localStorage.getItem('m_trans_payroll_db')) || [];
 
     function saveAndRender() {
@@ -625,9 +630,9 @@
         let ahv = 0, alv = 0, nbu = 0;
 
         if (ahvPflicht === 'ja') {
-            ahv = brutto * 0.053; // 5.30%
-            alv = brutto * 0.011; // 1.10%
-            nbu = brutto * 0.013; // 1.30%
+            ahv = brutto * 0.053;
+            alv = brutto * 0.011;
+            nbu = brutto * 0.013;
         }
 
         const abzuegeTotal = ahv + alv + nbu;
@@ -640,7 +645,7 @@
             ahvPflicht, auszahldatum
         };
 
-        records.unshift(record); // Nový záznam nahoru
+        records.unshift(record);
         saveAndRender();
     }
 
@@ -664,7 +669,6 @@
         document.getElementById('print-periode').innerText = `${rec.monat} ${rec.jahr}`;
         document.getElementById('print-employee').innerText = rec.mitarbeiter;
         
-        // Datum formátování (CH standard DD.MM.YYYY)
         if(rec.auszahldatum) {
             const d = new Date(rec.auszahldatum);
             document.getElementById('print-paydate').innerText = d.toLocaleDateString('de-CH');
@@ -697,7 +701,6 @@
 
         document.getElementById('print-netto').innerText = rec.netto.toFixed(2);
 
-        // Spustí tiskový dialog
         window.print();
     }
 
@@ -715,13 +718,12 @@
         const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
-        link.setAttribute('download', `Lohnjournal_M_Transport_${new Date().toISOString().slice(0,10)}.csv`);
+        link.setAttribute('download', `Lohnjournal_Mejstrik_Transport_${new Date().toISOString().slice(0,10)}.csv`);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
     }
 
-    // Inicializace
     saveAndRender();
 </script>
 
