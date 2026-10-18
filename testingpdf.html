@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lohnabrechnung - M Transport & Reinigung Service</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --accent: #2b6cb0;
+            --light: #f7fafc;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            color: #2d3748;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        .grid-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            background: var(--light);
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #4a5568;
+        }
+
+        .form-group input, .form-group select {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .btn-calc {
+            grid-column: 1 / -1;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-calc:hover {
+            background: var(--accent);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        th {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+
+        .text-right { text-align: right; }
+
+        .btn-print {
+            background: #38a169;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* STYLY PRO TISK (VÝPLATNÍ PÁSKA) */
+        @media print {
+            body * { visibility: hidden; }
+            #payslip-modal, #payslip-modal * { visibility: visible; }
+            #payslip-modal {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            .no-print { display: none !important; }
+        }
+
+        #payslip-modal {
+            display: none;
+            background: white;
+            border: 1px solid #000;
+            padding: 40px;
+            margin-top: 30px;
+            border-radius: 4px;
+        }
+
+        .payslip-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #000;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .payslip-table {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .payslip-table th { background: none; border-bottom: 2px solid #000; }
+        .payslip-table td { border-bottom: 1px solid #ccc; }
+        .payslip-total { font-weight: bold; font-size: 16px; border-top: 2px solid #000; }
+    </style>
+</head>
+<body>
+
+<div class="container no-print">
+    <h1>M Transport & Reinigung Service</h1>
+    <h2>Lohnbuchhaltung / Evidence Výplat (2026 / 2027)</h2>
+
+    <!-- FORMULÁŘ PRO ZADÁNÍ VÝPLATY -->
+    <div class="grid-form">
+        <div class="form-group">
+            <label>Rok / Rok zúčtování</label>
+            <select id="jahr">
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Měsíc / Monat</label>
+            <select id="monat">
+                <option value="Januar">Januar</option>
+                <option value="Februar">Februar</option>
+                <option value="März">März</option>
+                <option value="April">April</option>
+                <option value="Mai">Mai</option>
+                <option value="Juni">Juni</option>
+                <option value="Juli">Juli</option>
+                <option value="August">August</option>
+                <option value="September">September</option>
+                <option value="Oktober">Oktober</option>
+                <option value="November">November</option>
+                <option value="Dezember">Dezember</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Jméno zaměstnance / Name</label>
+            <input type="text" id="mitarbeiter" value="Záskok (Přítelkyně)" placeholder="Jméno">
+        </div>
+
+        <div class="form-group">
+            <label>Hodinová sazba (CHF/Std.)</label>
+            <input type="number" id="stundenlohn" value="30.00" step="0.50">
+        </div>
+
+        <div class="form-group">
+            <label>Odpracované hodiny (Anzahl Std.)</label>
+            <input type="number" id="stunden" value="15" step="0.5">
+        </div>
+
+        <div class="form-group">
+            <label>AHV/ALV Odvody?</label>
+            <select id="ahv_pflicht">
+                <option value="nein">NE (Pod 2'300 CHF/rok)</option>
+                <option value="ja">ANO (Aplikovat odvody)</option>
+            </select>
+        </div>
+
+        <button class="btn-calc" onclick="addPayscale()">Přepočítat & Uložit výplatu</button>
+    </div>
+
+    <!-- TABULKA HISTORIE (BUCHHALTUNG) -->
+    <h3>Přehled vystavených výplat</h3>
+    <table id="payroll-table">
+        <thead>
+            <tr>
+                <th>Rok/Měsíc</th>
+                <th>Zaměstnanec</th>
+                <th>Hodiny</th>
+                <th>Sazba</th>
+                <th>Brutto Lohn</th>
+                <th>Odvody Total</th>
+                <th>Netto Lohn</th>
+                <th class="text-right">Akce</th>
+            </tr>
+        </thead>
+        <tbody id="payroll-body">
+            <!-- Sem se propisují zadané výplaty -->
+        </tbody>
+    </table>
+</div>
+
+<!-- VÝPLATNÍ PÁSKA K TISKU (LOHNABRECHNUNG) -->
+<div id="payslip-modal">
+    <div class="payslip-header">
+        <div>
+            <strong>M Transport & Reinigung Service</strong><br>
+            Daniel Mejstrik<br>
+            Kanton Thurgau, Schweiz
+        </div>
+        <div style="text-align: right;">
+            <h2>LOHNABRECHNUNG</h2>
+            <span id="ps-periode"></span>
+        </div>
+    </div>
+
+    <table style="width: 100%; margin-bottom: 20px;">
+        <tr>
+            <td><strong>Mitarbeiter/in:</strong> <span id="ps-name"></span></td>
+            <td style="text-align: right;"><strong>Auszahlungsdatum:</strong> <span id="ps-datum"></span></td>
+        </tr>
+    </table>
+
+    <table class="payslip-table">
+        <thead>
+            <tr>
+                <th>Bezeichnung / Popis</th>
+                <th class="text-right">Ansatz / Basis</th>
+                <th class="text-right">Betrag (CHF)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Stundenlohn (<span id="ps-std"></span> Std. x CHF <span id="ps-sazba"></span>)</td>
+                <td class="text-right">Bruttolohn</td>
+                <td class="text-right" id="ps-brutto">0.00</td>
+            </tr>
+            <tr id="ps-row-ahv">
+                <td>AHV / IV / EO Beitrag (5.30%)</td>
+                <td class="text-right">-5.30%</td>
+                <td class="text-right" id="ps-ahv">-0.00</td>
+            </tr>
+            <tr id="ps-row-alv">
+                <td>ALV Beitrag (1.10%)</td>
+                <td class="text-right">-1.10%</td>
+                <td class="text-right" id="ps-alv">-0.00</td>
+            </tr>
+            <tr id="ps-row-nbu">
+                <td>NBU Prämienabzug (1.30%)</td>
+                <td class="text-right">-1.30%</td>
+                <td class="text-right" id="ps-nbu">-0.00</td>
+            </tr>
+            <tr class="payslip-total">
+                <td>Nettolohn zur Auszahlung (K výplatě)</td>
+                <td class="text-right"><b>NETTO</b></td>
+                <td class="text-right" id="ps-netto"><b>0.00</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 50px; display: flex; justify-content: space-between;">
+        <div>
+            <p>Arbeitgeber: M Transport & Reinigung</p>
+            <br>___________________________
+        </div>
+        <div>
+            <p>Arbeitnehmer/in (Empfangen):</p>
+            <br>___________________________
+        </div>
+    </div>
+
+    <div class="no-print" style="margin-top: 30px; text-align: center;">
+        <button class="btn-print" onclick="window.print()">🖨️ Vytisknout výplatní pásku (PDF)</button>
+        <button class="btn-delete" onclick="closePayslip()">Zavřít náhled</button>
+    </div>
+</div>
+
+<script>
+    // Načtení uložených dat
+    let payrolls = JSON.parse(localStorage.getItem('m_trans_payrolls')) || [];
+
+    function saveAndRender() {
+        localStorage.setItem('m_trans_payrolls', JSON.stringify(payrolls));
+        const tbody = document.getElementById('payroll-body');
+        tbody.innerHTML = '';
+
+        payrolls.forEach((item, index) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${item.monat} ${item.jahr}</td>
+                <td>${item.mitarbeiter}</td>
+                <td>${item.stunden} Std.</td>
+                <td>CHF ${item.stundenlohn.toFixed(2)}</td>
+                <td>CHF ${item.brutto.toFixed(2)}</td>
+                <td>- CHF ${item.abzuegeTotal.toFixed(2)}</td>
+                <td><strong>CHF ${item.netto.toFixed(2)}</strong></td>
+                <td class="text-right">
+                    <button class="btn-print" onclick="printPayslip(${index})">🖨️ Páska</button>
+                    <button class="btn-delete" onclick="deletePayroll(${index})">🗑️</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function addPayscale() {
+        const jahr = document.getElementById('jahr').value;
+        const monat = document.getElementById('monat').value;
+        const mitarbeiter = document.getElementById('mitarbeiter').value;
+        const stundenlohn = parseFloat(document.getElementById('stundenlohn').value) || 0;
+        const stunden = parseFloat(document.getElementById('stunden').value) || 0;
+        const ahvPflicht = document.getElementById('ahv_pflicht').value;
+
+        const brutto = stundenlohn * stunden;
+
+        let ahv = 0, alv = 0, nbu = 0;
+
+        // Výpočet odvodů (Sazby 2026/2027)
+        if (ahvPflicht === 'ja') {
+            ahv = brutto * 0.053; // 5.3% AHV/IV/EO
+            alv = brutto * 0.011; // 1.1% ALV
+            nbu = brutto * 0.013; // 1.3% NBU
+        }
+
+        const abzuegeTotal = ahv + alv + nbu;
+        const netto = brutto - abzuegeTotal;
+
+        const entry = {
+            jahr, monat, mitarbeiter, stundenlohn, stunden,
+            brutto, ahv, alv, nbu, abzuegeTotal, netto, ahvPflicht
+        };
+
+        payrolls.push(entry);
+        saveAndRender();
+    }
+
+    function deletePayroll(index) {
+        if(confirm('Opravdu chcete smazat tento záznam výplaty?')) {
+            payrolls.splice(index, 1);
+            saveAndRender();
+        }
+    }
+
+    function printPayslip(index) {
+        const item = payrolls[index];
+
+        document.getElementById('ps-periode').innerText = item.monat + ' ' + item.jahr;
+        document.getElementById('ps-name').innerText = item.mitarbeiter;
+        document.getElementById('ps-datum').innerText = new Date().toLocaleDateString('de-CH');
+        document.getElementById('ps-std').innerText = item.stunden;
+        document.getElementById('ps-sazba').innerText = item.stundenlohn.toFixed(2);
+        document.getElementById('ps-brutto').innerText = item.brutto.toFixed(2);
+
+        if (item.ahvPflicht === 'ja') {
+            document.getElementById('ps-row-ahv').style.display = '';
+            document.getElementById('ps-row-alv').style.display = '';
+            document.getElementById('ps-row-nbu').style.display = '';
+            document.getElementById('ps-ahv').innerText = '- ' + item.ahv.toFixed(2);
+            document.getElementById('ps-alv').innerText = '- ' + item.alv.toFixed(2);
+            document.getElementById('ps-nbu').innerText = '- ' + item.nbu.toFixed(2);
+        } else {
+            document.getElementById('ps-row-ahv').style.display = 'none';
+            document.getElementById('ps-row-alv').style.display = 'none';
+            document.getElementById('ps-row-nbu').style.display = 'none';
+        }
+
+        document.getElementById('ps-netto').innerText = item.netto.toFixed(2);
+
+        document.getElementById('payslip-modal').style.display = 'block';
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function closePayslip() {
+        document.getElementById('payslip-modal').style.display = 'none';
+    }
+
+    // Inicializace při načtení
+    saveAndRender();
+</script>
+
+</body>
+</html>
