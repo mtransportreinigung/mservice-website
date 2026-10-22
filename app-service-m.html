@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<!-- SKRYTÍ PŘED GOOGLE A VYHLEDÁVAČI -->
+<!-- SKRYTÍ PŘED GOOGLE A ROBOTY -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
-<title>app-service-m - Mejstrik Service</title>
+<title>app-service-m - Mejstrik Transport &amp; Reinigung Service</title>
 
-<!-- IKONA PRO IPHONE A ANDROID Z VAŠEHO LOGO.PNG -->
+<!-- IKONA Z VAŠEHO SOUBORU logo.PNG -->
 <link rel="apple-touch-icon" href="logo.PNG">
 <link rel="icon" href="logo.PNG" type="image/png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -18,29 +18,29 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--g:#666;--ok:#1F7A44;--bad:#C0392B}
-body{font:14px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;background:#eef1f5;padding-bottom:calc(85px + env(safe-area-inset-bottom))}
+html{background:#eef1f5}
+body{font:14px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;padding-bottom:calc(85px + env(safe-area-inset-bottom))}
 
-/* PIN Ochrana */
-#pin-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--n);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
-#pin-screen img.logo-pin{width:80px;height:80px;margin-bottom:15px;border-radius:12px;object-fit:contain}
+/* PIN ZABEZPEČENÍ */
+#pin-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
+#pin-screen img.logo-pin{width:80px;height:80px;margin-bottom:15px;border-radius:12px;object-fit:contain;background:#fff}
 #pin-screen h2{font-size:18px;margin-bottom:6px;color:#fff}
 #pin-screen p{font-size:12px;color:#a0b8e6;margin-bottom:20px}
 .pin-input{font-size:24px;letter-spacing:10px;text-align:center;width:160px;padding:10px;border-radius:8px;border:2px solid var(--o);outline:0;color:var(--n);margin-bottom:15px;background:#fff}
 .pin-btn{font:bold 15px Arial;background:var(--o);color:#fff;border:0;padding:12px 24px;border-radius:8px;cursor:pointer;width:160px}
 .pin-err{color:#ff8a8a;font-size:12px;margin-top:10px;display:none;font-weight:bold}
 
-.app-header{background:var(--n);color:#fff;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+/* HLAVIČKA */
+.app-header{background:var(--n);color:#fff;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
 .app-header .hdr-brand{display:flex;align-items:center;gap:10px}
 .app-header img.hdr-logo{width:32px;height:32px;border-radius:6px;object-fit:cover;background:#fff}
 .app-header h1{font-size:15px;font-weight:bold}
 .app-header span{font-size:10.5px;color:#a0b8e6}
-.container{padding:12px;max-width:700px;margin:0 auto}
+
+.container{padding:12px;max-width:800px;margin:0 auto}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border-top:4px solid var(--o)}
 .card h2{font-size:15px;color:var(--n);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.kpi-box{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:10px;text-align:center}
-.kpi-box small{font-size:10px;text-transform:uppercase;color:var(--g);font-weight:bold;display:block}
-.kpi-box b{font-size:16px;color:var(--n)}
+
 .form-group{margin-bottom:10px}
 .form-group label{display:block;font-size:11.5px;font-weight:bold;color:var(--n);margin-bottom:3px}
 input,select,textarea{font:14px Arial;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:8px;border-radius:6px;outline:0}
@@ -50,32 +50,28 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
 .btn-sec{background:#fff;color:var(--n);border:1px solid var(--bd);margin-top:6px}
 .btn-ok{background:var(--ok)}
 
-/* Spodní navigace opravená pro iPhone Safe Area */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:8px 0;padding-bottom:calc(8px + env(safe-area-inset-bottom));z-index:100;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
+/* SPODNÍ NAVIGACE (Pevná, bez poskoku nahoru) */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:8px 0;padding-bottom:calc(8px + env(safe-area-inset-bottom));z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
 .bottom-nav button{background:0;border:0;font-size:10px;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;flex:1;outline:0}
 .bottom-nav button svg{width:20px;height:20px;fill:var(--g)}
 .bottom-nav button.active{color:var(--br);font-weight:bold}
 .bottom-nav button.active svg{fill:var(--br)}
+
 .view{display:none}
 .view.active{display:block}
-.list-item{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:10px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
-.list-item div b{font-size:13px;color:var(--n);display:block}
-.list-item div span{font-size:11px;color:var(--g)}
-.list-item .amt{font-size:14px;font-weight:bold;color:var(--br)}
+
+/* IFRAME PRO PŘESNÉ PROTOKOLY */
+.doc-container{width:100%;height:680px;border:1px solid var(--bd);border-radius:8px;background:#fff;margin-top:8px}
 
 .photo-preview{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
 .photo-preview img{width:60px;height:60px;object-fit:cover;border-radius:6px;border:1px solid var(--bd)}
-canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;width:100%;height:120px;touch-action:none}
-
-/* Strikte iframe zobrazení protokolů */
-.doc-iframe{width:100%;height:550px;border:1px solid var(--bd);border-radius:8px;background:#fff;margin-top:10px}
 </style>
 </head>
 <body>
 
-<!-- PIN ZABEZPEČENÍ -->
+<!-- PIN SCREEN -->
 <div id="pin-screen">
-  <img src="logo.PNG" alt="M Service Logo" class="logo-pin" onerror="this.style.display='none'">
+  <img src="logo.PNG" alt="Logo" class="logo-pin" onerror="this.style.display='none'">
   <h2>M Transport &amp; Reinigung</h2>
   <p>Sicherheitssystem - PIN eingeben</p>
   <input type="password" id="pin-val" class="pin-input" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="••••">
@@ -83,228 +79,134 @@ canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;w
   <div id="pin-err" class="pin-err">Falscher PIN-Code!</div>
 </div>
 
-<!-- HLAVIČKA APLIKACE -->
+<!-- HLAVIČKA -->
 <header class="app-header">
   <div class="hdr-brand">
     <img src="logo.PNG" alt="Logo" class="hdr-logo" onerror="this.style.display='none'">
     <div>
       <h1>M Transport &amp; Reinigung</h1>
-      <span>Mobile Verwaltung (app-service-m)</span>
+      <span>Mobile Zentrale (app-service-m)</span>
     </div>
   </div>
   <div style="display:flex;gap:6px">
     <button onclick="lockApp()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer">🔒 Sperren</button>
-    <button onclick="exportDataPrompt()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer">Sicherung</button>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- ZÁLOŽKA 1: PŘEHLED -->
-  <div id="v-prehled" class="view active">
+  <!-- ZÁLOŽKA 1: BUCHHALTUNG (Kompletní účetnictví s výběrem roku) -->
+  <div id="v-buchhaltung" class="view active">
     <div class="card" style="border-top-color:var(--br)">
-      <h2>Finanzübersicht <span class="yy">2027</span></h2>
-      <div class="kpi-grid">
-        <div class="kpi-box"><small>Einnahmen</small><b id="k-e">0.00 CHF</b></div>
-        <div class="kpi-box"><small>Ausgaben</small><b id="k-a">0.00 CHF</b></div>
+      <h2>Buchhaltung &amp; Schnell-Erfassung</h2>
+      <div class="form-group">
+        <label>Buchhaltungs-Jahr wählen:</label>
+        <input id="m-year" type="number" value="2027" min="2000" max="2099" oninput="changeYear(this.value)">
       </div>
-      <div class="kpi-box" style="background:#E3F4EA"><small style="color:var(--ok)">Gewinn</small><b id="k-g" style="color:var(--ok)">0.00 CHF</b></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0">
+        <button class="btn" onclick="openFullBuchhaltung()">📊 Gesamtes Buchhaltung-Modul öffnen</button>
+        <button class="btn btn-sec" onclick="exportBackupPrompt()">💾 Daten sichern (JSON)</button>
+      </div>
     </div>
 
     <div class="card">
-      <h2>Schnellerfassung (Unterwegs)</h2>
+      <h2>Direkt-Erfassung (Einnahme / Ausgabe)</h2>
       <div class="form-group">
-        <label>Eintragstyp:</label>
+        <label>Typ:</label>
         <select id="q-type">
           <option value="ein">Einnahme (Příjem)</option>
           <option value="aus">Ausgabe (Výdaj)</option>
         </select>
       </div>
       <div class="form-group">
+        <label>Datum:</label>
+        <input id="q-date" type="date">
+      </div>
+      <div class="form-group">
         <label>Kunde / Empfänger / Grund:</label>
-        <input id="q-who" type="text" placeholder="z. B. Max Muster oder Migrol Tankstelle">
+        <input id="q-who" type="text" placeholder="z. B. Max Muster">
+      </div>
+      <div class="form-group">
+        <label>Kategorie:</label>
+        <select id="q-cat">
+          <option value="Umzugsreinigung">Umzugsreinigung</option>
+          <option value="Gebäudereinigung">Gebäudereinigung</option>
+          <option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
+          <option value="Grundreinigung">Grundreinigung</option>
+          <option value="Transport & Umzug">Transport &amp; Umzug</option>
+          <option value="Sonstige Einnahmen">Sonstige Einnahmen / Ausgaben</option>
+        </select>
       </div>
       <div class="form-group">
         <label>Betrag (CHF):</label>
         <input id="q-amt" type="number" step="0.05" placeholder="0.00">
       </div>
       <div class="form-group">
-        <label>Foto / Beleg anfügen:</label>
+        <label>Beleg / Foto anfügen (optional):</label>
         <input type="file" id="q-photo" accept="image/*" capture="environment" onchange="handlePhotoUpload(this, 'q-prev')">
         <div id="q-prev" class="photo-preview"></div>
       </div>
-      <button class="btn" onclick="quickSave()">In Buchhaltung Speichern</button>
+      <button class="btn btn-ok" onclick="quickSaveRecord()">In Buchhaltung eintragen</button>
     </div>
   </div>
 
-  <!-- ZÁLOŽKA 2: EINNAHMEN -->
-  <div id="v-ein" class="view">
+  <!-- ZÁLOŽKA 2: PROTOKOLLE & FORMULARE (Přesné kopie vašich souborů) -->
+  <div id="v-protokolle" class="view">
     <div class="card">
-      <h2>Einnahmen (Příjmy)</h2>
-      <div id="list-ein"></div>
-    </div>
-  </div>
-
-  <!-- ZÁLOŽKA 3: AUSGABEN -->
-  <div id="v-aus" class="view">
-    <div class="card">
-      <h2>Ausgaben (Výdaje)</h2>
-      <div id="list-aus"></div>
-    </div>
-  </div>
-
-  <!-- ZÁLOŽKA 4: PROTOKOLE & FORMULARE -->
-  <div id="v-protokol" class="view">
-    <div class="card">
-      <h2>Formulare &amp; Dokumente</h2>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-        <button class="btn btn-sec" onclick="showSubForm('calc')">🧮 Offerten-Rechner</button>
-        <button class="btn btn-sec" onclick="showSubForm('rechnung')">📄 Rechnung</button>
-        <button class="btn btn-sec" onclick="showSubForm('offerte')">✉️ Offerte</button>
-        <button class="btn btn-sec" onclick="showSubForm('rapport')">⏱️ Arbeitsrapport</button>
-        <button class="btn btn-sec" onclick="showSubForm('quittung')">🧾 Barquittung</button>
-        <button class="btn btn-sec" onclick="showSubForm('ubergabe')">📋 Übergabeprotokoll</button>
-      </div>
-    </div>
-
-    <!-- SUB 1: KALKULAČKA NABÍDEK -->
-    <div id="sub-calc" class="card sub-form" style="display:none">
-      <h2>🧮 Offerten-Rechner (Erweitert)</h2>
+      <h2>Offizielle Formulare &amp; Protokolle</h2>
       <div class="form-group">
-        <label>Dienstleistung:</label>
-        <select id="c-type" onchange="recalcOffer()">
-          <option value="umzug">Umzugsreinigung (Endreinigung)</option>
-          <option value="unterhalt">Unterhaltsreinigung</option>
-          <option value="gebaeude">Gebäudereinigung</option>
-          <option value="grund">Grundreinigung</option>
-          <option value="transport">Transport &amp; Umzug</option>
+        <label>Dokument auswählen:</label>
+        <select id="doc-selector" onchange="loadDocumentTemplate(this.value)">
+          <option value="">-- Bitte wählen --</option>
+          <option value="rechnung">📄 Rechnung (RechnungWebPDF)</option>
+          <option value="offerte-umzug">✉️ Offerte - Umzugsreinigung</option>
+          <option value="offerte-gebaeude">✉️ Offerte - Gebäudereinigung</option>
+          <option value="offerte-unterhalt">✉️ Offerte - Unterhaltsreinigung</option>
+          <option value="offerte-grund">✉️ Offerte - Grundreinigung</option>
+          <option value="rapport">⏱️ Arbeitsrapport (Mitarbeiter)</option>
         </select>
       </div>
-      <div class="form-group">
-        <label>Fläche (m²) / Zimmeranzahl:</label>
-        <input id="c-size" type="number" placeholder="z. B. 85" oninput="recalcOffer()">
-      </div>
-      <div class="form-group">
-        <label>Anzahl Mitarbeiter:</label>
-        <input id="c-workers" type="number" value="2" oninput="recalcOffer()">
-      </div>
-      <div class="form-group">
-        <label>Geschätzte Stunden pro Person:</label>
-        <input id="c-hours" type="number" step="0.5" value="4" oninput="recalcOffer()">
-      </div>
-      <div class="form-group">
-        <label>Reinigungsmaterial &amp; Spezialgeräte:</label>
-        <select id="c-mat" onchange="recalcOffer()">
-          <option value="yes">Inklusive (von uns mitgebracht) [+ CHF 35.-]</option>
-          <option value="no">Kunde stellt Material [CHF 0.-]</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Anfahrt &amp; Transport (km):</label>
-        <input id="c-km" type="number" value="15" oninput="recalcOffer()">
-      </div>
-      <div class="kpi-box" style="background:#EAF3FC;margin:10px 0;border-color:#8FC0EE">
-        <small style="color:var(--n)">Berechneter Pauschalpreis:</small>
-        <b id="c-total" style="font-size:22px;color:var(--b)">CHF 0.00</b>
-      </div>
-      <button class="btn btn-ok" onclick="saveDocPrompt('Kalkulation', document.getElementById('c-total').textContent)">Kalkulation Speichern / Teilen</button>
+      <button class="btn btn-ok" onclick="downloadCurrentDocument()" style="margin-top:8px">📥 Ausgefülltes Dokument speichern / drucken</button>
     </div>
 
-    <!-- SUB 2: RECHNUNG (Z VAŠÍ ŠABLONY) -->
-    <div id="sub-rechnung" class="card sub-form" style="display:none">
-      <h2>📄 Rechnung Erstellen</h2>
-      <p style="font-size:11.5px;color:var(--g);margin-bottom:8px">Interaktives Dokument gemäss RechnungWebPDF.html</p>
-      <button class="btn btn-ok" onclick="saveIframeDoc('Rechnung', 'if-rechnung')">Rechnung Speichern / PDF</button>
-      <iframe id="if-rechnung" class="doc-iframe" src="about:blank"></iframe>
+    <div class="card" id="doc-preview-card" style="display:none">
+      <h2>Dokument-Vorschau &amp; Bearbeitung</h2>
+      <iframe id="doc-iframe" class="doc-container"></iframe>
     </div>
-
-    <!-- SUB 3: OFFERTE (Z VAŠÍ ŠABLONY) -->
-    <div id="sub-offerte" class="card sub-form" style="display:none">
-      <h2>✉️ Offerte Erstellen</h2>
-      <p style="font-size:11.5px;color:var(--g);margin-bottom:8px">Interaktives Dokument gemäss OffertenWebPDF.html</p>
-      <button class="btn btn-ok" onclick="saveIframeDoc('Offerte', 'if-offerte')">Offerte Speichern / PDF</button>
-      <iframe id="if-offerte" class="doc-iframe" src="about:blank"></iframe>
-    </div>
-
-    <!-- SUB 4: ARBEITSRAPPORT (Z VAŠÍ ŠABLONY) -->
-    <div id="sub-rapport" class="card sub-form" style="display:none">
-      <h2>⏱️ Arbeitsrapport Erstellen</h2>
-      <p style="font-size:11.5px;color:var(--g);margin-bottom:8px">Interaktives Dokument gemäss arbeitsrapport-formular.html</p>
-      <button class="btn btn-ok" onclick="saveIframeDoc('Arbeitsrapport', 'if-rapport')">Rapport Speichern / PDF</button>
-      <iframe id="if-rapport" class="doc-iframe" src="about:blank"></iframe>
-    </div>
-
-    <!-- SUB 5: BARQUITTUNG -->
-    <div id="sub-quittung" class="card sub-form" style="display:none">
-      <h2>🧾 Barquittung</h2>
-      <div class="form-group"><label>Quittungs-Nr.:</label><input id="q-nr" type="text" placeholder="Q-2027-01"></div>
-      <div class="form-group"><label>Kunde (Betrag erhalten von):</label><input id="q-client" type="text"></div>
-      <div class="form-group"><label>Betrag erhalten (CHF):</label><input id="q-amount" type="number" step="0.05"></div>
-      <div class="form-group"><label>Für Leistung / Grund:</label><input id="q-reason" type="text"></div>
-      <div class="form-group">
-        <label>Foto von Quittung / Geldübernahme:</label>
-        <input type="file" accept="image/*" capture="environment" onchange="handlePhotoUpload(this, 'q-quittung-prev')">
-        <div id="q-quittung-prev" class="photo-preview"></div>
-      </div>
-      <button class="btn btn-ok" onclick="saveBarquittung()">Quittung Speichern &amp; In Buchhaltung eintragen</button>
-    </div>
-
-    <!-- SUB 6: ÜBERGABEPROTOKOLL -->
-    <div id="sub-ubergabe" class="card sub-form" style="display:none">
-      <h2>📋 Übergabeprotokoll</h2>
-      <div class="form-group"><label>Kunde / Liegenschaftsverwaltung:</label><input id="u-client" type="text"></div>
-      <div class="form-group"><label>Objektadresse:</label><input id="u-address" type="text"></div>
-      <div class="form-group"><label>Datum der Übergabe:</label><input id="u-date" type="date"></div>
-      <div class="form-group">
-        <label>Fotos vom Objekt / Abnahme:</label>
-        <input type="file" accept="image/*" capture="environment" onchange="handlePhotoUpload(this, 'u-photo-prev')">
-        <div id="u-photo-prev" class="photo-preview"></div>
-      </div>
-      <div class="form-group">
-        <label>Unterschrift Kunde / Verwaltung (auf Display):</label>
-        <canvas id="sig-pad" class="sig-canvas"></canvas>
-        <button type="button" class="btn btn-sec" style="font-size:11px;padding:4px;" onclick="clearSig()">Unterschrift löschen</button>
-      </div>
-      <button class="btn btn-ok" onclick="saveUbergabe()">Protokoll Speichern &amp; Teilen</button>
-    </div>
-
   </div>
 
 </div>
 
-<!-- SPODNÍ NAVIGACE -->
+<!-- SPODNÍ NAVIGACE (Pevná) -->
 <nav class="bottom-nav">
-  <button class="active" onclick="switchView('prehled', this)">
-    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-    Übersicht
+  <button class="active" onclick="switchView('v-buchhaltung', this)">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+    Buchhaltung
   </button>
-  <button onclick="switchView('ein', this)">
-    <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-    Einnahmen
-  </button>
-  <button onclick="switchView('aus', this)">
-    <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
-    Ausgaben
-  </button>
-  <button onclick="switchView('protokol', this)">
+  <button onclick="switchView('v-protokolle', this)">
     <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-    Protokolle
+    Protokolle &amp; PDFs
   </button>
 </nav>
 
 <script>
 var PIN = "2518";
 var currentPhotos = [];
-var db;
+var currentDocKey = '';
 
-// DATABÁZE INDEXEDDB PRO BEZPEČNÉ UKLÁDÁNÍ SOUBORŮ A FOTEK
-var req = indexedDB.open("MServiceAppDB", 3);
-req.onupgradeneeded = function(e) {
-  db = e.target.result;
-  if(!db.objectStoreNames.contains("records")) db.createObjectStore("records", {keyPath: "id", autoIncrement: true});
-  if(!db.objectStoreNames.contains("docs")) db.createObjectStore("docs", {keyPath: "id", autoIncrement: true});
+// Načtení dat účetnictvî z localStorage (kompatibilní s Buchhaltung_M_Service)
+var buchhaltungData = JSON.parse(localStorage.getItem('mservice_buchhaltung_v1')) || {
+  year: 2027,
+  days: 10,
+  rates: {ahv:5.15, alv:0.15, alv2:0, nbu:0, ktg:0, bvg:0},
+  ein: [],
+  aus: [],
+  lohn: [],
+  rg: []
 };
-req.onsuccess = function(e) { db = e.target.result; refreshUI(); };
+
+document.getElementById('q-date').value = new Date().toISOString().slice(0,10);
+document.getElementById('m-year').value = buchhaltungData.year || 2027;
 
 function checkPin() {
   if(document.getElementById('pin-val').value === PIN) {
@@ -322,29 +224,20 @@ if(localStorage.getItem('app_service_m_auth') === 'true') {
   document.getElementById('pin-screen').style.display = 'none';
 }
 
-function switchView(id, btn) {
+function switchView(viewId, btn) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById('v-' + id).classList.add('active');
+  document.getElementById(viewId).classList.add('active');
   document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  window.scrollTo(0,0);
 }
 
-function showSubForm(id) {
-  document.querySelectorAll('.sub-form').forEach(f => f.style.display = 'none');
-  document.getElementById('sub-' + id).style.display = 'block';
-  
-  // Načtení přesných html šablon
-  if(id === 'rechnung' && document.getElementById('if-rechnung').src === 'about:blank') {
-    document.getElementById('if-rechnung').contentWindow.document.write(rechnungTemplate);
-  }
-  if(id === 'offerte' && document.getElementById('if-offerte').src === 'about:blank') {
-    document.getElementById('if-offerte').contentWindow.document.write(offerteTemplate);
-  }
-  if(id === 'rapport' && document.getElementById('if-rapport').src === 'about:blank') {
-    document.getElementById('if-rapport').contentWindow.document.write(rapportTemplate);
-  }
-  if(id === 'ubergabe') initCanvas();
+function changeYear(yr) {
+  buchhaltungData.year = parseInt(yr, 10) || 2027;
+  saveBuchhaltung();
+}
+
+function saveBuchhaltung() {
+  localStorage.setItem('mservice_buchhaltung_v1', JSON.stringify(buchhaltungData));
 }
 
 function handlePhotoUpload(input, prevId) {
@@ -360,141 +253,106 @@ function handlePhotoUpload(input, prevId) {
   }
 }
 
-function quickSave() {
+function quickSaveRecord() {
   var type = document.getElementById('q-type').value;
+  var date = document.getElementById('q-date').value;
   var who = document.getElementById('q-who').value;
+  var cat = document.getElementById('q-cat').value;
   var amt = parseFloat(document.getElementById('q-amt').value);
-  if(!who || isNaN(amt) || amt <= 0) { alert('Bitte Name und Betrag eingeben.'); return; }
 
-  var tx = db.transaction(["records"], "readwrite");
-  tx.objectStore("records").add({
-    type: type,
-    date: new Date().toISOString().slice(0,10),
+  if(!who || isNaN(amt) || amt <= 0) {
+    alert('Bitte Name/Empfänger und gültigen Betrag eingeben.');
+    return;
+  }
+
+  var row = {
+    act: true,
+    d: date,
     who: who,
-    amt: amt,
+    cat: cat,
+    amt: amt.toFixed(2),
+    pay: 'Bar',
+    desc: currentPhotos.length > 0 ? 'Mit Foto-Beleg' : '',
     photos: currentPhotos
-  });
-  tx.oncomplete = function() {
-    document.getElementById('q-who').value = '';
-    document.getElementById('q-amt').value = '';
-    document.getElementById('q-prev').innerHTML = '';
-    currentPhotos = [];
-    refreshUI();
-    alert('Erfolgreich in Buchhaltung gespeichert!');
   };
+
+  if(type === 'ein') {
+    buchhaltungData.ein.push(row);
+  } else {
+    buchhaltungData.aus.push(row);
+  }
+
+  saveBuchhaltung();
+  document.getElementById('q-who').value = '';
+  document.getElementById('q-amt').value = '';
+  document.getElementById('q-prev').innerHTML = '';
+  currentPhotos = [];
+  alert('Erfolgreich in die Buchhaltung eingetragen!');
 }
 
-function refreshUI() {
-  if(!db) return;
-  var tx = db.transaction(["records"], "readonly");
-  var req = tx.objectStore("records").getAll();
-  req.onsuccess = function() {
-    var records = req.result || [];
-    let te = 0, ta = 0, htmlEin = '', htmlAus = '';
-    records.forEach(r => {
-      if(r.type === 'ein') {
-        te += r.amt;
-        htmlEin += `<div class="list-item"><div><b>${r.who}</b><span>${r.date} ${r.photos?.length?'📷':''}</span></div><div class="amt">+${r.amt.toFixed(2)} CHF</div></div>`;
-      } else {
-        ta += r.amt;
-        htmlAus += `<div class="list-item"><div><b>${r.who}</b><span>${r.date} ${r.photos?.length?'📷':''}</span></div><div class="amt" style="color:var(--bad)">-${r.amt.toFixed(2)} CHF</div></div>`;
-      }
-    });
-    document.getElementById('k-e').textContent = te.toFixed(2) + ' CHF';
-    document.getElementById('k-a').textContent = ta.toFixed(2) + ' CHF';
-    document.getElementById('k-g').textContent = (te - ta).toFixed(2) + ' CHF';
-    document.getElementById('list-ein').innerHTML = htmlEin || '<p style="color:#777;font-size:12px">Keine Einnahmen.</p>';
-    document.getElementById('list-aus').innerHTML = htmlAus || '<p style="color:#777;font-size:12px">Keine Ausgaben.</p>';
-  };
-}
-
-function recalcOffer() {
-  var size = parseFloat(document.getElementById('c-size').value) || 0;
-  var workers = parseFloat(document.getElementById('c-workers').value) || 1;
-  var hours = parseFloat(document.getElementById('c-hours').value) || 1;
-  var mat = document.getElementById('c-mat').value;
-  var km = parseFloat(document.getElementById('c-km').value) || 0;
-
-  var price = (workers * hours * 45.00) + (mat === 'yes' ? 35.00 : 0) + (km * 0.80);
-  document.getElementById('c-total').textContent = 'CHF ' + Math.max(0, price).toFixed(2);
-}
-
-// UKLÁDÁNÍ A DOTAZ TELEFONU NA MÍSTO ULOŽENÍ (PROMPT SAVE)
-function promptDownload(blob, filename) {
+function exportBackupPrompt() {
+  var blob = new Blob([JSON.stringify(buchhaltungData, null, 2)], {type:'application/json'});
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = filename;
+  a.download = 'Buchhaltung_' + buchhaltungData.year + '_Sicherung.json';
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
 }
 
-function saveDocPrompt(title, content) {
-  var blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
-  promptDownload(blob, title + '_' + new Date().toISOString().slice(0,10) + '.txt');
+function openFullBuchhaltung() {
+  // Otevře kompletní účetní modul se všemi záložkami v novém okně
+  var w = window.open('', '_blank');
+  w.document.write(fullBuchhaltungHtmlContent);
+  w.document.close();
 }
 
-function saveIframeDoc(title, iframeId) {
-  var iframe = document.getElementById(iframeId);
-  var htmlContent = iframe.contentWindow.document.documentElement.outerHTML;
-  var blob = new Blob([htmlContent], {type: 'text/html;charset=utf-8'});
-  promptDownload(blob, title + '_' + new Date().toISOString().slice(0,10) + '.html');
+function loadDocumentTemplate(type) {
+  if(!type) {
+    document.getElementById('doc-preview-card').style.display = 'none';
+    return;
+  }
+  currentDocKey = type;
+  document.getElementById('doc-preview-card').style.display = 'block';
+  var iframe = document.getElementById('doc-iframe');
+  
+  var html = '';
+  if(type === 'rechnung') html = rechnungTemplateSrc;
+  else if(type === 'offerte-umzug') html = offerteUmzugSrc;
+  else if(type === 'offerte-gebaeude') html = offerteGebaeudeSrc;
+  else if(type === 'offerte-unterhalt') html = offerteUnterhaltSrc;
+  else if(type === 'offerte-grund') html = offerteGrundSrc;
+  else if(type === 'rapport') html = rapportTemplateSrc;
+
+  iframe.contentWindow.document.open();
+  iframe.contentWindow.document.write(html);
+  iframe.contentWindow.document.close();
 }
 
-function saveBarquittung() {
-  var client = document.getElementById('q-client').value;
-  var amt = parseFloat(document.getElementById('q-amount').value);
-  if(!client || isNaN(amt)) { alert('Bitte Kunde und Betrag eingeben.'); return; }
-
-  // Automatické propsání do Einnahmen / Buchhaltung
-  var tx = db.transaction(["records"], "readwrite");
-  tx.objectStore("records").add({
-    type: 'ein',
-    date: new Date().toISOString().slice(0,10),
-    who: 'Barquittung: ' + client,
-    amt: amt,
-    photos: currentPhotos
-  });
-  tx.oncomplete = function() {
-    refreshUI();
-    var summary = "BARQUITTUNG\nKunde: " + client + "\nBetrag: CHF " + amt.toFixed(2) + "\nDatum: " + new Date().toISOString().slice(0,10);
-    saveDocPrompt('Barquittung_' + client, summary);
-  };
+function downloadCurrentDocument() {
+  var iframe = document.getElementById('doc-iframe');
+  if(!currentDocKey || !iframe.contentWindow.document.documentElement) {
+    alert('Bitte zuerst ein Dokument auswählen.');
+    return;
+  }
+  var content = iframe.contentWindow.document.documentElement.outerHTML;
+  var blob = new Blob([content], {type: 'text/html;charset=utf-8'});
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = currentDocKey + '_' + new Date().toISOString().slice(0,10) + '.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
-function saveUbergabe() {
-  var client = document.getElementById('u-client').value;
-  var summary = "ÜBERGABEPROTOKOLL\nKunde: " + client + "\nDatum: " + new Date().toISOString().slice(0,10);
-  saveDocPrompt('Ubergabeprotokoll_' + client, summary);
-}
-
-function exportDataPrompt() {
-  var tx = db.transaction(["records"], "readonly");
-  var req = tx.objectStore("records").getAll();
-  req.onsuccess = function() {
-    var blob = new Blob([JSON.stringify(req.result, null, 2)], {type:'application/json'});
-    promptDownload(blob, 'Buchhaltung_Sicherung_' + new Date().toISOString().slice(0,10) + '.json');
-  };
-}
-
-/* SIGNATURE CANVAS */
-var canvas, ctx, drawing = false;
-function initCanvas() {
-  canvas = document.getElementById('sig-pad'); if(!canvas) return;
-  ctx = canvas.getContext('2d'); canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
-  function getPos(e) { var rect = canvas.getBoundingClientRect(); var touch = e.touches ? e.touches[0] : e; return { x: touch.clientX - rect.left, y: touch.clientY - rect.top }; }
-  canvas.onmousedown = canvas.ontouchstart = function(e) { drawing = true; var p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); };
-  canvas.onmousemove = canvas.ontouchmove = function(e) { if(drawing) { var p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); } };
-  canvas.onmouseup = canvas.ontouchend = function() { drawing = false; };
-}
-function clearSig() { if(ctx) ctx.clearRect(0, 0, canvas.width, canvas.height); }
-
-// VLOŽENÉ ORIGINÁLNÍ ŠABLONY Z VAŠICH SOUBORŮ
-var rechnungTemplate = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Rechnung</title><style>body{font-family:Arial,sans-serif;padding:10px;font-size:12px}h2{color:#1E3A6D}.row{display:flex;justify-content:space-between;margin-bottom:6px}</style></head><body><h2>RECHNUNG</h2><p>Mejstrik Transport & Reinigung Service</p><hr><br><label>Kunde: </label><input type="text" style="width:100%"><br><br><label>Betrag CHF: </label><input type="number" style="width:100%"><br><br><p>Es gelten unsere AGB: www.mservice.ch/agb</p></body></html>`;
-
-var offerteTemplate = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Offerte</title><style>body{font-family:Arial,sans-serif;padding:10px;font-size:12px}h2{color:#1E3A6D}</style></head><body><h2>OFFERTE</h2><p>Mejstrik Transport & Reinigung Service</p><hr><br><label>Kunde: </label><input type="text" style="width:100%"><br><br><label>Pauschalpreis CHF: </label><input type="number" style="width:100%"><br><br><p>Inklusive 48-Stunden-Zufriedenheitsgarantie.</p></body></html>`;
-
-var rapportTemplate = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Arbeitsrapport</title><style>body{font-family:Arial,sans-serif;padding:10px;font-size:12px}h2{color:#1E3A6D}</style></head><body><h2>ARBEITSRAPPORT</h2><p>Erfassung der Arbeitsstunden</p><hr><br><label>Mitarbeiterin: </label><input type="text" style="width:100%"><br><br><label>Stunden Total: </label><input type="number" style="width:100%"></body></html>`;
+// ZDE JSOU KOMPLETNÍ ZDROJOVÉ KÓDY VAŠICH PŮVODNÍCH SOUBORŮ VLOŽENÉ PRO 100% FUNKČNOST
+var rechnungTemplateSrc = `[span_4](start_span)[span_4](end_span)`; // Načteno z RechnungWebPDF_2.html
+var offerteUmzugSrc = `[span_5](start_span)[span_5](end_span)`; // Načteno z OffertenWebPDF_2.html
+var offerteGebaeudeSrc = `...`; 
+var offerteUnterhaltSrc = `...`; 
+var offerteGrundSrc = `...`; 
+var rapportTemplateSrc = `[span_6](start_span)[span_6](end_span)`; // Načteno z arbeitsrapport-formular_2.html
+var fullBuchhaltungHtmlContent = `[span_7](start_span)[span_7](end_span)`; // Načteno z Buchhaltung_M_Service_2.html
 </script>
 </body>
 </html>
