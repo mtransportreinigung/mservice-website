@@ -2,352 +2,499 @@
 <html lang="de-CH">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="googlebot" content="noindex, nofollow">
-<title>app-service-m - Mejstrik Transport &amp; Reinigung Service</title>
-
-<!-- FUNKTIONALES APP-ICON (LOGO.PNG) -->
-<link rel="apple-touch-icon" href="logo.PNG">
-<link rel="icon" href="logo.PNG" type="image/png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="M Service">
-
+<meta name="apple-mobile-web-app-title" content="M Service App">
+<title>M Service - Mobile App</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--g:#666;--ok:#1F7A44;--bad:#C0392B}
-html{background:#eef1f5}
-body{font:13.5px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;padding-bottom:calc(75px + env(safe-area-inset-bottom))}
+:root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--ln:#8FA3BF;--g:#666;--ok:#1F7A44;--bad:#C0392B}
+html{-webkit-text-size-adjust:100%;background:#eef1f5;-webkit-tap-highlight-color:transparent}
+body{font:13.5px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 
-/* PIN-SCHUTZ */
-#pin-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
-#pin-screen img.logo-pin{width:70px;height:70px;margin-bottom:12px;border-radius:10px;object-fit:contain;background:#fff}
-#pin-screen h2{font-size:17px;margin-bottom:4px;color:#fff}
-#pin-screen p{font-size:11.5px;color:#a0b8e6;margin-bottom:15px}
-.pin-input{font-size:22px;letter-spacing:8px;text-align:center;width:150px;padding:8px;border-radius:6px;border:2px solid var(--o);outline:0;color:var(--n);margin-bottom:12px;background:#fff}
-.pin-btn{font:bold 14px Arial;background:var(--o);color:#fff;border:0;padding:10px 20px;border-radius:6px;cursor:pointer;width:150px}
-.pin-err{color:#ff8a8a;font-size:11.5px;margin-top:8px;display:none;font-weight:bold}
+/* PIN Screen */
+#pin-screen{position:fixed;inset:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:20px}
+#pin-screen img{width:70px;height:auto;margin-bottom:15px;border-radius:10px}
+#pin-screen h1{font-size:18px;margin-bottom:6px;text-align:center}
+#pin-screen p{font-size:12.5px;color:#cbd5e1;margin-bottom:20px;text-align:center}
+.pin-dots{display:flex;gap:12px;margin-bottom:24px}
+.pin-dot{width:16px;height:16px;border-radius:50%;border:2px solid #fff;background:transparent;transition:0.2s}
+.pin-dot.active{background:var(--o);border-color:var(--o)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,75px);gap:14px}
+.pin-btn{width:75px;height:75px;border-radius:50%;border:0;background:rgba(255,255,255,0.12);color:#fff;font-size:24px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:0.1s}
+.pin-btn:active{background:rgba(255,255,255,0.3)}
+#pin-error{color:#ff8080;font-size:12px;margin-top:12px;height:16px;font-weight:bold}
 
-/* FIXIERTE UND SCHLANKE HEADER-LEISTE (SCHARF & STABIL) */
-.app-header{background:var(--n);color:#fff;padding:8px 12px;padding-top:calc(8px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:900;box-shadow:0 1px 4px rgba(0,0,0,0.2);height:50px}
-.app-header .hdr-brand{display:flex;align-items:center;gap:8px}
-.app-header img.hdr-logo{width:26px;height:26px;border-radius:4px;object-fit:cover;background:#fff}
-.app-header h1{font-size:14px;font-weight:bold}
-.app-header span{font-size:9.5px;color:#a0b8e6}
+/* Main App Layout */
+#app-container{display:none}
+.logo{width:42px;height:38px;object-fit:contain}
+.top{position:sticky;top:0;z-index:100;background:#fff;border-bottom:3px solid var(--b);box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.top .in{max-width:1080px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand b{display:block;color:var(--br);font-size:15px}.brand span{font-size:11.5px;color:var(--g)}
+.act{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+button,.btn{font:bold 12.5px Arial;border:1px solid var(--bd);background:#fff;color:var(--n);border-radius:8px;padding:7px 11px;cursor:pointer}
+button:hover{background:var(--l)}button.pri{background:var(--b);color:#fff;border-color:var(--b)}
+.tabs{max-width:1080px;margin:0 auto;display:flex;gap:4px;padding:0 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabs button{border:0;border-radius:8px 8px 0 0;background:transparent;padding:10px 12px;font-size:13.5px;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;color:#444}
+.tabs button.on{background:var(--l);border-bottom-color:var(--o);color:var(--br);font-weight:bold}
+.wrap{max-width:1080px;margin:14px auto 40px;padding:0 14px}
+.sec{display:none;background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.07);padding:18px;border-top:5px solid var(--o)}
+.sec.on{display:block}
+h1{font-size:20px;color:var(--n);margin-bottom:4px}
+.hint{font-size:12px;color:var(--g);margin-bottom:12px}
+h2{font-size:14.5px;color:var(--n);margin:18px 0 8px;padding-bottom:3px;border-bottom:2px solid var(--bd)}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:10px 0 4px}
+.kpi div{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:9px;text-align:center}
+.kpi small{display:block;font-size:10.5px;font-weight:bold;color:var(--g);text-transform:uppercase}
+.kpi b{font-size:18px;color:var(--n)}.kpi .g b{color:var(--o)}.kpi .r b{color:var(--bad)}
+table{width:100%;border-collapse:collapse}
+th{background:var(--b);color:#fff;text-align:left;padding:6px 5px;font-size:11.5px}
+td{padding:4px 5px;border-bottom:1px solid var(--bd);vertical-align:middle}
+tr:nth-child(even) td{background:var(--l)}
+tr.inactive td{opacity:0.45;background:#f0f0f0!important}
+td.r,th.r{text-align:right}
+td.c,th.c{text-align:center}
+.tot td{background:var(--n)!important;color:#fff;font-weight:bold;padding:6px 8px}
+input,select{font:13px Arial;color:#0A2A8A;border:0;border-bottom:1px solid #b9c6d9;background:transparent;width:100%;padding:5px 2px;border-radius:0;outline:0}
+select{-webkit-appearance:none;appearance:none;cursor:pointer;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238FA3BF'/%3E%3C/svg%3E") right 4px center no-repeat;padding-right:14px}
+input:focus,select:focus{background:rgba(45,108,181,.09);border-bottom-color:var(--b)}
+input.r{text-align:right}
+input[type="checkbox"]{width:auto;cursor:pointer;transform:scale(1.15)}
+.x{border:0;background:transparent;color:#b00;font-size:18px;padding:2px 6px;cursor:pointer}
+.btn-sm{font-size:11px;padding:3px 6px;border-radius:4px;background:var(--l);border:1px solid var(--bd);color:var(--n);cursor:pointer;white-space:nowrap}
+.btn-sm:hover{background:var(--b);color:#fff}
+.warnbox{background:#FBE3E0;border-left:4px solid var(--bad);padding:8px 12px;font-size:12.5px;margin-bottom:10px;display:none}
+.bar2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.bar2 label{font-weight:bold;font-size:11.5px;color:var(--n)}.bar2 select,.bar2 input{width:auto;border:1px solid var(--bd);border-radius:6px;padding:4px 6px;background:#fff}
+.note{background:#FFF8E8;border-left:4px solid var(--o);padding:8px 12px;font-size:11.5px;margin-top:14px}
 
-.container{padding:10px;max-width:800px;margin:60px auto 10px auto}
-.card{background:#fff;border-radius:10px;padding:12px;margin-bottom:10px;box-shadow:0 1px 6px rgba(0,0,0,0.05);border-top:3px solid var(--o)}
-.card h2{font-size:14px;color:var(--n);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+/* Sub-app tabs inside the main modules */
+.sub-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.sub-tabs button{background:var(--l);border:1px solid var(--bd);border-radius:6px;padding:6px 12px;font-size:12px;font-weight:bold;color:var(--n)}
+.sub-tabs button.active{background:var(--b);color:#fff;border-color:var(--b)}
+.sub-view{display:none}
+.sub-view.active{display:block}
 
-.form-group{margin-bottom:8px}
-.form-group label{display:block;font-size:11px;font-weight:bold;color:var(--n);margin-bottom:2px}
-input,select,textarea{font:13.5px Arial;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:7px;border-radius:5px;outline:0}
-input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45,108,181,0.03)}
-.btn{font:bold 12.5px Arial;border:0;background:var(--b);color:#fff;border-radius:5px;padding:9px 12px;cursor:pointer;width:100%;text-align:center;display:block}
-.btn:active{opacity:0.8}
-.btn-sec{background:#fff;color:var(--n);border:1px solid var(--bd);margin-top:5px}
-.btn-ok{background:var(--ok)}
-.btn-back{background:var(--g);margin-bottom:8px}
+/* PDF Document container styling for Rechnung & Offerte */
+.doc-preview{background:#eef1f5;padding:10px;border-radius:8px;margin-bottom:15px;overflow-x:auto}
+.doc-page{width:210mm;min-height:297mm;background:#fff;margin:0 auto 10px;padding:15mm;box-shadow:0 0 6px rgba(0,0,0,0.15);position:relative;font-size:9pt;color:#2a2a2a}
+.doc-header{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--b);padding-bottom:8px;margin-bottom:15px}
+.doc-header img{width:20mm;height:auto}
 
-/* STABILE FIXIERTE NAVIGATION UNTEN (OHNE HOCHSPRINGEN) */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:6px 0;padding-bottom:calc(6px + env(safe-area-inset-bottom));z-index:950;box-shadow:0 -2px 8px rgba(0,0,0,0.06)}
-.bottom-nav button{background:0;border:0;font-size:9.5px;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;flex:1;outline:0}
-.bottom-nav button svg{width:18px;height:18px;fill:var(--g)}
-.bottom-nav button.active{color:var(--br);font-weight:bold}
-.bottom-nav button.active svg{fill:var(--br)}
-
-.view{display:none}
-.view.active{display:block}
-
-.doc-container{width:100%;height:650px;border:1px solid var(--bd);border-radius:6px;background:#fff;margin-top:6px}
-
-.photo-preview{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
-.photo-preview img{width:50px;height:50px;object-fit:cover;border-radius:4px;border:1px solid var(--bd)}
+@media(max-width:760px){
+ .kpi{grid-template-columns:1fr 1fr}
+ .brand span{display:none}
+}
+@media print{
+ #pin-screen,.top,.noprint{display:none!important}
+ body{background:#fff}
+ .sec{display:none!important}
+ .sec.on{display:block!important;box-shadow:none;border:0;padding:0}
+}
 </style>
 </head>
 <body>
 
-<!-- PIN SCHIRM -->
+<!-- PIN SCREEN -->
 <div id="pin-screen">
-  <img src="logo.PNG" alt="Logo" class="logo-pin" onerror="this.style.display='none'">
-  <h2>M Transport &amp; Reinigung</h2>
-  <p>Sicherheitssystem - PIN eingeben</p>
-  <input type="password" id="pin-val" class="pin-input" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="••••">
-  <button class="pin-btn" onclick="checkPin()">Anmelden</button>
-  <div id="pin-err" class="pin-err">Falscher PIN-Code!</div>
+    <img src="logo.PNG" alt="Logo" onerror="this.style.display='none'">
+    <h1>M Transport & Reinigung Service</h1>
+    <p>Zadejte bezpečnostní PIN pro přístup do aplikace</p>
+    <div class="pin-dots">
+        <div class="pin-dot" id="d0"></div>
+        <div class="pin-dot" id="d1"></div>
+        <div class="pin-dot" id="d2"></div>
+        <div class="pin-dot" id="d3"></div>
+    </div>
+    <div class="pin-pad">
+        <button class="pin-btn" onclick="pressPin('1')">1</button>
+        <button class="pin-btn" onclick="pressPin('2')">2</button>
+        <button class="pin-btn" onclick="pressPin('3')">3</button>
+        <button class="pin-btn" onclick="pressPin('4')">4</button>
+        <button class="pin-btn" onclick="pressPin('5')">5</button>
+        <button class="pin-btn" onclick="pressPin('6')">6</button>
+        <button class="pin-btn" onclick="pressPin('7')">7</button>
+        <button class="pin-btn" onclick="pressPin('8')">8</button>
+        <button class="pin-btn" onclick="pressPin('9')">9</button>
+        <button class="pin-btn" onclick="pressPin('C')" style="font-size:16px">C</button>
+        <button class="pin-btn" onclick="pressPin('0')">0</button>
+        <button class="pin-btn" onclick="pressPin('OK')" style="font-size:16px">OK</button>
+    </div>
+    <div id="pin-error"></div>
 </div>
 
-<!-- HEADER -->
-<header class="app-header">
-  <div class="hdr-brand">
-    <img src="logo.PNG" alt="Logo" class="hdr-logo" onerror="this.style.display='none'">
-    <div>
-      <h1>M Transport &amp; Reinigung</h1>
-      <span>Mobile Zentrale (app-service-m)</span>
+<!-- MAIN APP -->
+<div id="app-container">
+<div class="top">
+  <div class="in">
+    <img src="logo.PNG" alt="Logo" class="logo" onerror="this.style.display='none'">
+    <div class="brand"><b>M Transport &amp; Reinigung Service</b><span>Gesamtsystem &amp; Verwaltung <span class="yy"></span></span></div>
+    <div class="act noprint">
+      <button id="b-save" type="button">Daten sichern</button>
+      <label class="btn" style="display:inline-block;cursor:pointer">Daten laden<input id="b-load" type="file" accept=".json,application/json" hidden></label>
     </div>
   </div>
-  <div>
-    <button onclick="lockApp()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:5px 8px;border-radius:4px;font-size:10.5px;cursor:pointer">🔒 Sperren</button>
+  <div class="tabs noprint">
+    <button data-t="s-ue" class="on">Übersicht</button>
+    <button data-t="s-ein">Einnahmen</button>
+    <button data-t="s-aus">Ausgaben</button>
+    <button data-t="s-lohn">Löhne</button>
+    <button data-t="s-rg">Offene RG</button>
+    <button data-t="s-faktura">Rechnung</button>
+    <button data-t="s-offerte">Offerten</button>
+    <button data-t="s-rapport">Arbeitsrapport</button>
   </div>
-</header>
-
-<div class="container">
-
-  <!-- TAB 1: BUCHHALTUNG & SCHNELL-ERFASSUNG -->
-  <div id="v-buchhaltung" class="view active">
-    <div class="card" style="border-top-color:var(--br)">
-      <h2>Buchhaltung &amp; Jahr-Auswahl</h2>
-      <div class="form-group">
-        <label>Buchhaltungs-Jahr:</label>
-        <input id="m-year" type="number" value="2027" min="2000" max="2099" oninput="changeYear(this.value)">
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
-        <button class="btn" onclick="openFullBuchhaltung()">📊 Gesamte Buchhaltung öffnen</button>
-        <button class="btn btn-sec" onclick="exportBackupPrompt()">💾 Daten sichern (JSON)</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <h2>Direkt-Erfassung (Einnahme / Ausgabe)</h2>
-      <div class="form-group">
-        <label>Typ:</label>
-        <select id="q-type">
-          <option value="ein">Einnahme</option>
-          <option value="aus">Ausgabe</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Datum:</label>
-        <input id="q-date" type="date">
-      </div>
-      <div class="form-group">
-        <label>Kunde / Empfänger / Grund:</label>
-        <input id="q-who" type="text" placeholder="z. B. Max Muster">
-      </div>
-      <div class="form-group">
-        <label>Kategorie:</label>
-        <select id="q-cat">
-          <option value="Umzugsreinigung">Umzugsreinigung</option>
-          <option value="Gebäudereinigung">Gebäudereinigung</option>
-          <option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
-          <option value="Grundreinigung">Grundreinigung</option>
-          <option value="Transport & Umzug">Transport &amp; Umzug</option>
-          <option value="Sonstige Einnahmen">Sonstige Einnahmen / Ausgaben</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Betrag (CHF):</label>
-        <input id="q-amt" type="number" step="0.05" placeholder="0.00">
-      </div>
-      <div class="form-group">
-        <label>Beleg / Foto anfügen (optional):</label>
-        <input type="file" id="q-photo" accept="image/*" capture="environment" onchange="handlePhotoUpload(this, 'q-prev')">
-        <div id="q-prev" class="photo-preview"></div>
-      </div>
-      <button class="btn btn-ok" onclick="quickSaveRecord()">In Buchhaltung eintragen</button>
-    </div>
-  </div>
-
-  <!-- TAB 2: PROTOKOLLE & FORMULARE -->
-  <div id="v-protokolle" class="view">
-    <div class="card">
-      <h2>Offizielle Formulare &amp; Protokolle</h2>
-      <div class="form-group">
-        <label>Dokument auswählen:</label>
-        <select id="doc-selector" onchange="loadDocumentTemplate(this.value)">
-          <option value="">-- Bitte wählen --</option>
-          <option value="rechnung">📄 Rechnung (RechnungWebPDF)</option>
-          <option value="offerte-umzug">✉️ Offerte - Umzugsreinigung</option>
-          <option value="offerte-gebaeude">✉️ Offerte - Gebäudereinigung</option>
-          <option value="offerte-unterhalt">✉️ Offerte - Unterhaltsreinigung</option>
-          <option value="offerte-grund">✉️ Offerte - Grundreinigung</option>
-          <option value="rapport">⏱️ Arbeitsrapport (Mitarbeiter)</option>
-        </select>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
-        <button class="btn btn-back" onclick="switchView('v-buchhaltung', document.querySelectorAll('.bottom-nav button')[0])">← Zurück zur Übersicht</button>
-        <button class="btn btn-ok" onclick="printOrSavePDF()">🖨️ Als PDF speichern / Drucken</button>
-      </div>
-    </div>
-
-    <div class="card" id="doc-preview-card" style="display:none">
-      <h2>Dokument-Vorschau</h2>
-      <iframe id="doc-iframe" class="doc-container"></iframe>
-    </div>
-  </div>
-
 </div>
 
-<!-- BOTTOM NAVIGATION -->
-<nav class="bottom-nav">
-  <button class="active" onclick="switchView('v-buchhaltung', this)">
-    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-    Buchhaltung
-  </button>
-  <button onclick="switchView('v-protokolle', this)">
-    <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-    Protokolle
-  </button>
-</nav>
+<div class="wrap">
+  <div class="warnbox" id="wb">Der Browser speichert lokal. Bitte regelmässig Daten sichern!</div>
+
+  <!-- 1. ÜBERSICHT -->
+  <section class="sec on" id="s-ue">
+    <h1>Buchhaltungs-Übersicht <span class="yy"></span></h1>
+    <div class="hint">Automatische Auswertung für das Geschäftsjahr.</div>
+    <div class="bar2 noprint"><label for="year">Jahr:</label><input id="year" type="number" min="2000" max="2099" style="width:90px"></div>
+    <div class="kpi">
+      <div><small>Einnahmen</small><b id="k-e"></b></div>
+      <div><small>Ausgaben</small><b id="k-a"></b></div>
+      <div class="g"><small>Gewinn</small><b id="k-g"></b></div>
+      <div class="r"><small>Offen</small><b id="k-o"></b></div>
+    </div>
+    <div class="hint" style="margin-top:6px">Überfällig: CHF <span id="k-ov"></span></div>
+    <h2>Monatsübersicht</h2>
+    <table><thead><tr><th>Monat</th><th class="r">Einnahmen</th><th class="r">Ausgaben</th><th class="r">Gewinn</th></tr></thead><tbody id="tb-mon"></tbody></table>
+  </section>
+
+  <!-- 2. EINNAHMEN -->
+  <section class="sec" id="s-ein">
+    <h1>Einnahmen <span class="yy"></span></h1>
+    <div class="bar2 noprint"><label for="f-ein">Monat:</label><select id="f-ein"></select></div>
+    <table class="lst"><thead><tr><th class="c" style="width:35px">Aktiv</th><th>Datum</th><th>Beleg</th><th>Kunde</th><th>Beschreibung</th><th>Kategorie</th><th class="r">Betrag CHF</th><th>Zahlart</th><th></th></tr></thead><tbody id="tb-ein"></tbody><tfoot><tr class="tot"><td colspan="6">Total CHF</td><td class="r" id="tt-ein"></td><td colspan="2"></td></tr></tfoot></table>
+  </section>
+
+  <!-- 3. AUSGABEN -->
+  <section class="sec" id="s-aus">
+    <h1>Ausgaben <span class="yy"></span></h1>
+    <div class="bar2 noprint"><label for="f-aus">Monat:</label><select id="f-aus"></select></div>
+    <table class="lst"><thead><tr><th class="c" style="width:35px">Aktiv</th><th>Datum</th><th>Empfänger / Grund</th><th>Kategorie</th><th class="r">Betrag CHF</th><th>Zahlart</th><th>Beschreibung</th><th></th></tr></thead><tbody id="tb-aus"></tbody><tfoot><tr class="tot"><td colspan="4">Total CHF</td><td class="r" id="tt-aus"></td><td colspan="3"></td></tr></tfoot></table>
+  </section>
+
+  <!-- 4. LÖHNE -->
+  <section class="sec" id="s-lohn">
+    <h1>Löhne &amp; Aushilfe</h1>
+    <div class="bar2 noprint"><label for="f-lohn">Monat:</label><select id="f-lohn"></select></div>
+    <table class="lst"><thead><tr><th class="c" style="width:35px">Aktiv</th><th>Datum</th><th>Name</th><th>Funktion</th><th class="r">Brutto CHF</th><th>Abzüge</th><th class="r">Netto CHF</th><th>Zahlart</th><th></th></tr></thead><tbody id="tb-lohn"></tbody><tfoot><tr class="tot"><td colspan="4">Total Brutto CHF</td><td class="r" id="tt-lohn"></td><td colspan="4"></td></tr></tfoot></table>
+  </section>
+
+  <!-- 5. OFFENE RECHNUNGEN -->
+  <section class="sec" id="s-rg">
+    <h1>Offene Rechnungen</h1>
+    <table class="lst"><thead><tr><th class="c">Aktiv</th><th>Rech.-Nr.</th><th>Datum</th><th>Kunde</th><th class="r">Betrag CHF</th><th>Zahlbar bis</th><th>Bezahlt</th><th>Status</th><th></th></tr></thead><tbody id="tb-rg"></tbody></table>
+  </section>
+
+  <!-- 6. RECHNUNG GENERATOR -->
+  <section class="sec" id="s-faktura">
+    <h1>Rechnungsgenerator</h1>
+    <div class="hint">Erstellen Sie Rechnungen direkt auf Basis der Firmenvorlagen.</div>
+    <div style="background:var(--l);padding:12px;border-radius:6px;margin-bottom:12px;border:1px solid var(--bd)">
+      <p><b>Schnellbedienung:</b> Nutzen Sie die eingebetteten Vorlagensysteme für Transport &amp; Reinigung.</p>
+      <button class="pri" style="margin-top:8px" onclick="window.print()">Rechnung drucken / PDF speichern</button>
+    </div>
+  </section>
+
+  <!-- 7. OFFERTEN -->
+  <section class="sec" id="s-offerte">
+    <h1>Offerten-Manager</h1>
+    <div class="sub-tabs">
+      <button class="active" onclick="switchOfferte('umzug', this)">Umzugsreinigung</button>
+      <button onclick="switchOfferte('gebaeude', this)">Gebäudereinigung</button>
+      <button onclick="switchOfferte('unterhalt', this)">Unterhaltsreinigung</button>
+      <button onclick="switchOfferte('grund', this)">Grundreinigung</button>
+    </div>
+    <div id="offerte-content">
+      <p>Offerte für Umzugsreinigung aktiv. (Inkl. Endreinigung bezugsfertig &amp; 48h Garantie).</p>
+    </div>
+  </section>
+
+  <!-- 8. ARBEITSRAPPORT -->
+  <section class="sec" id="s-rapport">
+    <h1>Arbeitsrapport</h1>
+    <div class="hint">Erfassung der geleisteten Arbeitsstunden für Mitarbeiter.</div>
+    <div class="bar2">
+      <label>Mitarbeiterin:</label><input type="text" id="rep-ma" placeholder="Name" style="width:160px">
+      <label>Lohn CHF/h:</label><input type="number" id="rep-rate" value="30" style="width:70px">
+    </div>
+    <table>
+      <thead><tr><th>Datum</th><th>Kunde / Einsatzort</th><th class="r">Beginn</th><th class="r">Ende</th><th class="r">Pause (Min)</th><th class="r">Stunden</th></tr></thead>
+      <tbody id="tb-rapport">
+        <tr><td><input placeholder="TT.MM."></td><td><input></td><td><input class="r" placeholder="07:30"></td><td><input class="r" placeholder="16:00"></td><td><input class="r" value="30"></td><td><input class="r" readonly></td></tr>
+        <tr><td><input placeholder="TT.MM."></td><td><input></td><td><input class="r" placeholder="07:30"></td><td><input class="r" placeholder="16:00"></td><td><input class="r" value="30"></td><td><input class="r" readonly></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+</div>
 
 <script>
-var PIN = "2518";
-var currentPhotos = [];
-var currentDocKey = '';
+// PIN Logic
+let enteredPin = "";
+const correctPin = "2518";
 
-var buchhaltungData = JSON.parse(localStorage.getItem('mservice_buchhaltung_v1')) || {
-  year: 2027,
-  days: 10,
-  rates: {ahv:5.15, alv:0.15, alv2:0, nbu:0, ktg:0, bvg:0},
-  ein: [],
-  aus: [],
-  lohn: [],
-  rg: []
+function pressPin(val) {
+    if(val === 'C') {
+        enteredPin = "";
+    } else if(val === 'OK') {
+        if(enteredPin === correctPin) {
+            document.getElementById('pin-screen').style.display = 'none';
+            document.getElementById('app-container').style.display = 'block';
+            sessionStorage.setItem('m_auth', 'true');
+        } else {
+            document.getElementById('pin-error').textContent = 'Nesprávný PIN!';
+            enteredPin = "";
+        }
+    } else {
+        if(enteredPin.length < 4) {
+            enteredPin += val;
+        }
+    }
+    updatePinDots();
+}
+
+function updatePinDots() {
+    for(let i=0; i<4; i++) {
+        const dot = document.getElementById('d' + i);
+        if(i < enteredPin.length) {
+            dot.classList.add('active');
+        } else {
+            dot.classList.remove('active');
+        }
+    }
+}
+
+if(sessionStorage.getItem('m_auth') === 'true') {
+    document.getElementById('pin-screen').style.display = 'none';
+    document.getElementById('app-container').style.display = 'block';
+}
+
+// Tabs Navigation
+document.querySelectorAll('.tabs button').forEach(b => {
+    b.addEventListener('click', () => {
+        document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+        document.querySelectorAll('.tabs button').forEach(tb => tb.classList.remove('on'));
+        document.getElementById(b.dataset.t).classList.add('on');
+        b.classList.add('on');
+        window.scrollTo(0,0);
+    });
+});
+
+// Accounting & App Core State
+const K = 'mservice_unified_app_v1';
+const CE = ['Umzugsreinigung','Gebäudereinigung','Unterhaltsreinigung','Grundreinigung','Transport & Umzug','Sonstige Einnahmen'];
+const CA = ['Löhne & Aushilfe','Material & Reinigungsmittel','Benzin & Transport','Geräte & Maschinen','Werbung & Website','Telefon & Internet','Versicherungen & Gebühren','Büro & Software','Sonstige Ausgaben'];
+const PAY = ['Bar','TWINT','Banküberweisung','Karte','Pauschal / Eigenverbrauch','Privat bezahlt'];
+const MON = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+let S = {year: 2026, ein: [], aus: [], lohn: [], rg: []};
+
+function loadData() {
+    try {
+        let saved = localStorage.getItem(K);
+        if(saved) S = JSON.parse(saved);
+    } catch(e) {}
+}
+function saveData() {
+    try {
+        localStorage.setItem(K, JSON.stringify(S));
+        g('wb').style.display = 'none';
+    } catch(e) {
+        g('wb').style.display = 'block';
+    }
+}
+
+function g(id) { return document.getElementById(id); }
+function el(t, a, c) {
+    let e = document.createElement(t);
+    for(let k in a||{}) {
+        if(k==='text') e.textContent = a[k];
+        else if(k==='cls') e.className = a[k];
+        else e.setAttribute(k, a[k]);
+    }
+    (c||[]).forEach(x => e.appendChild(x));
+    return e;
+}
+function n(s) {
+    let x = parseFloat(String(s||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(',','.'));
+    return isNaN(x) ? 0 : x;
+}
+function f(x) { return x.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+// Bookkeeping Table builder helper
+const LST = {
+  ein: {tb: 'tb-ein', cols: [['act','Aktiv','check'],['d','Datum','date'],['nr','Beleg','text'],['who','Kunde','text'],['desc','Beschreibung','text'],['cat','Kategorie',CE],['amt','Betrag','amt'],['pay','Zahlart',PAY]]},
+  aus: {tb: 'tb-aus', cols: [['act','Aktiv','check'],['d','Datum','date'],['who','Empfänger','text'],['cat','Kategorie',CA],['amt','Betrag','amt'],['pay','Zahlart',PAY],['desc','Beschreibung','text']]},
+  lohn:{tb: 'tb-lohn', cols: [['act','Aktiv','check'],['d','Datum','date'],['who','Name','text'],['desc','Funktion','text'],['amt','Brutto','amt'],['netto','Netto','calc'],['pay','Zahlart',PAY]]},
+  rg:  {tb: 'tb-rg', cols: [['act','Aktiv','check'],['nr','Nr','text'],['d','Datum','date'],['who','Kunde','text'],['amt','Betrag','amt'],['due','Zahlbar bis','calc'],['paid','Bezahlt','date'],['st','Status','calc']]}
 };
 
-document.getElementById('q-date').value = new Date().toISOString().slice(0,10);
-document.getElementById('m-year').value = buchhaltungData.year || 2027;
+function buildTable(key) {
+    let L = LST[key], tb = g(L.tb);
+    if(!tb) return;
+    tb.innerHTML = '';
+    if(!S[key]) S[key] = [];
+    
+    S[key].forEach((r, idx) => {
+        if(r.act === undefined) r.act = true;
+        let tr = el('tr');
+        if(!r.act) tr.classList.add('inactive');
+        
+        L.cols.forEach(c => {
+            let td = el('td'), inp;
+            if(c[2] === 'check') {
+                inp = el('input', {type: 'checkbox'});
+                inp.checked = !!r.act;
+                inp.onchange = () => { r.act = inp.checked; tr.classList.toggle('inactive', !r.act); saveData(); refreshApp(); };
+                td.className = 'c';
+            } else if(c[2] === 'calc') {
+                inp = el('span', {text: key==='lohn' ? f(n(r.amt)*0.9) : ''});
+            } else if(Array.isArray(c[2])) {
+                inp = el('select');
+                inp.appendChild(el('option', {value: '', text: ''}));
+                c[2].forEach(o => inp.appendChild(el('option', {value: o, text: o})));
+                inp.value = r[c[0]] || '';
+                inp.onchange = () => { r[c[0]] = inp.value; saveData(); refreshApp(); };
+            } else {
+                inp = el('input', {type: c[2]==='date'?'date':'text'});
+                if(c[2]==='amt') { inp.className = 'r'; td.className = 'r'; }
+                inp.value = r[c[0]] || '';
+                inp.oninput = () => { r[c[0]] = inp.value; saveData(); refreshApp(); };
+            }
+            td.appendChild(inp);
+            tr.appendChild(td);
+        });
+        
+        // Delete button
+        let tdDel = el('td');
+        let btnDel = el('button', {cls: 'x', type: 'button', text: '×'});
+        btnDel.onclick = () => { S[key].splice(idx, 1); saveData(); buildTable(key); refreshApp(); };
+        tdDel.appendChild(btnDel);
+        tr.appendChild(tdDel);
+        
+        tb.appendChild(tr);
+    });
+    
+    // Add empty row for entry
+    let emptyRow = {act: true};
+    S[key].push(emptyRow);
+    let tr = el('tr');
+    L.cols.forEach(c => {
+        let td = el('td'), inp;
+        if(c[2] === 'check') {
+            inp = el('input', {type: 'checkbox'}); inp.checked = true;
+            inp.onchange = () => { emptyRow.act = inp.checked; saveData(); refreshApp(); };
+            td.className = 'c';
+        } else if(c[2] === 'calc') {
+            inp = el('span');
+        } else if(Array.isArray(c[2])) {
+            inp = el('select');
+            inp.appendChild(el('option', {value: '', text: ''}));
+            c[2].forEach(o => inp.appendChild(el('option', {value: o, text: o})));
+            inp.onchange = () => { emptyRow[c[0]] = inp.value; checkGrowth(key); saveData(); refreshApp(); };
+        } else {
+            inp = el('input', {type: c[2]==='date'?'date':'text'});
+            if(c[2]==='amt') { inp.className = 'r'; td.className = 'r'; }
+            inp.oninput = () => { emptyRow[c[0]] = inp.value; checkGrowth(key); saveData(); refreshApp(); };
+        }
+        td.appendChild(inp);
+        tr.appendChild(td);
+    });
+    tr.appendChild(el('td'));
+    tb.appendChild(tr);
+}
 
-function checkPin() {
-  if(document.getElementById('pin-val').value === PIN) {
-    document.getElementById('pin-screen').style.display = 'none';
-    localStorage.setItem('app_service_m_auth', 'true');
-  } else {
-    document.getElementById('pin-err').style.display = 'block';
-  }
-}
-function lockApp() {
-  localStorage.removeItem('app_service_m_auth');
-  document.getElementById('pin-screen').style.display = 'flex';
-}
-if(localStorage.getItem('app_service_m_auth') === 'true') {
-  document.getElementById('pin-screen').style.display = 'none';
+function checkGrowth(key) {
+    // Automatically manage trailing empty row
+    refreshApp();
 }
 
-function switchView(viewId, btn) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(viewId).classList.add('active');
-  document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
-  if(btn) btn.classList.add('active');
-  window.scrollTo(0,0);
+function refreshApp() {
+    let Y = S.year || 2026;
+    g('year').value = Y;
+    document.querySelectorAll('.yy').forEach(e => e.textContent = Y);
+    
+    let te = 0, ta = 0, me = Array(12).fill(0), ma = Array(12).fill(0);
+    
+    (S.ein||[]).forEach(r => {
+        if(r.act !== false && r.d && r.d.startsWith(String(Y))) {
+            let v = n(r.amt);
+            te += v;
+            let m = +r.d.slice(5,7)-1; if(m>=0 && m<12) me[m] += v;
+        }
+    });
+    (S.aus||[]).forEach(r => {
+        if(r.act !== false && r.d && r.d.startsWith(String(Y))) {
+            let v = n(r.amt);
+            ta += v;
+            let m = +r.d.slice(5,7)-1; if(m>=0 && m<12) ma[m] += v;
+        }
+    });
+    (S.lohn||[]).forEach(r => {
+        if(r.act !== false && r.d && r.d.startsWith(String(Y))) {
+            let v = n(r.amt);
+            ta += v;
+            let m = +r.d.slice(5,7)-1; if(m>=0 && m<12) ma[m] += v;
+        }
+    });
+    
+    g('k-e').textContent = f(te);
+    g('k-a').textContent = f(ta);
+    g('k-g').textContent = f(te - ta);
+    
+    // Monthly table
+    let h = '';
+    for(let m=0; m<12; m++) {
+        h += `<tr><td><b>${MON[m]}</b></td><td class="r">${f(me[m])}</td><td class="r">${f(ma[m])}</td><td class="r"><b>${f(me[m]-ma[m])}</b></td></tr>`;
+    }
+    g('tb-mon').innerHTML = h;
 }
 
-function changeYear(yr) {
-  buchhaltungData.year = parseInt(yr, 10) || 2027;
-  saveBuchhaltung();
+function fillMonths() {
+    ['ein','aus','lohn'].forEach(k => {
+        let s = g('f-'+k);
+        if(!s) return;
+        s.innerHTML = '<option value="">Alle Monate</option>';
+        MON.forEach((m, i) => s.appendChild(el('option', {value: ('0'+(i+1)).slice(-2), text: m})));
+    });
 }
 
-function saveBuchhaltung() {
-  localStorage.setItem('mservice_buchhaltung_v1', JSON.stringify(buchhaltungData));
+function switchOfferte(type, btn) {
+    document.querySelectorAll('.sub-tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    g('offerte-content').innerHTML = `<p>Offerte für <b>${type.toUpperCase()}</b> geladen und bereit.</p>`;
 }
 
-function handlePhotoUpload(input, prevId) {
-  if(input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      currentPhotos.push(e.target.result);
-      var img = document.createElement('img');
-      img.src = e.target.result;
-      document.getElementById(prevId).appendChild(img);
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+    loadData();
+    fillMonths();
+    ['ein','aus','lohn','rg'].forEach(k => buildTable(k));
+    g('year').oninput = function() { S.year = parseInt(this.value, 10)||2026; saveData(); refreshApp(); };
+    g('b-save').onclick = function() {
+        let b = new Blob([JSON.stringify(S,null,2)], {type:'application/json'});
+        let a = el('a', {href: URL.createObjectURL(b), download: 'M_Service_Backup.json'});
+        document.body.appendChild(a); a.click(); a.remove();
     };
-    reader.readAsDataURL(input.files[0]);
-  }
-}
-
-function quickSaveRecord() {
-  var type = document.getElementById('q-type').value;
-  var date = document.getElementById('q-date').value;
-  var who = document.getElementById('q-who').value;
-  var cat = document.getElementById('q-cat').value;
-  var amt = parseFloat(document.getElementById('q-amt').value);
-
-  if(!who || isNaN(amt) || amt <= 0) {
-    alert('Bitte Name/Empfänger und gültigen Betrag eingeben.');
-    return;
-  }
-
-  var row = {
-    act: true,
-    d: date,
-    who: who,
-    cat: cat,
-    amt: amt.toFixed(2),
-    pay: 'Bar',
-    desc: currentPhotos.length > 0 ? 'Mit Foto-Beleg' : '',
-    photos: currentPhotos
-  };
-
-  if(type === 'ein') buchhaltungData.ein.push(row);
-  else buchhaltungData.aus.push(row);
-
-  saveBuchhaltung();
-  document.getElementById('q-who').value = '';
-  document.getElementById('q-amt').value = '';
-  document.getElementById('q-prev').innerHTML = '';
-  currentPhotos = [];
-  alert('Erfolgreich in die Buchhaltung eingetragen!');
-}
-
-function exportBackupPrompt() {
-  var blob = new Blob([JSON.stringify(buchhaltungData, null, 2)], {type:'application/json'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'Buchhaltung_' + buchhaltungData.year + '_Sicherung.json';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}
-
-function openFullBuchhaltung() {
-  var w = window.open('', '_blank');
-  w.document.write(fullBuchhaltungHtmlContent);
-  w.document.close();
-}
-
-function loadDocumentTemplate(type) {
-  if(!type) {
-    document.getElementById('doc-preview-card').style.display = 'none';
-    return;
-  }
-  currentDocKey = type;
-  document.getElementById('doc-preview-card').style.display = 'block';
-  var iframe = document.getElementById('doc-iframe');
-  
-  var html = '';
-  if(type === 'rechnung') html = rechnungTemplateSrc;
-  else if(type === 'offerte-umzug') html = offerteUmzugSrc;
-  else if(type === 'offerte-gebaeude') html = offerteGebaeudeSrc;
-  else if(type === 'offerte-unterhalt') html = offerteUnterhaltSrc;
-  else if(type === 'offerte-grund') html = offerteGrundSrc;
-  else if(type === 'rapport') html = rapportTemplateSrc;
-
-  iframe.contentWindow.document.open();
-  iframe.contentWindow.document.write(html);
-  iframe.contentWindow.document.close();
-}
-
-function printOrSavePDF() {
-  var iframe = document.getElementById('doc-iframe');
-  if(!currentDocKey || !iframe.contentWindow) {
-    alert('Bitte zuerst ein Dokument aus der Liste auswählen.');
-    return;
-  }
-  iframe.contentWindow.print();
-}
-
-/* ==========================================================================
-   EXAKTE INTEGRATION DER QUELLDATEIEN (RechnungWebPDF_3, OffertenWebPDF_3, 
-   Buchhaltung_M_Service_3, arbeitsrapport-formular_3)
-   ========================================================================== */
-
-var rechnungTemplateSrc = `[span_4](start_span)[span_4](end_span)`; 
-var offerteUmzugSrc = `[span_5](start_span)[span_5](end_span)`; 
-var offerteGebaeudeSrc = `[span_6](start_span)[span_6](end_span)`; 
-var offerteUnterhaltSrc = `[span_7](start_span)[span_7](end_span)`; 
-var offerteGrundSrc = `[span_8](start_span)[span_8](end_span)`; 
-var rapportTemplateSrc = `[span_9](start_span)[span_9](end_span)`; 
-var fullBuchhaltungHtmlContent = `[span_10](start_span)[span_10](end_span)`; 
+    g('b-load').onchange = function(e) {
+        let r = new FileReader();
+        r.onload = function() {
+            try { S = JSON.parse(r.result); saveData(); location.reload(); } catch(err) { alert('Chyba souboru.'); }
+        };
+        if(e.target.files[0]) r.readAsText(e.target.files[0]);
+    };
+    refreshApp();
+});
 </script>
 </body>
 </html>
