@@ -11,14 +11,14 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="M Service">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#1E3A6D">
 <title>M Service</title>
 <link rel="apple-touch-icon" id="ati" href="logo.PNG">
 <link rel="icon" href="logo.PNG">
 <style>*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--ln:#8FA3BF;--g:#666;--ok:#1F7A44;--bad:#C0392B}
-html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;background:#eef1f5;font:15px/1.4 -apple-system,Arial,sans-serif;color:#2a2a2a;-webkit-text-size-adjust:100%;-webkit-user-select:none;user-select:none}
+html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;background:#1E3A6D;font:15px/1.4 -apple-system,Arial,sans-serif;color:#2a2a2a;-webkit-text-size-adjust:100%;-webkit-user-select:none;user-select:none}
 input,select,textarea{-webkit-user-select:text;user-select:text}
 [hidden]{display:none!important}
 .lg{display:inline-flex;width:34px;height:30px;flex:none}.lg img,.lg svg{width:100%;height:100%;object-fit:contain}.lg.big{width:84px;height:75px}
@@ -40,12 +40,13 @@ input,select,textarea{-webkit-user-select:text;user-select:text}
 .sheet button:active{background:var(--b);color:#fff}.sheet button.c{background:none;border:0;color:var(--g);text-align:center}
 .prall{margin:0 14px 14px;width:calc(100% - 28px);padding:14px;border:0;border-radius:12px;background:var(--b);color:#fff;font:600 15px -apple-system,Arial}
 #app{position:fixed;inset:0;display:flex;flex-direction:column}
-.bar{display:flex;align-items:center;gap:6px;background:#fff;border-bottom:3px solid var(--b);padding:calc(env(safe-area-inset-top) + 6px) 10px 6px;flex:none}
-.bar b{color:var(--br);font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp{flex:1}
-.bar button{width:38px;height:36px;border:1px solid var(--bd);border-radius:9px;background:var(--l);color:var(--n);font:bold 19px Arial;padding:0}
-.bar button:active{background:var(--b);color:#fff}
+.bar{display:flex;align-items:center;gap:6px;background:linear-gradient(180deg,#1E3A6D,#17306000 0),#1E3A6D;border-bottom:3px solid var(--o);padding:calc(env(safe-area-inset-top) + 6px) 10px 7px;flex:none}
+.bar .lg{background:#fff;border-radius:9px;padding:3px;width:40px;height:36px}
+.bar b{color:#fff;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp{flex:1}
+.bar button{width:38px;height:36px;border:1px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.12);color:#fff;font:bold 19px Arial;padding:0}
+.bar button:active{background:var(--o);border-color:var(--o)}
 #app[data-t=home] .bd,#app[data-t=buch] .bd{display:none}
-.main{flex:1;position:relative;overflow:hidden}
+.main{flex:1;position:relative;overflow:hidden;background:#eef1f5}
 .view{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;display:none;font:8.8pt/1.32 Arial,Helvetica,sans-serif;color:#2a2a2a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .view.on{display:block}
 #v-buch{font:14px/1.4 Arial,Helvetica,sans-serif;padding-bottom:8px}
@@ -181,11 +182,15 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
   </nav>
 </div>
 <div class="sheet" id="sheet" hidden><div>
-  <h3>Drucken / PDF</h3>
-  <button id="p1" data-m="one">Dieses Dokument</button>
-  <button data-m="off">Alle Offerten (4 Arten)</button>
-  <button data-m="all">Alle Dokumente (Offerten, Rechnung, Rapport)</button>
+  <h3>Drucken / PDF erstellen</h3>
+  <button id="p1" data-m="one">Dieses Dokument (PDF)</button>
+  <button data-m="off">Alle Offerten (PDF)</button>
+  <button data-m="all">Alle Dokumente (PDF)</button>
   <button class="c" data-m="x">Abbrechen</button></div></div>
+<div class="sheet" id="busy" hidden><div><h3>PDF wird erstellt &hellip;</h3></div></div>
+<div class="sheet" id="ready" hidden><div><h3 id="rname">PDF bereit</h3>
+  <button id="rshare">Drucken / Teilen / In Dateien sichern</button>
+  <button id="ropen">PDF &ouml;ffnen</button><button class="c" id="rclose">Schliessen</button></div></div>
 <script>var CALC={};</script><script>(function(){document.querySelectorAll('[data-s]').forEach(function(p){var s=p.dataset.s,t={},g=function(k){return document.getElementById(s+'_'+k)},v=function(k){return g(k)?g(k).value.trim():''},a=g('a1'),b=g('a2');
 [a,b].forEach(function(e){e.oninput=function(){t[e.id]=1}});
 function f(){var n=(v('v')+' '+v('n')).trim();if(g('f')){if(!t[a.id])a.value=v('f');if(!t[b.id])b.value=n}else if(!t[a.id])a.value=n}
@@ -697,19 +702,68 @@ $('rs').onclick=function(){var v=cur;if(!confirm('Dieses Formular zurücksetzen?
 Q('input,select',v).forEach(function(e){if(e.type=='checkbox')e.checked=e.defaultChecked;else if(e.tagName=='SELECT')Q('option',e).forEach(function(o){o.selected=o.defaultSelected});else e.value=e.defaultValue;delete e.dataset.man});
 var k=v.id.replace('v-','');if(CALC[k])CALC[k]();localStorage.removeItem(T+v.id);fit(v)};
 /* print / PDF */
-var ps=document.createElement('style');document.head.appendChild(ps);
-function pg(){ps.textContent=cur.id=='v-buch'?'@page{size:A4;margin:8mm 8mm 10mm}':'@page{size:A4;margin:0}'}
-window.addEventListener('beforeprint',pg);
-function doPrint(m){var vs=m=='all'?DV:m=='off'?['v-offerte']:null;pg();
-if(vs){Q('.view').forEach(function(v){v.classList.toggle('pf',vs.indexOf(v.id)>-1)});document.body.classList.add('pm');
-Q('.page',vo).forEach(function(p){p.hidden=false});var all=[];vs.forEach(function(i){all=all.concat(Q('.page',$(i)))});all.forEach(function(p,i){p.classList.toggle('plast',i==all.length-1)})}
-setTimeout(function(){window.print()},80)}
-window.addEventListener('afterprint',function(){if(!document.body.classList.contains('pm'))return;document.body.classList.remove('pm');Q('.view').forEach(function(v){v.classList.remove('pf')});
-['v-rechnung','v-rapport'].forEach(function(i){Q('.page',$(i)).forEach(function(p){p.classList.add('plast')})});og(+localStorage.getItem(T+'og')||0)});
+/* PDF export: window.print() does not work in iOS home-screen apps -> build PDF + share sheet */
+function pg(){}
+var pdfFile,blobUrl,NM={'v-offerte':'Offerte','v-rechnung':'Rechnung','v-rapport':'Arbeitsrapport'};
+function lib(){if(window.jspdf&&window.html2canvas)return Promise.resolve();return new Promise(function(res,rej){var n=0;['html2canvas/1.4.1/html2canvas.min.js','jspdf/2.5.1/jspdf.umd.min.js'].forEach(function(u){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/'+u;s.onload=function(){if(++n==2)res()};s.onerror=function(){rej(new Error('lib'))};document.head.appendChild(s)})})}
+function svgFull(w,h){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 376" width="'+w+'" height="'+h+'">'+$('lg').innerHTML+'</svg>'}
+function busy(o){$('busy').hidden=!o}
+function fail(){busy(false);alert('PDF konnte nicht erstellt werden. Bitte Internetverbindung prüfen (nur beim ersten Mal nötig).')}
+function ready(pdf,name){var bl=pdf.output('blob');pdfFile=new File([bl],name,{type:'application/pdf'});blobUrl=URL.createObjectURL(bl);$('rname').textContent=name;busy(false);$('ready').hidden=false}
+$('rshare').onclick=function(){if(navigator.canShare&&navigator.canShare({files:[pdfFile]}))navigator.share({files:[pdfFile],title:pdfFile.name}).catch(function(){});else window.open(blobUrl,'_blank')};
+$('ropen').onclick=function(){window.open(blobUrl,'_blank')};$('rclose').onclick=function(){$('ready').hidden=true};
+function shot(p){var vid=p.closest('.view').id;p.setAttribute('data-pdf','1');
+return html2canvas(p,{scale:2,backgroundColor:'#fff',logging:false,windowWidth:900,windowHeight:1300,onclone:function(d){
+var v=d.getElementById(vid),t=d.querySelector('[data-pdf]');v.style.cssText='position:static;overflow:visible;display:block';
+d.getElementById('app').style.cssText='position:static;display:block';d.querySelector('.main').style.overflow='visible';
+d.documentElement.style.cssText=d.body.style.cssText='overflow:visible;height:auto';
+d.querySelector('#'+vid+' .sc').style.cssText='position:static;transform:none;width:794px';d.querySelector('#'+vid+' .zw').style.cssText='width:794px;height:auto;margin:0';
+t.hidden=false;t.removeAttribute('data-pdf');
+var o=Q('input,select',p),k=[].slice.call(t.querySelectorAll('input,select'));
+o.forEach(function(e,i){var c=k[i];if(!c)return;if(e.type=='checkbox')c.checked=e.checked;else{c.value=e.value;c.setAttribute('value',e.value)}if(e.tagName=='SELECT')c.selectedIndex=e.selectedIndex;c.removeAttribute('placeholder')});
+var st=d.createElement('style');st.textContent='.win input{border-bottom:0!important}input:focus{background:none!important}';d.head.appendChild(st);
+[].forEach.call(d.querySelectorAll('svg.logo'),function(s){s.setAttribute('viewBox','0 0 420 376');s.innerHTML=$('lg').innerHTML})}
+}).then(function(c){p.removeAttribute('data-pdf');return c})}
+function mkPdf(pages,name){busy(true);lib().then(function(){var pdf=new window.jspdf.jsPDF({unit:'mm',format:'a4',compress:true}),i=0;
+function next(){if(i>=pages.length){ready(pdf,name);return}return shot(pages[i]).then(function(c){if(i)pdf.addPage();pdf.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,210,297);i++;return next()})}
+return next()}).catch(fail)}
+function pagesOf(ids,all){var r=[];ids.forEach(function(i){Q('.page',$(i)).forEach(function(p){if(all||!p.hidden)r.push(p)})});return r}
+function doPrint(m){var d=new Date().toISOString().slice(0,10);
+if(m=='one'){var n=NM[cur.id];if(cur.id=='v-offerte')n+='_'+Q('#seg button.on')[0].textContent;mkPdf(pagesOf([cur.id]),n+'_'+d+'.pdf')}
+else if(m=='off')mkPdf(pagesOf(['v-offerte'],1),'Offerten_alle_'+d+'.pdf');else mkPdf(pagesOf(DV,1),'Dokumente_alle_'+d+'.pdf')}
 function sheet(){$('p1').hidden=cur.dataset.ty!='doc';$('sheet').hidden=false}
 $('pr').onclick=sheet;$('pa0').onclick=sheet;
 Q('#sheet button').forEach(function(b){b.onclick=function(){$('sheet').hidden=true;if(b.dataset.m!='x')doPrint(b.dataset.m)}});
 $('sheet').onclick=function(e){if(e.target==this)this.hidden=true};
+/* Buchhaltung -> PDF (its own print buttons call window.print) */
+function esc(x){return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function buchHtml(ids){var S=JSON.parse(localStorage.getItem('mservice_buchhaltung_v1')||'{}'),Y=S.year,
+fm=function(v){var x=parseFloat(String(v||'').replace(/CHF|[’'\s]/gi,'').replace(',','.'));return isNaN(x)?0:x},
+f=function(x){return x.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2})},
+fd=function(d){return d?d.slice(8,10)+'.'+d.slice(5,7)+'.'+d.slice(0,4):''},
+yr=function(r){return r.act!==false&&r.d&&r.d.slice(0,4)==Y&&(r.amt||r.who||r.desc)},
+tb=function(t,h,rs,ai,sum){return '<h2>'+t+'</h2><table><tr>'+h.map(function(x,i){return '<th'+(i==ai?' class="r"':'')+'>'+x+'</th>'}).join('')+'</tr>'+rs.map(function(r){return '<tr>'+r.map(function(x,i){return '<td'+(i==ai?' class="r"':'')+'>'+esc(x)+'</td>'}).join('')+'</tr>'}).join('')+(sum==null?'':'<tr class="t"><td colspan="'+ai+'">Total CHF</td><td class="r">'+f(sum)+'</td>'+'<td></td>'.repeat(h.length-ai-1)+'</tr>')+'</table>'},
+dt=function(id,h){var rs=[].map.call($(id).rows,function(r){return [].slice.call(r.cells,0,h.length).map(function(c){return c.textContent})});return '<table><tr>'+h.map(function(x,i){return '<th'+(i?' class="r"':'')+'>'+x+'</th>'}).join('')+'</tr>'+rs.map(function(r,n){return '<tr'+(n==rs.length-1?' class="t"':'')+'>'+r.map(function(x,i){return '<td'+(i?' class="r"':'')+'>'+esc(x)+'</td>'}).join('')+'</tr>'}).join('')+'</table>'},
+sm=function(a){return a.reduce(function(s,r){return s+fm(r.amt)},0)},o='';
+ids.forEach(function(id){
+if(id=='s-ue')o+='<h2>Übersicht '+Y+'</h2><div class="kp"><div>Einnahmen<b>'+$('k-e').textContent+'</b></div><div>Ausgaben (inkl. Löhne)<b>'+$('k-a').textContent+'</b></div><div>Gewinn / Verlust<b>'+$('k-g').textContent+'</b></div><div>Offene Rechnungen<b>'+$('k-o').textContent+'</b></div></div><h2>Monatsübersicht</h2>'+dt('tb-mon',['Monat','Einnahmen CHF','Ausgaben CHF','Gewinn / Verlust CHF'])+'<h2>Einnahmen nach Kategorie</h2>'+dt('tb-ce',['Kategorie','Betrag CHF','Anteil'])+'<h2>Ausgaben nach Kategorie</h2>'+dt('tb-ca',['Kategorie','Betrag CHF','Anteil']);
+if(id=='s-ein'){var a=(S.ein||[]).filter(yr);o+=tb('Einnahmen '+Y,['Datum','Beleg','Kunde','Beschreibung','Kategorie','Betrag CHF','Zahlungsart'],a.map(function(r){return[fd(r.d),r.nr,r.who,r.desc,r.cat,f(fm(r.amt)),r.pay]}),5,sm(a))}
+if(id=='s-aus'){var a=(S.aus||[]).filter(yr);o+=tb('Ausgaben '+Y,['Datum','Empfänger / Grund','Kategorie','Betrag CHF','Zahlungsart','Beschreibung'],a.map(function(r){return[fd(r.d),r.who,r.cat,f(fm(r.amt)),r.pay,r.desc]}),3,sm(a))}
+if(id=='s-lohn'){var a=(S.lohn||[]).filter(yr);o+=tb('Löhne / Aushilfe '+Y,['Datum','Name','Funktion','Brutto CHF','Zahlart'],a.map(function(r){return[fd(r.d),r.who,r.desc,f(fm(r.amt)),r.pay]}),3,sm(a))}
+if(id=='s-rg'){var a=(S.rg||[]).filter(function(r){return r.act!==false&&(r.nr||r.amt)});o+=tb('Offene Rechnungen',['Rechnungs-Nr.','Datum','Kunde','Betrag CHF','Bezahlt am'],a.map(function(r){return[r.nr,fd(r.d),r.who,f(fm(r.amt)),r.paid?fd(r.paid):'offen']}),3,sm(a.filter(function(r){return!r.paid})))}});
+return '<style>.rep{padding:40px 44px;color:#222;font-family:Arial,sans-serif}.rep h2{font-size:15px;color:#1E3A6D;margin:18px 0 6px;border-bottom:2px solid #D6DFEA;padding-bottom:3px}.rep table{width:100%;border-collapse:collapse;font-size:11px}.rep th{background:#2D6CB5;color:#fff;text-align:left;padding:5px 6px}.rep td{padding:4px 6px;border-bottom:1px solid #D6DFEA}.rep .r{text-align:right}.rep tr.t td{background:#1E3A6D;color:#fff;font-weight:bold}.rep .kp{display:flex;gap:8px;margin:8px 0}.rep .kp div{flex:1;background:#F4F7FB;border:1px solid #D6DFEA;border-radius:6px;padding:6px;text-align:center;font-size:10px;color:#666}.rep .kp b{display:block;font-size:15px;color:#1E3A6D}</style><div class="rep"><div style="display:flex;align-items:center;gap:12px;border-bottom:2px solid #2D6CB5;padding-bottom:8px">'+svgFull(46,41)+'<div><b style="font-size:16px;color:#1F4EA8">M Transport &amp; Reinigung Service</b><br><span style="font-size:10px;color:#555">Ennetaach CH-8586 &middot; Tel. +41 78 345 80 72 &middot; info@mservice.ch &mdash; Buchhaltung '+Y+'</span></div></div>'+o+'</div>'}
+function slices(s){return html2canvas(s,{scale:2,backgroundColor:'#fff',logging:false,windowWidth:794}).then(function(c){
+var PH=1060,t0=s.getBoundingClientRect().top,bl=[].map.call(s.querySelectorAll('tr,h2,.kp'),function(e){var r=e.getBoundingClientRect();return[r.top-t0,r.bottom-t0]}),H=s.offsetHeight,br=[0],st=0;
+while(H-st>PH){var lim=st+PH,cut=lim;bl.forEach(function(b){if(b[0]<lim&&b[1]>lim)cut=Math.min(cut,b[0])});if(cut<=st+60)cut=lim;br.push(cut);st=cut}
+br.push(H);var pdf=new window.jspdf.jsPDF({unit:'mm',format:'a4',compress:true});
+for(var i=0;i<br.length-1;i++){var h=Math.round((br[i+1]-br[i])*2),t=document.createElement('canvas');t.width=c.width;t.height=2246;var x=t.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,t.width,t.height);x.drawImage(c,0,Math.round(br[i]*2),c.width,h,0,60,c.width,h);if(i)pdf.addPage();pdf.addImage(t.toDataURL('image/jpeg',.92),'JPEG',0,0,210,297)}
+s.remove();return pdf})}
+function buchPdf(){var b=document.body,lohn=b.classList.contains('print-lohn'),h=lohn?$('lohn-print-area').innerHTML:'',ids;
+if(!lohn){var sc=Q('#v-buch .sec.prt')[0]||Q('#v-buch .sec.on')[0];ids=b.classList.contains('only')?[sc.id]:['s-ue','s-ein','s-aus','s-lohn','s-rg']}
+busy(true);lib().then(function(){var s=document.createElement('div');s.style.cssText='position:fixed;left:-9999px;top:0;width:794px;background:#fff;color:#000;font:12px Arial'+(lohn?';padding:30px':'');s.innerHTML=lohn?h:buchHtml(ids);document.body.appendChild(s);return slices(s)})
+.then(function(pdf){ready(pdf,(lohn?'Lohnabrechnung':'Buchhaltung')+'_'+new Date().toISOString().slice(0,10)+'.pdf')}).catch(fail);
+setTimeout(function(){window.dispatchEvent(new Event('afterprint'))},400)}
+window.print=function(){if(cur.id=='v-buch')buchPdf();else sheet()};
 /* no pinch/double-tap page zoom outside documents */
 ['gesturestart','gesturechange'].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault()})});
 })();
