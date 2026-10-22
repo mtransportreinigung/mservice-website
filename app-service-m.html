@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="M Service">
-<title>M Service App</title>
+<link rel="apple-touch-icon" href="logo.PNG">
+<title>M Service - Mobile App</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
@@ -17,33 +18,32 @@
   --safe-top:env(safe-area-inset-top, 0px);
   --safe-bottom:env(safe-area-inset-bottom, 0px);
 }
-html,body{height:100%;background:var(--bg);font:13.5px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#2a2a2a;overflow:hidden;-webkit-text-size-adjust:100%}
+html,body{height:100%;background:var(--bg);font:13px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#2a2a2a;overflow:hidden;-webkit-text-size-adjust:100%}
 
 /* PIN SCREEN */
 #pin-screen{position:fixed;inset:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:20px;padding-top:var(--safe-top);padding-bottom:var(--safe-bottom)}
-#pin-screen .app-icon{width:72px;height:72px;margin-bottom:12px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.3)}
-#pin-screen .app-icon img,#pin-screen .app-icon svg{width:54px;height:54px;object-fit:contain}
-#pin-screen h1{font-size:18px;font-weight:700;margin-bottom:4px;text-align:center}
-#pin-screen p{font-size:12px;color:#94a3b8;margin-bottom:24px;text-align:center}
-.pin-dots{display:flex;gap:14px;margin-bottom:30px}
+#pin-screen .app-icon{width:76px;height:76px;margin-bottom:14px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.3);overflow:hidden}
+#pin-screen .app-icon img{width:100%;height:100%;object-fit:cover}
+#pin-screen h1{font-size:17px;font-weight:700;margin-bottom:4px;text-align:center}
+#pin-screen p{font-size:11.5px;color:#cbd5e1;margin-bottom:24px;text-align:center}
+.pin-dots{display:flex;gap:14px;margin-bottom:28px}
 .pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid #64748b;background:transparent;transition:all .2s}
 .pin-dot.active{background:var(--o);border-color:var(--o);transform:scale(1.15)}
-.pin-pad{display:grid;grid-template-columns:repeat(3,72px);gap:14px}
-.pin-btn{width:72px;height:72px;border-radius:50%;border:0;background:rgba(255,255,255,0.12);color:#fff;font-size:24px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.pin-pad{display:grid;grid-template-columns:repeat(3,70px);gap:14px}
+.pin-btn{width:70px;height:70px;border-radius:50%;border:0;background:rgba(255,255,255,0.12);color:#fff;font-size:22px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .pin-btn:active{background:rgba(255,255,255,0.3)}
-#pin-error{color:#f87171;font-size:12px;margin-top:16px;height:18px;font-weight:600;text-align:center}
+#pin-error{color:#f87171;font-size:12px;margin-top:14px;height:18px;font-weight:600;text-align:center}
 
 /* APP LAYOUT */
 #app{display:none;height:100%;flex-direction:column}
 .app-header{background:#fff;border-bottom:1px solid var(--bd);padding-top:calc(var(--safe-top) + 8px);padding-bottom:8px;padding-left:14px;padding-right:14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 6px rgba(0,0,0,0.05);flex-none:1;z-index:10}
-.app-header .logo-box{width:36px;height:32px;display:flex;align-items:center;justify-content:center}
-.app-header img,.app-header svg{width:100%;height:100%;object-fit:contain}
-.brand-title{font-weight:700;color:var(--br);font-size:14px;line-height:1.1}
-.brand-sub{font-size:10.5px;color:var(--g)}
+.app-header .logo-box{width:36px;height:36px;border-radius:8px;overflow:hidden;flex:none}
+.app-header img{width:100%;height:100%;object-fit:cover}
+.brand-title{font-weight:700;color:var(--br);font-size:13.5px;line-height:1.1}
+.brand-sub{font-size:10px;color:var(--g)}
 .header-actions{margin-left:auto;display:flex;gap:6px}
 
-.btn-icon{border:1px solid var(--bd);background:var(--l);color:var(--n);border-radius:8px;padding:6px 10px;font-weight:600;font-size:11.5px;cursor:pointer;display:flex;align-items:center;gap:4px}
-.btn-icon:active{background:var(--bd)}
+.btn-icon{border:1px solid var(--bd);background:var(--l);color:var(--n);border-radius:8px;padding:6px 10px;font-weight:600;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px}
 .btn-icon.pri{background:var(--b);color:#fff;border-color:var(--b)}
 
 .app-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px calc(var(--safe-bottom) + 75px)}
@@ -52,71 +52,65 @@ html,body{height:100%;background:var(--bg);font:13.5px/1.4 -apple-system,BlinkMa
 
 /* BOTTOM NAVIGATION BAR */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);padding-bottom:var(--safe-bottom);display:flex;justify-content:space-around;align-items:center;height:calc(56px + var(--safe-bottom));z-index:100;box-shadow:0 -2px 10px rgba(0,0,0,0.05)}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:56px;color:#64748b;background:none;border:0;font-size:10px;font-weight:600;gap:3px;cursor:pointer}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:56px;color:#64748b;background:none;border:0;font-size:9.5px;font-weight:600;gap:3px;cursor:pointer}
 .nav-item svg{width:20px;height:20px;stroke-width:2;stroke:currentColor;fill:none}
 .nav-item.active{color:var(--br)}
 .nav-item.active svg{stroke:var(--br)}
 
-/* CARDS & UI COMPONENTS */
+/* CARDS & UI */
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:14px;margin-bottom:12px;border:1px solid rgba(214,223,234,0.7)}
-.card-title{font-size:15px;font-weight:700;color:var(--n);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.hint{font-size:11.5px;color:var(--g);margin-bottom:10px}
+.card-title{font-size:14.5px;font-weight:700;color:var(--n);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.hint{font-size:11px;color:var(--g);margin-bottom:10px}
 
-/* KPI GRID */
 .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
-.kpi-card{background:var(--l);border:1px solid var(--bd);border-radius:10px;padding:10px;text-align:center}
-.kpi-card small{display:block;font-size:10px;font-weight:700;color:var(--g);text-transform:uppercase;margin-bottom:2px}
-.kpi-card b{font-size:17px;color:var(--n)}
+.kpi-card{background:var(--l);border:1px solid var(--bd);border-radius:10px;padding:9px;text-align:center}
+.kpi-card small{display:block;font-size:9.5px;font-weight:700;color:var(--g);text-transform:uppercase;margin-bottom:2px}
+.kpi-card b{font-size:16px;color:var(--n)}
 .kpi-card.green b{color:var(--ok)}
 .kpi-card.orange b{color:var(--o)}
 .kpi-card.red b{color:var(--bad)}
 
-/* FORM CONTROLS */
-label{font-size:11.5px;font-weight:700;color:var(--n);display:block;margin-bottom:3px}
-input,select,textarea{font:14px -apple-system,BlinkMacSystemFont,sans-serif;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:8px 10px;border-radius:8px;outline:0;-webkit-appearance:none;appearance:none;margin-bottom:8px}
+label{font-size:11px;font-weight:700;color:var(--n);display:block;margin-bottom:3px}
+input,select,textarea{font:13px -apple-system,BlinkMacSystemFont,sans-serif;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:7px 9px;border-radius:8px;outline:0;-webkit-appearance:none;appearance:none;margin-bottom:8px}
 input:focus,select:focus{border-color:var(--b);background:#f8fafc}
 input.r{text-align:right}
 input[type="checkbox"]{width:18px;height:18px;margin:0;cursor:pointer;accent-color:var(--b)}
 
-/* TABLES */
 .table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:8px;border:1px solid var(--bd)}
-table{width:100%;border-collapse:collapse;background:#fff;font-size:12px}
-th{background:var(--b);color:#fff;text-align:left;padding:8px 6px;font-size:11px;font-weight:600;white-space:nowrap}
-td{padding:6px;border-bottom:1px solid var(--bd);vertical-align:middle}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:11.5px}
+th{background:var(--b);color:#fff;text-align:left;padding:7px 5px;font-size:10.5px;font-weight:600;white-space:nowrap}
+td{padding:5px;border-bottom:1px solid var(--bd);vertical-align:middle}
 tr:nth-child(even) td{background:var(--l)}
 tr.inactive td{opacity:0.4;background:#f1f5f9!important}
 td.r,th.r{text-align:right}
 td.c,th.c{text-align:center}
-.tot-row td{background:var(--n)!important;color:#fff;font-weight:700;padding:8px 6px}
-.btn-del{background:none;border:0;color:var(--bad);font-size:18px;font-weight:bold;cursor:pointer;padding:2px 6px}
+.tot-row td{background:var(--n)!important;color:#fff;font-weight:700;padding:7px 5px}
+.btn-del{background:none;border:0;color:var(--bad);font-size:17px;font-weight:bold;cursor:pointer;padding:2px 6px}
 
-/* SUB TABS */
 .sub-tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;-webkit-overflow-scrolling:touch}
-.sub-tab{padding:6px 12px;border-radius:20px;background:var(--l);border:1px solid var(--bd);font-size:11.5px;font-weight:600;color:var(--n);white-space:nowrap;cursor:pointer;flex:none}
+.sub-tab{padding:6px 12px;border-radius:20px;background:var(--l);border:1px solid var(--bd);font-size:11px;font-weight:600;color:var(--n);white-space:nowrap;cursor:pointer;flex:none}
 .sub-tab.active{background:var(--b);color:#fff;border-color:var(--b)}
 
-/* PRINT PREVIEW */
-.doc-box{background:#fff;border:1px solid var(--bd);border-radius:8px;padding:12px;margin-bottom:10px;font-size:11px}
-.doc-header-view{display:flex;justify-content:space-between;border-bottom:2px solid var(--b);padding-bottom:6px;margin-bottom:8px}
-.doc-title{font-size:14px;font-weight:700;color:var(--n)}
-
+/* PRINT STYLES FOR EXACT OFFICIAL DOCUMENTS */
 @media print{
   #pin-screen,.app-header,.bottom-nav,.noprint{display:none!important}
   #app,.app-body{display:block!important;overflow:visible!important;padding:0!important}
   .card{box-shadow:none!important;border:0!important;padding:0!important;margin:0!important}
   body{background:#fff!important}
+  .print-page{display:block!important;page-break-after:always}
 }
+.print-page{display:none}
 </style>
 </head>
 <body>
 
-<!-- PIN PROTECTED SCREEN -->
+<!-- PIN PROTECTION -->
 <div id="pin-screen">
   <div class="app-icon">
-    <svg viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 334 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></svg>
+    <img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><path fill=\'#013286\' d=\'M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z\'/></svg>'">
   </div>
-  <h1>M Transport & Reinigung</h1>
-  <p>Zadejte PIN pro přístup do aplikace</p>
+  <h1>Mejstrik Transport & Reinigung Service</h1>
+  <p>Bitte PIN eingeben um fortzufahren</p>
   <div class="pin-dots">
     <div class="pin-dot" id="d0"></div>
     <div class="pin-dot" id="d1"></div>
@@ -133,554 +127,465 @@ td.c,th.c{text-align:center}
     <button class="pin-btn" onclick="pressPin('7')">7</button>
     <button class="pin-btn" onclick="pressPin('8')">8</button>
     <button class="pin-btn" onclick="pressPin('9')">9</button>
-    <button class="pin-btn" onclick="pressPin('C')" style="font-size:15px">C</button>
+    <button class="pin-btn" onclick="pressPin('C')" style="font-size:14px">C</button>
     <button class="pin-btn" onclick="pressPin('0')">0</button>
-    <button class="pin-btn" onclick="pressPin('OK')" style="font-size:15px">OK</button>
+    <button class="pin-btn" onclick="pressPin('OK')" style="font-size:14px">OK</button>
   </div>
   <div id="pin-error"></div>
 </div>
 
 <!-- MAIN MOBILE APPLICATION -->
 <div id="app">
-  <!-- Top App Header -->
   <header class="app-header">
     <div class="logo-box">
-      <img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\'><path fill=\'#013286\' d=\'M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z\'/></svg>'">
+      <img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><path fill=\'#013286\' d=\'M368 253 364 254 346 269 319 287 283 305 282 335 376 352Z\'/></svg>'">
     </div>
     <div>
       <div class="brand-title">M Service</div>
-      <div class="brand-sub">Rok <span class="yy">2026</span></div>
+      <div class="brand-sub">Jahr <span class="yy">2026</span> · CH-8586 Ennetaach</div>
     </div>
     <div class="header-actions noprint">
-      <button class="btn-icon" onclick="exportBackup()">💾 Záloha</button>
-      <label class="btn-icon pri">📁 Načíst<input type="file" id="file-input" accept=".json" hidden onchange="importBackup(event)"></label>
+      <button class="btn-icon" onclick="exportBackup()">💾 Sichern</button>
+      <label class="btn-icon pri">📁 Laden<input type="file" accept=".json" hidden onchange="importBackup(event)"></label>
     </div>
   </header>
 
-  <!-- Main Scrollable App Area -->
   <main class="app-body">
     
-    <!-- TAB 1: BUCHHALTUNG (ÚČETNICTVÍ) -->
+    <!-- TAB 1: BUCHHALTUNG -->
     <div class="tab-content active" id="tab-buchhaltung">
       <div class="sub-tabs noprint">
-        <div class="sub-tab active" onclick="switchSubTab(this, 'sub-uebersicht')">Přehled</div>
-        <div class="sub-tab" onclick="switchSubTab(this, 'sub-einnahmen')">Einnahmen</div>
-        <div class="sub-tab" onclick="switchSubTab(this, 'sub-ausgaben')">Ausgaben</div>
-        <div class="sub-tab" onclick="switchSubTab(this, 'sub-rechnungen')">Offene RG</div>
+        <div class="sub-tab active" onclick="switchSub(this, 'sub-ue')">Übersicht</div>
+        <div class="sub-tab" onclick="switchSub(this, 'sub-ein')">Einnahmen</div>
+        <div class="sub-tab" onclick="switchSub(this, 'sub-aus')">Ausgaben</div>
+        <div class="sub-tab" onclick="switchSub(this, 'sub-rg')">Offene RG</div>
       </div>
 
-      <!-- Sub 1.1: Uebersicht -->
-      <div class="sub-view" id="sub-uebersicht" style="display:block">
+      <div class="sub-view" id="sub-ue" style="display:block">
         <div class="card">
           <div class="card-title">
-            <span>Přehled hospodaření</span>
-            <input type="number" id="app-year" value="2026" style="width:70px;margin:0" onchange="updateYear(this.value)">
+            <span>Finanzübersicht</span>
+            <input type="number" id="app-year" value="2026" style="width:75px;margin:0" onchange="updateYear(this.value)">
           </div>
           <div class="kpi-grid">
-            <div class="kpi-card green"><small>Einnahmen</small><b id="kpi-e">0.00</b></div>
-            <div class="kpi-card red"><small>Ausgaben</small><b id="kpi-a">0.00</b></div>
-            <div class="kpi-card orange"><small>Gewinn</small><b id="kpi-g">0.00</b></div>
-            <div class="kpi-card"><small>Offen</small><b id="kpi-o">0.00</b></div>
+            <div class="kpi-card green"><small>Einnahmen</small><b id="k-e">0.00</b></div>
+            <div class="kpi-card red"><small>Ausgaben</small><b id="k-a">0.00</b></div>
+            <div class="kpi-card orange"><small>Gewinn</small><b id="k-g">0.00</b></div>
+            <div class="kpi-card"><small>Offen</small><b id="k-o">0.00</b></div>
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Měsíční přehled (CHF)</div>
+          <div class="card-title">Monatsübersicht (CHF)</div>
           <div class="table-responsive">
             <table>
-              <thead><tr><th>Měsíc</th><th class="r">Příjmy</th><th class="r">Výdaje</th><th class="r">Zisk</th></tr></thead>
-              <tbody id="tb-monthly"></tbody>
+              <thead><tr><th>Monat</th><th class="r">Einnahmen</th><th class="r">Ausgaben</th><th class="r">Gewinn</th></tr></thead>
+              <tbody id="tb-mon"></tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- Sub 1.2: Einnahmen -->
-      <div class="sub-view" id="sub-einnahmen" style="display:none">
+      <div class="sub-view" id="sub-ein" style="display:none">
         <div class="card">
-          <div class="card-title">Příjmy (Einnahmen) <button class="btn-icon pri" onclick="addRow('ein')">+ Přidat</button></div>
+          <div class="card-title">Einnahmen <button class="btn-icon pri" onclick="addRow('ein')">+ Neu</button></div>
           <div class="table-responsive">
             <table>
               <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Kunde</th><th class="r">Betrag</th><th></th></tr></thead>
-              <tbody id="tb-ein"></tbody>
-              <tfoot><tr class="tot-row"><td colspan="3">Celkem CHF</td><td class="r" id="tot-ein">0.00</td><td></td></tr></tfoot>
+              <tbody id="tb-ein-data"></tbody>
+              <tfoot><tr class="tot-row"><td colspan="3">Total CHF</td><td class="r" id="tot-ein">0.00</td><td></td></tr></tfoot>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- Sub 1.3: Ausgaben -->
-      <div class="sub-view" id="sub-ausgaben" style="display:none">
+      <div class="sub-view" id="sub-aus" style="display:none">
         <div class="card">
-          <div class="card-title">Výdaje (Ausgaben) <button class="btn-icon pri" onclick="addRow('aus')">+ Přidat</button></div>
+          <div class="card-title">Ausgaben <button class="btn-icon pri" onclick="addRow('aus')">+ Neu</button></div>
           <div class="table-responsive">
             <table>
-              <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Grund</th><th class="r">Betrag</th><th></th></tr></thead>
-              <tbody id="tb-aus"></tbody>
-              <tfoot><tr class="tot-row"><td colspan="3">Celkem CHF</td><td class="r" id="tot-aus">0.00</td><td></td></tr></tfoot>
+              <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Empfänger / Grund</th><th class="r">Betrag</th><th></th></tr></thead>
+              <tbody id="tb-aus-data"></tbody>
+              <tfoot><tr class="tot-row"><td colspan="3">Total CHF</td><td class="r" id="tot-aus">0.00</td><td></td></tr></tfoot>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- Sub 1.4: Offene Rechnungen -->
-      <div class="sub-view" id="sub-rechnungen" style="display:none">
+      <div class="sub-view" id="sub-rg" style="display:none">
         <div class="card">
-          <div class="card-title">Nezaplacené faktury <button class="btn-icon pri" onclick="addRow('rg')">+ Přidat</button></div>
+          <div class="card-title">Offene Rechnungen <button class="btn-icon pri" onclick="addRow('rg')">+ Neu</button></div>
           <div class="table-responsive">
             <table>
-              <thead><tr><th class="c">Aktiv</th><th>RG Nr.</th><th>Kunde</th><th class="r">CHF</th><th>Status</th><th></th></tr></thead>
-              <tbody id="tb-rg"></tbody>
+              <thead><tr><th class="c">Aktiv</th><th>Rech.-Nr.</th><th>Kunde</th><th class="r">Betrag</th><th>Status</th><th></th></tr></thead>
+              <tbody id="tb-rg-data"></tbody>
             </table>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- TAB 2: LÖHNE (MZDY A AUSHILFE) -->
+    <!-- TAB 2: LÖHNE -->
     <div class="tab-content" id="tab-lohne">
       <div class="card">
-        <div class="card-title">Mzdy & Aushilfe <button class="btn-icon pri" onclick="addRow('lohn')">+ Přidat záznam</button></div>
-        <div class="hint">Srážky AHV (5.15%) a ALV (0.15%) se počítají automaticky.</div>
+        <div class="card-title">Löhne & Aushilfe <button class="btn-icon pri" onclick="addRow('lohn')">+ Erfassen</button></div>
+        <div class="hint">Inkl. AHV/IV/EO (5.15%) und ALV (0.15%) Abzüge.</div>
         <div class="table-responsive">
           <table>
-            <thead><tr><th class="c">Aktiv</th><th>Jméno</th><th class="r">Brutto</th><th class="r">Netto</th><th>Aktion</th></tr></thead>
-            <tbody id="tb-lohn"></tbody>
-            <tfoot><tr class="tot-row"><td colspan="2">Celkem Brutto CHF</td><td class="r" id="tot-lohn">0.00</td><td colspan="2"></td></tr></tfoot>
+            <thead><tr><th class="c">Aktiv</th><th>Name</th><th class="r">Brutto</th><th class="r">Netto</th><th>Aktion</th></tr></thead>
+            <tbody id="tb-lohn-data"></tbody>
+            <tfoot><tr class="tot-row"><td colspan="2">Total Brutto CHF</td><td class="r" id="tot-lohn">0.00</td><td colspan="2"></td></tr></tfoot>
           </table>
         </div>
       </div>
     </div>
 
-    <!-- TAB 3: DOKUMENTE (FAKTURY A OFFERTY) -->
-    <div class="tab-content" id="tab-dokumente">
-      <div class="card">
-        <div class="card-title">Generátor Dokladů</div>
-        <label>Typ dokladu:</label>
-        <select id="doc-type" onchange="renderDocPreview()">
-          <option value="rg">Rechnung (Faktura)</option>
-          <option value="off-umzug">Offerte - Umzugsreinigung</option>
-          <option value="off-gebaeude">Offerte - Gebäudereinigung</option>
-          <option value="off-unterhalt">Offerte - Unterhaltsreinigung</option>
-          <option value="off-grund">Offerte - Grundreinigung</option>
+    <!-- TAB 3: DOKUMENTE & OFFERTEN -->
+    <div class="tab-content" id="tab-dok">
+      <div class="card noprint">
+        <div class="card-title">Offizielle Dokumente (PDF / Druck)</div>
+        <label>Dokumentenart:</label>
+        <select id="doc-select" onchange="renderDoc()">
+          <option value="rechnung">Rechnung (Muster)</option>
+          <option value="offerte-umzug">Offerte - Umzugsreinigung</option>
+          <option value="offerte-gebaeude">Offerte - Gebäudereinigung</option>
+          <option value="offerte-unterhalt">Offerte - Unterhaltsreinigung</option>
+          <option value="offerte-grund">Offerte - Grundreinigung</option>
         </select>
 
-        <label>Klient / Firma:</label>
-        <input type="text" id="doc-client" placeholder="Meno a adresa" oninput="renderDocPreview()">
+        <label>Kunde / Adresse:</label>
+        <input type="text" id="doc-k Kunde" placeholder="Vorname Nachname / Firma, Strasse, Ort" value="Max Muster, Hauptstrasse 1, 8586 Ennetaach" oninput="renderDoc()">
 
-        <label>Částka / Cena CHF:</label>
-        <input type="number" id="doc-price" placeholder="0.00" oninput="renderDocPreview()">
+        <label>Betrag / Pauschale CHF:</label>
+        <input type="text" id="doc-betrag" value="ab CHF 450.00" oninput="renderDoc()">
 
-        <button class="btn-icon pri" style="width:100%;justify-content:center;padding:10px;margin-top:6px" onclick="window.print()">🖨️ Vytisknout / Uložit PDF</button>
+        <button class="btn-icon pri" style="width:100%;justify-content:center;padding:10px;margin-top:8px" onclick="window.print()">🖨️ Drucken / Als PDF speichern</button>
       </div>
 
       <div class="card">
-        <div class="card-title">Náhled dokladu</div>
-        <div class="doc-box" id="doc-preview">
-          <!-- Live Preview Container -->
-        </div>
+        <div class="card-title noprint">Vorschau</div>
+        <div id="doc-preview" style="background:#fff;padding:15px;border:1px solid var(--bd);border-radius:6px;font-size:11pt"></div>
       </div>
     </div>
 
-    <!-- TAB 4: ARBEITSRAPPORT (PRACOVNÍ VÝKAZ) -->
+    <!-- TAB 4: ARBEITSRAPPORT -->
     <div class="tab-content" id="tab-rapport">
       <div class="card">
-        <div class="card-title">Arbeitsrapport (Výkaz práce)</div>
-        <label>Mitarbeiterin (Zaměstnanec):</label>
-        <input type="text" id="rap-worker" placeholder="Jméno" oninput="calcRapport()">
-        
+        <div class="card-title">Arbeitsrapport</div>
+        <label>Mitarbeiterin:</label>
+        <input type="text" id="rap-name" value="Přítelkyně" oninput="calcRap()">
         <div style="display:flex;gap:10px">
-          <div style="flex:1">
-            <label>Sazba CHF/h:</label>
-            <input type="number" id="rap-rate" value="30.00" class="r" oninput="calcRapport()">
-          </div>
-          <div style="flex:1">
-            <label>Měsíc/Rok:</label>
-            <input type="text" id="rap-month" value="10.2026" oninput="calcRapport()">
-          </div>
+          <div style="flex:1"><label>Lohn CHF/h:</label><input type="number" id="rap-rate" value="30" class="r" oninput="calcRap()"></div>
+          <div style="flex:1"><label>Monat:</label><input type="text" id="rap-mon" value="Oktober 2026"></div>
         </div>
-
         <div class="table-responsive">
           <table>
-            <thead><tr><th>Datum</th><th>Od</th><th>Do</th><th class="r">Pauza</th><th class="r">Hodin</th></tr></thead>
-            <tbody id="tb-rapport">
-              <!-- Rows inserted dynamically -->
-            </tbody>
+            <thead><tr><th>Datum</th><th>Einsatzort</th><th class="r">Von</th><th class="r">Bis</th><th class="r">Pause</th><th class="r">Std</th></tr></thead>
+            <tbody id="tb-rap"></tbody>
           </table>
         </div>
-
-        <div style="margin-top:12px;background:var(--l);padding:10px;border-radius:8px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-            <span>Celkem hodin:</span><b id="rap-tot-h">0.00 h</b>
-          </div>
-          <div style="display:flex;justify-content:space-between;font-size:15px;color:var(--br)">
-            <span>Bruttolohn CHF:</span><b id="rap-tot-pay">0.00 CHF</b>
-          </div>
+        <div style="margin-top:10px;background:var(--l);padding:10px;border-radius:8px">
+          <div style="display:flex;justify-content:space-between"><span>Total Stunden:</span><b id="rap-th">0.00 h</b></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--br)"><span>Bruttolohn CHF:</span><b id="rap-tot">0.00 CHF</b></div>
         </div>
-
-        <button class="btn-icon pri" style="width:100%;justify-content:center;padding:10px;margin-top:10px" onclick="window.print()">🖨️ Tisk Výkazu Práce</button>
+        <button class="btn-icon noprint pri" style="width:100%;justify-content:center;padding:10px;margin-top:10px" onclick="window.print()">🖨️ Arbeitsrapport Drucken / PDF</button>
       </div>
     </div>
 
   </main>
 
-  <!-- Bottom Mobile Navigation Bar -->
   <nav class="bottom-nav noprint">
-    <button class="nav-item active" onclick="switchMainTab(this, 'tab-buchhaltung')">
+    <button class="nav-item active" onclick="switchTab(this, 'tab-buchhaltung')">
       <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
-      Účetnictví
+      Buchhaltung
     </button>
-    <button class="nav-item" onclick="switchMainTab(this, 'tab-lohne')">
+    <button class="nav-item" onclick="switchTab(this, 'tab-lohne')">
       <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      Mzdy
+      Löhne
     </button>
-    <button class="nav-item" onclick="switchMainTab(this, 'tab-dokumente')">
+    <button class="nav-item" onclick="switchTab(this, 'tab-dok')">
       <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      Doklady
+      Dokumente
     </button>
-    <button class="nav-item" onclick="switchMainTab(this, 'tab-rapport')">
+    <button class="nav-item" onclick="switchTab(this, 'tab-rapport')">
       <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Výkaz
+      Rapport
     </button>
   </nav>
 </div>
 
 <script>
-/* PIN SECURITY SYSTEM */
-let pinEntered = "";
-const PIN_CORRECT = "2518";
+/* PIN ENGINE */
+let enteredPin = "";
+const CORRECT_PIN = "2518";
 
-function pressPin(val) {
-  if (val === 'C') {
-    pinEntered = "";
-  } else if (val === 'OK') {
-    if (pinEntered === PIN_CORRECT) {
+function pressPin(v) {
+  if (v === 'C') enteredPin = "";
+  else if (v === 'OK') {
+    if (enteredPin === CORRECT_PIN) {
       document.getElementById('pin-screen').style.display = 'none';
       document.getElementById('app').style.display = 'flex';
-      sessionStorage.setItem('m_authenticated', '1');
+      sessionStorage.setItem('m_auth', '1');
     } else {
-      document.getElementById('pin-error').textContent = "Nesprávný PIN!";
-      pinEntered = "";
+      document.getElementById('pin-error').textContent = "Falscher PIN!";
+      enteredPin = "";
     }
   } else {
-    if (pinEntered.length < 4) pinEntered += val;
+    if (enteredPin.length < 4) enteredPin += v;
   }
-  updatePinDots();
-}
-
-function updatePinDots() {
   for (let i = 0; i < 4; i++) {
-    const dot = document.getElementById('d' + i);
-    dot.classList.toggle('active', i < pinEntered.length);
+    document.getElementById('d' + i).classList.toggle('active', i < enteredPin.length);
   }
 }
 
-if (sessionStorage.getItem('m_authenticated') === '1') {
+if (sessionStorage.getItem('m_auth') === '1') {
   document.getElementById('pin-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
 }
 
-/* APP STATE MANAGEMENT */
-const DB_KEY = 'mservice_data_app_v2';
+/* DATA STORE & STATE */
+const STORE_KEY = 'mservice_official_app_v2';
 const MONTHS = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
 let DB = {
   year: 2026,
-  ein: [
-    {act:true, d:'2026-10-05', who:'Müller', amt:'1200.00'},
-    {act:true, d:'2026-10-12', who:'Schmidt AG', amt:'2450.00'}
-  ],
-  aus: [
-    {act:true, d:'2026-10-02', who:'Benzin Shell', amt:'110.00'},
-    {act:true, d:'2026-10-10', who:'Reinigungsmittel', amt:'340.50'}
-  ],
-  lohn: [
-    {act:true, d:'2026-10-25', who:'Přítelkyně', desc:'Aushilfe Reinigung', amt:'1800.00'}
-  ],
-  rg: [
-    {act:true, nr:'RE-2026-001', who:'Müller', amt:'1200.00', paid:true},
-    {act:true, nr:'RE-2026-002', who:'Kuster', amt:'850.00', paid:false}
-  ]
+  ein: [{act:true, d:'2026-10-05', who:'Müller AG', amt:'1200.00'}],
+  aus: [{act:true, d:'2026-10-02', who:'Benzin Shell', amt:'110.00'}],
+  lohn: [{act:true, d:'2026-10-25', who:'Přítelkyně', amt:'1800.00'}],
+  rg: [{act:true, nr:'RE-2026-001', who:'Müller AG', amt:'1200.00', paid:false}]
 };
 
 function loadDB() {
   try {
-    const saved = localStorage.getItem(DB_KEY);
-    if (saved) DB = JSON.parse(saved);
+    let s = localStorage.getItem(STORE_KEY);
+    if (s) DB = JSON.parse(s);
   } catch(e){}
 }
-
 function saveDB() {
   try {
-    localStorage.setItem(DB_KEY, JSON.stringify(DB));
+    localStorage.setItem(STORE_KEY, JSON.stringify(DB));
     renderAll();
   } catch(e){}
 }
+function n(v) { let x = parseFloat(String(v||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(',','.')); return isNaN(x)?0:x; }
+function f(v) { return v.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
-function n(val) {
-  let x = parseFloat(String(val||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(',','.'));
-  return isNaN(x) ? 0 : x;
-}
-function f(val) {
-  return val.toLocaleString('de-CH', {minimumFractionDigits:2, maximumFractionDigits:2});
-}
-
-/* NAVIGATION SYSTEM */
-function switchMainTab(btn, tabId) {
+/* TABS */
+function switchTab(btn, id) {
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById(tabId).classList.add('active');
+  document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
-
-function switchSubTab(btn, subId) {
+function switchSub(btn, id) {
   document.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.sub-view').forEach(v => v.style.display = 'none');
   btn.classList.add('active');
-  document.getElementById(subId).style.display = 'block';
+  document.getElementById(id).style.display = 'block';
 }
+function updateYear(y) { DB.year = parseInt(y,10)||2026; saveDB(); }
 
-function updateYear(y) {
-  DB.year = parseInt(y, 10) || 2026;
-  saveDB();
-}
-
-/* DATA RENDERING */
+/* RENDER ENGINE */
 function renderAll() {
   document.querySelectorAll('.yy').forEach(e => e.textContent = DB.year);
   renderTables();
-  calculateKPIs();
-  renderDocPreview();
+  calcKPIs();
+  renderDoc();
 }
 
-function calculateKPIs() {
+function calcKPIs() {
   let te = 0, ta = 0, open = 0;
   let me = Array(12).fill(0), ma = Array(12).fill(0);
 
-  DB.ein.forEach(r => {
-    if (r.act && r.d && r.d.startsWith(String(DB.year))) {
-      let v = n(r.amt); te += v;
-      let m = parseInt(r.d.slice(5,7),10)-1;
-      if (m>=0 && m<12) me[m] += v;
-    }
-  });
+  DB.ein.forEach(r => { if(r.act && r.d && r.d.startsWith(String(DB.year))) { let v = n(r.amt); te += v; let m = parseInt(r.d.slice(5,7),10)-1; if(m>=0&&m<12) me[m]+=v; } });
+  DB.aus.forEach(r => { if(r.act && r.d && r.d.startsWith(String(DB.year))) { let v = n(r.amt); ta += v; let m = parseInt(r.d.slice(5,7),10)-1; if(m>=0&&m<12) ma[m]+=v; } });
+  DB.lohn.forEach(r => { if(r.act && r.d && r.d.startsWith(String(DB.year))) { let v = n(r.amt); ta += v; let m = parseInt(r.d.slice(5,7),10)-1; if(m>=0&&m<12) ma[m]+=v; } });
+  DB.rg.forEach(r => { if(r.act && !r.paid) open += n(r.amt); });
 
-  DB.aus.forEach(r => {
-    if (r.act && r.d && r.d.startsWith(String(DB.year))) {
-      let v = n(r.amt); ta += v;
-      let m = parseInt(r.d.slice(5,7),10)-1;
-      if (m>=0 && m<12) ma[m] += v;
-    }
-  });
+  document.getElementById('k-e').textContent = f(te);
+  document.getElementById('k-a').textContent = f(ta);
+  document.getElementById('k-g').textContent = f(te - ta);
+  document.getElementById('k-o').textContent = f(open);
 
-  DB.lohn.forEach(r => {
-    if (r.act && r.d && r.d.startsWith(String(DB.year))) {
-      let v = n(r.amt); ta += v;
-      let m = parseInt(r.d.slice(5,7),10)-1;
-      if (m>=0 && m<12) ma[m] += v;
-    }
-  });
-
-  DB.rg.forEach(r => {
-    if (r.act && !r.paid) open += n(r.amt);
-  });
-
-  document.getElementById('kpi-e').textContent = f(te);
-  document.getElementById('kpi-a').textContent = f(ta);
-  document.getElementById('kpi-g').textContent = f(te - ta);
-  document.getElementById('kpi-o').textContent = f(open);
-
-  // Monthly breakdown
   let h = '';
-  for (let m = 0; m < 12; m++) {
+  for(let m=0; m<12; m++) {
     h += `<tr><td><b>${MONTHS[m]}</b></td><td class="r">${f(me[m])}</td><td class="r">${f(ma[m])}</td><td class="r"><b>${f(me[m]-ma[m])}</b></td></tr>`;
   }
-  document.getElementById('tb-monthly').innerHTML = h;
+  document.getElementById('tb-mon').innerHTML = h;
 }
 
 function renderTables() {
   // Einnahmen
   let hE = '', totE = 0;
   DB.ein.forEach((r, i) => {
-    if (r.act) totE += n(r.amt);
+    if(r.act) totE += n(r.amt);
     hE += `<tr class="${r.act?'':'inactive'}">
-      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggleAct('ein',${i})"></td>
-      <td><input type="date" value="${r.d||''}" onchange="updateVal('ein',${i},'d',this.value)"></td>
-      <td><input type="text" value="${r.who||''}" onchange="updateVal('ein',${i},'who',this.value)"></td>
-      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="updateVal('ein',${i},'amt',this.value)"></td>
-      <td><button class="btn-del" onclick="delRow('ein',${i})">×</button></td>
+      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('ein',${i})"></td>
+      <td><input type="date" value="${r.d||''}" onchange="upd('ein',${i},'d',this.value)"></td>
+      <td><input type="text" value="${r.who||''}" onchange="upd('ein',${i},'who',this.value)"></td>
+      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="upd('ein',${i},'amt',this.value)"></td>
+      <td><button class="btn-del" onclick="del('ein',${i})">×</button></td>
     </tr>`;
   });
-  document.getElementById('tb-ein').innerHTML = hE;
+  document.getElementById('tb-ein-data').innerHTML = hE;
   document.getElementById('tot-ein').textContent = f(totE);
 
   // Ausgaben
   let hA = '', totA = 0;
   DB.aus.forEach((r, i) => {
-    if (r.act) totA += n(r.amt);
+    if(r.act) totA += n(r.amt);
     hA += `<tr class="${r.act?'':'inactive'}">
-      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggleAct('aus',${i})"></td>
-      <td><input type="date" value="${r.d||''}" onchange="updateVal('aus',${i},'d',this.value)"></td>
-      <td><input type="text" value="${r.who||''}" onchange="updateVal('aus',${i},'who',this.value)"></td>
-      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="updateVal('aus',${i},'amt',this.value)"></td>
-      <td><button class="btn-del" onclick="delRow('aus',${i})">×</button></td>
+      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('aus',${i})"></td>
+      <td><input type="date" value="${r.d||''}" onchange="upd('aus',${i},'d',this.value)"></td>
+      <td><input type="text" value="${r.who||''}" onchange="upd('aus',${i},'who',this.value)"></td>
+      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="upd('aus',${i},'amt',this.value)"></td>
+      <td><button class="btn-del" onclick="del('aus',${i})">×</button></td>
     </tr>`;
   });
-  document.getElementById('tb-aus').innerHTML = hA;
+  document.getElementById('tb-aus-data').innerHTML = hA;
   document.getElementById('tot-aus').textContent = f(totA);
 
   // Löhne
   let hL = '', totL = 0;
   DB.lohn.forEach((r, i) => {
     let brutto = n(r.amt);
-    let netto = brutto * 0.947; // Default AHV+ALV deduction 5.3%
-    if (r.act) totL += brutto;
+    let netto = brutto * 0.947;
+    if(r.act) totL += brutto;
     hL += `<tr class="${r.act?'':'inactive'}">
-      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggleAct('lohn',${i})"></td>
-      <td><input type="text" value="${r.who||''}" onchange="updateVal('lohn',${i},'who',this.value)"></td>
-      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="updateVal('lohn',${i},'amt',this.value)"></td>
+      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('lohn',${i})"></td>
+      <td><input type="text" value="${r.who||''}" onchange="upd('lohn',${i},'who',this.value)"></td>
+      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="upd('lohn',${i},'amt',this.value)"></td>
       <td class="r"><b>${f(netto)}</b></td>
-      <td><button class="btn-del" onclick="delRow('lohn',${i})">×</button></td>
+      <td><button class="btn-del" onclick="del('lohn',${i})">×</button></td>
     </tr>`;
   });
-  document.getElementById('tb-lohn').innerHTML = hL;
+  document.getElementById('tb-lohn-data').innerHTML = hL;
   document.getElementById('tot-lohn').textContent = f(totL);
 
-  // Offene Rechnungen
+  // Rechnungen
   let hR = '';
   DB.rg.forEach((r, i) => {
     hR += `<tr class="${r.act?'':'inactive'}">
-      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggleAct('rg',${i})"></td>
-      <td><input type="text" value="${r.nr||''}" onchange="updateVal('rg',${i},'nr',this.value)"></td>
-      <td><input type="text" value="${r.who||''}" onchange="updateVal('rg',${i},'who',this.value)"></td>
-      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="updateVal('rg',${i},'amt',this.value)"></td>
+      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('rg',${i})"></td>
+      <td><input type="text" value="${r.nr||''}" onchange="upd('rg',${i},'nr',this.value)"></td>
+      <td><input type="text" value="${r.who||''}" onchange="upd('rg',${i},'who',this.value)"></td>
+      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="upd('rg',${i},'amt',this.value)"></td>
       <td><button class="btn-icon ${r.paid?'':'pri'}" onclick="togglePaid(${i})">${r.paid?'Bezahlt':'Offen'}</button></td>
-      <td><button class="btn-del" onclick="delRow('rg',${i})">×</button></td>
+      <td><button class="btn-del" onclick="del('rg',${i})">×</button></td>
     </tr>`;
   });
-  document.getElementById('tb-rg').innerHTML = hR;
+  document.getElementById('tb-rg-data').innerHTML = hR;
 }
 
-function toggleAct(type, i) { DB[type][i].act = !DB[type][i].act; saveDB(); }
-function updateVal(type, i, field, val) { DB[type][i][field] = val; saveDB(); }
-function delRow(type, i) { DB[type].splice(i, 1); saveDB(); }
-function addRow(type) {
+function toggle(t, i) { DB[t][i].act = !DB[t][i].act; saveDB(); }
+function upd(t, i, f, v) { DB[t][i][f] = v; saveDB(); }
+function del(t, i) { DB[t].splice(i,1); saveDB(); }
+function addRow(t) {
   let today = new Date().toISOString().slice(0,10);
-  if (type === 'ein') DB.ein.push({act:true, d:today, who:'', amt:''});
-  if (type === 'aus') DB.aus.push({act:true, d:today, who:'', amt:''});
-  if (type === 'lohn') DB.lohn.push({act:true, d:today, who:'', amt:''});
-  if (type === 'rg') DB.rg.push({act:true, nr:'RE-2026-', who:'', amt:'', paid:false});
+  if(t==='ein') DB.ein.push({act:true, d:today, who:'', amt:''});
+  if(t==='aus') DB.aus.push({act:true, d:today, who:'', amt:''});
+  if(t==='lohn') DB.lohn.push({act:true, d:today, who:'', amt:''});
+  if(t==='rg') DB.rg.push({act:true, nr:'RE-2026-', who:'', amt:'', paid:false});
   saveDB();
 }
 function togglePaid(i) { DB.rg[i].paid = !DB.rg[i].paid; saveDB(); }
 
-/* DOKUMENTE GENERATOR PREVIEW */
-function renderDocPreview() {
-  let type = document.getElementById('doc-type').value;
-  let client = document.getElementById('doc-client').value || 'Muster Kundin / Kunde';
-  let price = f(n(document.getElementById('doc-price').value));
+/* DOCUMENT PREVIEW & TEMPLATES */
+function renderDoc() {
+  let type = document.getElementById('doc-select').value;
+  let kunde = document.getElementById('doc-kunde')?.value || 'Max Muster';
+  let betrag = document.getElementById('doc-betrag')?.value || 'ab CHF 450.00';
 
-  let typeText = "RECHNUNG";
-  if (type.startsWith('off')) typeText = "OFFERTE";
+  let title = "RECHNUNG";
+  if(type.startsWith('offerte')) title = "OFFERTE";
 
   let html = `
-    <div class="doc-header-view">
+    <div style="border-bottom:2px solid #1E3A6D;padding-bottom:10px;margin-bottom:15px;display:flex;justify-content:space-between">
       <div>
-        <div class="doc-title">${typeText}</div>
-        <div style="font-size:10px;color:var(--g)">Mejstrik Transport & Reinigung</div>
+        <b style="color:#1F4EA8;font-size:14pt">Mejstrik Transport & Reinigung Service</b><br>
+        <span style="font-size:9pt;color:#666">CH-8586 Ennetaach · Tel. +41 78 345 80 72 · info@mservice.ch</span>
       </div>
       <div style="text-align:right">
-        <b style="color:var(--br)">Mejstrik Service</b><br>
-        <span style="font-size:10px">8586 Ennetaach</span>
+        <b style="color:#F57C00;font-size:13pt">${title}</b><br>
+        <span style="font-size:9pt">Datum: ${new Date().toLocaleDateString('de-CH')}</span>
       </div>
     </div>
-    <div style="margin-bottom:10px">
-      <b>Empfänger:</b><br>${client}
+    <div style="margin-bottom:15px;font-size:10pt">
+      <b>Kunde / Objekt:</b><br>${kunde.replace(/\n/g, '<br>')}
     </div>
-    <table style="width:100%;margin-bottom:10px">
-      <tr style="background:var(--l)"><th>Beschreibung</th><th class="r">Betrag</th></tr>
-      <tr><td>Dienstleistungen laut Auftrag (${type.toUpperCase()})</td><td class="r">CHF ${price}</td></tr>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:15px;font-size:10pt">
+      <tr style="background:#2D6CB5;color:#fff"><th style="padding:6px">Dienstleistung / Beschreibung</th><th style="padding:6px;text-align:right">Betrag CHF</th></tr>
+      <tr><td style="padding:6px;border-bottom:1px solid #ddd">Leistungen gemäß Vereinbarung (${type})</td><td style="padding:6px;border-bottom:1px solid #ddd;text-align:right">${betrag}</td></tr>
     </table>
-    <div style="text-align:right;font-size:13px">
-      <b>Total Netto: CHF ${price}</b>
+    <div style="font-size:9pt;color:#555;margin-bottom:25px">
+      * 48-Stunden-Zufriedenheitsgarantie. Es gelten unsere AGB unter www.mservice.ch/agb.
+    </div>
+    <div style="display:flex;justify-content:space-between;font-size:10pt">
+      <div><b>Mejstrik Transport & Reinigung Service</b></div>
+      <div>Unterschrift: ______________________</div>
     </div>
   `;
   document.getElementById('doc-preview').innerHTML = html;
 }
 
-/* ARBEITSRAPPORT COMPUTATION */
-function initRapport() {
+/* ARBEITSRAPPORT */
+function initRap() {
   let h = '';
-  for (let i = 1; i <= 10; i++) {
-    let day = (i < 10 ? '0' : '') + i + '.10.';
+  for(let i=1; i<=8; i++) {
     h += `<tr>
-      <td><input type="text" value="${day}" style="width:55px;padding:4px"></td>
-      <td><input type="text" class="r" value="07:30" style="width:50px;padding:4px" oninput="calcRapport()"></td>
-      <td><input type="text" class="r" value="16:00" style="width:50px;padding:4px" oninput="calcRapport()"></td>
-      <td class="r"><input type="number" class="r" value="30" style="width:40px;padding:4px" oninput="calcRapport()"></td>
-      <td class="r"><b class="rap-h">8.00</b></td>
+      <td><input type="text" value="${i}.10.2026" style="width:75px"></td>
+      <td><input type="text" value="Ennetaach"></td>
+      <td><input type="text" class="r" value="08:00" style="width:50px" oninput="calcRap()"></td>
+      <td><input type="text" class="r" value="17:00" style="width:50px" oninput="calcRap()"></td>
+      <td class="r"><input type="number" class="r" value="60" style="width:45px" oninput="calcRap()"></td>
+      <td class="r"><b class="rh">8.00</b></td>
     </tr>`;
   }
-  document.getElementById('tb-rapport').innerHTML = h;
-  calcRapport();
+  document.getElementById('tb-rap').innerHTML = h;
+  calcRap();
 }
 
-function calcRapport() {
+function calcRap() {
   let rate = n(document.getElementById('rap-rate').value);
-  let totalMinutes = 0;
-
-  document.querySelectorAll('#tb-rapport tr').forEach(row => {
-    let inputs = row.querySelectorAll('input');
-    let start = inputs[1].value;
-    let end = inputs[2].value;
-    let pause = n(inputs[3].value);
-
-    let hStart = parseInt(start.split(':')[0], 10) || 0;
-    let mStart = parseInt(start.split(':')[1], 10) || 0;
-    let hEnd = parseInt(end.split(':')[0], 10) || 0;
-    let mEnd = parseInt(end.split(':')[1], 10) || 0;
-
-    let dur = (hEnd * 60 + mEnd) - (hStart * 60 + mStart) - pause;
-    if (dur < 0) dur = 0;
-    totalMinutes += dur;
-
-    row.querySelector('.rap-h').textContent = (dur / 60).toFixed(2);
+  let totMin = 0;
+  document.querySelectorAll('#tb-rap tr').forEach(r => {
+    let inp = r.querySelectorAll('input');
+    let von = inp[2].value.split(':');
+    let bis = inp[3].value.split(':');
+    let pause = n(inp[4].value);
+    let minVon = (parseInt(von[0],10)||0)*60 + (parseInt(von[1],10)||0);
+    let minBis = (parseInt(bis[0],10)||0)*60 + (parseInt(bis[1],10)||0);
+    let dur = minBis - minVon - pause;
+    if(dur < 0) dur = 0;
+    totMin += dur;
+    r.querySelector('.rh').textContent = (dur/60).toFixed(2);
   });
-
-  let totalHours = totalMinutes / 60;
-  document.getElementById('rap-tot-h').textContent = totalHours.toFixed(2) + " h";
-  document.getElementById('rap-tot-pay').textContent = f(totalHours * rate) + " CHF";
+  let hours = totMin / 60;
+  document.getElementById('rap-th').textContent = hours.toFixed(2) + ' h';
+  document.getElementById('rap-tot').textContent = f(hours * rate) + ' CHF';
 }
 
-/* BACKUP & RESTORE */
+/* BACKUP */
 function exportBackup() {
-  let blob = new Blob([JSON.stringify(DB, null, 2)], {type: 'application/json'});
+  let b = new Blob([JSON.stringify(DB,null,2)], {type:'application/json'});
   let a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'M_Service_Data_' + DB.year + '.json';
+  a.href = URL.createObjectURL(b);
+  a.download = 'Mejstrik_Service_Backup_'+DB.year+'.json';
   a.click();
 }
-
 function importBackup(e) {
-  let file = e.target.files[0];
-  if (!file) return;
-  let reader = new FileReader();
-  reader.onload = function(evt) {
-    try {
-      DB = JSON.parse(evt.target.result);
-      saveDB();
-      alert("Data úspěšně načtena!");
-    } catch(err) {
-      alert("Chyba při načítání souboru!");
-    }
+  let f = e.target.files[0];
+  if(!f) return;
+  let r = new FileReader();
+  r.onload = function(evt) {
+    try { DB = JSON.parse(evt.target.result); saveDB(); alert('Daten erfolgreich geladen!'); } catch(err) { alert('Ungültige Datei.'); }
   };
-  reader.readAsText(file);
+  r.readAsText(f);
 }
 
-/* INITIALIZATION */
 document.addEventListener('DOMContentLoaded', () => {
   loadDB();
   renderAll();
-  initRapport();
+  initRap();
 });
 </script>
 </body>
