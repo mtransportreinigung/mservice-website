@@ -1,1116 +1,777 @@
 <!DOCTYPE html>
 <html lang="de-CH">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="M Service">
-<title>M Service - Mobile App</title>
-<style>
-/* ==========================================
-   1. GLOBÁLNÍ STYLY A PROMĚNNÉ PRO MOBIL
-   ================================---------- */
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-:root{
-  --n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;
-  --ln:#8FA3BF;--g:#666;--ok:#1F7A44;--bad:#C0392B;--bg:#eef1f5;
-  --sat:env(safe-area-inset-top, 0px);
-  --sab:env(safe-area-inset-bottom, 0px);
-}
+  <meta charset="UTF-8">
+  <!-- Viewport config including viewport-fit=cover for iOS safe areas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Mejstrik Transport & Reinigung Service</title>
 
-html, body {
-  width: 100%;
-  height: 100%;
-  height: 100dvh;
-  overflow: hidden;
-  position: fixed;
-  background: var(--bg);
-  font: 8.8pt/1.32 Arial, Helvetica, sans-serif;
-  color: #2a2a2a;
-  -webkit-text-size-adjust: 100%;
-}
+  <!-- PWA & Apple iOS Home Screen Web App Tags with logo.PNG -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Mejstrik Service">
+  <link rel="apple-touch-icon" sizes="180x180" href="logo.PNG">
+  <link rel="apple-touch-icon" href="logo.PNG">
+  <link rel="icon" type="image/png" href="logo.PNG">
 
-/* PIN SCREEN */
-#pin-screen{position:fixed;inset:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:20px;padding-top:calc(var(--sat) + 20px);padding-bottom:calc(var(--sab) + 20px)}
-#pin-screen .app-icon{width:76px;height:76px;margin-bottom:14px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.3);overflow:hidden}
-#pin-screen h1{font-size:16px;font-weight:700;margin-bottom:4px;text-align:center}
-#pin-screen p{font-size:11.5px;color:#cbd5e1;margin-bottom:20px;text-align:center}
-.pin-dots{display:flex;gap:14px;margin-bottom:24px}
-.pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid #64748b;background:transparent;transition:all .2s}
-.pin-dot.active{background:var(--o);border-color:var(--o);transform:scale(1.15)}
-.pin-pad{display:grid;grid-template-columns:repeat(3,68px);gap:12px}
-.pin-btn{width:68px;height:68px;border-radius:50%;border:0;background:rgba(255,255,255,0.12);color:#fff;font-size:22px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.pin-btn:active{background:rgba(255,255,255,0.3)}
-#pin-error{color:#f87171;font-size:12px;margin-top:12px;height:18px;font-weight:600;text-align:center}
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    /* Safe Area Insets for Modern Mobile Devices (iOS Notch / Home Indicator) */
+    body {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-/* APP LAYOUT S FIXNÍMI LIŠTAMI RESPEKTUJÍCÍMI SAFE-AREA */
-#app {
-  display: none;
-  width: 100%;
-  height: 100dvh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
+    .safe-bottom {
+      padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
 
-.app-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: calc(52px + var(--sat));
-  padding-top: var(--sat);
-  padding-left: 14px;
-  padding-right: 14px;
-  background: #fff;
-  border-bottom: 1px solid var(--bd);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
-  z-index: 1000;
-}
-.brand-title{font-weight:700;color:var(--br);font-size:13px;line-height:1.1}
-.brand-sub{font-size:9.5px;color:var(--g)}
-.header-actions{margin-left:auto;display:flex;gap:6px}
+    /* Custom Scrollbar for sleek UI */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
 
-.btn-icon{border:1px solid var(--bd);background:var(--l);color:var(--n);border-radius:8px;padding:6px 10px;font-weight:600;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px}
-.btn-icon.pri{background:var(--b);color:#fff;border-color:var(--b)}
-.btn-icon.sec{background:var(--o);color:#fff;border-color:var(--o)}
+    /* Print Styling optimized specifically for A4 documents */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 15mm 15mm 15mm 15mm;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .print-container {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      /* Prevent page breaks inside cards or signatures */
+      .avoid-break {
+        break-inside: avoid;
+      }
+    }
 
-.app-body {
-  position: absolute;
-  top: calc(52px + var(--sat));
-  bottom: calc(56px + var(--sab));
-  left: 0;
-  right: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 12px;
-}
-.tab-content{display:none}
-.tab-content.active{display:block}
-
-.bottom-nav {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: calc(56px + var(--sab));
-  padding-bottom: var(--sab);
-  background: #fff;
-  border-top: 1px solid var(--bd);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  z-index: 1000;
-  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:56px;color:#64748b;background:none;border:0;font-size:8.5px;font-weight:600;gap:2px;cursor:pointer}
-.nav-item svg{width:18px;height:18px;stroke-width:2;stroke:currentColor;fill:none}
-.nav-item.active{color:var(--br)}
-.nav-item.active svg{stroke:var(--br)}
-
-.card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:14px;margin-bottom:12px;border:1px solid rgba(214,223,234,0.7)}
-.card-title{font-size:13.5px;font-weight:700;color:var(--n);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-.form-group{margin-bottom:10px}
-.form-group label{font-size:11px;font-weight:700;color:var(--n);display:block;margin-bottom:3px}
-.form-group input,.form-group select,.form-group textarea{font:13px -apple-system,BlinkMacSystemFont,sans-serif;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:8px 10px;border-radius:8px;outline:0;-webkit-appearance:none}
-.form-group input.r{text-align:right}
-
-.sub-tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;-webkit-overflow-scrolling:touch}
-.sub-tab{padding:6px 12px;border-radius:20px;background:var(--l);border:1px solid var(--bd);font-size:11px;font-weight:600;color:var(--n);white-space:nowrap;cursor:pointer;flex:none}
-.sub-tab.active{background:var(--b);color:#fff;border-color:var(--b)}
-.btn-del{background:none;border:0;color:var(--bad);font-size:16px;font-weight:bold;cursor:pointer;padding:2px 6px}
-
-.sig-box{border:1px dashed var(--b);background:#FAFBFD;border-radius:8px;padding:8px;margin-top:8px}
-.sig-canvas{width:100%;height:110px;background:#fff;border:1px solid var(--bd);border-radius:6px;touch-action:none}
-.sig-tools{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
-
-/* ==========================================
-   2. TISK A PURE A4 DOKUMENTOVÉ ŠABLONY
-   ================================---------- */
-@page {
-  size: A4 portrait;
-  margin: 0;
-}
-
-#print-wrapper { display: none; }
-
-@media print {
-  html, body {
-    width: 210mm !important;
-    height: 297mm !important;
-    overflow: visible !important;
-    position: static !important;
-    background: #fff !important;
-  }
-  #pin-screen, #app, .app-header, .bottom-nav, .app-body, .noprint {
-    display: none !important;
-  }
-  #print-wrapper {
-    display: block !important;
-    width: 210mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-  .page {
-    width: 210mm !important;
-    height: 297mm !important;
-    position: relative !important;
-    background: #fff !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    page-break-after: always;
-    page-break-inside: avoid;
-    overflow: hidden !important;
-    box-shadow: none !important;
-  }
-  .page:last-child { page-break-after: avoid; }
-}
-
-.page{width:210mm;height:297mm;position:relative;background:#fff;margin:0 auto;overflow:hidden}
-.logo-pdf{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}
-.hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}
-.hd::after{content:"Tel. +41 78 345 80 72\Ainfo@mservice.ch";white-space:pre;position:absolute;left:43mm;top:17.2mm;font-size:9pt;line-height:1.45}
-.f::after,.l::after{content:"";position:absolute;left:18mm;right:15mm;border-top:1.8pt solid var(--b)}
-.f::after{top:90mm}.l::after{top:37mm}
-.title{position:absolute;left:18mm;top:43mm;font:bold 20pt/1 Arial;color:var(--n)}
-.sub{position:absolute;left:18mm;top:53.2mm;font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm}
-.meta{position:absolute;left:18mm;top:63.4mm;width:82mm}
-.meta div{display:flex;align-items:flex-end;height:7.2mm}
-.meta input{flex:1;width:auto}
-.meta label{width:27mm;font-weight:bold;font-size:8.6pt;color:var(--n);padding-bottom:1mm}
-.win{position:absolute;left:118mm;top:48.5mm;width:80mm}
-.win::before{content:"Mejstrik Transport & Reinigung Service · CH-8586 Ennetaach";display:block;font-size:6.2pt;color:var(--g);border-bottom:.3pt solid var(--g);width:max-content;padding-bottom:.6mm;margin:1mm 0 1.6mm;height:3.4mm}
-.win input{display:block;width:80mm;height:5.4mm;font-size:10.5pt;border:0;color:#000}
-.cr{position:absolute;left:116mm;top:48.5mm;width:83mm;height:27.5mm;background:linear-gradient(#C9CED6,#C9CED6) 0 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 0/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 100% 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 0/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 0 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 100%/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 100%/.4pt 3mm;background-repeat:no-repeat}
-.page input:not([type=checkbox]){font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:6mm;padding:0 1px}
-.page input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.4mm;height:3.4mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative}
-.page input[type=checkbox]:checked::after{content:"";position:absolute;left:.9mm;top:.1mm;width:1.1mm;height:2.2mm;border:solid #000;border-width:0 .5mm .5mm 0;transform:rotate(45deg)}
-.body{position:absolute;left:18mm;right:15mm}
-.first{top:94mm}.later{top:43mm}
-.intro{margin-bottom:6pt}
-.contact{display:grid;grid-template-columns:34mm 1fr 34mm 1fr;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 5pt 1mm 4pt}
-.contact>label{font-weight:bold;font-size:8pt;color:var(--n);line-height:1.2;padding:1.2mm 0}
-.contact .w,.contact .cb{grid-column:2/5}
-.cb{display:flex;align-items:center;font-size:8.3pt;height:6mm}
-.cb label{display:flex;align-items:center;gap:2.2mm;white-space:nowrap;margin-right:5mm}
-.cb input:not([type=checkbox]){flex:1;min-width:30mm}
-.page h2{font-size:10.5pt;color:var(--n);margin:11pt 0 5pt;padding-bottom:1pt;border-bottom:.6pt solid var(--bd)}
-.page table{width:100%;border-collapse:collapse}
-.page th{background:var(--b);color:#fff;text-align:left;padding:4.5pt 6pt;font-size:8.8pt}
-.page td{padding:4.2pt 6pt 4.6pt;vertical-align:top;border-bottom:.5pt solid var(--bd)}
-.page tr:nth-child(even) td{background:var(--l)}
-.price{background:#EAF3FC;border:.9pt solid #8FC0EE;padding:5pt 8pt;display:grid;grid-template-columns:1fr 55mm;align-items:center;row-gap:4pt}
-.price b,.price label{font-size:9.5pt;color:var(--n)}
-.price label{display:flex;align-items:center;gap:2.2mm;font-weight:bold}
-.price input:not([type=checkbox]){color:var(--b);font-size:12.5pt;height:7.5mm}
-.price .big input{font-size:16pt;height:9.5mm}
-.note{border:.5pt solid var(--bd);border-left:3pt solid var(--o);background:#FFF8E8;padding:7pt 9pt 5pt 10pt}
-.ok{background:#EFFAF2;border-left-color:#2E9E5B}.info{background:var(--l);border-left-color:var(--b)}
-.note .t{font-weight:bold;font-size:9pt;margin-bottom:3pt;color:#C0600A}
-.ok .t{color:#1F7A44}.info .t{color:var(--n)}
-.note p{margin-bottom:3pt}.note ul{list-style:none}.note li{position:relative;padding-left:11pt;margin-bottom:2.5pt}
-.note li::before{content:"\2022";position:absolute;left:2pt}
-.sign{display:grid;grid-template-columns:1fr 1fr;align-items:end;margin-top:20pt;column-gap:14pt}
-.foot{position:absolute;left:18mm;right:15mm;bottom:0;height:16.5mm;font-size:7.5pt;border-top:.6pt solid var(--bd)}
-.foot::before{content:attr(data-p);position:absolute;right:0;top:-4.2mm;color:#7B93B8}
-.foot::after{content:"Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch | www.mservice.ch\A Es gelten unsere Allgemeinen Geschäftsbedingungen: www.mservice.ch/agb";white-space:pre;position:absolute;left:0;right:0;top:3.2mm;text-align:center;color:#444;line-height:4mm}
-
-.dt{font:bold 20pt/1 Arial;color:var(--n);letter-spacing:.3pt}
-.ds{font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm;margin:2.4mm 0 4mm}
-.hdr{display:grid;grid-template-columns:30mm 1fr 24mm 40mm;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 4mm}
-.hdr>label{font-weight:bold;font-size:8pt;color:var(--n);padding:1.3mm 0}
-.hdr .w{grid-column:2/5}
-.rp{margin-top:4mm}
-.rp th{padding:3.2pt 4pt;font-size:8.2pt}
-.rp td{padding:0 3pt;height:5.85mm;vertical-align:middle}
-.rp input:not([type=checkbox]){border:0;height:5.7mm;padding:0 2px;font-size:9.3pt}
-.rp td+td{border-left:.5pt solid var(--bd)}.rp .d{width:21mm}.rp .tm{width:17mm}.rp .hh{width:19mm}
-.rp td.hh input{font-weight:bold;color:var(--n)}
-.sum2{display:grid;grid-template-columns:1fr 70mm;column-gap:8mm;margin-top:4mm;align-items:start}
-.sum2 .nt{font-size:8pt;color:var(--g);line-height:1.4}
-.tt{display:grid;grid-template-columns:1fr 30mm;row-gap:1.2mm;align-items:center;font-size:9pt}
-.tt>div:nth-child(odd){font-weight:bold;color:var(--n)}
-.tt .big{grid-column:1/3;background:#EAF3FC;border:.9pt solid #8FC0EE;display:grid;grid-template-columns:1fr auto;align-items:center;padding:1.6mm 3mm;margin-top:.8mm}
-.tt .big b{font-size:10.5pt;color:var(--n)}
-.tt .big input{border:0;border-bottom:.6pt solid var(--ln);font-size:14pt;font-weight:bold;color:var(--b);width:34mm;height:7mm;padding:0}
-.sg3{display:grid;grid-template-columns:1fr 1fr;column-gap:10mm;margin-top:5mm}
-.sg3 .box{border:.6pt solid var(--bd);background:var(--l);padding:2.2mm 4mm}
-.sg3 .k{font-weight:bold;font-size:8.6pt;color:var(--n);margin-bottom:1mm}
-.sg3 .r2{display:grid;grid-template-columns:20mm 1fr;align-items:center}
-.sg3 .r2 label{font-weight:bold;font-size:7.8pt;color:var(--n)}
-.sg3 .ln2{border-bottom:.7pt solid #7F94B5;height:11mm}
-.sg3 .sm{font-size:7.6pt;color:var(--g);margin-top:.8mm}
-</style>
+    .print-only {
+      display: none;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
 
-<!-- SVG LOGO DEFINICE -->
-<svg width="0" height="0" style="position:absolute"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
-
-<!-- PIN SCREEN -->
-<div id="pin-screen">
-  <div class="app-icon"><svg viewBox="0 0 420 376" width="100%" height="100%"><use href="#lg"/></svg></div>
-  <h1>Mejstrik Transport & Reinigung Service</h1>
-  <p>Bitte PIN eingeben um fortzufahren</p>
-  <div class="pin-dots"><div class="pin-dot" id="d0"></div><div class="pin-dot" id="d1"></div><div class="pin-dot" id="d2"></div><div class="pin-dot" id="d3"></div></div>
-  <div class="pin-pad">
-    <button class="pin-btn" onclick="pressPin('1')">1</button><button class="pin-btn" onclick="pressPin('2')">2</button><button class="pin-btn" onclick="pressPin('3')">3</button>
-    <button class="pin-btn" onclick="pressPin('4')">4</button><button class="pin-btn" onclick="pressPin('5')">5</button><button class="pin-btn" onclick="pressPin('6')">6</button>
-    <button class="pin-btn" onclick="pressPin('7')">7</button><button class="pin-btn" onclick="pressPin('8')">8</button><button class="pin-btn" onclick="pressPin('9')">9</button>
-    <button class="pin-btn" onclick="pressPin('C')" style="font-size:14px">C</button><button class="pin-btn" onclick="pressPin('0')">0</button><button class="pin-btn" onclick="pressPin('OK')" style="font-size:14px">OK</button>
-  </div>
-  <div id="pin-error"></div>
-</div>
-
-<!-- MAIN APP CONTAINER -->
-<div id="app">
-  <header class="app-header">
-    <div style="width:34px;height:34px;border-radius:8px;overflow:hidden;flex:none"><svg viewBox="0 0 420 376" width="100%" height="100%"><use href="#lg"/></svg></div>
-    <div><div class="brand-title">M Service App</div><div class="brand-sub">Jahr <span class="yy">2026</span> · CH-8586 Ennetaach</div></div>
-    <div class="header-actions noprint">
-      <button class="btn-icon" onclick="exportData()">💾 Sichern</button>
-      <label class="btn-icon pri">📁 Laden<input type="file" accept=".json" hidden onchange="importData(event)"></label>
+  <!-- TOP HEADER (No Print) -->
+  <header class="no-print bg-slate-900 text-white sticky top-0 z-40 shadow-md">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <!-- Logo Display with fallback -->
+        <img src="logo.PNG" alt="Mejstrik Logo" class="w-10 h-10 object-contain rounded-lg bg-white p-1 border border-slate-700" onerror="this.src='https://placehold.co/80x80/0f172a/ffffff?text=MTR'">
+        <div>
+          <h1 class="font-bold text-base leading-tight">Mejstrik</h1>
+          <p class="text-xs text-slate-400">Transport & Reinigung</p>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <button onclick="switchTab('accounting')" class="p-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs flex items-center gap-1.5 transition">
+          <i data-lucide="calculator" class="w-4 h-4 text-emerald-400"></i>
+          <span class="hidden sm:inline">Buchhaltung</span>
+        </button>
+        <button onclick="switchTab('new-document')" class="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 text-xs font-medium flex items-center gap-1 transition">
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          <span>Neu</span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <main class="app-body">
-    
-    <!-- TAB 1: BUCHHALTUNG -->
-    <div class="tab-content active" id="tab-buchhaltung">
-      <div class="sub-tabs noprint">
-        <div class="sub-tab active" onclick="switchSub(this, 'sub-ue')">Übersicht</div>
-        <div class="sub-tab" onclick="switchSub(this, 'sub-ein')">Einnahmen</div>
-        <div class="sub-tab" onclick="switchSub(this, 'sub-aus')">Ausgaben</div>
-        <div class="sub-tab" onclick="switchSub(this, 'sub-rg')">Offene Rechnungen</div>
+  <!-- MAIN CONTENT AREA -->
+  <main class="flex-1 max-w-4xl w-full mx-auto p-4 space-y-6">
+
+    <!-- TAB 1: DASHBOARD / LIST (No Print) -->
+    <section id="tab-dashboard" class="no-print space-y-4">
+      <!-- Quick Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+          <p class="text-xs font-medium text-slate-500">Einnahmen (Monat)</p>
+          <p class="text-xl font-bold text-emerald-600 mt-1" id="stat-revenue">CHF 0.00</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+          <p class="text-xs font-medium text-slate-500">Ausgaben (Monat)</p>
+          <p class="text-xl font-bold text-rose-600 mt-1" id="stat-expenses">CHF 0.00</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+          <p class="text-xs font-medium text-slate-500">Offene Rechnungen</p>
+          <p class="text-xl font-bold text-amber-600 mt-1" id="stat-pending">0</p>
+        </div>
+        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+          <p class="text-xs font-medium text-slate-500">Erstellte Rapport</p>
+          <p class="text-xl font-bold text-blue-600 mt-1" id="stat-reports">0</p>
+        </div>
       </div>
 
-      <div class="sub-view" id="sub-ue" style="display:block">
-        <div class="card">
-          <div class="card-title">
-            <span>Finanzübersicht</span>
-            <input type="number" id="app-year" value="2026" style="width:75px;margin:0" onchange="updateYear(this.value)">
+      <!-- Action & Documents List -->
+      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+          <h2 class="font-semibold text-slate-800 text-sm flex items-center gap-2">
+            <i data-lucide="file-text" class="w-4 h-4 text-slate-600"></i> Dokumente & Aufträge
+          </h2>
+          <span class="text-xs text-slate-500" id="doc-count">0 Einträge</span>
+        </div>
+        <div id="document-list" class="divide-y divide-slate-100 min-h-[150px]">
+          <!-- Dynamic Items inserted here -->
+          <div class="p-8 text-center text-slate-400 text-sm">
+            Keine Dokumente vorhanden. Klicken Sie oben auf "+ Neu", um eine Quittung, Offerte oder einen Rapport zu erstellen.
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Einnahmen</small><br><b id="k-e" style="font-size:15px;color:var(--ok)">0.00</b></div>
-            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Ausgaben</small><br><b id="k-a" style="font-size:15px;color:var(--bad)">0.00</b></div>
-            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Gewinn</small><br><b id="k-g" style="font-size:15px;color:var(--o)">0.00</b></div>
-            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Offen</small><br><b id="k-o" style="font-size:15px;color:var(--n)">0.00</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: DOCUMENT CREATOR / FORM (No Print) -->
+    <section id="tab-new-document" class="no-print hidden bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-6 space-y-6">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <i data-lucide="edit-3" class="w-5 h-5 text-blue-600"></i> Neues Dokument erstellen
+        </h2>
+        <button onclick="switchTab('dashboard')" class="text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form id="doc-form" onsubmit="event.preventDefault(); saveDocument();" class="space-y-4">
+        <!-- Document Type & Meta -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Dokumenttyp</label>
+            <select id="doc-type" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+              <option value="Rechnung">Rechnung</option>
+              <option value="Offerte">Offerte</option>
+              <option value="Arbeitsrapport">Arbeitsrapport</option>
+              <option value="Quittung">Quittung</option>
+            </select>
           </div>
-          <button class="btn-icon pri" style="width:100%;justify-content:center;margin-top:12px;padding:10px" onclick="printUebersicht()">🖨️ Übersicht drucken (A4)</button>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Datum</label>
+            <input type="date" id="doc-date" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" required>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Dokument Nr.</label>
+            <input type="text" id="doc-number" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" readonly>
+          </div>
         </div>
-      </div>
 
-      <div class="sub-view" id="sub-ein" style="display:none">
-        <div class="card">
-          <div class="card-title">Einnahmen <button class="btn-icon pri" onclick="addBuchRow('ein')">+ Neu</button></div>
-          <div id="ein-cards-container"></div>
+        <!-- Customer Details -->
+        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-3">
+          <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Kundeninformationen</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="text" id="client-name" placeholder="Kundenname / Firma *" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" required>
+            <input type="text" id="client-phone" placeholder="Telefonnummer" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
+          </div>
+          <input type="text" id="client-address" placeholder="Strasse & Hausnummer, PLZ Ort" class="w-full p-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
         </div>
-      </div>
 
-      <div class="sub-view" id="sub-aus" style="display:none">
-        <div class="card">
-          <div class="card-title">Ausgaben <button class="btn-icon pri" onclick="addBuchRow('aus')">+ Neu</button></div>
-          <div id="aus-cards-container"></div>
+        <!-- Service Line Items -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Leistungen & Positionen</h3>
+            <button type="button" onclick="addPositionRow()" class="text-xs text-blue-600 font-semibold hover:underline flex items-center gap-1">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i> Position hinzufügen
+            </button>
+          </div>
+
+          <div id="positions-container" class="space-y-2">
+            <!-- Dynamic position rows -->
+          </div>
         </div>
-      </div>
 
-      <div class="sub-view" id="sub-rg" style="display:none">
-        <div class="card">
-          <div class="card-title">Offene Rechnungen <button class="btn-icon pri" onclick="addBuchRow('rg')">+ Neu</button></div>
-          <div id="rg-cards-container"></div>
+        <!-- Notes / Remarks -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Bemerkungen / Vereinbarungen</label>
+          <textarea id="doc-notes" rows="2" placeholder="Zusätzliche Informationen, Garantiehinweise oder Reinigungskriterien..." class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
         </div>
-      </div>
-    </div>
 
-    <!-- TAB 2: LÖHNE -->
-    <div class="tab-content" id="tab-lohne">
-      <div class="card">
-        <div class="card-title">Löhne & Aushilfe <button class="btn-icon pri" onclick="addBuchRow('lohn')">+ Neu</button></div>
-        <div id="lohn-cards-container"></div>
-      </div>
-    </div>
+        <!-- Digital Signature Canvas -->
+        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-2">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Kundenunterschrift (Visualisierung/Bestätigung)</label>
+            <button type="button" onclick="clearSignature()" class="text-xs text-rose-600 hover:underline flex items-center gap-1">
+              <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Löschen
+            </button>
+          </div>
+          <div class="bg-white border border-slate-300 rounded-lg overflow-hidden touch-none">
+            <canvas id="signature-pad" class="w-full h-32 block"></canvas>
+          </div>
+          <p class="text-[10px] text-slate-500">Unterschreiben Sie direkt mit dem Finger oder Stift im Feld oben.</p>
+        </div>
 
-    <!-- TAB 3: DOKUMENTE & OFFERTEN -->
-    <div class="tab-content" id="tab-dok">
-      <div class="card noprint">
-        <div class="card-title">Dokument-Erfassung</div>
-        <div class="form-group">
-          <label>Dokumententyp:</label>
-          <select id="doc-type" onchange="renderDocForm()">
-            <option value="rechnung">Rechnung (Faktura)</option>
-            <option value="off-umzug">Offerte - Umzugsreinigung</option>
-            <option value="off-gebaeude">Offerte - Gebäudereinigung</option>
-            <option value="off-unterhalt">Offerte - Unterhaltsreinigung</option>
-            <option value="off-grund">Offerte - Grundreinigung</option>
+        <!-- Submit Buttons -->
+        <div class="flex gap-3 pt-2">
+          <button type="submit" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg text-sm shadow flex items-center justify-center gap-2 transition">
+            <i data-lucide="check-circle" class="w-4 h-4"></i> Speichern & Vorschau
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- TAB 3: ACCOUNTING / EXPENSES (No Print) -->
+    <section id="tab-accounting" class="no-print hidden bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-6 space-y-6">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <i data-lucide="calculator" class="w-5 h-5 text-emerald-600"></i> Einfache Buchhaltung & Ausgaben
+        </h2>
+        <button onclick="switchTab('dashboard')" class="text-slate-400 hover:text-slate-600">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Add Expense / Income Form -->
+      <form id="accounting-form" onsubmit="event.preventDefault(); saveTransaction();" class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Neue Transaktion buchen</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
+          <select id="acc-type" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm outline-none">
+            <option value="Ausgabe">Ausgabe (-)</option>
+            <option value="Einnahme">Einnahme (+)</option>
           </select>
+          <input type="text" id="acc-desc" placeholder="Beschreibung (z.B. Treibstoff, Material)" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm outline-none" required>
+          <input type="number" step="0.05" id="acc-amount" placeholder="Betrag (CHF)" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm outline-none" required>
+          <button type="submit" class="bg-slate-900 text-white font-medium p-2.5 rounded-lg text-sm hover:bg-slate-800 transition">
+            Buchen
+          </button>
         </div>
+      </form>
 
-        <div id="doc-fields-container"></div>
-
-        <div class="sig-box">
-          <label>Kundenunterschrift (auf dem Display zeichnen):</label>
-          <canvas id="sig-cust" class="sig-canvas"></canvas>
-          <div class="sig-tools"><button class="btn-icon" onclick="clearSig('sig-cust')">Löschen</button></div>
-        </div>
-
-        <div style="display:flex;gap:8px;margin-top:14px">
-          <button class="btn-icon pri" style="flex:1;justify-content:center;padding:10px" onclick="printDoc()">🖨️ Drucken / PDF (A4)</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAB 4: ARBEITSRAPPORT -->
-    <div class="tab-content" id="tab-rapport">
-      <div class="card">
-        <div class="card-title">Arbeitsrapport</div>
-        <div class="form-group"><label>Mitarbeiterin:</label><input type="text" id="rap-worker" oninput="calcRap()"></div>
-        <div style="display:flex;gap:8px">
-          <div class="form-group" style="flex:1"><label>Lohn CHF/h:</label><input type="number" id="rap-rate" class="r" value="30.00" oninput="calcRap()"></div>
-          <div class="form-group" style="flex:1"><label>Monat / Jahr:</label><input type="text" id="rap-mon" placeholder="10 / 2026" oninput="calcRap()"></div>
-        </div>
-
-        <div class="card-title" style="font-size:12px;margin-top:8px">Einsätze <button class="btn-icon pri" onclick="addRapRow()">+ Einsatz</button></div>
-        <div id="rap-rows-mobile"></div>
-
-        <div style="margin-top:10px;background:var(--l);padding:10px;border-radius:8px">
-          <div style="display:flex;justify-content:space-between"><span>Total Stunden:</span><b id="rap-tot-h">0.00 h</b></div>
-          <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--br)"><span>Bruttolohn CHF:</span><b id="rap-tot-pay">0.00 CHF</b></div>
-        </div>
-
-        <div style="display:flex;gap:8px;margin-top:14px">
-          <button class="btn-icon pri" style="flex:1;justify-content:center;padding:10px" onclick="printRapport()">🖨️ Drucken / PDF (A4)</button>
+      <!-- Ledger Table -->
+      <div class="space-y-2">
+        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Buchungsjournal</h3>
+        <div class="overflow-x-auto border border-slate-200 rounded-lg">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-100 text-slate-600 border-b border-slate-200">
+              <tr>
+                <th class="p-2.5">Datum</th>
+                <th class="p-2.5">Typ</th>
+                <th class="p-2.5">Beschreibung</th>
+                <th class="p-2.5 text-right">Betrag (CHF)</th>
+                <th class="p-2.5 text-center">Aktion</th>
+              </tr>
+            </thead>
+            <tbody id="transaction-list" class="divide-y divide-slate-100">
+              <!-- Dynamic transactions -->
+            </tbody>
+          </table>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- TAB 5: EINSTELLUNGEN -->
-    <div class="tab-content" id="tab-settings">
-      <div class="card">
-        <div class="card-title">Einstellungen & Inhaber-Unterschrift</div>
-        <p style="font-size:11px;color:var(--g);margin-bottom:10px">
-          Zeichnen Sie hier Ihre permanente Unterschrift (Daniel Mejstrik). Sie wird automatisch in alle generierten Dokumente und Arbeitsrapporte übernommen.
-        </p>
-        <div class="sig-box">
-          <label>Unterschrift Daniel Mejstrik:</label>
-          <canvas id="sig-owner" class="sig-canvas"></canvas>
-          <div class="sig-tools">
-            <button class="btn-icon" onclick="clearSig('sig-owner')">Löschen</button>
-            <button class="btn-icon pri" onclick="saveOwnerSig()">Speichern</button>
+    <!-- PRINT & VIEW PREVIEW (A4 Optimized) -->
+    <section id="printable-area" class="bg-white rounded-xl shadow-lg border border-slate-200 p-6 md:p-10 my-4 max-w-[210mm] mx-auto hidden print-container">
+      
+      <!-- Document Header -->
+      <div class="flex justify-between items-start border-b border-slate-200 pb-6">
+        <div>
+          <!-- Company Logo -->
+          <img src="logo.PNG" alt="Mejstrik Service Logo" class="h-16 object-contain mb-2" onerror="this.src='https://placehold.co/150x60/0f172a/ffffff?text=MEJSTRIK'">
+          <h2 class="text-xl font-bold text-slate-900">Mejstrik Transport & Reinigung</h2>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Professionelle Transporte & Gründliche Reinigungen<br>
+            Schweizweite Dienstleistungen<br>
+            Tel: +41 (0) 79 000 00 00 | E-Mail: info@mejstrik-service.ch
+          </p>
+        </div>
+        <div class="text-right">
+          <span id="print-doc-type" class="inline-block px-3 py-1 bg-slate-900 text-white font-bold text-xs rounded uppercase tracking-wider mb-2">RECHNUNG</span>
+          <p class="text-sm font-semibold text-slate-700" id="print-doc-number">Nr. MTR-2026-001</p>
+          <p class="text-xs text-slate-500 mt-1" id="print-doc-date">Datum: 22.10.2026</p>
+        </div>
+      </div>
+
+      <!-- Customer Address Block -->
+      <div class="my-6 p-4 bg-slate-50 rounded-lg border border-slate-100 flex flex-col sm:flex-row justify-between gap-4">
+        <div>
+          <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Kunde / Empfänger</p>
+          <p class="text-sm font-bold text-slate-800 mt-0.5" id="print-client-name">-</p>
+          <p class="text-xs text-slate-600 whitespace-pre-line" id="print-client-address">-</p>
+          <p class="text-xs text-slate-600 mt-1" id="print-client-phone">-</p>
+        </div>
+        <div class="text-right sm:text-right text-xs text-slate-500 space-y-1">
+          <p><span class="font-semibold">Ausführungsdatum:</span> Sofort / Nach Vereinbarung</p>
+          <p><span class="font-semibold">Zahlungsziel:</span> 10 Tage netto</p>
+        </div>
+      </div>
+
+      <!-- Positions Table -->
+      <div class="my-6">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b-2 border-slate-800 text-slate-800 uppercase font-bold">
+              <th class="py-2 px-1">Pos.</th>
+              <th class="py-2 px-1">Beschreibung / Dienstleistung</th>
+              <th class="py-2 px-1 text-center">Menge / Std</th>
+              <th class="py-2 px-1 text-right">Einzelpreis (CHF)</th>
+              <th class="py-2 px-1 text-right">Gesamt (CHF)</th>
+            </tr>
+          </thead>
+          <tbody id="print-positions" class="divide-y divide-slate-200">
+            <!-- Dynamic output -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Total Calculation -->
+      <div class="flex justify-end my-6">
+        <div class="w-64 space-y-2 text-xs">
+          <div class="flex justify-between text-slate-600">
+            <span>Zwischensumme:</span>
+            <span id="print-subtotal">CHF 0.00</span>
+          </div>
+          <div class="flex justify-between text-slate-600">
+            <span>MwSt (8.1% / inkl.):</span>
+            <span id="print-tax">CHF 0.00</span>
+          </div>
+          <div class="flex justify-between font-bold text-sm text-slate-900 border-t border-slate-800 pt-2">
+            <span>Gesamtbetrag:</span>
+            <span id="print-total">CHF 0.00</span>
           </div>
         </div>
       </div>
-    </div>
+
+      <!-- Notes -->
+      <div class="my-6 avoid-break" id="print-notes-box">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Bemerkungen / Hinweise</p>
+        <p class="text-xs text-slate-700 bg-slate-50 p-3 rounded border border-slate-100 mt-1" id="print-notes">-</p>
+      </div>
+
+      <!-- Signatures Area -->
+      <div class="mt-12 pt-6 border-t border-slate-200 grid grid-cols-2 gap-8 avoid-break">
+        <div>
+          <p class="text-xs font-semibold text-slate-700 mb-2">Unterschrift Auftragnehmer</p>
+          <div class="h-16 border-b border-slate-300 flex items-end pb-1">
+            <span class="text-xs text-slate-400 italic">Mejstrik Transport & Reinigung</span>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs font-semibold text-slate-700 mb-2">Unterschrift Kunde / Abnahme</p>
+          <div class="h-16 border-b border-slate-300 flex items-center justify-center overflow-hidden">
+            <img id="print-signature-img" src="" alt="Kundenunterschrift" class="max-h-full max-w-full object-contain hidden">
+            <span id="print-no-signature" class="text-xs text-slate-400 italic">Keine digitale Unterschrift</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Note -->
+      <div class="mt-12 text-center text-[10px] text-slate-400 border-t border-slate-100 pt-3">
+        Vielen Dank für Ihren Auftrag und Ihr Vertrauen in Mejstrik Transport & Reinigung Service!
+      </div>
+
+      <!-- Action Floating Buttons for Preview Mode (No Print) -->
+      <div class="no-print mt-6 flex justify-between gap-3 pt-4 border-t">
+        <button onclick="closePreview()" class="px-4 py-2 bg-slate-200 text-slate-700 font-medium rounded-lg text-xs hover:bg-slate-300 transition flex items-center gap-1">
+          <i data-lucide="arrow-left" class="w-4 h-4"></i> Zurück
+        </button>
+        <button onclick="window.print()" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg text-xs hover:bg-blue-500 shadow transition flex items-center gap-1">
+          <i data-lucide="printer" class="w-4 h-4"></i> Drucken / Als PDF speichern
+        </button>
+      </div>
+    </section>
 
   </main>
 
-  <nav class="bottom-nav noprint">
-    <button class="nav-item active" onclick="switchTab(this, 'tab-buchhaltung')">
-      <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
-      Buchhaltung
-    </button>
-    <button class="nav-item" onclick="switchTab(this, 'tab-lohne')">
-      <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 1 0 7.75"/></svg>
-      Löhne
-    </button>
-    <button class="nav-item" onclick="switchTab(this, 'tab-dok')">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      Dokumente
-    </button>
-    <button class="nav-item" onclick="switchTab(this, 'tab-rapport')">
-      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      Rapport
-    </button>
-    <button class="nav-item" onclick="switchTab(this, 'tab-settings')">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-      Settings
-    </button>
+  <!-- BOTTOM NAVIGATION BAR (iOS Native Style - No Print) -->
+  <nav class="no-print bg-white border-t border-slate-200 fixed bottom-0 left-0 right-0 z-30 safe-bottom">
+    <div class="max-w-md mx-auto flex justify-around py-2 text-slate-500">
+      <button onclick="switchTab('dashboard')" class="flex flex-col items-center text-xs font-medium hover:text-blue-600 transition">
+        <i data-lucide="home" class="w-5 h-5 mb-0.5"></i>
+        <span>Übersicht</span>
+      </button>
+      <button onclick="switchTab('new-document')" class="flex flex-col items-center text-xs font-medium hover:text-blue-600 transition">
+        <i data-lucide="plus-circle" class="w-5 h-5 mb-0.5 text-blue-600"></i>
+        <span>Neu</span>
+      </button>
+      <button onclick="switchTab('accounting')" class="flex flex-col items-center text-xs font-medium hover:text-blue-600 transition">
+        <i data-lucide="pie-chart" class="w-5 h-5 mb-0.5"></i>
+        <span>Finanzen</span>
+      </button>
+    </div>
   </nav>
-</div>
 
-<!-- PRINT CONTAINER -->
-<div id="print-wrapper"></div>
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // State management
+    let documents = JSON.parse(localStorage.getItem('mtr_docs') || '[]');
+    let transactions = JSON.parse(localStorage.getItem('mtr_trans') || '[]');
+    let signatureCanvas, signatureCtx;
+    let isDrawing = false;
+    let hasSignature = false;
 
-<script>
-/* PIN CONTROL */
-let enteredPin = "";
-const CORRECT_PIN = "2518";
+    // Initialize Application
+    window.onload = function() {
+      lucide.createIcons();
+      initCanvas();
+      setDefaultDate();
+      renderDashboard();
+      renderAccounting();
+      addPositionRow(); // Add first default row
+    };
 
-function pressPin(v) {
-  if (v === 'C') enteredPin = "";
-  else if (v === 'OK') {
-    if (enteredPin === CORRECT_PIN) {
-      document.getElementById('pin-screen').style.display = 'none';
-      document.getElementById('app').style.display = 'block';
-      sessionStorage.setItem('m_auth', '1');
-      setTimeout(initCanvases, 300);
-    } else {
-      document.getElementById('pin-error').textContent = "Falscher PIN!";
-      enteredPin = "";
-    }
-  } else {
-    if (enteredPin.length < 4) enteredPin += v;
-  }
-  for (let i = 0; i < 4; i++) {
-    document.getElementById('d' + i).classList.toggle('active', i < enteredPin.length);
-  }
-}
+    // Tab Navigation
+    function switchTab(tabId) {
+      document.getElementById('tab-dashboard').classList.add('hidden');
+      document.getElementById('tab-new-document').classList.add('hidden');
+      document.getElementById('tab-accounting').classList.add('hidden');
+      document.getElementById('printable-area').classList.add('hidden');
 
-if (sessionStorage.getItem('m_auth') === '1') {
-  document.getElementById('pin-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
-  setTimeout(initCanvases, 300);
-}
-
-/* DATA STORE */
-const STORE_KEY = 'mservice_unified_v8';
-const CE=['Umzugsreinigung','Gebäudereinigung','Unterhaltsreinigung','Grundreinigung','Transport & Umzug','Sonstige Einnahmen'];
-const CA=['Löhne & Aushilfshilfe','Material & Reinigungsmittel','Benzin & Transport','Geräte & Maschinen','Werbung & Website','Telefon & Internet','Versicherungen & Gebühren','Büro & Software','Sonstige Ausgaben'];
-const PAY=['Bar','TWINT','Banküberweisung','Karte','Pauschal / Eigenverbrauch','Privat bezahlt'];
-
-let DB = {
-  year: 2026,
-  rates: {ahv:5.15, alv:0.15, alv2:0, nbu:0, ktg:0, bvg:0},
-  ein: [],
-  aus: [],
-  lohn: [],
-  rg: [],
-  ownerSig: ""
-};
-
-function loadDB() {
-  try {
-    let s = localStorage.getItem(STORE_KEY);
-    if (s) DB = JSON.parse(s);
-  } catch(e){}
-}
-function saveDB() {
-  try {
-    localStorage.setItem(STORE_KEY, JSON.stringify(DB));
-    renderBuchhaltungCards();
-    calcKPIs();
-  } catch(e){}
-}
-function n(v) { let x = parseFloat(String(v||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(',','.')); return isNaN(x)?0:x; }
-function f(v) { return v.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
-
-/* TABS */
-function switchTab(btn, id) {
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
-function switchSub(btn, id) {
-  document.querySelectorAll('.sub-tab').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.sub-view').forEach(v => v.style.display = 'none');
-  btn.classList.add('active');
-  document.getElementById(id).style.display = 'block';
-}
-function updateYear(y) { DB.year = parseInt(y,10)||2026; saveDB(); }
-
-/* BUCHHALTUNG CARDS */
-function renderBuchhaltungCards() {
-  ['ein','aus','lohn','rg'].forEach(t => {
-    let container = document.getElementById(t+'-cards-container');
-    if (!container) return;
-    let html = '';
-    
-    DB[t].forEach((r, i) => {
-      if (t === 'ein') {
-        html += `
-          <div class="card" style="background:var(--l);margin-bottom:8px">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <label><input type="checkbox" ${r.act?'checked':''} onchange="toggleBuch('${t}',${i},'act')"> Aktiv</label>
-              <button class="btn-del" onclick="delBuch('${t}',${i})">×</button>
-            </div>
-            <div class="form-group"><label>Datum:</label><input type="date" value="${r.d||''}" onchange="updBuch('${t}',${i},'d',this.value)"></div>
-            <div class="form-group"><label>Beleg / Nr.:</label><input type="text" value="${r.nr||''}" onchange="updBuch('${t}',${i},'nr',this.value)"></div>
-            <div class="form-group"><label>Kunde:</label><input type="text" value="${r.who||''}" onchange="updBuch('${t}',${i},'who',this.value)"></div>
-            <div class="form-group"><label>Beschreibung:</label><input type="text" value="${r.desc||''}" onchange="updBuch('${t}',${i},'desc',this.value)"></div>
-            <div class="form-group"><label>Kategorie:</label>
-              <select onchange="updBuch('${t}',${i},'cat',this.value)">
-                ${CE.map(c => `<option value="${c}" ${r.cat===c?'selected':''}>${c}</option>`).join('')}
-              </select>
-            </div>
-            <div class="form-group"><label>Betrag CHF:</label><input type="number" class="r" value="${r.amt||''}" onchange="updBuch('${t}',${i},'amt',this.value)"></div>
-            <div class="form-group"><label>Zahlungsart:</label>
-              <select onchange="updBuch('${t}',${i},'pay',this.value)">
-                ${PAY.map(p => `<option value="${p}" ${r.pay===p?'selected':''}>${p}</option>`).join('')}
-              </select>
-            </div>
-          </div>`;
-      } else if (t === 'aus') {
-        html += `
-          <div class="card" style="background:var(--l);margin-bottom:8px">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <label><input type="checkbox" ${r.act?'checked':''} onchange="toggleBuch('${t}',${i},'act')"> Aktiv</label>
-              <button class="btn-del" onclick="delBuch('${t}',${i})">×</button>
-            </div>
-            <div class="form-group"><label>Datum:</label><input type="date" value="${r.d||''}" onchange="updBuch('${t}',${i},'d',this.value)"></div>
-            <div class="form-group"><label>Empfänger / Grund:</label><input type="text" value="${r.who||''}" onchange="updBuch('${t}',${i},'who',this.value)"></div>
-            <div class="form-group"><label>Kategorie:</label>
-              <select onchange="updBuch('${t}',${i},'cat',this.value)">
-                ${CA.map(c => `<option value="${c}" ${r.cat===c?'selected':''}>${c}</option>`).join('')}
-              </select>
-            </div>
-            <div class="form-group"><label>Betrag CHF:</label><input type="number" class="r" value="${r.amt||''}" onchange="updBuch('${t}',${i},'amt',this.value)"></div>
-            <div class="form-group"><label>Zahlungsart:</label>
-              <select onchange="updBuch('${t}',${i},'pay',this.value)">
-                ${PAY.map(p => `<option value="${p}" ${r.pay===p?'selected':''}>${p}</option>`).join('')}
-              </select>
-            </div>
-            <div class="form-group"><label>Beschreibung:</label><input type="text" value="${r.desc||''}" onchange="updBuch('${t}',${i},'desc',this.value)"></div>
-          </div>`;
-      } else if (t === 'lohn') {
-        html += `
-          <div class="card" style="background:var(--l);margin-bottom:8px">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <label><input type="checkbox" ${r.act?'checked':''} onchange="toggleBuch('${t}',${i},'act')"> Aktiv</label>
-              <button class="btn-del" onclick="delBuch('${t}',${i})">×</button>
-            </div>
-            <div class="form-group"><label>Datum:</label><input type="date" value="${r.d||''}" onchange="updBuch('${t}',${i},'d',this.value)"></div>
-            <div class="form-group"><label>Name Person:</label><input type="text" value="${r.who||''}" onchange="updBuch('${t}',${i},'who',this.value)"></div>
-            <div class="form-group"><label>Funktion:</label><input type="text" value="${r.desc||''}" onchange="updBuch('${t}',${i},'desc',this.value)"></div>
-            <div class="form-group"><label>Brutto CHF:</label><input type="number" class="r" value="${r.amt||''}" onchange="updBuch('${t}',${i},'amt',this.value)"></div>
-            <div class="form-group"><label>Zahlart:</label>
-              <select onchange="updBuch('${t}',${i},'pay',this.value)">
-                ${PAY.map(p => `<option value="${p}" ${r.pay===p?'selected':''}>${p}</option>`).join('')}
-              </select>
-            </div>
-            <button class="btn-icon pri" style="width:100%;justify-content:center;margin-top:6px" onclick="printLohnSlip(${i})">📄 Lohnabrechnung Drucken</button>
-          </div>`;
-      } else if (t === 'rg') {
-        html += `
-          <div class="card" style="background:var(--l);margin-bottom:8px">
-            <div style="display:flex;justify-content:space-between;align-items:center">
-              <label><input type="checkbox" ${r.act?'checked':''} onchange="toggleBuch('${t}',${i},'act')"> Aktiv</label>
-              <button class="btn-del" onclick="delBuch('${t}',${i})">×</button>
-            </div>
-            <div class="form-group"><label>Rechnungs-Nr.:</label><input type="text" value="${r.nr||''}" onchange="updBuch('${t}',${i},'nr',this.value)"></div>
-            <div class="form-group"><label>Datum:</label><input type="date" value="${r.d||''}" onchange="updBuch('${t}',${i},'d',this.value)"></div>
-            <div class="form-group"><label>Kunde:</label><input type="text" value="${r.who||''}" onchange="updBuch('${t}',${i},'who',this.value)"></div>
-            <div class="form-group"><label>Betrag CHF:</label><input type="number" class="r" value="${r.amt||''}" onchange="updBuch('${t}',${i},'amt',this.value)"></div>
-            <div class="form-group"><label>Bezahlt am:</label><input type="date" value="${r.paid||''}" onchange="updBuch('${t}',${i},'paid',this.value)"></div>
-          </div>`;
+      if (tabId === 'dashboard') {
+        document.getElementById('tab-dashboard').classList.remove('hidden');
+        renderDashboard();
+      } else if (tabId === 'new-document') {
+        document.getElementById('tab-new-document').classList.remove('hidden');
+        generateDocNumber();
+      } else if (tabId === 'accounting') {
+        document.getElementById('tab-accounting').classList.remove('hidden');
+        renderAccounting();
       }
-    });
-    container.innerHTML = html;
-  });
-}
-
-function addBuchRow(t) {
-  let today = new Date().toISOString().slice(0,10);
-  DB[t].push({act:true, d:today, nr:'', who:'', desc:'', cat:'', amt:'', pay:'Bar', paid:''});
-  saveDB();
-}
-function toggleBuch(t, i, f) { DB[t][i][f] = !DB[t][i][f]; saveDB(); }
-function updBuch(t, i, f, v) { DB[t][i][f] = v; saveDB(); }
-function delBuch(t, i) { DB[t].splice(i, 1); saveDB(); }
-
-function calcKPIs() {
-  let te = 0, ta = 0, open = 0;
-  DB.ein.forEach(r => { if(r.act) te += n(r.amt); });
-  DB.aus.forEach(r => { if(r.act) ta += n(r.amt); });
-  DB.lohn.forEach(r => { if(r.act) ta += n(r.amt); });
-  DB.rg.forEach(r => { if(r.act && !r.paid) open += n(r.amt); });
-
-  document.getElementById('k-e').textContent = f(te);
-  document.getElementById('k-a').textContent = f(ta);
-  document.getElementById('k-g').textContent = f(te - ta);
-  document.getElementById('k-o').textContent = f(open);
-}
-
-/* DOKUMENT FORM ENGINE */
-function renderDocForm() {
-  let type = document.getElementById('doc-type').value;
-  let container = document.getElementById('doc-fields-container');
-  let h = '';
-
-  if (type === 'rechnung') {
-    h = `
-      <div class="form-group"><label>Rechnungs-Nr.:</label><input type="text" id="df-nr"></div>
-      <div class="form-group"><label>Datum:</label><input type="date" id="df-date"></div>
-      <div class="form-group"><label>Zahlbar bis:</label><input type="text" id="df-due" value="10 Tagen netto"></div>
-      <div class="form-group"><label>Firma (optional):</label><input type="text" id="df-firma"></div>
-      <div class="form-group"><label>Vorname Nachname:</label><input type="text" id="df-client"></div>
-      <div class="form-group"><label>Strasse & Nr.:</label><input type="text" id="df-str"></div>
-      <div class="form-group"><label>PLZ & Ort:</label><input type="text" id="df-ort"></div>
-      <div class="form-group"><label>Leistungsdatum:</label><input type="date" id="df-ldate"></div>
-      <div class="form-group"><label>Offerten-Nr.:</label><input type="text" id="df-offnr"></div>
-      <div class="form-group"><label>Objektadresse:</label><input type="text" id="df-obj"></div>
-      <div class="form-group"><label>Betrag CHF:</label><input type="number" id="df-price" class="r"></div>
-    `;
-  } else {
-    h = `
-      <div class="form-group"><label>Offerten-Nr.:</label><input type="text" id="df-nr"></div>
-      <div class="form-group"><label>Datum:</label><input type="date" id="df-date"></div>
-      <div class="form-group"><label>Gültigkeit:</label><input type="text" id="df-due" value="30 Tage"></div>
-      <div class="form-group"><label>Vorname Nachname / Firma:</label><input type="text" id="df-client"></div>
-      <div class="form-group"><label>Strasse & Nr.:</label><input type="text" id="df-str"></div>
-      <div class="form-group"><label>PLZ & Ort:</label><input type="text" id="df-ort"></div>
-      <div class="form-group"><label>Telefon:</label><input type="text" id="df-tel"></div>
-      <div class="form-group"><label>E-Mail:</label><input type="text" id="df-email"></div>
-      <div class="form-group"><label>Objektadresse (falls abweichend):</label><input type="text" id="df-obj"></div>
-      <div class="form-group"><label>Pauschalpreis CHF:</label><input type="text" id="df-price" value="ab CHF 0'000.-"></div>
-    `;
-  }
-  container.innerHTML = h;
-}
-
-/* CANVAS SIGNATURES */
-function initCanvases() {
-  ['sig-cust', 'sig-owner'].forEach(id => {
-    let canvas = document.getElementById(id);
-    if (!canvas) return;
-    canvas.width = canvas.parentElement.clientWidth - 16;
-    let ctx = canvas.getContext('2d');
-    ctx.strokeStyle = "#1E3A6D";
-    ctx.lineWidth = 2.2;
-    ctx.lineCap = 'round';
-    let drawing = false;
-
-    function getPos(e) {
-      let rect = canvas.getBoundingClientRect();
-      let touch = e.touches ? e.touches[0] : e;
-      return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
     }
 
-    canvas.addEventListener('touchstart', (e) => { drawing = true; let p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); e.preventDefault(); });
-    canvas.addEventListener('touchmove', (e) => { if(!drawing) return; let p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); e.preventDefault(); });
-    canvas.addEventListener('touchend', () => { drawing = false; });
-    
-    canvas.addEventListener('mousedown', (e) => { drawing = true; let p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
-    canvas.addEventListener('mousemove', (e) => { if(!drawing) return; let p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
-    canvas.addEventListener('mouseup', () => { drawing = false; });
-  });
-
-  if (DB.ownerSig) {
-    let canvas = document.getElementById('sig-owner');
-    if (canvas) {
-      let img = new Image();
-      img.onload = function() { canvas.getContext('2d').drawImage(img, 0, 0); };
-      img.src = DB.ownerSig;
+    function setDefaultDate() {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('doc-date').value = today;
     }
-  }
-}
 
-function clearSig(id) {
-  let canvas = document.getElementById(id);
-  if (canvas) {
-    let ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }
-}
-
-function saveOwnerSig() {
-  let canvas = document.getElementById('sig-owner');
-  if (canvas) {
-    DB.ownerSig = canvas.toDataURL();
-    saveDB();
-    alert("Unterschrift von Daniel Mejstrik erfolgreich gespeichert!");
-  }
-}
-
-/* RAPPORT ROWS ENGINE */
-let rapRowCount = 0;
-function addRapRow() {
-  rapRowCount++;
-  let container = document.getElementById('rap-rows-mobile');
-  let div = document.createElement('div');
-  div.className = 'card';
-  div.style.background = 'var(--l)';
-  div.style.marginBottom = '8px';
-  div.id = 'rap-m-row-' + rapRowCount;
-
-  div.innerHTML = `
-    <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-      <b>Einsatz #${rapRowCount}</b>
-      <button class="btn-del" onclick="document.getElementById('rap-m-row-${rapRowCount}').remove();calcRap()">×</button>
-    </div>
-    <div class="form-group"><label>Datum (TT.MM.):</label><input type="text" class="rm-d" placeholder="01.10."></div>
-    <div class="form-group"><label>Kunde / Ort:</label><input type="text" class="rm-k"></div>
-    <div style="display:flex;gap:6px">
-      <div class="form-group" style="flex:1"><label>Von:</label><input type="text" class="rm-b" placeholder="07:30" oninput="calcRap()"></div>
-      <div class="form-group" style="flex:1"><label>Bis:</label><input type="text" class="rm-e" placeholder="16:00" oninput="calcRap()"></div>
-      <div class="form-group" style="flex:1"><label>Pause (m):</label><input type="number" class="rm-p" value="30" oninput="calcRap()"></div>
-    </div>
-    <div style="text-align:right">Stunden: <b class="rm-h">0.00</b></div>
-  `;
-  container.appendChild(div);
-}
-
-function calcRap() {
-  let rate = n(document.getElementById('rap-rate').value);
-  let totMin = 0;
-  document.querySelectorAll('#rap-rows-mobile .card').forEach(row => {
-    let von = row.querySelector('.rm-b').value.split(':');
-    let bis = row.querySelector('.rm-e').value.split(':');
-    let pause = n(row.querySelector('.rm-p').value);
-    let minVon = (parseInt(von[0],10)||0)*60 + (parseInt(von[1],10)||0);
-    let minBis = (parseInt(bis[0],10)||0)*60 + (parseInt(bis[1],10)||0);
-    let dur = minBis - minVon - pause;
-    if(dur < 0) dur = 0;
-    totMin += dur;
-    row.querySelector('.rm-h').textContent = (dur/60).toFixed(2);
-  });
-  let hours = totMin / 60;
-  document.getElementById('rap-tot-h').textContent = hours.toFixed(2) + ' h';
-  document.getElementById('rap-tot-pay').textContent = f(hours * rate) + ' CHF';
-}
-
-/* TEMPLATE GENERATION FOR A4 PRINTING */
-function generatePrintTemplate(type) {
-  let custSigImg = document.getElementById('sig-cust')?.toDataURL() || '';
-  let ownerSigImg = DB.ownerSig || '';
-
-  if (type === 'rapport') {
-    let worker = document.getElementById('rap-worker').value;
-    let mon = document.getElementById('rap-mon').value;
-    let rate = document.getElementById('rap-rate').value;
-    let totH = document.getElementById('rap-tot-h').textContent;
-    let totP = document.getElementById('rap-tot-pay').textContent;
-
-    let rowsHTML = '';
-    document.querySelectorAll('#rap-rows-mobile .card').forEach(row => {
-      let d = row.querySelector('.rm-d').value;
-      let k = row.querySelector('.rm-k').value;
-      let b = row.querySelector('.rm-b').value;
-      let e = row.querySelector('.rm-e').value;
-      let p = row.querySelector('.rm-p').value;
-      let h = row.querySelector('.rm-h').textContent;
-      rowsHTML += `<tr class="row"><td class="d">${d}</td><td>${k}</td><td class="r tm">${b}</td><td class="r tm">${e}</td><td class="r tm">${p}</td><td class="hh r"><b>${h}</b></td></tr>`;
-    });
-
-    return `
-      <section class="page l">
-        <div class="hd"><svg class="logo-pdf"><use href="#lg"/></svg></div>
-        <div class="body later">
-          <div class="dt">ARBEITSRAPPORT</div>
-          <div class="ds">Erfassung der geleisteten Arbeitsstunden</div>
-          <div class="hdr">
-            <label>Mitarbeiterin:</label><input class="w" value="${worker}">
-            <label>Monat / Jahr:</label><input value="${mon}">
-            <label class="m">Lohn CHF/h:</label><input value="${rate}">
-          </div>
-          <table class="rp">
-            <tr><th class="d">Datum</th><th>Kunde / Einsatzort</th><th class="r tm">Beginn</th><th class="r tm">Ende</th><th class="r tm">Pause (Min.)</th><th class="r hh">Stunden</th></tr>
-            ${rowsHTML}
-          </table>
-          <div class="sum2">
-            <div class="nt">Pro Einsatz eine Zeile (bei geteilten Einsätzen mehrere Zeilen). Uhrzeiten z. B. 07:30; Pause in Minuten (unbezahlt). Die Stunden werden automatisch berechnet und können überschrieben werden. Der Rapport wird täglich geführt und vom Arbeitgeber mindestens 5 Jahre aufbewahrt. Entschädigungen nach Vertrag Ziffer 5 werden in der Lohnabrechnung zusätzlich ausgewiesen.</div>
-            <div class="tt">
-              <div>Total Stunden</div><input value="${totH}">
-              <div class="big"><b>Bruttolohn CHF</b><input value="${totP}"></div>
-            </div>
-          </div>
-          <div class="sg3">
-            <div class="box"><div class="k">Arbeitnehmerin</div><div class="r2"><label>Datum:</label><input></div><div class="ln2">${custSigImg ? `<img src="${custSigImg}" style="height:35px">` : ''}</div><div class="sm">Unterschrift</div></div>
-            <div class="box"><div class="k">Arbeitgeber (geprüft)</div><div class="r2"><label>Datum:</label><input></div><div class="ln2">${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px">` : ''}</div><div class="sm">Daniel Mejstrik · Unterschrift</div></div>
-          </div>
-        </div>
-        <div class="foot" data-p="Seite 1 von 1"></div>
-      </section>
-    `;
-  } else {
-    let docType = document.getElementById('doc-type').value;
-    let nr = document.getElementById('df-nr')?.value || '';
-    let dt = document.getElementById('df-date')?.value || '';
-    let due = document.getElementById('df-due')?.value || '';
-    let client = document.getElementById('df-client')?.value || '';
-    let str = document.getElementById('df-str')?.value || '';
-    let ort = document.getElementById('df-ort')?.value || '';
-    let price = document.getElementById('df-price')?.value || '0.00';
-    let tel = document.getElementById('df-tel')?.value || '';
-    let email = document.getElementById('df-email')?.value || '';
-    let obj = document.getElementById('df-obj')?.value || '';
-
-    if (docType === 'rechnung') {
-      let firma = document.getElementById('df-firma')?.value || '';
-      let ldate = document.getElementById('df-ldate')?.value || '';
-      let offnr = document.getElementById('df-offnr')?.value || '';
-
-      return `
-        <section class="page f">
-          <div class="hd"><svg class="logo-pdf"><use href="#lg"/></svg></div>
-          <div class="title">RECHNUNG</div>
-          <div class="sub">Dienstleistungen</div>
-          <div class="meta">
-            <div><label>Rechnungs-Nr.:</label><input value="${nr}"></div>
-            <div><label>Datum:</label><input value="${dt}"></div>
-            <div><label>Zahlbar bis:</label><input value="${due}"></div>
-          </div>
-          <div class="cr"></div>
-          <div class="win">
-            <input value="${firma}">
-            <input value="${client}">
-            <input value="${str}">
-            <input value="${ort}">
-          </div>
-          <div class="body first">
-            <p class="intro">Vielen Dank für Ihren Auftrag. Gerne stellen wir Ihnen folgende Leistungen in Rechnung:</p>
-            <div class="contact">
-              <label>Leistungsdatum:</label><input value="${ldate}">
-              <label class="m">Offerten-Nr.:</label><input value="${offnr}">
-              <label>Objektadresse:</label><input class="w" value="${obj}">
-              <label>Leistung:</label>
-              <div class="cb s"><label><input type="checkbox" checked> Umzugsreinigung</label><label><input type="checkbox"> Gebäudereinigung</label><label><input type="checkbox"> Unterhaltsreinigung</label></div>
-            </div>
-            <h2>1. LEISTUNGEN</h2>
-            <table>
-              <tr style="background:var(--b);color:#fff"><th>Pos.</th><th>Beschreibung</th><th style="text-align:right">Betrag CHF</th></tr>
-              <tr><td>1</td><td>Dienstleistungen gemäß Vereinbarung</td><td style="text-align:right"><b>${price} CHF</b></td></tr>
-              <tr><td>2</td><td>48 Stunden Reklamationsfrist</td><td style="text-align:right">0.00</td></tr>
-            </table>
-            <div class="closing" style="margin-top:20px">
-              <p>Bitte geben Sie bei der Zahlung die Rechnungsnummer an. Es gelten unsere Allgemeinen Geschäftsbedingungen: <b>www.mservice.ch/agb</b>.</p>
-              <p style="margin-top:8px"><b>Freundliche Grüsse</b></p>
-              <div class="sign" style="margin-top:15px">
-                <div><b>Daniel Mejstrik</b><br>${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px"><br>` : ''}Mejstrik Transport & Reinigung Service</div>
-                <div>Bestätigung / Kundenunterschrift:<br>${custSigImg ? `<img src="${custSigImg}" style="height:35px">` : ''}</div>
-              </div>
-            </div>
-          </div>
-          <div class="foot" data-p="Seite 1 von 1"></div>
-        </section>
-      `;
-    } else if (docType === 'off-umzug') {
-      return `
-        <section class="page f">
-          <div class="hd"><svg class="logo-pdf"><use href="#lg"/></svg></div>
-          <div class="title">OFFERTE</div>
-          <div class="sub">Umzugsreinigung</div>
-          <div class="meta">
-            <div><label>Datum:</label><input value="${dt}"></div>
-            <div><label>Offerten-Nr.:</label><input value="${nr}"></div>
-            <div><label>Gültigkeit:</label><input value="${due}"></div>
-          </div>
-          <div class="cr"></div>
-          <div class="win">
-            <input value="${client}">
-            <input value="${str}">
-            <input value="${ort}">
-          </div>
-          <div class="body first">
-            <p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die Umzugsreinigung (Endreinigung bezugsfertig):</p>
-            <div class="contact">
-              <label>Kunde:</label><input value="${client}">
-              <label class="m">Telefon:</label><input value="${tel}">
-              <label>E-Mail:</label><input value="${email}">
-              <label class="m">Objektadresse:</label><input value="${obj}">
-            </div>
-            <h2>1. UMFASSENDER LEISTUNGSUMFANG (UMZUGSREINIGUNG)</h2>
-            <table>
-              <tr><th>Bereich</th><th>Enthaltene Reinigungsarbeiten</th></tr>
-              <tr><td style="font-weight:bold">Küche & Geräte</td><td>Tiefenreinigung aller Küchenoberflächen, Schränke (innen/aussen), Kochfeld, Backofen, Steamer, Dampfabzug, Geschirrspüler sowie Kühlschrank.</td></tr>
-              <tr><td style="font-weight:bold">Nasszellen / Bad & WC</td><td>Gründliche Reinigung, Entkalkung und Desinfektion aller Badezimmer, Duschen und WCs, Badewanne, Armaturen, Spiegeln, Fliesen.</td></tr>
-              <tr><td style="font-weight:bold">Fenster & Storen</td><td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen und Fensterbänken sowie Lamellenstoren und Rollläden.</td></tr>
-              <tr><td style="font-weight:bold">Wohnräume & Böden</td><td>Vollständige Säuberung und Pflege aller Bodenbeläge, Saugen und Wischen aller Räume, Türen und Fussleisten.</td></tr>
-              <tr><td style="font-weight:bold">Nebennutzflächen</td><td>Reinigung von Keller, Estrich, Garage, Waschraum sowie Balkon/Terrasse.</td></tr>
-            </table>
-            <h2>2. PREISZUSAMMENSTELLUNG</h2>
-            <div class="price"><b>Pauschalpreis Umzugsreinigung (inkl. Material & Anfahrt):</b><div class="big"><input value="${price}"></div></div>
-          </div>
-          <div class="foot" data-p="Seite 1 von 2"></div>
-        </section>
-        <section class="page l">
-          <div class="hd"><svg class="logo-pdf"><use href="#lg"/></svg></div>
-          <div class="body later">
-            <h2>3. VERBINDLICHE BESTIMMUNGEN & ZUSATZVEREINBARUNGEN</h2>
-            <div class="note"><div class="t">Hinweis zur Preisangabe und Möblierung:</div><p>Der angegebene Pauschalpreis basiert auf Ihren Angaben im Formular sowie dem Zustand des Objekts.</p></div>
-            <h2>4. GARANTIEREGELUNG</h2>
-            <div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><p>Falls Sie oder die Liegenschaftsverwaltung innerhalb von 48 Stunden Mängel feststellen, werden diese umgehend und kostenlos nachgebessert.</p></div>
-            <h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2>
-            <div class="note info"><div class="t">Es gelten unsere AGB:</div><p>Abrufbar unter <b>www.mservice.ch/agb</b>.</p></div>
-            <div class="closing">
-              <p>Freundliche Grüsse</p>
-              <div class="sign">
-                <div><b>Daniel Mejstrik</b><br>${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px"><br>` : ''}Mejstrik Transport & Reinigung Service</div>
-                <div>Bestätigung / Kundenunterschrift:<br>${custSigImg ? `<img src="${custSigImg}" style="height:35px">` : ''}</div>
-              </div>
-            </div>
-          </div>
-          <div class="foot" data-p="Seite 2 von 2"></div>
-        </section>
-      `;
-    } else {
-      return `
-        <section class="page f">
-          <div class="hd"><svg class="logo-pdf"><use href="#lg"/></svg></div>
-          <div class="title">OFFERTE</div>
-          <div class="sub">${docType.replace('off-','').toUpperCase()}REINIGUNG</div>
-          <div class="meta">
-            <div><label>Datum:</label><input value="${dt}"></div>
-            <div><label>Offerten-Nr.:</label><input value="${nr}"></div>
-            <div><label>Gültigkeit:</label><input value="${due}"></div>
-          </div>
-          <div class="cr"></div>
-          <div class="win">
-            <input value="${client}">
-            <input value="${str}">
-            <input value="${ort}">
-          </div>
-          <div class="body first">
-            <p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen folgende Offerte:</p>
-            <div class="contact">
-              <label>Kunde:</label><input value="${client}">
-              <label class="m">Telefon:</label><input value="${tel}">
-              <label>E-Mail:</label><input value="${email}">
-              <label class="m">Objektadresse:</label><input value="${obj}">
-            </div>
-            <h2>1. LEISTUNGSUMFANG</h2>
-            <table>
-              <tr><th>Bereich</th><th>Enthaltene Arbeiten</th></tr>
-              <tr><td style="font-weight:bold">Gesamtes Objekt</td><td>Reinigungsarbeiten gemäss Absprache und Objektbesichtigung inkl. Material und Anfahrt.</td></tr>
-            </table>
-            <h2>2. PREISZUSAMMENSTELLUNG</h2>
-            <div class="price"><b>Pauschalpreis / Betrag CHF:</b><div class="big"><input value="${price}"></div></div>
-          </div>
-          <div class="foot" data-p="Seite 1 von 2"></div>
-        </section>
-        <section class="page l">
-          <div class="hd"><svg class="logo-pdf"><use href="#lg"/></svg></div>
-          <div class="body later">
-            <h2>3. GARANTIEREGELUNG</h2>
-            <div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie:</div><p>Kostenlose Nachbesserung bei Mängeln innerhalb von 48 Stunden.</p></div>
-            <div class="closing" style="margin-top:30px">
-              <p>Freundliche Grüsse</p>
-              <div class="sign">
-                <div><b>Daniel Mejstrik</b><br>${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px"><br>` : ''}Mejstrik Transport & Reinigung Service</div>
-                <div>Bestätigung / Kundenunterschrift:<br>${custSigImg ? `<img src="${custSigImg}" style="height:35px">` : ''}</div>
-              </div>
-            </div>
-          </div>
-          <div class="foot" data-p="Seite 2 von 2"></div>
-        </section>
-      `;
+    function generateDocNumber() {
+      const num = 'MTR-' + new Date().getFullYear() + '-' + String(documents.length + 1).padStart(3, '0');
+      document.getElementById('doc-number').value = num;
     }
-  }
-}
 
-function printUebersicht() {
-  let te = 0, ta = 0, open = 0;
-  DB.ein.forEach(r => { if(r.act) te += n(r.amt); });
-  DB.aus.forEach(r => { if(r.act) ta += n(r.amt); });
-  DB.lohn.forEach(r => { if(r.act) ta += n(r.amt); });
-  DB.rg.forEach(r => { if(r.act && !r.paid) open += n(r.amt); });
+    // Dynamic Position Rows inside Form
+    function addPositionRow(desc = '', qty = 1, price = 0) {
+      const container = document.getElementById('positions-container');
+      const rowId = Date.now() + Math.random();
+      const div = document.createElement('div');
+      div.className = 'flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200 pos-row';
+      div.id = `row-${rowId}`;
 
-  let html = `
-    <section class="page f">
-      <div class="hd"><svg class="logo-pdf"><use href="#lg"/></svg></div>
-      <div class="title">BUCHHALTUNG</div>
-      <div class="sub">Jahresübersicht ${DB.year}</div>
-      <div class="body first">
-        <h2>1. FINANZ-KENNZAHLEN ${DB.year}</h2>
-        <table>
-          <tr style="background:var(--b);color:#fff"><th>Kategorie</th><th style="text-align:right">Betrag CHF</th></tr>
-          <tr><td><b>Total Einnahmen</b></td><td style="text-align:right;color:var(--ok)"><b>${f(te)} CHF</b></td></tr>
-          <tr><td><b>Total Ausgaben (inkl. Löhne)</b></td><td style="text-align:right;color:var(--bad)"><b>${f(ta)} CHF</b></td></tr>
-          <tr style="background:#EAF3FC"><td><b>Gewinn / Verlust</b></td><td style="text-align:right;color:var(--br)"><b>${f(te - ta)} CHF</b></td></tr>
-          <tr><td><b>Offene Rechnungen</b></td><td style="text-align:right"><b>${f(open)} CHF</b></td></tr>
-        </table>
-        <div class="closing" style="margin-top:40px">
-          <p>Auszug aus der einfachen Buchhaltung nach Art. 957 OR.</p>
-          <p style="margin-top:15px"><b>Mejstrik Transport & Reinigung Service</b><br>8586 Ennetaach</p>
-        </div>
-      </div>
-      <div class="foot" data-p="Seite 1 von 1"></div>
-    </section>
-  `;
+      div.innerHTML = `
+        <input type="text" placeholder="Beschreibung (z.B. Umzugstransport, Endreinigung)" value="${desc}" class="flex-1 p-2 bg-white border border-slate-300 rounded text-xs outline-none pos-desc" required>
+        <input type="number" step="0.5" placeholder="Std/Menge" value="${qty}" class="w-20 p-2 bg-white border border-slate-300 rounded text-xs outline-none text-center pos-qty" required>
+        <input type="number" step="1" placeholder="CHF" value="${price}" class="w-24 p-2 bg-white border border-slate-300 rounded text-xs outline-none text-right pos-price" required>
+        <button type="button" onclick="removePositionRow('row-${rowId}')" class="text-rose-500 hover:text-rose-700 p-1">
+          <i data-lucide="trash-2" class="w-4 h-4"></i>
+        </button>
+      `;
+      container.appendChild(div);
+      lucide.createIcons();
+    }
 
-  document.getElementById('print-wrapper').innerHTML = html;
-  window.print();
-}
+    function removePositionRow(id) {
+      const row = document.getElementById(id);
+      if (row && document.querySelectorAll('.pos-row').length > 1) {
+        row.remove();
+      }
+    }
 
-function printLohnSlip(idx) {
-  let r = DB.lohn[idx];
-  let gross = n(r.amt);
-  let dateStr = r.d ? (r.d.slice(8,10)+'.'+r.d.slice(5,7)+'.'+r.d.slice(0,4)) : new Date().toLocaleDateString('de-CH');
+    // Digital Signature Pad Logic
+    function initCanvas() {
+      signatureCanvas = document.getElementById('signature-pad');
+      if (!signatureCanvas) return;
+      signatureCtx = signatureCanvas.getContext('2d');
 
-  let ahv = gross * 0.0515;
-  let alv = gross * 0.0015;
-  let netto = gross - ahv - alv;
+      // Adjust pixel density
+      const rect = signatureCanvas.getBoundingClientRect();
+      signatureCanvas.width = rect.width;
+      signatureCanvas.height = rect.height;
 
-  let html = `
-    <section class="page f">
-      <div class="hd"><svg class="logo-pdf"><use href="#lg"/></svg></div>
-      <div class="title">LOHNABRECHNUNG</div>
-      <div class="sub">Aushilfe / Entschädigung</div>
-      <div class="meta">
-        <div><label>Datum:</label><input value="${dateStr}"></div>
-      </div>
-      <div class="body first">
-        <h2>1. PERSONAILDATEN</h2>
-        <div class="contact">
-          <label>Arbeitnehmer/in:</label><input value="${r.who || ''}">
-          <label class="m">Funktion:</label><input value="${r.desc || ''}">
-          <label>Auszahlung:</label><input class="w" value="${r.pay || 'Bar / Bank'}">
-        </div>
-        <h2>2. LOHNKONTRIERUNG</h2>
-        <table>
-          <tr style="background:var(--b);color:#fff"><th>Bezeichnung</th><th style="text-align:right">Satz</th><th style="text-align:right">Betrag CHF</th></tr>
-          <tr><td><b>Bruttolohn / Entschädigung</b></td><td style="text-align:right">Aushilfe</td><td style="text-align:right"><b>${f(gross)}</b></td></tr>
-          <tr><td>AHV/IV/EO Abzug</td><td style="text-align:right">5.15 %</td><td style="text-align:right;color:#C0392B">- ${f(ahv)}</td></tr>
-          <tr><td>ALV Abzug</td><td style="text-align:right">0.15 %</td><td style="text-align:right;color:#C0392B">- ${f(alv)}</td></tr>
-          <tr style="background:#EAF3FC"><td><b>Nettolohn / Auszahlung CHF</b></td><td style="text-align:right">-</td><td style="text-align:right;color:var(--ok)"><b>${f(netto)}</b></td></tr>
-        </table>
-        <div class="closing" style="margin-top:30px">
-          <div class="sign">
-            <div>Unterschrift Arbeitgeber:<br>${DB.ownerSig ? `<img src="${DB.ownerSig}" style="height:35px">` : ''}</div>
-            <div>Unterschrift Arbeitnehmer/in:<br>______________</div>
+      signatureCtx.strokeStyle = "#0f172a";
+      signatureCtx.lineWidth = 2;
+      signatureCtx.lineCap = "round";
+
+      // Mouse events
+      signatureCanvas.addEventListener('mousedown', startDrawing);
+      signatureCanvas.addEventListener('mousemove', draw);
+      signatureCanvas.addEventListener('mouseup', stopDrawing);
+
+      // Touch events for iOS / Mobile
+      signatureCanvas.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        const rect = signatureCanvas.getBoundingClientRect();
+        startDrawing({ clientX: touch.clientX, clientY: touch.clientY });
+      });
+      signatureCanvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        draw({ clientX: touch.clientX, clientY: touch.clientY });
+      });
+      signatureCanvas.addEventListener('touchend', stopDrawing);
+    }
+
+    function startDrawing(e) {
+      isDrawing = true;
+      hasSignature = true;
+      const rect = signatureCanvas.getBoundingClientRect();
+      signatureCtx.beginPath();
+      signatureCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    }
+
+    function draw(e) {
+      if (!isDrawing) return;
+      const rect = signatureCanvas.getBoundingClientRect();
+      signatureCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+      signatureCtx.stroke();
+    }
+
+    function stopDrawing() {
+      isDrawing = false;
+    }
+
+    function clearSignature() {
+      if (!signatureCtx) return;
+      signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
+      hasSignature = false;
+    }
+
+    // Save & Preview Document
+    function saveDocument() {
+      const type = document.getElementById('doc-type').value;
+      const date = document.getElementById('doc-date').value;
+      const number = document.getElementById('doc-number').value;
+      const clientName = document.getElementById('client-name').value;
+      const clientPhone = document.getElementById('client-phone').value;
+      const clientAddress = document.getElementById('client-address').value;
+      const notes = document.getElementById('doc-notes').value;
+
+      // Extract positions
+      const rows = document.querySelectorAll('.pos-row');
+      const items = [];
+      let totalAmount = 0;
+
+      rows.forEach(row => {
+        const desc = row.querySelector('.pos-desc').value;
+        const qty = parseFloat(row.querySelector('.pos-qty').value) || 0;
+        const price = parseFloat(row.querySelector('.pos-price').value) || 0;
+        const sum = qty * price;
+        totalAmount += sum;
+
+        items.push({ desc, qty, price, sum });
+      });
+
+      // Signature data
+      let sigData = null;
+      if (hasSignature) {
+        sigData = signatureCanvas.toDataURL();
+      }
+
+      const doc = {
+        id: Date.now(),
+        type,
+        date,
+        number,
+        clientName,
+        clientPhone,
+        clientAddress,
+        notes,
+        items,
+        totalAmount,
+        signature: sigData
+      };
+
+      documents.unshift(doc);
+      localStorage.setItem('mtr_docs', JSON.stringify(documents));
+
+      showPrintPreview(doc);
+    }
+
+    // Display Print / Preview Screen
+    function showPrintPreview(doc) {
+      document.getElementById('tab-dashboard').classList.add('hidden');
+      document.getElementById('tab-new-document').classList.add('hidden');
+      document.getElementById('tab-accounting').classList.add('hidden');
+      
+      const printArea = document.getElementById('printable-area');
+      printArea.classList.remove('hidden');
+
+      // Fill header data
+      document.getElementById('print-doc-type').innerText = doc.type;
+      document.getElementById('print-doc-number').innerText = doc.number;
+      document.getElementById('print-doc-date').innerText = 'Datum: ' + doc.date;
+
+      // Client info
+      document.getElementById('print-client-name').innerText = doc.clientName;
+      document.getElementById('print-client-address').innerText = doc.clientAddress || 'Keine Adresse angegeben';
+      document.getElementById('print-client-phone').innerText = doc.clientPhone ? 'Tel: ' + doc.clientPhone : '';
+
+      // Positions Table
+      const posContainer = document.getElementById('print-positions');
+      posContainer.innerHTML = '';
+
+      doc.items.forEach((item, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="py-2 px-1 text-slate-500">${idx + 1}</td>
+          <td class="py-2 px-1 font-medium text-slate-800">${item.desc}</td>
+          <td class="py-2 px-1 text-center text-slate-600">${item.qty}</td>
+          <td class="py-2 px-1 text-right text-slate-600">${item.price.toFixed(2)}</td>
+          <td class="py-2 px-1 text-right font-semibold text-slate-800">${item.sum.toFixed(2)}</td>
+        `;
+        posContainer.appendChild(tr);
+      });
+
+      // Amounts
+      document.getElementById('print-subtotal').innerText = 'CHF ' + doc.totalAmount.toFixed(2);
+      document.getElementById('print-tax').innerText = 'CHF ' + (doc.totalAmount * 0.081).toFixed(2);
+      document.getElementById('print-total').innerText = 'CHF ' + doc.totalAmount.toFixed(2);
+
+      // Notes
+      document.getElementById('print-notes').innerText = doc.notes || 'Keine besonderen Bemerkungen.';
+
+      // Signature
+      const sigImg = document.getElementById('print-signature-img');
+      const sigText = document.getElementById('print-no-signature');
+
+      if (doc.signature) {
+        sigImg.src = doc.signature;
+        sigImg.classList.remove('hidden');
+        sigText.classList.add('hidden');
+      } else {
+        sigImg.classList.add('hidden');
+        sigText.classList.remove('hidden');
+      }
+
+      window.scrollTo(0, 0);
+    }
+
+    function closePreview() {
+      switchTab('dashboard');
+    }
+
+    // Dashboard Rendering
+    function renderDashboard() {
+      const container = document.getElementById('document-list');
+      document.getElementById('doc-count').innerText = `${documents.length} Einträge`;
+
+      // Recalculate stats
+      let totalRev = 0;
+      let totalExp = 0;
+
+      documents.forEach(d => totalRev += d.totalAmount);
+      transactions.forEach(t => {
+        if (t.type === 'Ausgabe') totalExp += t.amount;
+        else if (t.type === 'Einnahme') totalRev += t.amount;
+      });
+
+      document.getElementById('stat-revenue').innerText = `CHF ${totalRev.toFixed(2)}`;
+      document.getElementById('stat-expenses').innerText = `CHF ${totalExp.toFixed(2)}`;
+      document.getElementById('stat-pending').innerText = documents.filter(d => d.type === 'Rechnung').length;
+      document.getElementById('stat-reports').innerText = documents.filter(d => d.type === 'Arbeitsrapport').length;
+
+      if (documents.length === 0) {
+        container.innerHTML = `
+          <div class="p-8 text-center text-slate-400 text-sm">
+            Keine Dokumente vorhanden. Klicken Sie auf "+ Neu", um einen Rapport oder eine Rechnung zu erstellen.
+          </div>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      documents.forEach(doc => {
+        const div = document.createElement('div');
+        div.className = 'p-3 hover:bg-slate-50 flex items-center justify-between gap-3 transition';
+        div.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 font-bold text-xs">
+              ${doc.type.substring(0, 2).toUpperCase()}
+            </div>
+            <div>
+              <p class="text-sm font-semibold text-slate-800">${doc.clientName}</p>
+              <p class="text-xs text-slate-400">${doc.number} • ${doc.date}</p>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="foot" data-p="Seite 1 von 1"></div>
-    </section>
-  `;
+          <div class="text-right flex items-center gap-3">
+            <div>
+              <p class="text-sm font-bold text-slate-900">CHF ${doc.totalAmount.toFixed(2)}</p>
+              <span class="text-[10px] px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-medium">${doc.type}</span>
+            </div>
+            <button onclick="viewDoc(${doc.id})" class="p-1.5 text-slate-400 hover:text-blue-600">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+      lucide.createIcons();
+    }
 
-  document.getElementById('print-wrapper').innerHTML = html;
-  window.print();
-}
+    function viewDoc(id) {
+      const doc = documents.find(d => d.id === id);
+      if (doc) showPrintPreview(doc);
+    }
 
-function printDoc() {
-  document.getElementById('print-wrapper').innerHTML = generatePrintTemplate('doc');
-  window.print();
-}
+    // Simple Ledger / Transactions
+    function saveTransaction() {
+      const type = document.getElementById('acc-type').value;
+      const desc = document.getElementById('acc-desc').value;
+      const amount = parseFloat(document.getElementById('acc-amount').value) || 0;
+      const date = new Date().toISOString().split('T')[0];
 
-function printRapport() {
-  document.getElementById('print-wrapper').innerHTML = generatePrintTemplate('rapport');
-  window.print();
-}
+      transactions.unshift({ id: Date.now(), date, type, desc, amount });
+      localStorage.setItem('mtr_trans', JSON.stringify(transactions));
 
-/* BACKUP & RESTORE */
-function exportData() {
-  let b = new Blob([JSON.stringify(DB,null,2)], {type:'application/json'});
-  let a = document.createElement('a');
-  a.href = URL.createObjectURL(b);
-  a.download = 'Mejstrik_Service_Backup_'+DB.year+'.json';
-  a.click();
-}
+      document.getElementById('acc-desc').value = '';
+      document.getElementById('acc-amount').value = '';
 
-function importData(e) {
-  let f = e.target.files[0];
-  if(!f) return;
-  let r = new FileReader();
-  r.onload = function(evt) {
-    try { DB = JSON.parse(evt.target.result); saveDB(); alert('Daten erfolgreich geladen!'); } catch(err) { alert('Ungültige Datei.'); }
-  };
-  r.readAsText(f);
-}
+      renderAccounting();
+    }
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadDB();
-  renderBuchhaltungCards();
-  calcKPIs();
-  renderDocForm();
-  addRapRow();
-});
-</script>
+    function renderAccounting() {
+      const container = document.getElementById('transaction-list');
+      if (transactions.length === 0) {
+        container.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">Keine Buchungen vorhanden.</td></tr>`;
+        return;
+      }
+
+      container.innerHTML = '';
+      transactions.forEach(t => {
+        const tr = document.createElement('tr');
+        const isExpense = t.type === 'Ausgabe';
+        tr.innerHTML = `
+          <td class="p-2.5 text-slate-500">${t.date}</td>
+          <td class="p-2.5"><span class="px-1.5 py-0.5 text-[10px] rounded ${isExpense ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'} font-medium">${t.type}</span></td>
+          <td class="p-2.5 font-medium text-slate-800">${t.desc}</td>
+          <td class="p-2.5 text-right font-bold ${isExpense ? 'text-rose-600' : 'text-emerald-600'}">${isExpense ? '-' : '+'} CHF ${t.amount.toFixed(2)}</td>
+          <td class="p-2.5 text-center">
+            <button onclick="deleteTransaction(${t.id})" class="text-slate-400 hover:text-rose-600">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        container.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    function deleteTransaction(id) {
+      transactions = transactions.filter(t => t.id !== id);
+      localStorage.setItem('mtr_trans', JSON.stringify(transactions));
+      renderAccounting();
+    }
+  </script>
 </body>
 </html>
