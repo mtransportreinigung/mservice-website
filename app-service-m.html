@@ -18,13 +18,18 @@
   --sab:env(safe-area-inset-bottom, 0px);
 }
 
-/* iOS FIXED VIEWPORT CONTAINER LOCK */
-html, body {
-  width: 100%;
+/* iOS FIXED VIEWPORT LOCK */
+html {
   height: 100%;
+  background: var(--bg);
+}
+body {
+  width: 100vw;
   height: 100dvh;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
-  position: fixed;
+  position: relative;
   background: var(--bg);
   font: 8.8pt/1.32 Arial, Helvetica, sans-serif;
   color: #2a2a2a;
@@ -44,14 +49,15 @@ html, body {
 .pin-btn:active{background:rgba(255,255,255,0.3)}
 #pin-error{color:#f87171;font-size:12px;margin-top:12px;height:18px;font-weight:600;text-align:center}
 
-/* MOBILE APP LAYOUT WITH STRICT FIXED BARS */
+/* MOBILE APP MAIN CONTAINER */
 #app {
   display: none;
   width: 100%;
-  height: 100%;
   height: 100dvh;
-  flex-direction: column;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
 }
 
 /* FIXED TOP HEADER */
@@ -60,7 +66,7 @@ html, body {
   top: 0;
   left: 0;
   right: 0;
-  height: calc(52px + var(--sat));
+  height: calc(54px + var(--sat));
   padding-top: var(--sat);
   padding-left: 14px;
   padding-right: 14px;
@@ -80,11 +86,11 @@ html, body {
 .btn-icon.pri{background:var(--b);color:#fff;border-color:var(--b)}
 .btn-icon.sec{background:var(--o);color:#fff;border-color:var(--o)}
 
-/* INTERNAL SCROLLABLE BODY */
+/* INTERNAL SCROLLABLE CONTENT BODY */
 .app-body {
   position: absolute;
-  top: calc(52px + var(--sat));
-  bottom: calc(56px + var(--sab));
+  top: calc(54px + var(--sat));
+  bottom: calc(60px + var(--sab));
   left: 0;
   right: 0;
   overflow-y: auto;
@@ -100,7 +106,7 @@ html, body {
   bottom: 0;
   left: 0;
   right: 0;
-  height: calc(56px + var(--sab));
+  height: calc(60px + var(--sab));
   padding-bottom: var(--sab);
   background: #fff;
   border-top: 1px solid var(--bd);
@@ -110,8 +116,8 @@ html, body {
   z-index: 1000;
   box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
 }
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:56px;color:#64748b;background:none;border:0;font-size:8.5px;font-weight:600;gap:2px;cursor:pointer}
-.nav-item svg{width:18px;height:18px;stroke-width:2;stroke:currentColor;fill:none}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:60px;color:#64748b;background:none;border:0;font-size:8.5px;font-weight:600;gap:2px;cursor:pointer}
+.nav-item svg{width:20px;height:20px;stroke-width:2;stroke:currentColor;fill:none}
 .nav-item.active{color:var(--br)}
 .nav-item.active svg{stroke:var(--br)}
 
@@ -133,17 +139,51 @@ html, body {
 .sig-canvas{width:100%;height:110px;background:#fff;border:1px solid var(--bd);border-radius:6px;touch-action:none}
 .sig-tools{display:flex;justify-content:space-between;align-items:center;margin-top:6px}
 
-/* EXACT A4 PRINT STYLES */
-@media print{
-  #pin-screen,.app-header,.bottom-nav,.app-body,.noprint{display:none!important}
-  body,html{background:#fff!important;margin:0!important;padding:0!important;width:210mm;height:auto!important;position:static!important;overflow:visible!important}
-  #print-wrapper{display:block!important}
-  .page{margin:0!important;box-shadow:none!important;page-break-after:always;width:210mm;height:297mm;position:relative;background:#fff;overflow:hidden}
-  .page:last-child{page-break-after:avoid}
-  @page{size:A4;margin:0}
+/* FULL A4 PRINT STYLES - STRICTLY CORRECTIONS FOR PRINT LAYOUT */
+@page {
+  size: A4 portrait;
+  margin: 0;
 }
-#print-wrapper{display:none}
 
+#print-wrapper {
+  display: none;
+}
+
+@media print {
+  html, body {
+    width: 210mm !important;
+    height: auto !important;
+    overflow: visible !important;
+    position: static !important;
+    background: #fff !important;
+  }
+  #pin-screen, #app, .app-header, .bottom-nav, .app-body, .noprint {
+    display: none !important;
+  }
+  #print-wrapper {
+    display: block !important;
+    width: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .page {
+    width: 210mm !important;
+    height: 297mm !important;
+    position: relative !important;
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+    overflow: hidden !important;
+    box-shadow: none !important;
+  }
+  .page:last-child {
+    page-break-after: avoid;
+  }
+}
+
+/* DOCUMENT LAYOUT MATCHING EXACT SOURCE A4 DIMENSIONS */
 .page{width:210mm;height:297mm;position:relative;background:#fff;margin:0 auto;overflow:hidden}
 .logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}
 .hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}
@@ -222,7 +262,7 @@ html, body {
 </head>
 <body>
 
-<!-- SVG LOGO -->
+<!-- SVG LOGO DEFINITION -->
 <svg width="0" height="0" style="position:absolute"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
 
 <!-- PIN SCREEN -->
@@ -240,7 +280,7 @@ html, body {
   <div id="pin-error"></div>
 </div>
 
-<!-- MAIN MOBILE APP WITH FIXED BARS -->
+<!-- MAIN APP CONTAINER -->
 <div id="app">
   <header class="app-header">
     <div style="width:34px;height:34px;border-radius:8px;overflow:hidden;flex:none"><svg viewBox="0 0 420 376" width="100%" height="100%"><use href="#lg"/></svg></div>
@@ -274,6 +314,7 @@ html, body {
             <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Gewinn</small><br><b id="k-g" style="font-size:15px;color:var(--o)">0.00</b></div>
             <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Offen</small><br><b id="k-o" style="font-size:15px;color:var(--n)">0.00</b></div>
           </div>
+          <button class="btn-icon pri" style="width:100%;justify-content:center;margin-top:12px;padding:10px" onclick="printUebersicht()">🖨️ Übersicht drucken (A4)</button>
         </div>
       </div>
 
@@ -331,7 +372,7 @@ html, body {
         </div>
 
         <div style="display:flex;gap:8px;margin-top:14px">
-          <button class="btn-icon pri" style="flex:1;justify-content:center;padding:10px" onclick="printDoc()">🖨️ Drucken / PDF</button>
+          <button class="btn-icon pri" style="flex:1;justify-content:center;padding:10px" onclick="printDoc()">🖨️ Drucken / PDF (A4)</button>
         </div>
       </div>
     </div>
@@ -355,7 +396,7 @@ html, body {
         </div>
 
         <div style="display:flex;gap:8px;margin-top:14px">
-          <button class="btn-icon pri" style="flex:1;justify-content:center;padding:10px" onclick="printRapport()">🖨️ Drucken / PDF</button>
+          <button class="btn-icon pri" style="flex:1;justify-content:center;padding:10px" onclick="printRapport()">🖨️ Drucken / PDF (A4)</button>
         </div>
       </div>
     </div>
@@ -417,7 +458,7 @@ function pressPin(v) {
   else if (v === 'OK') {
     if (enteredPin === CORRECT_PIN) {
       document.getElementById('pin-screen').style.display = 'none';
-      document.getElementById('app').style.display = 'flex';
+      document.getElementById('app').style.display = 'block';
       sessionStorage.setItem('m_auth', '1');
       setTimeout(initCanvases, 300);
     } else {
@@ -434,7 +475,7 @@ function pressPin(v) {
 
 if (sessionStorage.getItem('m_auth') === '1') {
   document.getElementById('pin-screen').style.display = 'none';
-  document.getElementById('app').style.display = 'flex';
+  document.getElementById('app').style.display = 'block';
   setTimeout(initCanvases, 300);
 }
 
@@ -736,7 +777,7 @@ function calcRap() {
   document.getElementById('rap-tot-pay').textContent = f(hours * rate) + ' CHF';
 }
 
-/* TEMPLATE GENERATION */
+/* TEMPLATE GENERATION FOR A4 PRINTING */
 function generatePrintTemplate(type) {
   let custSigImg = document.getElementById('sig-cust')?.toDataURL() || '';
   let ownerSigImg = DB.ownerSig || '';
@@ -965,6 +1006,40 @@ function generatePrintTemplate(type) {
   }
 }
 
+function printUebersicht() {
+  let te = 0, ta = 0, open = 0;
+  DB.ein.forEach(r => { if(r.act) te += n(r.amt); });
+  DB.aus.forEach(r => { if(r.act) ta += n(r.amt); });
+  DB.lohn.forEach(r => { if(r.act) ta += n(r.amt); });
+  DB.rg.forEach(r => { if(r.act && !r.paid) open += n(r.amt); });
+
+  let html = `
+    <section class="page f">
+      <div class="hd"><svg class="logo"><use href="#lg"/></svg></div>
+      <div class="title">BUCHHALTUNG</div>
+      <div class="sub">Jahresübersicht ${DB.year}</div>
+      <div class="body first">
+        <h2>1. FINANZ-KENNZAHLEN ${DB.year}</h2>
+        <table>
+          <tr style="background:var(--b);color:#fff"><th>Kategorie</th><th style="text-align:right">Betrag CHF</th></tr>
+          <tr><td><b>Total Einnahmen</b></td><td style="text-align:right;color:var(--ok)"><b>${f(te)} CHF</b></td></tr>
+          <tr><td><b>Total Ausgaben (inkl. Löhne)</b></td><td style="text-align:right;color:var(--bad)"><b>${f(ta)} CHF</b></td></tr>
+          <tr style="background:#EAF3FC"><td><b>Gewinn / Verlust</b></td><td style="text-align:right;color:var(--br)"><b>${f(te - ta)} CHF</b></td></tr>
+          <tr><td><b>Offene Rechnungen</b></td><td style="text-align:right"><b>${f(open)} CHF</b></td></tr>
+        </table>
+        <div class="closing" style="margin-top:40px">
+          <p>Auszug aus der einfachen Buchhaltung nach Art. 957 OR.</p>
+          <p style="margin-top:15px"><b>Mejstrik Transport & Reinigung Service</b><br>8586 Ennetaach</p>
+        </div>
+      </div>
+      <div class="foot" data-p="Seite 1 von 1"></div>
+    </section>
+  `;
+
+  document.getElementById('print-wrapper').innerHTML = html;
+  window.print();
+}
+
 function printLohnSlip(idx) {
   let r = DB.lohn[idx];
   let gross = n(r.amt);
@@ -975,34 +1050,37 @@ function printLohnSlip(idx) {
   let netto = gross - ahv - alv;
 
   let html = `
-    <div style="width:210mm;height:297mm;padding:20mm;background:#fff;color:#000;font-family:Arial,sans-serif;position:relative">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1E3A6D;padding-bottom:10px;margin-bottom:15px">
-        <div>
-          <h2 style="color:#1E3A6D;margin:0;font-size:16px">Mejstrik Transport & Reinigung Service</h2>
-          <p style="font-size:11px;color:#555;margin-top:2px">Ennetaach CH-8586 · Tel. +41 78 345 80 72 · info@mservice.ch</p>
+    <section class="page f">
+      <div class="hd"><svg class="logo"><use href="#lg"/></svg></div>
+      <div class="title">LOHNABRECHNUNG</div>
+      <div class="sub">Aushilfe / Entschädigung</div>
+      <div class="meta">
+        <div><label>Datum:</label><input value="${dateStr}"></div>
+      </div>
+      <div class="body first">
+        <h2>1. PERSONAILDATEN</h2>
+        <div class="contact">
+          <label>Arbeitnehmer/in:</label><input value="${r.who || ''}">
+          <label class="m">Funktion:</label><input value="${r.desc || ''}">
+          <label>Auszahlung:</label><input class="w" value="${r.pay || 'Bar / Bank'}">
         </div>
-        <div style="text-align:right">
-          <h3 style="margin:0;color:#F57C00;font-size:15px">LOHNABRECHNUNG</h3>
-          <p style="font-size:11px;margin-top:2px"><b>Datum:</b> ${dateStr}</p>
+        <h2>2. LOHNKONTRIERUNG</h2>
+        <table>
+          <tr style="background:var(--b);color:#fff"><th>Bezeichnung</th><th style="text-align:right">Satz</th><th style="text-align:right">Betrag CHF</th></tr>
+          <tr><td><b>Bruttolohn / Entschädigung</b></td><td style="text-align:right">Aushilfe</td><td style="text-align:right"><b>${f(gross)}</b></td></tr>
+          <tr><td>AHV/IV/EO Abzug</td><td style="text-align:right">5.15 %</td><td style="text-align:right;color:#C0392B">- ${f(ahv)}</td></tr>
+          <tr><td>ALV Abzug</td><td style="text-align:right">0.15 %</td><td style="text-align:right;color:#C0392B">- ${f(alv)}</td></tr>
+          <tr style="background:#EAF3FC"><td><b>Nettolohn / Auszahlung CHF</b></td><td style="text-align:right">-</td><td style="text-align:right;color:var(--ok)"><b>${f(netto)}</b></td></tr>
+        </table>
+        <div class="closing" style="margin-top:30px">
+          <div class="sign">
+            <div>Unterschrift Arbeitgeber:<br>${DB.ownerSig ? `<img src="${DB.ownerSig}" style="height:35px">` : ''}</div>
+            <div>Unterschrift Arbeitnehmer/in:<br>______________</div>
+          </div>
         </div>
       </div>
-      <table style="width:100%;margin-bottom:15px;font-size:12px;border:0">
-        <tr><td style="width:130px"><b>Arbeitnehmer/in:</b></td><td>${r.who || '--------------------'}</td></tr>
-        <tr><td><b>Einsatz / Funktion:</b></td><td>${r.desc || 'Aushilfseinsatz / Reinigung / Transport'}</td></tr>
-        <tr><td><b>Auszahlungsart:</b></td><td>${r.pay || 'Bar / Überweisung'}</td></tr>
-      </table>
-      <table style="width:100%;border-collapse:collapse;margin-bottom:20px;font-size:12px">
-        <thead>
-          <tr style="background:#1E3A6D;color:#fff"><th style="padding:6px;text-align:left">Bezeichnung</th><th style="padding:6px;text-align:right">Satz</th><th style="padding:6px;text-align:right">Betrag CHF</th></tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding:6px;border-bottom:1px solid #eee"><b>Bruttolohn / Entschädigung</b></td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right">Aushilfe</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right"><b>${f(gross)}</b></td></tr>
-          <tr><td style="padding:6px;border-bottom:1px solid #eee">AHV/IV/EO Abzug</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right">5.15 %</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right;color:#C0392B">- ${f(ahv)}</td></tr>
-          <tr><td style="padding:6px;border-bottom:1px solid #eee">ALV Abzug</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right">0.15 %</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right;color:#C0392B">- ${f(alv)}</td></tr>
-          <tr style="background:#F4F7FB;font-weight:bold;font-size:13px"><td style="padding:8px;border-top:2px solid #1E3A6D" colspan="2">Nettolohn / Auszahlung CHF</td><td style="padding:8px;border-top:2px solid #1E3A6D;text-align:right;color:#1F7A44">${f(netto)}</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <div class="foot" data-p="Seite 1 von 1"></div>
+    </section>
   `;
 
   document.getElementById('print-wrapper').innerHTML = html;
