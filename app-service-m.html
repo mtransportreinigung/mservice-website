@@ -802,6 +802,18 @@ document.getElementById('rs').addEventListener('click',function(){var v=Q('.view
 if(!Q('input',v).some(function(i){return i.type!='checkbox'&&i.value&&i.value!=i.defaultValue})){
 Q('.sg',v).forEach(function(i){i.remove()});try{var s=stg(v);Object.keys(s).forEach(function(k){if(k.indexOf('msm_sig_'+v.id)==0)s.removeItem(k)})}catch(e){}}},0)});
 function gp(){var g=0;if(navigator.standalone&&innerHeight>innerWidth)g=Math.max(0,Math.max(screen.width,screen.height)-innerHeight);if(!g&&innerWidth>=390&&innerHeight<=830)g=62;document.documentElement.style.setProperty('--gap',g+'px')}gp();addEventListener('resize',gp);addEventListener('orientationchange',function(){setTimeout(gp,300)});var lk=document.getElementById('lock');function sy(){document.documentElement.classList.toggle('locked',!lk.hidden)}sy();new MutationObserver(sy).observe(lk,{attributes:true,attributeFilter:['hidden']});
+
+/* Diagnostika: 3x ťuknout na nadpis "M Service" -> přepne režim výšky a ukáže rozměry */
+var MD=+localStorage.getItem('msm_lm')||0,app=document.getElementById('app'),tt=document.getElementById('ttl'),tap=[];
+function env(p){var d=document.createElement('div');d.style.cssText='position:fixed;visibility:hidden;padding-'+p+':env(safe-area-inset-'+p+')';document.body.appendChild(d);var v=parseFloat(getComputedStyle(d)['padding'+p[0].toUpperCase()+p.slice(1)])||0;d.remove();return Math.round(v)}
+function setM(){app.style.cssText='';var h=[null,'100vh','100lvh',screen.height+'px',window.innerHeight+'px'][MD];
+if(MD&&h){app.style.bottom='auto';app.style.height=h}
+if(MD==4){document.documentElement.style.height=document.body.style.height=screen.height+'px'}else{document.documentElement.style.height=document.body.style.height=''}
+if(MD)document.documentElement.style.setProperty('--gap','0px');else gp()}
+function info(){var t=document.getElementById('dbg');if(!t){t=document.createElement('div');t.id='dbg';t.style.cssText='position:fixed;left:6px;right:6px;top:calc(env(safe-area-inset-top) + 70px);z-index:300;background:#000c;color:#fff;font:12px/1.35 monospace;padding:8px;border-radius:8px;white-space:pre-wrap';document.body.appendChild(t)}
+t.textContent='Modus '+MD+'/4\ninnerH='+innerHeight+' innerW='+innerWidth+'\nscreenH='+screen.height+' vvH='+(window.visualViewport?Math.round(visualViewport.height):'-')+'\nappH='+app.offsetHeight+' inset top/bottom='+env('top')+'/'+env('bottom')+'\nstandalone='+navigator.standalone;clearTimeout(t._t);t._t=setTimeout(function(){t.remove()},7000)}
+tt.addEventListener('click',function(){var n=Date.now();tap=tap.filter(function(x){return n-x<700});tap.push(n);if(tap.length>=3){tap=[];MD=(MD+1)%5;localStorage.setItem('msm_lm',MD);setM();info()}});
+setM();
 })();
 </script>
 </body>
