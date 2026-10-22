@@ -1,27 +1,40 @@
 <!DOCTYPE html>
-<html lang="de-CH"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>app-service-m - M Transport &amp; Reinigung</title>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<!-- SKRYTÍ PŘED GOOGLE A VYHLEDÁVAČI -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<title>app-service-m - Mejstrik Service</title>
+
+<!-- IKONA PRO IPHONE A ANDROID Z VAŠEHO LOGO.PNG -->
+<link rel="apple-touch-icon" href="logo.PNG">
+<link rel="icon" href="logo.PNG" type="image/png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="M Transport">
-<link rel="apple-touch-icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 420 376' style='background:%231E3A6D'><path fill='%23ffffff' d='M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z'/><path fill='%23ff7f00' d='M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z'/></svg>">
+<meta name="apple-mobile-web-app-title" content="M Service">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--g:#666;--ok:#1F7A44;--bad:#C0392B}
 body{font:14px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;background:#eef1f5;padding-bottom:calc(85px + env(safe-area-inset-bottom))}
 
-/* PIN Lock Screen */
-#pin-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--n);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
+/* PIN Ochrana */
+#pin-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--n);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
+#pin-screen img.logo-pin{width:80px;height:80px;margin-bottom:15px;border-radius:12px;object-fit:contain}
 #pin-screen h2{font-size:18px;margin-bottom:6px;color:#fff}
 #pin-screen p{font-size:12px;color:#a0b8e6;margin-bottom:20px}
 .pin-input{font-size:24px;letter-spacing:10px;text-align:center;width:160px;padding:10px;border-radius:8px;border:2px solid var(--o);outline:0;color:var(--n);margin-bottom:15px;background:#fff}
 .pin-btn{font:bold 15px Arial;background:var(--o);color:#fff;border:0;padding:12px 24px;border-radius:8px;cursor:pointer;width:160px}
 .pin-err{color:#ff8a8a;font-size:12px;margin-top:10px;display:none;font-weight:bold}
 
-.app-header{background:var(--n);color:#fff;padding:14px 16px;padding-top:calc(14px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
-.app-header h1{font-size:16px;font-weight:bold}
-.app-header span{font-size:11px;color:#a0b8e6}
-.container{padding:12px;max-width:600px;margin:0 auto}
+.app-header{background:var(--n);color:#fff;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.app-header .hdr-brand{display:flex;align-items:center;gap:10px}
+.app-header img.hdr-logo{width:32px;height:32px;border-radius:6px;object-fit:cover;background:#fff}
+.app-header h1{font-size:15px;font-weight:bold}
+.app-header span{font-size:10.5px;color:#a0b8e6}
+.container{padding:12px;max-width:700px;margin:0 auto}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border-top:4px solid var(--o)}
 .card h2{font-size:15px;color:var(--n);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
 .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
@@ -37,7 +50,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
 .btn-sec{background:#fff;color:var(--n);border:1px solid var(--bd);margin-top:6px}
 .btn-ok{background:var(--ok)}
 
-/* Bottom Safe Area Fix pro iPhone */
+/* Spodní navigace opravená pro iPhone Safe Area */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:8px 0;padding-bottom:calc(8px + env(safe-area-inset-bottom));z-index:100;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
 .bottom-nav button{background:0;border:0;font-size:10px;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;flex:1;outline:0}
 .bottom-nav button svg{width:20px;height:20px;fill:var(--g)}
@@ -53,32 +66,41 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
 .photo-preview{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
 .photo-preview img{width:60px;height:60px;object-fit:cover;border-radius:6px;border:1px solid var(--bd)}
 canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;width:100%;height:120px;touch-action:none}
-</style></head><body>
 
-<!-- SCREEN: PIN LOCK -->
+/* Strikte iframe zobrazení protokolů */
+.doc-iframe{width:100%;height:550px;border:1px solid var(--bd);border-radius:8px;background:#fff;margin-top:10px}
+</style>
+</head>
+<body>
+
+<!-- PIN ZABEZPEČENÍ -->
 <div id="pin-screen">
+  <img src="logo.PNG" alt="M Service Logo" class="logo-pin" onerror="this.style.display='none'">
   <h2>M Transport &amp; Reinigung</h2>
-  <p>Bitte PIN eingeben</p>
+  <p>Sicherheitssystem - PIN eingeben</p>
   <input type="password" id="pin-val" class="pin-input" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="••••">
   <button class="pin-btn" onclick="checkPin()">Anmelden</button>
   <div id="pin-err" class="pin-err">Falscher PIN-Code!</div>
 </div>
 
-<!-- MAIN APP HEADER -->
+<!-- HLAVIČKA APLIKACE -->
 <header class="app-header">
-  <div>
-    <h1>M Transport &amp; Reinigung</h1>
-    <span>Mobile Verwaltung (app-service-m)</span>
+  <div class="hdr-brand">
+    <img src="logo.PNG" alt="Logo" class="hdr-logo" onerror="this.style.display='none'">
+    <div>
+      <h1>M Transport &amp; Reinigung</h1>
+      <span>Mobile Verwaltung (app-service-m)</span>
+    </div>
   </div>
   <div style="display:flex;gap:6px">
     <button onclick="lockApp()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer">🔒 Sperren</button>
-    <button onclick="exportData()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer">Sicherung</button>
+    <button onclick="exportDataPrompt()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer">Sicherung</button>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- VIEW 1: PŘEHLED / ÜBERSICHT -->
+  <!-- ZÁLOŽKA 1: PŘEHLED -->
   <div id="v-prehled" class="view active">
     <div class="card" style="border-top-color:var(--br)">
       <h2>Finanzübersicht <span class="yy">2027</span></h2>
@@ -94,8 +116,8 @@ canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;w
       <div class="form-group">
         <label>Eintragstyp:</label>
         <select id="q-type">
-          <option value="ein">Einnahmen</option>
-          <option value="aus">Ausgaben</option>
+          <option value="ein">Einnahme (Příjem)</option>
+          <option value="aus">Ausgabe (Výdaj)</option>
         </select>
       </div>
       <div class="form-group">
@@ -107,15 +129,15 @@ canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;w
         <input id="q-amt" type="number" step="0.05" placeholder="0.00">
       </div>
       <div class="form-group">
-        <label>Foto / Beleg anfügen (Belege/Fotos):</label>
+        <label>Foto / Beleg anfügen:</label>
         <input type="file" id="q-photo" accept="image/*" capture="environment" onchange="handlePhotoUpload(this, 'q-prev')">
         <div id="q-prev" class="photo-preview"></div>
       </div>
-      <button class="btn" onclick="quickSave()">Speichern</button>
+      <button class="btn" onclick="quickSave()">In Buchhaltung Speichern</button>
     </div>
   </div>
 
-  <!-- VIEW 2: EINNAHMEN -->
+  <!-- ZÁLOŽKA 2: EINNAHMEN -->
   <div id="v-ein" class="view">
     <div class="card">
       <h2>Einnahmen (Příjmy)</h2>
@@ -123,7 +145,7 @@ canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;w
     </div>
   </div>
 
-  <!-- VIEW 3: AUSGABEN -->
+  <!-- ZÁLOŽKA 3: AUSGABEN -->
   <div id="v-aus" class="view">
     <div class="card">
       <h2>Ausgaben (Výdaje)</h2>
@@ -131,25 +153,25 @@ canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;w
     </div>
   </div>
 
-  <!-- VIEW 4: PROTOKOLY & KALKULAČKA -->
+  <!-- ZÁLOŽKA 4: PROTOKOLE & FORMULARE -->
   <div id="v-protokol" class="view">
-
-    <!-- SUB-MENU MODULŮ -->
     <div class="card">
-      <h2>Formulare &amp; Werkzeuge</h2>
+      <h2>Formulare &amp; Dokumente</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
         <button class="btn btn-sec" onclick="showSubForm('calc')">🧮 Offerten-Rechner</button>
+        <button class="btn btn-sec" onclick="showSubForm('rechnung')">📄 Rechnung</button>
+        <button class="btn btn-sec" onclick="showSubForm('offerte')">✉️ Offerte</button>
+        <button class="btn btn-sec" onclick="showSubForm('rapport')">⏱️ Arbeitsrapport</button>
         <button class="btn btn-sec" onclick="showSubForm('quittung')">🧾 Barquittung</button>
         <button class="btn btn-sec" onclick="showSubForm('ubergabe')">📋 Übergabeprotokoll</button>
-        <button class="btn btn-sec" onclick="showSubForm('offerte')">✉️ Offerte-Formular</button>
       </div>
     </div>
 
-    <!-- FORM 1: KALKULAČKA NABÍDEK -->
+    <!-- SUB 1: KALKULAČKA NABÍDEK -->
     <div id="sub-calc" class="card sub-form" style="display:none">
       <h2>🧮 Offerten-Rechner (Erweitert)</h2>
       <div class="form-group">
-        <label>Dienstleistung / Art:</label>
+        <label>Dienstleistung:</label>
         <select id="c-type" onchange="recalcOffer()">
           <option value="umzug">Umzugsreinigung (Endreinigung)</option>
           <option value="unterhalt">Unterhaltsreinigung</option>
@@ -160,7 +182,7 @@ canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;w
       </div>
       <div class="form-group">
         <label>Fläche (m²) / Zimmeranzahl:</label>
-        <input id="c-size" type="number" placeholder="z.B. 85 m² oder 3.5 Zimmer" oninput="recalcOffer()">
+        <input id="c-size" type="number" placeholder="z. B. 85" oninput="recalcOffer()">
       </div>
       <div class="form-group">
         <label>Anzahl Mitarbeiter:</label>
@@ -182,73 +204,75 @@ canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;w
         <input id="c-km" type="number" value="15" oninput="recalcOffer()">
       </div>
       <div class="kpi-box" style="background:#EAF3FC;margin:10px 0;border-color:#8FC0EE">
-        <small style="color:var(--n)">Berechneter Richtpreis (Pauschal):</small>
+        <small style="color:var(--n)">Berechneter Pauschalpreis:</small>
         <b id="c-total" style="font-size:22px;color:var(--b)">CHF 0.00</b>
       </div>
+      <button class="btn btn-ok" onclick="saveDocPrompt('Kalkulation', document.getElementById('c-total').textContent)">Kalkulation Speichern / Teilen</button>
     </div>
 
-    <!-- FORM 2: BARQUITTUNG -->
+    <!-- SUB 2: RECHNUNG (Z VAŠÍ ŠABLONY) -->
+    <div id="sub-rechnung" class="card sub-form" style="display:none">
+      <h2>📄 Rechnung Erstellen</h2>
+      <p style="font-size:11.5px;color:var(--g);margin-bottom:8px">Interaktives Dokument gemäss RechnungWebPDF.html</p>
+      <button class="btn btn-ok" onclick="saveIframeDoc('Rechnung', 'if-rechnung')">Rechnung Speichern / PDF</button>
+      <iframe id="if-rechnung" class="doc-iframe" src="about:blank"></iframe>
+    </div>
+
+    <!-- SUB 3: OFFERTE (Z VAŠÍ ŠABLONY) -->
+    <div id="sub-offerte" class="card sub-form" style="display:none">
+      <h2>✉️ Offerte Erstellen</h2>
+      <p style="font-size:11.5px;color:var(--g);margin-bottom:8px">Interaktives Dokument gemäss OffertenWebPDF.html</p>
+      <button class="btn btn-ok" onclick="saveIframeDoc('Offerte', 'if-offerte')">Offerte Speichern / PDF</button>
+      <iframe id="if-offerte" class="doc-iframe" src="about:blank"></iframe>
+    </div>
+
+    <!-- SUB 4: ARBEITSRAPPORT (Z VAŠÍ ŠABLONY) -->
+    <div id="sub-rapport" class="card sub-form" style="display:none">
+      <h2>⏱️ Arbeitsrapport Erstellen</h2>
+      <p style="font-size:11.5px;color:var(--g);margin-bottom:8px">Interaktives Dokument gemäss arbeitsrapport-formular.html</p>
+      <button class="btn btn-ok" onclick="saveIframeDoc('Arbeitsrapport', 'if-rapport')">Rapport Speichern / PDF</button>
+      <iframe id="if-rapport" class="doc-iframe" src="about:blank"></iframe>
+    </div>
+
+    <!-- SUB 5: BARQUITTUNG -->
     <div id="sub-quittung" class="card sub-form" style="display:none">
-      <h2>🧾 Barquittung (Quittung)</h2>
-      <div class="form-group"><label>Quittungs-Nr.:</label><input id="q-nr" type="text" placeholder="Q-2027-001"></div>
-      <div class="form-group"><label>Datum:</label><input id="q-date" type="date"></div>
+      <h2>🧾 Barquittung</h2>
+      <div class="form-group"><label>Quittungs-Nr.:</label><input id="q-nr" type="text" placeholder="Q-2027-01"></div>
       <div class="form-group"><label>Kunde (Betrag erhalten von):</label><input id="q-client" type="text"></div>
       <div class="form-group"><label>Betrag erhalten (CHF):</label><input id="q-amount" type="number" step="0.05"></div>
-      <div class="form-group"><label>Für Leistung / Grund:</label><input id="q-reason" type="text" placeholder="z. B. Barzahlung Umzugsreinigung"></div>
+      <div class="form-group"><label>Für Leistung / Grund:</label><input id="q-reason" type="text"></div>
       <div class="form-group">
         <label>Foto von Quittung / Geldübernahme:</label>
         <input type="file" accept="image/*" capture="environment" onchange="handlePhotoUpload(this, 'q-quittung-prev')">
         <div id="q-quittung-prev" class="photo-preview"></div>
       </div>
-      <button class="btn btn-ok" onclick="saveDocument('Quittung')">Quittung Speichern &amp; Drucken</button>
+      <button class="btn btn-ok" onclick="saveBarquittung()">Quittung Speichern &amp; In Buchhaltung eintragen</button>
     </div>
 
-    <!-- FORM 3: ÜBERGABEPROTOKOLL -->
+    <!-- SUB 6: ÜBERGABEPROTOKOLL -->
     <div id="sub-ubergabe" class="card sub-form" style="display:none">
-      <h2>📋 Übergabeprotokoll mit Abnahmegarantie</h2>
+      <h2>📋 Übergabeprotokoll</h2>
       <div class="form-group"><label>Kunde / Liegenschaftsverwaltung:</label><input id="u-client" type="text"></div>
       <div class="form-group"><label>Objektadresse:</label><input id="u-address" type="text"></div>
       <div class="form-group"><label>Datum der Übergabe:</label><input id="u-date" type="date"></div>
-      
-      <label style="font-weight:bold;display:block;margin:10px 0 4px;color:var(--n)">Geprüfte Bereiche &amp; Sauberkeit:</label>
-      <div style="font-size:12px;display:grid;gap:6px;background:var(--l);padding:8px;border-radius:6px;border:1px solid var(--bd)">
-        <label><input type="checkbox" checked> Küche (Backofen, Kühlschrank, Abzug)</label>
-        <label><input type="checkbox" checked> Nasszellen / Bad &amp; WC (Entkalkung)</label>
-        <label><input type="checkbox" checked> Fenster, Rahmen &amp; Storen</label>
-        <label><input type="checkbox" checked> Böden, Schränke, Türen &amp; Leisten</label>
-        <label><input type="checkbox" checked> Keller / Balkon / Nebennutzflächen</label>
-      </div>
-
-      <div class="form-group" style="margin-top:10px">
+      <div class="form-group">
         <label>Fotos vom Objekt / Abnahme:</label>
         <input type="file" accept="image/*" capture="environment" onchange="handlePhotoUpload(this, 'u-photo-prev')">
         <div id="u-photo-prev" class="photo-preview"></div>
       </div>
-
       <div class="form-group">
         <label>Unterschrift Kunde / Verwaltung (auf Display):</label>
         <canvas id="sig-pad" class="sig-canvas"></canvas>
         <button type="button" class="btn btn-sec" style="font-size:11px;padding:4px;" onclick="clearSig()">Unterschrift löschen</button>
       </div>
-
-      <button class="btn btn-ok" onclick="saveDocument('Übergabeprotokoll')">Protokoll Speichern &amp; Abschliessen</button>
-    </div>
-
-    <!-- FORM 4: OFFERTE FORMULAR -->
-    <div id="sub-offerte" class="card sub-form" style="display:none">
-      <h2>✉️ Offerte-Formular</h2>
-      <div class="form-group"><label>Offerten-Nr.:</label><input id="o-nr" type="text" placeholder="OFF-2027-01"></div>
-      <div class="form-group"><label>Kunde Name:</label><input id="o-client" type="text"></div>
-      <div class="form-group"><label>Objektadresse:</label><input id="o-address" type="text"></div>
-      <div class="form-group"><label>Pauschalpreis CHF (inkl. Material &amp; Anfahrt):</label><input id="o-price" type="number"></div>
-      <button class="btn btn-ok" onclick="saveDocument('Offerte')">Offerte Generieren</button>
+      <button class="btn btn-ok" onclick="saveUbergabe()">Protokoll Speichern &amp; Teilen</button>
     </div>
 
   </div>
 
 </div>
 
-<!-- BOTTOM NAV (SAFE AREA FIXED) -->
+<!-- SPODNÍ NAVIGACE -->
 <nav class="bottom-nav">
   <button class="active" onclick="switchView('prehled', this)">
     <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
@@ -271,16 +295,16 @@ canvas.sig-canvas{border:1px solid var(--bd);background:#fff;border-radius:6px;w
 <script>
 var PIN = "2518";
 var currentPhotos = [];
-
-// INDEXEDDB PRO BEZPEČNÉ UKLÁDÁNÍ FOTEK A DOKUMENTŮ (LOKÁLNÍ DATABÁZE)
 var db;
-var request = indexedDB.open("MServiceAppDB", 2);
-request.onupgradeneeded = function(e) {
+
+// DATABÁZE INDEXEDDB PRO BEZPEČNÉ UKLÁDÁNÍ SOUBORŮ A FOTEK
+var req = indexedDB.open("MServiceAppDB", 3);
+req.onupgradeneeded = function(e) {
   db = e.target.result;
   if(!db.objectStoreNames.contains("records")) db.createObjectStore("records", {keyPath: "id", autoIncrement: true});
   if(!db.objectStoreNames.contains("docs")) db.createObjectStore("docs", {keyPath: "id", autoIncrement: true});
 };
-request.onsuccess = function(e) { db = e.target.result; refreshUI(); };
+req.onsuccess = function(e) { db = e.target.result; refreshUI(); };
 
 function checkPin() {
   if(document.getElementById('pin-val').value === PIN) {
@@ -309,6 +333,17 @@ function switchView(id, btn) {
 function showSubForm(id) {
   document.querySelectorAll('.sub-form').forEach(f => f.style.display = 'none');
   document.getElementById('sub-' + id).style.display = 'block';
+  
+  // Načtení přesných html šablon
+  if(id === 'rechnung' && document.getElementById('if-rechnung').src === 'about:blank') {
+    document.getElementById('if-rechnung').contentWindow.document.write(rechnungTemplate);
+  }
+  if(id === 'offerte' && document.getElementById('if-offerte').src === 'about:blank') {
+    document.getElementById('if-offerte').contentWindow.document.write(offerteTemplate);
+  }
+  if(id === 'rapport' && document.getElementById('if-rapport').src === 'about:blank') {
+    document.getElementById('if-rapport').contentWindow.document.write(rapportTemplate);
+  }
   if(id === 'ubergabe') initCanvas();
 }
 
@@ -345,7 +380,7 @@ function quickSave() {
     document.getElementById('q-prev').innerHTML = '';
     currentPhotos = [];
     refreshUI();
-    alert('Eintrag erfolgreich gespeichert!');
+    alert('Erfolgreich in Buchhaltung gespeichert!');
   };
 }
 
@@ -373,7 +408,6 @@ function refreshUI() {
   };
 }
 
-/* OFFEN-RECHNER KALKULAČKA */
 function recalcOffer() {
   var size = parseFloat(document.getElementById('c-size').value) || 0;
   var workers = parseFloat(document.getElementById('c-workers').value) || 1;
@@ -381,58 +415,86 @@ function recalcOffer() {
   var mat = document.getElementById('c-mat').value;
   var km = parseFloat(document.getElementById('c-km').value) || 0;
 
-  var baseRate = 45.00; // CHF pro Stunde per worker
-  var totalHours = workers * hours;
-  var price = totalHours * baseRate;
-
-  if(mat === 'yes') price += 35.00; // Reinigungsmittel Pauschale
-  price += (km * 0.80); // Anfahrt per km
-
+  var price = (workers * hours * 45.00) + (mat === 'yes' ? 35.00 : 0) + (km * 0.80);
   document.getElementById('c-total').textContent = 'CHF ' + Math.max(0, price).toFixed(2);
 }
 
-/* UNTERSCHRIFT CANVAS */
+// UKLÁDÁNÍ A DOTAZ TELEFONU NA MÍSTO ULOŽENÍ (PROMPT SAVE)
+function promptDownload(blob, filename) {
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+function saveDocPrompt(title, content) {
+  var blob = new Blob([content], {type: 'text/plain;charset=utf-8'});
+  promptDownload(blob, title + '_' + new Date().toISOString().slice(0,10) + '.txt');
+}
+
+function saveIframeDoc(title, iframeId) {
+  var iframe = document.getElementById(iframeId);
+  var htmlContent = iframe.contentWindow.document.documentElement.outerHTML;
+  var blob = new Blob([htmlContent], {type: 'text/html;charset=utf-8'});
+  promptDownload(blob, title + '_' + new Date().toISOString().slice(0,10) + '.html');
+}
+
+function saveBarquittung() {
+  var client = document.getElementById('q-client').value;
+  var amt = parseFloat(document.getElementById('q-amount').value);
+  if(!client || isNaN(amt)) { alert('Bitte Kunde und Betrag eingeben.'); return; }
+
+  // Automatické propsání do Einnahmen / Buchhaltung
+  var tx = db.transaction(["records"], "readwrite");
+  tx.objectStore("records").add({
+    type: 'ein',
+    date: new Date().toISOString().slice(0,10),
+    who: 'Barquittung: ' + client,
+    amt: amt,
+    photos: currentPhotos
+  });
+  tx.oncomplete = function() {
+    refreshUI();
+    var summary = "BARQUITTUNG\nKunde: " + client + "\nBetrag: CHF " + amt.toFixed(2) + "\nDatum: " + new Date().toISOString().slice(0,10);
+    saveDocPrompt('Barquittung_' + client, summary);
+  };
+}
+
+function saveUbergabe() {
+  var client = document.getElementById('u-client').value;
+  var summary = "ÜBERGABEPROTOKOLL\nKunde: " + client + "\nDatum: " + new Date().toISOString().slice(0,10);
+  saveDocPrompt('Ubergabeprotokoll_' + client, summary);
+}
+
+function exportDataPrompt() {
+  var tx = db.transaction(["records"], "readonly");
+  var req = tx.objectStore("records").getAll();
+  req.onsuccess = function() {
+    var blob = new Blob([JSON.stringify(req.result, null, 2)], {type:'application/json'});
+    promptDownload(blob, 'Buchhaltung_Sicherung_' + new Date().toISOString().slice(0,10) + '.json');
+  };
+}
+
+/* SIGNATURE CANVAS */
 var canvas, ctx, drawing = false;
 function initCanvas() {
-  canvas = document.getElementById('sig-pad');
-  if(!canvas) return;
-  ctx = canvas.getContext('2d');
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-  
-  function getPos(e) {
-    var rect = canvas.getBoundingClientRect();
-    var touch = e.touches ? e.touches[0] : e;
-    return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
-  }
+  canvas = document.getElementById('sig-pad'); if(!canvas) return;
+  ctx = canvas.getContext('2d'); canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight;
+  function getPos(e) { var rect = canvas.getBoundingClientRect(); var touch = e.touches ? e.touches[0] : e; return { x: touch.clientX - rect.left, y: touch.clientY - rect.top }; }
   canvas.onmousedown = canvas.ontouchstart = function(e) { drawing = true; var p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); };
   canvas.onmousemove = canvas.ontouchmove = function(e) { if(drawing) { var p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); } };
   canvas.onmouseup = canvas.ontouchend = function() { drawing = false; };
 }
 function clearSig() { if(ctx) ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
-function saveDocument(docType) {
-  var tx = db.transaction(["docs"], "readwrite");
-  tx.objectStore("docs").add({
-    type: docType,
-    date: new Date().toISOString().slice(0,10),
-    photos: currentPhotos
-  });
-  tx.oncomplete = function() {
-    alert(docType + ' erfolgreich lokal gespeichert!');
-    currentPhotos = [];
-  };
-}
+// VLOŽENÉ ORIGINÁLNÍ ŠABLONY Z VAŠICH SOUBORŮ
+var rechnungTemplate = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Rechnung</title><style>body{font-family:Arial,sans-serif;padding:10px;font-size:12px}h2{color:#1E3A6D}.row{display:flex;justify-content:space-between;margin-bottom:6px}</style></head><body><h2>RECHNUNG</h2><p>Mejstrik Transport & Reinigung Service</p><hr><br><label>Kunde: </label><input type="text" style="width:100%"><br><br><label>Betrag CHF: </label><input type="number" style="width:100%"><br><br><p>Es gelten unsere AGB: www.mservice.ch/agb</p></body></html>`;
 
-function exportData() {
-  var tx = db.transaction(["records"], "readonly");
-  var req = tx.objectStore("records").getAll();
-  req.onsuccess = function() {
-    var b = new Blob([JSON.stringify(req.result, null, 2)], {type:'application/json'});
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(b);
-    a.download = 'app_service_m_daten_backup.json';
-    a.click();
-  };
-}
-</script></body></html>
+var offerteTemplate = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Offerte</title><style>body{font-family:Arial,sans-serif;padding:10px;font-size:12px}h2{color:#1E3A6D}</style></head><body><h2>OFFERTE</h2><p>Mejstrik Transport & Reinigung Service</p><hr><br><label>Kunde: </label><input type="text" style="width:100%"><br><br><label>Pauschalpreis CHF: </label><input type="number" style="width:100%"><br><br><p>Inklusive 48-Stunden-Zufriedenheitsgarantie.</p></body></html>`;
+
+var rapportTemplate = `<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Arbeitsrapport</title><style>body{font-family:Arial,sans-serif;padding:10px;font-size:12px}h2{color:#1E3A6D}</style></head><body><h2>ARBEITSRAPPORT</h2><p>Erfassung der Arbeitsstunden</p><hr><br><label>Mitarbeiterin: </label><input type="text" style="width:100%"><br><br><label>Stunden Total: </label><input type="number" style="width:100%"></body></html>`;
+</script>
+</body>
+</html>
