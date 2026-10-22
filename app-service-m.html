@@ -22,14 +22,23 @@ html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;backgrou
 input,select,textarea{-webkit-user-select:text;user-select:text}
 [hidden]{display:none!important}
 .lg{display:inline-flex;width:34px;height:30px;flex:none}.lg img,.lg svg{width:100%;height:100%;object-fit:contain}.lg.big{width:84px;height:75px}
-#lock{position:fixed;inset:0;z-index:99;background:linear-gradient(160deg,#fff 40%,#e8eef8);display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-.lbox{text-align:center;width:min(320px,86vw)}
-.lbox h1{margin:10px 0 2px;color:var(--n);font-size:22px}.lbox p{margin:0 0 16px;color:var(--g);min-height:20px;font-size:14px}
-.dots{display:flex;gap:16px;justify-content:center;margin-bottom:22px}.dots i{width:15px;height:15px;border-radius:50%;border:2px solid var(--b)}.dots i.on{background:var(--o);border-color:var(--o)}
-.dots.bad{animation:sh .4s}@keyframes sh{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
-.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.pad button{height:62px;border-radius:50%;border:1px solid var(--bd);background:#fff;font:600 24px -apple-system,Arial;color:var(--n);box-shadow:0 1px 4px rgba(30,58,109,.12)}
-.pad button:active{background:var(--b);color:#fff}.pad button.e{visibility:hidden}.pad button.x{font-size:20px;border-color:transparent;box-shadow:none;background:none}
+#lock{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 15% 8%,rgba(245,124,0,.35),transparent 42%),radial-gradient(circle at 90% 95%,rgba(45,108,181,.55),transparent 50%),linear-gradient(160deg,#0f2347,#1E3A6D 60%,#152c58);display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);color:#fff}
+.lbox{text-align:center;width:min(330px,88vw)}
+#lock .lg.big{width:92px;height:92px;padding:14px;background:#fff;border-radius:26px;box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 6px rgba(255,255,255,.08)}
+.lbox h1{margin:16px 0 4px;color:#fff;font-size:23px;font-weight:700;letter-spacing:.3px}.lbox p{margin:0 0 22px;color:#b9c8e6;min-height:20px;font-size:14px}
+.dots{display:flex;gap:18px;justify-content:center;margin-bottom:30px}.dots i{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);transition:.15s}.dots i.on{background:var(--o);border-color:var(--o);box-shadow:0 0 12px rgba(245,124,0,.8);transform:scale(1.15)}
+.dots.bad{animation:sh .4s}.dots.bad i{border-color:#ff6b5e;background:#ff6b5e}@keyframes sh{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 18px;justify-items:center}
+.pad button{width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;font:300 32px/1 -apple-system,Arial;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .12s,transform .12s;padding:0}
+.pad button small{font:600 8.5px/1 Arial;letter-spacing:2px;color:#b9c8e6;margin-top:3px;height:8px}
+.pad button:active{background:var(--o);border-color:var(--o);transform:scale(.93)}.pad button:active small{color:#fff}
+.pad button.e{visibility:hidden}.pad button.x{background:none;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}.pad button.x svg{width:30px;height:30px}
+.sheet{position:fixed;inset:0;z-index:50;background:rgba(15,35,71,.5);display:flex;align-items:flex-end}
+.sheet div{width:100%;background:#fff;border-radius:18px 18px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:9px;font-family:-apple-system,Arial}
+.sheet h3{margin:2px 0 4px;color:var(--n);font-size:16px;text-align:center}
+.sheet button{padding:14px;border:1px solid var(--bd);border-radius:12px;background:var(--l);color:var(--n);font:600 15px -apple-system,Arial;text-align:left}
+.sheet button:active{background:var(--b);color:#fff}.sheet button.c{background:none;border:0;color:var(--g);text-align:center}
+.prall{margin:0 14px 14px;width:calc(100% - 28px);padding:14px;border:0;border-radius:12px;background:var(--b);color:#fff;font:600 15px -apple-system,Arial}
 #app{position:fixed;inset:0;display:flex;flex-direction:column}
 .bar{display:flex;align-items:center;gap:6px;background:#fff;border-bottom:3px solid var(--b);padding:calc(env(safe-area-inset-top) + 6px) 10px 6px;flex:none}
 .bar b{color:var(--br);font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp{flex:1}
@@ -57,7 +66,7 @@ input,select,textarea{-webkit-user-select:text;user-select:text}
 @media print{
 html,body{height:auto;overflow:visible;background:#fff}
 #app{position:static;display:block}.main,.view{position:static;overflow:visible;inset:auto}
-.bar,.tab,#lock,.seg{display:none!important}
+.bar,.tab,#lock,.seg,.sheet{display:none!important}body.pm .view.on:not(.pf){display:none!important}.view.pf{display:block!important}
 .zw{width:auto!important;height:auto!important;margin:0}.sc{position:static;transform:none!important;width:auto}
 .view.doc .page{break-after:page}.view.doc .page.plast{break-after:auto}
 }
@@ -107,6 +116,7 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
         <button data-go="v-rapport"><i>&#x23F1;</i><b>Arbeitsrapport</b><small>Stunden &amp; Bruttolohn</small></button>
         <button data-go="v-buch"><i>&#x1F4CA;</i><b>Buchhaltung</b><small>Einnahmen &middot; Ausgaben &middot; L&ouml;hne</small></button>
       </div>
+      <button class="prall" id="pa0">&#x2399; Dokumente drucken / PDF</button>
       <p class="fine">Alle Daten bleiben nur auf diesem Ger&auml;t gespeichert.</p>
     </section>
     <section class="view doc" id="v-offerte" data-ty="doc" data-n="Offerte">
@@ -170,6 +180,12 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
     <button data-go="v-buch"><i>&#x1F4CA;</i>Buch</button>
   </nav>
 </div>
+<div class="sheet" id="sheet" hidden><div>
+  <h3>Drucken / PDF</h3>
+  <button id="p1" data-m="one">Dieses Dokument</button>
+  <button data-m="off">Alle Offerten (4 Arten)</button>
+  <button data-m="all">Alle Dokumente (Offerten, Rechnung, Rapport)</button>
+  <button class="c" data-m="x">Abbrechen</button></div></div>
 <script>var CALC={};</script><script>(function(){document.querySelectorAll('[data-s]').forEach(function(p){var s=p.dataset.s,t={},g=function(k){return document.getElementById(s+'_'+k)},v=function(k){return g(k)?g(k).value.trim():''},a=g('a1'),b=g('a2');
 [a,b].forEach(function(e){e.oninput=function(){t[e.id]=1}});
 function f(){var n=(v('v')+' '+v('n')).trim();if(g('f')){if(!t[a.id])a.value=v('f');if(!t[b.id])b.value=n}else if(!t[a.id])a.value=n}
@@ -641,7 +657,7 @@ function press(d){if(busy||pin.length>=4)return;pin+=d;dots();if(pin.length==4)s
 function chk(){if(sha256(SALT+pin)===HASH){localStorage.removeItem(T+'f');localStorage.removeItem(T+'u');unlock()}else{
 var f=(+localStorage.getItem(T+'f')||0)+1;localStorage.setItem(T+'f',f);$('dots').classList.add('bad');setTimeout(function(){$('dots').classList.remove('bad')},400);
 if(f>=5){localStorage.setItem(T+'u',Date.now()+Math.min(3600,30*Math.pow(2,f-5))*1000);cd()}else $('lmsg').textContent='Falscher PIN ('+(5-f)+' Versuche)';pin='';dots()}}
-var pad=$('pad');'123456789'.split('').concat(['e','0','x']).forEach(function(k){var b=document.createElement('button');b.type='button';b.className=k=='e'||k=='x'?k:'';b.innerHTML=k=='x'?'&#x232B;':(k=='e'?'':k);
+var pad=$('pad');'123456789'.split('').concat(['e','0','x']).forEach(function(k){var b=document.createElement('button');b.type='button';b.className=k=='e'||k=='x'?k:'';var LT={2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'};b.innerHTML=k=='x'?'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h11a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H9l-6-7z"/><path d="M13 9.5l5 5M18 9.5l-5 5"/></svg>':(k=='e'?'':'<span>'+k+'</span><small>'+(LT[k]||'')+'</small>');
 b.onclick=function(){if(k=='x'){pin=pin.slice(0,-1);dots()}else if(k!='e')press(k)};pad.appendChild(b)});
 document.addEventListener('keydown',function(e){if(!$('lock').hidden){if(/^\d$/.test(e.key))press(e.key);else if(e.key=='Backspace'){pin=pin.slice(0,-1);dots()}}});
 function unlock(){$('lock').hidden=true;$('app').hidden=false;pin='';dots();$('lmsg').textContent='PIN eingeben';show('v-home')}
@@ -684,7 +700,16 @@ var k=v.id.replace('v-','');if(CALC[k])CALC[k]();localStorage.removeItem(T+v.id)
 var ps=document.createElement('style');document.head.appendChild(ps);
 function pg(){ps.textContent=cur.id=='v-buch'?'@page{size:A4;margin:8mm 8mm 10mm}':'@page{size:A4;margin:0}'}
 window.addEventListener('beforeprint',pg);
-$('pr').onclick=function(){pg();setTimeout(function(){window.print()},50)};
+function doPrint(m){var vs=m=='all'?DV:m=='off'?['v-offerte']:null;pg();
+if(vs){Q('.view').forEach(function(v){v.classList.toggle('pf',vs.indexOf(v.id)>-1)});document.body.classList.add('pm');
+Q('.page',vo).forEach(function(p){p.hidden=false});var all=[];vs.forEach(function(i){all=all.concat(Q('.page',$(i)))});all.forEach(function(p,i){p.classList.toggle('plast',i==all.length-1)})}
+setTimeout(function(){window.print()},80)}
+window.addEventListener('afterprint',function(){if(!document.body.classList.contains('pm'))return;document.body.classList.remove('pm');Q('.view').forEach(function(v){v.classList.remove('pf')});
+['v-rechnung','v-rapport'].forEach(function(i){Q('.page',$(i)).forEach(function(p){p.classList.add('plast')})});og(+localStorage.getItem(T+'og')||0)});
+function sheet(){$('p1').hidden=cur.dataset.ty!='doc';$('sheet').hidden=false}
+$('pr').onclick=sheet;$('pa0').onclick=sheet;
+Q('#sheet button').forEach(function(b){b.onclick=function(){$('sheet').hidden=true;if(b.dataset.m!='x')doPrint(b.dataset.m)}});
+$('sheet').onclick=function(e){if(e.target==this)this.hidden=true};
 /* no pinch/double-tap page zoom outside documents */
 ['gesturestart','gesturechange'].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault()})});
 })();
