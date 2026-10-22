@@ -130,18 +130,23 @@ input:focus, select:focus { background: #fff; border-color: var(--b); }
   border-radius: 8px; padding: 10px 14px; cursor: pointer; width: 100%; margin-top: 8px;
 }
 .btn-sec { background: var(--l); color: var(--n); border: 1px solid var(--bd); }
+.btn-danger { background: #f0f0f0; color: #c0392b; border: 1px solid #d6dfea; font-size: 11px; padding: 4px 8px; width: auto; margin-top: 4px; }
 
-/* Podpisy štýl */
-.sig-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; border-top: 1px dashed var(--bd); padding-top: 12px; }
-.sig-field { background: var(--l); padding: 8px; border-radius: 6px; border: 1px solid var(--bd); }
-.sig-field label { font-size: 10.5px; font-weight: bold; color: var(--g); display: block; margin-bottom: 4px; }
-.sig-line { border-bottom: 1px solid #7F94B5; height: 30px; display: flex; align-items: flex-end; font-style: italic; color: #1E3A6D; font-weight: bold; font-size: 13px; padding-bottom: 2px; }
+/* Podpisové plochy na displeji (Canvas) */
+.sig-container { margin-top: 12px; border-top: 1px dashed var(--bd); padding-top: 10px; }
+.sig-container label { font-size: 11.5px; font-weight: bold; color: var(--n); display: block; margin-bottom: 4px; }
+canvas.sig-pad {
+  width: 100%; height: 120px; background: #fff; border: 1px solid var(--bd);
+  border-radius: 6px; touch-action: none; cursor: crosshair; display: block;
+}
+
+/* Skrytý iframe pro čistý tisk na A4 */
+#print-frame { display: none; }
 
 @media print {
-  #pin-screen, header.app-header, nav.app-nav, .noprint { display: none !important; }
-  body { padding: 0 !important; background: #fff !important; }
-  main.app-content { max-width: none; padding: 0; }
-  .doc-card { box-shadow: none; border: 0; padding: 0; margin: 0; }
+  body * { visibility: hidden; }
+  #print-container, #print-container * { visibility: visible; }
+  #print-container { position: absolute; left: 0; top: 0; width: 100%; }
 }
 </style>
 </head>
@@ -174,7 +179,7 @@ input:focus, select:focus { background: #fff; border-color: var(--b); }
   </div>
 </div>
 
-<!-- Hlavná aplikácia -->
+<!-- Hlavní aplikace -->
 <div id="app-shell">
   <header class="app-header">
     <div class="brand-info">
@@ -195,20 +200,20 @@ input:focus, select:focus { background: #fff; border-color: var(--b); }
         <h2>Arbeitsrapport erstellen</h2>
         <div class="form-row"><label>Nummer / Zakázka:</label><input type="text" id="rap-nr" value="2027-R01"></div>
         <div class="form-row"><label>Datum:</label><input type="date" id="rap-date"></div>
-        <div class="form-row"><label>Vorname & Nachname (Kunde):</label><input type="text" id="rap-cust" placeholder="Hans Muster"></div>
+        <div class="form-row"><label>Vorname & Nachname (Zákazník):</label><input type="text" id="rap-cust" placeholder="Hans Muster"></div>
         <div class="form-row"><label>Arbeitsstunden (Total):</label><input type="number" id="rap-hrs" placeholder="z. B. 4.5"></div>
         <div class="form-row"><label>Beschreibung / Einsatzort:</label><textarea id="rap-desc" rows="2" placeholder="Umzugsreinigung / Transport"></textarea></div>
 
-        <div class="sig-box">
-          <div class="sig-field">
-            <label>Unterschrift Auftragnehmer:</label>
-            <div class="sig-line" id="disp-owner-sig-rap">Daniel Mejstrik</div>
-          </div>
-          <div class="sig-field">
-            <label>Unterschrift Kunde:</label>
-            <div class="sig-line" id="disp-cust-sig-rap">----------------------</div>
-            <input type="text" placeholder="Kunde Name eintippen" style="margin-top:6px; font-size:11px;" oninput="document.getElementById('disp-cust-sig-rap').textContent=this.value||'----------------------'">
-          </div>
+        <div class="sig-container">
+          <label>Ihr Unterschrift (Aussteller):</label>
+          <canvas id="canvas-owner-rap" class="sig-pad"></canvas>
+          <button class="btn-danger" onclick="clearCanvas('canvas-owner-rap')">Podpis vymazat</button>
+        </div>
+
+        <div class="sig-container">
+          <label>Unterschrift Kunde (Zákazník):</label>
+          <canvas id="canvas-cust-rap" class="sig-pad"></canvas>
+          <button class="btn-danger" onclick="clearCanvas('canvas-cust-rap')">Podpis vymazat</button>
         </div>
 
         <button class="btn" onclick="printRapport()">📄 Arbeitsrapport A4 Drucken / PDF</button>
@@ -221,7 +226,7 @@ input:focus, select:focus { background: #fff; border-color: var(--b); }
         <h2>Quittung (Bar / TWINT / Karte)</h2>
         <div class="form-row"><label>Beleg-Nr.:</label><input type="text" id="q-nr" value="2027-Q01"></div>
         <div class="form-row"><label>Datum:</label><input type="date" id="q-date"></div>
-        <div class="form-row"><label>Vorname & Nachname (Kunde):</label><input type="text" id="q-cust" placeholder="Hans Muster"></div>
+        <div class="form-row"><label>Vorname & Nachname (Zákazník):</label><input type="text" id="q-cust" placeholder="Hans Muster"></div>
         <div class="form-row"><label>Zahlungsart:</label>
           <select id="q-pay">
             <option value="Barbezahlung">Bar</option>
@@ -233,38 +238,38 @@ input:focus, select:focus { background: #fff; border-color: var(--b); }
         <div class="form-row"><label>Preis CHF:</label><input type="text" id="q-price" placeholder="450.00"></div>
         <div class="form-row"><label>Leistungsbeschreibung:</label><textarea id="q-desc" rows="2" placeholder="Bezahlung für Umzugsreinigung"></textarea></div>
 
-        <div class="sig-box">
-          <div class="sig-field">
-            <label>Unterschrift Aussteller:</label>
-            <div class="sig-line" id="disp-owner-sig-q">Daniel Mejstrik</div>
-          </div>
-          <div class="sig-field">
-            <label>Unterschrift Kunde (Empfang):</label>
-            <div class="sig-line" id="disp-cust-sig-q">----------------------</div>
-            <input type="text" placeholder="Kunde Name eintippen" style="margin-top:6px; font-size:11px;" oninput="document.getElementById('disp-cust-sig-q').textContent=this.value||'----------------------'">
-          </div>
+        <div class="sig-container">
+          <label>Ihr Unterschrift (Aussteller):</label>
+          <canvas id="canvas-owner-q" class="sig-pad"></canvas>
+          <button class="btn-danger" onclick="clearCanvas('canvas-owner-q')">Podpis vymazat</button>
+        </div>
+
+        <div class="sig-container">
+          <label>Unterschrift Kunde (Empfang):</label>
+          <canvas id="canvas-cust-q" class="sig-pad"></canvas>
+          <button class="btn-danger" onclick="clearCanvas('canvas-cust-q')">Podpis vymazat</button>
         </div>
 
         <button class="btn" onclick="printQuittung()">📄 Quittung A4 Drucken / PDF</button>
       </div>
     </div>
 
-    <!-- 3. EINSTELLUNGEN (Podpis) -->
+    <!-- 3. EINSTELLUNGEN -->
     <div id="view-settings" class="view-panel">
       <div class="doc-card">
-        <h2>Einstellungen & Signatur</h2>
+        <h2>Einstellungen & Standard-Unterschrift</h2>
         <div class="form-row">
-          <label>Ihr Standard-Name / Unterschrift (Aussteller):</label>
-          <input type="text" id="set-owner" value="Daniel Mejstrik" oninput="updateOwnerSignature(this.value)">
+          <label>Ihr Name / Standard-Unterschrift:</label>
+          <input type="text" id="set-owner" value="Daniel Mejstrik">
         </div>
-        <p style="font-size:11.5px; color:var(--g); margin-top:8px;">Tento podpis sa automaticky použije na všetkých vygenerovaných dokumentoch Arbeitsrapport a Quittung.</p>
+        <p style="font-size:11.5px; color:var(--g); margin-top:8px;">Tento text nebo váš výchozí podpis se používá v dokumentech.</p>
         <button class="btn" style="margin-top:15px;" onclick="saveSettings()">💾 Speichern</button>
       </div>
     </div>
 
   </main>
 
-  <!-- Spodná navigácia -->
+  <!-- Spodní navigace -->
   <nav class="app-nav noprint">
     <button class="nav-item active" onclick="switchTab('rapport', this)">
       <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
@@ -280,6 +285,9 @@ input:focus, select:focus { background: #fff; border-color: var(--b); }
     </button>
   </nav>
 </div>
+
+<!-- Skrytý iframe pro přímý tisk bez zasekávání -->
+<iframe id="print-frame"></iframe>
 
 <script>
 // PIN Logic
@@ -322,16 +330,70 @@ function switchTab(id, btn) {
   window.scrollTo(0, 0);
 }
 
-function updateOwnerSignature(val) {
-  document.getElementById('disp-owner-sig-rap').textContent = val || 'Daniel Mejstrik';
-  document.getElementById('disp-owner-sig-q').textContent = val || 'Daniel Mejstrik';
-}
-
 function saveSettings() {
   let name = document.getElementById('set-owner').value;
   localStorage.setItem('m_service_owner', name);
   alert("Einstellungen gespeichert.");
   switchTab('rapport', document.querySelector('.nav-item'));
+}
+
+// Inicializace podpisových pláten (Canvas)
+function initCanvas(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  // Nastavení rozlišení
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+  
+  ctx.strokeStyle = "#1E3A6D";
+  ctx.lineWidth = 2.5;
+  ctx.lineCap = "round";
+  
+  let drawing = false;
+  
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: clientX - rect.left, y: clientY - rect.top };
+  }
+  
+  function startDraw(e) {
+    drawing = true;
+    const pos = getPos(e);
+    ctx.beginPath();
+    ctx.moveTo(pos.x, pos.y);
+    e.preventDefault();
+  }
+  
+  function draw(e) {
+    if (!drawing) return;
+    const pos = getPos(e);
+    ctx.lineTo(pos.x, pos.y);
+    ctx.stroke();
+    e.preventDefault();
+  }
+  
+  function stopDraw() {
+    drawing = false;
+  }
+  
+  canvas.addEventListener('mousedown', startDraw);
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', stopDraw);
+  canvas.addEventListener('mouseleave', stopDraw);
+  
+  canvas.addEventListener('touchstart', startDraw);
+  canvas.addEventListener('touchmove', draw);
+  canvas.addEventListener('touchend', stopDraw);
+}
+
+function clearCanvas(canvasId) {
+  const canvas = document.getElementById(canvasId);
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -342,44 +404,62 @@ document.addEventListener('DOMContentLoaded', () => {
   let savedOwner = localStorage.getItem('m_service_owner');
   if (savedOwner) {
     document.getElementById('set-owner').value = savedOwner;
-    updateOwnerSignature(savedOwner);
   }
+
+  // Inicializujeme všechna 4 plátna
+  initCanvas('canvas-owner-rap');
+  initCanvas('canvas-cust-rap');
+  initCanvas('canvas-owner-q');
+  initCanvas('canvas-cust-q');
 });
 
-// Generovanie A4 tiskového náhľadu pro Arbeitsrapport
+// Bezpečný tisk přes skrytý iframe bez zablokování mobilního prohlížeče
+function executePrint(htmlContent) {
+  let frame = document.getElementById('print-frame');
+  let doc = frame.contentWindow.document;
+  doc.open();
+  doc.write(htmlContent);
+  doc.close();
+  
+  setTimeout(() => {
+    frame.contentWindow.focus();
+    frame.contentWindow.print();
+  }, 300);
+}
+
 function printRapport() {
-  if(!confirm("Möchten Sie diesen Arbeitsrapport drucken oder als PDF speichern?")) return;
   let nr = document.getElementById('rap-nr').value;
   let date = document.getElementById('rap-date').value;
   let cust = document.getElementById('rap-cust').value;
   let hrs = document.getElementById('rap-hrs').value;
   let desc = document.getElementById('rap-desc').value;
   let owner = document.getElementById('set-owner').value || 'Daniel Mejstrik';
-  let custSign = document.getElementById('disp-cust-sig-rap').textContent;
+  
+  let ownerImg = document.getElementById('canvas-owner-rap').toDataURL();
+  let custImg = document.getElementById('canvas-cust-rap').toDataURL();
 
-  let win = window.open('', '_blank');
-  win.document.write(`<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Arbeitsrapport ${nr}</title>
-  <style>body{font-family:Arial,sans-serif;padding:20mm;font-size:10.5pt;color:#2a2a2a;}
-  h1{color:#1E3A6D;font-size:20pt;margin:0 0 5px;}
+  let html = `<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Arbeitsrapport ${nr}</title>
+  <style>body{font-family:Arial,sans-serif;padding:20mm;font-size:11pt;color:#2a2a2a;}
+  h1{color:#1E3A6D;font-size:22pt;margin:0 0 5px;}
   .sub{color:#1F4EA8;font-weight:bold;font-size:12pt;border-left:4px solid #F57C00;padding-left:8px;margin-bottom:20px;}
-  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:12px;margin-bottom:15px;}
+  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:15px;margin-bottom:20px;line-height:1.5;}
   .sig{display:flex;justify-content:space-between;margin-top:40px;}
-  .sig-block{width:45%;border-top:1px solid #7F94B5;padding-top:6px;font-weight:bold;font-style:italic;color:#1E3A6D;}
+  .sig-block{width:45%;border-top:1px solid #7F94B5;padding-top:8px;font-weight:bold;color:#1E3A6D;}
+  .sig-block img{max-height:60px;display:block;margin-bottom:5px;}
   </style></head><body>
   <h1>ARBEITSRAPPORT</h1>
   <div class="sub">Zakázka-Nr: ${nr} | Datum: ${date}</div>
-  <div class="box"><b>Kunde:</b> ${cust}<br><br><b>Arbeitsstunden:</b> ${hrs} h<br><br><b>Beschreibung / Ort:</b><br>${desc}</div>
+  <div class="box"><b>Kunde:</b> ${cust}<br><br><b>Arbeitsstunden:</b> ${hrs} h<br><br><b>Beschreibung / Einsatzort:</b><br>${desc}</div>
   <div class="sig">
-    <div class="sig-block">Auftragnehmer: ${owner}</div>
-    <div class="sig-block">Kunde: ${custSign}</div>
+    <div class="sig-block"><img src="${ownerImg}" alt="Unterschrift">Auftragnehmer: ${owner}</div>
+    <div class="sig-block"><img src="${custImg}" alt="Unterschrift">Kunde: ${cust}</div>
   </div>
-  <script>window.print();<\/script>
-  </body></html>`);
+  </body></html>`;
+
+  executePrint(html);
 }
 
-// Generovanie A4 tiskového náhľadu pro Quittung
 function printQuittung() {
-  if(!confirm("Möchten Sie diese Quittung drucken oder als PDF speichern?")) return;
   let nr = document.getElementById('q-nr').value;
   let date = document.getElementById('q-date').value;
   let cust = document.getElementById('q-cust').value;
@@ -387,28 +467,31 @@ function printQuittung() {
   let price = document.getElementById('q-price').value;
   let desc = document.getElementById('q-desc').value;
   let owner = document.getElementById('set-owner').value || 'Daniel Mejstrik';
-  let custSign = document.getElementById('disp-cust-sig-q').textContent;
+  
+  let ownerImg = document.getElementById('canvas-owner-q').toDataURL();
+  let custImg = document.getElementById('canvas-cust-q').toDataURL();
 
-  let win = window.open('', '_blank');
-  win.document.write(`<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Quittung ${nr}</title>
-  <style>body{font-family:Arial,sans-serif;padding:20mm;font-size:10.5pt;color:#2a2a2a;}
-  h1{color:#1E3A6D;font-size:20pt;margin:0 0 5px;}
+  let html = `<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Quittung ${nr}</title>
+  <style>body{font-family:Arial,sans-serif;padding:20mm;font-size:11pt;color:#2a2a2a;}
+  h1{color:#1E3A6D;font-size:22pt;margin:0 0 5px;}
   .sub{color:#1F4EA8;font-weight:bold;font-size:12pt;border-left:4px solid #F57C00;padding-left:8px;margin-bottom:20px;}
-  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:12px;margin-bottom:15px;}
-  .tot{background:#EAF3FC;padding:12px;font-weight:bold;color:#1E3A6D;font-size:12pt;display:flex;justify-content:space-between;margin-bottom:25px;}
+  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:15px;margin-bottom:20px;line-height:1.5;}
+  .tot{background:#EAF3FC;padding:15px;font-weight:bold;color:#1E3A6D;font-size:13pt;display:flex;justify-content:space-between;margin-bottom:25px;}
   .sig{display:flex;justify-content:space-between;margin-top:40px;}
-  .sig-block{width:45%;border-top:1px solid #7F94B5;padding-top:6px;font-weight:bold;font-style:italic;color:#1E3A6D;}
+  .sig-block{width:45%;border-top:1px solid #7F94B5;padding-top:8px;font-weight:bold;color:#1E3A6D;}
+  .sig-block img{max-height:60px;display:block;margin-bottom:5px;}
   </style></head><body>
   <h1>QUITTUNG</h1>
   <div class="sub">Beleg-Nr: ${nr} | Datum: ${date}</div>
   <div class="box"><b>Kunde:</b> ${cust}<br><br><b>Zahlungsart:</b> ${pay}<br><br><b>Leistung:</b><br>${desc}</div>
   <div class="tot"><span>Totalbetrag:</span><span>CHF ${price}.-</span></div>
   <div class="sig">
-    <div class="sig-block">Aussteller: ${owner}</div>
-    <div class="sig-block">Kunde (Empfang): ${custSign}</div>
+    <div class="sig-block"><img src="${ownerImg}" alt="Unterschrift">Aussteller: ${owner}</div>
+    <div class="sig-block"><img src="${custImg}" alt="Unterschrift">Kunde (Empfang): ${cust}</div>
   </div>
-  <script>window.print();<\/script>
-  </body></html>`);
+  </body></html>`;
+
+  executePrint(html);
 }
 </script>
 </body>
