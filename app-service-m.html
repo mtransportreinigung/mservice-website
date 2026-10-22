@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="logo.PNG">
 <title>M Service - Mobile App</title>
 <style>
-/* STYLES & VARIABLES FROM SOURCE FILES */
+/* CSS RESET & VARIABLES */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;
@@ -18,7 +18,19 @@
   --sat:env(safe-area-inset-top, 0px);
   --sab:env(safe-area-inset-bottom, 0px);
 }
-html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-serif;color:#2a2a2a;-webkit-text-size-adjust:100%}
+
+/* iOS FIXED VIEWPORT CONTAINER LOCK */
+html, body {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  position: fixed;
+  background: var(--bg);
+  font: 8.8pt/1.32 Arial, Helvetica, sans-serif;
+  color: #2a2a2a;
+  -webkit-text-size-adjust: 100%;
+}
 
 /* PIN SCREEN */
 #pin-screen{position:fixed;inset:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:20px;padding-top:calc(var(--sat) + 20px);padding-bottom:calc(var(--sab) + 20px)}
@@ -34,9 +46,34 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
 .pin-btn:active{background:rgba(255,255,255,0.3)}
 #pin-error{color:#f87171;font-size:12px;margin-top:12px;height:18px;font-weight:600;text-align:center}
 
-/* MOBILE APP LAYOUT */
-#app{display:none;height:100%;flex-direction:column}
-.app-header{background:#fff;border-bottom:1px solid var(--bd);padding-top:calc(var(--sat) + 6px);padding-bottom:8px;padding-left:14px;padding-right:14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 6px rgba(0,0,0,0.05);flex-none:1;z-index:100}
+/* MOBILE APP LAYOUT WITH STRICT FIXED BARS */
+#app {
+  display: none;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  flex-direction: column;
+  position: relative;
+}
+
+/* FIXED TOP HEADER */
+.app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(52px + var(--sat));
+  padding-top: var(--sat);
+  padding-left: 14px;
+  padding-right: 14px;
+  background: #fff;
+  border-bottom: 1px solid var(--bd);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  z-index: 1000;
+}
 .app-header .logo-box{width:34px;height:34px;border-radius:8px;overflow:hidden;flex:none}
 .app-header img{width:100%;height:100%;object-fit:cover}
 .brand-title{font-weight:700;color:var(--br);font-size:13px;line-height:1.1}
@@ -47,18 +84,42 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
 .btn-icon.pri{background:var(--b);color:#fff;border-color:var(--b)}
 .btn-icon.sec{background:var(--o);color:#fff;border-color:var(--o)}
 
-.app-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px calc(var(--sab) + 70px)}
+/* INTERNAL SCROLLABLE BODY */
+.app-body {
+  position: absolute;
+  top: calc(52px + var(--sat));
+  bottom: calc(56px + var(--sab));
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px;
+}
 .tab-content{display:none}
 .tab-content.active{display:block}
 
-/* BOTTOM NAVIGATION */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);padding-bottom:var(--sab);display:flex;justify-content:space-around;align-items:center;height:calc(54px + var(--sab));z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.05)}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:54px;color:#64748b;background:none;border:0;font-size:9px;font-weight:600;gap:2px;cursor:pointer}
+/* FIXED BOTTOM NAVIGATION */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: calc(56px + var(--sab));
+  padding-bottom: var(--sab);
+  background: #fff;
+  border-top: 1px solid var(--bd);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:56px;color:#64748b;background:none;border:0;font-size:9px;font-weight:600;gap:2px;cursor:pointer}
 .nav-item svg{width:18px;height:18px;stroke-width:2;stroke:currentColor;fill:none}
 .nav-item.active{color:var(--br)}
 .nav-item.active svg{stroke:var(--br)}
 
-/* MOBILE VERTICAL FORM CARDS */
+/* VERTICAL CARD FORM STYLES */
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:14px;margin-bottom:12px;border:1px solid rgba(214,223,234,0.7)}
 .card-title{font-size:14px;font-weight:700;color:var(--n);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
 .form-group{margin-bottom:10px}
@@ -78,17 +139,16 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
 .sig-canvas{width:100%;height:100px;background:#fff;border:1px solid var(--bd);border-radius:6px;touch-action:none}
 .sig-tools{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
 
-/* EXACT PRINT CSS FROM SOURCE FILES */
+/* EXACT A4 PRINT CSS FROM SOURCE FILES */
 @media print{
   #pin-screen,.app-header,.bottom-nav,.app-body,.noprint{display:none!important}
-  body,html{background:#fff!important;margin:0!important;padding:0!important;width:210mm}
+  body,html{background:#fff!important;margin:0!important;padding:0!important;width:210mm;height:auto!important;position:static!important;overflow:visible!important}
   #print-wrapper{display:block!important}
   .page{margin:0!important;box-shadow:none!important;page-break-after:always;width:210mm;height:297mm;position:relative;background:#fff;overflow:hidden}
   .page:last-child{page-break-after:avoid}
 }
 #print-wrapper{display:none}
 
-/* FULL PRINT CLASS STYLES */
 .page{width:210mm;height:297mm;position:relative;background:#fff;margin:0 auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18)}
 .logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}
 .hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}
@@ -186,7 +246,7 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
   <div id="pin-error"></div>
 </div>
 
-<!-- MAIN MOBILE APP -->
+<!-- MAIN MOBILE APP WITH FIXED BARS -->
 <div id="app">
   <header class="app-header">
     <div class="logo-box"><img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><use href=\'#lg\'/></svg>'"></div>
@@ -271,7 +331,7 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
         <div id="doc-fields-container"></div>
 
         <div class="sig-box">
-          <label>Kundenunterschrift (Podpis zákazníka):</label>
+          <label>Kundenunterschrift:</label>
           <canvas id="sig-cust" class="sig-canvas"></canvas>
           <div class="sig-tools"><button class="btn-icon" onclick="clearSig('sig-cust')">Löschen</button></div>
         </div>
@@ -286,14 +346,14 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
     <!-- TAB 4: ARBEITSRAPPORT -->
     <div class="tab-content" id="tab-rapport">
       <div class="card">
-        <div class="card-title">Arbeitsrapport (Pracovní Výkaz)</div>
+        <div class="card-title">Arbeitsrapport</div>
         <div class="form-group"><label>Mitarbeiterin:</label><input type="text" id="rap-worker" oninput="calcRap()"></div>
         <div style="display:flex;gap:8px">
           <div class="form-group" style="flex:1"><label>Lohn CHF/h:</label><input type="number" id="rap-rate" class="r" oninput="calcRap()"></div>
           <div class="form-group" style="flex:1"><label>Monat / Jahr:</label><input type="text" id="rap-mon" oninput="calcRap()"></div>
         </div>
 
-        <div class="card-title" style="font-size:12px;margin-top:8px">Směny / Einsätze <button class="btn-icon pri" onclick="addRapRow()">+ Směna</button></div>
+        <div class="card-title" style="font-size:12px;margin-top:8px">Einsätze <button class="btn-icon pri" onclick="addRapRow()">+ Einsatz</button></div>
         <div id="rap-rows-mobile"></div>
 
         <div style="margin-top:10px;background:var(--l);padding:10px;border-radius:8px">
@@ -334,7 +394,7 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
       Buchhaltung
     </button>
     <button class="nav-item" onclick="switchTab(this, 'tab-lohne')">
-      <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 1 0 7.75"/></svg>
       Löhne
     </button>
     <button class="nav-item" onclick="switchTab(this, 'tab-dok')">
@@ -387,7 +447,7 @@ if (sessionStorage.getItem('m_auth') === '1') {
 }
 
 /* CONSTANTS & DATA */
-const STORE_KEY = 'mservice_unified_v6';
+const STORE_KEY = 'mservice_unified_v7';
 const CE=['Umzugsreinigung','Gebäudereinigung','Unterhaltsreinigung','Grundreinigung','Transport & Umzug','Sonstige Einnahmen'];
 const CA=['Löhne & Aushilfshilfe','Material & Reinigungsmittel','Benzin & Transport','Geräte & Maschinen','Werbung & Website','Telefon & Internet','Versicherungen & Gebühren','Büro & Software','Sonstige Ausgaben'];
 const PAY=['Bar','TWINT','Banküberweisung','Karte','Pauschal / Eigenverbrauch','Privat bezahlt'];
@@ -630,7 +690,7 @@ function addRapRow() {
 
   div.innerHTML = `
     <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-      <b>Směna #${rapRowCount}</b>
+      <b>Einsatz #${rapRowCount}</b>
       <button class="btn-del" onclick="document.getElementById('rap-m-row-${rapRowCount}').remove();calcRap()">×</button>
     </div>
     <div class="form-group"><label>Datum (TT.MM.):</label><input type="text" class="rm-d" placeholder="01.10."></div>
@@ -664,7 +724,7 @@ function calcRap() {
   document.getElementById('rap-tot-pay').textContent = f(hours * rate) + ' CHF';
 }
 
-/* EXACT A4 PRINT ENGINE FROM SOURCE CODE */
+/* EXACT PRINT TEMPLATE GENERATOR */
 function generatePrintTemplate(type) {
   let custSigImg = document.getElementById('sig-cust')?.toDataURL() || '';
   let ownerSigImg = DB.ownerSig || '';
@@ -775,7 +835,7 @@ function printDoc() {
 
 function pdfDoc() {
   document.getElementById('print-wrapper').innerHTML = generatePrintTemplate('doc');
-  alert("Pro uložení do PDF zvolte v následujícím dialogu Sdílet -> Uložit do Souborů.");
+  alert("Pro uložení do PDF zvolte v folgenden Dialog: Teilen -> In Dateien sichern.");
   window.print();
 }
 
@@ -786,7 +846,7 @@ function printRapport() {
 
 function pdfRapport() {
   document.getElementById('print-wrapper').innerHTML = generatePrintTemplate('rapport');
-  alert("Pro uložení do PDF zvolte v následujícím dialogu Sdílet -> Uložit do Souborů.");
+  alert("Pro uložení do PDF zvolte v folgenden Dialog: Teilen -> In Dateien sichern.");
   window.print();
 }
 
