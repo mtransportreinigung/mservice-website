@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="logo.PNG">
 <title>M Service - Mobile App</title>
 <style>
-/* CSS RESET & VARIABLES FROM SOURCE FILES */
+/* STYLES & VARIABLES FROM SOURCE FILES */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;
@@ -51,14 +51,14 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
 .tab-content{display:none}
 .tab-content.active{display:block}
 
-/* BOTTOM NAV */
+/* BOTTOM NAVIGATION */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);padding-bottom:var(--sab);display:flex;justify-content:space-around;align-items:center;height:calc(54px + var(--sab));z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.05)}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:54px;color:#64748b;background:none;border:0;font-size:9px;font-weight:600;gap:2px;cursor:pointer}
 .nav-item svg{width:18px;height:18px;stroke-width:2;stroke:currentColor;fill:none}
 .nav-item.active{color:var(--br)}
 .nav-item.active svg{stroke:var(--br)}
 
-/* MOBILE FORM STYLES (VERTICAL CARDS) */
+/* MOBILE VERTICAL FORM CARDS */
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:14px;margin-bottom:12px;border:1px solid rgba(214,223,234,0.7)}
 .card-title{font-size:14px;font-weight:700;color:var(--n);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
 .form-group{margin-bottom:10px}
@@ -71,23 +71,25 @@ html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-
 .sub-tab{padding:6px 12px;border-radius:20px;background:var(--l);border:1px solid var(--bd);font-size:11px;font-weight:600;color:var(--n);white-space:nowrap;cursor:pointer;flex:none}
 .sub-tab.active{background:var(--b);color:#fff;border-color:var(--b)}
 
-.table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:8px;border:1px solid var(--bd)}
-table.m-table{width:100%;border-collapse:collapse;background:#fff;font-size:11.5px}
-table.m-table th{background:var(--b);color:#fff;text-align:left;padding:7px 5px;font-size:10.5px;font-weight:600;white-space:nowrap}
-table.m-table td{padding:5px;border-bottom:1px solid var(--bd);vertical-align:middle}
-table.m-table tr:nth-child(even) td{background:var(--l)}
-td.r,th.r{text-align:right}
-td.c,th.c{text-align:center}
 .btn-del{background:none;border:0;color:var(--bad);font-size:16px;font-weight:bold;cursor:pointer;padding:2px 6px}
 
-/* SIGNATURE CANVAS */
+/* CANVAS SIGNATURE */
 .sig-box{border:1px dashed var(--b);background:#FAFBFD;border-radius:8px;padding:8px;margin-top:8px}
 .sig-canvas{width:100%;height:100px;background:#fff;border:1px solid var(--bd);border-radius:6px;touch-action:none}
 .sig-tools{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
 
-/* EXACT A4 PRINT STYLES FROM SOURCE FILES */
-.page{width:210mm;height:297mm;position:relative;background:#fff;margin:0 auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18);page-break-after:always}
-.blank{display:none}
+/* EXACT PRINT CSS FROM SOURCE FILES */
+@media print{
+  #pin-screen,.app-header,.bottom-nav,.app-body,.noprint{display:none!important}
+  body,html{background:#fff!important;margin:0!important;padding:0!important;width:210mm}
+  #print-wrapper{display:block!important}
+  .page{margin:0!important;box-shadow:none!important;page-break-after:always;width:210mm;height:297mm;position:relative;background:#fff;overflow:hidden}
+  .page:last-child{page-break-after:avoid}
+}
+#print-wrapper{display:none}
+
+/* FULL PRINT CLASS STYLES */
+.page{width:210mm;height:297mm;position:relative;background:#fff;margin:0 auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18)}
 .logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}
 .hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}
 .hd::after{content:"Tel. +41 78 345 80 72\Ainfo@mservice.ch";white-space:pre;position:absolute;left:43mm;top:17.2mm;font-size:9pt;line-height:1.45}
@@ -101,17 +103,16 @@ td.c,th.c{text-align:center}
 .meta label{width:27mm;font-weight:bold;font-size:8.6pt;color:var(--n);padding-bottom:1mm}
 .win{position:absolute;left:118mm;top:48.5mm;width:80mm}
 .win::before{content:"Mejstrik Transport & Reinigung Service · CH-8586 Ennetaach";display:block;font-size:6.2pt;color:var(--g);border-bottom:.3pt solid var(--g);width:max-content;padding-bottom:.6mm;margin:1mm 0 1.6mm;height:3.4mm}
-.win input:not([type=x]){display:block;width:80mm;height:5.4mm;font-size:10.5pt;border:0;color:#000}
+.win input{display:block;width:80mm;height:5.4mm;font-size:10.5pt;border:0;color:#000}
 .cr{position:absolute;left:116mm;top:48.5mm;width:83mm;height:27.5mm;background:linear-gradient(#C9CED6,#C9CED6) 0 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 0/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 100% 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 0/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 0 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 100%/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 100%/.4pt 3mm;background-repeat:no-repeat}
 .page input:not([type=checkbox]){font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:6mm;padding:0 1px}
-.page input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.4mm;height:3.4mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative;cursor:pointer}
+.page input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.4mm;height:3.4mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative}
 .page input[type=checkbox]:checked::after{content:"";position:absolute;left:.9mm;top:.1mm;width:1.1mm;height:2.2mm;border:solid #000;border-width:0 .5mm .5mm 0;transform:rotate(45deg)}
 .body{position:absolute;left:18mm;right:15mm}
 .first{top:94mm}.later{top:43mm}
 .intro{margin-bottom:6pt}
 .contact{display:grid;grid-template-columns:34mm 1fr 34mm 1fr;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 5pt 1mm 4pt}
 .contact>label{font-weight:bold;font-size:8pt;color:var(--n);line-height:1.2;padding:1.2mm 0}
-.contact>.m{padding-left:8pt}
 .contact .w,.contact .cb{grid-column:2/5}
 .cb{display:flex;align-items:center;font-size:8.3pt;height:6mm}
 .cb label{display:flex;align-items:center;gap:2.2mm;white-space:nowrap;margin-right:5mm}
@@ -163,62 +164,33 @@ td.c,th.c{text-align:center}
 .sg3 .r2 label{font-weight:bold;font-size:7.8pt;color:var(--n)}
 .sg3 .ln2{border-bottom:.7pt solid #7F94B5;height:11mm}
 .sg3 .sm{font-size:7.6pt;color:var(--g);margin-top:.8mm}
-
-/* PRINT AREA CONTROLLER */
-#print-wrapper{display:none}
-@media print{
-  #pin-screen,.app-header,.bottom-nav,.app-body,.noprint{display:none!important}
-  body,html{background:#fff!important;margin:0!important;padding:0!important;width:210mm}
-  #print-wrapper{display:block!important}
-  .page{margin:0!important;box-shadow:none!important;page-break-after:always}
-}
 </style>
 </head>
 <body>
 
-<!-- SVG LOGO DEFINITION -->
+<!-- SVG LOGO -->
 <svg width="0" height="0" style="position:absolute"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
 
-<!-- PIN PROTECTED SCREEN -->
+<!-- PIN SCREEN -->
 <div id="pin-screen">
-  <div class="app-icon">
-    <img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><use href=\'#lg\'/></svg>'">
-  </div>
+  <div class="app-icon"><img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><use href=\'#lg\'/></svg>'"></div>
   <h1>Mejstrik Transport & Reinigung Service</h1>
   <p>Bitte PIN eingeben um fortzufahren</p>
-  <div class="pin-dots">
-    <div class="pin-dot" id="d0"></div>
-    <div class="pin-dot" id="d1"></div>
-    <div class="pin-dot" id="d2"></div>
-    <div class="pin-dot" id="d3"></div>
-  </div>
+  <div class="pin-dots"><div class="pin-dot" id="d0"></div><div class="pin-dot" id="d1"></div><div class="pin-dot" id="d2"></div><div class="pin-dot" id="d3"></div></div>
   <div class="pin-pad">
-    <button class="pin-btn" onclick="pressPin('1')">1</button>
-    <button class="pin-btn" onclick="pressPin('2')">2</button>
-    <button class="pin-btn" onclick="pressPin('3')">3</button>
-    <button class="pin-btn" onclick="pressPin('4')">4</button>
-    <button class="pin-btn" onclick="pressPin('5')">5</button>
-    <button class="pin-btn" onclick="pressPin('6')">6</button>
-    <button class="pin-btn" onclick="pressPin('7')">7</button>
-    <button class="pin-btn" onclick="pressPin('8')">8</button>
-    <button class="pin-btn" onclick="pressPin('9')">9</button>
-    <button class="pin-btn" onclick="pressPin('C')" style="font-size:14px">C</button>
-    <button class="pin-btn" onclick="pressPin('0')">0</button>
-    <button class="pin-btn" onclick="pressPin('OK')" style="font-size:14px">OK</button>
+    <button class="pin-btn" onclick="pressPin('1')">1</button><button class="pin-btn" onclick="pressPin('2')">2</button><button class="pin-btn" onclick="pressPin('3')">3</button>
+    <button class="pin-btn" onclick="pressPin('4')">4</button><button class="pin-btn" onclick="pressPin('5')">5</button><button class="pin-btn" onclick="pressPin('6')">6</button>
+    <button class="pin-btn" onclick="pressPin('7')">7</button><button class="pin-btn" onclick="pressPin('8')">8</button><button class="pin-btn" onclick="pressPin('9')">9</button>
+    <button class="pin-btn" onclick="pressPin('C')" style="font-size:14px">C</button><button class="pin-btn" onclick="pressPin('0')">0</button><button class="pin-btn" onclick="pressPin('OK')" style="font-size:14px">OK</button>
   </div>
   <div id="pin-error"></div>
 </div>
 
-<!-- MAIN MOBILE APPLICATION -->
+<!-- MAIN MOBILE APP -->
 <div id="app">
   <header class="app-header">
-    <div class="logo-box">
-      <img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><use href=\'#lg\'/></svg>'">
-    </div>
-    <div>
-      <div class="brand-title">M Service App</div>
-      <div class="brand-sub">Jahr <span class="yy">2026</span> · CH-8586 Ennetaach</div>
-    </div>
+    <div class="logo-box"><img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><use href=\'#lg\'/></svg>'"></div>
+    <div><div class="brand-title">M Service App</div><div class="brand-sub">Jahr <span class="yy">2026</span> · CH-8586 Ennetaach</div></div>
     <div class="header-actions noprint">
       <button class="btn-icon" onclick="exportData()">💾 Sichern</button>
       <label class="btn-icon pri">📁 Laden<input type="file" accept=".json" hidden onchange="importData(event)"></label>
@@ -243,47 +215,32 @@ td.c,th.c{text-align:center}
             <input type="number" id="app-year" value="2026" style="width:75px;margin:0" onchange="updateYear(this.value)">
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Einnahmen</small><br><b id="k-e" style="font-size:16px;color:var(--ok)">0.00</b></div>
-            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Ausgaben</small><br><b id="k-a" style="font-size:16px;color:var(--bad)">0.00</b></div>
-            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Gewinn</small><br><b id="k-g" style="font-size:16px;color:var(--o)">0.00</b></div>
-            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Offen</small><br><b id="k-o" style="font-size:16px;color:var(--n)">0.00</b></div>
+            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Einnahmen</small><br><b id="k-e" style="font-size:15px;color:var(--ok)">0.00</b></div>
+            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Ausgaben</small><br><b id="k-a" style="font-size:15px;color:var(--bad)">0.00</b></div>
+            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Gewinn</small><br><b id="k-g" style="font-size:15px;color:var(--o)">0.00</b></div>
+            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Offen</small><br><b id="k-o" style="font-size:15px;color:var(--n)">0.00</b></div>
           </div>
         </div>
       </div>
 
       <div class="sub-view" id="sub-ein" style="display:none">
         <div class="card">
-          <div class="card-title">Einnahmen <button class="btn-icon pri" onclick="addRow('ein')">+ Neu</button></div>
-          <div class="table-responsive">
-            <table class="m-table">
-              <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Kunde</th><th class="r">Betrag</th><th></th></tr></thead>
-              <tbody id="tb-ein-data"></tbody>
-            </table>
-          </div>
+          <div class="card-title">Einnahmen <button class="btn-icon pri" onclick="addBuchRow('ein')">+ Neu</button></div>
+          <div id="ein-cards-container"></div>
         </div>
       </div>
 
       <div class="sub-view" id="sub-aus" style="display:none">
         <div class="card">
-          <div class="card-title">Ausgaben <button class="btn-icon pri" onclick="addRow('aus')">+ Neu</button></div>
-          <div class="table-responsive">
-            <table class="m-table">
-              <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Grund</th><th class="r">Betrag</th><th></th></tr></thead>
-              <tbody id="tb-aus-data"></tbody>
-            </table>
-          </div>
+          <div class="card-title">Ausgaben <button class="btn-icon pri" onclick="addBuchRow('aus')">+ Neu</button></div>
+          <div id="aus-cards-container"></div>
         </div>
       </div>
 
       <div class="sub-view" id="sub-rg" style="display:none">
         <div class="card">
-          <div class="card-title">Offene Rechnungen <button class="btn-icon pri" onclick="addRow('rg')">+ Neu</button></div>
-          <div class="table-responsive">
-            <table class="m-table">
-              <thead><tr><th class="c">Aktiv</th><th>Nr.</th><th>Kunde</th><th class="r">Betrag</th><th></th></tr></thead>
-              <tbody id="tb-rg-data"></tbody>
-            </table>
-          </div>
+          <div class="card-title">Offene Rechnungen <button class="btn-icon pri" onclick="addBuchRow('rg')">+ Neu</button></div>
+          <div id="rg-cards-container"></div>
         </div>
       </div>
     </div>
@@ -291,13 +248,8 @@ td.c,th.c{text-align:center}
     <!-- TAB 2: LÖHNE -->
     <div class="tab-content" id="tab-lohne">
       <div class="card">
-        <div class="card-title">Löhne & Aushilfe <button class="btn-icon pri" onclick="addRow('lohn')">+ Neu</button></div>
-        <div class="table-responsive">
-          <table class="m-table">
-            <thead><tr><th class="c">Aktiv</th><th>Name</th><th class="r">Brutto</th><th class="r">Netto</th><th></th></tr></thead>
-            <tbody id="tb-lohn-data"></tbody>
-          </table>
-        </div>
+        <div class="card-title">Löhne & Aushilfe <button class="btn-icon pri" onclick="addBuchRow('lohn')">+ Neu</button></div>
+        <div id="lohn-cards-container"></div>
       </div>
     </div>
 
@@ -305,7 +257,6 @@ td.c,th.c{text-align:center}
     <div class="tab-content" id="tab-dok">
       <div class="card noprint">
         <div class="card-title">Dokument-Erfassung</div>
-        
         <div class="form-group">
           <label>Dokumententyp:</label>
           <select id="doc-type" onchange="renderDocForm()">
@@ -317,16 +268,12 @@ td.c,th.c{text-align:center}
           </select>
         </div>
 
-        <div id="doc-fields-container">
-          <!-- Dynamically populated vertical form fields -->
-        </div>
+        <div id="doc-fields-container"></div>
 
         <div class="sig-box">
           <label>Kundenunterschrift (Podpis zákazníka):</label>
           <canvas id="sig-cust" class="sig-canvas"></canvas>
-          <div class="sig-tools">
-            <button class="btn-icon" onclick="clearSig('sig-cust')">Löschen</button>
-          </div>
+          <div class="sig-tools"><button class="btn-icon" onclick="clearSig('sig-cust')">Löschen</button></div>
         </div>
 
         <div style="display:flex;gap:8px;margin-top:14px">
@@ -347,10 +294,7 @@ td.c,th.c{text-align:center}
         </div>
 
         <div class="card-title" style="font-size:12px;margin-top:8px">Směny / Einsätze <button class="btn-icon pri" onclick="addRapRow()">+ Směna</button></div>
-        
-        <div id="rap-rows-mobile">
-          <!-- Dynamic vertical rows for mobile -->
-        </div>
+        <div id="rap-rows-mobile"></div>
 
         <div style="margin-top:10px;background:var(--l);padding:10px;border-radius:8px">
           <div style="display:flex;justify-content:space-between"><span>Total Stunden:</span><b id="rap-tot-h">0.00 h</b></div>
@@ -371,7 +315,6 @@ td.c,th.c{text-align:center}
         <p style="font-size:11px;color:var(--g);margin-bottom:10px">
           Speichern Sie hier Ihre dauerhafte Unterschrift (Daniel Mejstrik). Sie wird automatisch in alle Dokumente und Arbeitsrapporte eingefügt.
         </p>
-        
         <div class="sig-box">
           <label>Unterschrift Daniel Mejstrik:</label>
           <canvas id="sig-owner" class="sig-canvas"></canvas>
@@ -409,7 +352,7 @@ td.c,th.c{text-align:center}
   </nav>
 </div>
 
-<!-- DYNAMIC PRINT CONTAINER USING EXACT TEMPLATES -->
+<!-- PRINT CONTAINER -->
 <div id="print-wrapper"></div>
 
 <script>
@@ -443,8 +386,12 @@ if (sessionStorage.getItem('m_auth') === '1') {
   setTimeout(initCanvases, 300);
 }
 
-/* DATA STORE & STATE */
-const STORE_KEY = 'mservice_data_clean_v5';
+/* CONSTANTS & DATA */
+const STORE_KEY = 'mservice_unified_v6';
+const CE=['Umzugsreinigung','Gebäudereinigung','Unterhaltsreinigung','Grundreinigung','Transport & Umzug','Sonstige Einnahmen'];
+const CA=['Löhne & Aushilfshilfe','Material & Reinigungsmittel','Benzin & Transport','Geräte & Maschinen','Werbung & Website','Telefon & Internet','Versicherungen & Gebühren','Büro & Software','Sonstige Ausgaben'];
+const PAY=['Bar','TWINT','Banküberweisung','Karte','Pauschal / Eigenverbrauch','Privat bezahlt'];
+
 let DB = {
   year: 2026,
   ein: [],
@@ -463,7 +410,8 @@ function loadDB() {
 function saveDB() {
   try {
     localStorage.setItem(STORE_KEY, JSON.stringify(DB));
-    renderAll();
+    renderBuchhaltungCards();
+    calcKPIs();
   } catch(e){}
 }
 function n(v) { let x = parseFloat(String(v||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(',','.')); return isNaN(x)?0:x; }
@@ -485,39 +433,118 @@ function switchSub(btn, id) {
 }
 function updateYear(y) { DB.year = parseInt(y,10)||2026; saveDB(); }
 
-/* RENDERING BUCHHALTUNG TABLES */
-function renderAll() {
-  document.querySelectorAll('.yy').forEach(e => e.textContent = DB.year);
-  renderTables();
-}
-
-function renderTables() {
+/* MOBILE BUCHHALTUNG CARDS (ALL FIELDS VERTICAL) */
+function renderBuchhaltungCards() {
   ['ein','aus','lohn','rg'].forEach(t => {
-    let h = '';
+    let container = document.getElementById(t+'-cards-container');
+    if (!container) return;
+    let html = '';
+    
     DB[t].forEach((r, i) => {
-      h += `<tr>
-        <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('${t}',${i})"></td>
-        <td><input type="text" value="${r.d||''}" style="width:70px" onchange="upd('${t}',${i},'d',this.value)"></td>
-        <td><input type="text" value="${r.who||r.nr||''}" onchange="upd('${t}',${i},'who',this.value)"></td>
-        <td class="r"><input type="number" class="r" value="${r.amt||''}" style="width:65px" onchange="upd('${t}',${i},'amt',this.value)"></td>
-        <td><button class="btn-del" onclick="del('${t}',${i})">×</button></td>
-      </tr>`;
+      if (t === 'ein') {
+        html += `
+          <div class="card" style="background:var(--l);margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <label><input type="checkbox" ${r.act?'checked':''} onchange="toggleBuch('${t}',${i},'act')"> Aktiv</label>
+              <button class="btn-del" onclick="delBuch('${t}',${i})">×</button>
+            </div>
+            <div class="form-group"><label>Datum:</label><input type="date" value="${r.d||''}" onchange="updBuch('${t}',${i},'d',this.value)"></div>
+            <div class="form-group"><label>Beleg / Nr.:</label><input type="text" value="${r.nr||''}" onchange="updBuch('${t}',${i},'nr',this.value)"></div>
+            <div class="form-group"><label>Kunde:</label><input type="text" value="${r.who||''}" onchange="updBuch('${t}',${i},'who',this.value)"></div>
+            <div class="form-group"><label>Beschreibung:</label><input type="text" value="${r.desc||''}" onchange="updBuch('${t}',${i},'desc',this.value)"></div>
+            <div class="form-group"><label>Kategorie:</label>
+              <select onchange="updBuch('${t}',${i},'cat',this.value)">
+                ${CE.map(c => `<option value="${c}" ${r.cat===c?'selected':''}>${c}</option>`).join('')}
+              </select>
+            </div>
+            <div class="form-group"><label>Betrag CHF:</label><input type="number" class="r" value="${r.amt||''}" onchange="updBuch('${t}',${i},'amt',this.value)"></div>
+            <div class="form-group"><label>Zahlungsart:</label>
+              <select onchange="updBuch('${t}',${i},'pay',this.value)">
+                ${PAY.map(p => `<option value="${p}" ${r.pay===p?'selected':''}>${p}</option>`).join('')}
+              </select>
+            </div>
+          </div>`;
+      } else if (t === 'aus') {
+        html += `
+          <div class="card" style="background:var(--l);margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <label><input type="checkbox" ${r.act?'checked':''} onchange="toggleBuch('${t}',${i},'act')"> Aktiv</label>
+              <button class="btn-del" onclick="delBuch('${t}',${i})">×</button>
+            </div>
+            <div class="form-group"><label>Datum:</label><input type="date" value="${r.d||''}" onchange="updBuch('${t}',${i},'d',this.value)"></div>
+            <div class="form-group"><label>Empfänger / Grund:</label><input type="text" value="${r.who||''}" onchange="updBuch('${t}',${i},'who',this.value)"></div>
+            <div class="form-group"><label>Kategorie:</label>
+              <select onchange="updBuch('${t}',${i},'cat',this.value)">
+                ${CA.map(c => `<option value="${c}" ${r.cat===c?'selected':''}>${c}</option>`).join('')}
+              </select>
+            </div>
+            <div class="form-group"><label>Betrag CHF:</label><input type="number" class="r" value="${r.amt||''}" onchange="updBuch('${t}',${i},'amt',this.value)"></div>
+            <div class="form-group"><label>Zahlungsart:</label>
+              <select onchange="updBuch('${t}',${i},'pay',this.value)">
+                ${PAY.map(p => `<option value="${p}" ${r.pay===p?'selected':''}>${p}</option>`).join('')}
+              </select>
+            </div>
+            <div class="form-group"><label>Beschreibung:</label><input type="text" value="${r.desc||''}" onchange="updBuch('${t}',${i},'desc',this.value)"></div>
+          </div>`;
+      } else if (t === 'lohn') {
+        html += `
+          <div class="card" style="background:var(--l);margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <label><input type="checkbox" ${r.act?'checked':''} onchange="toggleBuch('${t}',${i},'act')"> Aktiv</label>
+              <button class="btn-del" onclick="delBuch('${t}',${i})">×</button>
+            </div>
+            <div class="form-group"><label>Datum:</label><input type="date" value="${r.d||''}" onchange="updBuch('${t}',${i},'d',this.value)"></div>
+            <div class="form-group"><label>Name Person:</label><input type="text" value="${r.who||''}" onchange="updBuch('${t}',${i},'who',this.value)"></div>
+            <div class="form-group"><label>Funktion:</label><input type="text" value="${r.desc||''}" onchange="updBuch('${t}',${i},'desc',this.value)"></div>
+            <div class="form-group"><label>Brutto CHF:</label><input type="number" class="r" value="${r.amt||''}" onchange="updBuch('${t}',${i},'amt',this.value)"></div>
+            <div class="form-group"><label>Zahlart:</label>
+              <select onchange="updBuch('${t}',${i},'pay',this.value)">
+                ${PAY.map(p => `<option value="${p}" ${r.pay===p?'selected':''}>${p}</option>`).join('')}
+              </select>
+            </div>
+          </div>`;
+      } else if (t === 'rg') {
+        html += `
+          <div class="card" style="background:var(--l);margin-bottom:8px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <label><input type="checkbox" ${r.act?'checked':''} onchange="toggleBuch('${t}',${i},'act')"> Aktiv</label>
+              <button class="btn-del" onclick="delBuch('${t}',${i})">×</button>
+            </div>
+            <div class="form-group"><label>Rechnungs-Nr.:</label><input type="text" value="${r.nr||''}" onchange="updBuch('${t}',${i},'nr',this.value)"></div>
+            <div class="form-group"><label>Datum:</label><input type="date" value="${r.d||''}" onchange="updBuch('${t}',${i},'d',this.value)"></div>
+            <div class="form-group"><label>Kunde:</label><input type="text" value="${r.who||''}" onchange="updBuch('${t}',${i},'who',this.value)"></div>
+            <div class="form-group"><label>Betrag CHF:</label><input type="number" class="r" value="${r.amt||''}" onchange="updBuch('${t}',${i},'amt',this.value)"></div>
+            <div class="form-group"><label>Bezahlt am:</label><input type="date" value="${r.paid||''}" onchange="updBuch('${t}',${i},'paid',this.value)"></div>
+          </div>`;
+      }
     });
-    let elem = document.getElementById('tb-'+t+'-data');
-    if(elem) elem.innerHTML = h;
+    container.innerHTML = html;
   });
 }
 
-function toggle(t, i) { DB[t][i].act = !DB[t][i].act; saveDB(); }
-function upd(t, i, f, v) { DB[t][i][f] = v; saveDB(); }
-function del(t, i) { DB[t].splice(i,1); saveDB(); }
-function addRow(t) {
+function addBuchRow(t) {
   let today = new Date().toISOString().slice(0,10);
-  DB[t].push({act:true, d:today, who:'', amt:''});
+  DB[t].push({act:true, d:today, nr:'', who:'', desc:'', cat:'', amt:'', pay:'Bar', paid:''});
   saveDB();
 }
+function toggleBuch(t, i, f) { DB[t][i][f] = !DB[t][i][f]; saveDB(); }
+function updBuch(t, i, f, v) { DB[t][i][f] = v; saveDB(); }
+function delBuch(t, i) { DB[t].splice(i, 1); saveDB(); }
 
-/* MOBILE DOKUMENT FORM FIELDS */
+function calcKPIs() {
+  let te = 0, ta = 0, open = 0;
+  DB.ein.forEach(r => { if(r.act) te += n(r.amt); });
+  DB.aus.forEach(r => { if(r.act) ta += n(r.amt); });
+  DB.lohn.forEach(r => { if(r.act) ta += n(r.amt); });
+  DB.rg.forEach(r => { if(r.act && !r.paid) open += n(r.amt); });
+
+  document.getElementById('k-e').textContent = f(te);
+  document.getElementById('k-a').textContent = f(ta);
+  document.getElementById('k-g').textContent = f(te - ta);
+  document.getElementById('k-o').textContent = f(open);
+}
+
+/* MOBILE DOKUMENT FORM ENGINE */
 function renderDocForm() {
   let type = document.getElementById('doc-type').value;
   let container = document.getElementById('doc-fields-container');
@@ -547,7 +574,7 @@ function renderDocForm() {
   container.innerHTML = h;
 }
 
-/* CANVAS SIGNATURE ENGINE */
+/* CANVAS SIGNATURES ENGINE */
 function initCanvases() {
   ['sig-cust', 'sig-owner'].forEach(id => {
     let canvas = document.getElementById(id);
@@ -683,16 +710,8 @@ function generatePrintTemplate(type) {
             </div>
           </div>
           <div class="sg3">
-            <div class="box">
-              <div class="k">Arbeitnehmerin</div>
-              <div class="ln2"></div>
-              <div class="sm">Unterschrift</div>
-            </div>
-            <div class="box">
-              <div class="k">Arbeitgeber (geprüft)</div>
-              <div class="ln2">${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px">` : ''}</div>
-              <div class="sm">Daniel Mejstrik · Unterschrift</div>
-            </div>
+            <div class="box"><div class="k">Arbeitnehmerin</div><div class="ln2"></div><div class="sm">Unterschrift</div></div>
+            <div class="box"><div class="k">Arbeitgeber (geprüft)</div><div class="ln2">${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px">` : ''}</div><div class="sm">Daniel Mejstrik · Unterschrift</div></div>
           </div>
         </div>
         <div class="foot" data-p="Seite 1 von 1"></div>
@@ -792,7 +811,8 @@ function importData(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
   loadDB();
-  renderAll();
+  renderBuchhaltungCards();
+  calcKPIs();
   renderDocForm();
   addRapRow();
 });
