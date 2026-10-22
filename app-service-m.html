@@ -801,7 +801,7 @@ document.getElementById('rs').addEventListener('click',function(){var v=Q('.view
 /* po potvrzení resetu jsou inputy prázdné -> smaž i podpisy */
 if(!Q('input',v).some(function(i){return i.type!='checkbox'&&i.value&&i.value!=i.defaultValue})){
 Q('.sg',v).forEach(function(i){i.remove()});try{var s=stg(v);Object.keys(s).forEach(function(k){if(k.indexOf('msm_sig_'+v.id)==0)s.removeItem(k)})}catch(e){}}},0)});
-function gp(){var g=0;if(navigator.standalone&&innerHeight>innerWidth)g=Math.max(0,Math.max(screen.width,screen.height)-innerHeight);document.documentElement.style.setProperty('--gap',g+'px')}gp();addEventListener('resize',gp);addEventListener('orientationchange',function(){setTimeout(gp,300)});var lk=document.getElementById('lock');function sy(){document.documentElement.classList.toggle('locked',!lk.hidden)}sy();new MutationObserver(sy).observe(lk,{attributes:true,attributeFilter:['hidden']});
+function gp(){var g=0;if(navigator.standalone&&innerHeight>innerWidth)g=Math.max(0,Math.max(screen.width,screen.height)-innerHeight);if(!g&&innerWidth>=390&&innerHeight<=830)g=62;document.documentElement.style.setProperty('--gap',g+'px')}gp();addEventListener('resize',gp);addEventListener('orientationchange',function(){setTimeout(gp,300)});var lk=document.getElementById('lock');function sy(){document.documentElement.classList.toggle('locked',!lk.hidden)}sy();new MutationObserver(sy).observe(lk,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
 </body>
