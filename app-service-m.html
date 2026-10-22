@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-<meta name="googlebot" content="noindex, nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="M Service">
 <link rel="apple-touch-icon" href="logo.PNG">
 <title>M Service - Mobile App</title>
 <style>
+/* CSS RESET & VARIABLES FROM SOURCE FILES */
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
   --n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;
@@ -18,7 +18,7 @@
   --sat:env(safe-area-inset-top, 0px);
   --sab:env(safe-area-inset-bottom, 0px);
 }
-html,body{height:100%;background:var(--bg);font:13px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#2a2a2a;overflow:hidden;-webkit-text-size-adjust:100%}
+html,body{height:100%;background:var(--bg);font:8.8pt/1.32 Arial,Helvetica,sans-serif;color:#2a2a2a;-webkit-text-size-adjust:100%}
 
 /* PIN SCREEN */
 #pin-screen{position:fixed;inset:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:20px;padding-top:calc(var(--sat) + 20px);padding-bottom:calc(var(--sab) + 20px)}
@@ -34,7 +34,7 @@ html,body{height:100%;background:var(--bg);font:13px/1.35 -apple-system,BlinkMac
 .pin-btn:active{background:rgba(255,255,255,0.3)}
 #pin-error{color:#f87171;font-size:12px;margin-top:12px;height:18px;font-weight:600;text-align:center}
 
-/* APP LAYOUT */
+/* MOBILE APP LAYOUT */
 #app{display:none;height:100%;flex-direction:column}
 .app-header{background:#fff;border-bottom:1px solid var(--bd);padding-top:calc(var(--sat) + 6px);padding-bottom:8px;padding-left:14px;padding-right:14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 6px rgba(0,0,0,0.05);flex-none:1;z-index:100}
 .app-header .logo-box{width:34px;height:34px;border-radius:8px;overflow:hidden;flex:none}
@@ -51,62 +51,132 @@ html,body{height:100%;background:var(--bg);font:13px/1.35 -apple-system,BlinkMac
 .tab-content{display:none}
 .tab-content.active{display:block}
 
-/* BOTTOM NAVIGATION */
+/* BOTTOM NAV */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);padding-bottom:var(--sab);display:flex;justify-content:space-around;align-items:center;height:calc(54px + var(--sab));z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.05)}
 .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:54px;color:#64748b;background:none;border:0;font-size:9px;font-weight:600;gap:2px;cursor:pointer}
 .nav-item svg{width:18px;height:18px;stroke-width:2;stroke:currentColor;fill:none}
 .nav-item.active{color:var(--br)}
 .nav-item.active svg{stroke:var(--br)}
 
-/* MOBILE VERTICAL FORM STYLING */
+/* MOBILE FORM STYLES (VERTICAL CARDS) */
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:14px;margin-bottom:12px;border:1px solid rgba(214,223,234,0.7)}
 .card-title{font-size:14px;font-weight:700;color:var(--n);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-.form-group{margin-bottom:12px}
-.form-group label{font-size:11px;font-weight:700;color:var(--n);display:block;margin-bottom:4px}
-.form-group input,.form-group select,.form-group textarea{font:13px -apple-system,BlinkMacSystemFont,sans-serif;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:9px 10px;border-radius:8px;outline:0;-webkit-appearance:none}
+.form-group{margin-bottom:10px}
+.form-group label{font-size:11px;font-weight:700;color:var(--n);display:block;margin-bottom:3px}
+.form-group input,.form-group select,.form-group textarea{font:13px -apple-system,BlinkMacSystemFont,sans-serif;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:8px 10px;border-radius:8px;outline:0;-webkit-appearance:none}
 .form-group input:focus,.form-group select:focus{border-color:var(--b);background:#f8fafc}
 .form-group input.r{text-align:right}
-
-.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
-.kpi-card{background:var(--l);border:1px solid var(--bd);border-radius:10px;padding:9px;text-align:center}
-.kpi-card small{display:block;font-size:9px;font-weight:700;color:var(--g);text-transform:uppercase;margin-bottom:2px}
-.kpi-card b{font-size:15px;color:var(--n)}
-.kpi-card.green b{color:var(--ok)}
-.kpi-card.orange b{color:var(--o)}
-.kpi-card.red b{color:var(--bad)}
 
 .sub-tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;-webkit-overflow-scrolling:touch}
 .sub-tab{padding:6px 12px;border-radius:20px;background:var(--l);border:1px solid var(--bd);font-size:11px;font-weight:600;color:var(--n);white-space:nowrap;cursor:pointer;flex:none}
 .sub-tab.active{background:var(--b);color:#fff;border-color:var(--b)}
 
 .table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:8px;border:1px solid var(--bd)}
-table{width:100%;border-collapse:collapse;background:#fff;font-size:11.5px}
-th{background:var(--b);color:#fff;text-align:left;padding:7px 5px;font-size:10.5px;font-weight:600;white-space:nowrap}
-td{padding:5px;border-bottom:1px solid var(--bd);vertical-align:middle}
-tr:nth-child(even) td{background:var(--l)}
+table.m-table{width:100%;border-collapse:collapse;background:#fff;font-size:11.5px}
+table.m-table th{background:var(--b);color:#fff;text-align:left;padding:7px 5px;font-size:10.5px;font-weight:600;white-space:nowrap}
+table.m-table td{padding:5px;border-bottom:1px solid var(--bd);vertical-align:middle}
+table.m-table tr:nth-child(even) td{background:var(--l)}
 td.r,th.r{text-align:right}
 td.c,th.c{text-align:center}
 .btn-del{background:none;border:0;color:var(--bad);font-size:16px;font-weight:bold;cursor:pointer;padding:2px 6px}
 
-/* CANVAS SIGNATURE */
+/* SIGNATURE CANVAS */
 .sig-box{border:1px dashed var(--b);background:#FAFBFD;border-radius:8px;padding:8px;margin-top:8px}
 .sig-canvas{width:100%;height:100px;background:#fff;border:1px solid var(--bd);border-radius:6px;touch-action:none}
 .sig-tools{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
 
-/* PRINT AREA CONTROL */
-#print-area{display:none}
+/* EXACT A4 PRINT STYLES FROM SOURCE FILES */
+.page{width:210mm;height:297mm;position:relative;background:#fff;margin:0 auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18);page-break-after:always}
+.blank{display:none}
+.logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}
+.hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}
+.hd::after{content:"Tel. +41 78 345 80 72\Ainfo@mservice.ch";white-space:pre;position:absolute;left:43mm;top:17.2mm;font-size:9pt;line-height:1.45}
+.f::after,.l::after{content:"";position:absolute;left:18mm;right:15mm;border-top:1.8pt solid var(--b)}
+.f::after{top:90mm}.l::after{top:37mm}
+.title{position:absolute;left:18mm;top:43mm;font:bold 20pt/1 Arial;color:var(--n)}
+.sub{position:absolute;left:18mm;top:53.2mm;font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm}
+.meta{position:absolute;left:18mm;top:63.4mm;width:82mm}
+.meta div{display:flex;align-items:flex-end;height:7.2mm}
+.meta input{flex:1;width:auto}
+.meta label{width:27mm;font-weight:bold;font-size:8.6pt;color:var(--n);padding-bottom:1mm}
+.win{position:absolute;left:118mm;top:48.5mm;width:80mm}
+.win::before{content:"Mejstrik Transport & Reinigung Service · CH-8586 Ennetaach";display:block;font-size:6.2pt;color:var(--g);border-bottom:.3pt solid var(--g);width:max-content;padding-bottom:.6mm;margin:1mm 0 1.6mm;height:3.4mm}
+.win input:not([type=x]){display:block;width:80mm;height:5.4mm;font-size:10.5pt;border:0;color:#000}
+.cr{position:absolute;left:116mm;top:48.5mm;width:83mm;height:27.5mm;background:linear-gradient(#C9CED6,#C9CED6) 0 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 0/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 100% 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 0/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 0 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 100%/.4pt 3mm,linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 100%/.4pt 3mm;background-repeat:no-repeat}
+.page input:not([type=checkbox]){font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:6mm;padding:0 1px}
+.page input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.4mm;height:3.4mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative;cursor:pointer}
+.page input[type=checkbox]:checked::after{content:"";position:absolute;left:.9mm;top:.1mm;width:1.1mm;height:2.2mm;border:solid #000;border-width:0 .5mm .5mm 0;transform:rotate(45deg)}
+.body{position:absolute;left:18mm;right:15mm}
+.first{top:94mm}.later{top:43mm}
+.intro{margin-bottom:6pt}
+.contact{display:grid;grid-template-columns:34mm 1fr 34mm 1fr;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 5pt 1mm 4pt}
+.contact>label{font-weight:bold;font-size:8pt;color:var(--n);line-height:1.2;padding:1.2mm 0}
+.contact>.m{padding-left:8pt}
+.contact .w,.contact .cb{grid-column:2/5}
+.cb{display:flex;align-items:center;font-size:8.3pt;height:6mm}
+.cb label{display:flex;align-items:center;gap:2.2mm;white-space:nowrap;margin-right:5mm}
+.cb input:not([type=checkbox]){flex:1;min-width:30mm}
+.page h2{font-size:10.5pt;color:var(--n);margin:11pt 0 5pt;padding-bottom:1pt;border-bottom:.6pt solid var(--bd)}
+.page table{width:100%;border-collapse:collapse}
+.page th{background:var(--b);color:#fff;text-align:left;padding:4.5pt 6pt;font-size:8.8pt}
+.page td{padding:4.2pt 6pt 4.6pt;vertical-align:top;border-bottom:.5pt solid var(--bd)}
+.page tr:nth-child(even) td{background:var(--l)}
+.price{background:#EAF3FC;border:.9pt solid #8FC0EE;padding:5pt 8pt;display:grid;grid-template-columns:1fr 55mm;align-items:center;row-gap:4pt}
+.price b,.price label{font-size:9.5pt;color:var(--n)}
+.price input:not([type=checkbox]){color:var(--b);font-size:12.5pt;height:7.5mm}
+.price .big input{font-size:16pt;height:9.5mm}
+.note{border:.5pt solid var(--bd);border-left:3pt solid var(--o);background:#FFF8E8;padding:7pt 9pt 5pt 10pt}
+.ok{background:#EFFAF2;border-left-color:#2E9E5B}.info{background:var(--l);border-left-color:var(--b)}
+.note .t{font-weight:bold;font-size:9pt;margin-bottom:3pt;color:#C0600A}
+.ok .t{color:#1F7A44}.info .t{color:var(--n)}
+.note p{margin-bottom:3pt}.note ul{list-style:none}.note li{position:relative;padding-left:11pt;margin-bottom:2.5pt}
+.note li::before{content:"\2022";position:absolute;left:2pt}
+.sign{display:grid;grid-template-columns:1fr 1fr;align-items:end;margin-top:20pt;column-gap:14pt}
+.sml{font-size:8pt;color:var(--g)}
+.sl{border-top:.7pt solid #7F94B5;margin-top:16pt;padding-top:2pt}
+.foot{position:absolute;left:18mm;right:15mm;bottom:0;height:16.5mm;font-size:7.5pt;border-top:.6pt solid var(--bd)}
+.foot::before{content:attr(data-p);position:absolute;right:0;top:-4.2mm;color:#7B93B8}
+.foot::after{content:"Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch | www.mservice.ch\A Es gelten unsere Allgemeinen Geschäftsbedingungen: www.mservice.ch/agb";white-space:pre;position:absolute;left:0;right:0;top:3.2mm;text-align:center;color:#444;line-height:4mm}
+
+.dt{font:bold 20pt/1 Arial;color:var(--n);letter-spacing:.3pt}
+.ds{font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm;margin:2.4mm 0 4mm}
+.hdr{display:grid;grid-template-columns:30mm 1fr 24mm 40mm;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 4mm}
+.hdr>label{font-weight:bold;font-size:8pt;color:var(--n);padding:1.3mm 0}
+.hdr .w{grid-column:2/5}
+.rp{margin-top:4mm}
+.rp th{padding:3.2pt 4pt;font-size:8.2pt}
+.rp td{padding:0 3pt;height:5.85mm;vertical-align:middle}
+.rp input:not([type=checkbox]){border:0;height:5.7mm;padding:0 2px;font-size:9.3pt}
+.rp td+td{border-left:.5pt solid var(--bd)}.rp .d{width:21mm}.rp .tm{width:17mm}.rp .hh{width:19mm}
+.rp td.hh input{font-weight:bold;color:var(--n)}
+.sum2{display:grid;grid-template-columns:1fr 70mm;column-gap:8mm;margin-top:4mm;align-items:start}
+.sum2 .nt{font-size:8pt;color:var(--g);line-height:1.4}
+.tt{display:grid;grid-template-columns:1fr 30mm;row-gap:1.2mm;align-items:center;font-size:9pt}
+.tt>div:nth-child(odd){font-weight:bold;color:var(--n)}
+.tt .big{grid-column:1/3;background:#EAF3FC;border:.9pt solid #8FC0EE;display:grid;grid-template-columns:1fr auto;align-items:center;padding:1.6mm 3mm;margin-top:.8mm}
+.tt .big b{font-size:10.5pt;color:var(--n)}
+.tt .big input{border:0;border-bottom:.6pt solid var(--ln);font-size:14pt;font-weight:bold;color:var(--b);width:34mm;height:7mm;padding:0}
+.sg3{display:grid;grid-template-columns:1fr 1fr;column-gap:10mm;margin-top:5mm}
+.sg3 .box{border:.6pt solid var(--bd);background:var(--l);padding:2.2mm 4mm}
+.sg3 .k{font-weight:bold;font-size:8.6pt;color:var(--n);margin-bottom:1mm}
+.sg3 .r2{display:grid;grid-template-columns:20mm 1fr;align-items:center}
+.sg3 .r2 label{font-weight:bold;font-size:7.8pt;color:var(--n)}
+.sg3 .ln2{border-bottom:.7pt solid #7F94B5;height:11mm}
+.sg3 .sm{font-size:7.6pt;color:var(--g);margin-top:.8mm}
+
+/* PRINT AREA CONTROLLER */
+#print-wrapper{display:none}
 @media print{
   #pin-screen,.app-header,.bottom-nav,.app-body,.noprint{display:none!important}
   body,html{background:#fff!important;margin:0!important;padding:0!important;width:210mm}
-  #print-area{display:block!important}
-  .page{width:210mm;height:297mm;position:relative;background:#fff;margin:0 auto;overflow:hidden;page-break-after:always}
-  .page:last-child{page-break-after:avoid}
+  #print-wrapper{display:block!important}
+  .page{margin:0!important;box-shadow:none!important;page-break-after:always}
 }
 </style>
 </head>
 <body>
 
-<!-- SVG LOGO SYMBOL -->
+<!-- SVG LOGO DEFINITION -->
 <svg width="0" height="0" style="position:absolute"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
 
 <!-- PIN PROTECTED SCREEN -->
@@ -139,7 +209,7 @@ td.c,th.c{text-align:center}
   <div id="pin-error"></div>
 </div>
 
-<!-- MAIN APP -->
+<!-- MAIN MOBILE APPLICATION -->
 <div id="app">
   <header class="app-header">
     <div class="logo-box">
@@ -172,20 +242,11 @@ td.c,th.c{text-align:center}
             <span>Finanzübersicht</span>
             <input type="number" id="app-year" value="2026" style="width:75px;margin:0" onchange="updateYear(this.value)">
           </div>
-          <div class="kpi-grid">
-            <div class="kpi-card green"><small>Einnahmen</small><b id="k-e">0.00</b></div>
-            <div class="kpi-card red"><small>Ausgaben</small><b id="k-a">0.00</b></div>
-            <div class="kpi-card orange"><small>Gewinn</small><b id="k-g">0.00</b></div>
-            <div class="kpi-card"><small>Offen</small><b id="k-o">0.00</b></div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-title">Monatsübersicht (CHF)</div>
-          <div class="table-responsive">
-            <table>
-              <thead><tr><th>Monat</th><th class="r">Einnahmen</th><th class="r">Ausgaben</th><th class="r">Gewinn</th></tr></thead>
-              <tbody id="tb-mon"></tbody>
-            </table>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Einnahmen</small><br><b id="k-e" style="font-size:16px;color:var(--ok)">0.00</b></div>
+            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Ausgaben</small><br><b id="k-a" style="font-size:16px;color:var(--bad)">0.00</b></div>
+            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Gewinn</small><br><b id="k-g" style="font-size:16px;color:var(--o)">0.00</b></div>
+            <div style="background:var(--l);padding:8px;border-radius:8px;text-align:center"><small>Offen</small><br><b id="k-o" style="font-size:16px;color:var(--n)">0.00</b></div>
           </div>
         </div>
       </div>
@@ -194,10 +255,9 @@ td.c,th.c{text-align:center}
         <div class="card">
           <div class="card-title">Einnahmen <button class="btn-icon pri" onclick="addRow('ein')">+ Neu</button></div>
           <div class="table-responsive">
-            <table>
+            <table class="m-table">
               <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Kunde</th><th class="r">Betrag</th><th></th></tr></thead>
               <tbody id="tb-ein-data"></tbody>
-              <tfoot><tr style="font-weight:bold;background:var(--n);color:#fff"><td colspan="3">Total CHF</td><td class="r" id="tot-ein">0.00</td><td></td></tr></tfoot>
             </table>
           </div>
         </div>
@@ -207,10 +267,9 @@ td.c,th.c{text-align:center}
         <div class="card">
           <div class="card-title">Ausgaben <button class="btn-icon pri" onclick="addRow('aus')">+ Neu</button></div>
           <div class="table-responsive">
-            <table>
+            <table class="m-table">
               <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Grund</th><th class="r">Betrag</th><th></th></tr></thead>
               <tbody id="tb-aus-data"></tbody>
-              <tfoot><tr style="font-weight:bold;background:var(--n);color:#fff"><td colspan="3">Total CHF</td><td class="r" id="tot-aus">0.00</td><td></td></tr></tfoot>
             </table>
           </div>
         </div>
@@ -220,8 +279,8 @@ td.c,th.c{text-align:center}
         <div class="card">
           <div class="card-title">Offene Rechnungen <button class="btn-icon pri" onclick="addRow('rg')">+ Neu</button></div>
           <div class="table-responsive">
-            <table>
-              <thead><tr><th class="c">Aktiv</th><th>Rech.-Nr.</th><th>Kunde</th><th class="r">Betrag</th><th>Status</th><th></th></tr></thead>
+            <table class="m-table">
+              <thead><tr><th class="c">Aktiv</th><th>Nr.</th><th>Kunde</th><th class="r">Betrag</th><th></th></tr></thead>
               <tbody id="tb-rg-data"></tbody>
             </table>
           </div>
@@ -234,10 +293,9 @@ td.c,th.c{text-align:center}
       <div class="card">
         <div class="card-title">Löhne & Aushilfe <button class="btn-icon pri" onclick="addRow('lohn')">+ Neu</button></div>
         <div class="table-responsive">
-          <table>
-            <thead><tr><th class="c">Aktiv</th><th>Name</th><th class="r">Brutto</th><th class="r">Netto</th><th>Aktion</th></tr></thead>
+          <table class="m-table">
+            <thead><tr><th class="c">Aktiv</th><th>Name</th><th class="r">Brutto</th><th class="r">Netto</th><th></th></tr></thead>
             <tbody id="tb-lohn-data"></tbody>
-            <tfoot><tr style="font-weight:bold;background:var(--n);color:#fff"><td colspan="2">Total Brutto CHF</td><td class="r" id="tot-lohn">0.00</td><td colspan="2"></td></tr></tfoot>
           </table>
         </div>
       </div>
@@ -246,11 +304,11 @@ td.c,th.c{text-align:center}
     <!-- TAB 3: DOKUMENTE & OFFERTEN -->
     <div class="tab-content" id="tab-dok">
       <div class="card noprint">
-        <div class="card-title">Formular-Erfassung</div>
+        <div class="card-title">Dokument-Erfassung</div>
         
         <div class="form-group">
           <label>Dokumententyp:</label>
-          <select id="doc-type" onchange="switchDocForm()">
+          <select id="doc-type" onchange="renderDocForm()">
             <option value="rechnung">Rechnung (Faktura)</option>
             <option value="off-umzug">Offerte - Umzugsreinigung</option>
             <option value="off-gebaeude">Offerte - Gebäudereinigung</option>
@@ -259,8 +317,8 @@ td.c,th.c{text-align:center}
           </select>
         </div>
 
-        <div id="doc-form-fields">
-          <!-- Dynamically generated vertical fields -->
+        <div id="doc-fields-container">
+          <!-- Dynamically populated vertical form fields -->
         </div>
 
         <div class="sig-box">
@@ -281,17 +339,17 @@ td.c,th.c{text-align:center}
     <!-- TAB 4: ARBEITSRAPPORT -->
     <div class="tab-content" id="tab-rapport">
       <div class="card">
-        <div class="card-title">Arbeitsrapport</div>
-        <div class="form-group"><label>Mitarbeiterin:</label><input type="text" id="rap-worker" value="" oninput="calcRap()"></div>
+        <div class="card-title">Arbeitsrapport (Pracovní Výkaz)</div>
+        <div class="form-group"><label>Mitarbeiterin:</label><input type="text" id="rap-worker" oninput="calcRap()"></div>
         <div style="display:flex;gap:8px">
-          <div class="form-group" style="flex:1"><label>Lohn CHF/h:</label><input type="number" id="rap-rate" value="" class="r" oninput="calcRap()"></div>
-          <div class="form-group" style="flex:1"><label>Monat / Jahr:</label><input type="text" id="rap-mon" value="" oninput="calcRap()"></div>
+          <div class="form-group" style="flex:1"><label>Lohn CHF/h:</label><input type="number" id="rap-rate" class="r" oninput="calcRap()"></div>
+          <div class="form-group" style="flex:1"><label>Monat / Jahr:</label><input type="text" id="rap-mon" oninput="calcRap()"></div>
         </div>
 
-        <div class="card-title" style="font-size:12px;margin-top:8px">Einsätze / Schichten <button class="btn-icon pri" onclick="addRapRow()">+ Směna</button></div>
+        <div class="card-title" style="font-size:12px;margin-top:8px">Směny / Einsätze <button class="btn-icon pri" onclick="addRapRow()">+ Směna</button></div>
         
-        <div id="rap-rows-container">
-          <!-- Dynamic mobile vertical rows for rapport -->
+        <div id="rap-rows-mobile">
+          <!-- Dynamic vertical rows for mobile -->
         </div>
 
         <div style="margin-top:10px;background:var(--l);padding:10px;border-radius:8px">
@@ -306,16 +364,16 @@ td.c,th.c{text-align:center}
       </div>
     </div>
 
-    <!-- TAB 5: EINSTELLUNGEN (SETTINGS) -->
+    <!-- TAB 5: EINSTELLUNGEN -->
     <div class="tab-content" id="tab-settings">
       <div class="card">
         <div class="card-title">Einstellungen & Unterschrift</div>
         <p style="font-size:11px;color:var(--g);margin-bottom:10px">
-          Hier können Sie Ihre persönliche Unterschrift (Daniel Mejstrik) speichern. Diese wird automatisch auf allen Rechnungen, Offerten und Arbeitsrapporten eingefügt.
+          Speichern Sie hier Ihre dauerhafte Unterschrift (Daniel Mejstrik). Sie wird automatisch in alle Dokumente und Arbeitsrapporte eingefügt.
         </p>
         
         <div class="sig-box">
-          <label>Unterschrift Daniel Mejstrik (Ihr Unterschrift):</label>
+          <label>Unterschrift Daniel Mejstrik:</label>
           <canvas id="sig-owner" class="sig-canvas"></canvas>
           <div class="sig-tools">
             <button class="btn-icon" onclick="clearSig('sig-owner')">Löschen</button>
@@ -327,7 +385,6 @@ td.c,th.c{text-align:center}
 
   </main>
 
-  <!-- BOTTOM NAVIGATION -->
   <nav class="bottom-nav noprint">
     <button class="nav-item active" onclick="switchTab(this, 'tab-buchhaltung')">
       <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
@@ -352,11 +409,11 @@ td.c,th.c{text-align:center}
   </nav>
 </div>
 
-<!-- PRINT CONTAINER FOR FULL EXACT SHEETS -->
-<div id="print-area"></div>
+<!-- DYNAMIC PRINT CONTAINER USING EXACT TEMPLATES -->
+<div id="print-wrapper"></div>
 
 <script>
-/* PIN CONTROLLER */
+/* PIN CONTROL */
 let enteredPin = "";
 const CORRECT_PIN = "2518";
 
@@ -386,9 +443,8 @@ if (sessionStorage.getItem('m_auth') === '1') {
   setTimeout(initCanvases, 300);
 }
 
-/* DATA MANAGEMENT */
-const STORE_KEY = 'mservice_data_clean_v4';
-const MONTHS = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
+/* DATA STORE & STATE */
+const STORE_KEY = 'mservice_data_clean_v5';
 let DB = {
   year: 2026,
   ein: [],
@@ -429,91 +485,27 @@ function switchSub(btn, id) {
 }
 function updateYear(y) { DB.year = parseInt(y,10)||2026; saveDB(); }
 
-/* RENDERING TABLES */
+/* RENDERING BUCHHALTUNG TABLES */
 function renderAll() {
   document.querySelectorAll('.yy').forEach(e => e.textContent = DB.year);
   renderTables();
-  calcKPIs();
-}
-
-function calcKPIs() {
-  let te = 0, ta = 0, open = 0;
-  let me = Array(12).fill(0), ma = Array(12).fill(0);
-
-  DB.ein.forEach(r => { if(r.act && r.d && r.d.startsWith(String(DB.year))) { let v = n(r.amt); te += v; let m = parseInt(r.d.slice(5,7),10)-1; if(m>=0&&m<12) me[m]+=v; } });
-  DB.aus.forEach(r => { if(r.act && r.d && r.d.startsWith(String(DB.year))) { let v = n(r.amt); ta += v; let m = parseInt(r.d.slice(5,7),10)-1; if(m>=0&&m<12) ma[m]+=v; } });
-  DB.lohn.forEach(r => { if(r.act && r.d && r.d.startsWith(String(DB.year))) { let v = n(r.amt); ta += v; let m = parseInt(r.d.slice(5,7),10)-1; if(m>=0&&m<12) ma[m]+=v; } });
-  DB.rg.forEach(r => { if(r.act && !r.paid) open += n(r.amt); });
-
-  document.getElementById('k-e').textContent = f(te);
-  document.getElementById('k-a').textContent = f(ta);
-  document.getElementById('k-g').textContent = f(te - ta);
-  document.getElementById('k-o').textContent = f(open);
-
-  let h = '';
-  for(let m=0; m<12; m++) {
-    h += `<tr><td><b>${MONTHS[m]}</b></td><td class="r">${f(me[m])}</td><td class="r">${f(ma[m])}</td><td class="r"><b>${f(me[m]-ma[m])}</b></td></tr>`;
-  }
-  document.getElementById('tb-mon').innerHTML = h;
 }
 
 function renderTables() {
-  let hE = '', totE = 0;
-  DB.ein.forEach((r, i) => {
-    if(r.act) totE += n(r.amt);
-    hE += `<tr class="${r.act?'':'inactive'}">
-      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('ein',${i})"></td>
-      <td><input type="date" value="${r.d||''}" onchange="upd('ein',${i},'d',this.value)"></td>
-      <td><input type="text" value="${r.who||''}" onchange="upd('ein',${i},'who',this.value)"></td>
-      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="upd('ein',${i},'amt',this.value)"></td>
-      <td><button class="btn-del" onclick="del('ein',${i})">×</button></td>
-    </tr>`;
+  ['ein','aus','lohn','rg'].forEach(t => {
+    let h = '';
+    DB[t].forEach((r, i) => {
+      h += `<tr>
+        <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('${t}',${i})"></td>
+        <td><input type="text" value="${r.d||''}" style="width:70px" onchange="upd('${t}',${i},'d',this.value)"></td>
+        <td><input type="text" value="${r.who||r.nr||''}" onchange="upd('${t}',${i},'who',this.value)"></td>
+        <td class="r"><input type="number" class="r" value="${r.amt||''}" style="width:65px" onchange="upd('${t}',${i},'amt',this.value)"></td>
+        <td><button class="btn-del" onclick="del('${t}',${i})">×</button></td>
+      </tr>`;
+    });
+    let elem = document.getElementById('tb-'+t+'-data');
+    if(elem) elem.innerHTML = h;
   });
-  document.getElementById('tb-ein-data').innerHTML = hE;
-  document.getElementById('tot-ein').textContent = f(totE);
-
-  let hA = '', totA = 0;
-  DB.aus.forEach((r, i) => {
-    if(r.act) totA += n(r.amt);
-    hA += `<tr class="${r.act?'':'inactive'}">
-      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('aus',${i})"></td>
-      <td><input type="date" value="${r.d||''}" onchange="upd('aus',${i},'d',this.value)"></td>
-      <td><input type="text" value="${r.who||''}" onchange="upd('aus',${i},'who',this.value)"></td>
-      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="upd('aus',${i},'amt',this.value)"></td>
-      <td><button class="btn-del" onclick="del('aus',${i})">×</button></td>
-    </tr>`;
-  });
-  document.getElementById('tb-aus-data').innerHTML = hA;
-  document.getElementById('tot-aus').textContent = f(totA);
-
-  let hL = '', totL = 0;
-  DB.lohn.forEach((r, i) => {
-    let brutto = n(r.amt);
-    let netto = brutto * 0.947;
-    if(r.act) totL += brutto;
-    hL += `<tr class="${r.act?'':'inactive'}">
-      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('lohn',${i})"></td>
-      <td><input type="text" value="${r.who||''}" onchange="upd('lohn',${i},'who',this.value)"></td>
-      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="upd('lohn',${i},'amt',this.value)"></td>
-      <td class="r"><b>${f(netto)}</b></td>
-      <td><button class="btn-del" onclick="del('lohn',${i})">×</button></td>
-    </tr>`;
-  });
-  document.getElementById('tb-lohn-data').innerHTML = hL;
-  document.getElementById('tot-lohn').textContent = f(totL);
-
-  let hR = '';
-  DB.rg.forEach((r, i) => {
-    hR += `<tr class="${r.act?'':'inactive'}">
-      <td class="c"><input type="checkbox" ${r.act?'checked':''} onchange="toggle('rg',${i})"></td>
-      <td><input type="text" value="${r.nr||''}" onchange="upd('rg',${i},'nr',this.value)"></td>
-      <td><input type="text" value="${r.who||''}" onchange="upd('rg',${i},'who',this.value)"></td>
-      <td class="r"><input type="number" class="r" value="${r.amt||''}" onchange="upd('rg',${i},'amt',this.value)"></td>
-      <td><button class="btn-icon ${r.paid?'':'pri'}" onclick="togglePaid(${i})">${r.paid?'Bezahlt':'Offen'}</button></td>
-      <td><button class="btn-del" onclick="del('rg',${i})">×</button></td>
-    </tr>`;
-  });
-  document.getElementById('tb-rg-data').innerHTML = hR;
 }
 
 function toggle(t, i) { DB[t][i].act = !DB[t][i].act; saveDB(); }
@@ -521,18 +513,14 @@ function upd(t, i, f, v) { DB[t][i][f] = v; saveDB(); }
 function del(t, i) { DB[t].splice(i,1); saveDB(); }
 function addRow(t) {
   let today = new Date().toISOString().slice(0,10);
-  if(t==='ein') DB.ein.push({act:true, d:today, who:'', amt:''});
-  if(t==='aus') DB.aus.push({act:true, d:today, who:'', amt:''});
-  if(t==='lohn') DB.lohn.push({act:true, d:today, who:'', amt:''});
-  if(t==='rg') DB.rg.push({act:true, nr:'', who:'', amt:'', paid:false});
+  DB[t].push({act:true, d:today, who:'', amt:''});
   saveDB();
 }
-function togglePaid(i) { DB.rg[i].paid = !DB.rg[i].paid; saveDB(); }
 
-/* MOBILE FORM FIELDS GENERATOR */
-function switchDocForm() {
+/* MOBILE DOKUMENT FORM FIELDS */
+function renderDocForm() {
   let type = document.getElementById('doc-type').value;
-  let container = document.getElementById('doc-form-fields');
+  let container = document.getElementById('doc-fields-container');
   let h = '';
 
   if (type === 'rechnung') {
@@ -543,7 +531,6 @@ function switchDocForm() {
       <div class="form-group"><label>Kunde / Firma:</label><input type="text" id="df-client"></div>
       <div class="form-group"><label>Strasse & Nr.:</label><input type="text" id="df-str"></div>
       <div class="form-group"><label>PLZ & Ort:</label><input type="text" id="df-ort"></div>
-      <div class="form-group"><label>Objektadresse:</label><input type="text" id="df-obj"></div>
       <div class="form-group"><label>Betrag / Pauschale CHF:</label><input type="number" id="df-price" class="r"></div>
     `;
   } else {
@@ -554,14 +541,13 @@ function switchDocForm() {
       <div class="form-group"><label>Vorname Nachname / Firma:</label><input type="text" id="df-client"></div>
       <div class="form-group"><label>Strasse & Nr.:</label><input type="text" id="df-str"></div>
       <div class="form-group"><label>PLZ & Ort:</label><input type="text" id="df-ort"></div>
-      <div class="form-group"><label>Objektadresse (falls abweichend):</label><input type="text" id="df-obj"></div>
       <div class="form-group"><label>Pauschalpreis CHF:</label><input type="text" id="df-price" value="ab CHF 0.00"></div>
     `;
   }
   container.innerHTML = h;
 }
 
-/* CANVAS SIGNATURES ENGINE */
+/* CANVAS SIGNATURE ENGINE */
 function initCanvases() {
   ['sig-cust', 'sig-owner'].forEach(id => {
     let canvas = document.getElementById(id);
@@ -600,7 +586,7 @@ function saveOwnerSig() {
   if (canvas) {
     DB.ownerSig = canvas.toDataURL();
     saveDB();
-    alert("Unterschrift erfolgreich gespeichert!");
+    alert("Unterschrift von Daniel Mejstrik erfolgreich gespeichert!");
   }
 }
 
@@ -608,26 +594,26 @@ function saveOwnerSig() {
 let rapRowCount = 0;
 function addRapRow() {
   rapRowCount++;
-  let container = document.getElementById('rap-rows-container');
+  let container = document.getElementById('rap-rows-mobile');
   let div = document.createElement('div');
   div.className = 'card';
   div.style.background = 'var(--l)';
   div.style.marginBottom = '8px';
-  div.id = 'rap-row-' + rapRowCount;
+  div.id = 'rap-m-row-' + rapRowCount;
 
   div.innerHTML = `
     <div style="display:flex;justify-content:space-between;margin-bottom:6px">
       <b>Směna #${rapRowCount}</b>
-      <button class="btn-del" onclick="document.getElementById('rap-row-${rapRowCount}').remove();calcRap()">×</button>
+      <button class="btn-del" onclick="document.getElementById('rap-m-row-${rapRowCount}').remove();calcRap()">×</button>
     </div>
-    <div class="form-group"><label>Datum (TT.MM.):</label><input type="text" class="rap-d" placeholder="01.10."></div>
-    <div class="form-group"><label>Kunde / Einsatzort:</label><input type="text" class="rap-k"></div>
+    <div class="form-group"><label>Datum (TT.MM.):</label><input type="text" class="rm-d" placeholder="01.10."></div>
+    <div class="form-group"><label>Kunde / Ort:</label><input type="text" class="rm-k"></div>
     <div style="display:flex;gap:6px">
-      <div class="form-group" style="flex:1"><label>Von:</label><input type="text" class="rap-b" placeholder="07:30" oninput="calcRap()"></div>
-      <div class="form-group" style="flex:1"><label>Bis:</label><input type="text" class="rap-e" placeholder="16:00" oninput="calcRap()"></div>
-      <div class="form-group" style="flex:1"><label>Pause (m):</label><input type="number" class="rap-p" value="30" oninput="calcRap()"></div>
+      <div class="form-group" style="flex:1"><label>Von:</label><input type="text" class="rm-b" placeholder="07:30" oninput="calcRap()"></div>
+      <div class="form-group" style="flex:1"><label>Bis:</label><input type="text" class="rm-e" placeholder="16:00" oninput="calcRap()"></div>
+      <div class="form-group" style="flex:1"><label>Pause (m):</label><input type="number" class="rm-p" value="30" oninput="calcRap()"></div>
     </div>
-    <div style="text-align:right">Stunden: <b class="rap-h">0.00</b></div>
+    <div style="text-align:right">Stunden: <b class="rm-h">0.00</b></div>
   `;
   container.appendChild(div);
 }
@@ -635,24 +621,24 @@ function addRapRow() {
 function calcRap() {
   let rate = n(document.getElementById('rap-rate').value);
   let totMin = 0;
-  document.querySelectorAll('#rap-rows-container .card').forEach(row => {
-    let von = row.querySelector('.rap-b').value.split(':');
-    let bis = row.querySelector('.rap-e').value.split(':');
-    let pause = n(row.querySelector('.rap-p').value);
+  document.querySelectorAll('#rap-rows-mobile .card').forEach(row => {
+    let von = row.querySelector('.rm-b').value.split(':');
+    let bis = row.querySelector('.rm-e').value.split(':');
+    let pause = n(row.querySelector('.rm-p').value);
     let minVon = (parseInt(von[0],10)||0)*60 + (parseInt(von[1],10)||0);
     let minBis = (parseInt(bis[0],10)||0)*60 + (parseInt(bis[1],10)||0);
     let dur = minBis - minVon - pause;
     if(dur < 0) dur = 0;
     totMin += dur;
-    row.querySelector('.rap-h').textContent = (dur/60).toFixed(2);
+    row.querySelector('.rm-h').textContent = (dur/60).toFixed(2);
   });
   let hours = totMin / 60;
   document.getElementById('rap-tot-h').textContent = hours.toFixed(2) + ' h';
   document.getElementById('rap-tot-pay').textContent = f(hours * rate) + ' CHF';
 }
 
-/* EXACT PRINT & PDF GENERATOR FOR SOURCE TEMPLATES */
-function buildExactPrintHTML(type) {
+/* EXACT A4 PRINT ENGINE FROM SOURCE CODE */
+function generatePrintTemplate(type) {
   let custSigImg = document.getElementById('sig-cust')?.toDataURL() || '';
   let ownerSigImg = DB.ownerSig || '';
 
@@ -664,38 +650,53 @@ function buildExactPrintHTML(type) {
     let totP = document.getElementById('rap-tot-pay').textContent;
 
     let rowsHTML = '';
-    document.querySelectorAll('#rap-rows-container .card').forEach(row => {
-      let d = row.querySelector('.rap-d').value;
-      let k = row.querySelector('.rap-k').value;
-      let b = row.querySelector('.rap-b').value;
-      let e = row.querySelector('.rap-e').value;
-      let p = row.querySelector('.rap-p').value;
-      let h = row.querySelector('.rap-h').textContent;
-      rowsHTML += `<tr><td>${d}</td><td>${k}</td><td style="text-align:right">${b}</td><td style="text-align:right">${e}</td><td style="text-align:right">${p}</td><td style="text-align:right"><b>${h}</b></td></tr>`;
+    document.querySelectorAll('#rap-rows-mobile .card').forEach(row => {
+      let d = row.querySelector('.rm-d').value;
+      let k = row.querySelector('.rm-k').value;
+      let b = row.querySelector('.rm-b').value;
+      let e = row.querySelector('.rm-e').value;
+      let p = row.querySelector('.rm-p').value;
+      let h = row.querySelector('.rm-h').textContent;
+      rowsHTML += `<tr class="row"><td class="d">${d}</td><td>${k}</td><td class="r tm">${b}</td><td class="r tm">${e}</td><td class="r tm">${p}</td><td class="hh r"><b>${h}</b></td></tr>`;
     });
 
     return `
-      <div class="page" style="padding:18mm">
-        <div style="display:flex;justify-content:space-between;border-bottom:1.8pt solid #2D6CB5;padding-bottom:10px;margin-bottom:15px">
-          <div><b style="font-size:14pt;color:#1F4EA8">M Transport & Reinigung Service</b><br><span style="font-size:9pt">Tel. +41 78 345 80 72 · info@mservice.ch</span></div>
-          <div style="text-align:right"><b style="font-size:16pt;color:#1E3A6D">ARBEITSRAPPORT</b><br><span style="font-size:9pt;color:#F57C00">Arbeitsstunden Erfassung</span></div>
+      <section class="page l">
+        <div class="hd"><svg class="logo"><use href="#lg"/></svg></div>
+        <div class="body later">
+          <div class="dt">ARBEITSRAPPORT</div>
+          <div class="ds">Erfassung der geleisteten Arbeitsstunden</div>
+          <div class="hdr">
+            <label>Mitarbeiterin:</label><input class="w" value="${worker}">
+            <label>Monat / Jahr:</label><input value="${mon}">
+            <label class="m">Lohn CHF/h:</label><input value="${rate}">
+          </div>
+          <table class="rp">
+            <tr><th class="d">Datum</th><th>Kunde / Einsatzort</th><th class="r tm">Beginn</th><th class="r tm">Ende</th><th class="r tm">Pause (Min.)</th><th class="r hh">Stunden</th></tr>
+            ${rowsHTML}
+          </table>
+          <div class="sum2">
+            <div class="nt">Pro Einsatz eine Zeile. Die Stunden werden automatisch berechnet. Der Rapport wird täglich geführt.</div>
+            <div class="tt">
+              <div>Total Stunden</div><input value="${totH}">
+              <div class="big"><b>Bruttolohn CHF</b><input value="${totP}"></div>
+            </div>
+          </div>
+          <div class="sg3">
+            <div class="box">
+              <div class="k">Arbeitnehmerin</div>
+              <div class="ln2"></div>
+              <div class="sm">Unterschrift</div>
+            </div>
+            <div class="box">
+              <div class="k">Arbeitgeber (geprüft)</div>
+              <div class="ln2">${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px">` : ''}</div>
+              <div class="sm">Daniel Mejstrik · Unterschrift</div>
+            </div>
+          </div>
         </div>
-        <table style="width:100%;margin-bottom:15px;font-size:9pt">
-          <tr><td><b>Mitarbeiterin:</b> ${worker}</td><td><b>Monat/Jahr:</b> ${mon}</td><td style="text-align:right"><b>Lohn CHF/h:</b> ${rate}</td></tr>
-        </table>
-        <table style="width:100%;border-collapse:collapse;font-size:9pt" border="1" borderColor="#bdc3c7">
-          <tr style="background:#2D6CB5;color:#fff"><th>Datum</th><th>Kunde / Einsatzort</th><th style="text-align:right">Beginn</th><th style="text-align:right">Ende</th><th style="text-align:right">Pause (Min.)</th><th style="text-align:right">Stunden</th></tr>
-          ${rowsHTML}
-        </table>
-        <div style="display:flex;justify-content:space-between;margin-top:15px;font-size:11pt">
-          <div><b>Total Stunden: ${totH}</b></div>
-          <div><b>Bruttolohn: ${totP}</b></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:40px">
-          <div>Unterschrift Mitarbeiterin:<br><br>__________________________</div>
-          <div>Daniel Mejstrik:<br>${ownerSigImg ? `<img src="${ownerSigImg}" style="height:40px"><br>` : ''}__________________________</div>
-        </div>
-      </div>
+        <div class="foot" data-p="Seite 1 von 1"></div>
+      </section>
     `;
   } else {
     let docType = document.getElementById('doc-type').value;
@@ -709,51 +710,63 @@ function buildExactPrintHTML(type) {
 
     let isRg = docType === 'rechnung';
     let title = isRg ? "RECHNUNG" : "OFFERTE";
+    let subTitle = isRg ? "Dienstleistungen" : "Umzugsreinigung";
 
     return `
-      <div class="page" style="padding:18mm">
-        <div style="display:flex;justify-content:space-between;border-bottom:1.8pt solid #2D6CB5;padding-bottom:10px;margin-bottom:15px">
-          <div><b style="font-size:14pt;color:#1F4EA8">M Transport & Reinigung Service</b><br><span style="font-size:9pt">Tel. +41 78 345 80 72 · info@mservice.ch</span></div>
-          <div style="text-align:right"><b style="font-size:18pt;color:#1E3A6D">${title}</b><br><span style="font-size:9pt">Mejstrik Transport & Reinigung Service</span></div>
+      <section class="page f">
+        <div class="hd"><svg class="logo"><use href="#lg"/></svg></div>
+        <div class="title">${title}</div>
+        <div class="sub">${subTitle}</div>
+        <div class="meta">
+          <div><label>${isRg?'Rechnungs-Nr.':'Offerten-Nr.'}:</label><input value="${nr}"></div>
+          <div><label>Datum:</label><input value="${dt}"></div>
+          <div><label>${isRg?'Zahlbar bis':'Gültigkeit'}:</label><input value="${due}"></div>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-bottom:20px;font-size:9.5pt">
-          <div><b>Empfänger:</b><br>${client}<br>${str}<br>${ort}</div>
-          <div><b>Nr.:</b> ${nr}<br><b>Datum:</b> ${dt}<br><b>Zahlbar bis:</b> ${due}</div>
+        <div class="cr"></div>
+        <div class="win">
+          <input value="${client}">
+          <input value="${str}">
+          <input value="${ort}">
         </div>
-        <table style="width:100%;border-collapse:collapse;margin-bottom:20px;font-size:9pt" border="1" borderColor="#bdc3c7">
-          <tr style="background:#2D6CB5;color:#fff"><th style="padding:6px">Beschreibung</th><th style="padding:6px;text-align:right">Betrag CHF</th></tr>
-          <tr><td style="padding:10px">Dienstleistungen laut Vereinbarung (${docType})</td><td style="padding:10px;text-align:right"><b>${price}</b></td></tr>
-        </table>
-        <div style="font-size:8.5pt;color:#555;margin-bottom:30px">
-          * Es gelten unsere Allgemeinen Geschäftsbedingungen: www.mservice.ch/agb. 48-Stunden-Zufriedenheitsgarantie.
+        <div class="body first">
+          <p class="intro">Vielen Dank für Ihren Auftrag. Gerne stellen wir Ihnen folgende Leistungen in Rechnung:</p>
+          <h2>1. LEISTUNGEN</h2>
+          <table>
+            <tr style="background:var(--b);color:#fff"><th>Beschreibung</th><th style="text-align:right">Betrag CHF</th></tr>
+            <tr><td>Dienstleistungen gemäß Vereinbarung (${docType})</td><td style="text-align:right"><b>${price} CHF</b></td></tr>
+          </table>
+          <div class="closing" style="margin-top:30px">
+            <p>Freundliche Grüsse</p>
+            <div class="sign">
+              <div><b>Daniel Mejstrik</b><br>${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px"><br>` : ''}Mejstrik Transport & Reinigung Service</div>
+              <div>Bestätigung / Kundenunterschrift:<br>${custSigImg ? `<img src="${custSigImg}" style="height:35px">` : ''}</div>
+            </div>
+          </div>
         </div>
-        <div style="display:flex;justify-content:space-between">
-          <div>Kundenunterschrift:<br>${custSigImg ? `<img src="${custSigImg}" style="height:35px"><br>` : ''}__________________________</div>
-          <div>Daniel Mejstrik:<br>${ownerSigImg ? `<img src="${ownerSigImg}" style="height:35px"><br>` : ''}__________________________</div>
-        </div>
-      </div>
+        <div class="foot" data-p="Seite 1 von 1"></div>
+      </section>
     `;
   }
 }
 
 function printDoc() {
-  document.getElementById('print-area').innerHTML = buildExactPrintHTML('doc');
+  document.getElementById('print-wrapper').innerHTML = generatePrintTemplate('doc');
   window.print();
 }
 
 function pdfDoc() {
-  document.getElementById('print-area').innerHTML = buildExactPrintHTML('doc');
+  document.getElementById('print-wrapper').innerHTML = generatePrintTemplate('doc');
   alert("Pro uložení do PDF zvolte v následujícím dialogu Sdílet -> Uložit do Souborů.");
   window.print();
 }
 
 function printRapport() {
-  document.getElementById('print-area').innerHTML = buildExactPrintHTML('rapport');
+  document.getElementById('print-wrapper').innerHTML = generatePrintTemplate('rapport');
   window.print();
 }
 
 function pdfRapport() {
-  document.getElementById('print-area').innerHTML = buildExactPrintHTML('rapport');
+  document.getElementById('print-wrapper').innerHTML = generatePrintTemplate('rapport');
   alert("Pro uložení do PDF zvolte v následujícím dialogu Sdílet -> Uložit do Souborů.");
   window.print();
 }
@@ -780,8 +793,7 @@ function importData(e) {
 document.addEventListener('DOMContentLoaded', () => {
   loadDB();
   renderAll();
-  switchDocForm();
-  initRap();
+  renderDocForm();
   addRapRow();
 });
 </script>
