@@ -1,109 +1,345 @@
 <!DOCTYPE html>
-<html lang="de-CH"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>app-service-m - M Transport &amp; Reinigung</title><style>
-*{box-sizing:border-box;margin:0;padding:0}
-:root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--g:#666;--ok:#1F7A44;--bad:#C0392B}
-body{font:14px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;background:#eef1f5;padding-bottom:70px}
+<html lang="de-CH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>app-service-m - Mejstrik Transport &amp; Reinigung</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --n: #1E3A6D;
+      --b: #2D6CB5;
+      --br: #1F4EA8;
+      --o: #F57C00;
+      --l: #F4F7FB;
+      --bd: #D6DFEA;
+      --g: #666;
+      --ok: #1F7A44;
+      --bad: #C0392B;
+    }
+    body {
+      font: 14px/1.4 Arial, Helvetica, sans-serif;
+      color: #2a2a2a;
+      background: #eef1f5;
+      padding-bottom: 75px;
+    }
 
-/* Přihlašovací obrazovka PIN */
-#pin-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--n);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
-#pin-screen h2{font-size:18px;margin-bottom:6px;color:#fff}
-#pin-screen p{font-size:12px;color:#a0b8e6;margin-bottom:20px}
-.pin-input{font-size:24px;letter-spacing:10px;text-align:center;width:160px;padding:10px;border-radius:8px;border:2px solid var(--o);outline:0;color:var(--n);margin-bottom:15px;background:#fff}
-.pin-btn{font:bold 15px Arial;background:var(--o);color:#fff;border:0;padding:12px 24px;border-radius:8px;cursor:pointer;width:160px}
-.pin-err{color:#ff8a8a;font-size:12px;margin-top:10px;display:none;font-weight:bold}
+    /* PIN-Sperrbildschirm */
+    #pin-screen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--n);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: #fff;
+    }
+    #pin-screen h2 { font-size: 18px; margin-bottom: 6px; color: #fff; text-align: center; }
+    #pin-screen p { font-size: 12px; color: #a0b8e6; margin-bottom: 20px; text-align: center; }
+    .pin-input {
+      font-size: 24px;
+      letter-spacing: 10px;
+      text-align: center;
+      width: 170px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid var(--o);
+      outline: 0;
+      color: var(--n);
+      margin-bottom: 15px;
+      background: #fff;
+    }
+    .pin-btn {
+      font: bold 15px Arial;
+      background: var(--o);
+      color: #fff;
+      border: 0;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 170px;
+    }
+    .pin-err { color: #ff8a8a; font-size: 12px; margin-top: 10px; display: none; font-weight: bold; }
 
-.app-header{background:var(--n);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
-.app-header h1{font-size:16px;font-weight:bold}
-.app-header span{font-size:11px;color:#a0b8e6}
-.container{padding:12px;max-width:600px;margin:0 auto}
-.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border-top:4px solid var(--o)}
-.card h2{font-size:15px;color:var(--n);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.kpi-box{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:10px;text-align:center}
-.kpi-box small{font-size:10px;text-transform:uppercase;color:var(--g);font-weight:bold;display:block}
-.kpi-box b{font-size:16px;color:var(--n)}
-.form-group{margin-bottom:10px}
-.form-group label{display:block;font-size:11.5px;font-weight:bold;color:var(--n);margin-bottom:3px}
-input,select{font:14px Arial;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:8px;border-radius:6px;outline:0}
-input:focus,select:focus{border-color:var(--b);background:rgba(45,108,181,0.03)}
-.btn{font:bold 13px Arial;border:0;background:var(--b);color:#fff;border-radius:6px;padding:10px 14px;cursor:pointer;width:100%;text-align:center;display:block}
-.btn:active{opacity:0.8}
-.btn-sec{background:#fff;color:var(--n);border:1px solid var(--bd);margin-top:6px}
+    /* Header */
+    .app-header {
+      background: var(--n);
+      color: #fff;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .app-header h1 { font-size: 15px; font-weight: bold; }
+    .app-header span { font-size: 11px; color: #a0b8e6; display: block; }
+    .hdr-btn {
+      background: rgba(255,255,255,0.15);
+      border: 0;
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+    }
 
-/* Spodní navigace pro mobil */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:8px 0;z-index:100;box-shadow:0 -2px 10px rgba(0,0,0,0.05)}
-.bottom-nav button{background:0;border:0;font-size:10px;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;flex:1;outline:0}
-.bottom-nav button svg{width:20px;height:20px;fill:var(--g)}
-.bottom-nav button.active{color:var(--br);font-weight:bold}
-.bottom-nav button.active svg{fill:var(--br)}
-.view{display:none}
-.view.active{display:block}
-.list-item{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:10px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
-.list-item div b{font-size:13px;color:var(--n);display:block}
-.list-item div span{font-size:11px;color:var(--g)}
-.list-item .amt{font-size:14px;font-weight:bold;color:var(--br)}
-</style></head><body>
+    .container { padding: 12px; max-width: 600px; margin: 0 auto; }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border-top: 4px solid var(--o);
+    }
+    .card h2 {
+      font-size: 15px;
+      color: var(--n);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-<!-- SCREEN: PIN LOCK -->
+    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+    .kpi-box {
+      background: var(--l);
+      border: 1px solid var(--bd);
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+    .kpi-box small { font-size: 10px; text-transform: uppercase; color: var(--g); font-weight: bold; display: block; }
+    .kpi-box b { font-size: 16px; color: var(--n); }
+
+    .form-group { margin-bottom: 11px; }
+    .form-group label { display: block; font-size: 11.5px; font-weight: bold; color: var(--n); margin-bottom: 4px; }
+    input, select, textarea {
+      font: 14px Arial;
+      color: #0A2A8A;
+      border: 1px solid var(--bd);
+      background: #fff;
+      width: 100%;
+      padding: 9px;
+      border-radius: 6px;
+      outline: 0;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--b); background: rgba(45,108,181,0.03); }
+
+    /* Custom File Input */
+    .file-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .file-btn {
+      background: var(--l);
+      border: 1px dashed var(--b);
+      color: var(--b);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      justify-content: center;
+    }
+    .photo-preview {
+      width: 44px;
+      height: 44px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid var(--bd);
+      display: none;
+    }
+
+    .btn {
+      font: bold 13px Arial;
+      border: 0;
+      background: var(--b);
+      color: #fff;
+      border-radius: 6px;
+      padding: 11px 14px;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+      display: block;
+    }
+    .btn:active { opacity: 0.85; }
+    .btn-sec { background: #fff; color: var(--n); border: 1px solid var(--bd); margin-top: 6px; }
+
+    /* Tool Grid */
+    .tool-card {
+      background: var(--l);
+      border: 1px solid var(--bd);
+      border-left: 4px solid var(--b);
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .tool-card h3 { font-size: 13.5px; color: var(--n); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+    .tool-card p { font-size: 11px; color: var(--g); margin-bottom: 8px; }
+
+    /* Bottom Navigation */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid var(--bd);
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+      z-index: 100;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    }
+    .bottom-nav button {
+      background: 0; border: 0;
+      font-size: 10px;
+      color: var(--g);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      flex: 1;
+      outline: 0;
+    }
+    .bottom-nav button svg { width: 20px; height: 20px; fill: var(--g); }
+    .bottom-nav button.active { color: var(--br); font-weight: bold; }
+    .bottom-nav button.active svg { fill: var(--br); }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .list-item {
+      background: var(--l);
+      border: 1px solid var(--bd);
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .list-item div b { font-size: 13px; color: var(--n); display: block; }
+    .list-item div span { font-size: 11px; color: var(--g); }
+    .list-item .amt { font-size: 14px; font-weight: bold; color: var(--br); text-align: right; }
+
+    /* Modal Styling */
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .modal-content {
+      background: #fff;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 16px 16px 0 0;
+      padding: 16px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .modal-hdr {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--bd);
+      padding-bottom: 8px;
+    }
+    .modal-hdr h3 { font-size: 15px; color: var(--n); }
+    .close-btn { background: 0; border: 0; font-size: 20px; color: var(--g); cursor: pointer; }
+  </style>
+</head>
+<body>
+
+<!-- PIN LOCK SCREEN -->
 <div id="pin-screen">
-  <h2>M Transport &amp; Reinigung</h2>
-  <p>Zadejte přihlašovací PIN</p>
+  <h2>Mejstrik Transport &amp; Reinigung</h2>
+  <p>Bitte PIN-Code eingeben</p>
   <input type="password" id="pin-val" class="pin-input" maxlength="4" pattern="\d*" inputmode="numeric" placeholder="••••">
-  <button class="pin-btn" onclick="checkPin()">Vstoupit</button>
-  <div id="pin-err" class="pin-err">Nesprávný PIN kód!</div>
+  <button class="pin-btn" onclick="checkPin()">Anmelden</button>
+  <div id="pin-err" class="pin-err">Falscher PIN-Code!</div>
 </div>
 
-<!-- MAIN APP CONTENT -->
+<!-- HEADER -->
 <header class="app-header">
   <div>
-    <h1>M Transport &amp; Reinigung</h1>
+    <h1>Mejstrik Service</h1>
     <span>Mobile Verwaltung (app-service-m)</span>
   </div>
   <div style="display:flex;gap:6px">
-    <button onclick="lockApp()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer">🔒 Zamknout</button>
-    <button onclick="exportData()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer">Záloha</button>
+    <button onclick="lockApp()" class="hdr-btn">🔒 Sperren</button>
+    <button onclick="exportData()" class="hdr-btn">Sicherung</button>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- VIEW 1: PŘEHLED -->
+  <!-- VIEW 1: UEBERSICHT -->
   <div id="v-prehled" class="view active">
     <div class="card" style="border-top-color:var(--br)">
-      <h2>Finanční přehled 2027</h2>
+      <h2>Finanzuebersicht 2027</h2>
       <div class="kpi-grid">
         <div class="kpi-box"><small>Einnahmen</small><b id="k-e">0.00 CHF</b></div>
         <div class="kpi-box"><small>Ausgaben</small><b id="k-a">0.00 CHF</b></div>
       </div>
-      <div class="kpi-box" style="background:#E3F4EA"><small style="color:var(--ok)">Gewinn</small><b id="k-g" style="color:var(--ok)">0.00 CHF</b></div>
+      <div class="kpi-box" style="background:#E3F4EA">
+        <small style="color:var(--ok)">Gewinn / Ertrag</small>
+        <b id="k-g" style="color:var(--ok)">0.00 CHF</b>
+      </div>
     </div>
 
     <div class="card">
-      <h2>Rychlý zápis z terénu</h2>
+      <h2>Schnellerfassung vor Ort</h2>
       <div class="form-group">
-        <label>Typ záznamu:</label>
+        <label>Eintragsart:</label>
         <select id="q-type">
-          <option value="ein">Einnahmen (Příjem)</option>
-          <option value="aus">Ausgaben (Výdaj)</option>
+          <option value="ein">Einnahme (Ertrag)</option>
+          <option value="aus">Ausgabe (Aufwand)</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Kdo / Klient / Místo:</label>
-        <input id="q-who" type="text" placeholder="např. Max Muster nebo Migrol Benzin">
+        <label>Kunde / Lieferant / Zweck:</label>
+        <input id="q-who" type="text" placeholder="z. B. Max Muster oder Migrol Tankstelle">
       </div>
       <div class="form-group">
-        <label>Částka (CHF):</label>
+        <label>Betrag in CHF:</label>
         <input id="q-amt" type="number" step="0.05" placeholder="0.00">
       </div>
-      <button class="btn" onclick="quickSave()">Uložit záznam</button>
+      <div class="form-group">
+        <label>Foto / Beleg anhaengen (optional):</label>
+        <div class="file-input-wrapper">
+          <label class="file-btn">
+            📷 Foto aufnehmen / wählen
+            <input type="file" id="q-img" accept="image/*" capture="environment" style="display:none" onchange="previewQuickPhoto(this)">
+          </label>
+          <img id="q-img-preview" class="photo-preview" alt="Beleg Vorschau">
+        </div>
+      </div>
+      <button class="btn" onclick="quickSave()">Eintrag speichern</button>
     </div>
   </div>
 
   <!-- VIEW 2: EINNAHMEN -->
   <div id="v-ein" class="view">
     <div class="card">
-      <h2>Einnahmen (Příjmy)</h2>
+      <h2>Einnahmen (Erträge)</h2>
       <div id="list-ein"></div>
     </div>
   </div>
@@ -111,45 +347,79 @@ input:focus,select:focus{border-color:var(--b);background:rgba(45,108,181,0.03)}
   <!-- VIEW 3: AUSGABEN -->
   <div id="v-aus" class="view">
     <div class="card">
-      <h2>Ausgaben (Výdaje)</h2>
+      <h2>Ausgaben (Aufwände)</h2>
       <div id="list-aus"></div>
     </div>
   </div>
 
-  <!-- VIEW 4: PROTOKOLY / NÁSTROJE -->
+  <!-- VIEW 4: WERKZEUGE & FORMULARE -->
   <div id="v-protokol" class="view">
     <div class="card">
-      <h2>Rychlé nástroje</h2>
-      <button class="btn btn-sec" onclick="alert('Modul pro předávací protokol a digitální podpis připravíme jako další krok!')">📄 Vytvořit předávací protokol</button>
-      <button class="btn btn-sec" onclick="alert('Kalkulačku cen pro terén připravíme jako další krok!')">🧮 Rychlá kalkulačka nabídky</button>
+      <h2>Werkzeuge &amp; Formulare</h2>
+
+      <div class="tool-card">
+        <h3>📄 Uebergabeprotokoll</h3>
+        <p>Protokoll für Endreinigung oder Transport inkl. Abnahme &amp; Abnahmegarantie.</p>
+        <button class="btn" onclick="openToolModal('uebergabe')">Protokoll erstellen</button>
+      </div>
+
+      <div class="tool-card">
+        <h3>🧮 Offerten-Rechner</h3>
+        <p>Schnelle Preiskalkulation vor Ort für Reinigung &amp; Umzug.</p>
+        <button class="btn" onclick="openToolModal('rechner')">Preis berechnen</button>
+      </div>
+
+      <div class="tool-card">
+        <h3>🧾 Barquittung</h3>
+        <p>Bestätigung für Barzahlung vom Kunden inkl. Foto des Belegs/Geldes.</p>
+        <button class="btn" onclick="openToolModal('quittung')">Quittung ausstellen</button>
+      </div>
+
+      <div class="tool-card">
+        <h3>✉️ Offerte-Formular</h3>
+        <p>Detailliertes Offerte-Formular für Offertenerstellung vor Ort.</p>
+        <button class="btn" onclick="openToolModal('offerte')">Offerte ausfüllen</button>
+      </div>
     </div>
   </div>
 
 </div>
 
-<!-- SPODNÍ MOBILNÍ NAVIGACE -->
+<!-- BOTTOM NAVIGATION -->
 <nav class="bottom-nav">
   <button class="active" onclick="switchView('prehled', this)">
     <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-    Přehled
+    Uebersicht
   </button>
   <button onclick="switchView('ein', this)">
     <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-    Příjmy
+    Einnahmen
   </button>
   <button onclick="switchView('aus', this)">
     <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
-    Výdaje
+    Ausgaben
   </button>
   <button onclick="switchView('protokol', this)">
     <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-    Protokoly
+    Formulare
   </button>
 </nav>
+
+<!-- MODAL FORM MODALS -->
+<div id="tool-modal" class="modal">
+  <div class="modal-content">
+    <div class="modal-hdr">
+      <h3 id="modal-title">Formular</h3>
+      <button class="close-btn" onclick="closeToolModal()">&times;</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
 
 <script>
 var PIN = "2518";
 var DB = { ein: [], aus: [] };
+var currentBase64Image = "";
 
 function checkPin() {
   var v = document.getElementById('pin-val').value;
@@ -168,12 +438,14 @@ function lockApp() {
   document.getElementById('pin-screen').style.display = 'flex';
 }
 
-// Auto-login if previously authorized
 if(localStorage.getItem('app_service_m_auth') === 'true') {
   document.getElementById('pin-screen').style.display = 'none';
 }
 
-try { var saved = localStorage.getItem('app_service_m_db'); if(saved) DB = JSON.parse(saved); } catch(e){}
+try {
+  var saved = localStorage.getItem('app_service_m_db');
+  if(saved) DB = JSON.parse(saved);
+} catch(e){}
 
 function saveDB() {
   localStorage.setItem('app_service_m_db', JSON.stringify(DB));
@@ -188,56 +460,143 @@ function switchView(id, btn) {
   window.scrollTo(0,0);
 }
 
+function previewQuickPhoto(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      currentBase64Image = e.target.result;
+      var prev = document.getElementById('q-img-preview');
+      prev.src = currentBase64Image;
+      prev.style.display = 'block';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
 function quickSave() {
   var type = document.getElementById('q-type').value;
   var who = document.getElementById('q-who').value;
   var amt = parseFloat(document.getElementById('q-amt').value);
-  
+
   if(!who || isNaN(amt) || amt <= 0) {
-    alert('Zadejte platný název a částku.');
+    alert('Bitte geben Sie einen gültigen Namen und Betrag ein.');
     return;
   }
 
   DB[type].push({
     date: new Date().toISOString().slice(0,10),
     who: who,
-    amt: amt
+    amt: amt,
+    img: currentBase64Image || null
   });
 
   document.getElementById('q-who').value = '';
   document.getElementById('q-amt').value = '';
+  document.getElementById('q-img').value = '';
+  document.getElementById('q-img-preview').style.display = 'none';
+  currentBase64Image = "";
+  
   saveDB();
-  alert('Úspěšně uloženo!');
+  alert('Eintrag erfolgreich gespeichert!');
 }
 
 function refreshUI() {
   let te = 0, ta = 0;
   let htmlEin = '', htmlAus = '';
 
-  DB.ein.forEach(item => {
+  DB.ein.forEach((item, idx) => {
     te += item.amt;
-    htmlEin += `<div class="list-item"><div><b>${item.who}</b><span>${item.date}</span></div><div class="amt">+${item.amt.toFixed(2)} CHF</div></div>`;
+    var photoTag = item.img ? `<button onclick="viewPhoto('${item.img}')" style="font-size:10px;padding:3px 6px;margin-top:4px;" class="btn btn-sec">📷 Beleg zeigen</button>` : '';
+    htmlEin += `<div class="list-item"><div><b>${item.who}</b><span>${item.date}</span>${photoTag}</div><div class="amt">+${item.amt.toFixed(2)} CHF</div></div>`;
   });
-  DB.aus.forEach(item => {
+
+  DB.aus.forEach((item, idx) => {
     ta += item.amt;
-    htmlAus += `<div class="list-item"><div><b>${item.who}</b><span>${item.date}</span></div><div class="amt" style="color:var(--bad)">-${item.amt.toFixed(2)} CHF</div></div>`;
+    var photoTag = item.img ? `<button onclick="viewPhoto('${item.img}')" style="font-size:10px;padding:3px 6px;margin-top:4px;" class="btn btn-sec">📷 Beleg zeigen</button>` : '';
+    htmlAus += `<div class="list-item"><div><b>${item.who}</b><span>${item.date}</span>${photoTag}</div><div class="amt" style="color:var(--bad)">-${item.amt.toFixed(2)} CHF</div></div>`;
   });
 
   document.getElementById('k-e').textContent = te.toFixed(2) + ' CHF';
   document.getElementById('k-a').textContent = ta.toFixed(2) + ' CHF';
   document.getElementById('k-g').textContent = (te - ta).toFixed(2) + ' CHF';
 
-  document.getElementById('list-ein').innerHTML = htmlEin || '<p style="color:#777;font-size:12px;text-align:center;padding:10px">Zatím žádné příjmy.</p>';
-  document.getElementById('list-aus').innerHTML = htmlAus || '<p style="color:#777;font-size:12px;text-align:center;padding:10px">Zatím žádné výdaje.</p>';
+  document.getElementById('list-ein').innerHTML = htmlEin || '<p style="color:#777;font-size:12px;text-align:center;padding:10px">Noch keine Einnahmen erfasst.</p>';
+  document.getElementById('list-aus').innerHTML = htmlAus || '<p style="color:#777;font-size:12px;text-align:center;padding:10px">Noch keine Ausgaben erfasst.</p>';
+}
+
+function viewPhoto(imgSrc) {
+  var w = window.open("");
+  w.document.write(`<img src="${imgSrc}" style="max-width:100%;height:auto;display:block;margin:20px auto;">`);
 }
 
 function exportData() {
   var b = new Blob([JSON.stringify(DB, null, 2)], {type:'application/json'});
   var a = document.createElement('a');
   a.href = URL.createObjectURL(b);
-  a.download = 'app_service_m_zaloha.json';
+  a.download = 'app_service_m_sicherung.json';
   a.click();
 }
 
+/* Formular Modals Handler */
+function openToolModal(type) {
+  var title = document.getElementById('modal-title');
+  var body = document.getElementById('modal-body');
+  
+  if (type === 'uebergabe') {
+    title.textContent = 'Uebergabeprotokoll (Reinigung & Transport)';
+    body.innerHTML = `
+      <div class="form-group"><label>Kundenname:</label><input type="text" placeholder="Vorname Nachname"></div>
+      <div class="form-group"><label>Objektadresse:</label><input type="text" placeholder="Strasse, PLZ Ort"></div>
+      <div class="form-group"><label>Leistung:</label>
+        <select><option>Endreinigung mit Abnahmegarantie</option><option>Transport / Umzug</option><option>Unterhaltsreinigung</option></select>
+      </div>
+      <div class="form-group"><label>Bemerkungen / Mängel:</label><textarea rows="3" placeholder="Zustand, vorhandenene Schäden..."></textarea></div>
+      <button class="btn" onclick="alert('Uebergabeprotokoll gespeichert!'); closeToolModal();">Protokoll erstellen &amp; Speichern</button>
+    `;
+  } else if (type === 'rechner') {
+    title.textContent = 'Offerten-Rechner (Express)';
+    body.innerHTML = `
+      <div class="form-group"><label>Anzahl Zimmer / Quadratmeter:</label><input type="text" placeholder="z. B. 3.5 Zimmer / 85 m2"></div>
+      <div class="form-group"><label>Geschätzte Stunden:</label><input type="number" id="calc-h" placeholder="8" oninput="calcPrice()"></div>
+      <div class="form-group"><label>Stundensatz (CHF):</label><input type="number" id="calc-rate" value="65" oninput="calcPrice()"></div>
+      <div style="background:var(--l);padding:10px;border-radius:6px;margin-bottom:10px;text-align:center">
+        <small>Geschätzter Gesamtbetrag:</small><br><b id="calc-res" style="font-size:18px;color:var(--br)">520.00 CHF</b>
+      </div>
+      <button class="btn" onclick="closeToolModal()">Schliessen</button>
+    `;
+  } else if (type === 'quittung') {
+    title.textContent = 'Barquittung / Barzahlungsbestätigung';
+    body.innerHTML = `
+      <div class="form-group"><label>Kunde / Empfänger:</label><input type="text" placeholder="Kundenname"></div>
+      <div class="form-group"><label>Betrag in CHF:</label><input type="number" step="0.05" placeholder="0.00"></div>
+      <div class="form-group"><label>Für Leistung:</label><input type="text" placeholder="z. B. Barzahlung Endreinigung"></div>
+      <div class="form-group"><label>Foto der Quittung / des Geldes:</label><input type="file" accept="image/*" capture="environment"></div>
+      <button class="btn" onclick="alert('Barquittung erstellt!'); closeToolModal();">Quittung erstellen</button>
+    `;
+  } else if (type === 'offerte') {
+    title.textContent = 'Offerte-Formular vor Ort';
+    body.innerHTML = `
+      <div class="form-group"><label>Kunde Name &amp; Adresse:</label><input type="text" placeholder="Max Muster, Hauptstrasse 1, 8000 Zürich"></div>
+      <div class="form-group"><label>Beschreibung der Arbeiten:</label><textarea rows="3" placeholder="Reinigung 4.5 Zimmer Wohnung inkl. Fenster und Balkon..."></textarea></div>
+      <div class="form-group"><label>Fixpreis / Pauschale (CHF):</label><input type="number" placeholder="0.00"></div>
+      <button class="btn" onclick="alert('Offerte erstellt!'); closeToolModal();">Offerte generieren</button>
+    `;
+  }
+  
+  document.getElementById('tool-modal').style.display = 'flex';
+}
+
+function calcPrice() {
+  var h = parseFloat(document.getElementById('calc-h').value) || 0;
+  var r = parseFloat(document.getElementById('calc-rate').value) || 0;
+  document.getElementById('calc-res').textContent = (h * r).toFixed(2) + ' CHF';
+}
+
+function closeToolModal() {
+  document.getElementById('tool-modal').style.display = 'none';
+}
+
 refreshUI();
-</script></body></html>
+</script>
+</body>
+</html>
