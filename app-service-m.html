@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="M Service">
 <link rel="apple-touch-icon" href="logo.PNG">
-<title>Mejstrik Transport & Reinigung Service</title>
+<title>M Service - Rapport & Quittung</title>
 <script>
 if (/bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(navigator.userAgent)) {
   window.location.href = "about:blank";
@@ -30,12 +30,7 @@ if (/bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(navigator.u
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
-html {
-  background: #eef1f5;
-  height: 100%;
-}
-
+html { background: #eef1f5; height: 100%; }
 body {
   font: 13.5px/1.35 Arial, Helvetica, sans-serif;
   color: #2a2a2a;
@@ -46,14 +41,13 @@ body {
   overflow-x: hidden;
 }
 
-/* PIN Screen */
+/* PIN Obrazovka */
 #pin-screen {
   position: fixed; top: 0; left: 0; right: 0; bottom: 0;
   background: var(--n);
   z-index: 99999;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 20px;
-  color: #fff;
+  padding: 20px; color: #fff;
 }
 #pin-screen img.app-logo { width: 75px; height: 75px; margin-bottom: 12px; border-radius: 14px; object-fit: cover; }
 #pin-screen h2 { font-size: 20px; margin-bottom: 6px; }
@@ -90,7 +84,7 @@ header img.hdr-logo { width: 32px; height: 32px; object-fit: contain; }
 header .title-text { font-size: 13.5px; font-weight: bold; color: var(--br); line-height: 1.2; }
 header .title-text span { display: block; font-size: 10.5px; color: var(--g); font-weight: normal; }
 
-/* Main Content Area */
+/* Main Content */
 main.app-content {
   width: 100%;
   max-width: 600px;
@@ -98,7 +92,7 @@ main.app-content {
   padding: 12px;
 }
 
-/* Fixed Bottom Navigation */
+/* Fixed Bottom Nav */
 nav.app-nav {
   position: fixed; bottom: 0; left: 0; right: 0;
   background: #fff; border-top: 1px solid var(--bd);
@@ -109,7 +103,7 @@ nav.app-nav {
 }
 .nav-item {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  font-size: 10px; color: var(--g); background: none; border: none; flex: 1; height: 100%; cursor: pointer;
+  font-size: 11px; color: var(--g); background: none; border: none; flex: 1; height: 100%; cursor: pointer;
 }
 .nav-item svg { width: 20px; height: 20px; fill: currentColor; margin-bottom: 2px; }
 .nav-item.active { color: var(--br); font-weight: bold; }
@@ -117,7 +111,7 @@ nav.app-nav {
 .view-panel { display: none; }
 .view-panel.active { display: block; }
 
-/* Dokumentové karty */
+/* Cards & Form Elements */
 .doc-card {
   background: #fff; border-radius: 10px; padding: 14px; margin-bottom: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 4px solid var(--o);
@@ -129,18 +123,19 @@ input[type="text"], input[type="date"], input[type="number"], select, textarea {
   font: 14px Arial, sans-serif; color: #000; border: 0; border-bottom: 1px solid var(--ln);
   background: var(--l); padding: 8px; border-radius: 4px; width: 100%; outline: none;
 }
-input:focus, select:focus, textarea:focus { background: #fff; border-color: var(--b); }
+input:focus, select:focus { background: #fff; border-color: var(--b); }
 
 .btn {
   font: bold 13px Arial; border: 0; background: var(--b); color: #fff;
-  border-radius: 8px; padding: 10px 14px; cursor: pointer; width: 100%; margin-top: 6px;
+  border-radius: 8px; padding: 10px 14px; cursor: pointer; width: 100%; margin-top: 8px;
 }
 .btn-sec { background: var(--l); color: var(--n); border: 1px solid var(--bd); }
 
-table.mobile-tbl { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 10px; }
-table.mobile-tbl th { background: var(--b); color: #fff; font-size: 11px; padding: 6px; text-align: left; }
-table.mobile-tbl td { padding: 6px; border-bottom: 1px solid var(--bd); font-size: 12px; }
-table.mobile-tbl tr:nth-child(even) td { background: var(--l); }
+/* Podpisy štýl */
+.sig-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; border-top: 1px dashed var(--bd); padding-top: 12px; }
+.sig-field { background: var(--l); padding: 8px; border-radius: 6px; border: 1px solid var(--bd); }
+.sig-field label { font-size: 10.5px; font-weight: bold; color: var(--g); display: block; margin-bottom: 4px; }
+.sig-line { border-bottom: 1px solid #7F94B5; height: 30px; display: flex; align-items: flex-end; font-style: italic; color: #1E3A6D; font-weight: bold; font-size: 13px; padding-bottom: 2px; }
 
 @media print {
   #pin-screen, header.app-header, nav.app-nav, .noprint { display: none !important; }
@@ -189,125 +184,105 @@ table.mobile-tbl tr:nth-child(even) td { background: var(--l); }
         <span>CH-8586 Ennetaach</span>
       </div>
     </div>
-    <button class="btn btn-sec noprint" style="width:auto; padding:6px 10px; font-size:11px; margin:0;" onclick="confirmPrint()">🖨️ Drucken</button>
+    <button class="btn btn-sec noprint" style="width:auto; padding:6px 10px; font-size:11px; margin:0;" onclick="switchTab('settings', document.getElementById('nav-set'))">⚙️ Einstellungen</button>
   </header>
 
   <main class="app-content">
     
-    <!-- 1. BUCHHALTUNG -->
-    <div id="view-buchhaltung" class="view-panel active">
+    <!-- 1. ARBEITSRAPPORT -->
+    <div id="view-rapport" class="view-panel active">
       <div class="doc-card">
-        <h2>Buchhaltung 2027 – Übersicht</h2>
-        <div class="form-row">
-          <label>Geschäftsjahr:</label>
-          <input type="number" id="bh-year" value="2027" onchange="renderBuchhaltung()">
+        <h2>Arbeitsrapport erstellen</h2>
+        <div class="form-row"><label>Nummer / Zakázka:</label><input type="text" id="rap-nr" value="2027-R01"></div>
+        <div class="form-row"><label>Datum:</label><input type="date" id="rap-date"></div>
+        <div class="form-row"><label>Vorname & Nachname (Kunde):</label><input type="text" id="rap-cust" placeholder="Hans Muster"></div>
+        <div class="form-row"><label>Arbeitsstunden (Total):</label><input type="number" id="rap-hrs" placeholder="z. B. 4.5"></div>
+        <div class="form-row"><label>Beschreibung / Einsatzort:</label><textarea id="rap-desc" rows="2" placeholder="Umzugsreinigung / Transport"></textarea></div>
+
+        <div class="sig-box">
+          <div class="sig-field">
+            <label>Unterschrift Auftragnehmer:</label>
+            <div class="sig-line" id="disp-owner-sig-rap">Daniel Mejstrik</div>
+          </div>
+          <div class="sig-field">
+            <label>Unterschrift Kunde:</label>
+            <div class="sig-line" id="disp-cust-sig-rap">----------------------</div>
+            <input type="text" placeholder="Kunde Name eintippen" style="margin-top:6px; font-size:11px;" oninput="document.getElementById('disp-cust-sig-rap').textContent=this.value||'----------------------'">
+          </div>
         </div>
-        <table class="mobile-tbl">
-          <tr><td><b>Einnahmen Total</b></td><td style="text-align:right" id="th-ein">CHF 0.00</td></tr>
-          <tr><td><b>Ausgaben Total</b></td><td style="text-align:right" id="th-aus">CHF 0.00</td></tr>
-          <tr style="background:var(--l)"><td><b>Gewinn / Verlust</b></td><td style="text-align:right; font-weight:bold; color:var(--o);" id="th-gewinn">CHF 0.00</td></tr>
-        </table>
-        <button class="btn btn-sec" onclick="saveData()">💾 Daten lokal sichern (JSON)</button>
-      </div>
 
-      <div class="doc-card">
-        <h2>Einnahmen verwalten</h2>
-        <div id="ein-rows"></div>
-        <button class="btn" onclick="addEinRow()">+ Einnahme hinzufügen</button>
-      </div>
-
-      <div class="doc-card">
-        <h2>Ausgaben verwalten</h2>
-        <div id="aus-rows"></div>
-        <button class="btn" onclick="addAusRow()">+ Ausgabe hinzufügen</button>
+        <button class="btn" onclick="printRapport()">📄 Arbeitsrapport A4 Drucken / PDF</button>
       </div>
     </div>
 
-    <!-- 2. OFFRETEN -->
-    <div id="view-offerten" class="view-panel">
+    <!-- 2. QUITTUNG -->
+    <div id="view-quittung" class="view-panel">
       <div class="doc-card">
-        <h2>Offerte erstellen</h2>
-        <div class="form-row">
-          <label>Offerten-Typ:</label>
-          <select id="off-typ">
-            <option value="Umzugsreinigung">Umzugsreinigung (Endreinigung bezugsfertig)</option>
-            <option value="Gebäudereinigung">Gebäudereinigung (Liegenschaften / Büros)</option>
-            <option value="Unterhaltsreinigung">Unterhaltsreinigung (Regelmässig)</option>
-            <option value="Grundreinigung">Grundreinigung (Einmalig)</option>
+        <h2>Quittung (Bar / TWINT / Karte)</h2>
+        <div class="form-row"><label>Beleg-Nr.:</label><input type="text" id="q-nr" value="2027-Q01"></div>
+        <div class="form-row"><label>Datum:</label><input type="date" id="q-date"></div>
+        <div class="form-row"><label>Vorname & Nachname (Kunde):</label><input type="text" id="q-cust" placeholder="Hans Muster"></div>
+        <div class="form-row"><label>Zahlungsart:</label>
+          <select id="q-pay">
+            <option value="Barbezahlung">Bar</option>
+            <option value="TWINT">TWINT</option>
+            <option value="Banküberweisung">Banküberweisung</option>
+            <option value="Kartenzahlung">Karte</option>
           </select>
         </div>
-        <div class="form-row"><label>Offerten-Nr.:</label><input type="text" id="off-nr" value="2027-01"></div>
-        <div class="form-row"><label>Vorname & Nachname:</label><input type="text" id="off-name" placeholder="Hans Muster"></div>
-        <div class="form-row"><label>Strasse & Nr.:</label><input type="text" id="off-str" placeholder="Musterstrasse 12"></div>
-        <div class="form-row"><label>PLZ & Ort:</label><input type="text" id="off-plz" placeholder="8586 Ennetaach"></div>
-        <div class="form-row"><label>Pauschalpreis CHF:</label><input type="text" id="off-pr" value="ab CHF 650.00"></div>
-        <button class="btn" onclick="printOfferteDoc()">📄 Offerte A4 generieren & drucken</button>
+        <div class="form-row"><label>Preis CHF:</label><input type="text" id="q-price" placeholder="450.00"></div>
+        <div class="form-row"><label>Leistungsbeschreibung:</label><textarea id="q-desc" rows="2" placeholder="Bezahlung für Umzugsreinigung"></textarea></div>
+
+        <div class="sig-box">
+          <div class="sig-field">
+            <label>Unterschrift Aussteller:</label>
+            <div class="sig-line" id="disp-owner-sig-q">Daniel Mejstrik</div>
+          </div>
+          <div class="sig-field">
+            <label>Unterschrift Kunde (Empfang):</label>
+            <div class="sig-line" id="disp-cust-sig-q">----------------------</div>
+            <input type="text" placeholder="Kunde Name eintippen" style="margin-top:6px; font-size:11px;" oninput="document.getElementById('disp-cust-sig-q').textContent=this.value||'----------------------'">
+          </div>
+        </div>
+
+        <button class="btn" onclick="printQuittung()">📄 Quittung A4 Drucken / PDF</button>
       </div>
     </div>
 
-    <!-- 3. ARBEITSRAPPORT -->
-    <div id="view-rapport" class="view-panel">
+    <!-- 3. EINSTELLUNGEN (Podpis) -->
+    <div id="view-settings" class="view-panel">
       <div class="doc-card">
-        <h2>Arbeitsrapport</h2>
-        <div class="form-row"><label>Mitarbeiterin:</label><input type="text" id="rap-mitarbeiter" placeholder="Name Vorname"></div>
-        <div class="form-row"><label>Monat / Jahr:</label><input type="text" id="rap-monat" value="Oktober 2026"></div>
-        <div class="form-row"><label>Lohn CHF/h:</label><input type="number" id="rap-lohn" value="30.00" oninput="calcRapportTotal()"></div>
-
-        <h3 style="font-size:13px; color:var(--n); margin:12px 0 6px;">Einsatzstunden</h3>
-        <div id="rap-rows"></div>
-        <button class="btn btn-sec" style="margin-bottom:10px" onclick="addRapRow()">+ Einsatzzeile hinzufügen</button>
-
-        <table class="mobile-tbl">
-          <tr><td><b>Total Stunden:</b></td><td style="text-align:right" id="rap-tot-h">0.00 h</td></tr>
-          <tr style="background:#EAF3FC"><td><b>Bruttolohn Total:</b></td><td style="text-align:right; font-weight:bold; color:var(--n);" id="rap-tot-b">CHF 0.00</td></tr>
-        </table>
-        <button class="btn" onclick="printRapportDoc()">📄 Arbeitsrapport A4 drucken</button>
-      </div>
-    </div>
-
-    <!-- 4. RECHNUNG -->
-    <div id="view-rechnung" class="view-panel">
-      <div class="doc-card">
-        <h2>Rechnung</h2>
-        <div class="form-row"><label>Rechnungs-Nr.:</label><input type="text" id="rg-num" value="2027-001"></div>
-        <div class="form-row"><label>Datum:</label><input type="date" id="rg-dat"></div>
-        <div class="form-row"><label>Zahlbar bis:</label><input type="date" id="rg-due"></div>
-        <div class="form-row"><label>Kunde Name & Adresse:</label><textarea id="rg-adr" rows="3" placeholder="Hans Muster&#10;Hauptstrasse 1&#10;8586 Ennetaach"></textarea></div>
-
-        <h3 style="font-size:13px; color:var(--n); margin:12px 0 6px;">Leistungspositionen</h3>
-        <div id="rg-pos"></div>
-        <button class="btn btn-sec" style="margin-bottom:10px" onclick="addRgPos()">+ Position hinzufügen</button>
-
-        <table class="mobile-tbl">
-          <tr style="background:#EAF3FC"><td><b>Totalbetrag CHF:</b></td><td style="text-align:right; font-weight:bold; color:var(--n);" id="rg-tot-val">CHF 0.00</td></tr>
-        </table>
-        <button class="btn" onclick="printRechnungDoc()">📄 Rechnung A4 drucken</button>
+        <h2>Einstellungen & Signatur</h2>
+        <div class="form-row">
+          <label>Ihr Standard-Name / Unterschrift (Aussteller):</label>
+          <input type="text" id="set-owner" value="Daniel Mejstrik" oninput="updateOwnerSignature(this.value)">
+        </div>
+        <p style="font-size:11.5px; color:var(--g); margin-top:8px;">Tento podpis sa automaticky použije na všetkých vygenerovaných dokumentoch Arbeitsrapport a Quittung.</p>
+        <button class="btn" style="margin-top:15px;" onclick="saveSettings()">💾 Speichern</button>
       </div>
     </div>
 
   </main>
 
+  <!-- Spodná navigácia -->
   <nav class="app-nav noprint">
-    <button class="nav-item active" onclick="switchTab('buchhaltung', this)">
-      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-      Buchhaltung
-    </button>
-    <button class="nav-item" onclick="switchTab('offerten', this)">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-      Offerte
-    </button>
-    <button class="nav-item" onclick="switchTab('rapport', this)">
+    <button class="nav-item active" onclick="switchTab('rapport', this)">
       <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
       Rapport
     </button>
-    <button class="nav-item" onclick="switchTab('rechnung', this)">
+    <button class="nav-item" onclick="switchTab('quittung', this)">
       <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-      Rechnung
+      Quittung
+    </button>
+    <button class="nav-item" id="nav-set" onclick="switchTab('settings', this)">
+      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+      Einstellung
     </button>
   </nav>
 </div>
 
 <script>
+// PIN Logic
 let pinInput = "";
 const correctPin = "2518";
 
@@ -315,9 +290,7 @@ function pressKey(n) {
   if (pinInput.length < 4) {
     pinInput += n;
     updatePinDots();
-    if (pinInput.length === 4) {
-      setTimeout(verifyPin, 150);
-    }
+    if (pinInput.length === 4) setTimeout(verifyPin, 150);
   }
 }
 function clearPin() { pinInput = ""; updatePinDots(); }
@@ -345,181 +318,98 @@ function switchTab(id, btn) {
   document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
   document.getElementById('view-' + id).classList.add('active');
-  btn.classList.add('active');
+  if(btn) btn.classList.add('active');
   window.scrollTo(0, 0);
 }
 
-function confirmPrint() {
-  if (confirm("Möchten Sie das Dokument drucken oder als PDF sichern?")) {
-    window.print();
-  }
+function updateOwnerSignature(val) {
+  document.getElementById('disp-owner-sig-rap').textContent = val || 'Daniel Mejstrik';
+  document.getElementById('disp-owner-sig-q').textContent = val || 'Daniel Mejstrik';
 }
 
-let db = { ein: [], aus: [] };
-
-function renderBuchhaltung() {
-  let totEin = db.ein.reduce((s, x) => s + (parseFloat(x.amt) || 0), 0);
-  let totAus = db.aus.reduce((s, x) => s + (parseFloat(x.amt) || 0), 0);
-  document.getElementById('th-ein').textContent = 'CHF ' + totEin.toFixed(2);
-  document.getElementById('th-aus').textContent = 'CHF ' + totAus.toFixed(2);
-  let g = totEin - totAus;
-  document.getElementById('th-gewinn').textContent = 'CHF ' + g.toFixed(2);
-}
-
-function addEinRow() {
-  db.ein.push({ desc: '', amt: 0 });
-  buildEinUI();
-  renderBuchhaltung();
-}
-function buildEinUI() {
-  let c = document.getElementById('ein-rows');
-  c.innerHTML = '';
-  db.ein.forEach((item, idx) => {
-    let d = document.createElement('div');
-    d.style.cssText = "display:flex; gap:6px; margin-bottom:6px; align-items:center;";
-    d.innerHTML = `<input type="text" placeholder="Kunde / Beschreibung" value="${item.desc}" oninput="db.ein[${idx}].desc=this.value" style="flex:2">
-                   <input type="number" placeholder="CHF" value="${item.amt}" oninput="db.ein[${idx}].amt=this.value; renderBuchhaltung()" style="flex:1">
-                   <button onclick="db.ein.splice(${idx},1); buildEinUI(); renderBuchhaltung();" style="background:none;border:0;color:var(--bad);font-weight:bold;font-size:16px;">×</button>`;
-    c.appendChild(d);
-  });
-}
-
-function addAusRow() {
-  db.aus.push({ desc: '', amt: 0 });
-  buildAusUI();
-  renderBuchhaltung();
-}
-function buildAusUI() {
-  let c = document.getElementById('aus-rows');
-  c.innerHTML = '';
-  db.aus.forEach((item, idx) => {
-    let d = document.createElement('div');
-    d.style.cssText = "display:flex; gap:6px; margin-bottom:6px; align-items:center;";
-    d.innerHTML = `<input type="text" placeholder="Grund / Lieferant" value="${item.desc}" oninput="db.aus[${idx}].desc=this.value" style="flex:2">
-                   <input type="number" placeholder="CHF" value="${item.amt}" oninput="db.aus[${idx}].amt=this.value; renderBuchhaltung()" style="flex:1">
-                   <button onclick="db.aus.splice(${idx},1); buildAusUI(); renderBuchhaltung();" style="background:none;border:0;color:var(--bad);font-weight:bold;font-size:16px;">×</button>`;
-    c.appendChild(d);
-  });
-}
-
-function saveData() {
-  localStorage.setItem('m_service_app', JSON.stringify(db));
-  alert("Daten erfolgreich auf dem iPhone gesichert.");
-}
-
-function addRapRow() {
-  let c = document.getElementById('rap-rows');
-  let d = document.createElement('div');
-  d.style.cssText = "display:flex; gap:6px; margin-bottom:6px; align-items:center;";
-  d.innerHTML = `<input type="text" placeholder="Datum (TT.MM.)" style="width:90px">
-                 <input type="text" placeholder="Kunde / Einsatzort" style="flex:2">
-                 <input type="number" placeholder="Std." class="rap-h" oninput="calcRapportTotal()" style="width:70px">`;
-  c.appendChild(d);
-}
-
-function calcRapportTotal() {
-  let sum = 0;
-  document.querySelectorAll('.rap-h').forEach(el => sum += parseFloat(el.value) || 0);
-  let lohn = parseFloat(document.getElementById('rap-lohn').value) || 0;
-  document.getElementById('rap-tot-h').textContent = sum.toFixed(2) + ' h';
-  document.getElementById('rap-tot-b').textContent = 'CHF ' + (sum * lohn).toFixed(2);
-}
-
-function addRgPos() {
-  let c = document.getElementById('rg-pos');
-  let d = document.createElement('div');
-  d.style.cssText = "display:flex; gap:6px; margin-bottom:6px; align-items:center;";
-  d.innerHTML = `<input type="text" placeholder="Beschreibung der Leistung" style="flex:2">
-                 <input type="number" placeholder="CHF" class="rg-p" oninput="calcRgTotal()" style="flex:1">`;
-  c.appendChild(d);
-}
-
-function calcRgTotal() {
-  let sum = 0;
-  document.querySelectorAll('.rg-p').forEach(el => sum += parseFloat(el.value) || 0);
-  document.getElementById('rg-tot-val').textContent = 'CHF ' + sum.toFixed(2);
-}
-
-function printOfferteDoc() {
-  let typ = document.getElementById('off-typ').value;
-  let name = document.getElementById('off-name').value || 'Kunde';
-  let str = document.getElementById('off-str').value || '';
-  let plz = document.getElementById('off-plz').value || '';
-  let pr = document.getElementById('off-pr').value || '';
-  let nr = document.getElementById('off-nr').value || '';
-
-  let win = window.open('', '_blank');
-  win.document.write(`<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Offerte ${nr}</title>
-  <style>body{font-family:Arial,sans-serif;padding:15mm;font-size:10pt;color:#2a2a2a;}
-  h1{color:#1E3A6D;font-size:18pt;margin:0 0 4px;}
-  .sub{color:#1F4EA8;font-weight:bold;font-size:11pt;border-left:3px solid #F57C00;padding-left:6px;margin-bottom:15px;}
-  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:10px;margin-bottom:15px;}
-  table{width:100%;border-collapse:collapse;margin-bottom:15px;}
-  th{background:#2D6CB5;color:#fff;padding:6px;text-align:left;font-size:9pt;}
-  td{padding:6px;border-bottom:1px solid #D6DFEA;font-size:9pt;}
-  .tot{background:#EAF3FC;padding:10px;font-weight:bold;color:#1E3A6D;font-size:11pt;display:flex;justify-content:space-between;}
-  </style></head><body>
-  <h1>OFFERTE</h1>
-  <div class="sub">${typ}</div>
-  <div class="box"><b>Empfänger:</b><br>${name}<br>${str}<br>${plz}</div>
-  <table><tr><th>Leistungsumfang</th><th>Details</th></tr>
-  <tr><td><b>Ausführung</b></td><td>Inklusive sämtlicher professioneller Reinigungsmittel, Spezialgeräte sowie Anfahrtskosten.</td></tr></table>
-  <div class="tot"><span>Pauschalpreis Total:</span><span>${pr}</span></div>
-  <p style="margin-top:25px">Freundliche Grüsse<br><b>Mejstrik Transport & Reinigung Service</b> · CH-8586 Ennetaach</p>
-  <script>if(confirm('Dokument drucken oder als PDF speichern?')) window.print();<\/script>
-  </body></html>`);
-}
-
-function printRapportDoc() {
-  let mit = document.getElementById('rap-mitarbeiter').value || 'Mitarbeiterin';
-  let mon = document.getElementById('rap-monat').value || '';
-  let th = document.getElementById('rap-tot-h').textContent;
-  let tb = document.getElementById('rap-tot-b').textContent;
-
-  let win = window.open('', '_blank');
-  win.document.write(`<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Arbeitsrapport</title>
-  <style>body{font-family:Arial,sans-serif;padding:15mm;font-size:10pt;color:#2a2a2a;}
-  h1{color:#1E3A6D;font-size:18pt;margin:0 0 4px;}
-  .sub{color:#1F4EA8;font-weight:bold;font-size:11pt;border-left:3px solid #F57C00;padding-left:6px;margin-bottom:15px;}
-  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:10px;margin-bottom:15px;}
-  .tot{background:#EAF3FC;padding:10px;font-weight:bold;color:#1E3A6D;font-size:11pt;display:flex;justify-content:space-between;}
-  </style></head><body>
-  <h1>ARBEITSRAPPORT</h1>
-  <div class="sub">Mitarbeiterin: ${mit} | Zeitraum: ${mon}</div>
-  <div class="box">Geleistete Arbeitsstunden total: <b>${th}</b></div>
-  <div class="tot"><span>Bruttolohn Total:</span><span>${tb}</span></div>
-  <script>if(confirm('Arbeitsrapport drucken oder als PDF speichern?')) window.print();<\/script>
-  </body></html>`);
-}
-
-function printRechnungDoc() {
-  let nr = document.getElementById('rg-num').value || '';
-  let adr = document.getElementById('rg-adr').value || '';
-  let tot = document.getElementById('rg-tot-val').textContent;
-
-  let win = window.open('', '_blank');
-  win.document.write(`<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Rechnung ${nr}</title>
-  <style>body{font-family:Arial,sans-serif;padding:15mm;font-size:10pt;color:#2a2a2a;}
-  h1{color:#1E3A6D;font-size:18pt;margin:0 0 4px;}
-  .sub{color:#1F4EA8;font-weight:bold;font-size:11pt;border-left:3px solid #F57C00;padding-left:6px;margin-bottom:15px;}
-  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:10px;margin-bottom:15px;white-space:pre-line;}
-  .tot{background:#EAF3FC;padding:10px;font-weight:bold;color:#1E3A6D;font-size:11pt;display:flex;justify-content:space-between;}
-  </style></head><body>
-  <h1>RECHNUNG</h1>
-  <div class="sub">Rechnungs-Nr: ${nr}</div>
-  <div class="box"><b>Rechnungsempfänger:</b>\n${adr}</div>
-  <div class="tot"><span>Totalbetrag CHF:</span><span>${tot}</span></div>
-  <p style="margin-top:25px">Besten Dank für Ihren Auftrag.<br><b>Mejstrik Transport & Reinigung Service</b> · CH-8586 Ennetaach</p>
-  <script>if(confirm('Rechnung drucken oder als PDF speichern?')) window.print();<\/script>
-  </body></html>`);
+function saveSettings() {
+  let name = document.getElementById('set-owner').value;
+  localStorage.setItem('m_service_owner', name);
+  alert("Einstellungen gespeichert.");
+  switchTab('rapport', document.querySelector('.nav-item'));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  addEinRow();
-  addAusRow();
-  addRapRow();
-  addRgPos();
+  let today = new Date().toISOString().slice(0, 10);
+  document.getElementById('rap-date').value = today;
+  document.getElementById('q-date').value = today;
+
+  let savedOwner = localStorage.getItem('m_service_owner');
+  if (savedOwner) {
+    document.getElementById('set-owner').value = savedOwner;
+    updateOwnerSignature(savedOwner);
+  }
 });
+
+// Generovanie A4 tiskového náhľadu pro Arbeitsrapport
+function printRapport() {
+  if(!confirm("Möchten Sie diesen Arbeitsrapport drucken oder als PDF speichern?")) return;
+  let nr = document.getElementById('rap-nr').value;
+  let date = document.getElementById('rap-date').value;
+  let cust = document.getElementById('rap-cust').value;
+  let hrs = document.getElementById('rap-hrs').value;
+  let desc = document.getElementById('rap-desc').value;
+  let owner = document.getElementById('set-owner').value || 'Daniel Mejstrik';
+  let custSign = document.getElementById('disp-cust-sig-rap').textContent;
+
+  let win = window.open('', '_blank');
+  win.document.write(`<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Arbeitsrapport ${nr}</title>
+  <style>body{font-family:Arial,sans-serif;padding:20mm;font-size:10.5pt;color:#2a2a2a;}
+  h1{color:#1E3A6D;font-size:20pt;margin:0 0 5px;}
+  .sub{color:#1F4EA8;font-weight:bold;font-size:12pt;border-left:4px solid #F57C00;padding-left:8px;margin-bottom:20px;}
+  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:12px;margin-bottom:15px;}
+  .sig{display:flex;justify-content:space-between;margin-top:40px;}
+  .sig-block{width:45%;border-top:1px solid #7F94B5;padding-top:6px;font-weight:bold;font-style:italic;color:#1E3A6D;}
+  </style></head><body>
+  <h1>ARBEITSRAPPORT</h1>
+  <div class="sub">Zakázka-Nr: ${nr} | Datum: ${date}</div>
+  <div class="box"><b>Kunde:</b> ${cust}<br><br><b>Arbeitsstunden:</b> ${hrs} h<br><br><b>Beschreibung / Ort:</b><br>${desc}</div>
+  <div class="sig">
+    <div class="sig-block">Auftragnehmer: ${owner}</div>
+    <div class="sig-block">Kunde: ${custSign}</div>
+  </div>
+  <script>window.print();<\/script>
+  </body></html>`);
+}
+
+// Generovanie A4 tiskového náhľadu pro Quittung
+function printQuittung() {
+  if(!confirm("Möchten Sie diese Quittung drucken oder als PDF speichern?")) return;
+  let nr = document.getElementById('q-nr').value;
+  let date = document.getElementById('q-date').value;
+  let cust = document.getElementById('q-cust').value;
+  let pay = document.getElementById('q-pay').value;
+  let price = document.getElementById('q-price').value;
+  let desc = document.getElementById('q-desc').value;
+  let owner = document.getElementById('set-owner').value || 'Daniel Mejstrik';
+  let custSign = document.getElementById('disp-cust-sig-q').textContent;
+
+  let win = window.open('', '_blank');
+  win.document.write(`<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Quittung ${nr}</title>
+  <style>body{font-family:Arial,sans-serif;padding:20mm;font-size:10.5pt;color:#2a2a2a;}
+  h1{color:#1E3A6D;font-size:20pt;margin:0 0 5px;}
+  .sub{color:#1F4EA8;font-weight:bold;font-size:12pt;border-left:4px solid #F57C00;padding-left:8px;margin-bottom:20px;}
+  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:12px;margin-bottom:15px;}
+  .tot{background:#EAF3FC;padding:12px;font-weight:bold;color:#1E3A6D;font-size:12pt;display:flex;justify-content:space-between;margin-bottom:25px;}
+  .sig{display:flex;justify-content:space-between;margin-top:40px;}
+  .sig-block{width:45%;border-top:1px solid #7F94B5;padding-top:6px;font-weight:bold;font-style:italic;color:#1E3A6D;}
+  </style></head><body>
+  <h1>QUITTUNG</h1>
+  <div class="sub">Beleg-Nr: ${nr} | Datum: ${date}</div>
+  <div class="box"><b>Kunde:</b> ${cust}<br><br><b>Zahlungsart:</b> ${pay}<br><br><b>Leistung:</b><br>${desc}</div>
+  <div class="tot"><span>Totalbetrag:</span><span>CHF ${price}.-</span></div>
+  <div class="sig">
+    <div class="sig-block">Aussteller: ${owner}</div>
+    <div class="sig-block">Kunde (Empfang): ${custSign}</div>
+  </div>
+  <script>window.print();<\/script>
+  </body></html>`);
+}
 </script>
 </body>
 </html>
