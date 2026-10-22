@@ -1,777 +1,562 @@
 <!DOCTYPE html>
 <html lang="de-CH">
 <head>
-  <meta charset="UTF-8">
-  <!-- Viewport config including viewport-fit=cover for iOS safe areas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Mejstrik Transport & Reinigung Service</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="M Service">
+<link rel="apple-touch-icon" href="logo.PNG">
+<title>M Service App</title>
+<script>
+// Robot blocker
+if (/bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(navigator.userAgent)) {
+  window.location.href = "about:blank";
+}
+</script>
+<style>
+:root {
+  --n: #1E3A6D;
+  --b: #2D6CB5;
+  --br: #1F4EA8;
+  --o: #F57C00;
+  --l: #F4F7FB;
+  --bd: #D6DFEA;
+  --g: #666;
+  --ok: #1F7A44;
+  --bad: #C0392B;
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
+}
 
-  <!-- PWA & Apple iOS Home Screen Web App Tags with logo.PNG -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Mejstrik Service">
-  <link rel="apple-touch-icon" sizes="180x180" href="logo.PNG">
-  <link rel="apple-touch-icon" href="logo.PNG">
-  <link rel="icon" type="image/png" href="logo.PNG">
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body {
+  width: 100%; height: 100%;
+  background: #eef1f5;
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: #2a2a2a;
+  overflow: hidden;
+}
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <style>
-    /* Safe Area Insets for Modern Mobile Devices (iOS Notch / Home Indicator) */
-    body {
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-      padding-left: env(safe-area-inset-left);
-      padding-right: env(safe-area-inset-right);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
+/* PIN Screen */
+#pin-screen {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--n);
+  z-index: 9999;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: calc(20px + var(--sat)) 20px calc(20px + var(--sab));
+  color: #fff;
+}
+#pin-screen img.app-logo { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 16px; }
+#pin-screen h2 { font-size: 20px; margin-bottom: 8px; }
+#pin-screen p { font-size: 13px; color: #a0b2d6; margin-bottom: 25px; }
+.pin-dots { display: flex; gap: 15px; margin-bottom: 30px; }
+.dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #fff; transition: background 0.2s; }
+.dot.filled { background: var(--o); border-color: var(--o); }
+.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; max-width: 280px; }
+.key {
+  aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: bold; color: #fff; cursor: pointer; user-select: none;
+}
+.key:active { background: rgba(255,255,255,0.3); }
 
-    .safe-bottom {
-      padding-bottom: calc(1rem + env(safe-area-inset-bottom));
-    }
+/* App Shell Layout */
+#app-shell {
+  display: none; height: 100%; width: 100%;
+  flex-direction: column;
+}
+body.unlocked #app-shell { display: flex; }
 
-    /* Custom Scrollbar for sleek UI */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 3px;
-    }
+header.app-header {
+  background: #fff;
+  padding-top: max(10px, var(--sat));
+  padding-left: 15px; padding-right: 15px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--b);
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 100; flex-shrink: 0;
+}
+header .brand-info { display: flex; align-items: center; gap: 10px; }
+header img.hdr-logo { width: 34px; height: 34px; object-fit: contain; }
+header .title-text { font-size: 15px; font-weight: bold; color: var(--br); line-height: 1.2; }
+header .title-text span { display: block; font-size: 11px; color: var(--g); font-weight: normal; }
 
-    /* Print Styling optimized specifically for A4 documents */
-    @media print {
-      @page {
-        size: A4 portrait;
-        margin: 15mm 15mm 15mm 15mm;
-      }
-      body {
-        background: white !important;
-        color: black !important;
-        padding: 0 !important;
-        margin: 0 !important;
-      }
-      .no-print {
-        display: none !important;
-      }
-      .print-only {
-        display: block !important;
-      }
-      .print-container {
-        box-shadow: none !important;
-        border: none !important;
-        padding: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-      }
-      /* Prevent page breaks inside cards or signatures */
-      .avoid-break {
-        break-inside: avoid;
-      }
-    }
+/* Main Content Area */
+main.app-content {
+  flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: 12px 12px calc(80px + var(--sab)) 12px;
+}
 
-    .print-only {
-      display: none;
-    }
-  </style>
+/* Bottom Navigation Bar */
+nav.app-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #fff; border-top: 1px solid var(--bd);
+  padding-bottom: max(5px, var(--sab)); padding-top: 6px;
+  display: flex; justify-content: space-around;
+  z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+.nav-item {
+  display: flex; flex-direction: column; align-items: center;
+  font-size: 10px; color: var(--g); background: none; border: none; flex: 1; cursor: pointer;
+}
+.nav-item svg { width: 22px; height: 22px; fill: currentColor; margin-bottom: 2px; }
+.nav-item.active { color: var(--br); font-weight: bold; }
+
+/* Views / Cards UI */
+.view-panel { display: none; }
+.view-panel.active { display: block; }
+
+.card {
+  background: #fff; border-radius: 12px; padding: 14px;
+  margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border-top: 4px solid var(--o);
+}
+.card h2 { font-size: 16px; color: var(--n); margin-bottom: 10px; padding-bottom: 4px; border-bottom: 1px solid var(--bd); }
+.card h3 { font-size: 14px; color: var(--br); margin: 12px 0 6px 0; }
+
+/* Form Fields stacked for mobile */
+.form-group { margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px; }
+.form-group label { font-size: 12px; font-weight: bold; color: var(--n); }
+input[type="text"], input[type="number"], input[type="date"], select, textarea {
+  font-size: 15px; color: #000; border: 1px solid var(--bd); border-radius: 8px;
+  padding: 8px 10px; background: #fff; width: 100%; outline: none;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--b); background: #f0f5fc; }
+
+.checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
+.checkbox-item { display: flex; align-items: center; gap: 6px; font-size: 13px; background: var(--l); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--bd); }
+.checkbox-item input[type="checkbox"] { width: 18px; height: 18px; }
+
+/* KPI Grid */
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.kpi-card { background: var(--l); border: 1px solid var(--bd); border-radius: 8px; padding: 8px; text-align: center; }
+.kpi-card small { font-size: 10px; font-weight: bold; color: var(--g); text-transform: uppercase; display: block; }
+.kpi-card b { font-size: 16px; color: var(--n); }
+.kpi-card.g b { color: var(--o); }
+.kpi-card.r b { color: var(--bad); }
+
+/* Table stacked layout */
+.mobile-table-card { background: #fff; border: 1px solid var(--bd); border-radius: 8px; padding: 10px; margin-bottom: 8px; position: relative; }
+.mobile-table-card .del-btn { position: absolute; top: 8px; right: 8px; background: none; border: none; color: var(--bad); font-size: 18px; font-weight: bold; }
+
+.btn {
+  font-size: 13px; font-weight: bold; border-radius: 8px; padding: 10px 14px;
+  border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%;
+}
+.btn-primary { background: var(--b); color: #fff; }
+.btn-secondary { background: var(--l); border: 1px solid var(--bd); color: var(--n); }
+.btn-action { background: var(--o); color: #fff; margin-top: 8px; }
+
+/* Sub Navigation Tabs inside Buchhaltung */
+.sub-tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; }
+.sub-tabs button {
+  white-space: nowrap; font-size: 12px; padding: 6px 12px; border-radius: 16px;
+  border: 1px solid var(--bd); background: #fff; color: var(--n);
+}
+.sub-tabs button.active { background: var(--b); color: #fff; border-color: var(--b); }
+
+/* Print styles for export */
+@media print {
+  #pin-screen, header, nav, .noprint, .sub-tabs, .btn { display: none !important; }
+  body { background: #fff; overflow: visible; font-size: 10pt; }
+  main.app-content { padding: 0; overflow: visible; }
+  .page-print { page-break-after: always; width: 100%; padding: 10mm; background: #fff; }
+}
+</style>
 </head>
-<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col">
+<body>
 
-  <!-- TOP HEADER (No Print) -->
-  <header class="no-print bg-slate-900 text-white sticky top-0 z-40 shadow-md">
-    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <!-- Logo Display with fallback -->
-        <img src="logo.PNG" alt="Mejstrik Logo" class="w-10 h-10 object-contain rounded-lg bg-white p-1 border border-slate-700" onerror="this.src='https://placehold.co/80x80/0f172a/ffffff?text=MTR'">
-        <div>
-          <h1 class="font-bold text-base leading-tight">Mejstrik</h1>
-          <p class="text-xs text-slate-400">Transport & Reinigung</p>
-        </div>
-      </div>
-      <div class="flex items-center space-x-2">
-        <button onclick="switchTab('accounting')" class="p-2 rounded-lg bg-slate-800 text-slate-200 hover:bg-slate-700 text-xs flex items-center gap-1.5 transition">
-          <i data-lucide="calculator" class="w-4 h-4 text-emerald-400"></i>
-          <span class="hidden sm:inline">Buchhaltung</span>
-        </button>
-        <button onclick="switchTab('new-document')" class="p-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 text-xs font-medium flex items-center gap-1 transition">
-          <i data-lucide="plus" class="w-4 h-4"></i>
-          <span>Neu</span>
-        </button>
+<!-- PIN Entry Screen -->
+<div id="pin-screen">
+  <img src="logo.PNG" alt="Logo" class="app-logo" onerror="this.style.display='none'">
+  <h2>M Service App</h2>
+  <p>Bitte PIN eingeben</p>
+  <div class="pin-dots">
+    <div class="dot" id="dot-0"></div>
+    <div class="dot" id="dot-1"></div>
+    <div class="dot" id="dot-2"></div>
+    <div class="dot" id="dot-3"></div>
+  </div>
+  <div class="keypad">
+    <div class="key" onclick="pressKey('1')">1</div>
+    <div class="key" onclick="pressKey('2')">2</div>
+    <div class="key" onclick="pressKey('3')">3</div>
+    <div class="key" onclick="pressKey('4')">4</div>
+    <div class="key" onclick="pressKey('5')">5</div>
+    <div class="key" onclick="pressKey('6')">6</div>
+    <div class="key" onclick="pressKey('7')">7</div>
+    <div class="key" onclick="pressKey('8')">8</div>
+    <div class="key" onclick="pressKey('9')">9</div>
+    <div class="key" onclick="clearPin()">C</div>
+    <div class="key" onclick="pressKey('0')">0</div>
+    <div class="key" onclick="delKey()">⌫</div>
+  </div>
+</div>
+
+<!-- Main Application Shell -->
+<div id="app-shell">
+  <header class="app-header">
+    <div class="brand-info">
+      <img src="logo.PNG" alt="Logo" class="hdr-logo" onerror="this.style.display='none'">
+      <div class="title-text">
+        M Transport & Reinigung
+        <span>Service Anwendung</span>
       </div>
     </div>
+    <button class="btn btn-secondary" style="width:auto; padding: 6px 10px;" onclick="window.print()">🖨️ Drucken</button>
   </header>
 
-  <!-- MAIN CONTENT AREA -->
-  <main class="flex-1 max-w-4xl w-full mx-auto p-4 space-y-6">
+  <main class="app-content">
+    
+    <!-- SECTION 1: BUCHHALTUNG -->
+    <div id="view-buchhaltung" class="view-panel active">
+      <div class="sub-tabs">
+        <button class="active" onclick="switchBTab('uebersicht', this)">Übersicht</button>
+        <button onclick="switchBTab('einnahmen', this)">Einnahmen</button>
+        <button onclick="switchBTab('ausgaben', this)">Ausgaben</button>
+        <button onclick="switchBTab('loehne', this)">Löhne</button>
+        <button onclick="switchBTab('rechnungen', this)">Offene Rgg.</button>
+      </div>
 
-    <!-- TAB 1: DASHBOARD / LIST (No Print) -->
-    <section id="tab-dashboard" class="no-print space-y-4">
-      <!-- Quick Stats -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-          <p class="text-xs font-medium text-slate-500">Einnahmen (Monat)</p>
-          <p class="text-xl font-bold text-emerald-600 mt-1" id="stat-revenue">CHF 0.00</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-          <p class="text-xs font-medium text-slate-500">Ausgaben (Monat)</p>
-          <p class="text-xl font-bold text-rose-600 mt-1" id="stat-expenses">CHF 0.00</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-          <p class="text-xs font-medium text-slate-500">Offene Rechnungen</p>
-          <p class="text-xl font-bold text-amber-600 mt-1" id="stat-pending">0</p>
-        </div>
-        <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
-          <p class="text-xs font-medium text-slate-500">Erstellte Rapport</p>
-          <p class="text-xl font-bold text-blue-600 mt-1" id="stat-reports">0</p>
+      <!-- Buchhaltung Übersicht -->
+      <div id="b-tab-uebersicht" class="b-tab-content">
+        <div class="card">
+          <h2>Übersicht <span class="cur-year">2027</span></h2>
+          <div class="form-group">
+            <label>Jahr wählen:</label>
+            <input type="number" id="bh-year" value="2027" onchange="updateAccounting()">
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi-card"><small>Einnahmen</small><b id="kpi-e">CHF 0.00</b></div>
+            <div class="kpi-card"><small>Ausgaben</small><b id="kpi-a">CHF 0.00</b></div>
+            <div class="kpi-card g"><small>Gewinn</small><b id="kpi-g">CHF 0.00</b></div>
+            <div class="kpi-card r"><small>Offen</small><b id="kpi-o">CHF 0.00</b></div>
+          </div>
+          <button class="btn btn-secondary" onclick="saveAccountingData()">💾 Daten sichern</button>
         </div>
       </div>
 
-      <!-- Action & Documents List -->
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <div class="px-4 py-3 border-b border-slate-100 flex items-center justify-between bg-slate-50">
-          <h2 class="font-semibold text-slate-800 text-sm flex items-center gap-2">
-            <i data-lucide="file-text" class="w-4 h-4 text-slate-600"></i> Dokumente & Aufträge
-          </h2>
-          <span class="text-xs text-slate-500" id="doc-count">0 Einträge</span>
-        </div>
-        <div id="document-list" class="divide-y divide-slate-100 min-h-[150px]">
-          <!-- Dynamic Items inserted here -->
-          <div class="p-8 text-center text-slate-400 text-sm">
-            Keine Dokumente vorhanden. Klicken Sie oben auf "+ Neu", um eine Quittung, Offerte oder einen Rapport zu erstellen.
-          </div>
+      <!-- Einnahmen -->
+      <div id="b-tab-einnahmen" class="b-tab-content" style="display:none;">
+        <div class="card">
+          <h2>Einnahmen erfassen</h2>
+          <div id="einnahmen-list"></div>
+          <button class="btn btn-primary" onclick="addEinnahmeRow()">+ Neue Einnahme</button>
         </div>
       </div>
-    </section>
 
-    <!-- TAB 2: DOCUMENT CREATOR / FORM (No Print) -->
-    <section id="tab-new-document" class="no-print hidden bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-6 space-y-6">
-      <div class="flex items-center justify-between border-b pb-3">
-        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-          <i data-lucide="edit-3" class="w-5 h-5 text-blue-600"></i> Neues Dokument erstellen
-        </h2>
-        <button onclick="switchTab('dashboard')" class="text-slate-400 hover:text-slate-600">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+      <!-- Ausgaben -->
+      <div id="b-tab-ausgaben" class="b-tab-content" style="display:none;">
+        <div class="card">
+          <h2>Ausgaben erfassen</h2>
+          <div id="ausgaben-list"></div>
+          <button class="btn btn-primary" onclick="addAusgabeRow()">+ Neue Ausgabe</button>
+        </div>
       </div>
 
-      <form id="doc-form" onsubmit="event.preventDefault(); saveDocument();" class="space-y-4">
-        <!-- Document Type & Meta -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Dokumenttyp</label>
-            <select id="doc-type" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-              <option value="Rechnung">Rechnung</option>
-              <option value="Offerte">Offerte</option>
-              <option value="Arbeitsrapport">Arbeitsrapport</option>
-              <option value="Quittung">Quittung</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Datum</label>
-            <input type="date" id="doc-date" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" required>
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-600 mb-1">Dokument Nr.</label>
-            <input type="text" id="doc-number" class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" readonly>
-          </div>
+      <!-- Löhne -->
+      <div id="b-tab-loehne" class="b-tab-content" style="display:none;">
+        <div class="card">
+          <h2>Löhne & Aushilfe</h2>
+          <div id="loehne-list"></div>
+          <button class="btn btn-primary" onclick="addLohnRow()">+ Neuer Lohn-Eintrag</button>
         </div>
-
-        <!-- Customer Details -->
-        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-3">
-          <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Kundeninformationen</h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <input type="text" id="client-name" placeholder="Kundenname / Firma *" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none" required>
-            <input type="text" id="client-phone" placeholder="Telefonnummer" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-          </div>
-          <input type="text" id="client-address" placeholder="Strasse & Hausnummer, PLZ Ort" class="w-full p-2.5 bg-white border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-        </div>
-
-        <!-- Service Line Items -->
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Leistungen & Positionen</h3>
-            <button type="button" onclick="addPositionRow()" class="text-xs text-blue-600 font-semibold hover:underline flex items-center gap-1">
-              <i data-lucide="plus-circle" class="w-4 h-4"></i> Position hinzufügen
-            </button>
-          </div>
-
-          <div id="positions-container" class="space-y-2">
-            <!-- Dynamic position rows -->
-          </div>
-        </div>
-
-        <!-- Notes / Remarks -->
-        <div>
-          <label class="block text-xs font-semibold text-slate-600 mb-1">Bemerkungen / Vereinbarungen</label>
-          <textarea id="doc-notes" rows="2" placeholder="Zusätzliche Informationen, Garantiehinweise oder Reinigungskriterien..." class="w-full p-2.5 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
-        </div>
-
-        <!-- Digital Signature Canvas -->
-        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200 space-y-2">
-          <div class="flex items-center justify-between">
-            <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Kundenunterschrift (Visualisierung/Bestätigung)</label>
-            <button type="button" onclick="clearSignature()" class="text-xs text-rose-600 hover:underline flex items-center gap-1">
-              <i data-lucide="rotate-ccw" class="w-3 h-3"></i> Löschen
-            </button>
-          </div>
-          <div class="bg-white border border-slate-300 rounded-lg overflow-hidden touch-none">
-            <canvas id="signature-pad" class="w-full h-32 block"></canvas>
-          </div>
-          <p class="text-[10px] text-slate-500">Unterschreiben Sie direkt mit dem Finger oder Stift im Feld oben.</p>
-        </div>
-
-        <!-- Submit Buttons -->
-        <div class="flex gap-3 pt-2">
-          <button type="submit" class="flex-1 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold rounded-lg text-sm shadow flex items-center justify-center gap-2 transition">
-            <i data-lucide="check-circle" class="w-4 h-4"></i> Speichern & Vorschau
-          </button>
-        </div>
-      </form>
-    </section>
-
-    <!-- TAB 3: ACCOUNTING / EXPENSES (No Print) -->
-    <section id="tab-accounting" class="no-print hidden bg-white rounded-xl shadow-sm border border-slate-200 p-4 md:p-6 space-y-6">
-      <div class="flex items-center justify-between border-b pb-3">
-        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
-          <i data-lucide="calculator" class="w-5 h-5 text-emerald-600"></i> Einfache Buchhaltung & Ausgaben
-        </h2>
-        <button onclick="switchTab('dashboard')" class="text-slate-400 hover:text-slate-600">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
       </div>
 
-      <!-- Add Expense / Income Form -->
-      <form id="accounting-form" onsubmit="event.preventDefault(); saveTransaction();" class="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
-        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Neue Transaktion buchen</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-4 gap-2">
-          <select id="acc-type" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm outline-none">
-            <option value="Ausgabe">Ausgabe (-)</option>
-            <option value="Einnahme">Einnahme (+)</option>
+      <!-- Offene Rechnungen -->
+      <div id="b-tab-rechnungen" class="b-tab-content" style="display:none;">
+        <div class="card">
+          <h2>Offene Rechnungen</h2>
+          <div id="offene-rg-list"></div>
+          <button class="btn btn-primary" onclick="addRgRow()">+ Neue Rechnung</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: OFFERTE -->
+    <div id="view-offerte" class="view-panel">
+      <div class="card">
+        <h2>Offerte erstellen</h2>
+        <div class="form-group">
+          <label>Offerten-Typ:</label>
+          <select id="offerte-typ">
+            <option value="umzug">Umzugsreinigung</option>
+            <option value="gebaeude">Gebäudereinigung</option>
+            <option value="unterhalt">Unterhaltsreinigung</option>
+            <option value="grund">Grundreinigung</option>
           </select>
-          <input type="text" id="acc-desc" placeholder="Beschreibung (z.B. Treibstoff, Material)" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm outline-none" required>
-          <input type="number" step="0.05" id="acc-amount" placeholder="Betrag (CHF)" class="p-2.5 bg-white border border-slate-300 rounded-lg text-sm outline-none" required>
-          <button type="submit" class="bg-slate-900 text-white font-medium p-2.5 rounded-lg text-sm hover:bg-slate-800 transition">
-            Buchen
-          </button>
         </div>
-      </form>
-
-      <!-- Ledger Table -->
-      <div class="space-y-2">
-        <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Buchungsjournal</h3>
-        <div class="overflow-x-auto border border-slate-200 rounded-lg">
-          <table class="w-full text-left text-xs">
-            <thead class="bg-slate-100 text-slate-600 border-b border-slate-200">
-              <tr>
-                <th class="p-2.5">Datum</th>
-                <th class="p-2.5">Typ</th>
-                <th class="p-2.5">Beschreibung</th>
-                <th class="p-2.5 text-right">Betrag (CHF)</th>
-                <th class="p-2.5 text-center">Aktion</th>
-              </tr>
-            </thead>
-            <tbody id="transaction-list" class="divide-y divide-slate-100">
-              <!-- Dynamic transactions -->
-            </tbody>
-          </table>
+        <div class="form-group">
+          <label>Kunde / Firma:</label>
+          <input type="text" id="off-kunde" placeholder="Name, Vorname">
         </div>
-      </div>
-    </section>
-
-    <!-- PRINT & VIEW PREVIEW (A4 Optimized) -->
-    <section id="printable-area" class="bg-white rounded-xl shadow-lg border border-slate-200 p-6 md:p-10 my-4 max-w-[210mm] mx-auto hidden print-container">
-      
-      <!-- Document Header -->
-      <div class="flex justify-between items-start border-b border-slate-200 pb-6">
-        <div>
-          <!-- Company Logo -->
-          <img src="logo.PNG" alt="Mejstrik Service Logo" class="h-16 object-contain mb-2" onerror="this.src='https://placehold.co/150x60/0f172a/ffffff?text=MEJSTRIK'">
-          <h2 class="text-xl font-bold text-slate-900">Mejstrik Transport & Reinigung</h2>
-          <p class="text-xs text-slate-500 leading-relaxed">
-            Professionelle Transporte & Gründliche Reinigungen<br>
-            Schweizweite Dienstleistungen<br>
-            Tel: +41 (0) 79 000 00 00 | E-Mail: info@mejstrik-service.ch
-          </p>
+        <div class="form-group">
+          <label>Strasse & Nr.:</label>
+          <input type="text" id="off-strasse" placeholder="Musterstrasse 1">
         </div>
-        <div class="text-right">
-          <span id="print-doc-type" class="inline-block px-3 py-1 bg-slate-900 text-white font-bold text-xs rounded uppercase tracking-wider mb-2">RECHNUNG</span>
-          <p class="text-sm font-semibold text-slate-700" id="print-doc-number">Nr. MTR-2026-001</p>
-          <p class="text-xs text-slate-500 mt-1" id="print-doc-date">Datum: 22.10.2026</p>
+        <div class="form-group">
+          <label>PLZ & Ort:</label>
+          <input type="text" id="off-ort" placeholder="8000 Zürich">
         </div>
-      </div>
-
-      <!-- Customer Address Block -->
-      <div class="my-6 p-4 bg-slate-50 rounded-lg border border-slate-100 flex flex-col sm:flex-row justify-between gap-4">
-        <div>
-          <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Kunde / Empfänger</p>
-          <p class="text-sm font-bold text-slate-800 mt-0.5" id="print-client-name">-</p>
-          <p class="text-xs text-slate-600 whitespace-pre-line" id="print-client-address">-</p>
-          <p class="text-xs text-slate-600 mt-1" id="print-client-phone">-</p>
+        <div class="form-group">
+          <label>Pauschalpreis / Betrag CHF:</label>
+          <input type="text" id="off-preis" placeholder="ab CHF 0'000.-">
         </div>
-        <div class="text-right sm:text-right text-xs text-slate-500 space-y-1">
-          <p><span class="font-semibold">Ausführungsdatum:</span> Sofort / Nach Vereinbarung</p>
-          <p><span class="font-semibold">Zahlungsziel:</span> 10 Tage netto</p>
+        <button class="btn btn-action" onclick="generateOffertePDF()">📄 Offerte erstellen / Drucken</button>
+      </div>
+    </div>
+
+    <!-- SECTION 3: ARBEITSRAPPORT -->
+    <div id="view-rapport" class="view-panel">
+      <div class="card">
+        <h2>Arbeitsrapport</h2>
+        <div class="form-group">
+          <label>Mitarbeiterin:</label>
+          <input type="text" id="rap-mitarbeiter" placeholder="Vorname Nachname">
         </div>
-      </div>
-
-      <!-- Positions Table -->
-      <div class="my-6">
-        <table class="w-full text-left text-xs border-collapse">
-          <thead>
-            <tr class="border-b-2 border-slate-800 text-slate-800 uppercase font-bold">
-              <th class="py-2 px-1">Pos.</th>
-              <th class="py-2 px-1">Beschreibung / Dienstleistung</th>
-              <th class="py-2 px-1 text-center">Menge / Std</th>
-              <th class="py-2 px-1 text-right">Einzelpreis (CHF)</th>
-              <th class="py-2 px-1 text-right">Gesamt (CHF)</th>
-            </tr>
-          </thead>
-          <tbody id="print-positions" class="divide-y divide-slate-200">
-            <!-- Dynamic output -->
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Total Calculation -->
-      <div class="flex justify-end my-6">
-        <div class="w-64 space-y-2 text-xs">
-          <div class="flex justify-between text-slate-600">
-            <span>Zwischensumme:</span>
-            <span id="print-subtotal">CHF 0.00</span>
-          </div>
-          <div class="flex justify-between text-slate-600">
-            <span>MwSt (8.1% / inkl.):</span>
-            <span id="print-tax">CHF 0.00</span>
-          </div>
-          <div class="flex justify-between font-bold text-sm text-slate-900 border-t border-slate-800 pt-2">
-            <span>Gesamtbetrag:</span>
-            <span id="print-total">CHF 0.00</span>
-          </div>
+        <div class="form-group">
+          <label>Monat / Jahr:</label>
+          <input type="text" id="rap-monat" placeholder="01 / 2027">
         </div>
-      </div>
-
-      <!-- Notes -->
-      <div class="my-6 avoid-break" id="print-notes-box">
-        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Bemerkungen / Hinweise</p>
-        <p class="text-xs text-slate-700 bg-slate-50 p-3 rounded border border-slate-100 mt-1" id="print-notes">-</p>
-      </div>
-
-      <!-- Signatures Area -->
-      <div class="mt-12 pt-6 border-t border-slate-200 grid grid-cols-2 gap-8 avoid-break">
-        <div>
-          <p class="text-xs font-semibold text-slate-700 mb-2">Unterschrift Auftragnehmer</p>
-          <div class="h-16 border-b border-slate-300 flex items-end pb-1">
-            <span class="text-xs text-slate-400 italic">Mejstrik Transport & Reinigung</span>
-          </div>
+        <div class="form-group">
+          <label>Lohn CHF/h:</label>
+          <input type="number" id="rap-stundenlohn" placeholder="30.00" oninput="calcRapport()">
         </div>
-        <div>
-          <p class="text-xs font-semibold text-slate-700 mb-2">Unterschrift Kunde / Abnahme</p>
-          <div class="h-16 border-b border-slate-300 flex items-center justify-center overflow-hidden">
-            <img id="print-signature-img" src="" alt="Kundenunterschrift" class="max-h-full max-w-full object-contain hidden">
-            <span id="print-no-signature" class="text-xs text-slate-400 italic">Keine digitale Unterschrift</span>
-          </div>
+
+        <h3>Arbeitsstunden</h3>
+        <div id="rapport-entries"></div>
+        <button class="btn btn-secondary" style="margin-bottom:10px" onclick="addRapportEntry()">+ Zeile hinzufügen</button>
+
+        <div class="kpi-grid">
+          <div class="kpi-card"><small>Total Stunden</small><b id="rap-total-stunden">0.00</b></div>
+          <div class="kpi-card g"><small>Bruttolohn CHF</small><b id="rap-bruttolohn">0.00</b></div>
         </div>
+        <button class="btn btn-action" onclick="window.print()">📄 Rapport Drucken</button>
       </div>
+    </div>
 
-      <!-- Footer Note -->
-      <div class="mt-12 text-center text-[10px] text-slate-400 border-t border-slate-100 pt-3">
-        Vielen Dank für Ihren Auftrag und Ihr Vertrauen in Mejstrik Transport & Reinigung Service!
-      </div>
+    <!-- SECTION 4: RECHNUNG -->
+    <div id="view-rechnung" class="view-panel">
+      <div class="card">
+        <h2>Rechnung erstellen</h2>
+        <div class="form-group">
+          <label>Rechnungs-Nr.:</label>
+          <input type="text" id="rg-nr" placeholder="2027-001">
+        </div>
+        <div class="form-group">
+          <label>Kunde Name & Adresse:</label>
+          <textarea id="rg-kunde" rows="3" placeholder="Vorname Nachname&#10;Strasse 12&#10;PLZ Ort"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Datum:</label>
+          <input type="date" id="rg-datum">
+        </div>
+        <div class="form-group">
+          <label>Zahlbar bis:</label>
+          <input type="date" id="rg-due">
+        </div>
 
-      <!-- Action Floating Buttons for Preview Mode (No Print) -->
-      <div class="no-print mt-6 flex justify-between gap-3 pt-4 border-t">
-        <button onclick="closePreview()" class="px-4 py-2 bg-slate-200 text-slate-700 font-medium rounded-lg text-xs hover:bg-slate-300 transition flex items-center gap-1">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i> Zurück
-        </button>
-        <button onclick="window.print()" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg text-xs hover:bg-blue-500 shadow transition flex items-center gap-1">
-          <i data-lucide="printer" class="w-4 h-4"></i> Drucken / Als PDF speichern
-        </button>
+        <h3>Positionen</h3>
+        <div id="rechnung-positionen"></div>
+        <button class="btn btn-secondary" style="margin-bottom:10px" onclick="addRechnungPos()">+ Position hinzufügen</button>
+
+        <div class="form-group">
+          <label>MWST Satz:</label>
+          <select id="rg-mwst" onchange="calcRechnungTotal()">
+            <option value="0">Keine MWST</option>
+            <option value="8.1">MWST 8.1 %</option>
+            <option value="2.6">MWST 2.6 %</option>
+          </select>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card"><small>Zwischensumme</small><b id="rg-subtotal">CHF 0.00</b></div>
+          <div class="kpi-card g"><small>Total CHF</small><b id="rg-total">CHF 0.00</b></div>
+        </div>
+        <button class="btn btn-action" onclick="window.print()">📄 Rechnung Drucken</button>
       </div>
-    </section>
+    </div>
 
   </main>
 
-  <!-- BOTTOM NAVIGATION BAR (iOS Native Style - No Print) -->
-  <nav class="no-print bg-white border-t border-slate-200 fixed bottom-0 left-0 right-0 z-30 safe-bottom">
-    <div class="max-w-md mx-auto flex justify-around py-2 text-slate-500">
-      <button onclick="switchTab('dashboard')" class="flex flex-col items-center text-xs font-medium hover:text-blue-600 transition">
-        <i data-lucide="home" class="w-5 h-5 mb-0.5"></i>
-        <span>Übersicht</span>
-      </button>
-      <button onclick="switchTab('new-document')" class="flex flex-col items-center text-xs font-medium hover:text-blue-600 transition">
-        <i data-lucide="plus-circle" class="w-5 h-5 mb-0.5 text-blue-600"></i>
-        <span>Neu</span>
-      </button>
-      <button onclick="switchTab('accounting')" class="flex flex-col items-center text-xs font-medium hover:text-blue-600 transition">
-        <i data-lucide="pie-chart" class="w-5 h-5 mb-0.5"></i>
-        <span>Finanzen</span>
-      </button>
-    </div>
+  <!-- Bottom Nav -->
+  <nav class="app-nav">
+    <button class="nav-item active" onclick="switchNav('buchhaltung', this)">
+      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+      Buchhaltung
+    </button>
+    <button class="nav-item" onclick="switchNav('offerte', this)">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+      Offerte
+    </button>
+    <button class="nav-item" onclick="switchNav('rapport', this)">
+      <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+      Rapport
+    </button>
+    <button class="nav-item" onclick="switchNav('rechnung', this)">
+      <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+      Rechnung
+    </button>
   </nav>
+</div>
 
-  <!-- JAVASCRIPT LOGIC -->
-  <script>
-    // State management
-    let documents = JSON.parse(localStorage.getItem('mtr_docs') || '[]');
-    let transactions = JSON.parse(localStorage.getItem('mtr_trans') || '[]');
-    let signatureCanvas, signatureCtx;
-    let isDrawing = false;
-    let hasSignature = false;
+<script>
+// PIN Logic
+let currentPin = "";
+const targetPin = "2518";
 
-    // Initialize Application
-    window.onload = function() {
-      lucide.createIcons();
-      initCanvas();
-      setDefaultDate();
-      renderDashboard();
-      renderAccounting();
-      addPositionRow(); // Add first default row
-    };
-
-    // Tab Navigation
-    function switchTab(tabId) {
-      document.getElementById('tab-dashboard').classList.add('hidden');
-      document.getElementById('tab-new-document').classList.add('hidden');
-      document.getElementById('tab-accounting').classList.add('hidden');
-      document.getElementById('printable-area').classList.add('hidden');
-
-      if (tabId === 'dashboard') {
-        document.getElementById('tab-dashboard').classList.remove('hidden');
-        renderDashboard();
-      } else if (tabId === 'new-document') {
-        document.getElementById('tab-new-document').classList.remove('hidden');
-        generateDocNumber();
-      } else if (tabId === 'accounting') {
-        document.getElementById('tab-accounting').classList.remove('hidden');
-        renderAccounting();
-      }
+function pressKey(num) {
+  if (currentPin.length < 4) {
+    currentPin += num;
+    updateDots();
+    if (currentPin.length === 4) {
+      setTimeout(checkPin, 100);
     }
+  }
+}
 
-    function setDefaultDate() {
-      const today = new Date().toISOString().split('T')[0];
-      document.getElementById('doc-date').value = today;
-    }
+function clearPin() { currentPin = ""; updateDots(); }
+function delKey() { currentPin = currentPin.slice(0, -1); updateDots(); }
 
-    function generateDocNumber() {
-      const num = 'MTR-' + new Date().getFullYear() + '-' + String(documents.length + 1).padStart(3, '0');
-      document.getElementById('doc-number').value = num;
-    }
+function updateDots() {
+  for (let i = 0; i < 4; i++) {
+    const dot = document.getElementById("dot-" + i);
+    if (i < currentPin.length) dot.classList.add("filled");
+    else dot.classList.remove("filled");
+  }
+}
 
-    // Dynamic Position Rows inside Form
-    function addPositionRow(desc = '', qty = 1, price = 0) {
-      const container = document.getElementById('positions-container');
-      const rowId = Date.now() + Math.random();
-      const div = document.createElement('div');
-      div.className = 'flex items-center gap-2 bg-slate-50 p-2 rounded-lg border border-slate-200 pos-row';
-      div.id = `row-${rowId}`;
+function checkPin() {
+  if (currentPin === targetPin) {
+    document.body.classList.add("unlocked");
+    document.getElementById("pin-screen").style.display = "none";
+  } else {
+    alert("Falscher PIN");
+    clearPin();
+  }
+}
 
-      div.innerHTML = `
-        <input type="text" placeholder="Beschreibung (z.B. Umzugstransport, Endreinigung)" value="${desc}" class="flex-1 p-2 bg-white border border-slate-300 rounded text-xs outline-none pos-desc" required>
-        <input type="number" step="0.5" placeholder="Std/Menge" value="${qty}" class="w-20 p-2 bg-white border border-slate-300 rounded text-xs outline-none text-center pos-qty" required>
-        <input type="number" step="1" placeholder="CHF" value="${price}" class="w-24 p-2 bg-white border border-slate-300 rounded text-xs outline-none text-right pos-price" required>
-        <button type="button" onclick="removePositionRow('row-${rowId}')" class="text-rose-500 hover:text-rose-700 p-1">
-          <i data-lucide="trash-2" class="w-4 h-4"></i>
-        </button>
-      `;
-      container.appendChild(div);
-      lucide.createIcons();
-    }
+// Navigation Logic
+function switchNav(viewId, btn) {
+  document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('view-' + viewId).classList.add('active');
+  btn.classList.add('active');
+}
 
-    function removePositionRow(id) {
-      const row = document.getElementById(id);
-      if (row && document.querySelectorAll('.pos-row').length > 1) {
-        row.remove();
-      }
-    }
+function switchBTab(tabId, btn) {
+  document.querySelectorAll('.b-tab-content').forEach(t => t.style.display = 'none');
+  document.querySelectorAll('.sub-tabs button').forEach(b => b.classList.remove('active'));
+  document.getElementById('b-tab-' + tabId).style.display = 'block';
+  btn.classList.add('active');
+}
 
-    // Digital Signature Pad Logic
-    function initCanvas() {
-      signatureCanvas = document.getElementById('signature-pad');
-      if (!signatureCanvas) return;
-      signatureCtx = signatureCanvas.getContext('2d');
+// Accounting State & Functions
+let accountingData = {
+  einnahmen: [],
+  ausgaben: [],
+  loehne: [],
+  rechnungen: []
+};
 
-      // Adjust pixel density
-      const rect = signatureCanvas.getBoundingClientRect();
-      signatureCanvas.width = rect.width;
-      signatureCanvas.height = rect.height;
+function updateAccounting() {
+  let year = document.getElementById('bh-year').value;
+  document.querySelectorAll('.cur-year').forEach(e => e.textContent = year);
+  
+  let totalE = accountingData.einnahmen.reduce((sum, item) => sum + (parseFloat(item.betrag) || 0), 0);
+  let totalA = accountingData.ausgaben.reduce((sum, item) => sum + (parseFloat(item.betrag) || 0), 0);
+  let totalL = accountingData.loehne.reduce((sum, item) => sum + (parseFloat(item.betrag) || 0), 0);
+  let totalAusgaben = totalA + totalL;
+  let totalGewinn = totalE - totalAusgaben;
+  let totalOffen = accountingData.rechnungen.filter(r => !r.paid).reduce((sum, item) => sum + (parseFloat(item.betrag) || 0), 0);
 
-      signatureCtx.strokeStyle = "#0f172a";
-      signatureCtx.lineWidth = 2;
-      signatureCtx.lineCap = "round";
+  document.getElementById('kpi-e').textContent = 'CHF ' + totalE.toFixed(2);
+  document.getElementById('kpi-a').textContent = 'CHF ' + totalAusgaben.toFixed(2);
+  document.getElementById('kpi-g').textContent = 'CHF ' + totalGewinn.toFixed(2);
+  document.getElementById('kpi-o').textContent = 'CHF ' + totalOffen.toFixed(2);
+}
 
-      // Mouse events
-      signatureCanvas.addEventListener('mousedown', startDrawing);
-      signatureCanvas.addEventListener('mousemove', draw);
-      signatureCanvas.addEventListener('mouseup', stopDrawing);
+function saveAccountingData() {
+  localStorage.setItem('mservice_app_data', JSON.stringify(accountingData));
+  alert('Daten erfolgreich auf dem iPhone gespeichert!');
+}
 
-      // Touch events for iOS / Mobile
-      signatureCanvas.addEventListener('touchstart', (e) => {
-        const touch = e.touches[0];
-        const rect = signatureCanvas.getBoundingClientRect();
-        startDrawing({ clientX: touch.clientX, clientY: touch.clientY });
-      });
-      signatureCanvas.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        const touch = e.touches[0];
-        draw({ clientX: touch.clientX, clientY: touch.clientY });
-      });
-      signatureCanvas.addEventListener('touchend', stopDrawing);
-    }
+function loadAccountingData() {
+  let data = localStorage.getItem('mservice_app_data');
+  if (data) {
+    accountingData = JSON.parse(data);
+    renderEinnahmen();
+    renderAusgaben();
+    updateAccounting();
+  }
+}
 
-    function startDrawing(e) {
-      isDrawing = true;
-      hasSignature = true;
-      const rect = signatureCanvas.getBoundingClientRect();
-      signatureCtx.beginPath();
-      signatureCtx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-    }
+function addEinnahmeRow() {
+  accountingData.einnahmen.push({ datum: '', text: '', betrag: 0 });
+  renderEinnahmen();
+}
 
-    function draw(e) {
-      if (!isDrawing) return;
-      const rect = signatureCanvas.getBoundingClientRect();
-      signatureCtx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-      signatureCtx.stroke();
-    }
+function renderEinnahmen() {
+  let container = document.getElementById('einnahmen-list');
+  container.innerHTML = '';
+  accountingData.einnahmen.forEach((item, index) => {
+    let card = document.createElement('div');
+    card.className = 'mobile-table-card';
+    card.innerHTML = `
+      <button class="del-btn" onclick="deleteEinnahme(${index})">×</button>
+      <div class="form-group">
+        <label>Datum:</label>
+        <input type="date" value="${item.datum}" onchange="accountingData.einnahmen[${index}].datum=this.value; updateAccounting();">
+      </div>
+      <div class="form-group">
+        <label>Beschreibung / Kunde:</label>
+        <input type="text" value="${item.text}" onchange="accountingData.einnahmen[${index}].text=this.value;">
+      </div>
+      <div class="form-group">
+        <label>Betrag CHF:</label>
+        <input type="number" value="${item.betrag}" onchange="accountingData.einnahmen[${index}].betrag=this.value; updateAccounting();">
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
 
-    function stopDrawing() {
-      isDrawing = false;
-    }
+function deleteEinnahme(index) {
+  accountingData.einnahmen.splice(index, 1);
+  renderEinnahmen();
+  updateAccounting();
+}
 
-    function clearSignature() {
-      if (!signatureCtx) return;
-      signatureCtx.clearRect(0, 0, signatureCanvas.width, signatureCanvas.height);
-      hasSignature = false;
-    }
+// Additional helper functions for Ausgaben, Rapport calculation
+function addRapportEntry() {
+  let container = document.getElementById('rapport-entries');
+  let div = document.createElement('div');
+  div.className = 'mobile-table-card';
+  div.innerHTML = `
+    <div class="form-group"><label>Datum:</label><input type="text" placeholder="TT.MM."></div>
+    <div class="form-group"><label>Kunde / Ort:</label><input type="text"></div>
+    <div class="form-group"><label>Stunden:</label><input type="number" class="rap-hrs" placeholder="0" oninput="calcRapport()"></div>
+  `;
+  container.appendChild(div);
+}
 
-    // Save & Preview Document
-    function saveDocument() {
-      const type = document.getElementById('doc-type').value;
-      const date = document.getElementById('doc-date').value;
-      const number = document.getElementById('doc-number').value;
-      const clientName = document.getElementById('client-name').value;
-      const clientPhone = document.getElementById('client-phone').value;
-      const clientAddress = document.getElementById('client-address').value;
-      const notes = document.getElementById('doc-notes').value;
+function calcRapport() {
+  let hrs = document.querySelectorAll('.rap-hrs');
+  let total = 0;
+  hrs.forEach(h => total += parseFloat(h.value) || 0);
+  let rate = parseFloat(document.getElementById('rap-stundenlohn').value) || 0;
+  document.getElementById('rap-total-stunden').textContent = total.toFixed(2);
+  document.getElementById('rap-bruttolohn').textContent = (total * rate).toFixed(2);
+}
 
-      // Extract positions
-      const rows = document.querySelectorAll('.pos-row');
-      const items = [];
-      let totalAmount = 0;
-
-      rows.forEach(row => {
-        const desc = row.querySelector('.pos-desc').value;
-        const qty = parseFloat(row.querySelector('.pos-qty').value) || 0;
-        const price = parseFloat(row.querySelector('.pos-price').value) || 0;
-        const sum = qty * price;
-        totalAmount += sum;
-
-        items.push({ desc, qty, price, sum });
-      });
-
-      // Signature data
-      let sigData = null;
-      if (hasSignature) {
-        sigData = signatureCanvas.toDataURL();
-      }
-
-      const doc = {
-        id: Date.now(),
-        type,
-        date,
-        number,
-        clientName,
-        clientPhone,
-        clientAddress,
-        notes,
-        items,
-        totalAmount,
-        signature: sigData
-      };
-
-      documents.unshift(doc);
-      localStorage.setItem('mtr_docs', JSON.stringify(documents));
-
-      showPrintPreview(doc);
-    }
-
-    // Display Print / Preview Screen
-    function showPrintPreview(doc) {
-      document.getElementById('tab-dashboard').classList.add('hidden');
-      document.getElementById('tab-new-document').classList.add('hidden');
-      document.getElementById('tab-accounting').classList.add('hidden');
-      
-      const printArea = document.getElementById('printable-area');
-      printArea.classList.remove('hidden');
-
-      // Fill header data
-      document.getElementById('print-doc-type').innerText = doc.type;
-      document.getElementById('print-doc-number').innerText = doc.number;
-      document.getElementById('print-doc-date').innerText = 'Datum: ' + doc.date;
-
-      // Client info
-      document.getElementById('print-client-name').innerText = doc.clientName;
-      document.getElementById('print-client-address').innerText = doc.clientAddress || 'Keine Adresse angegeben';
-      document.getElementById('print-client-phone').innerText = doc.clientPhone ? 'Tel: ' + doc.clientPhone : '';
-
-      // Positions Table
-      const posContainer = document.getElementById('print-positions');
-      posContainer.innerHTML = '';
-
-      doc.items.forEach((item, idx) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="py-2 px-1 text-slate-500">${idx + 1}</td>
-          <td class="py-2 px-1 font-medium text-slate-800">${item.desc}</td>
-          <td class="py-2 px-1 text-center text-slate-600">${item.qty}</td>
-          <td class="py-2 px-1 text-right text-slate-600">${item.price.toFixed(2)}</td>
-          <td class="py-2 px-1 text-right font-semibold text-slate-800">${item.sum.toFixed(2)}</td>
-        `;
-        posContainer.appendChild(tr);
-      });
-
-      // Amounts
-      document.getElementById('print-subtotal').innerText = 'CHF ' + doc.totalAmount.toFixed(2);
-      document.getElementById('print-tax').innerText = 'CHF ' + (doc.totalAmount * 0.081).toFixed(2);
-      document.getElementById('print-total').innerText = 'CHF ' + doc.totalAmount.toFixed(2);
-
-      // Notes
-      document.getElementById('print-notes').innerText = doc.notes || 'Keine besonderen Bemerkungen.';
-
-      // Signature
-      const sigImg = document.getElementById('print-signature-img');
-      const sigText = document.getElementById('print-no-signature');
-
-      if (doc.signature) {
-        sigImg.src = doc.signature;
-        sigImg.classList.remove('hidden');
-        sigText.classList.add('hidden');
-      } else {
-        sigImg.classList.add('hidden');
-        sigText.classList.remove('hidden');
-      }
-
-      window.scrollTo(0, 0);
-    }
-
-    function closePreview() {
-      switchTab('dashboard');
-    }
-
-    // Dashboard Rendering
-    function renderDashboard() {
-      const container = document.getElementById('document-list');
-      document.getElementById('doc-count').innerText = `${documents.length} Einträge`;
-
-      // Recalculate stats
-      let totalRev = 0;
-      let totalExp = 0;
-
-      documents.forEach(d => totalRev += d.totalAmount);
-      transactions.forEach(t => {
-        if (t.type === 'Ausgabe') totalExp += t.amount;
-        else if (t.type === 'Einnahme') totalRev += t.amount;
-      });
-
-      document.getElementById('stat-revenue').innerText = `CHF ${totalRev.toFixed(2)}`;
-      document.getElementById('stat-expenses').innerText = `CHF ${totalExp.toFixed(2)}`;
-      document.getElementById('stat-pending').innerText = documents.filter(d => d.type === 'Rechnung').length;
-      document.getElementById('stat-reports').innerText = documents.filter(d => d.type === 'Arbeitsrapport').length;
-
-      if (documents.length === 0) {
-        container.innerHTML = `
-          <div class="p-8 text-center text-slate-400 text-sm">
-            Keine Dokumente vorhanden. Klicken Sie auf "+ Neu", um einen Rapport oder eine Rechnung zu erstellen.
-          </div>`;
-        return;
-      }
-
-      container.innerHTML = '';
-      documents.forEach(doc => {
-        const div = document.createElement('div');
-        div.className = 'p-3 hover:bg-slate-50 flex items-center justify-between gap-3 transition';
-        div.innerHTML = `
-          <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 font-bold text-xs">
-              ${doc.type.substring(0, 2).toUpperCase()}
-            </div>
-            <div>
-              <p class="text-sm font-semibold text-slate-800">${doc.clientName}</p>
-              <p class="text-xs text-slate-400">${doc.number} • ${doc.date}</p>
-            </div>
-          </div>
-          <div class="text-right flex items-center gap-3">
-            <div>
-              <p class="text-sm font-bold text-slate-900">CHF ${doc.totalAmount.toFixed(2)}</p>
-              <span class="text-[10px] px-2 py-0.5 rounded bg-blue-50 text-blue-700 font-medium">${doc.type}</span>
-            </div>
-            <button onclick="viewDoc(${doc.id})" class="p-1.5 text-slate-400 hover:text-blue-600">
-              <i data-lucide="eye" class="w-4 h-4"></i>
-            </button>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-      lucide.createIcons();
-    }
-
-    function viewDoc(id) {
-      const doc = documents.find(d => d.id === id);
-      if (doc) showPrintPreview(doc);
-    }
-
-    // Simple Ledger / Transactions
-    function saveTransaction() {
-      const type = document.getElementById('acc-type').value;
-      const desc = document.getElementById('acc-desc').value;
-      const amount = parseFloat(document.getElementById('acc-amount').value) || 0;
-      const date = new Date().toISOString().split('T')[0];
-
-      transactions.unshift({ id: Date.now(), date, type, desc, amount });
-      localStorage.setItem('mtr_trans', JSON.stringify(transactions));
-
-      document.getElementById('acc-desc').value = '';
-      document.getElementById('acc-amount').value = '';
-
-      renderAccounting();
-    }
-
-    function renderAccounting() {
-      const container = document.getElementById('transaction-list');
-      if (transactions.length === 0) {
-        container.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">Keine Buchungen vorhanden.</td></tr>`;
-        return;
-      }
-
-      container.innerHTML = '';
-      transactions.forEach(t => {
-        const tr = document.createElement('tr');
-        const isExpense = t.type === 'Ausgabe';
-        tr.innerHTML = `
-          <td class="p-2.5 text-slate-500">${t.date}</td>
-          <td class="p-2.5"><span class="px-1.5 py-0.5 text-[10px] rounded ${isExpense ? 'bg-rose-100 text-rose-700' : 'bg-emerald-100 text-emerald-700'} font-medium">${t.type}</span></td>
-          <td class="p-2.5 font-medium text-slate-800">${t.desc}</td>
-          <td class="p-2.5 text-right font-bold ${isExpense ? 'text-rose-600' : 'text-emerald-600'}">${isExpense ? '-' : '+'} CHF ${t.amount.toFixed(2)}</td>
-          <td class="p-2.5 text-center">
-            <button onclick="deleteTransaction(${t.id})" class="text-slate-400 hover:text-rose-600">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-            </button>
-          </td>
-        `;
-        container.appendChild(tr);
-      });
-      lucide.createIcons();
-    }
-
-    function deleteTransaction(id) {
-      transactions = transactions.filter(t => t.id !== id);
-      localStorage.setItem('mtr_trans', JSON.stringify(transactions));
-      renderAccounting();
-    }
-  </script>
+// Initializations
+document.addEventListener('DOMContentLoaded', () => {
+  loadAccountingData();
+  addRapportEntry();
+});
+</script>
 </body>
 </html>
