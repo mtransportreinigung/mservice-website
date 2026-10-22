@@ -15,99 +15,100 @@
 :root{
   --n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;
   --ln:#8FA3BF;--g:#666;--ok:#1F7A44;--bad:#C0392B;--bg:#eef1f5;
-  --safe-top:env(safe-area-inset-top, 0px);
-  --safe-bottom:env(safe-area-inset-bottom, 0px);
+  --sat:env(safe-area-inset-top, 0px);
+  --sab:env(safe-area-inset-bottom, 0px);
 }
 html,body{height:100%;background:var(--bg);font:13px/1.35 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:#2a2a2a;overflow:hidden;-webkit-text-size-adjust:100%}
 
 /* PIN SCREEN */
-#pin-screen{position:fixed;inset:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:20px;padding-top:var(--safe-top);padding-bottom:var(--safe-bottom)}
+#pin-screen{position:fixed;inset:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;padding:20px;padding-top:calc(var(--sat) + 20px);padding-bottom:calc(var(--sab) + 20px)}
 #pin-screen .app-icon{width:76px;height:76px;margin-bottom:14px;background:#fff;border-radius:18px;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(0,0,0,0.3);overflow:hidden}
 #pin-screen .app-icon img{width:100%;height:100%;object-fit:cover}
-#pin-screen h1{font-size:17px;font-weight:700;margin-bottom:4px;text-align:center}
-#pin-screen p{font-size:11.5px;color:#cbd5e1;margin-bottom:24px;text-align:center}
-.pin-dots{display:flex;gap:14px;margin-bottom:28px}
+#pin-screen h1{font-size:16px;font-weight:700;margin-bottom:4px;text-align:center}
+#pin-screen p{font-size:11.5px;color:#cbd5e1;margin-bottom:20px;text-align:center}
+.pin-dots{display:flex;gap:14px;margin-bottom:24px}
 .pin-dot{width:14px;height:14px;border-radius:50%;border:2px solid #64748b;background:transparent;transition:all .2s}
 .pin-dot.active{background:var(--o);border-color:var(--o);transform:scale(1.15)}
-.pin-pad{display:grid;grid-template-columns:repeat(3,70px);gap:14px}
-.pin-btn{width:70px;height:70px;border-radius:50%;border:0;background:rgba(255,255,255,0.12);color:#fff;font-size:22px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pin-pad{display:grid;grid-template-columns:repeat(3,68px);gap:12px}
+.pin-btn{width:68px;height:68px;border-radius:50%;border:0;background:rgba(255,255,255,0.12);color:#fff;font-size:22px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center}
 .pin-btn:active{background:rgba(255,255,255,0.3)}
-#pin-error{color:#f87171;font-size:12px;margin-top:14px;height:18px;font-weight:600;text-align:center}
+#pin-error{color:#f87171;font-size:12px;margin-top:12px;height:18px;font-weight:600;text-align:center}
 
 /* APP LAYOUT */
 #app{display:none;height:100%;flex-direction:column}
-.app-header{background:#fff;border-bottom:1px solid var(--bd);padding-top:calc(var(--safe-top) + 8px);padding-bottom:8px;padding-left:14px;padding-right:14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 6px rgba(0,0,0,0.05);flex-none:1;z-index:10}
-.app-header .logo-box{width:36px;height:36px;border-radius:8px;overflow:hidden;flex:none}
+.app-header{background:#fff;border-bottom:1px solid var(--bd);padding-top:calc(var(--sat) + 6px);padding-bottom:8px;padding-left:14px;padding-right:14px;display:flex;align-items:center;gap:10px;box-shadow:0 1px 6px rgba(0,0,0,0.05);flex-none:1;z-index:100}
+.app-header .logo-box{width:34px;height:34px;border-radius:8px;overflow:hidden;flex:none}
 .app-header img{width:100%;height:100%;object-fit:cover}
-.brand-title{font-weight:700;color:var(--br);font-size:13.5px;line-height:1.1}
-.brand-sub{font-size:10px;color:var(--g)}
+.brand-title{font-weight:700;color:var(--br);font-size:13px;line-height:1.1}
+.brand-sub{font-size:9.5px;color:var(--g)}
 .header-actions{margin-left:auto;display:flex;gap:6px}
 
 .btn-icon{border:1px solid var(--bd);background:var(--l);color:var(--n);border-radius:8px;padding:6px 10px;font-weight:600;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:4px}
 .btn-icon.pri{background:var(--b);color:#fff;border-color:var(--b)}
+.btn-icon.sec{background:var(--o);color:#fff;border-color:var(--o)}
 
-.app-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px calc(var(--safe-bottom) + 75px)}
+.app-body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:12px 12px calc(var(--sab) + 70px)}
 .tab-content{display:none}
 .tab-content.active{display:block}
 
-/* BOTTOM NAVIGATION BAR */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);padding-bottom:var(--safe-bottom);display:flex;justify-content:space-around;align-items:center;height:calc(56px + var(--safe-bottom));z-index:100;box-shadow:0 -2px 10px rgba(0,0,0,0.05)}
-.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:56px;color:#64748b;background:none;border:0;font-size:9.5px;font-weight:600;gap:3px;cursor:pointer}
-.nav-item svg{width:20px;height:20px;stroke-width:2;stroke:currentColor;fill:none}
+/* BOTTOM NAVIGATION */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);padding-bottom:var(--sab);display:flex;justify-content:space-around;align-items:center;height:calc(54px + var(--sab));z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.05)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;height:54px;color:#64748b;background:none;border:0;font-size:9px;font-weight:600;gap:2px;cursor:pointer}
+.nav-item svg{width:19px;height:19px;stroke-width:2;stroke:currentColor;fill:none}
 .nav-item.active{color:var(--br)}
 .nav-item.active svg{stroke:var(--br)}
 
-/* CARDS & UI */
+/* MOBILE FORM STYLING (VERTICAL LAYOUT) */
 .card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.05);padding:14px;margin-bottom:12px;border:1px solid rgba(214,223,234,0.7)}
-.card-title{font-size:14.5px;font-weight:700;color:var(--n);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.hint{font-size:11px;color:var(--g);margin-bottom:10px}
+.card-title{font-size:14px;font-weight:700;color:var(--n);margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.form-group{margin-bottom:10px}
+.form-group label{font-size:11px;font-weight:700;color:var(--n);display:block;margin-bottom:3px}
+.form-group input,.form-group select,.form-group textarea{font:13px -apple-system,BlinkMacSystemFont,sans-serif;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:8px 10px;border-radius:8px;outline:0;-webkit-appearance:none}
+.form-group input:focus,.form-group select:focus{border-color:var(--b);background:#f8fafc}
+.form-group input.r{text-align:right}
 
 .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
 .kpi-card{background:var(--l);border:1px solid var(--bd);border-radius:10px;padding:9px;text-align:center}
-.kpi-card small{display:block;font-size:9.5px;font-weight:700;color:var(--g);text-transform:uppercase;margin-bottom:2px}
-.kpi-card b{font-size:16px;color:var(--n)}
+.kpi-card small{display:block;font-size:9px;font-weight:700;color:var(--g);text-transform:uppercase;margin-bottom:2px}
+.kpi-card b{font-size:15px;color:var(--n)}
 .kpi-card.green b{color:var(--ok)}
 .kpi-card.orange b{color:var(--o)}
 .kpi-card.red b{color:var(--bad)}
 
-label{font-size:11px;font-weight:700;color:var(--n);display:block;margin-bottom:3px}
-input,select,textarea{font:13px -apple-system,BlinkMacSystemFont,sans-serif;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:7px 9px;border-radius:8px;outline:0;-webkit-appearance:none;appearance:none;margin-bottom:8px}
-input:focus,select:focus{border-color:var(--b);background:#f8fafc}
-input.r{text-align:right}
-input[type="checkbox"]{width:18px;height:18px;margin:0;cursor:pointer;accent-color:var(--b)}
+.sub-tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;-webkit-overflow-scrolling:touch}
+.sub-tab{padding:6px 12px;border-radius:20px;background:var(--l);border:1px solid var(--bd);font-size:11px;font-weight:600;color:var(--n);white-space:nowrap;cursor:pointer;flex:none}
+.sub-tab.active{background:var(--b);color:#fff;border-color:var(--b)}
 
 .table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:6px;border-radius:8px;border:1px solid var(--bd)}
 table{width:100%;border-collapse:collapse;background:#fff;font-size:11.5px}
 th{background:var(--b);color:#fff;text-align:left;padding:7px 5px;font-size:10.5px;font-weight:600;white-space:nowrap}
 td{padding:5px;border-bottom:1px solid var(--bd);vertical-align:middle}
 tr:nth-child(even) td{background:var(--l)}
-tr.inactive td{opacity:0.4;background:#f1f5f9!important}
 td.r,th.r{text-align:right}
 td.c,th.c{text-align:center}
-.tot-row td{background:var(--n)!important;color:#fff;font-weight:700;padding:7px 5px}
-.btn-del{background:none;border:0;color:var(--bad);font-size:17px;font-weight:bold;cursor:pointer;padding:2px 6px}
+.btn-del{background:none;border:0;color:var(--bad);font-size:16px;font-weight:bold;cursor:pointer;padding:2px 6px}
 
-.sub-tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;-webkit-overflow-scrolling:touch}
-.sub-tab{padding:6px 12px;border-radius:20px;background:var(--l);border:1px solid var(--bd);font-size:11px;font-weight:600;color:var(--n);white-space:nowrap;cursor:pointer;flex:none}
-.sub-tab.active{background:var(--b);color:#fff;border-color:var(--b)}
+/* SIGNATURE CANVAS STYLES */
+.sig-container{border:1px dashed var(--b);background:#FAFBFD;border-radius:8px;padding:8px;margin-top:6px;text-align:center}
+.sig-canvas{width:100%;height:100px;background:#fff;border:1px solid var(--bd);border-radius:6px;touch-action:none}
+.sig-tools{display:flex;justify-content:space-between;align-items:center;margin-top:4px}
 
-/* PRINT STYLES FOR EXACT OFFICIAL DOCUMENTS */
+/* EXACT A4 PRINT SHEETS (MATCHING ORIGINAL HTMLs) */
 @media print{
   #pin-screen,.app-header,.bottom-nav,.noprint{display:none!important}
-  #app,.app-body{display:block!important;overflow:visible!important;padding:0!important}
-  .card{box-shadow:none!important;border:0!important;padding:0!important;margin:0!important}
-  body{background:#fff!important}
-  .print-page{display:block!important;page-break-after:always}
+  #app,.app-body{display:block!important;overflow:visible!important;padding:0!important;margin:0!important}
+  body,html{background:#fff!important;width:210mm;height:297mm}
+  .print-page{display:block!important;width:210mm;height:297mm;position:relative;page-break-after:always;overflow:hidden;margin:0 auto}
 }
-.print-page{display:none}
+.print-page{display:none;background:#fff;width:210mm;height:297mm;position:relative;margin:0 auto;box-shadow:0 0 10px rgba(0,0,0,0.1);font-family:Arial,Helvetica,sans-serif;font-size:8.8pt;color:#2a2a2a}
 </style>
 </head>
 <body>
 
-<!-- PIN PROTECTION -->
+<!-- PIN PROTECTED SCREEN -->
 <div id="pin-screen">
   <div class="app-icon">
-    <img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><path fill=\'#013286\' d=\'M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z\'/></svg>'">
+    <img src="logo.PNG" alt="Logo" onerror="this.outerHTML='<svg viewBox=\'0 0 420 376\' width=\'100%\' height=\'100%\'><path fill=\'#013286\' d=\'M368 253 364 254 346 269 319 287 283 305 282 335 376 352Z\'/></svg>'">
   </div>
   <h1>Mejstrik Transport & Reinigung Service</h1>
   <p>Bitte PIN eingeben um fortzufahren</p>
@@ -145,8 +146,8 @@ td.c,th.c{text-align:center}
       <div class="brand-sub">Jahr <span class="yy">2026</span> · CH-8586 Ennetaach</div>
     </div>
     <div class="header-actions noprint">
-      <button class="btn-icon" onclick="exportBackup()">💾 Sichern</button>
-      <label class="btn-icon pri">📁 Laden<input type="file" accept=".json" hidden onchange="importBackup(event)"></label>
+      <button class="btn-icon" onclick="exportData()">💾 Sichern</button>
+      <label class="btn-icon pri">📁 Laden<input type="file" accept=".json" hidden onchange="importData(event)"></label>
     </div>
   </header>
 
@@ -192,7 +193,7 @@ td.c,th.c{text-align:center}
             <table>
               <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Kunde</th><th class="r">Betrag</th><th></th></tr></thead>
               <tbody id="tb-ein-data"></tbody>
-              <tfoot><tr class="tot-row"><td colspan="3">Total CHF</td><td class="r" id="tot-ein">0.00</td><td></td></tr></tfoot>
+              <tfoot><tr style="font-weight:bold;background:var(--n);color:#fff"><td colspan="3">Total CHF</td><td class="r" id="tot-ein">0.00</td><td></td></tr></tfoot>
             </table>
           </div>
         </div>
@@ -205,7 +206,7 @@ td.c,th.c{text-align:center}
             <table>
               <thead><tr><th class="c">Aktiv</th><th>Datum</th><th>Empfänger / Grund</th><th class="r">Betrag</th><th></th></tr></thead>
               <tbody id="tb-aus-data"></tbody>
-              <tfoot><tr class="tot-row"><td colspan="3">Total CHF</td><td class="r" id="tot-aus">0.00</td><td></td></tr></tfoot>
+              <tfoot><tr style="font-weight:bold;background:var(--n);color:#fff"><td colspan="3">Total CHF</td><td class="r" id="tot-aus">0.00</td><td></td></tr></tfoot>
             </table>
           </div>
         </div>
@@ -227,13 +228,12 @@ td.c,th.c{text-align:center}
     <!-- TAB 2: LÖHNE -->
     <div class="tab-content" id="tab-lohne">
       <div class="card">
-        <div class="card-title">Löhne & Aushilfe <button class="btn-icon pri" onclick="addRow('lohn')">+ Erfassen</button></div>
-        <div class="hint">Inkl. AHV/IV/EO (5.15%) und ALV (0.15%) Abzüge.</div>
+        <div class="card-title">Löhne & Aushilfe <button class="btn-icon pri" onclick="addRow('lohn')">+ Neu</button></div>
         <div class="table-responsive">
           <table>
             <thead><tr><th class="c">Aktiv</th><th>Name</th><th class="r">Brutto</th><th class="r">Netto</th><th>Aktion</th></tr></thead>
             <tbody id="tb-lohn-data"></tbody>
-            <tfoot><tr class="tot-row"><td colspan="2">Total Brutto CHF</td><td class="r" id="tot-lohn">0.00</td><td colspan="2"></td></tr></tfoot>
+            <tfoot><tr style="font-weight:bold;background:var(--n);color:#fff"><td colspan="2">Total Brutto CHF</td><td class="r" id="tot-lohn">0.00</td><td colspan="2"></td></tr></tfoot>
           </table>
         </div>
       </div>
@@ -242,52 +242,80 @@ td.c,th.c{text-align:center}
     <!-- TAB 3: DOKUMENTE & OFFERTEN -->
     <div class="tab-content" id="tab-dok">
       <div class="card noprint">
-        <div class="card-title">Offizielle Dokumente (PDF / Druck)</div>
-        <label>Dokumentenart:</label>
-        <select id="doc-select" onchange="renderDoc()">
-          <option value="rechnung">Rechnung (Muster)</option>
-          <option value="offerte-umzug">Offerte - Umzugsreinigung</option>
-          <option value="offerte-gebaeude">Offerte - Gebäudereinigung</option>
-          <option value="offerte-unterhalt">Offerte - Unterhaltsreinigung</option>
-          <option value="offerte-grund">Offerte - Grundreinigung</option>
-        </select>
+        <div class="card-title">Formular-Erfassung</div>
+        
+        <div class="form-group">
+          <label>Dokumententyp:</label>
+          <select id="doc-type" onchange="switchDocForm()">
+            <option value="rechnung">Rechnung (Faktura)</option>
+            <option value="off-umzug">Offerte - Umzugsreinigung</option>
+            <option value="off-gebaeude">Offerte - Gebäudereinigung</option>
+            <option value="off-unterhalt">Offerte - Unterhaltsreinigung</option>
+            <option value="off-grund">Offerte - Grundreinigung</option>
+          </select>
+        </div>
 
-        <label>Kunde / Adresse:</label>
-        <input type="text" id="doc-k Kunde" placeholder="Vorname Nachname / Firma, Strasse, Ort" value="Max Muster, Hauptstrasse 1, 8586 Ennetaach" oninput="renderDoc()">
+        <div id="doc-form-fields">
+          <!-- Dynamically populated vertical form fields -->
+        </div>
 
-        <label>Betrag / Pauschale CHF:</label>
-        <input type="text" id="doc-betrag" value="ab CHF 450.00" oninput="renderDoc()">
+        <!-- DIGITAL SIGNATURE FIELDS -->
+        <div class="sig-container">
+          <label>Unterschrift Kunden (Podpis zákazníka):</label>
+          <canvas id="sig-cust" class="sig-canvas"></canvas>
+          <div class="sig-tools">
+            <button class="btn-icon" onclick="clearSig('sig-cust')">Löschen</button>
+          </div>
+        </div>
 
-        <button class="btn-icon pri" style="width:100%;justify-content:center;padding:10px;margin-top:8px" onclick="window.print()">🖨️ Drucken / Als PDF speichern</button>
-      </div>
+        <div class="sig-container" style="margin-top:10px">
+          <label>Unterschrift Daniel Mejstrik (Váš podpis):</label>
+          <canvas id="sig-owner" class="sig-canvas"></canvas>
+          <div class="sig-tools">
+            <button class="btn-icon" onclick="clearSig('sig-owner')">Löschen</button>
+          </div>
+        </div>
 
-      <div class="card">
-        <div class="card-title noprint">Vorschau</div>
-        <div id="doc-preview" style="background:#fff;padding:15px;border:1px solid var(--bd);border-radius:6px;font-size:11pt"></div>
+        <div style="display:flex;gap:8px;margin-top:14px">
+          <button class="btn-icon pri" style="flex:1;justify-content:center;padding:10px" onclick="triggerPrint()">🖨️ Drucken</button>
+          <button class="btn-icon sec" style="flex:1;justify-content:center;padding:10px" onclick="triggerPDF()">📄 Als PDF speichern</button>
+        </div>
       </div>
     </div>
 
     <!-- TAB 4: ARBEITSRAPPORT -->
     <div class="tab-content" id="tab-rapport">
       <div class="card">
-        <div class="card-title">Arbeitsrapport</div>
-        <label>Mitarbeiterin:</label>
-        <input type="text" id="rap-name" value="Přítelkyně" oninput="calcRap()">
-        <div style="display:flex;gap:10px">
-          <div style="flex:1"><label>Lohn CHF/h:</label><input type="number" id="rap-rate" value="30" class="r" oninput="calcRap()"></div>
-          <div style="flex:1"><label>Monat:</label><input type="text" id="rap-mon" value="Oktober 2026"></div>
+        <div class="card-title">Arbeitsrapport (Pracovní Výkaz)</div>
+        <div class="form-group"><label>Mitarbeiterin:</label><input type="text" id="rap-worker" value="" oninput="calcRap()"></div>
+        <div style="display:flex;gap:8px">
+          <div class="form-group" style="flex:1"><label>Lohn CHF/h:</label><input type="number" id="rap-rate" value="0.00" class="r" oninput="calcRap()"></div>
+          <div class="form-group" style="flex:1"><label>Monat / Jahr:</label><input type="text" id="rap-mon" value="" oninput="calcRap()"></div>
         </div>
+
         <div class="table-responsive">
           <table>
-            <thead><tr><th>Datum</th><th>Einsatzort</th><th class="r">Von</th><th class="r">Bis</th><th class="r">Pause</th><th class="r">Std</th></tr></thead>
-            <tbody id="tb-rap"></tbody>
+            <thead><tr><th>Datum</th><th>Kunde / Ort</th><th class="r">Von</th><th class="r">Bis</th><th class="r">P.</th><th class="r">Std</th></tr></thead>
+            <tbody id="tb-rap-data"></tbody>
           </table>
         </div>
+
         <div style="margin-top:10px;background:var(--l);padding:10px;border-radius:8px">
-          <div style="display:flex;justify-content:space-between"><span>Total Stunden:</span><b id="rap-th">0.00 h</b></div>
-          <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--br)"><span>Bruttolohn CHF:</span><b id="rap-tot">0.00 CHF</b></div>
+          <div style="display:flex;justify-content:space-between"><span>Total Stunden:</span><b id="rap-tot-h">0.00 h</b></div>
+          <div style="display:flex;justify-content:space-between;font-size:14px;color:var(--br)"><span>Bruttolohn CHF:</span><b id="rap-tot-pay">0.00 CHF</b></div>
         </div>
-        <button class="btn-icon noprint pri" style="width:100%;justify-content:center;padding:10px;margin-top:10px" onclick="window.print()">🖨️ Arbeitsrapport Drucken / PDF</button>
+
+        <!-- RAPPORT SIGNATURE -->
+        <div class="sig-container" style="margin-top:10px">
+          <label>Unterschrift Arbeitnehmerin:</label>
+          <canvas id="sig-rap-worker" class="sig-canvas"></canvas>
+          <div class="sig-tools"><button class="btn-icon" onclick="clearSig('sig-rap-worker')">Löschen</button></div>
+        </div>
+
+        <div style="display:flex;gap:8px;margin-top:14px">
+          <button class="btn-icon pri" style="flex:1;justify-content:center;padding:10px" onclick="triggerPrint()">🖨️ Drucken</button>
+          <button class="btn-icon sec" style="flex:1;justify-content:center;padding:10px" onclick="triggerPDF()">📄 Als PDF speichern</button>
+        </div>
       </div>
     </div>
 
@@ -313,8 +341,11 @@ td.c,th.c{text-align:center}
   </nav>
 </div>
 
+<!-- PRINT CONTAINER (CONTAINS EXACT PRINT TEMPLATES FROM SOURCE HTMLs) -->
+<div id="print-area"></div>
+
 <script>
-/* PIN ENGINE */
+/* PIN CONTROL */
 let enteredPin = "";
 const CORRECT_PIN = "2518";
 
@@ -325,6 +356,7 @@ function pressPin(v) {
       document.getElementById('pin-screen').style.display = 'none';
       document.getElementById('app').style.display = 'flex';
       sessionStorage.setItem('m_auth', '1');
+      initCanvases();
     } else {
       document.getElementById('pin-error').textContent = "Falscher PIN!";
       enteredPin = "";
@@ -340,17 +372,18 @@ function pressPin(v) {
 if (sessionStorage.getItem('m_auth') === '1') {
   document.getElementById('pin-screen').style.display = 'none';
   document.getElementById('app').style.display = 'flex';
+  setTimeout(initCanvases, 300);
 }
 
 /* DATA STORE & STATE */
-const STORE_KEY = 'mservice_official_app_v2';
+const STORE_KEY = 'mservice_app_empty_v3';
 const MONTHS = ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'];
 let DB = {
   year: 2026,
-  ein: [{act:true, d:'2026-10-05', who:'Müller AG', amt:'1200.00'}],
-  aus: [{act:true, d:'2026-10-02', who:'Benzin Shell', amt:'110.00'}],
-  lohn: [{act:true, d:'2026-10-25', who:'Přítelkyně', amt:'1800.00'}],
-  rg: [{act:true, nr:'RE-2026-001', who:'Müller AG', amt:'1200.00', paid:false}]
+  ein: [],
+  aus: [],
+  lohn: [],
+  rg: []
 };
 
 function loadDB() {
@@ -368,7 +401,7 @@ function saveDB() {
 function n(v) { let x = parseFloat(String(v||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(',','.')); return isNaN(x)?0:x; }
 function f(v) { return v.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
-/* TABS */
+/* NAVIGATION */
 function switchTab(btn, id) {
   document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -389,7 +422,6 @@ function renderAll() {
   document.querySelectorAll('.yy').forEach(e => e.textContent = DB.year);
   renderTables();
   calcKPIs();
-  renderDoc();
 }
 
 function calcKPIs() {
@@ -484,70 +516,87 @@ function addRow(t) {
   if(t==='ein') DB.ein.push({act:true, d:today, who:'', amt:''});
   if(t==='aus') DB.aus.push({act:true, d:today, who:'', amt:''});
   if(t==='lohn') DB.lohn.push({act:true, d:today, who:'', amt:''});
-  if(t==='rg') DB.rg.push({act:true, nr:'RE-2026-', who:'', amt:'', paid:false});
+  if(t==='rg') DB.rg.push({act:true, nr:'', who:'', amt:'', paid:false});
   saveDB();
 }
 function togglePaid(i) { DB.rg[i].paid = !DB.rg[i].paid; saveDB(); }
 
-/* DOCUMENT PREVIEW & TEMPLATES */
-function renderDoc() {
-  let type = document.getElementById('doc-select').value;
-  let kunde = document.getElementById('doc-kunde')?.value || 'Max Muster';
-  let betrag = document.getElementById('doc-betrag')?.value || 'ab CHF 450.00';
+/* DYNAMIC FORM FIELDS SWITCHER */
+function switchDocForm() {
+  let type = document.getElementById('doc-type').value;
+  let container = document.getElementById('doc-form-fields');
+  let h = '';
 
-  let title = "RECHNUNG";
-  if(type.startsWith('offerte')) title = "OFFERTE";
-
-  let html = `
-    <div style="border-bottom:2px solid #1E3A6D;padding-bottom:10px;margin-bottom:15px;display:flex;justify-content:space-between">
-      <div>
-        <b style="color:#1F4EA8;font-size:14pt">Mejstrik Transport & Reinigung Service</b><br>
-        <span style="font-size:9pt;color:#666">CH-8586 Ennetaach · Tel. +41 78 345 80 72 · info@mservice.ch</span>
-      </div>
-      <div style="text-align:right">
-        <b style="color:#F57C00;font-size:13pt">${title}</b><br>
-        <span style="font-size:9pt">Datum: ${new Date().toLocaleDateString('de-CH')}</span>
-      </div>
-    </div>
-    <div style="margin-bottom:15px;font-size:10pt">
-      <b>Kunde / Objekt:</b><br>${kunde.replace(/\n/g, '<br>')}
-    </div>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:15px;font-size:10pt">
-      <tr style="background:#2D6CB5;color:#fff"><th style="padding:6px">Dienstleistung / Beschreibung</th><th style="padding:6px;text-align:right">Betrag CHF</th></tr>
-      <tr><td style="padding:6px;border-bottom:1px solid #ddd">Leistungen gemäß Vereinbarung (${type})</td><td style="padding:6px;border-bottom:1px solid #ddd;text-align:right">${betrag}</td></tr>
-    </table>
-    <div style="font-size:9pt;color:#555;margin-bottom:25px">
-      * 48-Stunden-Zufriedenheitsgarantie. Es gelten unsere AGB unter www.mservice.ch/agb.
-    </div>
-    <div style="display:flex;justify-content:space-between;font-size:10pt">
-      <div><b>Mejstrik Transport & Reinigung Service</b></div>
-      <div>Unterschrift: ______________________</div>
-    </div>
-  `;
-  document.getElementById('doc-preview').innerHTML = html;
+  if (type === 'rechnung') {
+    h = `
+      <div class="form-group"><label>Rechnungs-Nr.:</label><input type="text" id="df-nr"></div>
+      <div class="form-group"><label>Datum:</label><input type="date" id="df-date"></div>
+      <div class="form-group"><label>Zahlbar bis:</label><input type="text" id="df-due" value="10 Tagen netto"></div>
+      <div class="form-group"><label>Kunde / Firma:</label><input type="text" id="df-client"></div>
+      <div class="form-group"><label>Strasse & Nr.:</label><input type="text" id="df-str"></div>
+      <div class="form-group"><label>PLZ & Ort:</label><input type="text" id="df-ort"></div>
+      <div class="form-group"><label>Betrag / Pauschale CHF:</label><input type="number" id="df-price" class="r"></div>
+    `;
+  } else {
+    h = `
+      <div class="form-group"><label>Offerten-Nr.:</label><input type="text" id="df-nr"></div>
+      <div class="form-group"><label>Datum:</label><input type="date" id="df-date"></div>
+      <div class="form-group"><label>Gültigkeit:</label><input type="text" id="df-due" value="30 Tage"></div>
+      <div class="form-group"><label>Vorname Nachname / Firma:</label><input type="text" id="df-client"></div>
+      <div class="form-group"><label>Strasse & Nr.:</label><input type="text" id="df-str"></div>
+      <div class="form-group"><label>PLZ & Ort:</label><input type="text" id="df-ort"></div>
+      <div class="form-group"><label>Objektadresse (falls abweichend):</label><input type="text" id="df-obj"></div>
+      <div class="form-group"><label>Pauschalpreis CHF:</label><input type="text" id="df-price" value="ab CHF 0.00"></div>
+    `;
+  }
+  container.innerHTML = h;
 }
 
-/* ARBEITSRAPPORT */
+/* CANVAS SIGNATURE ENGINE */
+function initCanvases() {
+  ['sig-cust', 'sig-owner', 'sig-rap-worker'].forEach(id => {
+    let canvas = document.getElementById(id);
+    if (!canvas) return;
+    let ctx = canvas.getContext('2d');
+    let drawing = false;
+
+    function getPos(e) {
+      let rect = canvas.getBoundingClientRect();
+      let touch = e.touches ? e.touches[0] : e;
+      return { x: touch.clientX - rect.left, y: touch.clientY - rect.top };
+    }
+
+    canvas.addEventListener('touchstart', (e) => { drawing = true; let p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); });
+    canvas.addEventListener('touchmove', (e) => { if(!drawing) return; let p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
+    canvas.addEventListener('touchend', () => { drawing = false; });
+  });
+}
+
+function clearSig(id) {
+  let canvas = document.getElementById(id);
+  if (canvas) canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+}
+
+/* ARBEITSRAPPORT COMPUTATION */
 function initRap() {
   let h = '';
-  for(let i=1; i<=8; i++) {
+  for (let i = 1; i <= 15; i++) {
     h += `<tr>
-      <td><input type="text" value="${i}.10.2026" style="width:75px"></td>
-      <td><input type="text" value="Ennetaach"></td>
-      <td><input type="text" class="r" value="08:00" style="width:50px" oninput="calcRap()"></td>
-      <td><input type="text" class="r" value="17:00" style="width:50px" oninput="calcRap()"></td>
-      <td class="r"><input type="number" class="r" value="60" style="width:45px" oninput="calcRap()"></td>
-      <td class="r"><b class="rh">8.00</b></td>
+      <td><input type="text" placeholder="TT.MM." style="width:50px"></td>
+      <td><input type="text" style="width:100px"></td>
+      <td><input type="text" class="r" placeholder="07:30" style="width:45px" oninput="calcRap()"></td>
+      <td><input type="text" class="r" placeholder="16:00" style="width:45px" oninput="calcRap()"></td>
+      <td class="r"><input type="number" class="r" placeholder="30" style="width:35px" oninput="calcRap()"></td>
+      <td class="r"><b class="rh">0.00</b></td>
     </tr>`;
   }
-  document.getElementById('tb-rap').innerHTML = h;
-  calcRap();
+  document.getElementById('tb-rap-data').innerHTML = h;
 }
 
 function calcRap() {
   let rate = n(document.getElementById('rap-rate').value);
   let totMin = 0;
-  document.querySelectorAll('#tb-rap tr').forEach(r => {
+  document.querySelectorAll('#tb-rap-data tr').forEach(r => {
     let inp = r.querySelectorAll('input');
     let von = inp[2].value.split(':');
     let bis = inp[3].value.split(':');
@@ -560,19 +609,30 @@ function calcRap() {
     r.querySelector('.rh').textContent = (dur/60).toFixed(2);
   });
   let hours = totMin / 60;
-  document.getElementById('rap-th').textContent = hours.toFixed(2) + ' h';
-  document.getElementById('rap-tot').textContent = f(hours * rate) + ' CHF';
+  document.getElementById('rap-tot-h').textContent = hours.toFixed(2) + ' h';
+  document.getElementById('rap-tot-pay').textContent = f(hours * rate) + ' CHF';
 }
 
-/* BACKUP */
-function exportBackup() {
+/* PRINT & PDF GENERATION ENGINE */
+function triggerPrint() {
+  window.print();
+}
+
+function triggerPDF() {
+  alert("Pro uložení do PDF: V následujícím dialogu zvolte Sdílet -> Uložit do Souborů / PDF.");
+  window.print();
+}
+
+/* BACKUP & RESTORE */
+function exportData() {
   let b = new Blob([JSON.stringify(DB,null,2)], {type:'application/json'});
   let a = document.createElement('a');
   a.href = URL.createObjectURL(b);
   a.download = 'Mejstrik_Service_Backup_'+DB.year+'.json';
   a.click();
 }
-function importBackup(e) {
+
+function importData(e) {
   let f = e.target.files[0];
   if(!f) return;
   let r = new FileReader();
@@ -585,6 +645,7 @@ function importBackup(e) {
 document.addEventListener('DOMContentLoaded', () => {
   loadDB();
   renderAll();
+  switchDocForm();
   initRap();
 });
 </script>
