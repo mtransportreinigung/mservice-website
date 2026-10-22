@@ -13,43 +13,41 @@
 <script>
 // Robot blocker
 if (/bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(navigator.userAgent)) {
-  window.location.href = "about:blank";
+window.location.href = "about:blank";
 }
 </script>
 <style>
 :root {
-  --n: #1E3A6D;
-  --b: #2D6CB5;
-  --br: #1F4EA8;
-  --o: #F57C00;
-  --l: #F4F7FB;
-  --bd: #D6DFEA;
-  --g: #666;
-  --ok: #1F7A44;
-  --bad: #C0392B;
-  --sat: env(safe-area-inset-top);
-  --sab: env(safe-area-inset-bottom);
+--n: #1E3A6D;
+--b: #2D6CB5;
+--br: #1F4EA8;
+--o: #F57C00;
+--l: #F4F7FB;
+--bd: #D6DFEA;
+--g: #666;
+--ok: #1F7A44;
+--bad: #C0392B;
+--sat: env(safe-area-inset-top);
+--sab: env(safe-area-inset-bottom);
 }
-
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+￼ { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body {
-  width: 100%; height: 100%;
-  background: #eef1f5;
-  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  color: #2a2a2a;
-  overflow: hidden;
+width: 100%; height: 100%;
+background: #eef1f5;
+font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+color: #2a2a2a;
+overflow: hidden;
 }
-
 /* PIN Screen */
 #pin-screen {
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: var(--n);
-  z-index: 9999;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: calc(20px + var(--sat)) 20px calc(20px + var(--sab));
-  color: #fff;
+position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+background: var(--n);
+z-index: 9999;
+display: flex; flex-direction: column; align-items: center; justify-content: center;
+padding: calc(20px + var(--sat)) 20px calc(20px + var(--sab));
+color: #fff;
 }
-#pin-screen img.app-logo { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 16px; }
+#pin-screen img.app-logo { width: 80px; height: 80px; margin-bottom: 15px; border-radius: 16px; object-fit: contain; background: #fff; }
 #pin-screen h2 { font-size: 20px; margin-bottom: 8px; }
 #pin-screen p { font-size: 13px; color: #a0b2d6; margin-bottom: 25px; }
 .pin-dots { display: flex; gap: 15px; margin-bottom: 30px; }
@@ -57,505 +55,621 @@ html, body {
 .dot.filled { background: var(--o); border-color: var(--o); }
 .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; width: 100%; max-width: 280px; }
 .key {
-  aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 24px; font-weight: bold; color: #fff; cursor: pointer; user-select: none;
+aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.1);
+display: flex; align-items: center; justify-content: center;
+font-size: 24px; font-weight: bold; color: #fff; cursor: pointer; user-select: none;
 }
 .key:active { background: rgba(255,255,255,0.3); }
-
-/* App Shell Layout */
+/* App Shell Layout with Safe Area Spacing */
 #app-shell {
-  display: none; height: 100%; width: 100%;
-  flex-direction: column;
+display: none; height: 100%; width: 100%;
+flex-direction: column;
 }
 body.unlocked #app-shell { display: flex; }
-
 header.app-header {
-  background: #fff;
-  padding-top: max(10px, var(--sat));
-  padding-left: 15px; padding-right: 15px; padding-bottom: 10px;
-  border-bottom: 2px solid var(--b);
-  display: flex; align-items: center; justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  z-index: 100; flex-shrink: 0;
+background: #fff;
+padding-top: max(12px, var(--sat));
+padding-left: 16px; padding-right: 16px; padding-bottom: 12px;
+border-bottom: 2px solid var(--b);
+display: flex; align-items: center; justify-content: space-between;
+box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+z-index: 100; flex-shrink: 0;
 }
 header .brand-info { display: flex; align-items: center; gap: 10px; }
-header img.hdr-logo { width: 34px; height: 34px; object-fit: contain; }
+header img.hdr-logo { width: 36px; height: 36px; object-fit: contain; }
 header .title-text { font-size: 15px; font-weight: bold; color: var(--br); line-height: 1.2; }
 header .title-text span { display: block; font-size: 11px; color: var(--g); font-weight: normal; }
-
 /* Main Content Area */
 main.app-content {
-  flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
-  padding: 12px 12px calc(80px + var(--sab)) 12px;
+flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch;
+padding: calc(15px + var(--sat)) 14px calc(90px + var(--sab)) 14px;
 }
-
-/* Bottom Navigation Bar */
+/* Bottom Navigation Bar with Safe Area Padding */
 nav.app-nav {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: #fff; border-top: 1px solid var(--bd);
-  padding-bottom: max(5px, var(--sab)); padding-top: 6px;
-  display: flex; justify-content: space-around;
-  z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+position: fixed; bottom: 0; left: 0; right: 0;
+background: #fff; border-top: 1px solid var(--bd);
+padding-bottom: max(16px, var(--sab)); padding-top: 10px;
+display: flex; justify-content: space-around;
+z-index: 100; box-shadow: 0 -4px 12px rgba(0,0,0,0.06);
 }
 .nav-item {
-  display: flex; flex-direction: column; align-items: center;
-  font-size: 10px; color: var(--g); background: none; border: none; flex: 1; cursor: pointer;
+display: flex; flex-direction: column; align-items: center;
+font-size: 11px; color: var(--g); background: none; border: none; flex: 1; cursor: pointer;
 }
-.nav-item svg { width: 22px; height: 22px; fill: currentColor; margin-bottom: 2px; }
+.nav-item svg { width: 24px; height: 24px; fill: currentColor; margin-bottom: 3px; }
 .nav-item.active { color: var(--br); font-weight: bold; }
-
 /* Views / Cards UI */
 .view-panel { display: none; }
 .view-panel.active { display: block; }
-
 .card {
-  background: #fff; border-radius: 12px; padding: 14px;
-  margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  border-top: 4px solid var(--o);
+background: #fff; border-radius: 12px; padding: 16px;
+margin-bottom: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+border-top: 4px solid var(--o);
 }
-.card h2 { font-size: 16px; color: var(--n); margin-bottom: 10px; padding-bottom: 4px; border-bottom: 1px solid var(--bd); }
-.card h3 { font-size: 14px; color: var(--br); margin: 12px 0 6px 0; }
-
-/* Form Fields stacked for mobile */
-.form-group { margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px; }
+.card h2 { font-size: 16px; color: var(--n); margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--bd); }
+.card h3 { font-size: 14px; color: var(--br); margin: 14px 0 8px 0; }
+.form-group { margin-bottom: 12px; display: flex; flex-direction: column; gap: 5px; }
 .form-group label { font-size: 12px; font-weight: bold; color: var(--n); }
 input[type="text"], input[type="number"], input[type="date"], select, textarea {
-  font-size: 15px; color: #000; border: 1px solid var(--bd); border-radius: 8px;
-  padding: 8px 10px; background: #fff; width: 100%; outline: none;
+font-size: 15px; color: #000; border: 1px solid var(--bd); border-radius: 8px;
+padding: 10px 12px; background: #fff; width: 100%; outline: none;
 }
 input:focus, select:focus, textarea:focus { border-color: var(--b); background: #f0f5fc; }
-
-.checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
-.checkbox-item { display: flex; align-items: center; gap: 6px; font-size: 13px; background: var(--l); padding: 6px 10px; border-radius: 6px; border: 1px solid var(--bd); }
-.checkbox-item input[type="checkbox"] { width: 18px; height: 18px; }
-
-/* KPI Grid */
-.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-.kpi-card { background: var(--l); border: 1px solid var(--bd); border-radius: 8px; padding: 8px; text-align: center; }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+.kpi-card { background: var(--l); border: 1px solid var(--bd); border-radius: 8px; padding: 10px; text-align: center; }
 .kpi-card small { font-size: 10px; font-weight: bold; color: var(--g); text-transform: uppercase; display: block; }
 .kpi-card b { font-size: 16px; color: var(--n); }
 .kpi-card.g b { color: var(--o); }
 .kpi-card.r b { color: var(--bad); }
-
-/* Table stacked layout */
-.mobile-table-card { background: #fff; border: 1px solid var(--bd); border-radius: 8px; padding: 10px; margin-bottom: 8px; position: relative; }
-.mobile-table-card .del-btn { position: absolute; top: 8px; right: 8px; background: none; border: none; color: var(--bad); font-size: 18px; font-weight: bold; }
-
+.mobile-table-card { background: #fff; border: 1px solid var(--bd); border-radius: 8px; padding: 12px; margin-bottom: 10px; position: relative; }
+.mobile-table-card .del-btn { position: absolute; top: 8px; right: 8px; background: none; border: none; color: var(--bad); font-size: 20px; font-weight: bold; cursor: pointer; }
 .btn {
-  font-size: 13px; font-weight: bold; border-radius: 8px; padding: 10px 14px;
-  border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%;
+font-size: 14px; font-weight: bold; border-radius: 8px; padding: 12px 16px;
+border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+margin-top: 6px;
 }
 .btn-primary { background: var(--b); color: #fff; }
 .btn-secondary { background: var(--l); border: 1px solid var(--bd); color: var(--n); }
-.btn-action { background: var(--o); color: #fff; margin-top: 8px; }
-
-/* Sub Navigation Tabs inside Buchhaltung */
-.sub-tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; }
+.btn-action { background: var(--o); color: #fff; }
+.sub-tabs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 12px; }
 .sub-tabs button {
-  white-space: nowrap; font-size: 12px; padding: 6px 12px; border-radius: 16px;
-  border: 1px solid var(--bd); background: #fff; color: var(--n);
+white-space: nowrap; font-size: 12px; padding: 7px 14px; border-radius: 16px;
+border: 1px solid var(--bd); background: #fff; color: var(--n); font-weight: 500;
 }
-.sub-tabs button.active { background: var(--b); color: #fff; border-color: var(--b); }
-
-/* Print styles for export */
+.sub-tabs button.active { background: var(--b); color: #fff; border-color: var(--b); font-weight: bold; }
+/* A4 Template Preview hidden during normal app view, shown for export */
+#print-preview-modal {
+display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000;
+overflow-y: auto; padding: 20px;
+}
+.a4-page {
+background: white; width: 210mm; min-height: 297mm; margin: 0 auto; padding: 20mm; color: #000;
+font-size: 11pt; font-family: Helvetica, Arial, sans-serif; box-shadow: 0 4px 15px rgba(0,0,0,0.3); position: relative;
+}
 @media print {
-  #pin-screen, header, nav, .noprint, .sub-tabs, .btn { display: none !important; }
-  body { background: #fff; overflow: visible; font-size: 10pt; }
-  main.app-content { padding: 0; overflow: visible; }
-  .page-print { page-break-after: always; width: 100%; padding: 10mm; background: #fff; }
+body * { display: none !important; }
+#print-preview-modal, #print-preview-modal * { display: block !important; }
+#print-preview-modal { position: absolute; top: 0; left: 0; width: 100%; background: #fff; padding: 0; margin: 0; box-shadow: none; }
+.a4-page { width: 100%; height: 100%; margin: 0; padding: 15mm; box-shadow: none; page-break-after: always; }
+.no-print { display: none !important; }
 }
 </style>
 </head>
 <body>
-
-<!-- PIN Entry Screen -->
+<!-- PIN Screen -->
 <div id="pin-screen">
-  <img src="logo.PNG" alt="Logo" class="app-logo" onerror="this.style.display='none'">
-  <h2>M Service App</h2>
-  <p>Bitte PIN eingeben</p>
-  <div class="pin-dots">
-    <div class="dot" id="dot-0"></div>
-    <div class="dot" id="dot-1"></div>
-    <div class="dot" id="dot-2"></div>
-    <div class="dot" id="dot-3"></div>
-  </div>
-  <div class="keypad">
-    <div class="key" onclick="pressKey('1')">1</div>
-    <div class="key" onclick="pressKey('2')">2</div>
-    <div class="key" onclick="pressKey('3')">3</div>
-    <div class="key" onclick="pressKey('4')">4</div>
-    <div class="key" onclick="pressKey('5')">5</div>
-    <div class="key" onclick="pressKey('6')">6</div>
-    <div class="key" onclick="pressKey('7')">7</div>
-    <div class="key" onclick="pressKey('8')">8</div>
-    <div class="key" onclick="pressKey('9')">9</div>
-    <div class="key" onclick="clearPin()">C</div>
-    <div class="key" onclick="pressKey('0')">0</div>
-    <div class="key" onclick="delKey()">⌫</div>
-  </div>
+<img src="logo.PNG" alt="M Logo" class="app-logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\'><rect width=\'100%\' height=\'100%\' fill=\'%231E3A6D\'/><text x=\'50%\' y=\'55%\' font-size=\'32\' fill=\'white\' font-weight=\'bold\' text-anchor=\'middle\' dominant-baseline=\'middle\'>M</text></svg>'">
+<h2>M Service App</h2>
+<p>Bitte PIN eingeben (2518)</p>
+<div class="pin-dots">
+<div class="dot" id="dot-0"></div>
+<div class="dot" id="dot-1"></div>
+<div class="dot" id="dot-2"></div>
+<div class="dot" id="dot-3"></div>
 </div>
-
+<div class="keypad">
+<div class="key" onclick="pressKey('1')">1</div>
+<div class="key" onclick="pressKey('2')">2</div>
+<div class="key" onclick="pressKey('3')">3</div>
+<div class="key" onclick="pressKey('4')">4</div>
+<div class="key" onclick="pressKey('5')">5</div>
+<div class="key" onclick="pressKey('6')">6</div>
+<div class="key" onclick="pressKey('7')">7</div>
+<div class="key" onclick="pressKey('8')">8</div>
+<div class="key" onclick="pressKey('9')">9</div>
+<div class="key" onclick="clearPin()">C</div>
+<div class="key" onclick="pressKey('0')">0</div>
+<div class="key" onclick="delKey()">⌫</div>
+</div>
+</div>
 <!-- Main Application Shell -->
 <div id="app-shell">
-  <header class="app-header">
-    <div class="brand-info">
-      <img src="logo.PNG" alt="Logo" class="hdr-logo" onerror="this.style.display='none'">
-      <div class="title-text">
-        M Transport & Reinigung
-        <span>Service Anwendung</span>
-      </div>
-    </div>
-    <button class="btn btn-secondary" style="width:auto; padding: 6px 10px;" onclick="window.print()">🖨️ Drucken</button>
-  </header>
-
-  <main class="app-content">
-    
-    <!-- SECTION 1: BUCHHALTUNG -->
-    <div id="view-buchhaltung" class="view-panel active">
-      <div class="sub-tabs">
-        <button class="active" onclick="switchBTab('uebersicht', this)">Übersicht</button>
-        <button onclick="switchBTab('einnahmen', this)">Einnahmen</button>
-        <button onclick="switchBTab('ausgaben', this)">Ausgaben</button>
-        <button onclick="switchBTab('loehne', this)">Löhne</button>
-        <button onclick="switchBTab('rechnungen', this)">Offene Rgg.</button>
-      </div>
-
-      <!-- Buchhaltung Übersicht -->
-      <div id="b-tab-uebersicht" class="b-tab-content">
-        <div class="card">
-          <h2>Übersicht <span class="cur-year">2027</span></h2>
-          <div class="form-group">
-            <label>Jahr wählen:</label>
-            <input type="number" id="bh-year" value="2027" onchange="updateAccounting()">
-          </div>
-          <div class="kpi-grid">
-            <div class="kpi-card"><small>Einnahmen</small><b id="kpi-e">CHF 0.00</b></div>
-            <div class="kpi-card"><small>Ausgaben</small><b id="kpi-a">CHF 0.00</b></div>
-            <div class="kpi-card g"><small>Gewinn</small><b id="kpi-g">CHF 0.00</b></div>
-            <div class="kpi-card r"><small>Offen</small><b id="kpi-o">CHF 0.00</b></div>
-          </div>
-          <button class="btn btn-secondary" onclick="saveAccountingData()">💾 Daten sichern</button>
-        </div>
-      </div>
-
-      <!-- Einnahmen -->
-      <div id="b-tab-einnahmen" class="b-tab-content" style="display:none;">
-        <div class="card">
-          <h2>Einnahmen erfassen</h2>
-          <div id="einnahmen-list"></div>
-          <button class="btn btn-primary" onclick="addEinnahmeRow()">+ Neue Einnahme</button>
-        </div>
-      </div>
-
-      <!-- Ausgaben -->
-      <div id="b-tab-ausgaben" class="b-tab-content" style="display:none;">
-        <div class="card">
-          <h2>Ausgaben erfassen</h2>
-          <div id="ausgaben-list"></div>
-          <button class="btn btn-primary" onclick="addAusgabeRow()">+ Neue Ausgabe</button>
-        </div>
-      </div>
-
-      <!-- Löhne -->
-      <div id="b-tab-loehne" class="b-tab-content" style="display:none;">
-        <div class="card">
-          <h2>Löhne & Aushilfe</h2>
-          <div id="loehne-list"></div>
-          <button class="btn btn-primary" onclick="addLohnRow()">+ Neuer Lohn-Eintrag</button>
-        </div>
-      </div>
-
-      <!-- Offene Rechnungen -->
-      <div id="b-tab-rechnungen" class="b-tab-content" style="display:none;">
-        <div class="card">
-          <h2>Offene Rechnungen</h2>
-          <div id="offene-rg-list"></div>
-          <button class="btn btn-primary" onclick="addRgRow()">+ Neue Rechnung</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 2: OFFERTE -->
-    <div id="view-offerte" class="view-panel">
-      <div class="card">
-        <h2>Offerte erstellen</h2>
-        <div class="form-group">
-          <label>Offerten-Typ:</label>
-          <select id="offerte-typ">
-            <option value="umzug">Umzugsreinigung</option>
-            <option value="gebaeude">Gebäudereinigung</option>
-            <option value="unterhalt">Unterhaltsreinigung</option>
-            <option value="grund">Grundreinigung</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Kunde / Firma:</label>
-          <input type="text" id="off-kunde" placeholder="Name, Vorname">
-        </div>
-        <div class="form-group">
-          <label>Strasse & Nr.:</label>
-          <input type="text" id="off-strasse" placeholder="Musterstrasse 1">
-        </div>
-        <div class="form-group">
-          <label>PLZ & Ort:</label>
-          <input type="text" id="off-ort" placeholder="8000 Zürich">
-        </div>
-        <div class="form-group">
-          <label>Pauschalpreis / Betrag CHF:</label>
-          <input type="text" id="off-preis" placeholder="ab CHF 0'000.-">
-        </div>
-        <button class="btn btn-action" onclick="generateOffertePDF()">📄 Offerte erstellen / Drucken</button>
-      </div>
-    </div>
-
-    <!-- SECTION 3: ARBEITSRAPPORT -->
-    <div id="view-rapport" class="view-panel">
-      <div class="card">
-        <h2>Arbeitsrapport</h2>
-        <div class="form-group">
-          <label>Mitarbeiterin:</label>
-          <input type="text" id="rap-mitarbeiter" placeholder="Vorname Nachname">
-        </div>
-        <div class="form-group">
-          <label>Monat / Jahr:</label>
-          <input type="text" id="rap-monat" placeholder="01 / 2027">
-        </div>
-        <div class="form-group">
-          <label>Lohn CHF/h:</label>
-          <input type="number" id="rap-stundenlohn" placeholder="30.00" oninput="calcRapport()">
-        </div>
-
-        <h3>Arbeitsstunden</h3>
-        <div id="rapport-entries"></div>
-        <button class="btn btn-secondary" style="margin-bottom:10px" onclick="addRapportEntry()">+ Zeile hinzufügen</button>
-
-        <div class="kpi-grid">
-          <div class="kpi-card"><small>Total Stunden</small><b id="rap-total-stunden">0.00</b></div>
-          <div class="kpi-card g"><small>Bruttolohn CHF</small><b id="rap-bruttolohn">0.00</b></div>
-        </div>
-        <button class="btn btn-action" onclick="window.print()">📄 Rapport Drucken</button>
-      </div>
-    </div>
-
-    <!-- SECTION 4: RECHNUNG -->
-    <div id="view-rechnung" class="view-panel">
-      <div class="card">
-        <h2>Rechnung erstellen</h2>
-        <div class="form-group">
-          <label>Rechnungs-Nr.:</label>
-          <input type="text" id="rg-nr" placeholder="2027-001">
-        </div>
-        <div class="form-group">
-          <label>Kunde Name & Adresse:</label>
-          <textarea id="rg-kunde" rows="3" placeholder="Vorname Nachname&#10;Strasse 12&#10;PLZ Ort"></textarea>
-        </div>
-        <div class="form-group">
-          <label>Datum:</label>
-          <input type="date" id="rg-datum">
-        </div>
-        <div class="form-group">
-          <label>Zahlbar bis:</label>
-          <input type="date" id="rg-due">
-        </div>
-
-        <h3>Positionen</h3>
-        <div id="rechnung-positionen"></div>
-        <button class="btn btn-secondary" style="margin-bottom:10px" onclick="addRechnungPos()">+ Position hinzufügen</button>
-
-        <div class="form-group">
-          <label>MWST Satz:</label>
-          <select id="rg-mwst" onchange="calcRechnungTotal()">
-            <option value="0">Keine MWST</option>
-            <option value="8.1">MWST 8.1 %</option>
-            <option value="2.6">MWST 2.6 %</option>
-          </select>
-        </div>
-
-        <div class="kpi-grid">
-          <div class="kpi-card"><small>Zwischensumme</small><b id="rg-subtotal">CHF 0.00</b></div>
-          <div class="kpi-card g"><small>Total CHF</small><b id="rg-total">CHF 0.00</b></div>
-        </div>
-        <button class="btn btn-action" onclick="window.print()">📄 Rechnung Drucken</button>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- Bottom Nav -->
-  <nav class="app-nav">
-    <button class="nav-item active" onclick="switchNav('buchhaltung', this)">
-      <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
-      Buchhaltung
-    </button>
-    <button class="nav-item" onclick="switchNav('offerte', this)">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-      Offerte
-    </button>
-    <button class="nav-item" onclick="switchNav('rapport', this)">
-      <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-      Rapport
-    </button>
-    <button class="nav-item" onclick="switchNav('rechnung', this)">
-      <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-      Rechnung
-    </button>
-  </nav>
+<header class="app-header">
+<div class="brand-info">
+<img src="logo.PNG" alt="Logo" class="hdr-logo" onerror="this.style.display='none'">
+<div class="title-text">
+M Transport & Reinigung
+<span>Švýcarská správa dokumentů</span>
 </div>
-
+</div>
+<button class="btn btn-secondary" style="width:auto; padding: 6px 12px; margin-top:0;" onclick="exportAllDataBackup()">💾 Backup</button>
+</header>
+<main class="app-content">
+<!-- SECTION 1: BUCHHALTUNG -->
+<div id="view-buchhaltung" class="view-panel active">
+<div class="sub-tabs">
+<button class="active" onclick="switchBTab('uebersicht', this)">Übersicht</button>
+<button onclick="switchBTab('einnahmen', this)">Einnahmen</button>
+<button onclick="switchBTab('ausgaben', this)">Ausgaben</button>
+<button onclick="switchBTab('loehne', this)">Löhne</button>
+<button onclick="switchBTab('rechnungen', this)">Offene Rgg.</button>
+</div>
+<div id="b-tab-uebersicht" class="b-tab-content">
+<div class="card">
+<h2>Buchhaltung Übersicht <span class="cur-year">2027</span></h2>
+<div class="form-group">
+<label>Geschäftsjahr:</label>
+<input type="number" id="bh-year" value="2027" onchange="updateAccounting()">
+</div>
+<div class="kpi-grid">
+<div class="kpi-card"><small>Einnahmen</small><b id="kpi-e">CHF 0.00</b></div>
+<div class="kpi-card"><small>Ausgaben</small><b id="kpi-a">CHF 0.00</b></div>
+<div class="kpi-card g"><small>Nettogewinn</small><b id="kpi-g">CHF 0.00</b></div>
+<div class="kpi-card r"><small>Offen</small><b id="kpi-o">CHF 0.00</b></div>
+</div>
+<button class="btn btn-primary" onclick="saveAccountingData()">💾 Buchhaltung sichern</button>
+</div>
+</div>
+<div id="b-tab-einnahmen" class="b-tab-content" style="display:none;">
+<div class="card">
+<h2>Einnahmen verwalten</h2>
+<div id="einnahmen-list"></div>
+<button class="btn btn-primary" onclick="addEinnahmeRow()">+ Neue Einnahme erfassen</button>
+</div>
+</div>
+<div id="b-tab-ausgaben" class="b-tab-content" style="display:none;">
+<div class="card">
+<h2>Ausgaben verwalten</h2>
+<div id="ausgaben-list"></div>
+<button class="btn btn-primary" onclick="addAusgabeRow()">+ Neue Ausgabe erfassen</button>
+</div>
+</div>
+<div id="b-tab-loehne" class="b-tab-content" style="display:none;">
+<div class="card">
+<h2>Löhne & Aushilfe</h2>
+<div id="loehne-list"></div>
+<button class="btn btn-primary" onclick="addLohnRow()">+ Neuen Lohneintrag erfassen</button>
+</div>
+</div>
+<div id="b-tab-rechnungen" class="b-tab-content" style="display:none;">
+<div class="card">
+<h2>Offene Rechnungen</h2>
+<div id="offene-rg-list"></div>
+<button class="btn btn-primary" onclick="addRgRow()">+ Neue Rechnung erfassen</button>
+</div>
+</div>
+</div>
+<!-- SECTION 2: OFFERTE -->
+<div id="view-offerte" class="view-panel">
+<div class="card">
+<h2>Offerte / Kostenvoranschlag</h2>
+<div class="form-group">
+<label>Art der Dienstleistung:</label>
+<select id="off-typ">
+<option value="Umzugsreinigung mit Abgabegarantie">Umzugsreinigung mit Abgabegarantie</option>
+<option value="Gebäudereinigung">Gebäudereinigung</option>
+<option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
+<option value="Grundreinigung">Grundreinigung</option>
+</select>
+</div>
+<div class="form-group"><label>Offerten-Nr:</label><input type="text" id="off-nr" value="OFF-2027-001"></div>
+<div class="form-group"><label>Datum:</label><input type="date" id="off-date"></div>
+<div class="form-group"><label>Kundenname:</label><input type="text" id="off-name" placeholder="Vorname Nachname / Firma"></div>
+<div class="form-group"><label>Strasse & Hausnummer:</label><input type="text" id="off-street" placeholder="Musterstrasse 12"></div>
+<div class="form-group"><label>PLZ & Ort:</label><input type="text" id="off-city" placeholder="8000 Zürich"></div>
+<div class="form-group"><label>Objekt / Zimmeranzahl:</label><input type="text" id="off-objekt" placeholder="4.5 Zimmer Wohnung"></div>
+<div class="form-group"><label>Pauschalpreis CHF:</label><input type="number" id="off-price" placeholder="450.00"></div>
+<div class="form-group"><label>Bemerkungen / Konditionen:</label><textarea id="off-notes" rows="3">Inklusive Abgabegarantie und Präsenz bei der Wohnungsabnahme.</textarea></div>
+<button class="btn btn-action" onclick="prepareAndShowA4('offerte')">📄 Offerte A4 anzeigen & drucken</button>
+</div>
+</div>
+<!-- SECTION 3: ARBEITSRAPPORT -->
+<div id="view-rapport" class="view-panel">
+<div class="card">
+<h2>Arbeitsrapport (Monatsnachweis)</h2>
+<div class="form-group"><label>Mitarbeiter / Vorname Nachname:</label><input type="text" id="rap-worker" placeholder="Mitarbeiter Name"></div>
+<div class="form-group"><label>Monat / Jahr:</label><input type="text" id="rap-month" placeholder="Januar 2027"></div>
+<div class="form-group"><label>Stundenlohn CHF/h:</label><input type="number" id="rap-rate" value="32.00" oninput="calcRapport()"></div>
+<h3>Arbeitstage erfassen</h3>
+<div id="rapport-entries"></div>
+<button class="btn btn-secondary" onclick="addRapportRow()">+ Tag hinzufügen</button>
+<div class="kpi-grid" style="margin-top:14px;">
+<div class="kpi-card"><small>Total Stunden</small><b id="rap-total-hrs">0.00 h</b></div>
+<div class="kpi-card g"><small>Bruttolohn</small><b id="rap-total-pay">CHF 0.00</b></div>
+</div>
+<button class="btn btn-action" onclick="prepareAndShowA4('rapport')">📄 Rapport A4 anzeigen & drucken</button>
+</div>
+</div>
+<!-- SECTION 4: RECHNUNG -->
+<div id="view-rechnung" class="view-panel">
+<div class="card">
+<h2>Rechnung erstellen</h2>
+<div class="form-group"><label>Rechnungsnummer:</label><input type="text" id="rg-nr" value="RG-2027-001"></div>
+<div class="form-group"><label>Rechnungsdatum:</label><input type="date" id="rg-date"></div>
+<div class="form-group"><label>Zahlungsfrist (Tage):</label><input type="number" id="rg-term" value="30"></div>
+<div class="form-group"><label>Kundenadresse:</label><textarea id="rg-client" rows="3" placeholder="Firma / Name&#10;Strasse Nr.&#10;PLZ Ort"></textarea></div>
+<h3>Rechnungspositionen</h3>
+<div id="rechnung-items"></div>
+<button class="btn btn-secondary" onclick="addRechnungItemRow()">+ Position hinzufügen</button>
+<div class="form-group" style="margin-top:12px;">
+<label>Mehrwertsteuer (MWST):</label>
+<select id="rg-mwst-rate" onchange="calcRechnungTotals()">
+<option value="0">Keine MWST (Kleinunternehmen / Befreit)</option>
+<option value="8.1">MWST 8.1% (Normalsatz)</option>
+<option value="2.6">MWST 2.6% (Reduzierter Satz)</option>
+</select>
+</div>
+<div class="kpi-grid">
+<div class="kpi-card"><small>Nettobetrag</small><b id="rg-sub-val">CHF 0.00</b></div>
+<div class="kpi-card g"><small>Endbetrag inkl. MWST</small><b id="rg-tot-val">CHF 0.00</b></div>
+</div>
+<button class="btn btn-action" onclick="prepareAndShowA4('rechnung')">📄 Rechnung A4 anzeigen & drucken</button>
+</div>
+</div>
+</main>
+<!-- Bottom Nav -->
+<nav class="app-nav">
+<button class="nav-item active" onclick="switchNav('buchhaltung', this)">
+<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+Buchhaltung
+</button>
+<button class="nav-item" onclick="switchNav('offerte', this)">
+<svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+Offerte
+</button>
+<button class="nav-item" onclick="switchNav('rapport', this)">
+<svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+Rapport
+</button>
+<button class="nav-item" onclick="switchNav('rechnung', this)">
+<svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+Rechnung
+</button>
+</nav>
+</div>
+<!-- A4 Print / Export Preview Modal -->
+<div id="print-preview-modal">
+<div style="max-width: 210mm; margin: 0 auto 20px auto; display: flex; justify-content: space-between;" class="no-print">
+<button class="btn btn-secondary" style="width: auto; background: #fff;" onclick="closeA4Modal()">❌ Schliessen / Zurück</button>
+<button class="btn btn-action" style="width: auto;" onclick="executePromptedPrint()">🖨️ A4 Dokument Drucken / PDF Speichern</button>
+</div>
+<div id="a4-document-container"></div>
+</div>
 <script>
 // PIN Logic
 let currentPin = "";
 const targetPin = "2518";
-
 function pressKey(num) {
-  if (currentPin.length < 4) {
-    currentPin += num;
-    updateDots();
-    if (currentPin.length === 4) {
-      setTimeout(checkPin, 100);
-    }
-  }
+if (currentPin.length < 4) {
+currentPin += num;
+updateDots();
+if (currentPin.length === 4) setTimeout(checkPin, 100);
 }
-
+}
 function clearPin() { currentPin = ""; updateDots(); }
 function delKey() { currentPin = currentPin.slice(0, -1); updateDots(); }
-
 function updateDots() {
-  for (let i = 0; i < 4; i++) {
-    const dot = document.getElementById("dot-" + i);
-    if (i < currentPin.length) dot.classList.add("filled");
-    else dot.classList.remove("filled");
-  }
+for (let i = 0; i < 4; i++) {
+document.getElementById("dot-" + i).classList.toggle("filled", i < currentPin.length);
 }
-
+}
 function checkPin() {
-  if (currentPin === targetPin) {
-    document.body.classList.add("unlocked");
-    document.getElementById("pin-screen").style.display = "none";
-  } else {
-    alert("Falscher PIN");
-    clearPin();
-  }
+if (currentPin === targetPin) {
+document.body.classList.add("unlocked");
+document.getElementById("pin-screen").style.display = "none";
+} else {
+alert("Falscher PIN eingegeben.");
+clearPin();
 }
-
-// Navigation Logic
+}
+// Navigation
 function switchNav(viewId, btn) {
-  document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('view-' + viewId).classList.add('active');
-  btn.classList.add('active');
+document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
+document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+document.getElementById('view-' + viewId).classList.add('active');
+btn.classList.add('active');
 }
-
 function switchBTab(tabId, btn) {
-  document.querySelectorAll('.b-tab-content').forEach(t => t.style.display = 'none');
-  document.querySelectorAll('.sub-tabs button').forEach(b => b.classList.remove('active'));
-  document.getElementById('b-tab-' + tabId).style.display = 'block';
-  btn.classList.add('active');
+document.querySelectorAll('.b-tab-content').forEach(t => t.style.display = 'none');
+document.querySelectorAll('.sub-tabs button').forEach(b => b.classList.remove('active'));
+document.getElementById('b-tab-' + tabId).style.display = 'block';
+btn.classList.add('active');
 }
-
-// Accounting State & Functions
-let accountingData = {
-  einnahmen: [],
-  ausgaben: [],
-  loehne: [],
-  rechnungen: []
-};
-
+// Data State
+let accountingData = { einnahmen: [], ausgaben: [], loehne: [], rechnungen: [] };
+let rapportRows = [];
+let rechnungItems = [];
+function initDates() {
+let today = new Date().toISOString().split('T')[0];
+if(document.getElementById('off-date')) document.getElementById('off-date').value = today;
+if(document.getElementById('rg-date')) document.getElementById('rg-date').value = today;
+addRapportRow();
+addRechnungItemRow();
+loadAccountingData();
+}
+// Buchhaltung logic
 function updateAccounting() {
-  let year = document.getElementById('bh-year').value;
-  document.querySelectorAll('.cur-year').forEach(e => e.textContent = year);
-  
-  let totalE = accountingData.einnahmen.reduce((sum, item) => sum + (parseFloat(item.betrag) || 0), 0);
-  let totalA = accountingData.ausgaben.reduce((sum, item) => sum + (parseFloat(item.betrag) || 0), 0);
-  let totalL = accountingData.loehne.reduce((sum, item) => sum + (parseFloat(item.betrag) || 0), 0);
-  let totalAusgaben = totalA + totalL;
-  let totalGewinn = totalE - totalAusgaben;
-  let totalOffen = accountingData.rechnungen.filter(r => !r.paid).reduce((sum, item) => sum + (parseFloat(item.betrag) || 0), 0);
-
-  document.getElementById('kpi-e').textContent = 'CHF ' + totalE.toFixed(2);
-  document.getElementById('kpi-a').textContent = 'CHF ' + totalAusgaben.toFixed(2);
-  document.getElementById('kpi-g').textContent = 'CHF ' + totalGewinn.toFixed(2);
-  document.getElementById('kpi-o').textContent = 'CHF ' + totalOffen.toFixed(2);
+let year = document.getElementById('bh-year').value;
+document.querySelectorAll('.cur-year').forEach(e => e.textContent = year);
+let totE = accountingData.einnahmen.reduce((s, i) => s + (parseFloat(i.betrag)||0), 0);
+let totA = accountingData.ausgaben.reduce((s, i) => s + (parseFloat(i.betrag)||0), 0);
+let totL = accountingData.loehne.reduce((s, i) => s + (parseFloat(i.betrag)||0), 0);
+let totAus = totA + totL;
+let totGew = totE - totAus;
+let totOff = accountingData.rechnungen.filter(r => !r.paid).reduce((s, i) => s + (parseFloat(i.betrag)||0), 0);
+document.getElementById('kpi-e').textContent = 'CHF ' + totE.toFixed(2);
+document.getElementById('kpi-a').textContent = 'CHF ' + totAus.toFixed(2);
+document.getElementById('kpi-g').textContent = 'CHF ' + totGew.toFixed(2);
+document.getElementById('kpi-o').textContent = 'CHF ' + totOff.toFixed(2);
 }
-
 function saveAccountingData() {
-  localStorage.setItem('mservice_app_data', JSON.stringify(accountingData));
-  alert('Daten erfolgreich auf dem iPhone gespeichert!');
+localStorage.setItem('mservice_accounting_data', JSON.stringify(accountingData));
+alert('Buchhaltungsdaten wurden erfolgreich auf dem Gerät gespeichert.');
 }
-
 function loadAccountingData() {
-  let data = localStorage.getItem('mservice_app_data');
-  if (data) {
-    accountingData = JSON.parse(data);
-    renderEinnahmen();
-    renderAusgaben();
-    updateAccounting();
-  }
+let d = localStorage.getItem('mservice_accounting_data');
+if (d) {
+accountingData = JSON.parse(d);
+renderEinnahmen(); renderAusgaben(); renderLoehne(); renderOffeneRg();
+updateAccounting();
 }
-
-function addEinnahmeRow() {
-  accountingData.einnahmen.push({ datum: '', text: '', betrag: 0 });
-  renderEinnahmen();
 }
-
+function exportAllDataBackup() {
+let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(accountingData));
+let dlAnchor = document.createElement('a');
+dlAnchor.setAttribute("href", dataStr);
+dlAnchor.setAttribute("download", "m_service_backup_" + new Date().toISOString().split('T')[0] + ".json");
+document.body.appendChild(dlAnchor);
+dlAnchor.click();
+dlAnchor.remove();
+}
+// Dynamic rows for lists
+function addEinnahmeRow() { accountingData.einnahmen.push({datum:'', text:'', betrag:''}); renderEinnahmen(); }
 function renderEinnahmen() {
-  let container = document.getElementById('einnahmen-list');
-  container.innerHTML = '';
-  accountingData.einnahmen.forEach((item, index) => {
-    let card = document.createElement('div');
-    card.className = 'mobile-table-card';
-    card.innerHTML = `
-      <button class="del-btn" onclick="deleteEinnahme(${index})">×</button>
-      <div class="form-group">
-        <label>Datum:</label>
-        <input type="date" value="${item.datum}" onchange="accountingData.einnahmen[${index}].datum=this.value; updateAccounting();">
-      </div>
-      <div class="form-group">
-        <label>Beschreibung / Kunde:</label>
-        <input type="text" value="${item.text}" onchange="accountingData.einnahmen[${index}].text=this.value;">
-      </div>
-      <div class="form-group">
-        <label>Betrag CHF:</label>
-        <input type="number" value="${item.betrag}" onchange="accountingData.einnahmen[${index}].betrag=this.value; updateAccounting();">
-      </div>
-    `;
-    container.appendChild(card);
-  });
+let c = document.getElementById('einnahmen-list'); c.innerHTML='';
+accountingData.einnahmen.forEach((item, idx) => {
+c.innerHTML += ⁠<div class="mobile-table-card"><button class="del-btn" onclick="accountingData.einnahmen.splice(${idx},1);renderEinnahmen();updateAccounting();">×</button> <div class="form-group"><label>Datum:</label><input type="date" value="${item.datum}" onchange="accountingData.einnahmen[${idx}].datum=this.value"></div> <div class="form-group"><label>Beschreibung:</label><input type="text" value="${item.text}" onchange="accountingData.einnahmen[${idx}].text=this.value"></div> <div class="form-group"><label>Betrag CHF:</label><input type="number" value="${item.betrag}" onchange="accountingData.einnahmen[${idx}].betrag=this.value; updateAccounting();"></div></div>⁠;
+});
 }
-
-function deleteEinnahme(index) {
-  accountingData.einnahmen.splice(index, 1);
-  renderEinnahmen();
-  updateAccounting();
+function addAusgabeRow() { accountingData.ausgaben.push({datum:'', text:'', betrag:''}); renderAusgaben(); }
+function renderAusgaben() {
+let c = document.getElementById('ausgaben-list'); c.innerHTML='';
+accountingData.ausgaben.forEach((item, idx) => {
+c.innerHTML += ⁠<div class="mobile-table-card"><button class="del-btn" onclick="accountingData.ausgaben.splice(${idx},1);renderAusgaben();updateAccounting();">×</button> <div class="form-group"><label>Datum:</label><input type="date" value="${item.datum}" onchange="accountingData.ausgaben[${idx}].datum=this.value"></div> <div class="form-group"><label>Kategorie / Text:</label><input type="text" value="${item.text}" onchange="accountingData.ausgaben[${idx}].text=this.value"></div> <div class="form-group"><label>Betrag CHF:</label><input type="number" value="${item.betrag}" onchange="accountingData.ausgaben[${idx}].betrag=this.value; updateAccounting();"></div></div>⁠;
+});
 }
-
-// Additional helper functions for Ausgaben, Rapport calculation
-function addRapportEntry() {
-  let container = document.getElementById('rapport-entries');
-  let div = document.createElement('div');
-  div.className = 'mobile-table-card';
-  div.innerHTML = `
-    <div class="form-group"><label>Datum:</label><input type="text" placeholder="TT.MM."></div>
-    <div class="form-group"><label>Kunde / Ort:</label><input type="text"></div>
-    <div class="form-group"><label>Stunden:</label><input type="number" class="rap-hrs" placeholder="0" oninput="calcRapport()"></div>
-  `;
-  container.appendChild(div);
+function addLohnRow() { accountingData.loehne.push({datum:'', name:'', betrag:''}); renderLoehne(); }
+function renderLoehne() {
+let c = document.getElementById('loehne-list'); c.innerHTML='';
+accountingData.loehne.forEach((item, idx) => {
+c.innerHTML += ⁠<div class="mobile-table-card"><button class="del-btn" onclick="accountingData.loehne.splice(${idx},1);renderLoehne();updateAccounting();">×</button> <div class="form-group"><label>Datum:</label><input type="date" value="${item.datum}" onchange="accountingData.loehne[${idx}].datum=this.value"></div> <div class="form-group"><label>Mitarbeiter:</label><input type="text" value="${item.name}" onchange="accountingData.loehne[${idx}].name=this.value"></div> <div class="form-group"><label>Lohnbetrag CHF:</label><input type="number" value="${item.betrag}" onchange="accountingData.loehne[${idx}].betrag=this.value; updateAccounting();"></div></div>⁠;
+});
 }
-
+function addRgRow() { accountingData.rechnungen.push({nr:'', kunde:'', betrag:'', paid:false}); renderOffeneRg(); }
+function renderOffeneRg() {
+let c = document.getElementById('offene-rg-list'); c.innerHTML='';
+accountingData.rechnungen.forEach((item, idx) => {
+c.innerHTML += ⁠<div class="mobile-table-card"><button class="del-btn" onclick="accountingData.rechnungen.splice(${idx},1);renderOffeneRg();updateAccounting();">×</button> <div class="form-group"><label>Rechnungs-Nr:</label><input type="text" value="${item.nr}" onchange="accountingData.rechnungen[${idx}].nr=this.value"></div> <div class="form-group"><label>Kunde:</label><input type="text" value="${item.kunde}" onchange="accountingData.rechnungen[${idx}].kunde=this.value"></div> <div class="form-group"><label>Betrag CHF:</label><input type="number" value="${item.betrag}" onchange="accountingData.rechnungen[${idx}].betrag=this.value; updateAccounting();"></div></div>⁠;
+});
+}
+// Rapport helper
+function addRapportRow() {
+rapportRows.push({datum:'', ort:'', stunden:''});
+renderRapportRows();
+}
+function renderRapportRows() {
+let c = document.getElementById('rapport-entries'); c.innerHTML='';
+rapportRows.forEach((r, idx) => {
+c.innerHTML += ⁠<div class="mobile-table-card"><button class="del-btn" onclick="rapportRows.splice(${idx},1);renderRapportRows();calcRapport();">×</button> <div class="form-group"><label>Datum:</label><input type="text" value="${r.datum}" placeholder="01.01.2027" onchange="rapportRows[${idx}].datum=this.value"></div> <div class="form-group"><label>Arbeitsort / Kunde:</label><input type="text" value="${r.ort}" placeholder="Zürich" onchange="rapportRows[${idx}].ort=this.value"></div> <div class="form-group"><label>Stunden:</label><input type="number" class="rap-hrs-val" value="${r.stunden}" placeholder="8.0" onchange="rapportRows[${idx}].stunden=this.value" oninput="calcRapport()"></div></div>⁠;
+});
+}
 function calcRapport() {
-  let hrs = document.querySelectorAll('.rap-hrs');
-  let total = 0;
-  hrs.forEach(h => total += parseFloat(h.value) || 0);
-  let rate = parseFloat(document.getElementById('rap-stundenlohn').value) || 0;
-  document.getElementById('rap-total-stunden').textContent = total.toFixed(2);
-  document.getElementById('rap-bruttolohn').textContent = (total * rate).toFixed(2);
+let inputs = document.querySelectorAll('.rap-hrs-val');
+let totalH = 0;
+inputs.forEach((inp, idx) => {
+let val = parseFloat(inp.value) || 0;
+rapportRows[idx].stunden = inp.value;
+totalH += val;
+});
+let rate = parseFloat(document.getElementById('rap-rate').value) || 0;
+let totalPay = totalH * rate;
+document.getElementById('rap-total-hrs').textContent = totalH.toFixed(2) + ' h';
+document.getElementById('rap-total-pay').textContent = 'CHF ' + totalPay.toFixed(2);
 }
+// Rechnung helper
+function addRechnungItemRow() {
+rechnungItems.push({ desc:'', qty:1, price:'' });
+renderRechnungItemRows();
+}
+function renderRechnungItemRows() {
+let c = document.getElementById('rechnung-items'); c.innerHTML='';
+rechnungItems.forEach((item, idx) => {
+c.innerHTML += ⁠<div class="mobile-table-card"><button class="del-btn" onclick="rechnungItems.splice(${idx},1);renderRechnungItemRows();calcRechnungTotals();">×</button> <div class="form-group"><label>Beschreibung:</label><input type="text" value="${item.desc}" placeholder="Reinigung 4.5 Zi..." onchange="rechnungItems[${idx}].desc=this.value"></div> <div class="form-group"><label>Anzahl / Menge:</label><input type="number" value="${item.qty}" onchange="rechnungItems[${idx}].qty=this.value; calcRechnungTotals();"></div> < Einzelpreis CHF:><div class="form-group"><label>Einzelpreis CHF:</label><input type="number" value="${item.price}" placeholder="150.00" onchange="rechnungItems[${idx}].price=this.value; calcRechnungTotals();"></div></div>⁠;
+});
+}
+function calcRechnungTotals() {
+let sub = 0;
+rechnungItems.forEach((item, idx) => {
+let card = document.querySelectorAll('#rechnung-items .mobile-table-card')[idx];
+if(card) {
+let q = parseFloat(card.querySelectorAll('input')[1].value) || 0;
+let p = parseFloat(card.querySelectorAll('input')[2].value) || 0;
+item.qty = q; item.price = p;
+sub += q * p;
+}
+});
+let mwstRate = parseFloat(document.getElementById('rg-mwst-rate').value) || 0;
+let mwstVal = sub * (mwstRate / 100);
+let total = sub + mwstVal;
+document.getElementById('rg-sub-val').textContent = 'CHF ' + sub.toFixed(2);
+document.getElementById('rg-tot-val').textContent = 'CHF ' + total.toFixed(2);
+}
+// A4 Template Generation & Print Prompt
+function prepareAndShowA4(type) {
+let container = document.getElementById('a4-document-container');
+let html = '';
+if (type === 'offerte') {
+let typ = document.getElementById('off-typ').value;
+let nr = document.getElementById('off-nr').value;
+let date = document.getElementById('off-date').value;
+let name = document.getElementById('off-name').value;
+let street = document.getElementById('off-street').value;
+let city = document.getElementById('off-city').value;
+let objekt = document.getElementById('off-objekt').value;
+let price = document.getElementById('off-price').value;
+let notes = document.getElementById('off-notes').value;
+html = `
+<div class="a4-page">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #1E3A6D; padding-bottom:15px; margin-bottom:30px;">
+<div>
+<h1 style="color:#1E3A6D; font-size:22pt; margin:0;">M Transport & Reinigung</h1>
+<p style="color:#555; font-size:10pt; margin:4px 0 0 0;">Ihr zuverlässiger Partner für Reinigung & Umzug in der Schweiz</p>
+</div>
+<div style="text-align:right; font-size:10pt;">
+<b>Datum:</b> ${date}
 
-// Initializations
+<b>Offerten-Nr:</b> ${nr}
+</div>
+</div>
+<div style="margin-bottom:30px; font-size:11pt;">
+<b>Kunde:</b>
+
+${name || 'Musterkunde'}
+
+${street || 'Strasse 1'}
+
+${city || '8000 Zürich'}
+</div>
+<h2 style="color:#1E3A6D; font-size:16pt; margin-bottom:15px;">Offerte: ￼
+<p style="margin-bottom:20px;">Gerne unterbreiten wir Ihnen nachfolgendes Angebot für das Objekt <b>{objekt}</b>:</p>
+<table style="width:100%; border-collapse:collapse; margin-bottom:30px;">
+<tr style="background:#f4f7fb; border-bottom:1px solid #ccc;"><th style="padding:10px; text-align:left;">Dienstleistung / Beschreibung</th><th style="padding:10px; text-align:right;">Betrag</th></tr>
+<tr style="border-bottom:1px solid #eee;"><td style="padding:12px;">${typ} inkl. besprochener Leistungen für ${objekt}</td><td style="padding:12px; text-align:right;">CHF ${parseFloat(price||0).toFixed(2)}</td></tr>
+<tr style="font-weight:bold; font-size:13pt; background:#f9f9f9;"><td style="padding:12px;">Gesamtbetrag (Pauschal)</td><td style="padding:12px; text-align:right; color:#1E3A6D;">CHF ${parseFloat(price||0).toFixed(2)}</td></tr>
+</table>
+<div style="background:#f4f7fb; padding:15px; border-radius:6px; margin-bottom:30px; font-size:10pt;">
+<b>Konditionen & Bemerkungen:</b>
+
+${notes}
+</div>
+<div style="margin-top:50px; display:flex; justify-content:space-between;">
+<div>Datum: ........................................</div>
+<div>Unterschrift: ........................................</div>
+</div>
+</div>
+`;
+} else if (type === 'rapport') {
+let worker = document.getElementById('rap-worker').value || 'Mitarbeiter';
+let month = document.getElementById('rap-month').value || 'Januar 2027';
+let rate = parseFloat(document.getElementById('rap-rate').value) || 0;
+let rowsHtml = '';
+let totalH = 0;
+rapportRows.forEach(r => {
+let h = parseFloat(r.stunden)||0;
+totalH += h;
+rowsHtml += ⁠<tr style="border-bottom:1px solid #eee;"><td style="padding:8px;">${r.datum}</td><td style="padding:8px;">${r.ort}</td><td style="padding:8px; text-align:right;">${h.toFixed(2)} h</td></tr>⁠;
+});
+let totalPay = totalH * rate;
+html = `
+<div class="a4-page">
+<div style="border-bottom:2px solid #1E3A6D; padding-bottom:15px; margin-bottom:25px;">
+<h1 style="color:#1E3A6D; font-size:20pt; margin:0;">Arbeitsrapport & Stundennachweis</h1>
+<p style="color:#555; font-size:10pt; margin:4px 0 0 0;">M Transport & Reinigung</p>
+</div>
+<div style="display:flex; justify-content:space-between; margin-bottom:20px; font-size:11pt;">
+<div><b>Mitarbeiter:</b> ${worker}</div>
+<div><b>Monat / Jahr:</b> ${month}</div>
+<div><b>Stundenlohn:</b> CHF ${rate.toFixed(2)} / h</div>
+</div>
+<table style="width:100%; border-collapse:collapse; margin-bottom:20px;">
+<tr style="background:#f4f7fb; border-bottom:1px solid #ccc;"><th style="padding:8px; text-align:left;">Datum</th><th style="padding:8px; text-align:left;">Arbeitsort / Kunde</th><th style="padding:8px; text-align:right;">Stunden</th></tr>
+￼
+￼{totalH.toFixed(2)} h</td></tr>
+</table>
+<div style="background:#f4f7fb; padding:15px; border-radius:6px; margin-bottom:40px; text-align:right; font-size:13pt;">
+<b>Bruttolohn Gesamt: CHF ${totalPay.toFixed(2)}</b>
+</div>
+<div style="margin-top:60px; display:flex; justify-content:space-between;">
+<div>Unterschrift Mitarbeiter: ........................................</div>
+<div>Unterschrift Geschäftsleitung: ........................................</div>
+</div>
+</div>
+`;
+} else if (type === 'rechnung') {
+let rgNr = document.getElementById('rg-nr').value;
+let rgDate = document.getElementById('rg-date').value;
+let rgTerm = document.getElementById('rg-term').value;
+let rgClient = document.getElementById('rg-client').value;
+let mwstRate = parseFloat(document.getElementById('rg-mwst-rate').value) || 0;
+let itemsHtml = '';
+let sub = 0;
+rechnungItems.forEach(item => {
+let lineTot = (parseFloat(item.qty)||0) * (parseFloat(item.price)||0);
+sub += lineTot;
+itemsHtml += ⁠<tr style="border-bottom:1px solid #eee;"><td style="padding:10px;">${item.desc}</td><td style="padding:10px; text-align:center;">${item.qty}</td><td style="padding:10px; text-align:right;">CHF ${parseFloat(item.price||0).toFixed(2)}</td><td style="padding:10px; text-align:right;">CHF ${lineTot.toFixed(2)}</td></tr>⁠;
+});
+let mwstVal = sub * (mwstRate / 100);
+let total = sub + mwstVal;
+html = `
+<div class="a4-page">
+<div style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:2px solid #1E3A6D; padding-bottom:15px; margin-bottom:30px;">
+<div>
+<h1 style="color:#1E3A6D; font-size:22pt; margin:0;">Rechnung</h1>
+<p style="color:#555; font-size:10pt; margin:4px 0 0 0;">M Transport & Reinigung</p>
+</div>
+<div style="text-align:right; font-size:10pt;">
+<b>Rechnungs-Nr:</b> ${rgNr}
+
+<b>Datum:</b> ${rgDate}
+
+<b>Zahlungsfrist:</b> ${rgTerm} Tage
+</div>
+</div>
+<div style="margin-bottom:30px; font-size:11pt;">
+<b>Rechnungsempfänger:</b>
+
+${rgClient.replace(/\n/g, '
+')}
+</div>
+<table style="width:100%; border-collapse:collapse; margin-bottom:20px;">
+<tr style="background:#f4f7fb; border-bottom:1px solid #ccc;"><th style="padding:10px; text-align:left;">Beschreibung</th><th style="padding:10px; text-align:center;">Menge</th><th style="padding:10px; text-align:right;">Einzelpreis</th><th style="padding:10px; text-align:right;">Total</th></tr>
+${itemsHtml}
+</table>
+<div style="margin-left:auto; width:250px; font-size:11pt; margin-bottom:40px;">
+<div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid #eee;"><span>Zwischensumme:</span> <b>CHF ￼
+￼{mwstRate}%):</span> <b>CHF ${mwstVal.toFixed(2)}</b></div>
+<div style="display:flex; justify-content:space-between; padding:8px 0; font-size:13pt; color:#1E3A6D; border-top:2px solid #1E3A6D;"><span>Endbetrag:</span> <b>CHF ${total.toFixed(2)}</b></div>
+</div>
+<div style="font-size:10pt; color:#555; border-top:1px solid #ccc; padding-top:15px;">
+Besten Dank für Ihren Auftrag. Bitte überweisen Sie den Betrag innert ${rgTerm} Tagen unter Angabe der Rechnungsnummer ${rgNr}.
+</div>
+</div>
+`;
+}
+container.innerHTML = html;
+document.getElementById('print-preview-modal').style.display = 'block';
+}
+function closeA4Modal() {
+document.getElementById('print-preview-modal').style.display = 'none';
+}
+function executePromptedPrint() {
+let action = confirm("Möchten Sie dieses A4 Dokument jetzt drucken oder als PDF auf Ihrem iPhone sichern?\n\nKlicken Sie auf 'OK' zum Drucken/PDF-Exportieren oder 'Abbrechen' zum Schliessen.");
+if (action) {
+window.print();
+}
+}
 document.addEventListener('DOMContentLoaded', () => {
-  loadAccountingData();
-  addRapportEntry();
+initDates();
 });
 </script>
 </body>
