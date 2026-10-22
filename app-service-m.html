@@ -16,6 +16,7 @@
 <title>M Service</title>
 <link rel="apple-touch-icon" id="ati" href="logo.PNG">
 <link rel="icon" href="logo.PNG">
+<link rel="apple-touch-startup-image" href="startup-16pro.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
 <style>*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--ln:#8FA3BF;--g:#666;--ok:#1F7A44;--bad:#C0392B}
 html,body{margin:0;height:100%;overflow:hidden;overscroll-behavior:none;background:#fff;font:15px/1.4 -apple-system,Arial,sans-serif;color:#2a2a2a;-webkit-text-size-adjust:100%;-webkit-user-select:none;user-select:none}
@@ -766,7 +767,7 @@ css.textContent=
 '.sl,.ln2{position:relative;cursor:pointer}'+
 '.sl .sz{position:absolute;left:0;right:0;bottom:100%;height:6mm}'+
 '.sg{position:absolute;left:50%;transform:translateX(-50%);bottom:100%;height:12mm;max-width:100%;pointer-events:none}'+
-'.ln2 .sg{left:0;transform:none;bottom:0;width:100%;height:100%;object-fit:contain;object-position:center}'+'body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top);background:#1E3A6D;z-index:60;pointer-events:none}'+
+'.ln2 .sg{left:0;transform:none;bottom:0;width:100%;height:100%;object-fit:contain;object-position:center}'+'html{background:#fff linear-gradient(#1E3A6D,#1E3A6D) top/100% 110px no-repeat!important}'+'body{background:transparent!important}'+'html.locked{background:#1E3A6D!important}'+'#lock{background:#1E3A6D!important}'+'.tab{padding-bottom:max(0px,calc(env(safe-area-inset-bottom) - var(--gap,0px)))!important}'+
 '#sgm{position:fixed;inset:0;z-index:120;background:rgba(15,35,71,.6);display:flex;align-items:flex-end}'+
 '#sgm[hidden]{display:none}'+
 '#sgm>div{width:100%;background:#fff;border-radius:18px 18px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom));font-family:-apple-system,Arial}'+
@@ -800,7 +801,7 @@ document.getElementById('rs').addEventListener('click',function(){var v=Q('.view
 /* po potvrzení resetu jsou inputy prázdné -> smaž i podpisy */
 if(!Q('input',v).some(function(i){return i.type!='checkbox'&&i.value&&i.value!=i.defaultValue})){
 Q('.sg',v).forEach(function(i){i.remove()});try{var s=stg(v);Object.keys(s).forEach(function(k){if(k.indexOf('msm_sig_'+v.id)==0)s.removeItem(k)})}catch(e){}}},0)});
-var app=document.getElementById('app');function fh(){var h=innerHeight;if(navigator.standalone){var a=Math.max(screen.width,screen.height),b=Math.min(screen.width,screen.height);h=Math.max(h,innerWidth>innerHeight?b:a)}app.style.bottom='auto';app.style.height=h+'px';scrollTo(0,0)}fh();addEventListener('resize',fh);addEventListener('orientationchange',function(){setTimeout(fh,300)});document.addEventListener('visibilitychange',fh);
+function gp(){var g=0;if(navigator.standalone&&innerHeight>innerWidth)g=Math.max(0,Math.max(screen.width,screen.height)-innerHeight);document.documentElement.style.setProperty('--gap',g+'px')}gp();addEventListener('resize',gp);addEventListener('orientationchange',function(){setTimeout(gp,300)});var lk=document.getElementById('lock');function sy(){document.documentElement.classList.toggle('locked',!lk.hidden)}sy();new MutationObserver(sy).observe(lk,{attributes:true,attributeFilter:['hidden']});
 })();
 </script>
 </body>
