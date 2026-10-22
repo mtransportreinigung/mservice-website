@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<!-- SKRYTÍ PŘED GOOGLE A ROBOTY -->
+<!-- AUSSCHLUSS VON GOOGLE UND SUCHMASCHINEN -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>app-service-m - Mejstrik Transport &amp; Reinigung Service</title>
 
-<!-- IKONA Z VAŠEHO SOUBORU logo.PNG -->
+<!-- APP-ICON AUS IHRER LOGO.PNG DDATEI -->
 <link rel="apple-touch-icon" href="logo.PNG">
 <link rel="icon" href="logo.PNG" type="image/png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -19,57 +19,58 @@
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--g:#666;--ok:#1F7A44;--bad:#C0392B}
 html{background:#eef1f5}
-body{font:14px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;padding-bottom:calc(85px + env(safe-area-inset-bottom))}
+body{font:13.5px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;padding-bottom:calc(75px + env(safe-area-inset-bottom))}
 
-/* PIN ZABEZPEČENÍ */
+/* PIN-SCHUTZ */
 #pin-screen{position:fixed;top:0;left:0;right:0;bottom:0;background:var(--n);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
-#pin-screen img.logo-pin{width:80px;height:80px;margin-bottom:15px;border-radius:12px;object-fit:contain;background:#fff}
-#pin-screen h2{font-size:18px;margin-bottom:6px;color:#fff}
-#pin-screen p{font-size:12px;color:#a0b8e6;margin-bottom:20px}
-.pin-input{font-size:24px;letter-spacing:10px;text-align:center;width:160px;padding:10px;border-radius:8px;border:2px solid var(--o);outline:0;color:var(--n);margin-bottom:15px;background:#fff}
-.pin-btn{font:bold 15px Arial;background:var(--o);color:#fff;border:0;padding:12px 24px;border-radius:8px;cursor:pointer;width:160px}
-.pin-err{color:#ff8a8a;font-size:12px;margin-top:10px;display:none;font-weight:bold}
+#pin-screen img.logo-pin{width:70px;height:70px;margin-bottom:12px;border-radius:10px;object-fit:contain;background:#fff}
+#pin-screen h2{font-size:17px;margin-bottom:4px;color:#fff}
+#pin-screen p{font-size:11.5px;color:#a0b8e6;margin-bottom:15px}
+.pin-input{font-size:22px;letter-spacing:8px;text-align:center;width:150px;padding:8px;border-radius:6px;border:2px solid var(--o);outline:0;color:var(--n);margin-bottom:12px;background:#fff}
+.pin-btn{font:bold 14px Arial;background:var(--o);color:#fff;border:0;padding:10px 20px;border-radius:6px;cursor:pointer;width:150px}
+.pin-err{color:#ff8a8a;font-size:11.5px;margin-top:8px;display:none;font-weight:bold}
 
-/* HLAVIČKA */
-.app-header{background:var(--n);color:#fff;padding:12px 16px;padding-top:calc(12px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
-.app-header .hdr-brand{display:flex;align-items:center;gap:10px}
-.app-header img.hdr-logo{width:32px;height:32px;border-radius:6px;object-fit:cover;background:#fff}
-.app-header h1{font-size:15px;font-weight:bold}
-.app-header span{font-size:10.5px;color:#a0b8e6}
+/* APP-HEADER */
+.app-header{background:var(--n);color:#fff;padding:8px 12px;padding-top:calc(8px + env(safe-area-inset-top));display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:900;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
+.app-header .hdr-brand{display:flex;align-items:center;gap:8px}
+.app-header img.hdr-logo{width:26px;height:26px;border-radius:4px;object-fit:cover;background:#fff}
+.app-header h1{font-size:14px;font-weight:bold}
+.app-header span{font-size:9.5px;color:#a0b8e6}
 
-.container{padding:12px;max-width:800px;margin:0 auto}
-.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,0.05);border-top:4px solid var(--o)}
-.card h2{font-size:15px;color:var(--n);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.container{padding:10px;max-width:800px;margin:0 auto}
+.card{background:#fff;border-radius:10px;padding:12px;margin-bottom:10px;box-shadow:0 1px 6px rgba(0,0,0,0.05);border-top:3px solid var(--o)}
+.card h2{font-size:14px;color:var(--n);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
 
-.form-group{margin-bottom:10px}
-.form-group label{display:block;font-size:11.5px;font-weight:bold;color:var(--n);margin-bottom:3px}
-input,select,textarea{font:14px Arial;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:8px;border-radius:6px;outline:0}
+.form-group{margin-bottom:8px}
+.form-group label{display:block;font-size:11px;font-weight:bold;color:var(--n);margin-bottom:2px}
+input,select,textarea{font:13.5px Arial;color:#0A2A8A;border:1px solid var(--bd);background:#fff;width:100%;padding:7px;border-radius:5px;outline:0}
 input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45,108,181,0.03)}
-.btn{font:bold 13px Arial;border:0;background:var(--b);color:#fff;border-radius:6px;padding:10px 14px;cursor:pointer;width:100%;text-align:center;display:block}
+.btn{font:bold 12.5px Arial;border:0;background:var(--b);color:#fff;border-radius:5px;padding:9px 12px;cursor:pointer;width:100%;text-align:center;display:block}
 .btn:active{opacity:0.8}
-.btn-sec{background:#fff;color:var(--n);border:1px solid var(--bd);margin-top:6px}
+.btn-sec{background:#fff;color:var(--n);border:1px solid var(--bd);margin-top:5px}
 .btn-ok{background:var(--ok)}
+.btn-back{background:var(--g);margin-bottom:8px}
 
-/* SPODNÍ NAVIGACE (Pevná, bez poskoku nahoru) */
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:8px 0;padding-bottom:calc(8px + env(safe-area-inset-bottom));z-index:1000;box-shadow:0 -2px 10px rgba(0,0,0,0.08)}
-.bottom-nav button{background:0;border:0;font-size:10px;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;flex:1;outline:0}
-.bottom-nav button svg{width:20px;height:20px;fill:var(--g)}
+/* NAVIGATION UNTEN (FIXIERT) */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--bd);display:flex;justify-content:space-around;padding:6px 0;padding-bottom:calc(6px + env(safe-area-inset-bottom));z-index:950;box-shadow:0 -2px 8px rgba(0,0,0,0.06)}
+.bottom-nav button{background:0;border:0;font-size:9.5px;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;flex:1;outline:0}
+.bottom-nav button svg{width:18px;height:18px;fill:var(--g)}
 .bottom-nav button.active{color:var(--br);font-weight:bold}
 .bottom-nav button.active svg{fill:var(--br)}
 
 .view{display:none}
 .view.active{display:block}
 
-/* IFRAME PRO PŘESNÉ PROTOKOLY */
-.doc-container{width:100%;height:680px;border:1px solid var(--bd);border-radius:8px;background:#fff;margin-top:8px}
+/* IFRAME FÜR DOKUMENTE */
+.doc-container{width:100%;height:600px;border:1px solid var(--bd);border-radius:6px;background:#fff;margin-top:6px}
 
-.photo-preview{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.photo-preview img{width:60px;height:60px;object-fit:cover;border-radius:6px;border:1px solid var(--bd)}
+.photo-preview{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.photo-preview img{width:50px;height:50px;object-fit:cover;border-radius:4px;border:1px solid var(--bd)}
 </style>
 </head>
 <body>
 
-<!-- PIN SCREEN -->
+<!-- PIN SCHIRM -->
 <div id="pin-screen">
   <img src="logo.PNG" alt="Logo" class="logo-pin" onerror="this.style.display='none'">
   <h2>M Transport &amp; Reinigung</h2>
@@ -79,7 +80,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
   <div id="pin-err" class="pin-err">Falscher PIN-Code!</div>
 </div>
 
-<!-- HLAVIČKA -->
+<!-- HEADER -->
 <header class="app-header">
   <div class="hdr-brand">
     <img src="logo.PNG" alt="Logo" class="hdr-logo" onerror="this.style.display='none'">
@@ -88,24 +89,24 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
       <span>Mobile Zentrale (app-service-m)</span>
     </div>
   </div>
-  <div style="display:flex;gap:6px">
-    <button onclick="lockApp()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:6px 10px;border-radius:6px;font-size:11px;cursor:pointer">🔒 Sperren</button>
+  <div>
+    <button onclick="lockApp()" style="background:rgba(255,255,255,0.15);border:0;color:#fff;padding:5px 8px;border-radius:4px;font-size:10.5px;cursor:pointer">🔒 Sperren</button>
   </div>
 </header>
 
 <div class="container">
 
-  <!-- ZÁLOŽKA 1: BUCHHALTUNG (Kompletní účetnictví s výběrem roku) -->
+  <!-- TAB 1: BUCHHALTUNG & SCHNELL-ERFASSUNG -->
   <div id="v-buchhaltung" class="view active">
     <div class="card" style="border-top-color:var(--br)">
-      <h2>Buchhaltung &amp; Schnell-Erfassung</h2>
+      <h2>Buchhaltung &amp; Jahr-Auswahl</h2>
       <div class="form-group">
-        <label>Buchhaltungs-Jahr wählen:</label>
+        <label>Buchhaltungs-Jahr:</label>
         <input id="m-year" type="number" value="2027" min="2000" max="2099" oninput="changeYear(this.value)">
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0">
-        <button class="btn" onclick="openFullBuchhaltung()">📊 Gesamtes Buchhaltung-Modul öffnen</button>
-        <button class="btn btn-sec" onclick="exportBackupPrompt()">💾 Daten sichern (JSON)</button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
+        <button class="btn" onclick="openFullBuchhaltung()">📊 Gesamte Buchhaltung öffnen</button>
+        <button class="btn btn-sec" onclick="exportBackupPrompt()">💾 Sichern / Export PDF</button>
       </div>
     </div>
 
@@ -114,8 +115,8 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
       <div class="form-group">
         <label>Typ:</label>
         <select id="q-type">
-          <option value="ein">Einnahme (Příjem)</option>
-          <option value="aus">Ausgabe (Výdaj)</option>
+          <option value="ein">Einnahme</option>
+          <option value="aus">Ausgabe</option>
         </select>
       </div>
       <div class="form-group">
@@ -150,7 +151,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
     </div>
   </div>
 
-  <!-- ZÁLOŽKA 2: PROTOKOLLE & FORMULARE (Přesné kopie vašich souborů) -->
+  <!-- TAB 2: PROTOKOLLE & FORMULARE -->
   <div id="v-protokolle" class="view">
     <div class="card">
       <h2>Offizielle Formulare &amp; Protokolle</h2>
@@ -166,18 +167,21 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
           <option value="rapport">⏱️ Arbeitsrapport (Mitarbeiter)</option>
         </select>
       </div>
-      <button class="btn btn-ok" onclick="downloadCurrentDocument()" style="margin-top:8px">📥 Ausgefülltes Dokument speichern / drucken</button>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
+        <button class="btn btn-back" onclick="switchView('v-buchhaltung', document.querySelectorAll('.bottom-nav button')[0])">← Zurück zur Übersicht</button>
+        <button class="btn btn-ok" onclick="printOrSavePDF()">🖨️ Als PDF speichern / Drucken</button>
+      </div>
     </div>
 
     <div class="card" id="doc-preview-card" style="display:none">
-      <h2>Dokument-Vorschau &amp; Bearbeitung</h2>
+      <h2>Dokument-Vorschau</h2>
       <iframe id="doc-iframe" class="doc-container"></iframe>
     </div>
   </div>
 
 </div>
 
-<!-- SPODNÍ NAVIGACE (Pevná) -->
+<!-- BOTTOM NAVIGATION -->
 <nav class="bottom-nav">
   <button class="active" onclick="switchView('v-buchhaltung', this)">
     <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
@@ -185,7 +189,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--b);background:rgba(45
   </button>
   <button onclick="switchView('v-protokolle', this)">
     <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-    Protokolle &amp; PDFs
+    Protokolle
   </button>
 </nav>
 
@@ -194,7 +198,6 @@ var PIN = "2518";
 var currentPhotos = [];
 var currentDocKey = '';
 
-// Načtení dat účetnictvî z localStorage (kompatibilní s Buchhaltung_M_Service)
 var buchhaltungData = JSON.parse(localStorage.getItem('mservice_buchhaltung_v1')) || {
   year: 2027,
   days: 10,
@@ -228,7 +231,8 @@ function switchView(viewId, btn) {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
   document.getElementById(viewId).classList.add('active');
   document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  if(btn) btn.classList.add('active');
+  window.scrollTo(0,0);
 }
 
 function changeYear(yr) {
@@ -276,11 +280,8 @@ function quickSaveRecord() {
     photos: currentPhotos
   };
 
-  if(type === 'ein') {
-    buchhaltungData.ein.push(row);
-  } else {
-    buchhaltungData.aus.push(row);
-  }
+  if(type === 'ein') buchhaltungData.ein.push(row);
+  else buchhaltungData.aus.push(row);
 
   saveBuchhaltung();
   document.getElementById('q-who').value = '';
@@ -301,7 +302,6 @@ function exportBackupPrompt() {
 }
 
 function openFullBuchhaltung() {
-  // Otevře kompletní účetní modul se všemi záložkami v novém okně
   var w = window.open('', '_blank');
   w.document.write(fullBuchhaltungHtmlContent);
   w.document.close();
@@ -329,30 +329,23 @@ function loadDocumentTemplate(type) {
   iframe.contentWindow.document.close();
 }
 
-function downloadCurrentDocument() {
+function printOrSavePDF() {
   var iframe = document.getElementById('doc-iframe');
-  if(!currentDocKey || !iframe.contentWindow.document.documentElement) {
-    alert('Bitte zuerst ein Dokument auswählen.');
+  if(!currentDocKey || !iframe.contentWindow) {
+    alert('Bitte zuerst ein Dokument aus der Liste auswählen.');
     return;
   }
-  var content = iframe.contentWindow.document.documentElement.outerHTML;
-  var blob = new Blob([content], {type: 'text/html;charset=utf-8'});
-  var a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = currentDocKey + '_' + new Date().toISOString().slice(0,10) + '.html';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  iframe.contentWindow.print();
 }
 
-// ZDE JSOU KOMPLETNÍ ZDROJOVÉ KÓDY VAŠICH PŮVODNÍCH SOUBORŮ VLOŽENÉ PRO 100% FUNKČNOST
-var rechnungTemplateSrc = `[span_4](start_span)[span_4](end_span)`; // Načteno z RechnungWebPDF_2.html
-var offerteUmzugSrc = `[span_5](start_span)[span_5](end_span)`; // Načteno z OffertenWebPDF_2.html
-var offerteGebaeudeSrc = `...`; 
-var offerteUnterhaltSrc = `...`; 
-var offerteGrundSrc = `...`; 
-var rapportTemplateSrc = `[span_6](start_span)[span_6](end_span)`; // Načteno z arbeitsrapport-formular_2.html
-var fullBuchhaltungHtmlContent = `[span_7](start_span)[span_7](end_span)`; // Načteno z Buchhaltung_M_Service_2.html
+// INTEGRATION IHRER ORIGINALEN DOKUMENTEN-QUELLTEXTE
+var rechnungTemplateSrc = `[span_0](start_span)[span_0](end_span)`; 
+var offerteUmzugSrc = `[span_1](start_span)[span_1](end_span)`; 
+var offerteGebaeudeSrc = `[span_2](start_span)[span_2](end_span)`; 
+var offerteUnterhaltSrc = `[span_3](start_span)[span_3](end_span)`; 
+var offerteGrundSrc = `[span_4](start_span)[span_4](end_span)`; 
+var rapportTemplateSrc = `[span_5](start_span)[span_5](end_span)`; 
+var fullBuchhaltungHtmlContent = `[span_6](start_span)[span_6](end_span)`; 
 </script>
 </body>
 </html>
