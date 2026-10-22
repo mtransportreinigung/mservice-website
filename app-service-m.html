@@ -3,496 +3,466 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="googlebot" content="noindex, nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="M Service">
-<link rel="apple-touch-icon" href="logo.PNG">
-<title>M Service - Rapport & Quittung</title>
-<script>
-if (/bot|google|baidu|bing|msn|duckduckbot|teoma|slurp|yandex/i.test(navigator.userAgent)) {
-  window.location.href = "about:blank";
-}
-</script>
+<meta name="apple-mobile-web-app-title" content="M-Service App">
+<title>M-Service Mobile App</title>
 <style>
-:root {
-  --n: #1E3A6D;
-  --b: #2D6CB5;
-  --br: #1F4EA8;
-  --o: #F57C00;
-  --l: #F4F7FB;
-  --bd: #D6DFEA;
-  --ln: #8FA3BF;
-  --g: #666;
-  --sat: env(safe-area-inset-top, 0px);
-  --sab: env(safe-area-inset-bottom, 0px);
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--g:#666;--ok:#1F7A44;--bad:#C0392B}
+html,body{background:#eef1f5;font:14px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;height:100%;overflow-x:hidden}
+body{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}
+
+/* PIN SCREEN */
+#pin-screen{position:fixed;inset:0;background:var(--n);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;color:#fff}
+#pin-screen h2{font-size:20px;margin-bottom:10px;color:#fff;border:0}
+#pin-screen p{font-size:13px;color:#cbd5e1;margin-bottom:20px;text-align:center}
+.pin-dots{display:flex;gap:12px;margin-bottom:25px}
+.pin-dot{width:16px;height:16px;border-radius:50%;border:2px solid #fff;background:transparent;transition:.2s}
+.pin-dot.active{background:var(--o);border-color:var(--o)}
+.pin-pad{display:grid;grid-template-columns:repeat(3,75px);gap:14px}
+.pin-btn{height:55px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:50%;color:#fff;font-size:20px;font-weight:bold;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s}
+.pin-btn:active{background:var(--o);border-color:var(--o)}
+.pin-err{color:#ff8585;font-size:13px;margin-top:15px;min-height:18px}
+
+#app-container{display:none}
+
+.logo{width:44px;height:39px;flex:none}
+.top{position:sticky;top:0;z-index:100;background:#fff;border-bottom:3px solid var(--b);box-shadow:0 2px 10px rgba(0,0,0,.08);padding-top:env(safe-area-inset-top)}
+.top .in{max-width:1080px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand b{display:block;color:var(--br);font-size:15px}.brand span{font-size:11px;color:var(--g)}
+.act{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+button,.btn{font:bold 12px Arial;border:1px solid var(--bd);background:#fff;color:var(--n);border-radius:8px;padding:8px 10px;cursor:pointer}
+button:hover{background:var(--l)}button.pri{background:var(--b);color:#fff;border-color:var(--b)}
+.tabs{max-width:1080px;margin:0 auto;display:flex;gap:2px;padding:0 14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabs button{border:0;border-radius:8px 8px 0 0;background:transparent;padding:10px 12px;font-size:13px;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px;color:#444}
+.tabs button.on{background:var(--l);border-bottom-color:var(--o);color:var(--br);font-weight:bold}
+.wrap{max-width:1080px;margin:14px auto 50px;padding:0 12px}
+.sec{display:none;background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.07);padding:16px;border-top:5px solid var(--o)}
+.sec.on{display:block}
+h1{font-size:20px;color:var(--n);margin-bottom:4px}
+.hint{font-size:12px;color:var(--g);margin-bottom:12px}
+h2{font-size:14px;color:var(--n);margin:18px 0 8px;padding-bottom:3px;border-bottom:2px solid var(--bd)}
+.kpi{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:10px 0 4px}
+@media(min-width:640px){.kpi{grid-template-columns:repeat(4,1fr)}}
+.kpi div{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:10px;text-align:center}
+.kpi small{display:block;font-size:10px;font-weight:bold;color:var(--g);text-transform:uppercase;letter-spacing:.4px}
+.kpi b{font-size:18px;color:var(--n)}.kpi .g b{color:var(--o)}.kpi .r b{color:var(--bad)}
+table{width:100%;border-collapse:collapse}
+th{background:var(--b);color:#fff;text-align:left;padding:7px 5px;font-size:11px}
+td{padding:5px 4px;border-bottom:1px solid var(--bd);vertical-align:middle;font-size:13px}
+tr:nth-child(even) td{background:var(--l)}
+tr.inactive td{opacity:0.45;background:#f0f0f0!important}
+td.r,th.r{text-align:right}
+td.c,th.c{text-align:center}
+.tot td{background:var(--n)!important;color:#fff;font-weight:bold;padding:6px 8px}
+input,select{font:13.5px Arial;color:#0A2A8A;border:0;border-bottom:1px solid #b9c6d9;background:transparent;width:100%;padding:6px 2px;border-radius:0;outline:0}
+select{-webkit-appearance:none;appearance:none;cursor:pointer;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238FA3BF'/%3E%3C/svg%3E") right 4px center no-repeat;padding-right:16px}
+input:focus,select:focus{background:rgba(45,108,181,.09);border-bottom-color:var(--b)}
+input.r{text-align:right}
+input[type="checkbox"]{width:auto;cursor:pointer;transform:scale(1.2)}
+.x{border:0;background:transparent;color:#b00;font-size:18px;padding:2px 6px;cursor:pointer}
+.btn-sm{font-size:11px;padding:4px 8px;border-radius:4px;background:var(--l);border:1px solid var(--bd);color:var(--n);cursor:pointer;white-space:nowrap}
+.btn-sm:hover{background:var(--b);color:#fff}
+.warn td{background:#FFF1DC!important}
+.bar{height:8px;background:#e6ecf5;border-radius:4px;position:relative;margin:2px 0}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.bar .e{background:#2E9E5B}.bar .a{background:#d8665a}
+.st{font-size:11px;font-weight:bold;padding:2px 6px;border-radius:8px;display:inline-block}
+.st.bezahlt{background:#E3F4EA;color:var(--ok)}.st.offen{background:#FFF4C2;color:#8A6D00}.st.ueberfaellig{background:#FBE3E0;color:var(--bad)}
+.bar2{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.bar2 label{font-weight:bold;font-size:12px;color:var(--n)}.bar2 select,.bar2 input{width:auto;border:1px solid var(--bd);border-radius:6px;padding:6px 8px;background:#fff}
+.note{background:#FFF8E8;border-left:4px solid var(--o);padding:8px 12px;font-size:12px;margin-top:14px}
+.warnbox{background:#FBE3E0;border-left:4px solid var(--bad);padding:8px 12px;font-size:13px;margin-bottom:10px;display:none}
+
+.deduct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;background:#f4f7fb;padding:10px;border-radius:6px;border:1px solid var(--bd);margin-bottom:12px;font-size:12px}
+.deduct-grid label{display:flex;align-items:center;gap:4px;cursor:pointer;font-weight:normal}
+.deduct-grid input[type="number"]{width:60px;padding:4px;font-size:12px;border:1px solid var(--bd);background:#fff;border-radius:4px}
+
+/* Mobile responsive adjustments for accounting tables */
+@media (max-width:760px){
+ .brand span{display:none}
+ .lst thead{display:none}
+ .lst,.lst tbody,.lst tfoot,.lst tr,.lst td{display:block;width:100%}
+ .lst td.r,.lst td.c{text-align:left}
+ .lst tr{border:1px solid var(--bd);border-radius:8px;margin-bottom:10px;padding:8px;background:#fff}
+ .lst td{border:0;padding:4px 0;display:grid;grid-template-columns:110px 1fr;align-items:center;background:none!important}
+ .lst td::before{content:attr(data-l);font-size:11px;font-weight:bold;color:var(--n)}
+ .lst td.dl{display:block;text-align:right}.lst td.dl::before{content:none}
+ .lst tr.tot{background:var(--n);color:#fff}.lst tr.tot td{grid-template-columns:1fr auto;padding:4px 0}.lst tr.tot td[colspan="2"],.lst tr.tot td[colspan="4"],.lst tr.tot td[colspan="6"]{display:none}
+ .mt .bc{display:none}
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html { background: #eef1f5; height: 100%; }
-body {
-  font: 13.5px/1.35 Arial, Helvetica, sans-serif;
-  color: #2a2a2a;
-  background: #eef1f5;
-  min-height: 100%;
-  padding-top: calc(54px + var(--sat));
-  padding-bottom: calc(75px + var(--sab));
-  overflow-x: hidden;
-}
+/* Document Generator specific forms (vertical layout) */
+.form-card{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:12px;margin-bottom:14px}
+.form-row{margin-bottom:10px}
+.form-row label{display:block;font-weight:bold;font-size:12px;color:var(--n);margin-bottom:4px}
+.doc-table{width:100%;margin-top:8px;margin-bottom:10px}
+.doc-table th{background:var(--n);font-size:11px}
+.doc-table td{padding:4px}
+.doc-total-box{background:#EAF3FC;border:1px solid #8FC0EE;border-radius:8px;padding:12px;margin-top:10px}
+.doc-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-weight:bold;color:var(--n)}
 
-/* PIN Obrazovka */
-#pin-screen {
-  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-  background: var(--n);
-  z-index: 99999;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 20px; color: #fff;
-}
-#pin-screen img.app-logo { width: 75px; height: 75px; margin-bottom: 12px; border-radius: 14px; object-fit: cover; }
-#pin-screen h2 { font-size: 20px; margin-bottom: 6px; }
-#pin-screen p { font-size: 13px; color: #a0b2d6; margin-bottom: 22px; }
-.pin-dots { display: flex; gap: 14px; margin-bottom: 25px; }
-.dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; transition: background 0.2s; }
-.dot.filled { background: var(--o); border-color: var(--o); }
-.keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; width: 100%; max-width: 270px; }
-.key {
-  aspect-ratio: 1; border-radius: 50%; background: rgba(255,255,255,0.1);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 22px; font-weight: bold; color: #fff; cursor: pointer; user-select: none;
-}
-.key:active { background: rgba(255,255,255,0.3); }
-
-/* App Shell */
-#app-shell { display: none; width: 100%; }
-body.unlocked #app-shell { display: block; }
-
-/* Fixed Header */
-header.app-header {
-  position: fixed; top: 0; left: 0; right: 0;
-  background: #fff;
-  padding-top: var(--sat);
-  height: calc(54px + var(--sat));
-  padding-left: 14px; padding-right: 14px;
-  border-bottom: 2px solid var(--b);
-  display: flex; align-items: center; justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  z-index: 1000;
-}
-header .brand-info { display: flex; align-items: center; gap: 10px; }
-header img.hdr-logo { width: 32px; height: 32px; object-fit: contain; }
-header .title-text { font-size: 13.5px; font-weight: bold; color: var(--br); line-height: 1.2; }
-header .title-text span { display: block; font-size: 10.5px; color: var(--g); font-weight: normal; }
-
-/* Main Content */
-main.app-content {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 12px;
-}
-
-/* Fixed Bottom Nav */
-nav.app-nav {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: #fff; border-top: 1px solid var(--bd);
-  height: calc(60px + var(--sab));
-  padding-bottom: var(--sab);
-  display: flex; justify-content: space-around; align-items: center;
-  z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-}
-.nav-item {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  font-size: 11px; color: var(--g); background: none; border: none; flex: 1; height: 100%; cursor: pointer;
-}
-.nav-item svg { width: 20px; height: 20px; fill: currentColor; margin-bottom: 2px; }
-.nav-item.active { color: var(--br); font-weight: bold; }
-
-.view-panel { display: none; }
-.view-panel.active { display: block; }
-
-/* Cards & Form Elements */
-.doc-card {
-  background: #fff; border-radius: 10px; padding: 14px; margin-bottom: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-top: 4px solid var(--o);
-}
-.doc-card h2 { font-size: 15px; color: var(--n); margin-bottom: 10px; border-bottom: 1px solid var(--bd); padding-bottom: 4px; }
-.form-row { margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px; }
-.form-row label { font-size: 11.5px; font-weight: bold; color: var(--n); }
-input[type="text"], input[type="date"], input[type="number"], select, textarea {
-  font: 14px Arial, sans-serif; color: #000; border: 0; border-bottom: 1px solid var(--ln);
-  background: var(--l); padding: 8px; border-radius: 4px; width: 100%; outline: none;
-}
-input:focus, select:focus { background: #fff; border-color: var(--b); }
-
-.btn {
-  font: bold 13px Arial; border: 0; background: var(--b); color: #fff;
-  border-radius: 8px; padding: 10px 14px; cursor: pointer; width: 100%; margin-top: 8px;
-}
-.btn-sec { background: var(--l); color: var(--n); border: 1px solid var(--bd); }
-.btn-danger { background: #f0f0f0; color: #c0392b; border: 1px solid #d6dfea; font-size: 11px; padding: 4px 8px; width: auto; margin-top: 4px; }
-
-/* Podpisové plochy na displeji (Canvas) */
-.sig-container { margin-top: 12px; border-top: 1px dashed var(--bd); padding-top: 10px; }
-.sig-container label { font-size: 11.5px; font-weight: bold; color: var(--n); display: block; margin-bottom: 4px; }
-canvas.sig-pad {
-  width: 100%; height: 120px; background: #fff; border: 1px solid var(--bd);
-  border-radius: 6px; touch-action: none; cursor: crosshair; display: block;
-}
-
-/* Skrytý iframe pro čistý tisk na A4 */
-#print-frame { display: none; }
-
-@media print {
-  body * { visibility: hidden; }
-  #print-container, #print-container * { visibility: visible; }
-  #print-container { position: absolute; left: 0; top: 0; width: 100%; }
+@media print{
+ body{background:#fff;padding:0}
+ .top,.noprint,#pin-screen{display:none!important}
+ .sec{display:none!important}
+ .sec.prt{display:block!important;box-shadow:none;border:0!important;padding:0}
 }
 </style>
 </head>
 <body>
 
-<!-- PIN Obrazovka -->
+<!-- PIN SCREEN -->
 <div id="pin-screen">
-  <img src="logo.PNG" alt="Logo" class="app-logo" onerror="this.style.display='none'">
-  <h2>M Service</h2>
-  <p>Bitte PIN eingeben</p>
+  <svg class="logo" viewBox="0 0 420 376" style="width:60px;height:54px;margin-bottom:15px"><path fill="#fff" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/></svg>
+  <h2>Mejstrik M-Service</h2>
+  <p>Bitte PIN eingeben (2518)</p>
   <div class="pin-dots">
-    <div class="dot" id="dot-0"></div>
-    <div class="dot" id="dot-1"></div>
-    <div class="dot" id="dot-2"></div>
-    <div class="dot" id="dot-3"></div>
+    <div class="pin-dot" id="d0"></div>
+    <div class="pin-dot" id="d1"></div>
+    <div class="pin-dot" id="d2"></div>
+    <div class="pin-dot" id="d3"></div>
   </div>
-  <div class="keypad">
-    <div class="key" onclick="pressKey('1')">1</div>
-    <div class="key" onclick="pressKey('2')">2</div>
-    <div class="key" onclick="pressKey('3')">3</div>
-    <div class="key" onclick="pressKey('4')">4</div>
-    <div class="key" onclick="pressKey('5')">5</div>
-    <div class="key" onclick="pressKey('6')">6</div>
-    <div class="key" onclick="pressKey('7')">7</div>
-    <div class="key" onclick="pressKey('8')">8</div>
-    <div class="key" onclick="pressKey('9')">9</div>
-    <div class="key" onclick="clearPin()">C</div>
-    <div class="key" onclick="pressKey('0')">0</div>
-    <div class="key" onclick="delKey()">⌫</div>
+  <div class="pin-pad">
+    <button class="pin-btn" onclick="pressPin('1')">1</button>
+    <button class="pin-btn" onclick="pressPin('2')">2</button>
+    <button class="pin-btn" onclick="pressPin('3')">3</button>
+    <button class="pin-btn" onclick="pressPin('4')">4</button>
+    <button class="pin-btn" onclick="pressPin('5')">5</button>
+    <button class="pin-btn" onclick="pressPin('6')">6</button>
+    <button class="pin-btn" onclick="pressPin('7')">7</button>
+    <button class="pin-btn" onclick="pressPin('8')">8</button>
+    <button class="pin-btn" onclick="pressPin('9')">9</button>
+    <button class="pin-btn" onclick="pressPin('C')" style="font-size:14px">C</button>
+    <button class="pin-btn" onclick="pressPin('0')">0</button>
+    <button class="pin-btn" onclick="pressPin('OK')" style="font-size:14px">OK</button>
+  </div>
+  <div class="pin-err" id="pin-err"></div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app-container">
+<svg width="0" height="0" style="position:absolute"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
+
+<div class="top">
+  <div class="in">
+    <svg class="logo"><use href="#lg"/></svg>
+    <div class="brand"><b>M Transport &amp; Reinigung Service</b><span>Mobile App <span class="yy"></span></span></div>
+    <div class="act noprint">
+      <button id="p-one" type="button">Drucken</button>
+      <button id="b-save" type="button">Sichern</button>
+      <label class="btn" style="display:inline-block">Laden<input id="b-load" type="file" accept=".json,application/json" hidden></label>
+    </div>
+  </div>
+  <div class="tabs noprint">
+    <button data-t="s-ue" class="on">Übersicht</button>
+    <button data-t="s-ein">Einnahmen</button>
+    <button data-t="s-aus">Ausgaben</button>
+    <button data-t="s-lohn">Löhne</button>
+    <button data-t="s-rg">Rechnungen</button>
+    <button data-t="s-doc-rg">Rechnung 📄</button>
+    <button data-t="s-doc-rp">Rapport ⏱️</button>
   </div>
 </div>
 
-<!-- Hlavní aplikace -->
-<div id="app-shell">
-  <header class="app-header">
-    <div class="brand-info">
-      <img src="logo.PNG" alt="Logo" class="hdr-logo" onerror="this.style.display='none'">
-      <div class="title-text">
-        Mejstrik Transport & Reinigung
-        <span>CH-8586 Ennetaach</span>
-      </div>
-    </div>
-    <button class="btn btn-sec noprint" style="width:auto; padding:6px 10px; font-size:11px; margin:0;" onclick="switchTab('settings', document.getElementById('nav-set'))">⚙️ Einstellungen</button>
-  </header>
+<div class="wrap">
+  <div class="warnbox" id="wb">Lokaler Speicher nicht verfügbar. Bitte regelmässig sichern.</div>
 
-  <main class="app-content">
+  <!-- 1. ÜBERSICHT -->
+  <section class="sec on" id="s-ue">
+    <h1>Übersicht <span class="yy"></span></h1>
+    <div class="hint">Automatische Buchhaltungsübersicht nach Art. 957 OR.</div>
+    <div class="bar2 noprint"><label for="year">Jahr:</label><input id="year" type="number" min="2000" max="2099" step="1" style="width:90px"></div>
+    <div class="kpi">
+      <div><small>Einnahmen</small><b id="k-e"></b></div>
+      <div><small>Ausgaben</small><b id="k-a"></b></div>
+      <div class="g"><small>Gewinn</small><b id="k-g"></b></div>
+      <div class="r"><small>Offen</small><b id="k-o"></b></div>
+    </div>
+    <h2>Monatsübersicht</h2>
+    <table class="mt"><thead><tr><th>Monat</th><th class="r">Einnahmen CHF</th><th class="r">Ausgaben CHF</th><th class="r">Gewinn CHF</th><th class="bc"></th></tr></thead><tbody id="tb-mon"></tbody></table>
+  </section>
+
+  <!-- 2. EINNAHMEN -->
+  <section class="sec" id="s-ein">
+    <h1>Einnahmen <span class="yy"></span></h1>
+    <div class="bar2 noprint"><label for="f-ein">Anzeigen:</label><select id="f-ein"></select></div>
+    <table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:90px">Datum</th><th style="width:110px">Beleg-Nr.</th><th style="width:130px">Kunde</th><th>Beschreibung</th><th style="width:150px">Kategorie</th><th class="r" style="width:90px">Betrag</th><th style="width:110px">Zahlart</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-ein"></tbody><tfoot><tr class="tot"><td colspan="6">Total CHF</td><td class="r" id="tt-ein"></td><td colspan="2"></td></tr></tfoot></table>
+  </section>
+
+  <!-- 3. AUSGABEN -->
+  <section class="sec" id="s-aus">
+    <h1>Ausgaben <span class="yy"></span></h1>
+    <div class="bar2 noprint"><label for="f-aus">Anzeigen:</label><select id="f-aus"></select></div>
+    <table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:90px">Datum</th><th style="width:160px">Empfänger / Grund</th><th style="width:150px">Kategorie</th><th class="r" style="width:90px">Betrag</th><th style="width:120px">Zahlart</th><th>Beschreibung</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-aus"></tbody><tfoot><tr class="tot"><td colspan="4">Total CHF</td><td class="r" id="tt-aus"></td><td colspan="3"></td></tr></tfoot></table>
+  </section>
+
+  <!-- 4. LÖHNE -->
+  <section class="sec" id="s-lohn">
+    <h1>Löhne &amp; Aushilfe</h1>
+    <div class="deduct-grid noprint">
+      <div><label>AHV/IV/EO (%):</label><input id="rate-ahv" type="number" step="0.01" value="5.15"></div>
+      <div><label>ALV (%):</label><input id="rate-alv" type="number" step="0.01" value="0.15"></div>
+      <div><label>ALV2 (%):</label><input id="rate-alv2" type="number" step="0.01" value="0.00"></div>
+      <div><label>NBU (%):</label><input id="rate-nbu" type="number" step="0.01" value="0.00"></div>
+    </div>
+    <div class="bar2 noprint"><label for="f-lohn">Anzeigen:</label><select id="f-lohn"></select></div>
+    <table class="lst"><thead><tr><th class="c" style="width:35px">Aktiv</th><th style="width:85px">Datum</th><th style="width:120px">Name</th><th style="width:110px">Funktion</th><th class="r" style="width:80px">Brutto</th><th class="c" style="width:170px">Abzüge</th><th class="r" style="width:80px">Netto</th><th style="width:90px">Zahlart</th><th class="dl" style="width:90px">Aktion</th></tr></thead><tbody id="tb-lohn"></tbody><tfoot><tr class="tot"><td colspan="4">Total Brutto CHF</td><td class="r" id="tt-lohn"></td><td colspan="4"></td></tr></tfoot></table>
+  </section>
+
+  <!-- 5. RECHNUNGEN -->
+  <section class="sec" id="s-rg">
+    <h1>Offene Rechnungen</h1>
+    <div class="bar2 noprint"><label for="days">Zahlungsfrist (Tage):</label><input id="days" type="number" min="0" max="365" style="width:80px"></div>
+    <table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:100px">Nr.</th><th style="width:90px">Datum</th><th>Kunde</th><th class="r" style="width:90px">Betrag</th><th style="width:90px">Fällig</th><th style="width:90px">Bezahlt</th><th style="width:90px">Status</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-rg"></tbody></table>
+  </section>
+
+  <!-- 6. FAKTURA GENERATOR (RECHNUNG) -->
+  <section class="sec" id="s-doc-rg">
+    <h1>Rechnung erstellen</h1>
+    <div class="hint">Füllen Sie die Felder für die Rechnung direkt untereinander aus.</div>
+    <div class="form-card">
+      <h2>Kundenadresse &amp; Meta</h2>
+      <div class="form-row"><label>Firma (optional):</label><input id="rg-a1" placeholder="Firma"></div>
+      <div class="form-row"><label>Vorname Nachname:</label><input id="rg-a2" placeholder="Max Muster"></div>
+      <div class="form-row"><label>Strasse &amp; Nr.:</label><input id="rg-a3" placeholder="Hauptstrasse 1"></div>
+      <div class="form-row"><label>PLZ &amp; Ort:</label><input id="rg-a4" placeholder="8586 Ennetaach"></div>
+      <div class="form-row"><label>Rechnungs-Nr.:</label><input id="rg-nr" placeholder="RE-2026-001"></div>
+      <div class="form-row"><label>Datum:</label><input id="rg-d" type="date"></div>
+      <div class="form-row"><label>Zahlbar bis:</label><input id="rg-due" placeholder="10 Tagen netto"></div>
+    </div>
     
-    <!-- 1. ARBEITSRAPPORT -->
-    <div id="view-rapport" class="view-panel active">
-      <div class="doc-card">
-        <h2>Arbeitsrapport erstellen</h2>
-        <div class="form-row"><label>Nummer / Zakázka:</label><input type="text" id="rap-nr" value="2027-R01"></div>
-        <div class="form-row"><label>Datum:</label><input type="date" id="rap-date"></div>
-        <div class="form-row"><label>Vorname & Nachname (Zákazník):</label><input type="text" id="rap-cust" placeholder="Hans Muster"></div>
-        <div class="form-row"><label>Arbeitsstunden (Total):</label><input type="number" id="rap-hrs" placeholder="z. B. 4.5"></div>
-        <div class="form-row"><label>Beschreibung / Einsatzort:</label><textarea id="rap-desc" rows="2" placeholder="Umzugsreinigung / Transport"></textarea></div>
-
-        <div class="sig-container">
-          <label>Ihr Unterschrift (Aussteller):</label>
-          <canvas id="canvas-owner-rap" class="sig-pad"></canvas>
-          <button class="btn-danger" onclick="clearCanvas('canvas-owner-rap')">Podpis vymazat</button>
-        </div>
-
-        <div class="sig-container">
-          <label>Unterschrift Kunde (Zákazník):</label>
-          <canvas id="canvas-cust-rap" class="sig-pad"></canvas>
-          <button class="btn-danger" onclick="clearCanvas('canvas-cust-rap')">Podpis vymazat</button>
-        </div>
-
-        <button class="btn" onclick="printRapport()">📄 Arbeitsrapport A4 Drucken / PDF</button>
+    <div class="form-card">
+      <h2>Leistungen</h2>
+      <table class="doc-table">
+        <thead><tr><th>Beschreibung</th><th style="width:60px">Menge</th><th style="width:70px">Einheit</th><th style="width:80px" class="r">Preis</th><th style="width:90px" class="r">Betrag</th></tr></thead>
+        <tbody id="rg-items-body">
+          <tr><td><input value="Umzugsreinigung Objekt"></td><td><input class="r" value="1"></td><td><input value="Pauschal"></td><td><input class="r" value="450.00"></td><td><input class="r" value="450.00"></td></tr>
+          <tr><td><input value="Transport & Umzug"></td><td><input class="r" value="4"></td><td><input value="Std."></td><td><input class="r" value="120.00"></td><td><input class="r" value="480.00"></td></tr>
+          <tr><td><input value="48 Stunden Reklamationsfrist"></td><td><input class="r" value="1"></td><td><input value="Pauschal"></td><td><input class="r" value="0.00"></td><td><input class="r" value="0.00"></td></tr>
+        </tbody>
+      </table>
+      <div class="doc-total-box">
+        <div class="doc-total-row"><span>Zwischensumme CHF</span><input id="rg-zs" class="r" style="width:120px" value="930.00"></div>
+        <div class="doc-total-row"><span>Rabatt CHF</span><input id="rg-rab" class="r" style="width:120px" value="0.00"></div>
+        <div class="doc-total-row"><span>Total CHF</span><input id="rg-tot" class="r" style="width:120px;font-size:16px;color:var(--b)" value="930.00"></div>
       </div>
     </div>
+    <button class="pri" type="button" onclick="window.print()">Rechnung drucken / PDF</button>
+  </section>
 
-    <!-- 2. QUITTUNG -->
-    <div id="view-quittung" class="view-panel">
-      <div class="doc-card">
-        <h2>Quittung (Bar / TWINT / Karte)</h2>
-        <div class="form-row"><label>Beleg-Nr.:</label><input type="text" id="q-nr" value="2027-Q01"></div>
-        <div class="form-row"><label>Datum:</label><input type="date" id="q-date"></div>
-        <div class="form-row"><label>Vorname & Nachname (Zákazník):</label><input type="text" id="q-cust" placeholder="Hans Muster"></div>
-        <div class="form-row"><label>Zahlungsart:</label>
-          <select id="q-pay">
-            <option value="Barbezahlung">Bar</option>
-            <option value="TWINT">TWINT</option>
-            <option value="Banküberweisung">Banküberweisung</option>
-            <option value="Kartenzahlung">Karte</option>
-          </select>
-        </div>
-        <div class="form-row"><label>Preis CHF:</label><input type="text" id="q-price" placeholder="450.00"></div>
-        <div class="form-row"><label>Leistungsbeschreibung:</label><textarea id="q-desc" rows="2" placeholder="Bezahlung für Umzugsreinigung"></textarea></div>
-
-        <div class="sig-container">
-          <label>Ihr Unterschrift (Aussteller):</label>
-          <canvas id="canvas-owner-q" class="sig-pad"></canvas>
-          <button class="btn-danger" onclick="clearCanvas('canvas-owner-q')">Podpis vymazat</button>
-        </div>
-
-        <div class="sig-container">
-          <label>Unterschrift Kunde (Empfang):</label>
-          <canvas id="canvas-cust-q" class="sig-pad"></canvas>
-          <button class="btn-danger" onclick="clearCanvas('canvas-cust-q')">Podpis vymazat</button>
-        </div>
-
-        <button class="btn" onclick="printQuittung()">📄 Quittung A4 Drucken / PDF</button>
+  <!-- 7. ARBEITSRAPPORT GENERATOR -->
+  <section class="sec" id="s-doc-rp">
+    <h1>Arbeitsrapport</h1>
+    <div class="hint">Erfassung der geleisteten Arbeitsstunden für Mitarbeiter.</div>
+    <div class="form-card">
+      <h2>Angaben</h2>
+      <div class="form-row"><label>Mitarbeiter/in:</label><input id="rp-name" placeholder="Name Vorname"></div>
+      <div class="form-row"><label>Monat / Jahr:</label><input id="rp-monat" placeholder="Oktober 2026"></div>
+      <div class="form-row"><label>Lohn CHF/h:</label><input id="rp-rate" type="number" value="35.00"></div>
+    </div>
+    <div class="form-card">
+      <h2>Stunden</h2>
+      <div class="form-row"><label>Datum:</label><input placeholder="01.10.2026"></div>
+      <div class="form-row"><label>Kunde / Einsatzort:</label><input placeholder="Kunde Müller"></div>
+      <div class="form-row"><label>Beginn &ndash; Ende:</label><div style="display:flex;gap:6px"><input placeholder="08:00"><input placeholder="17:00"></div></div>
+      <div class="form-row"><label>Pause (Min.):</label><input type="number" value="60"></div>
+      <div class="doc-total-box">
+        <div class="doc-total-row"><span>Total Stunden</span><input id="rp-toth" class="r" style="width:100px" value="8.00"></div>
+        <div class="doc-total-row"><span>Bruttolohn CHF</span><input id="rp-totl" class="r" style="width:120px;font-size:16px;color:var(--b)" value="280.00"></div>
       </div>
     </div>
+    <button class="pri" type="button" onclick="window.print()">Rapport drucken / PDF</button>
+  </section>
 
-    <!-- 3. EINSTELLUNGEN -->
-    <div id="view-settings" class="view-panel">
-      <div class="doc-card">
-        <h2>Einstellungen & Standard-Unterschrift</h2>
-        <div class="form-row">
-          <label>Ihr Name / Standard-Unterschrift:</label>
-          <input type="text" id="set-owner" value="Daniel Mejstrik">
-        </div>
-        <p style="font-size:11.5px; color:var(--g); margin-top:8px;">Tento text nebo váš výchozí podpis se používá v dokumentech.</p>
-        <button class="btn" style="margin-top:15px;" onclick="saveSettings()">💾 Speichern</button>
-      </div>
-    </div>
-
-  </main>
-
-  <!-- Spodní navigace -->
-  <nav class="app-nav noprint">
-    <button class="nav-item active" onclick="switchTab('rapport', this)">
-      <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-      Rapport
-    </button>
-    <button class="nav-item" onclick="switchTab('quittung', this)">
-      <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-      Quittung
-    </button>
-    <button class="nav-item" id="nav-set" onclick="switchTab('settings', this)">
-      <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
-      Einstellung
-    </button>
-  </nav>
-</div>
-
-<!-- Skrytý iframe pro přímý tisk bez zasekávání -->
-<iframe id="print-frame"></iframe>
+</div></div>
 
 <script>
-// PIN Logic
-let pinInput = "";
-const correctPin = "2518";
-
-function pressKey(n) {
-  if (pinInput.length < 4) {
-    pinInput += n;
+/* PIN Logic */
+var enteredPin = '';
+function pressPin(val){
+  if(val==='C'){ enteredPin = ''; updatePinDots(); return; }
+  if(val==='OK'){
+    if(enteredPin==='2518'){
+      document.getElementById('pin-screen').style.display='none';
+      document.getElementById('app-container').style.display='block';
+    } else {
+      document.getElementById('pin-err').textContent = 'Falscher PIN. Bitte erneut versuchen.';
+      enteredPin = '';
+      updatePinDots();
+    }
+    return;
+  }
+  if(enteredPin.length < 4){
+    enteredPin += val;
     updatePinDots();
-    if (pinInput.length === 4) setTimeout(verifyPin, 150);
+    if(enteredPin.length === 4){
+      setTimeout(function(){
+        if(enteredPin==='2518'){
+          document.getElementById('pin-screen').style.display='none';
+          document.getElementById('app-container').style.display='block';
+        } else {
+          document.getElementById('pin-err').textContent = 'Falscher PIN. Bitte erneut versuchen.';
+          enteredPin = '';
+          updatePinDots();
+        }
+      }, 200);
+    }
   }
 }
-function clearPin() { pinInput = ""; updatePinDots(); }
-function delKey() { pinInput = pinInput.slice(0, -1); updatePinDots(); }
-
-function updatePinDots() {
-  for (let i = 0; i < 4; i++) {
-    const dot = document.getElementById("dot-" + i);
-    if (i < pinInput.length) dot.classList.add("filled");
-    else dot.classList.remove("filled");
+function updatePinDots(){
+  for(var i=0; i<4; i++){
+    var dot = document.getElementById('d'+i);
+    if(i < enteredPin.length) dot.classList.add('active');
+    else dot.classList.remove('active');
   }
 }
 
-function verifyPin() {
-  if (pinInput === correctPin) {
-    document.body.classList.add("unlocked");
-    document.getElementById("pin-screen").style.display = "none";
+/* Buchhaltung Logic */
+var K='mservice_app_v1',
+CE=['Umzugsreinigung','Gebäudereinigung','Unterhaltsreinigung','Grundreinigung','Transport & Umzug','Sonstige Einnahmen'],
+CA=['Löhne & Aushilfshilfe','Material & Reinigungsmittel','Benzin & Transport','Geräte & Maschinen','Werbung & Website','Telefon & Internet','Versicherungen & Gebühren','Büro & Software','Sonstige Ausgaben'],
+PAY=['Bar','TWINT','Banküberweisung','Karte','Pauschal / Eigenverbrauch','Privat bezahlt'],
+MON=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+S={year:2026,days:10,rates:{ahv:5.15,alv:0.15,alv2:0,nbu:0},ein:[],aus:[],lohn:[],rg:[]},ok=true;
+
+function g(i){return document.getElementById(i)}
+function el(t,a,c){var e=document.createElement(t);for(var k in a||{}){if(k==='text')e.textContent=a[k];else if(k==='cls')e.className=a[k];else e.setAttribute(k,a[k])}(c||[]).forEach(function(x){e.appendChild(x)});return e}
+function n(s){s=String(s||'').replace(/CHF/gi,'').replace(/[’'\s]/g, '').replace(',','.');var x=parseFloat(s);return isNaN(x)?0:x}
+function f(x){return x.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function load(){try{var s=localStorage.getItem(K);if(s){var o=JSON.parse(s);for(var k in o)S[k]=o[k];if(!S.rates)S.rates={ahv:5.15,alv:0.15,alv2:0,nbu:0}}}catch(e){ok=false}}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){ok=false}g('wb').style.display=ok?'none':'block'}
+
+var LST={
+ ein:{tb:'tb-ein',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['nr','Beleg / Nr.','text'],['who','Kunde','text'],['desc','Beschreibung','text'],['cat','Kategorie',CE],['amt','Betrag CHF','amt'],['pay','Zahlungsart',PAY]]},
+ aus:{tb:'tb-aus',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['who','Empfänger / Grund','text'],['cat','Kategorie',CA],['amt','Betrag CHF','amt'],['pay','Zahlungsart',PAY],['desc','Beschreibung','text']]},
+ lohn:{tb:'tb-lohn',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['who','Name','text'],['desc','Funktion','text'],['amt','Brutto CHF','amt'],['deductionSet','Abzüge','deduct_select'],['netto','Netto CHF','calc_netto'],['pay','Zahlart',PAY]]},
+ rg:{tb:'tb-rg',cols:[['act','Aktiv','check_act'],['nr','Rechnungs-Nr.','text'],['d','Datum','date'],['who','Kunde','text'],['amt','Betrag CHF','amt'],['due','Zahlbar bis','calc'],['paid','Bezahlt am','date'],['st','Status','calc']]}
+};
+
+function ps(c,r,pd){var v=r[c[0]]||'';if(c[2]==='date'&&v)v=v.slice(8,10)+'.'+v.slice(5,7)+'.'+v.slice(0,4);pd.textContent=v;}
+function emptyRow(r){for(var k in r){if(k==='act')continue;if(typeof r[k]==='object'&&r[k]!==null){for(var sub in r[k])if(r[k][sub])return false;}else if(r[k]!==''&&r[k]!==false&&r[k]!==undefined)return false;}return true;}
+function sortData(key){var a=S[key];if(!a)return;var filled=a.filter(function(r){return !emptyRow(r);});var empty=a.filter(function(r){return emptyRow(r);});filled.sort(function(x,y){return (x.d||'').localeCompare(y.d||'')});S[key]=filled.concat(empty);}
+function getDeductDetails(r){var gross=n(r.amt);var set=r.deductionSet||{};var tot=0;['ahv','alv','alv2','nbu'].forEach(function(k){if(set[k])tot+=gross*(parseFloat(S.rates[k])||0)/100;});return {total:tot,netto:gross-tot};}
+function updateDeductSummaryText(r){var set=r.deductionSet||{};var items=[];['ahv','alv','alv2','nbu'].forEach(function(k){if(set[k])items.push(k.toUpperCase());});return items.length?items.join(', '):'Keine';}
+
+function mk(key,r){
+ var L=LST[key],tr=el('tr'),cells={};
+ if(r.act===undefined)r.act=true;
+ if(!r.act)tr.classList.add('inactive');
+ L.cols.forEach(function(c){
+  var td=el('td',{'data-l':c[1]}),inp,pd=null;
+  if(c[2]==='check_act'){inp=el('input',{type:'checkbox'});inp.checked=!!r.act;td.className='c';}
+  else if(c[2]==='calc'||c[2]==='calc_netto'){
+    inp=el('span',{cls:c[0]==='st'?'':'cc'});
+    if(c[2]==='calc_netto'){inp.textContent=f(getDeductDetails(r).netto);td.className='r';}
+    td.appendChild(inp);
+  }
+  else if(c[2]==='deduct_select'){
+    inp=el('div',{style:'display:flex;gap:4px;flex-wrap:wrap;font-size:10px'});
+    if(!r.deductionSet)r.deductionSet={};
+    ['ahv','alv','nbu'].forEach(function(dk){
+      var lbl=el('label',{style:'cursor:pointer'},[el('input',{type:'checkbox'}),el('span',{text:dk.toUpperCase()})]);
+      var cb=lbl.querySelector('input');cb.checked=!!r.deductionSet[dk];
+      cb.addEventListener('change',function(){r.deductionSet[dk]=cb.checked;if(tr._c&&tr._c.netto)tr._c.netto.textContent=f(getDeductDetails(r).netto);save();refresh();});
+      inp.appendChild(lbl);
+    });
+    td.appendChild(inp);
+  }
+  else if(Array.isArray(c[2])){
+    inp=el('select');inp.appendChild(el('option',{value:'',text:'\u00a0'}));
+    c[2].forEach(function(o){inp.appendChild(el('option',{value:o,text:o}))});
+    inp.value=r[c[0]]||'';
   } else {
-    alert("Falscher PIN");
-    clearPin();
+    inp=el('input',{type:c[2]==='date'?'date':'text'});
+    if(c[2]==='amt'){inp.className='r';td.className='r'}
+    inp.value=r[c[0]]||'';
   }
+  if(c[2]!=='calc'&&c[2]!=='calc_netto'&&c[2]!=='deduct_select'){
+   var h=function(){
+    if(c[2]==='check_act'){r.act=inp.checked;tr.classList.toggle('inactive',!r.act);}
+    else {r[c[0]]=inp.value;}
+    if(key==='lohn'&&tr._c&&tr._c.netto)tr._c.netto.textContent=f(getDeductDetails(r).netto);
+    save();refresh();
+   };
+   inp.addEventListener('input',h);
+   inp.addEventListener('change',function(){sortData(key);build(key);save();refresh();});
+   if(c[2]==='amt')inp.addEventListener('blur',function(){if(inp.value.trim()!==''){inp.value=f(n(inp.value));r[c[0]]=inp.value;save();refresh()}});
+  }
+  cells[c[0]]=inp;td.appendChild(inp);
+  tr.appendChild(td);
+ });
+ var d=el('td',{cls:'dl'}),x=el('button',{cls:'x',type:'button',text:'×'});
+ x.addEventListener('click',function(){var i=S[key].indexOf(r);S[key].splice(i,1);tr.remove();save();refresh()});
+ d.appendChild(x);tr.appendChild(d);
+ tr._r=r;tr._c=cells;return tr;
 }
 
-function switchTab(id, btn) {
-  document.querySelectorAll('.view-panel').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-  document.getElementById('view-' + id).classList.add('active');
-  if(btn) btn.classList.add('active');
-  window.scrollTo(0, 0);
+function grow(key){var a=S[key],tb=g(LST[key].tb);if(!a)return;if(!a.length||!emptyRow(a[a.length-1])){var r={act:true};a.push(r);tb.appendChild(mk(key,r))}}
+function build(key){var tb=g(LST[key].tb);if(!tb)return;tb.innerHTML='';(S[key]||[]).forEach(function(r){tb.appendChild(mk(key,r))});grow(key);}
+
+function refresh(){
+ var Y=S.year;g('year').value=Y;
+ document.querySelectorAll('.yy').forEach(function(e){e.textContent=Y});
+ var me=Array(12).fill(0),ma=Array(12).fill(0),te=0,ta=0;
+ S.ein.forEach(function(r){if(r.act!==false&&r.d&&r.d.slice(0,4)==Y){var v=n(r.amt),m=+r.d.slice(5,7)-1;if(m>=0&&m<12)me[m]+=v;te+=v;}});
+ S.aus.forEach(function(r){if(r.act!==false&&r.d&&r.d.slice(0,4)==Y){var v=n(r.amt),m=+r.d.slice(5,7)-1;if(m>=0&&m<12)ma[m]+=v;ta+=v;}});
+ (S.lohn||[]).forEach(function(r){if(r.act!==false&&!emptyRow(r)&&r.d&&r.d.slice(0,4)==Y){var v=n(r.amt),m=+r.d.slice(5,7)-1;if(m>=0&&m<12)ma[m]+=v;ta+=v;}});
+
+ ['ein','aus','lohn','rg'].forEach(function(key){
+  var tb=g(LST[key].tb),sum=0;if(!tb)return;
+  Array.prototype.forEach.call(tb.children,function(tr){
+   var r=tr._r,emp=emptyRow(r);
+   if(!emp&&r.act!==false)sum+=n(r.amt);
+   if(key==='rg'){
+    var due='';if(r.d){var dt=new Date(r.d+'T00:00:00');dt.setDate(dt.getDate()+S.days);due=dt.toISOString().slice(0,10)}
+    if(tr._c.due)tr._c.due.textContent=due?due.slice(8,10)+'.'+due.slice(5,7)+'.'+due.slice(0,4):'';
+    var s=!emp&&(r.nr||r.amt)?(r.paid?'bezahlt':(due&&new Date()>new Date(due+'T23:59:59')?'überfällig':'offen')):'';
+    if(tr._c.st){tr._c.st.innerHTML='';if(s)tr._c.st.appendChild(el('span',{cls:'st '+s,text:s}));}
+   }
+  });
+  var t=g('tt-'+key);if(t)t.textContent=f(sum);
+ });
+ var open=0;S.rg.forEach(function(r){if(r.act!==false&&!emptyRow(r)&&!r.paid)open+=n(r.amt);});
+ g('k-e').textContent=f(te);g('k-a').textContent=f(ta);g('k-g').textContent=f(te-ta);g('k-o').textContent=f(open);
+ 
+ var mx=Math.max.apply(null,me.concat(ma).concat([1])),h='';
+ for(var m=0;m<12;m++)h+='<tr><td><b>'+MON[m]+'</b></td><td class="r">'+f(me[m])+'</td><td class="r">'+f(ma[m])+'</td><td class="r"><b>'+f(me[m]-ma[m])+'</b></td><td class="bc"><div class="bar"><i class="e" style="width:'+(me[m]/mx*100)+'%"></i></div><div class="bar"><i class="a" style="width:'+(ma[m]/mx*100)+'%"></i></div></td></tr>';
+ h+='<tr class="tot"><td>Total</td><td class="r">'+f(te)+'</td><td class="r">'+f(ta)+'</td><td class="r">'+f(te-ta)+'</td><td class="bc"></td></tr>';
+ g('tb-mon').innerHTML=h;
 }
 
-function saveSettings() {
-  let name = document.getElementById('set-owner').value;
-  localStorage.setItem('m_service_owner', name);
-  alert("Einstellungen gespeichert.");
-  switchTab('rapport', document.querySelector('.nav-item'));
+function tab(id){
+ document.querySelectorAll('.sec').forEach(function(s){s.classList.toggle('on',s.id===id);s.classList.toggle('prt',s.id===id);});
+ document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.t===id)});
+ window.scrollTo(0,0);
 }
 
-// Inicializace podpisových pláten (Canvas)
-function initCanvas(canvasId) {
-  const canvas = document.getElementById(canvasId);
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  
-  // Nastavení rozlišení
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-  
-  ctx.strokeStyle = "#1E3A6D";
-  ctx.lineWidth = 2.5;
-  ctx.lineCap = "round";
-  
-  let drawing = false;
-  
-  function getPos(e) {
-    const rect = canvas.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    return { x: clientX - rect.left, y: clientY - rect.top };
-  }
-  
-  function startDraw(e) {
-    drawing = true;
-    const pos = getPos(e);
-    ctx.beginPath();
-    ctx.moveTo(pos.x, pos.y);
-    e.preventDefault();
-  }
-  
-  function draw(e) {
-    if (!drawing) return;
-    const pos = getPos(e);
-    ctx.lineTo(pos.x, pos.y);
-    ctx.stroke();
-    e.preventDefault();
-  }
-  
-  function stopDraw() {
-    drawing = false;
-  }
-  
-  canvas.addEventListener('mousedown', startDraw);
-  canvas.addEventListener('mousemove', draw);
-  canvas.addEventListener('mouseup', stopDraw);
-  canvas.addEventListener('mouseleave', stopDraw);
-  
-  canvas.addEventListener('touchstart', startDraw);
-  canvas.addEventListener('touchmove', draw);
-  canvas.addEventListener('touchend', stopDraw);
-}
+document.addEventListener('DOMContentLoaded',function(){
+ load();
+ if(!S.lohn)S.lohn=[];
+ ['ein','aus','lohn','rg'].forEach(function(k){sortData(k);build(k);});
+ g('year').addEventListener('input',function(){S.year=parseInt(this.value,10)||2026;save();refresh();});
+ g('days').value=S.days||10;
+ g('days').addEventListener('input',function(){S.days=parseInt(this.value,10)||0;save();refresh();});
 
-function clearCanvas(canvasId) {
-  const canvas = document.getElementById(canvasId);
-  const ctx = canvas.getContext('2d');
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  let today = new Date().toISOString().slice(0, 10);
-  document.getElementById('rap-date').value = today;
-  document.getElementById('q-date').value = today;
-
-  let savedOwner = localStorage.getItem('m_service_owner');
-  if (savedOwner) {
-    document.getElementById('set-owner').value = savedOwner;
+ document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){tab(b.dataset.t)})});
+ g('b-save').addEventListener('click',function(){
+  var b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),a=el('a',{href:URL.createObjectURL(b),download:'M_Service_Backup.json'});
+  document.body.appendChild(a);a.click();a.remove();
+ });
+ g('b-load').addEventListener('change',function(){
+  if(this.files[0]){
+   var r=new FileReader();
+   r.onload=function(){try{S=JSON.parse(r.result);['ein','aus','lohn','rg'].forEach(function(k){sortData(k);build(k);});save();refresh();alert('Erfolgreich geladen.');}catch(e){alert('Fehler beim Laden.');}};
+   r.readAsText(this.files[0]);
   }
-
-  // Inicializujeme všechna 4 plátna
-  initCanvas('canvas-owner-rap');
-  initCanvas('canvas-cust-rap');
-  initCanvas('canvas-owner-q');
-  initCanvas('canvas-cust-q');
+ });
+ g('p-one').addEventListener('click',function(){window.print()});
+ refresh();save();
 });
-
-// Bezpečný tisk přes skrytý iframe bez zablokování mobilního prohlížeče
-function executePrint(htmlContent) {
-  let frame = document.getElementById('print-frame');
-  let doc = frame.contentWindow.document;
-  doc.open();
-  doc.write(htmlContent);
-  doc.close();
-  
-  setTimeout(() => {
-    frame.contentWindow.focus();
-    frame.contentWindow.print();
-  }, 300);
-}
-
-function printRapport() {
-  let nr = document.getElementById('rap-nr').value;
-  let date = document.getElementById('rap-date').value;
-  let cust = document.getElementById('rap-cust').value;
-  let hrs = document.getElementById('rap-hrs').value;
-  let desc = document.getElementById('rap-desc').value;
-  let owner = document.getElementById('set-owner').value || 'Daniel Mejstrik';
-  
-  let ownerImg = document.getElementById('canvas-owner-rap').toDataURL();
-  let custImg = document.getElementById('canvas-cust-rap').toDataURL();
-
-  let html = `<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Arbeitsrapport ${nr}</title>
-  <style>body{font-family:Arial,sans-serif;padding:20mm;font-size:11pt;color:#2a2a2a;}
-  h1{color:#1E3A6D;font-size:22pt;margin:0 0 5px;}
-  .sub{color:#1F4EA8;font-weight:bold;font-size:12pt;border-left:4px solid #F57C00;padding-left:8px;margin-bottom:20px;}
-  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:15px;margin-bottom:20px;line-height:1.5;}
-  .sig{display:flex;justify-content:space-between;margin-top:40px;}
-  .sig-block{width:45%;border-top:1px solid #7F94B5;padding-top:8px;font-weight:bold;color:#1E3A6D;}
-  .sig-block img{max-height:60px;display:block;margin-bottom:5px;}
-  </style></head><body>
-  <h1>ARBEITSRAPPORT</h1>
-  <div class="sub">Zakázka-Nr: ${nr} | Datum: ${date}</div>
-  <div class="box"><b>Kunde:</b> ${cust}<br><br><b>Arbeitsstunden:</b> ${hrs} h<br><br><b>Beschreibung / Einsatzort:</b><br>${desc}</div>
-  <div class="sig">
-    <div class="sig-block"><img src="${ownerImg}" alt="Unterschrift">Auftragnehmer: ${owner}</div>
-    <div class="sig-block"><img src="${custImg}" alt="Unterschrift">Kunde: ${cust}</div>
-  </div>
-  </body></html>`;
-
-  executePrint(html);
-}
-
-function printQuittung() {
-  let nr = document.getElementById('q-nr').value;
-  let date = document.getElementById('q-date').value;
-  let cust = document.getElementById('q-cust').value;
-  let pay = document.getElementById('q-pay').value;
-  let price = document.getElementById('q-price').value;
-  let desc = document.getElementById('q-desc').value;
-  let owner = document.getElementById('set-owner').value || 'Daniel Mejstrik';
-  
-  let ownerImg = document.getElementById('canvas-owner-q').toDataURL();
-  let custImg = document.getElementById('canvas-cust-q').toDataURL();
-
-  let html = `<!DOCTYPE html><html lang="de-CH"><head><meta charset="UTF-8"><title>Quittung ${nr}</title>
-  <style>body{font-family:Arial,sans-serif;padding:20mm;font-size:11pt;color:#2a2a2a;}
-  h1{color:#1E3A6D;font-size:22pt;margin:0 0 5px;}
-  .sub{color:#1F4EA8;font-weight:bold;font-size:12pt;border-left:4px solid #F57C00;padding-left:8px;margin-bottom:20px;}
-  .box{background:#F4F7FB;border:1px solid #D6DFEA;padding:15px;margin-bottom:20px;line-height:1.5;}
-  .tot{background:#EAF3FC;padding:15px;font-weight:bold;color:#1E3A6D;font-size:13pt;display:flex;justify-content:space-between;margin-bottom:25px;}
-  .sig{display:flex;justify-content:space-between;margin-top:40px;}
-  .sig-block{width:45%;border-top:1px solid #7F94B5;padding-top:8px;font-weight:bold;color:#1E3A6D;}
-  .sig-block img{max-height:60px;display:block;margin-bottom:5px;}
-  </style></head><body>
-  <h1>QUITTUNG</h1>
-  <div class="sub">Beleg-Nr: ${nr} | Datum: ${date}</div>
-  <div class="box"><b>Kunde:</b> ${cust}<br><br><b>Zahlungsart:</b> ${pay}<br><br><b>Leistung:</b><br>${desc}</div>
-  <div class="tot"><span>Totalbetrag:</span><span>CHF ${price}.-</span></div>
-  <div class="sig">
-    <div class="sig-block"><img src="${ownerImg}" alt="Unterschrift">Aussteller: ${owner}</div>
-    <div class="sig-block"><img src="${custImg}" alt="Unterschrift">Kunde (Empfang): ${cust}</div>
-  </div>
-  </body></html>`;
-
-  executePrint(html);
-}
 </script>
 </body>
 </html>
