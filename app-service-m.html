@@ -1,418 +1,300 @@
 <!DOCTYPE html>
-<lang="de-CH">
+<html lang="cs">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<!-- Anti-Index / Absolute Hidden from Google & Robots -->
-<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
-<meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet">
-<!-- Mobile Web App Options for iOS -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="M Service">
-<meta name="format-detection" content="telephone=no">
-<title>M Service App</title>
-<style>
-:root {
---n: #1E3A6D;
---b: #2D6CB5;
---br: #1F4EA8;
---o: #F57C00;
---bg: #F4F7FB;
---card: #FFFFFF;
---bd: #E2E8F0;
---text: #1E293B;
---sub: #64748B;
---ok: #10B981;
---bad: #EF4444;
---safe-top: env(safe-area-inset-top, 0px);
---safe-bottom: env(safe-area-inset-bottom, 0px);
-}
-￼ { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-html, body { height: 100%; width: 100%; overflow: hidden; background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text); }
-/* --- PIN SCREEN (Mobile Pad) --- */
-#pin-screen {
-position: fixed; inset: 0; z-index: 99999;
-background: linear-gradient(180deg, var(--n) 0%, #0F172A 100%);
-display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-padding: calc(var(--safe-top) + 40px) 20px calc(var(--safe-bottom) + 30px); color: #fff;
-}
-.pin-header { text-align: center; }
-.pin-header img { width: 72px; height: 72px; object-fit: contain; border-radius: 16px; margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
-.pin-header h1 { font-size: 20px; font-weight: 700; }
-.pin-header p { font-size: 13px; color: #94A3B8; margin-top: 4px; }
-.pin-display { margin: 20px 0; text-align: center; }
-.pin-dots { display: flex; gap: 16px; justify-content: center; }
-.pin-dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #64748B; transition: all 0.2s; }
-.pin-dot.active { background: var(--o); border-color: var(--o); transform: scale(1.1); }
-#pin-error { color: #FCA5A5; font-size: 13px; margin-top: 12px; height: 18px; font-weight: 600; }
-.pin-pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: 100%; max-width: 280px; }
-.pin-btn {
-aspect-ratio: 1; border-radius: 50%; border: 0;
-background: rgba(255, 255, 255, 0.1); color: #fff;
-font-size: 24px; font-weight: 600; cursor: pointer;
-display: flex; align-items: center; justify-content: center;
-transition: background 0.15s;
-}
-.pin-btn:active { background: rgba(255, 255, 255, 0.3); }
-/* --- MAIN APP LAYOUT --- */
-#app-container { display: none; height: 100%; flex-direction: column; }
-#app-container.active { display: flex; }
-/* Top Header */
-.app-header {
-background: #fff; padding-top: calc(var(--safe-top) + 8px); padding-bottom: 8px;
-padding-left: 16px; padding-right: 16px; border-bottom: 1px solid var(--bd);
-display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
-}
-.app-brand { display: flex; align-items: center; gap: 10px; }
-.app-brand img { width: 32px; height: 32px; object-fit: contain; }
-.app-brand h2 { font-size: 16px; font-weight: 700; color: var(--n); line-height: 1.1; }
-.app-brand span { font-size: 10px; color: var(--sub); display: block; }
-.header-actions { display: flex; gap: 8px; }
-.icon-btn { border: 0; background: var(--bg); padding: 8px; border-radius: 8px; font-size: 12px; font-weight: 600; color: var(--n); }
-/* App Main Body Scroll Area */
-.app-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 16px; padding-bottom: calc(var(--safe-bottom) + 80px); }
-/* Bottom Mobile Navigation */
-.app-nav {
-position: fixed; bottom: 0; left: 0; right: 0; background: #fff;
-border-top: 1px solid var(--bd); padding-bottom: var(--safe-bottom);
-display: flex; justify-content: space-around; z-index: 1000;
-}
-.nav-item {
-flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
-padding: 8px 0; border: 0; background: transparent; color: var(--sub); font-size: 10px; font-weight: 600; gap: 3px;
-}
-.nav-item svg { width: 22px; height: 22px; fill: currentColor; }
-.nav-item.active { color: var(--b); }
-/* Mobile Cards & Views */
-.view { display: none; }
-.view.active { display: block; }
-.card { background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid var(--bd); }
-.card-title { font-size: 15px; font-weight: 700; color: var(--n); margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-/* Dashboard KPI Cards */
-.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.kpi-card { background: var(--card); border: 1px solid var(--bd); border-radius: 10px; padding: 12px; }
-.kpi-card small { font-size: 11px; color: var(--sub); font-weight: 600; text-transform: uppercase; }
-.kpi-card .val { font-size: 18px; font-weight: 700; color: var(--n); margin-top: 4px; }
-.kpi-card.gain .val { color: var(--ok); }
-.kpi-card.loss .val { color: var(--bad); }
-/* Mobile Form Controls */
-.form-group { margin-bottom: 12px; }
-.form-group label { display: block; font-size: 12px; font-weight: 600; color: var(--sub); margin-bottom: 4px; }
-.form-control {
-width: 100%; height: 42px; border: 1px solid var(--bd); border-radius: 8px; padding: 0 12px;
-font-size: 14px; color: var(--text); background: #fff; appearance: none; outline: none;
-}
-.form-control:focus { border-color: var(--b); }
-textarea.form-control { height: auto; padding: 10px 12px; }
-/* Buttons */
-.btn-m { width: 100%; height: 44px; border: 0; background: var(--b); color: #fff; font-size: 14px; font-weight: 700; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
-.btn-m:active { opacity: 0.85; }
-.btn-m.sec { background: var(--bg); color: var(--n); border: 1px solid var(--bd); }
-/* Mobile Lists */
-.m-list { list-style: none; }
-.m-item { padding: 12px; border-bottom: 1px solid var(--bd); display: flex; justify-content: space-between; align-items: center; }
-.m-item:last-child { border-bottom: 0; }
-.m-info b { display: block; font-size: 14px; color: var(--text); }
-.m-info span { font-size: 11px; color: var(--sub); }
-.m-val { text-align: right; font-weight: 700; font-size: 14px; }
-.m-val.pos { color: var(--ok); }
-.m-val.neg { color: var(--bad); }
-@media print {
-#pin-screen, .app-header, .app-nav, .noprint { display: none !important; }
-body, .app-body { height: auto; overflow: visible; background: #fff; padding: 0; }
-.card { border: 0; box-shadow: none; padding: 0; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- Striktní zákaz indexace vyhledávači -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow">
+    
+    <!-- iOS / PWA Nastavení -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Moje Aplikace">
+    <link rel="apple-touch-icon" href="logo.PNG">
+    <link rel="icon" type="image/png" href="logo.PNG">
+
+    <title>Servisní Aplikace</title>
+
+    <!-- Tailwind CSS & Lucide Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* CSS pro přizpůsobení iOS Safe Area */
+        body {
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            -webkit-user-select: none;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
-<body>
-<!-- PIN PROTECTED SCREEN -->
-<div id="pin-screen">
-<div class="pin-header">
-<img src="logo.PNG" alt="M Service Logo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%231E3A6D\'/><text x=\'50\' y=\'60\' font-size=\'40\' fill=\'white\' text-anchor=\'middle\'>M</text></svg>'">
-<h1>M Service Portal</h1>
-<p>Geben Sie den PIN-Code ein</p>
-</div>
-<div class="pin-display">
-<div class="pin-dots">
-<div class="pin-dot" id="d0"></div>
-<div class="pin-dot" id="d1"></div>
-<div class="pin-dot" id="d2"></div>
-<div class="pin-dot" id="d3"></div>
-</div>
-<div id="pin-error"></div>
-</div>
-<div class="pin-pad">
-<button class="pin-btn" onclick="pressPin('1')">1</button>
-<button class="pin-btn" onclick="pressPin('2')">2</button>
-<button class="pin-btn" onclick="pressPin('3')">3</button>
-<button class="pin-btn" onclick="pressPin('4')">4</button>
-<button class="pin-btn" onclick="pressPin('5')">5</button>
-<button class="pin-btn" onclick="pressPin('6')">6</button>
-<button class="pin-btn" onclick="pressPin('7')">7</button>
-<button class="pin-btn" onclick="pressPin('8')">8</button>
-<button class="pin-btn" onclick="pressPin('9')">9</button>
-<button class="pin-btn" onclick="pressPin('C')" style="font-size:16px;color:#FCA5A5">C</button>
-<button class="pin-btn" onclick="pressPin('0')">0</button>
-<button class="pin-btn" onclick="pressPin('OK')" style="font-size:16px;color:#86EFAC">OK</button>
-</div>
-</div>
-<!-- MAIN APP MOBILE INTERFACE -->
-<div id="app-container">
-<header class="app-header">
-<div class="app-brand">
-<img src="logo.PNG" alt="Logo" onerror="this.style.display='none'">
-<div>
-<h2>M Service</h2>
-<span>Mobile App 2026</span>
-</div>
-</div>
-<div class="header-actions">
-<button class="icon-btn" onclick="exportData()">💾 Backup</button>
-<button class="icon-btn" onclick="triggerImport()">📂 Import</button>
-<input type="file" id="file-import" accept=".json" style="display:none" onchange="importData(event)">
-</div>
-</header>
-<main class="app-body">
-<!-- 1. DASHBOARD VIEW -->
-<section id="v-dash" class="view active">
-<div class="kpi-grid">
-<div class="kpi-card gain">
-<small>Einnahmen</small>
-<div class="val" id="dash-e">CHF 0.00</div>
-</div>
-<div class="kpi-card loss">
-<small>Ausgaben</small>
-<div class="val" id="dash-a">CHF 0.00</div>
-</div>
-<div class="kpi-card">
-<small>Gewinn</small>
-<div class="val" id="dash-g">CHF 0.00</div>
-</div>
-<div class="kpi-card">
-<small>Offen</small>
-<div class="val" id="dash-o" style="color:var(--o)">CHF 0.00</div>
-</div>
-</div>
-<div class="card">
-<div class="card-title">Schnellerfassung</div>
-<div class="form-group">
-<label>Typ</label>
-<select id="quick-type" class="form-control">
-<option value="ein">Einnahme (+)</option>
-<option value="aus">Ausgabe (-)</option>
-</select>
-</div>
-<div class="form-group">
-<label>Betrag (CHF)</label>
-<input type="number" id="quick-amt" class="form-control" placeholder="0.00" step="0.05">
-</div>
-<div class="form-group">
-<label>Beschreibung / Kunde</label>
-<input type="text" id="quick-desc" class="form-control" placeholder="z.B. Umzugsreinigung Herr Müller">
-</div>
-<button class="btn-m" onclick="addQuickRecord()">Eintragen</button>
-</div>
-</section>
-<!-- 2. FINANCES / BUCHHALTUNG VIEW -->
-<section id="v-fin" class="view">
-<div class="card">
-<div class="card-title">Buchungen 2026</div>
-<div class="m-list" id="fin-list">
-<!-- Dynamically populated -->
-</div>
-</div>
-</section>
-<!-- 3. FAKTURA / RECHNUNG VIEW -->
-<section id="v-fakt" class="view">
-<div class="card">
-<div class="card-title">Rechnung Erstellen</div>
-<div class="form-group">
-<label>Kundenname</label>
-<input type="text" id="rg-kunde" class="form-control">
-</div>
-<div class="form-group">
-<label>Adresse</label>
-<input type="text" id="rg-addr" class="form-control">
-</div>
-<div class="form-group">
-<label>Leistung / Position</label>
-<input type="text" id="rg-pos" class="form-control" placeholder="z.B. Wohnungsreinigung">
-</div>
-<div class="form-group">
-<label>Betrag (CHF)</label>
-<input type="number" id="rg-amt" class="form-control" placeholder="0.00">
-</div>
-<button class="btn-m" onclick="window.print()">🖨️ PDF / Drucken</button>
-</div>
-</section>
-<!-- 4. ARBEITSRAPPORT VIEW -->
-<section id="v-rap" class="view">
-<div class="card">
-<div class="card-title">Arbeitsrapport</div>
-<div class="form-group">
-<label>Mitarbeiter Name</label>
-<input type="text" id="rap-name" class="form-control" placeholder="Vorname Nachname">
-</div>
-<div class="form-group">
-<label>Datum</label>
-<input type="date" id="rap-date" class="form-control">
-</div>
-<div style="display:flex;gap:10px;">
-<div class="form-group" style="flex:1">
-<label>Start</label>
-<input type="time" id="rap-start" class="form-control" value="08:00">
-</div>
-<div class="form-group" style="flex:1">
-<label>Ende</label>
-<input type="time" id="rap-end" class="form-control" value="17:00">
-</div>
-</div>
-<button class="btn-m" onclick="saveRapport()">Rapport Speichern</button>
-</div>
-</section>
-</main>
-<!-- BOTTOM NAVIGATION BAR -->
-<nav class="app-nav">
-<button class="nav-item active" onclick="switchView('v-dash', this)">
-<svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-Dashboard
-</button>
-<button class="nav-item" onclick="switchView('v-fin', this)">
-<svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
-Finanzen
-</button>
-<button class="nav-item" onclick="switchView('v-fakt', this)">
-<svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-Rechnung
-</button>
-<button class="nav-item" onclick="switchView('v-rap', this)">
-<svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
-Rapport
-</button>
-</nav>
-</div>
-<script>
-// PIN Code State
-let currentPin = "";
-const targetPin = "2518";
-function pressPin(val) {
-if (val === 'C') {
-currentPin = "";
-} else if (val === 'OK') {
-if (currentPin === targetPin) {
-document.getElementById('pin-screen').style.display = 'none';
-document.getElementById('app-container').classList.add('active');
-sessionStorage.setItem('mservice_auth', '1');
-initApp();
-} else {
-document.getElementById('pin-error').innerText = "Falscher PIN!";
-currentPin = "";
-}
-} else {
-if (currentPin.length < 4) currentPin += val;
-}
-updatePinDots();
-}
-function updatePinDots() {
-for (let i = 0; i < 4; i++) {
-const dot = document.getElementById('d' + i);
-dot.classList.toggle('active', i < currentPin.length);
-}
-}
-// Auto unlock if authenticated during session
-if (sessionStorage.getItem('mservice_auth') === '1') {
-document.getElementById('pin-screen').style.display = 'none';
-document.getElementById('app-container').classList.add('active');
-window.addEventListener('DOMContentLoaded', initApp);
-}
-// App Core State & Storage
-const STORAGE_KEY = 'mservice_m_db_2026';
-let DB = { ein: [], aus: [], rap: [] };
-function loadDB() {
-try {
-const data = localStorage.getItem(STORAGE_KEY);
-if (data) DB = JSON.parse(data);
-} catch(e) {}
-}
-function saveDB() {
-localStorage.setItem(STORAGE_KEY, JSON.stringify(DB));
-renderAll();
-}
-function switchView(viewId, btn) {
-document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-document.getElementById(viewId).classList.add('active');
-btn.classList.add('active');
-}
-function addQuickRecord() {
-const type = document.getElementById('quick-type').value;
-const amt = parseFloat(document.getElementById('quick-amt').value) || 0;
-const desc = document.getElementById('quick-desc').value.trim();
-if (amt <= 0 || !desc) {
-alert('Bitte Betrag und Beschreibung eingeben.');
-return;
-}
-const rec = { id: Date.now(), d: new Date().toISOString().split('T')[0], desc, amt };
-if (type === 'ein') DB.ein.push(rec);
-else DB.aus.push(rec);
-document.getElementById('quick-amt').value = '';
-document.getElementById('quick-desc').value = '';
-saveDB();
-}
-function renderAll() {
-let te = DB.ein.reduce((s, r) => s + r.amt, 0);
-let ta = DB.aus.reduce((s, r) => s + r.amt, 0);
-document.getElementById('dash-e').innerText = 'CHF ' + te.toFixed(2);
-document.getElementById('dash-a').innerText = 'CHF ' + ta.toFixed(2);
-document.getElementById('dash-g').innerText = 'CHF ' + (te - ta).toFixed(2);
-const list = document.getElementById('fin-list');
-list.innerHTML = '';
-const all = [
-...DB.ein.map(i => ({ ...i, type: 'ein' })),
-...DB.aus.map(i => ({ ...i, type: 'aus' }))
-].sort((a,b) => b.id - a.id);
-all.forEach(item => {
-const div = document.createElement('div');
-div.className = 'm-item';
-div.innerHTML = ⁠<div class="m-info"> <b>${item.desc}</b> <span>${item.d}</span> </div> <div class="m-val ${item.type === 'ein' ? 'pos' : 'neg'}"> ${item.type === 'ein' ? '+' : '-'} CHF ${item.amt.toFixed(2)} </div>⁠;
-list.appendChild(div);
-});
-}
-function saveRapport() {
-const name = document.getElementById('rap-name').value;
-const date = document.getElementById('rap-date').value;
-if (!name || !date) return alert('Bitte Name und Datum angeben.');
-DB.rap.push({ id: Date.now(), name, date });
-saveDB();
-alert('Rapport gespeichert!');
-}
-function exportData() {
-const blob = new Blob([JSON.stringify(DB, null, 2)], { type: 'application/json' });
-const a = document.createElement('a');
-a.href = URL.createObjectURL(blob);
-a.download = ⁠M_Service_Backup_${new Date().toISOString().split('T')[0]}.json⁠;
-a.click();
-}
-function triggerImport() { document.getElementById('file-import').click(); }
-function importData(e) {
-const file = e.target.files[0];
-if (!file) return;
-const r = new FileReader();
-r.onload = function(evt) {
-try {
-DB = JSON.parse(evt.target.result);
-saveDB();
-alert('Daten erfolgreich importiert!');
-} catch(err) { alert('Ungültige Datei!'); }
-};
-r.readAsText(file);
-}
-function initApp() {
-loadDB();
-renderAll();
-document.getElementById('rap-date').value = new Date().toISOString().split('T')[0];
-}
-</script>
+<body class="bg-gray-900 text-white font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- LOGIN SCREEN (PIN 2518) -->
+    <div id="pinScreen" class="fixed inset-0 z-50 bg-gray-900 flex flex-col items-center justify-center p-6">
+        <div class="mb-6 text-center">
+            <img src="logo.PNG" alt="Logo" class="w-24 h-24 mx-auto mb-4 rounded-2xl shadow-lg object-cover" onerror="this.src='https://via.placeholder.com/100?text=LOGO'">
+            <h1 class="text-2xl font-bold tracking-wide">Vstup do Aplikace</h1>
+            <p class="text-sm text-gray-400 mt-1">Zadejte bezpečnostní PIN</p>
+        </div>
+
+        <!-- Zobrazení PINu -->
+        <div class="flex space-x-3 mb-8">
+            <div id="dot-0" class="w-4 h-4 rounded-full border-2 border-blue-500 bg-transparent"></div>
+            <div id="dot-1" class="w-4 h-4 rounded-full border-2 border-blue-500 bg-transparent"></div>
+            <div id="dot-2" class="w-4 h-4 rounded-full border-2 border-blue-500 bg-transparent"></div>
+            <div id="dot-3" class="w-4 h-4 rounded-full border-2 border-blue-500 bg-transparent"></div>
+        </div>
+
+        <p id="pinError" class="text-red-500 text-sm mb-4 h-5 opacity-0 transition-opacity">Nespravný PIN. Zkuste to znovu.</p>
+
+        <!-- Klávesnice -->
+        <div class="grid grid-cols-3 gap-4 w-full max-w-xs">
+            <button onclick="pressPin('1')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">1</button>
+            <button onclick="pressPin('2')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">2</button>
+            <button onclick="pressPin('3')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">3</button>
+            <button onclick="pressPin('4')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">4</button>
+            <button onclick="pressPin('5')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">5</button>
+            <button onclick="pressPin('6')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">6</button>
+            <button onclick="pressPin('7')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">7</button>
+            <button onclick="pressPin('8')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">8</button>
+            <button onclick="pressPin('9')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">9</button>
+            <div class="w-16 h-16"></div>
+            <button onclick="pressPin('0')" class="w-16 h-16 mx-auto rounded-full bg-gray-800 text-xl font-semibold active:bg-gray-700 flex items-center justify-center">0</button>
+            <button onclick="clearPin()" class="w-16 h-16 mx-auto rounded-full bg-gray-800/50 text-sm font-medium active:bg-gray-700 flex items-center justify-center text-gray-400">Smazat</button>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTENT (Skryté do ověření PINu) -->
+    <div id="mainApp" class="hidden flex-1 flex flex-col pb-20">
+        
+        <!-- HEADER -->
+        <header class="p-4 bg-gray-800/80 backdrop-blur-md sticky top-0 z-40 border-b border-gray-700/50 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <img src="logo.PNG" alt="Logo" class="w-8 h-8 rounded-lg object-cover" onerror="this.src='https://via.placeholder.com/40'">
+                <h1 id="pageTitle" class="text-lg font-bold">Přehled</h1>
+            </div>
+            <button onclick="lockApp()" class="p-2 text-gray-400 hover:text-white active:scale-95 transition">
+                <i data-lucide="lock" class="w-5 h-5"></i>
+            </button>
+        </header>
+
+        <!-- OBSAH ZÁLOŽEK -->
+        <main class="flex-1 p-4 overflow-y-auto hide-scrollbar">
+
+            <!-- TAB 1: Přehled / Dashboard -->
+            <section id="tab-dashboard" class="space-y-4">
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-4 shadow-lg">
+                    <p class="text-xs text-blue-200 uppercase tracking-wider">Dnešní Tržba</p>
+                    <h2 class="text-3xl font-extrabold mt-1">12 450 Kč</h2>
+                    <div class="mt-4 flex justify-between text-xs text-blue-100 border-t border-blue-400/30 pt-2">
+                        <span>Objednávky: 8</span>
+                        <span>Dokončené: 5</span>
+                    </div>
+                </div>
+
+                <h3 class="text-md font-semibold text-gray-300 mt-4">Rychlé Akce</h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <button onclick="switchTab('tab-orders')" class="p-4 bg-gray-800 rounded-xl border border-gray-700 flex flex-col items-center justify-center space-y-2 active:bg-gray-700">
+                        <i data-lucide="plus-circle" class="w-6 h-6 text-blue-400"></i>
+                        <span class="text-xs font-medium">Nová Objednávka</span>
+                    </button>
+                    <button onclick="switchTab('tab-clients')" class="p-4 bg-gray-800 rounded-xl border border-gray-700 flex flex-col items-center justify-center space-y-2 active:bg-gray-700">
+                        <i data-lucide="user-plus" class="w-6 h-6 text-green-400"></i>
+                        <span class="text-xs font-medium">Nový Klient</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- TAB 2: Objednávky & Rezervace -->
+            <section id="tab-orders" class="hidden space-y-3">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="text-md font-semibold text-gray-300">Aktuální Objednávky</h3>
+                    <span class="text-xs bg-blue-500/20 text-blue-400 px-2.5 py-1 rounded-full">Aktivní: 3</span>
+                </div>
+
+                <!-- Objednávka Karty -->
+                <div class="bg-gray-800 border border-gray-700 rounded-xl p-4 space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold">Jan Novák</h4>
+                            <p class="text-xs text-gray-400">iPhone 13 - Výměna displeje</p>
+                        </div>
+                        <span class="text-xs bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded">V řešení</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-gray-400 pt-2 border-t border-gray-700/50">
+                        <span>Čas: 14:30</span>
+                        <span class="font-bold text-white">2 500 Kč</span>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 border border-gray-700 rounded-xl p-4 space-y-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold">Petr Svoboda</h4>
+                            <p class="text-xs text-gray-400">MacBook Air - Čištění & Baterie</p>
+                        </div>
+                        <span class="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded">Hotovo</span>
+                    </div>
+                    <div class="flex justify-between items-center text-xs text-gray-400 pt-2 border-t border-gray-700/50">
+                        <span>Čas: 11:00</span>
+                        <span class="font-bold text-white">3 800 Kč</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 3: Klienti -->
+            <section id="tab-clients" class="hidden space-y-3">
+                <input type="text" placeholder="Hledat klienta..." class="w-full bg-gray-800 border border-gray-700 rounded-xl p-3 text-sm focus:outline-none focus:border-blue-500">
+                
+                <div class="space-y-2">
+                    <div class="bg-gray-800 border border-gray-700 rounded-xl p-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-semibold text-sm">Jan Novák</p>
+                            <p class="text-xs text-gray-400">+420 777 123 456</p>
+                        </div>
+                        <button class="p-2 bg-blue-600/20 text-blue-400 rounded-lg"><i data-lucide="phone" class="w-4 h-4"></i></button>
+                    </div>
+                    <div class="bg-gray-800 border border-gray-700 rounded-xl p-3 flex justify-between items-center">
+                        <div>
+                            <p class="font-semibold text-sm">Petr Svoboda</p>
+                            <p class="text-xs text-gray-400">+420 608 987 654</p>
+                        </div>
+                        <button class="p-2 bg-blue-600/20 text-blue-400 rounded-lg"><i data-lucide="phone" class="w-4 h-4"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: Statistiky & Nastavení -->
+            <section id="tab-settings" class="hidden space-y-4">
+                <div class="bg-gray-800 border border-gray-700 rounded-xl p-4">
+                    <h3 class="font-semibold text-sm mb-3">Nastavení Aplikace</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between items-center">
+                            <span>Oznámení</span>
+                            <input type="checkbox" checked class="accent-blue-500 w-4 h-4">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span>Automatické zamykání</span>
+                            <input type="checkbox" checked class="accent-blue-500 w-4 h-4">
+                        </div>
+                    </div>
+                </div>
+                <button onclick="lockApp()" class="w-full bg-red-600/20 border border-red-500/30 text-red-400 p-3 rounded-xl font-medium text-sm text-center">
+                    Zamknout Aplikaci
+                </button>
+            </section>
+
+        </main>
+
+        <!-- BOTTOM NAVIGATION BAR (iOS Style) -->
+        <nav class="fixed bottom-0 left-0 right-0 bg-gray-800/90 backdrop-blur-lg border-t border-gray-700/50 p-2 flex justify-around items-center z-40">
+            <button onclick="switchTab('tab-dashboard', 'Přehled')" class="nav-btn text-blue-500 flex flex-col items-center space-y-1">
+                <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">Přehled</span>
+            </button>
+            <button onclick="switchTab('tab-orders', 'Objednávky')" class="nav-btn text-gray-400 flex flex-col items-center space-y-1">
+                <i data-lucide="clipboard-list" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">Zakázky</span>
+            </button>
+            <button onclick="switchTab('tab-clients', 'Klienti')" class="nav-btn text-gray-400 flex flex-col items-center space-y-1">
+                <i data-lucide="users" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">Klienti</span>
+            </button>
+            <button onclick="switchTab('tab-settings', 'Nastavení')" class="nav-btn text-gray-400 flex flex-col items-center space-y-1">
+                <i data-lucide="settings" class="w-5 h-5"></i>
+                <span class="text-[10px] font-medium">Nastavení</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- SCRIPT APPLICATION LOGIC -->
+    <script>
+        const CORRECT_PIN = "2518";
+        let enteredPin = "";
+
+        // Inicializace ikonek Lucide
+        lucide.createIcons();
+
+        // Správa PIN vstupu
+        function pressPin(digit) {
+            if (enteredPin.length < 4) {
+                enteredPin += digit;
+                updatePinDots();
+            }
+            if (enteredPin.length === 4) {
+                setTimeout(verifyPin, 100);
+            }
+        }
+
+        function clearPin() {
+            enteredPin = "";
+            updatePinDots();
+            document.getElementById('pinError').classList.add('opacity-0');
+        }
+
+        function updatePinDots() {
+            for (let i = 0; i < 4; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if (i < enteredPin.length) {
+                    dot.classList.remove('bg-transparent');
+                    dot.classList.add('bg-blue-500');
+                } else {
+                    dot.classList.add('bg-transparent');
+                    dot.classList.remove('bg-blue-500');
+                }
+            }
+        }
+
+        function verifyPin() {
+            if (enteredPin === CORRECT_PIN) {
+                document.getElementById('pinScreen').classList.add('hidden');
+                document.getElementById('mainApp').classList.remove('hidden');
+                clearPin();
+            } else {
+                document.getElementById('pinError').classList.remove('opacity-0');
+                clearPin();
+            }
+        }
+
+        function lockApp() {
+            document.getElementById('mainApp').classList.add('hidden');
+            document.getElementById('pinScreen').classList.remove('hidden');
+            clearPin();
+        }
+
+        // Přepínání záložek
+        function switchTab(tabId, title) {
+            const tabs = ['tab-dashboard', 'tab-orders', 'tab-clients', 'tab-settings'];
+            tabs.forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+            document.getElementById(tabId).classList.remove('hidden');
+            if (title) {
+                document.getElementById('pageTitle').textContent = title;
+            }
+
+            // Aktualizace aktivních ikon
+            const navButtons = document.querySelectorAll('.nav-btn');
+            navButtons.forEach(btn => {
+                btn.classList.remove('text-blue-500');
+                btn.classList.add('text-gray-400');
+            });
+            event.currentTarget.classList.remove('text-gray-400');
+            event.currentTarget.classList.add('text-blue-500');
+        }
+    </script>
 </body>
 </html>
