@@ -32,7 +32,7 @@ input,select,textarea{-webkit-user-select:text;user-select:text}
 .pad button{width:68px;height:68px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;font:300 28px/1 -apple-system,Arial;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .12s,transform .12s;padding:0;cursor:pointer}
 .pad button small{font:600 8px/1 Arial;letter-spacing:2px;color:#b9c8e6;margin-top:2px;height:8px}
 .pad button:active{background:var(--o);border-color:var(--o);transform:scale(.93)}.pad button:active small{color:#fff}
-.pad button.e{visibility:hidden}
+.pad button.e{visibility:hidden;pointer-events:none}
 .pad button.x{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center}
 .pad button.x svg{width:24px;height:24px;fill:#fff}
 .sheet{position:fixed;inset:0;z-index:50;background:rgba(15,35,71,.5);display:flex;align-items:flex-end}
@@ -68,7 +68,6 @@ input,select,textarea{-webkit-user-select:text;user-select:text}
 .tab button{flex:1;border:0;background:none;padding:7px 0 6px;font:600 10.5px Arial;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
 .tab button svg{width:22px;height:22px;fill:currentColor}.tab button.on{color:var(--br);box-shadow:inset 0 3px 0 var(--o)}
 
-/* Quick action bar for documents (Kartotéka & Transfer) */
 .doc-quickbar{background:#1E3A6D;padding:8px 12px;display:flex;gap:8px;align-items:center;justify-content:center;flex-wrap:wrap;border-bottom:2px solid var(--o);z-index:6;position:sticky;top:0}
 .doc-quickbar button{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;font:bold 12px Arial;padding:6px 12px;border-radius:6px;cursor:pointer}
 .doc-quickbar button:active{background:var(--o)}
@@ -154,7 +153,6 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
 #v-set .fl input:focus{border-bottom-color:var(--o)}
 .sg.ovl{left:0;transform:none;height:9mm}
 
-/* Customer Modal & UI Styles */
 .modal-overlay{position:fixed;inset:0;z-index:1100;background:rgba(15,35,71,0.6);display:flex;align-items:center;justify-content:center;padding:20px}
 .modal-overlay[hidden]{display:none!important}
 .modal-box{background:#fff;border-radius:14px;width:100%;max-width:480px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,0.3);overflow:hidden}
@@ -449,7 +447,6 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
 
 <script>var CALC={};</script>
 <script>
-// Service Worker Registration for Offline Support
 if ('serviceWorker' in navigator) {
   const swCode = `
     self.addEventListener('install', e => { self.skipWaiting(); });
@@ -462,14 +459,10 @@ if ('serviceWorker' in navigator) {
 </script>
 
 <script>
-// Automatic Numbering (Offerte & Rechnung sequence)
 function getNextNumber(type) {
   var key = 'msm_seq_' + type;
   var year = new Date().getFullYear();
   var data = JSON.parse(localStorage.getItem(key) || '{"year":' + year + ',"seq":0}');
-  if(data.year !== year) {
-    // Keep sequential numbering continuing across years
-  }
   data.seq = (data.seq || 0) + 1;
   localStorage.setItem(key, JSON.stringify(data));
   var seqStr = String(data.seq).padStart(4, '0');
@@ -481,7 +474,6 @@ function getNextNumber(type) {
   return year + '-' + seqStr;
 }
 
-// Auto populate numbers if empty
 document.addEventListener('DOMContentLoaded', function(){
   setTimeout(function(){
     var offInp = document.getElementById('off_nr_inp');
@@ -501,7 +493,6 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 
 <script>
-// Customer Database (Kartotéka zákazníků) logic
 var CUST_KEY = 'msm_customers_v1';
 function getCustomers(){
   try { return JSON.parse(localStorage.getItem(CUST_KEY) || '[]'); } catch(e){ return []; }
@@ -630,7 +621,6 @@ function openCustManager(){
   openCustPicker('offerte');
 }
 
-// Z Offerte do Rechnung jedním tlačítkem
 function loadFromOfferte(){
   var offV = document.getElementById('v-offerte');
   var rgV = document.getElementById('v-rechnung');
@@ -660,7 +650,6 @@ function loadFromOfferte(){
 </script>
 
 <script>
-// Mahnung (Zahlungserinnerung) Generator
 function openMahnungModal(){
   var s = JSON.parse(localStorage.getItem('mservice_buchhaltung_v1') || '{}');
   var rgList = (s.rg || []).filter(function(r){ return r.act!==false && r.nr && !r.paid; });
@@ -715,7 +704,6 @@ function generateMahnungPdf(r){
 </script>
 
 <script>
-// All-in-one Backup & Restore
 function exportAllData(){
   var allData = {};
   for(var i=0; i<localStorage.length; i++){
@@ -751,7 +739,6 @@ function importAllData(input){
   r.readAsText(file);
 }
 
-// Change PIN logic
 function changePin(){
   var oldPin = document.getElementById('pin_old').value;
   var newPin = document.getElementById('pin_new').value;
@@ -1254,7 +1241,6 @@ for(i=0;i<8;i++)for(j=3;j+1;j--){var b=(h[i]>>(j*8))&255;r+=((b<16)?0:'')+b.toSt
 return r}
 window.sha256 = sha256; window.SALT = SALT;
 
-/* logos */
 function svgLogo(){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 420 376');s.innerHTML='<use href="#lg"/>';return s}
 Q('[data-lg]').forEach(function(s){var im=new Image();im.alt='';im.onerror=function(){im.replaceWith(svgLogo())};im.src='logo.PNG';s.appendChild(im)});
 var pi=new Image();pi.onerror=function(){try{var cv=document.createElement('canvas');cv.width=cv.height=180;var x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,180,180);
@@ -1272,9 +1258,24 @@ function chk(){
 var f=(+localStorage.getItem(T+'f')||0)+1;localStorage.setItem(T+'f',f);$('dots').classList.add('bad');setTimeout(function(){$('dots').classList.remove('bad')},400);
 if(f>=5){localStorage.setItem(T+'u',Date.now()+Math.min(3600,30*Math.pow(2,f-5))*1000);cd()}else $('lmsg').textContent='Falscher PIN ('+(5-f)+' Versuche)';pin='';dots()}}
 
-var pad=$('pad');'123456789'.split('').concat(['e','0','x']).forEach(function(k){var b=document.createElement('button');b.type='button';b.className=k=='e'||k=='x'?k:'';var LT={2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'};
-b.innerHTML=k=='x'?'<svg viewBox="0 0 24 24"><path d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9 .89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"/></svg>':(k=='e'?'':'<span>'+k+'</span><small>'+(LT[k]||'')+'</small>');
-b.onclick=function(){if(k=='x'){pin=pin.slice(0,-1);dots()}else if(k!='e')press(k)};pad.appendChild(b)});
+var pad=$('pad');
+pad.innerHTML = '';
+var keys = ['1','2','3','4','5','6','7','8','9','x','0'];
+var LT={2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'};
+
+keys.forEach(function(k){
+  var b=document.createElement('button');
+  b.type='button';
+  if(k=='x'){
+    b.className='x';
+    b.innerHTML='<svg viewBox="0 0 24 24"><path d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9 .89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"/></svg>';
+    b.onclick=function(){pin=pin.slice(0,-1);dots()};
+  } else {
+    b.innerHTML='<span>'+k+'</span><small>'+(LT[k]||'')+'</small>';
+    b.onclick=function(){press(k)};
+  }
+  pad.appendChild(b);
+});
 
 document.addEventListener('keydown',function(e){if(!$('lock').hidden){if(/^\d$/.test(e.key))press(e.key);else if(e.key=='Backspace'){pin=pin.slice(0,-1);dots()}}});
 function unlock(){$('lock').hidden=true;$('app').hidden=false;pin='';dots();$('lmsg').textContent='PIN eingeben';show('v-home')}
@@ -1282,13 +1283,11 @@ function lock(){if(document.activeElement)document.activeElement.blur();$('app')
 var hid=0;document.addEventListener('visibilitychange',function(){if(document.hidden)hid=Date.now();else if(hid&&Date.now()-hid>30000&&!$('app').hidden)lock()});
 $('lk').onclick=lock;cd();
 
-/* navigation */
 var cur=$('v-home');
 function show(id){cur=$(id);Q('.view').forEach(function(v){v.classList.toggle('on',v===cur)});Q('#tab button').forEach(function(b){b.classList.toggle('on',b.dataset.go===id)});
 $('app').dataset.t=cur.dataset.ty;$('ttl').textContent=cur.dataset.n;cur.scrollTop=0;fit(cur);pg()}
 Q('[data-go]').forEach(function(b){b.onclick=function(){show(b.dataset.go)}});
 
-/* zoom & fit (A4 = 794px) */
 function fit(v){if(!v||!v.classList.contains('doc')||!v.classList.contains('on'))return;var sc=Q('.sc',v)[0],zw=Q('.zw',v)[0],base=(v.clientWidth-6)/794,s=base*(v._z||1);
 sc.style.transform='scale('+s+')';zw.style.width=794*s+'px';zw.style.height=sc.offsetHeight*s+'px';v._s=s;v._b=base}
 function zoom(v,z,cx,cy){var o=v._s;v._z=Math.max(1,Math.min(3.5,z));fit(v);if(cx!=null){var r=v._s/o;v.scrollLeft=(v.scrollLeft+cx)*r-cx;v.scrollTop=(v.scrollTop+cy)*r-cy}}
@@ -1299,14 +1298,12 @@ v.addEventListener('touchmove',function(e){if(e.touches.length==2&&d0){e.prevent
 v.addEventListener('touchend',function(e){if(e.touches.length<2)d0=0},{passive:true})});
 window.addEventListener('resize',function(){fit(cur)});window.addEventListener('orientationchange',function(){setTimeout(function(){fit(cur); window.scrollTo(0,0);},250)});
 
-/* Offerte: type switch */
 var vo=$('v-offerte');
 function og(n){Q('.page',vo).forEach(function(p){p.hidden=p.dataset.g!=n;p.classList.remove('plast')});var l=Q('.page',vo).filter(function(p){return!p.hidden}).pop();if(l)l.classList.add('plast');
 Q('#seg button').forEach(function(b){b.classList.toggle('on',b.dataset.g==n)});localStorage.setItem(T+'og',n);fit(vo)}
 Q('#seg button').forEach(function(b){b.onclick=function(){og(b.dataset.g);vo.scrollTop=0}});
 ['v-rechnung','v-quittung','v-rapport'].forEach(function(i){Q('.page',$(i)).forEach(function(p){p.classList.add('plast')})});
 
-/* autosave of document forms */
 var DV=['v-offerte','v-rechnung','v-quittung','v-rapport'],tm;function st(i){return i=='v-rapport'?localStorage:sessionStorage}
 function ser(v){return Q('input,select',v).map(function(e){return[e.type=='checkbox'?+e.checked:e.value,e.dataset.man||'']})}
 function des(v,a){var l=Q('input,select',v);a.forEach(function(x,i){var e=l[i];if(!e)return;if(e.type=='checkbox')e.checked=!!x[0];else e.value=x[0];if(x[1])e.dataset.man=x[1]})}
@@ -1319,7 +1316,6 @@ $('rs').onclick=function(){var v=cur;if(!confirm('Dieses Formular zurücksetzen?
 Q('input,select',v).forEach(function(e){if(e.type=='checkbox')e.checked=e.defaultChecked;else if(e.tagName=='SELECT')Q('option',e).forEach(function(o){o.selected=o.defaultSelected});else e.value=e.defaultValue;delete e.dataset.man});
 var k=v.id.replace('v-','');if(CALC[k])CALC[k]();st(v.id).removeItem(T+v.id);fit(v)};
 
-/* print / PDF */
 function pg(){}
 var pdfFile,blobUrl,NM={'v-offerte':'Offerte','v-rechnung':'Rechnung','v-quittung':'Quittung','v-rapport':'Arbeitsrapport'};
 function lib(){if(window.jspdf&&window.html2canvas)return Promise.resolve();return new Promise(function(res,rej){var n=0;['html2canvas/1.4.1/html2canvas.min.js','jspdf/2.5.1/jspdf.umd.min.js'].forEach(function(u){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/'+u;s.onload=function(){if(++n==2)res()};s.onerror=function(){rej(new Error('lib'))};document.head.appendChild(s)})})}
