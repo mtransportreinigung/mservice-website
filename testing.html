@@ -154,7 +154,7 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
 #v-kunden .wrap{max-width:1080px;margin:14px auto 40px;padding:0 14px;background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.07);padding:18px;border-top:5px solid var(--o)}
 .btn-action{background:var(--b);color:#fff;border:0;padding:6px 12px;border-radius:6px;font:bold 12px Arial;cursor:pointer;margin-right:4px}
 .btn-action:hover{background:var(--br)}
-.btn-offerte-to-rechnung{background:var(--o);color:#fff;border:0;padding:8px 14px;border-radius:8px;font:bold 13px Arial;cursor:pointer;margin-bottom:10px}
+.doc-action-bar{background:#fff;padding:10px 18px 0 18px;display:flex;gap:10px;}
 </style>
 </head>
 <body>
@@ -226,6 +226,7 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
               <th>Name / Firma</th>
               <th>Adresse</th>
               <th>Telefon</th>
+              <th>Letzte Dokumente</th>
               <th class="r">Aktionen</th>
             </tr>
           </thead>
@@ -237,13 +238,21 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
     <section class="view doc" id="v-offerte" data-ty="doc" data-n="Offerte">
       <div class="seg" id="seg"><button class="on" data-g="0">Umzug</button><button data-g="1">Gebäude</button><button data-g="2">Unterhalt</button><button data-g="3">Grund</button></div>
       <div class="zw"><div class="sc">
-        <div style="padding:10px 18px 0 18px; background:#fff;"><button type="button" id="btn-to-rechnung" class="btn-offerte-to-rechnung">Aus Offerte Rechnung erstellen</button></div>
+        <div class="doc-action-bar"><button type="button" class="btn-action btn-load-kunden">👤 Kunde aus Kartei einfügen</button></div>
         <section data-g="0" class="page f" data-s="umzug"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="title">OFFERTE</div><div class="sub">Umzugsreinigung</div><div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input id="off_nr"></div><div><label>Gültigkeit:</label><input></div></div><div class="cr"></div><div class="win"><input id=umzug_a1 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die Umzugsreinigung (Endreinigung bezugsfertig):</p><div class="contact"><label>Vorname:</label><input id="umzug_v"><label class="m">Nachname:</label><input id="umzug_n"><label>Telefon:</label><input id="umzug_tel"><label class="m">E-Mail:</label><input><label>Objektadresse<br>(falls abweichend):</label><input class="w"></div><h2>1. UMFASSENDER LEISTUNGSUMFANG (UMZUGSREINIGUNG / ENDREINIGUNG BEZUGSFERTIG)</h2><table><tr><th>Bereich<th>Enthaltene Reinigungsarbeiten<tr><td class="a">Küche &amp; Geräte<td>Tiefenreinigung aller Küchenoberflächen, Schränke (innen/aussen), Kochfeld (Glaskeramik/Induktion bzw. Gussplatten/Gas), Backofen, Steamer, Dampfabzug, Geschirrspüler sowie Kühlschrank inkl. Gefrierfach.<tr><td class="a">Nasszellen / Bad &amp; WC<td>Gründliche Reinigung, Entkalkung und Desinfektion aller Badezimmer, Duschen und separaten (Gäste-)WCs, auch bei starken Kalkablagerungen. Säuberung von Badewanne, Duschkabine, Armaturen, Spiegeln, Fliesen und Sanitäranlagen.<tr><td class="a">Fenster &amp; Storen<td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen und Fensterbänken, auch grosse und atypische Fenster sowie Dachfenster, Balkonverglasung und Wintergarten (sofern vorhanden). Gründliches Abwischen aller Lamellenstoren, Rollläden und Klappläden.<tr><td class="a">Wohnräume &amp; Böden<td>Vollständige Säuberung und Pflege aller Bodenbeläge (Parkett/Laminat, Fliesen/Platten, Teppich, Naturstein), Saugen und Wischen aller Räume, Treppenaufgänge sowie Innenreinigung aller Einbauschränke, Türen und Fussleisten.<tr><td class="a">Nebennutzflächen<td>Gründliche Reinigung aller zugehörigen Nebenräume wie Keller/Souterrain, Estrich/Dachboden, Garage/Einstellplatz, Gartenhaus/Sitzplatz, Waschraum (inkl. Aussenreinigung von Waschmaschine &amp; Tumbler) sowie Balkon/Terrasse.<tr><td class="a">Material &amp; Anfahrt<td>Inklusive aller professionellen Reinigungsmittel, Spezialgeräte, Maschinen sowie sämtlicher Anfahrts- und Transportkosten.</table><h2>2. PREISZUSAMMENSTELLUNG</h2><div class="price"><b>Pauschalpreis Umzugsreinigung (inkl. Material &amp; Anfahrt):</b><div class=big><input id="off_price" value="ab CHF 0'000.-"></div></div></div><div class="foot" data-p="Seite 1 von 2"></div></section><section data-g="0" class="page l"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="body later"><h2 style="margin-top:0">3. VERBINDLICHE BESTIMMUNGEN &amp; ZUSATZVEREINBARUNGEN</h2><div class="note "><div class="t">Hinweis zur Preisangabe und Möblierung:</div><p>Der angegebene Pauschalpreis basiert auf Ihren Angaben im beigelegten Formular sowie dem Zustand und Umfang des Objekts zum Zeitpunkt der Besichtigung bzw. der Anfrage.</p><ul><li><b>Extremverschmutzung:</b> Sollte es im Zeitraum zwischen der Besichtigung und dem eigentlichen Reinigungstag zu einer aussergewöhnlichen oder extremen Verschmutzung kommen, behalten wir uns eine angemessene Preisanpassung vor.<li><b>Verbleibender Möbelbestand:</b> Die Offerte kalkuliert die im Formular angegebene Möblierung. Verbleibt am Reinigungstag eine unerwartet grosse Menge an Möbeln im Objekt, die gereinigt oder verschoben werden müssen, kann sich der Preis entsprechend anpassen.<li><b>Transparente Absprache:</b> Eventuelle Preisänderungen werden ausnahmslos und immer vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</ul></div><h2>4. GARANTIEREGELUNG</h2><div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><p>Da die Reinigung in diesem Modus ohne unsere persönliche Anwesenheit beim offiziellen Termin der Wohnungsübergabe stattfindet, bieten wir Ihnen unsere verlässliche 48-Stunden-Zufriedenheitsgarantie:</p><ul><li>Falls Sie oder die Liegenschaftsverwaltung innerhalb von 48 Stunden nach Beendigung der Reinigung Mängel feststellen sollten, werden diese von uns umgehend und vollkommen <b>kostenlos nachgebessert</b>.</ul></div><h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2><div class="note info"><div class="t">Es gelten unsere Allgemeinen Geschäftsbedingungen (AGB):</div><p>Für diese Offerte und alle damit verbundenen Leistungen gelten die AGB von Mejstrik Transport &amp; Reinigung Service. Sie sind jederzeit abrufbar unter <b>www.mservice.ch/agb</b>. Mit der Unterschrift nimmt der Kunde diese Offerte an und bestätigt, die AGB zur Kenntnis genommen zu haben und zu akzeptieren.</p></div><div class="closing"><p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p><p style="margin-top:12pt"><b>Freundliche Grüsse</b></p><div class="sign"><div><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</div><div><div class="sml">Ort, Datum:</div><input><div class="sl sml">Bestätigung / Kundenunterschrift</div></div></div></div></div><div class="foot" data-p="Seite 2 von 2"></div></section><section data-g="1" class="page f" data-s="gebaeude"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="title">OFFERTE</div><div class="sub">Gebäudereinigung</div><div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input></div><div><label>Gültigkeit:</label><input></div></div><div class="cr"></div><div class="win"><input id=gebaeude_a1 placeholder="Firma"><input id=gebaeude_a2 placeholder="z. Hd. Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die Gebäudereinigung (Liegenschaften, Treppenhäuser und Büroräume):</p><div class="contact"><label>Firma:</label><input class="w" id="gebaeude_f"><label>Vorname:</label><input id="gebaeude_v"><label class="m">Nachname:</label><input id="gebaeude_n"><label>Telefon:</label><input><label class="m">E-Mail:</label><input><label>Gebäudeadresse<br>(falls abweichend):</label><input class="w"></div><h2>1. UMFASSENDER LEISTUNGSUMFANG (GEBÄUDEREINIGUNG)</h2><div class="hint">Bitte die vereinbarten Bereiche ankreuzen. Nicht angekreuzte Bereiche sind nicht Teil dieser Offerte.</div><table><tr><th class="ck"><th>Bereich<th>Enthaltene Reinigungsarbeiten<tr><td class="ck"><input type="checkbox"><td class="a">Treppenhaus &amp; Eingangsbereich<td>Saugen und Nassreinigen von Treppen, Podesten und Eingangsbereich, Reinigung von Handläufen, Geländern, Türen, Briefkastenanlage, Lichtschaltern und Glasflächen.<tr><td class="ck"><input type="checkbox"><td class="a">Büroräume / Kanzlei<td>Reinigung aller Büros, Besprechungs- und Empfangsbereiche: Staubwischen von Arbeitsflächen, Mobiliar und Fensterbänken, Saugen und Wischen der Böden, Leeren der Abfalleimer.<tr><td class="ck"><input type="checkbox"><td class="a">WC &amp; Sanitärräume<td>Reinigung, Entkalkung und Desinfektion aller WCs, Lavabos, Armaturen, Spiegel und Böden.<tr><td class="ck"><input type="checkbox"><td class="a">Pausenraum / Teeküche<td>Reinigung der Arbeitsflächen, Spüle und Armaturen, Geräte aussen sowie Saugen und Wischen der Böden.<tr><td class="ck"><input type="checkbox"><td class="a">Waschküche, Keller &amp; Tiefgarage<td>Reinigung der gemeinschaftlichen Waschküche (inkl. Aussenreinigung von Maschinen) sowie der Keller- und Tiefgaragenbereiche.<tr><td class="ck"><input type="checkbox"><td class="a">Fenster &amp; Glasfronten<td>Reinigung von Fenstern, Glasfronten und Glastüren innen und aussen im vereinbarten Rhythmus.<tr><td class="ck"><input type="checkbox"><td class="a">Aussenbereich / Terrassen<td>Reinigung von Eingangsplatz, Aussenbereichen und Terrassen (Wischen/Kehren, Entfernen von Laub und Unrat).<tr><td class="ck"><td class="a">Material &amp; Anfahrt<td>Inklusive aller professionellen Reinigungsmittel, Spezialgeräte, Maschinen sowie sämtlicher Anfahrts- und Transportkosten.</table></div><div class="foot" data-p="Seite 1 von 2"></div></section><section data-g="1" class="page l"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="body later"><h2 style="margin-top:0">2. PREISZUSAMMENSTELLUNG</h2><div class="price"><b>Preis pro Reinigung (inkl. Material &amp; Anfahrt):</b><div class=big><input value="ab CHF 0'000.-"></div><b>Reinigungshäufigkeit:</b><div><input value=""></div><b>Monatspauschale (ca.):</b><div><input value="ab CHF 0'000.-"></div></div><h2>3. VERBINDLICHE BESTIMMUNGEN &amp; ZUSATZVEREINBARUNGEN</h2><div class="note "><div class="t">Hinweis zur Preisangabe und zum Leistungsumfang:</div><p>Der angegebene Preis basiert auf Ihren Angaben im beigelegten Formular (Fläche, Etagen, Sanitärräume, Büros) und der vereinbarten Reinigungshäufigkeit.</p><ul><li><b>Änderungen:</b> Wesentliche Änderungen an Fläche, Häufigkeit oder Leistungsumfang (z. B. zusätzliche Bereiche) führen zu einer angemessenen Preisanpassung.<li><b>Zusatzleistungen:</b> Leistungen ausserhalb des vereinbarten Umfangs (z. B. Grundreinigung oder Fensterreinigung ausserhalb des Rhythmus) werden separat offeriert.<li><b>Zutritt:</b> Der Zutritt zu den Räumlichkeiten ist zu den vereinbarten Reinigungszeiten sicherzustellen.<li><b>Transparente Absprache:</b> Eventuelle Preisänderungen werden ausnahmslos und immer vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</ul></div><h2>4. GARANTIEREGELUNG</h2><div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><ul><li>Falls Sie oder die Liegenschaftsverwaltung innerhalb von 48 Stunden nach Beendigung der Reinigung Mängel feststellen sollten, werden diese von uns umgehend und vollkommen <b>kostenlos nachgebessert</b>.</ul></div><h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2><div class="note info"><div class="t">Es gelten unsere Allgemeinen Geschäftsbedingungen (AGB):</div><p>Für diese Offerte und alle damit verbundenen Leistungen gelten die AGB von Mejstrik Transport &amp; Reinigung Service. Sie sind jederzeit abrufbar unter <b>www.mservice.ch/agb</b>. Mit der Unterschrift nimmt der Kunde diese Offerte an und bestätigt, die AGB zur Kenntnis genommen zu haben und zu akzeptieren.</p></div><div class="closing"><p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p><p style="margin-top:12pt"><b>Freundliche Grüsse</b></p><div class="sign"><div><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</div><div><div class="sml">Ort, Datum:</div><input><div class="sl sml">Bestätigung / Kundenunterschrift</div></div></div></div></div><div class="foot" data-p="Seite 2 von 2"></div></section><section data-g="2" class="page f" data-s="unterhalt"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="title">OFFERTE</div><div class="sub">Unterhaltsreinigung</div><div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input></div><div><label>Gültigkeit:</label><input></div></div><div class="cr"></div><div class="win"><input id=unterhalt_a1 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die regelmässige Unterhaltsreinigung:</p><div class="contact"><label>Vorname:</label><input id="unterhalt_v"><label class="m">Nachname:</label><input id="unterhalt_n"><label>Telefon:</label><input><label class="m">E-Mail:</label><input><label>Objektadresse<br>(falls abweichend):</label><input class="w"><label>Reinigungsmittel &amp; Geräte:</label><div class="cb"><label><input type="checkbox"> werden von uns mitgebracht</label><label><input type="checkbox"> werden vom Kunden gestellt</label></div></div><h2>1. UMFASSENDER LEISTUNGSUMFANG (UNTERHALTSREINIGUNG)</h2><div class="hint">Bitte die vereinbarten Bereiche ankreuzen. Nicht angekreuzte Bereiche sind nicht Teil dieser Offerte.</div><table><tr><th class="ck"><th>Bereich<th>Enthaltene Reinigungsarbeiten<tr><td class="ck"><input type="checkbox"><td class="a">Küche<td>Reinigung aller Arbeitsflächen, der Spüle und Armaturen, des Kochfelds sowie der Küchenfronten und Geräte aussen.<tr><td class="ck"><input type="checkbox"><td class="a">Backofen &amp; Kühlschrank (innen)<td>Innenreinigung von Backofen und Kühlschrank nach Absprache.<tr><td class="ck"><input type="checkbox"><td class="a">Bad &amp; WC<td>Reinigung und Desinfektion von Dusche/Badewanne, Lavabo, WC, Armaturen, Spiegeln und Fliesen inklusive Entfernen von Kalkablagerungen an den Oberflächen.<tr><td class="ck"><input type="checkbox"><td class="a">Wohn- &amp; Schlafzimmer<td>Staubwischen aller zugänglichen Flächen, Möbel, Fensterbänke und Türen; Saugen und Wischen aller Böden.<tr><td class="ck"><input type="checkbox"><td class="a">Eingang, Flur &amp; Treppen<td>Saugen und Wischen von Eingangsbereich, Fluren und Treppenaufgängen sowie Abwischen von Türrahmen, Handläufen und Lichtschaltern.<tr><td class="ck"><input type="checkbox"><td class="a">Abfall<td>Leeren der Abfalleimer und Bereitstellen des Abfalls am vereinbarten Ort.<tr><td class="ck"><input type="checkbox"><td class="a">Fenster &amp; Storen<td>Fensterreinigung und Abwischen der Storen auf Wunsch und nach Absprache.<tr><td class="ck"><td class="a">Material &amp; Anfahrt<td>Sämtliche Anfahrtskosten sind inbegriffen. Reinigungsmittel und Geräte gemäss der oben gewählten Option.</table></div><div class="foot" data-p="Seite 1 von 2"></div></section><section data-g="2" class="page l"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="body later"><h2 style="margin-top:0">2. PREISZUSAMMENSTELLUNG</h2><div class="hint">Bitte das gewünschte Reinigungsintervall ankreuzen.</div><div class="price"><label><input type="checkbox"> Wöchentlich: Preis pro Reinigung (inkl. Anfahrt)</label><div><input value="ab CHF 0'000.-"></div><label><input type="checkbox"> Alle 2 Wochen: Preis pro Reinigung (inkl. Anfahrt)</label><div><input value="ab CHF 0'000.-"></div><label><input type="checkbox"> Monatlich: Preis pro Reinigung (inkl. Anfahrt)</label><div><input value="ab CHF 0'000.-"></div></div><h2>3. VERBINDLICHE BESTIMMUNGEN &amp; ZUSATZVEREINBARUNGEN</h2><div class="note "><div class="t">Hinweis zur Preisangabe und zur regelmässigen Reinigung:</div><p>Der angegebene Preis basiert auf Ihren Angaben im beigelegten Formular (Grösse und Zustand des Objekts) und gilt für das angekreuzte Reinigungsintervall.</p><ul><li><b>Termine:</b> Die Wunschtage und die Tageszeit werden gemeinsam festgelegt. Verschiebungen oder Absagen teilen Sie uns bitte so früh wie möglich mit.<li><b>Zutritt &amp; Haustiere:</b> Schlüssel bzw. Zutritt sowie der Umgang mit Haustieren im Haushalt werden vorab abgesprochen.<li><b>Änderungen:</b> Ändern sich Grösse, Intervall oder Leistungsumfang, passen wir den Preis angemessen an.<li><b>Transparente Absprache:</b> Eventuelle Preisänderungen werden ausnahmslos und immer vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</ul></div><h2>4. GARANTIEREGELUNG</h2><div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><ul><li>Falls Sie innerhalb von 48 Stunden nach Beendigung der Reinigung Mängel feststellen sollten, werden diese von uns umgehend und vollkommen <b>kostenlos nachgebessert</b>.</ul></div><h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2><div class="note info"><div class="t">Es gelten unsere Allgemeinen Geschäftsbedingungen (AGB):</div><p>Für diese Offerte und alle damit verbundenen Leistungen gelten die AGB von Mejstrik Transport &amp; Reinigung Service. Sie sind jederzeit abrufbar unter <b>www.mservice.ch/agb</b>. Mit der Unterschrift nimmt der Kunde diese Offerte an und bestätigt, die AGB zur Kenntnis genommen zu haben und zu akzeptieren.</p></div><div class="closing"><p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p><p style="margin-top:12pt"><b>Freundliche Grüsse</b></p><div class="sign"><div><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</div><div><div class="sml">Ort, Datum:</div><input><div class="sl sml">Bestätigung / Kundenunterschrift</div></div></div></div></div><div class="foot" data-p="Seite 2 von 2"></div></section><section data-g="3" class="page f" data-s="grund"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="title">OFFERTE</div><div class="sub">Grundreinigung</div><div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input></div><div><label>Gültigkeit:</label><input></div></div><div class="cr"></div><div class="win"><input id=grund_a1 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die einmalige Grundreinigung:</p><div class="contact"><label>Vorname:</label><input id="grund_v"><label class="m">Nachname:</label><input id="grund_n"><label>Telefon:</label><input><label class="m">E-Mail:</label><input><label>Objektadresse<br>(falls abweichend):</label><input class="w"><label>Anlass:</label><div class="cb"><label><input type="checkbox"> Frühjahrsputz</label><label><input type="checkbox"> Renovation / Umbau</label><label><input type="checkbox"> Neubau</label><label><input type="checkbox"> Periodisch</label></div><label></label><div class="cb"><label><input type="checkbox"> Sonstiges:</label><input></div></div><h2>1. UMFASSENDER LEISTUNGSUMFANG (EINMALIGE GRUNDREINIGUNG)</h2><div class="hint">Bitte die vereinbarten Bereiche ankreuzen. Nicht angekreuzte Bereiche sind nicht Teil dieser Offerte.</div><table><tr><th class="ck"><th>Bereich<th>Enthaltene Reinigungsarbeiten<tr><td class="ck"><input type="checkbox"><td class="a">Gesamtes Objekt<td>Komplette Grundreinigung aller nachfolgend aufgeführten Bereiche.<tr><td class="ck"><input type="checkbox"><td class="a">Fenster &amp; Fensterrahmen<td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen und Fensterbänken, Entfernen hartnäckiger Verschmutzungen.<tr><td class="ck"><input type="checkbox"><td class="a">Storen &amp; Läden<td>Gründliches Abwischen aller Lamellenstoren, Rollläden und Klappläden.<tr><td class="ck"><input type="checkbox"><td class="a">Badezimmer &amp; WC<td>Intensive Reinigung, Entkalkung und Desinfektion von Dusche, Badewanne, Armaturen, Spiegeln, Fliesen, Fugen und Sanitäranlagen.<tr><td class="ck"><input type="checkbox"><td class="a">Küche &amp; Küchengeräte<td>Tiefenreinigung aller Küchenoberflächen, Schränke (innen/aussen), Kochfeld, Backofen, Dampfabzug, Geschirrspüler und Kühlschrank.<tr><td class="ck"><input type="checkbox"><td class="a">Wohn- &amp; Schlafzimmer<td>Gründliche Reinigung aller Böden, Türen, Fussleisten, Fensterbänke und Einbauschränke (innen), Saugen und Wischen aller Räume.<tr><td class="ck"><input type="checkbox"><td class="a">Balkon / Terrasse / Sitzplatz<td>Gründliche Reinigung von Balkon, Terrasse und Sitzplatz.<tr><td class="ck"><input type="checkbox"><td class="a">Keller / Estrich / Waschküche<td>Reinigung der Nebenräume inklusive Waschküche (Aussenreinigung von Waschmaschine &amp; Tumbler).<tr><td class="ck"><input type="checkbox"><td class="a">Nach Renovation / Neubau<td>Entfernen von Bauschmutz, Staub, Farb- und Gipsresten von allen Oberflächen (nur bei entsprechendem Anlass).<tr><td class="ck"><td class="a">Material &amp; Anfahrt<td>Inklusive aller professionellen Reinigungsmittel, Spezialgeräte, Maschinen sowie sämtlicher Anfahrts- und Transportkosten.</table></div><div class="foot" data-p="Seite 1 von 2"></div></section><section data-g="3" class="page l"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="body later"><h2 style="margin-top:0">2. PREISZUSAMMENSTELLUNG</h2><div class="price"><b>Pauschalpreis Grundreinigung (inkl. Material &amp; Anfahrt):</b><div class=big><input value="ab CHF 0'000.-"></div></div><h2>3. VERBINDLICHE BESTIMMUNGEN &amp; ZUSATZVEREINBARUNGEN</h2><div class="note "><div class="t">Hinweis zur Preisangabe und zum Verschmutzungsgrad:</div><p>Der angegebene Pauschalpreis basiert auf Ihren Angaben im beigelegten Formular, dem Zustand des Objekts zum Zeitpunkt der Besichtigung bzw. der Anfrage und den oben angekreuzten Bereichen.</p><ul><li><b>Verschmutzungsgrad:</b> Bei aussergewöhnlicher oder extremer Verschmutzung (z. B. starker Bauschmutz) behalten wir uns eine angemessene Preisanpassung vor.<li><b>Umfang:</b> Zusätzliche, nicht angekreuzte Bereiche werden nur nach vorheriger Absprache gereinigt.<li><b>Transparente Absprache:</b> Eventuelle Preisänderungen werden ausnahmslos und immer vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</ul></div><h2>4. GARANTIEREGELUNG</h2><div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><ul><li>Falls Sie innerhalb von 48 Stunden nach Beendigung der Reinigung Mängel feststellen sollten, werden diese von uns umgehend und vollkommen <b>kostenlos nachgebessert</b>.</ul></div><h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2><div class="note info"><div class="t">Es gelten unsere Allgemeinen Geschäftsbedingungen (AGB):</div><p>Für diese Offerte und alle damit verbundenen Leistungen gelten die AGB von Mejstrik Transport &amp; Reinigung Service. Sie sind jederzeit abrufbar unter <b>www.mservice.ch/agb</b>. Mit der Unterschrift nimmt der Kunde diese Offerte an und bestätigt, die AGB zur Kenntnis genommen zu haben und zu akzeptieren.</p></div><div class="closing"><p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p><p style="margin-top:12pt"><b>Freundliche Grüsse</b></p><div class="sign"><div><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</div><div><div class="sml">Ort, Datum:</div><input><div class="sl sml">Bestätigung / Kundenunterschrift</div></div></div></div></div><div class="foot" data-p="Seite 2 von 2"></div></section></div></div>
     </section>
 
-    <section class="view doc" id="v-rechnung" data-ty="doc" data-n="Rechnung"><div class="zw"><div class="sc"><section class="page f"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="title" id="rg_title">RECHNUNG</div><div class="sub" id="rg_sub">Dienstleistungen</div><div class="meta"><div><label>Rechnungs-Nr.:</label><input id="rg_nr"></div><div><label>Datum:</label><input></div><div><label>Zahlbar bis:</label><input></div></div><div class="cr"></div><div class="win"><input id=rg_a1 placeholder="Firma (optional)"><input id=rg_a2 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro" id="rg_intro">Vielen Dank für Ihren Auftrag. Gerne stellen wir Ihnen folgende Leistungen in Rechnung:</p><div class="contact"><label>Leistungsdatum:</label><input><label class="m">Offerten-Nr.:</label><input><label>Objektadresse:</label><input class="w"><label>Leistung:</label><div class="cb s"><label><input type="checkbox"> Umzugsreinigung</label><label><input type="checkbox"> Gebäudereinigung</label><label><input type="checkbox"> Unterhaltsreinigung</label><label><input type="checkbox"> Grundreinigung</label></div><label></label><div class="cb"><label><input type="checkbox"> Sonstiges:</label><input></div></div><h2>1. LEISTUNGEN</h2><table class="rt"><tr><th class="p">Pos.<th>Beschreibung<th class="r m">Menge<th class="e">Einheit<th class="r pr">Preis CHF<th class="r b">Betrag CHF<tr class="row"><td class="p">1<td><input id="rg_desc_1" value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" id="rg_price_1" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">2<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">3<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">4<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">5<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">6<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">7<td><input value="48 Stunden Reklamationsfrist"><td class="m"><input class="r" value="1"><td class="e"><input list="u" value="Pauschal"><td class="pr"><input class="r" value="0.00"><td class="b"><input class="r"></tr></table><datalist id="u"><option value="Pauschal"><option value="Std."><option value="Stk."><option value="m²"><option value="km"></datalist><div class="two"><div><h2 class="t" style="margin-top:0">2. ZAHLUNG</h2><div class="pay"><label>Zahlbar innert:</label><input value="10 Tagen netto"><label>IBAN:</label><input><label>Zahlungsempfänger:</label><input value="Daniel Mejstrik"><label>Bank:</label><input><label>Bemerkung:</label><input></div></div><div><h2 class="t" style="margin-top:0">&nbsp;</h2><div class="tot"><div>Zwischensumme</div><input id=rg_zs class="r"><div>Rabatt (CHF)</div><input id=rg_rab><select id=rg_mw><option value="0">Keine MWST</option><option value="8.1">MWST 8.1 %</option><option value="2.6">MWST 2.6 %</option><option value="3.8">MWST 3.8 %</option></select><input id=rg_mwb class="r"><div class="sum"><b>Total CHF</b><input id=rg_tot class="r"></div></div></div></div><div class="ctr"><p>Bitte geben Sie bei der Zahlung die Rechnungsnummer an. Es gelten unsere Allgemeinen Geschäftsbedingungen: <b>www.mservice.ch/agb</b>.</p><p style="margin-top:6pt">Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf die weitere Zusammenarbeit.</p><p style="margin-top:6pt"><b>Freundliche Grüsse</b></p><p style="margin-top:9pt"><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</p></div></div><div class="foot" data-p="Seite 1 von 1"></div></section></div></div></section>
+    <section class="view doc" id="v-rechnung" data-ty="doc" data-n="Rechnung">
+      <div class="zw">
+        <div class="sc">
+          <div class="doc-action-bar"><button type="button" class="btn-action btn-load-kunden">👤 Kunde aus Kartei einfügen</button></div>
+          <section class="page f"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="title" id="rg_title">RECHNUNG</div><div class="sub" id="rg_sub">Dienstleistungen</div><div class="meta"><div><label>Rechnungs-Nr.:</label><input id="rg_nr"></div><div><label>Datum:</label><input></div><div><label>Zahlbar bis:</label><input></div></div><div class="cr"></div><div class="win"><input id=rg_a1 placeholder="Firma (optional)"><input id=rg_a2 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro" id="rg_intro">Vielen Dank für Ihren Auftrag. Gerne stellen wir Ihnen folgende Leistungen in Rechnung:</p><div class="contact"><label>Leistungsdatum:</label><input><label class="m">Offerten-Nr.:</label><input><label>Objektadresse:</label><input class="w"><label>Leistung:</label><div class="cb s"><label><input type="checkbox"> Umzugsreinigung</label><label><input type="checkbox"> Gebäudereinigung</label><label><input type="checkbox"> Unterhaltsreinigung</label><label><input type="checkbox"> Grundreinigung</label></div><label></label><div class="cb"><label><input type="checkbox"> Sonstiges:</label><input></div></div><h2>1. LEISTUNGEN</h2><table class="rt"><tr><th class="p">Pos.<th>Beschreibung<th class="r m">Menge<th class="e">Einheit<th class="r pr">Preis CHF<th class="r b">Betrag CHF<tr class="row"><td class="p">1<td><input id="rg_desc_1" value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" id="rg_price_1" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">2<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">3<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">4<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">5<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">6<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">7<td><input value="48 Stunden Reklamationsfrist"><td class="m"><input class="r" value="1"><td class="e"><input list="u" value="Pauschal"><td class="pr"><input class="r" value="0.00"><td class="b"><input class="r"></tr></table><datalist id="u"><option value="Pauschal"><option value="Std."><option value="Stk."><option value="m²"><option value="km"></datalist><div class="two"><div><h2 class="t" style="margin-top:0">2. ZAHLUNG</h2><div class="pay"><label>Zahlbar innert:</label><input value="10 Tagen netto"><label>IBAN:</label><input><label>Zahlungsempfänger:</label><input value="Daniel Mejstrik"><label>Bank:</label><input><label>Bemerkung:</label><input></div></div><div><h2 class="t" style="margin-top:0">&nbsp;</h2><div class="tot"><div>Zwischensumme</div><input id=rg_zs class="r"><div>Rabatt (CHF)</div><input id=rg_rab><select id=rg_mw><option value="0">Keine MWST</option><option value="8.1">MWST 8.1 %</option><option value="2.6">MWST 2.6 %</option><option value="3.8">MWST 3.8 %</option></select><input id=rg_mwb class="r"><div class="sum"><b>Total CHF</b><input id=rg_tot class="r"></div></div></div></div><div class="ctr"><p>Bitte geben Sie bei der Zahlung die Rechnungsnummer an. Es gelten unsere Allgemeinen Geschäftsbedingungen: <b>www.mservice.ch/agb</b>.</p><p style="margin-top:6pt">Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf die weitere Zusammenarbeit.</p><p style="margin-top:6pt"><b>Freundliche Grüsse</b></p><p style="margin-top:9pt"><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</p></div></div><div class="foot" data-p="Seite 1 von 1"></div></section></div></div></section>
     
-    <section class="view doc" id="v-quittung" data-ty="doc" data-n="Quittung"><div class="zw"><div class="sc"><section class="page q">
+    <section class="view doc" id="v-quittung" data-ty="doc" data-n="Quittung">
+      <div class="zw">
+        <div class="sc">
+          <div class="doc-action-bar"><button type="button" class="btn-action btn-load-kunden">👤 Kunde aus Kartei einfügen</button></div>
+          <section class="page q">
 <div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div>
 <div class="hd"><div class="a"><b>M Transport &amp; Reinigung Service</b><span>Tel. +41 78 345 80 72 &middot; info@mservice.ch</span></div><div class="r">Mejstrik Transport &amp; Reinigung Service<br>8586 Ennetaach</div></div>
 <div class="qbar"><b>QUITTUNG</b><span>Zahlungsbestätigung</span></div>
@@ -278,7 +287,10 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
 <div><div class="d"><input type="text" id="qt_od2" placeholder="Ort, Datum"></div><div class="ln2"></div><small>Unterschrift Kunde (Zahlung bestätigt)</small></div>
 </div>
 <div class="ft">Mejstrik Transport &amp; Reinigung Service &middot; Ennetaach &middot; Tel. +41 78 345 80 72 &middot; info@mservice.ch &middot; www.mservice.ch</div>
-</section></div></div></section>
+</section>
+        </div>
+      </div>
+    </section>
     
     <section class="view doc" id="v-rapport" data-ty="doc" data-n="Arbeitsrapport"><div class="zw"><div class="sc"><section class="page l"><div class="logo"><svg width="100%" height="100%"><use href="#lg"/></svg></div><div class="hd"></div><div class="body later"><div class="dt">ARBEITSRAPPORT</div><div class="ds">Erfassung der geleisteten Arbeitsstunden</div><div class="hdr"><label>Mitarbeiterin:</label><input class="w"><label>Monat / Jahr:</label><input><label class="m">Lohn CHF/h:</label><input id=rp_rate></div><table class="rp"><tr><th class="d">Datum<th>Kunde / Einsatzort<th class="r tm">Beginn<th class="r tm">Ende<th class="r tm">Pause (Min.)<th class="r hh">Stunden<tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr></table><div class="sum2"><div class="nt">Pro Einsatz eine Zeile (bei geteilten Einsätzen mehrere Zeilen). Uhrzeiten z. B. 07:30; Pause in Minuten (unbezahlt). Die Stunden werden automatisch berechnet und können überschrieben werden. Der Rapport wird täglich geführt und vom Arbeitgeber mindestens 5 Jahre aufbewahrt. Entschädigungen nach Vertrag Ziffer 5 werden in der Lohnabrechnung zusätzlich ausgewiesen.</div><div class="tt"><div>Total Stunden</div><input id=rp_tot><div class="big"><b>Bruttolohn CHF</b><input id=rp_lohn></div></div></div><div class="sg3"><div class="box"><div class="k">Arbeitnehmerin</div><div class="r2"><label>Datum:</label><input></div><div class="ln2"></div><div class="sm">Unterschrift</div></div><div class="box"><div class="k">Arbeitgeber (geprüft)</div><div class="r2"><label>Datum:</label><input></div><div class="ln2"></div><div class="sm">Daniel Mejstrik · Unterschrift</div></div></div></div><div class="foot" data-p="Seite 1 von 1"></div></section></div></div></section>
     
@@ -440,7 +452,7 @@ if ('serviceWorker' in navigator) {
       btn.textContent = c.name + (c.addr ? ' (' + c.addr + ')' : '');
       btn.onclick = function(){
         sheet.remove();
-        callback(c);
+        callback(c, idx);
       };
       d.appendChild(btn);
     });
@@ -467,109 +479,80 @@ if ('serviceWorker' in navigator) {
     if(nrInp && !nrInp.value){
       nrInp.value = window.MSM_DB.getNextNumber('offerte');
     }
-    // Add customer load button to Offerte contact section
-    var contactDiv = vo.querySelector('.contact');
-    if(contactDiv){
-      var btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'btn-action';
-      btn.style.gridColumn = '1 / 5';
-      btn.style.margin = '4px 0 8px 0';
-      btn.textContent = '👤 Kunde aus Kartei einfügen';
+    
+    // Wire up all "Kunde aus Kartei einfügen" buttons in documents
+    document.querySelectorAll('.btn-load-kunden').forEach(function(btn){
       btn.onclick = function(){
-        window.MSM_SELECT_CUSTOMER(function(c){
-          var parts = c.name.split(' ');
-          var vname = document.getElementById('umzug_v') || document.getElementById('gebaeude_v') || document.getElementById('unterhalt_v') || document.getElementById('grund_v');
-          var nname = document.getElementById('umzug_n') || document.getElementById('gebaeude_n') || document.getElementById('unterhalt_n') || document.getElementById('grund_n');
-          if(vname) { vname.value = parts[0] || ''; vname.dispatchEvent(new Event('input', {bubbles:true})); }
-          if(nname) { nname.value = parts.slice(1).join(' ') || ''; nname.dispatchEvent(new Event('input', {bubbles:true})); }
-          var a1 = vo.querySelector('.win input:not([type=x])');
-          if(a1){ a1.value = c.name; a1.dispatchEvent(new Event('input', {bubbles:true})); }
-          var restInputs = vo.querySelectorAll('.win input:not([type=x]), .contact input');
-          if(restInputs[1] && c.addr) { restInputs[1].value = c.addr; restInputs[1].dispatchEvent(new Event('input', {bubbles:true})); }
-          if(restInputs[2] && c.phone) { restInputs[2].value = c.phone; restInputs[2].dispatchEvent(new Event('input', {bubbles:true})); }
+        window.MSM_SELECT_CUSTOMER(function(c, custIdx){
+          var activeView = document.querySelector('.view.doc.on');
+          if(!activeView) return;
+          var viewId = activeView.id;
+          
+          if(viewId === 'v-offerte'){
+            var parts = c.name.split(' ');
+            var vname = document.getElementById('umzug_v') || document.getElementById('gebaeude_v') || document.getElementById('unterhalt_v') || document.getElementById('grund_v');
+            var nname = document.getElementById('umzug_n') || document.getElementById('gebaeude_n') || document.getElementById('unterhalt_n') || document.getElementById('grund_n');
+            if(vname) { vname.value = parts[0] || ''; vname.dispatchEvent(new Event('input', {bubbles:true})); }
+            if(nname) { nname.value = parts.slice(1).join(' ') || ''; nname.dispatchEvent(new Event('input', {bubbles:true})); }
+            var a1 = activeView.querySelector('.win input:not([type=x])');
+            if(a1){ a1.value = c.name; a1.dispatchEvent(new Event('input', {bubbles:true})); }
+            var restInputs = activeView.querySelectorAll('.win input:not([type=x]), .contact input');
+            if(restInputs[1] && c.addr) { restInputs[1].value = c.addr; restInputs[1].dispatchEvent(new Event('input', {bubbles:true})); }
+            if(restInputs[2] && c.phone) { restInputs[2].value = c.phone; restInputs[2].dispatchEvent(new Event('input', {bubbles:true})); }
+            
+            // Assign & save Offerte number to customer record
+            var newOffNum = nrInp ? nrInp.value : '';
+            var list = window.MSM_DB.getCustomers();
+            if(list[custIdx]){
+              list[custIdx].lastOfferte = newOffNum;
+              window.MSM_DB.saveCustomers(list);
+            }
+          } else if(viewId === 'v-rechnung'){
+            var rgWin = activeView.querySelectorAll('.win input');
+            if(rgWin[1]){ rgWin[1].value = c.name; rgWin[1].dispatchEvent(new Event('input', {bubbles:true})); }
+            var rgNrInp = document.getElementById('rg_nr');
+            var newRgNum = rgNrInp ? rgNrInp.value : '';
+            var list = window.MSM_DB.getCustomers();
+            if(list[custIdx]){
+              list[custIdx].lastRechnung = newRgNum;
+              window.MSM_DB.saveCustomers(list);
+            }
+          } else if(viewId === 'v-quittung'){
+            var parts = c.name.split(' ');
+            var vname = document.getElementById('qt_vname');
+            var nname = document.getElementById('qt_nname');
+            var addr = document.getElementById('qt_addr');
+            if(vname){ vname.value = parts[0] || ''; vname.dispatchEvent(new Event('input', {bubbles:true})); }
+            if(nname){ nname.value = parts.slice(1).join(' ') || ''; nname.dispatchEvent(new Event('input', {bubbles:true})); }
+            if(addr){ addr.value = c.addr || ''; addr.dispatchEvent(new Event('input', {bubbles:true})); }
+            var qtNrInp = document.getElementById('qt_nr');
+            var newQtNum = qtNrInp ? qtNrInp.value : '';
+            var list = window.MSM_DB.getCustomers();
+            if(list[custIdx]){
+              list[custIdx].lastQuittung = newQtNum;
+              window.MSM_DB.saveCustomers(list);
+            }
+          }
         });
       };
-      contactDiv.insertBefore(btn, contactDiv.firstChild);
-    }
-
-    // Offerte to Rechnung 1-click button
-    var btnToRg = document.getElementById('btn-to-rechnung');
-    if(btnToRg){
-      btnToRg.onclick = function(){
-        var custName = (document.getElementById('umzug_a1') ? document.getElementById('umzug_a1').value : '') || '';
-        var priceVal = (document.getElementById('off_price') ? document.getElementById('off_price').value : '') || '';
-        var offNr = (document.getElementById('off_nr') ? document.getElementById('off_nr').value : '') || '';
-        
-        // Switch to Rechnung view
-        show('v-rechnung');
-        
-        // Populate Rechnung fields
-        var rgWin = document.querySelectorAll('#v-rechnung .win input');
-        if(rgWin[1]) { rgWin[1].value = custName; rgWin[1].dispatchEvent(new Event('input', {bubbles:true})); }
-        var rgNr = document.getElementById('rg_nr');
-        if(rgNr) { rgNr.value = window.MSM_DB.getNextNumber('rechnung'); rgNr.dispatchEvent(new Event('input', {bubbles:true})); }
-        
-        var desc1 = document.getElementById('rg_desc_1');
-        var price1 = document.getElementById('rg_price_1');
-        if(desc1) { desc1.value = 'Dienstleistung gemäss Offerte ' + offNr; desc1.dispatchEvent(new Event('input', {bubbles:true})); }
-        if(price1) { price1.value = priceVal; price1.dispatchEvent(new Event('input', {bubbles:true})); }
-        if(typeof CALC.rechnung === 'function') CALC.rechnung();
-      };
-    }
+    });
   }
 
-  // Rechnung auto-numbering & customer button injection
+  // Rechnung auto-numbering
   var vr = document.getElementById('v-rechnung');
   if(vr){
     var rgNrInp = document.getElementById('rg_nr');
     if(rgNrInp && !rgNrInp.value){
       rgNrInp.value = window.MSM_DB.getNextNumber('rechnung');
     }
-    var contactDivR = vr.querySelector('.contact');
-    if(contactDivR){
-      var btnR = document.createElement('button');
-      btnR.type = 'button';
-      btnR.className = 'btn-action';
-      btnR.style.gridColumn = '1 / 5';
-      btnR.style.margin = '4px 0 8px 0';
-      btnR.textContent = '👤 Kunde aus Kartei einfügen';
-      btnR.onclick = function(){
-        window.MSM_SELECT_CUSTOMER(function(c){
-          var rgWin = vr.querySelectorAll('.win input');
-          if(rgWin[1]){ rgWin[1].value = c.name; rgWin[1].dispatchEvent(new Event('input', {bubbles:true})); }
-        });
-      };
-      contactDivR.insertBefore(btnR, contactDivR.firstChild);
-    }
   }
 
-  // Quittung customer button injection
+  // Quittung auto-numbering
   var vq = document.getElementById('v-quittung');
   if(vq){
     var qtNr = document.getElementById('qt_nr');
     if(qtNr && !qtNr.value){
       qtNr.value = window.MSM_DB.getNextNumber('rechnung');
-    }
-    var firstRow = vq.querySelector('.row');
-    if(firstRow){
-      var btnQ = document.createElement('button');
-      btnQ.type = 'button';
-      btnQ.className = 'btn-action';
-      btnQ.style.margin = '0 0 10px 0';
-      btnQ.textContent = '👤 Kunde aus Kartei einfügen';
-      btnQ.onclick = function(){
-        window.MSM_SELECT_CUSTOMER(function(c){
-          var parts = c.name.split(' ');
-          var vname = document.getElementById('qt_vname');
-          var nname = document.getElementById('qt_nname');
-          var addr = document.getElementById('qt_addr');
-          if(vname){ vname.value = parts[0] || ''; vname.dispatchEvent(new Event('input', {bubbles:true})); }
-          if(nname){ nname.value = parts.slice(1).join(' ') || ''; nname.dispatchEvent(new Event('input', {bubbles:true})); }
-          if(addr){ addr.value = c.addr || ''; addr.dispatchEvent(new Event('input', {bubbles:true})); }
-        });
-      };
-      firstRow.parentNode.insertBefore(btnQ, firstRow);
     }
   }
 })();
@@ -584,14 +567,21 @@ if ('serviceWorker' in navigator) {
     tb.innerHTML = '';
     var list = window.MSM_DB.getCustomers();
     if(list.length === 0){
-      tb.innerHTML = '<tr><td colspan="4" style="text-align:center; color:var(--g); padding:16px;">Keine Kunden gespeichert.</td></tr>';
+      tb.innerHTML = '<tr><td colspan="5" style="text-align:center; color:var(--g); padding:16px;">Keine Kunden gespeichert.</td></tr>';
       return;
     }
     list.forEach(function(c, index){
+      var docsInfo = [];
+      if(c.lastOfferte) docsInfo.push('Off: ' + c.lastOfferte);
+      if(c.lastRechnung) docsInfo.push('Rg: ' + c.lastRechnung);
+      if(c.lastQuittung) docsInfo.push('Qu: ' + c.lastQuittung);
+      var docsStr = docsInfo.length > 0 ? docsInfo.join(', ') : '-';
+
       var tr = document.createElement('tr');
       tr.innerHTML = '<td data-l="Name">' + (c.name || '') + '</td>' +
                      '<td data-l="Adresse">' + (c.addr || '') + '</td>' +
                      '<td data-l="Telefon">' + (c.phone || '') + '</td>' +
+                     '<td data-l="Letzte Dokumente" style="font-size:12px; color:var(--b);">' + docsStr + '</td>' +
                      '<td class="dl" data-l="Aktion"><button type="button" class="btn-sm" data-edit="' + index + '">Bearbeiten</button> <button type="button" class="x" data-del="' + index + '">×</button></td>';
       tb.appendChild(tr);
     });
@@ -638,9 +628,11 @@ if ('serviceWorker' in navigator) {
       if(!name){ alert('Bitte Namen eingeben.'); return; }
       var list = window.MSM_DB.getCustomers();
       if(idx !== undefined && idx >= 0){
-        list[idx] = {name: name, addr: addr, phone: phone};
+        list[idx].name = name;
+        list[idx].addr = addr;
+        list[idx].phone = phone;
       } else {
-        list.push({name: name, addr: addr, phone: phone});
+        list.push({name: name, addr: addr, phone: phone, lastOfferte: '', lastRechnung: '', lastQuittung: ''});
       }
       window.MSM_DB.saveCustomers(list);
       sheet.remove();
@@ -1152,14 +1144,13 @@ var pad=$('pad');
   b.type='button';
   b.className=k=='e'||k=='x'?k:'';
   var LT={2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'};
-  // Fixed delete button shape and styling
   if(k=='x'){
     b.className = 'x';
     b.style.borderRadius = '50%';
     b.style.display = 'flex';
     b.style.alignItems = 'center';
     b.style.justifyContent = 'center';
-    b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h11a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H9l-6-7z"/><path d="M13 9.5l5 5M18 9.5l-5 5"/></svg>';
+    b.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:24px;height:24px;"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/><line x1="18" y1="9" x2="12" y2="15"/><line x1="12" y1="9" x2="18" y2="15"/></svg>';
   } else if(k=='e'){
     b.className = 'e';
   } else {
@@ -1230,7 +1221,7 @@ var v=d.getElementById(vid),t=d.querySelector('[data-pdf]');v.style.cssText='pos
 d.getElementById('app').style.cssText='position:static;display:block';d.querySelector('.main').style.overflow='visible';
 d.documentElement.style.cssText=d.body.style.cssText='overflow:visible;height:auto';
 d.querySelector('#'+vid+' .sc').style.cssText='position:static;transform:none;width:794px';d.querySelector('#'+vid+' .zw').style.cssText='width:794px;height:auto;margin:0';
-t.hidden=false;t.removeAttribute('data-pdf');[].forEach.call(t.querySelectorAll('.cr'),function(c){c.style.background='none';[['left','top'],['right','top'],['left','bottom'],['right','bottom']].forEach(function(p){[[11,1],[1,11]].forEach(function(z){var b=d.createElement('div');b.style.cssText='position:absolute;background:#C9CED6;width:'+z[0]+'px;height:'+z[1]+'px;'+p[0]+':0;'+p[1]+':0';c.appendChild(b)})})});
+t.hidden=false;t.removeAttribute('data-pdf');[].forEach.call(t.querySelectorAll('.cr'),function(c){c.style.background='none';[['left','top'],['right','top'],['left','bottom'],['right','bottom']].forEach(function(p){[[11,1],[1,11']].forEach(function(z){var b=d.createElement('div');b.style.cssText='position:absolute;background:#C9CED6;width:'+z[0]+'px;height:'+z[1]+'px;'+p[0]+':0;'+p[1]+':0';c.appendChild(b)})})});
 var o=Q('input,select',p),k=[].slice.call(t.querySelectorAll('input,select'));
 o.forEach(function(e,i){var c=k[i];if(!c)return;if(e.type=='checkbox')c.checked=e.checked;else{c.value=e.value;c.setAttribute('value',e.value)}if(e.tagName=='SELECT')c.selectedIndex=e.selectedIndex;if(e.type!='checkbox'&&e.value===e.defaultValue&&/^ab CHF 0.000/.test(e.value)){c.value='';c.setAttribute('value','')}c.removeAttribute('placeholder')});
 var st=d.createElement('style');st.textContent='.win input{border-bottom:0!important}input:focus{background:none!important}';d.head.appendChild(st);
@@ -1265,7 +1256,6 @@ function doPrint(){
     endNum = '0001';
   }
 
-  // Filename format: dokument_služba_koncové číslo (e.g., Offerte_Umzugsreinigung_0001 or Rechnung_Unterhaltsreinigung_0013)
   var fileName = docType + '_' + serviceType + '_' + endNum + '.pdf';
   mkPdf(pagesOf([cur.id]), fileName.replace(/[^\w.-]+/g, '_'));
 }
@@ -1386,7 +1376,6 @@ if(btnSavePin){
   };
 }
 
-// Complete data backup & restore button handlers in settings
 var btnBackupAll = $('btn_backup_all');
 if(btnBackupAll){
   btnBackupAll.onclick = function(){
