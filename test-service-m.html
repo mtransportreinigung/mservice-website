@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,notranslate">
-<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex">
+<meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet">
 <meta name="bingbot" content="noindex,nofollow,noarchive,nosnippet">
 <meta name="referrer" content="no-referrer">
 <meta name="format-detection" content="telephone=no">
@@ -16,138 +16,168 @@
 <title>M Service</title>
 <link rel="apple-touch-icon" id="ati" href="logo.PNG">
 <link rel="icon" href="logo.PNG">
-<link rel="apple-touch-startup-image" href="startup-16pro.png" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)">
-<style>*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--ln:#8FA3BF;--g:#666;--ok:#1F7A44;--bad:#C0392B}
-html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;overscroll-behavior:none;background:#fff;font:15px/1.4 -apple-system,Arial,sans-serif;color:#2a2a2a;-webkit-text-size-adjust:100%;-webkit-user-select:none;user-select:none}
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:auto;background:#fff;font:15px/1.4 -apple-system,Arial,sans-serif;color:#2a2a2a;-webkit-text-size-adjust:100%}
 input,select,textarea{-webkit-user-select:text;user-select:text}
 [hidden]{display:none!important}
 .lg{display:inline-flex;width:34px;height:30px;flex:none}.lg img,.lg svg{width:100%;height:100%;object-fit:contain}.lg.big{width:84px;height:75px}
-#lock{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 15% 8%,rgba(245,124,0,.35),transparent 42%),radial-gradient(circle at 90% 95%,rgba(45,108,181,.55),transparent 50%),linear-gradient(160deg,#0f2347,#1E3A6D 60%,#152c58);display:flex;align-items:center;justify-content:center;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);color:#fff}
+#lock{position:fixed;inset:0;z-index:99;background:radial-gradient(circle at 15% 8%,rgba(245,124,0,.35),transparent 42%),radial-gradient(circle at 90% 95%,rgba(45,108,181,.55),transparent 50%),linear-gradient(160deg,#0f2347,#1E3A6D 60%,#152c58);display:flex;align-items:center;justify-content:center;color:#fff}
 .lbox{text-align:center;width:min(330px,88vw)}
 #lock .lg.big{width:92px;height:92px;padding:14px;background:#fff;border-radius:26px;box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 6px rgba(255,255,255,.08)}
 .lbox h1{margin:16px 0 4px;color:#fff;font-size:23px;font-weight:700;letter-spacing:.3px}.lbox p{margin:0 0 22px;color:#b9c8e6;min-height:20px;font-size:14px}
 .dots{display:flex;gap:18px;justify-content:center;margin-bottom:30px}.dots i{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(255,255,255,.6);transition:.15s}.dots i.on{background:var(--o);border-color:var(--o);box-shadow:0 0 12px rgba(245,124,0,.8);transform:scale(1.15)}
 .dots.bad{animation:sh .4s}.dots.bad i{border-color:#ff6b5e;background:#ff6b5e}@keyframes sh{20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
 .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 18px;justify-items:center}
-.pad button{width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#fff;font:300 32px/1 -apple-system,Arial;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .12s,transform .12s;padding:0}
+.pad button{width:74px;height:74px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);backdrop-filter:blur(14px);color:#fff;font:300 32px/1 -apple-system,Arial;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .12s,transform .12s;padding:0;cursor:pointer}
 .pad button small{font:600 8.5px/1 Arial;letter-spacing:2px;color:#b9c8e6;margin-top:3px;height:8px}
 .pad button:active{background:var(--o);border-color:var(--o);transform:scale(.93)}.pad button:active small{color:#fff}
-.pad button.e{visibility:hidden}.pad button.x{background:none;border-color:transparent;-webkit-backdrop-filter:none;backdrop-filter:none}.pad button.x svg{width:30px;height:30px}
+.pad button.e{visibility:hidden}.pad button.x{background:none;border-color:transparent;backdrop-filter:none}.pad button.x svg{width:30px;height:30px}
 .sheet{position:fixed;inset:0;z-index:50;background:rgba(15,35,71,.5);display:flex;align-items:flex-end}
-.sheet div{width:100%;background:#fff;border-radius:18px 18px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:9px;font-family:-apple-system,Arial}
+.sheet div{width:100%;background:#fff;border-radius:18px 18px 0 0;padding:14px;display:flex;flex-direction:column;gap:9px;font-family:-apple-system,Arial}
 .sheet h3{margin:2px 0 4px;color:var(--n);font-size:16px;text-align:center}
-.sheet button{padding:14px;border:1px solid var(--bd);border-radius:12px;background:var(--l);color:var(--n);font:600 15px -apple-system,Arial;text-align:left}
+.sheet button{padding:14px;border:1px solid var(--bd);border-radius:12px;background:var(--l);color:var(--n);font:600 15px -apple-system,Arial;text-align:left;cursor:pointer}
 .sheet button:active{background:var(--b);color:#fff}.sheet button.c{background:none;border:0;color:var(--g);text-align:center}
-.prall{margin:0 14px 14px;width:calc(100% - 28px);padding:14px;border:0;border-radius:12px;background:var(--b);color:#fff;font:600 15px -apple-system,Arial}
 #app{position:fixed;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;height:100%}
-.bar{display:flex;align-items:center;gap:6px;background:#1E3A6D;border-bottom:3px solid var(--o);padding-top:env(safe-area-inset-top);padding-left:10px;padding-right:10px;padding-bottom:8px;flex:none;min-height:calc(44px + env(safe-area-inset-top))}
+.bar{display:flex;align-items:center;gap:6px;background:#1E3A6D;border-bottom:3px solid var(--o);padding:8px 10px;flex:none;min-height:44px}
 .bar .lg{background:#fff;border-radius:9px;padding:3px;width:40px;height:36px}
 .bar b{color:#fff;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sp{flex:1}
-.bar button{width:38px;height:36px;border:1px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.12);color:#fff;font:bold 19px Arial;padding:0;display:inline-flex;align-items:center;justify-content:center}
+.bar button{height:36px;border:1px solid rgba(255,255,255,.25);border-radius:10px;background:rgba(255,255,255,.12);color:#fff;font:bold 14px Arial;padding:0 10px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 .bar button svg{width:20px;height:20px;fill:currentColor}
 .bar button:active{background:var(--o);border-color:var(--o)}
 #app[data-t=home] .bd,#app[data-t=buch] .bd{display:none}
 .main{flex:1;position:relative;overflow:hidden;background:#eef1f5}
-.view{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch;display:none;font:8.8pt/1.32 Arial,Helvetica,sans-serif;color:#2a2a2a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.view{position:absolute;inset:0;overflow:auto;display:none;font:8.8pt/1.32 Arial,Helvetica,sans-serif;color:#2a2a2a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .view.on{display:block}
 #v-buch{font:14px/1.4 Arial,Helvetica,sans-serif;padding-bottom:8px}
 #v-buch .top{top:0}
 .view.doc{touch-action:pan-x pan-y;background:#eef1f5}
 .zw{margin:0 auto;position:relative}.sc{width:794px;transform-origin:0 0;position:absolute;left:0;top:0}
 .seg{position:sticky;top:0;left:0;z-index:5;display:flex;gap:6px;padding:8px;background:#fff;border-bottom:1px solid var(--bd);font:14px Arial}
-.seg button{flex:1;padding:9px 2px;border:1px solid var(--bd);border-radius:9px;background:var(--l);color:var(--n);font:bold 13px Arial}
+.seg button{flex:1;padding:9px 2px;border:1px solid var(--bd);border-radius:9px;background:var(--l);color:var(--n);font:bold 13px Arial;cursor:pointer}
 .seg button.on{background:var(--b);color:#fff;border-color:var(--b)}
 .hero{text-align:center;padding:26px 16px 6px;font-family:-apple-system,Arial,sans-serif}.hero h1{font-size:19px;color:var(--n);margin:10px 0 2px}.hero p{margin:0;color:var(--g);font-size:13px}
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:18px 14px;font-family:-apple-system,Arial,sans-serif}
-.tiles button{background:#fff;border:0;border-top:4px solid var(--o);border-radius:14px;padding:20px 12px;text-align:center;box-shadow:0 2px 12px rgba(30,58,109,.12);min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;padding:18px 14px;font-family:-apple-system,Arial,sans-serif;max-width:900px;margin:0 auto}
+.tiles button{background:#fff;border:0;border-top:4px solid var(--o);border-radius:14px;padding:20px 12px;text-align:center;box-shadow:0 2px 12px rgba(30,58,109,.12);min-height:110px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;cursor:pointer}
 .tiles button:active{transform:scale(.97)}.tiles svg{width:32px;height:32px;fill:var(--b);flex:none}.tiles b{font-size:16px;color:var(--n)}
 .fine{text-align:center;color:var(--g);font:12px Arial;padding:0 20px 20px}
-.tab{display:flex;background:#fff;border-top:1px solid var(--bd);padding-bottom:env(safe-area-inset-bottom);flex:none}
-.tab button{flex:1;border:0;background:none;padding:7px 0 6px;font:600 10.5px Arial;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:3px}
+.tab{display:flex;background:#fff;border-top:1px solid var(--bd);flex:none}
+.tab button{flex:1;border:0;background:none;padding:7px 0 6px;font:600 10.5px Arial;color:var(--g);display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
 .tab button svg{width:22px;height:22px;fill:currentColor}.tab button.on{color:var(--br);box-shadow:inset 0 3px 0 var(--o)}
+
+/* Modální okno kartotéky zákazníků */
+#cust-modal{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:15px}
+#cust-modal .box{background:#fff;border-radius:12px;width:100%;max-width:500px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 10px 25px rgba(0,0,0,.2)}
+#cust-modal .hdr{padding:12px 16px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;background:var(--n);color:#fff;border-radius:12px 12px 0 0}
+#cust-modal .hdr h3{margin:0;font-size:16px;color:#fff}
+#cust-modal .bdy{padding:15px;overflow-y:auto;flex:1}
+#cust-modal ul{list-style:none;padding:0;margin:0}
+#cust-modal li{padding:10px;border:1px solid var(--bd);border-radius:8px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;background:var(--l)}
+#cust-modal li:hover{background:#e2e8f0}
+#cust-modal .btn-add{width:100%;padding:10px;background:var(--b);color:#fff;border:0;border-radius:8px;font-weight:bold;margin-bottom:12px;cursor:pointer}
+
 @media print{
 html,body{height:auto;overflow:visible;background:#fff}
 #app{position:static;display:block}.main,.view{position:static;overflow:visible;inset:auto}
-.bar,.tab,#lock,.seg,.sheet{display:none!important}body.pm .view.on:not(.pf){display:none!important}.view.pf{display:block!important}
+.bar,.tab,#lock,.seg,.sheet,#cust-modal{display:none!important}body.pm .view.on:not(.pf){display:none!important}.view.pf{display:block!important}
 .zw{width:auto!important;height:auto!important;margin:0}.sc{position:static;transform:none!important;width:auto}
 .view.doc .page{break-after:page}.view.doc .page.plast{break-after:auto}
 }
-</style><style>
-.bar #pr{width:auto;padding:0 13px;font:bold 14px Arial}</style><style>#v-offerte *{box-sizing:border-box;margin:0;padding:0}#v-offerte input,#v-offerte select{touch-action:manipulation}#v-offerte .page{width:210mm;height:297mm;position:relative;background:#fff;margin:8mm auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18);break-after:page}#v-offerte .blank{display:none}#v-offerte .logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}#v-offerte .hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}#v-offerte .hd::after{content:"Tel. +41 78 345 80 72\Ainfo@mservice.ch";white-space:pre;position:absolute;left:43mm;top:17.2mm;font-size:9pt;line-height:1.45}#v-offerte .f::after,#v-offerte .l::after{content:"";position:absolute;left:18mm;right:15mm;border-top:1.8pt solid var(--b)}#v-offerte .f::after{top:90mm}#v-offerte .l::after{top:37mm}#v-offerte .title{position:absolute;left:18mm;top:43mm;font:bold 20pt/1 Arial;color:var(--n)}#v-offerte .sub{position:absolute;left:18mm;top:53.2mm;font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm}#v-offerte .meta{position:absolute;left:18mm;top:63.4mm;width:82mm}#v-offerte .meta div{display:flex;align-items:flex-end;height:7.2mm}#v-offerte .meta input{flex:1;width:auto}#v-offerte .meta label{width:27mm;font-weight:bold;font-size:8.6pt;color:var(--n);padding-bottom:1mm}#v-offerte .win{position:absolute;left:118mm;top:48.5mm;width:80mm}#v-offerte .win::before{content:"Mejstrik Transport & Reinigung Service · CH-8586 Ennetaach";display:block;font-size:6.2pt;color:var(--g);border-bottom:.3pt solid var(--g);width:max-content;padding-bottom:.6mm;margin:1mm 0 1.6mm;height:3.4mm}#v-offerte .win input:not([type=x]){display:block;width:80mm;height:5.4mm;font-size:10.5pt;border:0;color:#000}@media screen{#v-offerte .win input:not([type=x]){border-bottom:1px dotted #c3cad6}}@media print{#v-offerte input::placeholder{color:transparent}}#v-offerte .cr{position:absolute;left:116mm;top:48.5mm;width:83mm;height:27.5mm;background:
-linear-gradient(#C9CED6,#C9CED6) 0 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 0/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 100% 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 0/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 0 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 100%/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 100%/.4pt 3mm;background-repeat:no-repeat}#v-offerte input:not([type=checkbox]){font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:6mm;padding:0 1px}#v-offerte input:not([type=checkbox]):focus{background:rgba(45,108,181,.08)}#v-offerte input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.4mm;height:3.4mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative;cursor:pointer}#v-offerte input[type=checkbox]:checked::after{content:"";position:absolute;left:.9mm;top:.1mm;width:1.1mm;height:2.2mm;border:solid #000;border-width:0 .5mm .5mm 0;transform:rotate(45deg)}#v-offerte .body{position:absolute;left:18mm;right:15mm}#v-offerte .first{top:94mm}#v-offerte .later{top:43mm}#v-offerte .intro{margin-bottom:6pt}#v-offerte .contact{display:grid;grid-template-columns:34mm 1fr 34mm 1fr;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 5pt 1mm 4pt}#v-offerte .contact>label{font-weight:bold;font-size:8pt;color:var(--n);line-height:1.2;padding:1.2mm 0}#v-offerte .contact>.m{padding-left:8pt}#v-offerte .contact .w,#v-offerte .contact .cb{grid-column:2/5}#v-offerte .cb{display:flex;align-items:center;font-size:8.3pt;height:6mm}#v-offerte .cb label{display:flex;align-items:center;gap:2.2mm;white-space:nowrap;margin-right:5mm}#v-offerte .cb input:not([type=checkbox]){flex:1;min-width:30mm}#v-offerte h2{font-size:10.5pt;color:var(--n);margin:11pt 0 5pt;padding-bottom:1pt;border-bottom:.6pt solid var(--bd)}#v-offerte h2.t{margin-top:0}#v-offerte .hint{font-size:8pt;color:var(--g);margin-bottom:4pt}#v-offerte table{width:100%;border-collapse:collapse}#v-offerte th{background:var(--b);color:#fff;text-align:left;padding:4.5pt 6pt;font-size:8.8pt}#v-offerte td{padding:4.2pt 6pt 4.6pt;vertical-align:top;border-bottom:.5pt solid var(--bd)}#v-offerte tr:nth-child(even) td{background:var(--l)}#v-offerte td.a{font-weight:bold;width:44mm}#v-offerte .ck{width:8mm;padding-right:0}#v-offerte .price{background:#EAF3FC;border:.9pt solid #8FC0EE;padding:5pt 8pt;display:grid;grid-template-columns:1fr 55mm;align-items:center;row-gap:4pt}#v-offerte .price b,#v-offerte .price label{font-size:9.5pt;color:var(--n)}#v-offerte .price label{display:flex;align-items:center;gap:2.2mm;font-weight:bold}#v-offerte .price input:not([type=checkbox]){color:var(--b);font-size:12.5pt;height:7.5mm}#v-offerte .price .big input{font-size:16pt;height:9.5mm}#v-offerte .note{border:.5pt solid var(--bd);border-left:3pt solid var(--o);background:#FFF8E8;padding:7pt 9pt 5pt 10pt}#v-offerte .ok{background:#EFFAF2;border-left-color:#2E9E5B}#v-offerte .info{background:var(--l);border-left-color:var(--b)}#v-offerte .note .t{font-weight:bold;font-size:9pt;margin-bottom:3pt;color:#C0600A}#v-offerte .ok .t{color:#1F7A44}#v-offerte .info .t{color:var(--n)}#v-offerte .note p{margin-bottom:3pt}#v-offerte .note ul{list-style:none}#v-offerte .note li{position:relative;padding-left:11pt;margin-bottom:2.5pt}#v-offerte .note li::before{content:"\2022";position:absolute;left:2pt}#v-offerte .closing{margin-top:12pt}#v-offerte .sign{display:grid;grid-template-columns:1fr 1fr;align-items:end;margin-top:20pt;column-gap:14pt}#v-offerte .sml{font-size:8pt;color:var(--g)}#v-offerte .sl{border-top:.7pt solid #7F94B5;margin-top:16pt;padding-top:2pt}#v-offerte .foot{position:absolute;left:18mm;right:15mm;bottom:0;height:16.5mm;font-size:7.5pt;border-top:.6pt solid var(--bd)}#v-offerte .foot::before{content:attr(data-p);position:absolute;right:0;top:-4.2mm;color:#7B93B8}#v-offerte .foot::after{content:"Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch | www.mservice.ch\A Es gelten unsere Allgemeinen Geschäftsbedingungen: www.mservice.ch/agb";white-space:pre;position:absolute;left:0;right:0;top:3.2mm;text-align:center;color:#444;line-height:4mm}@media screen and (pointer:coarse){#v-offerte input:not([type=checkbox]),#v-offerte select{font-size:16px!important}}@media print{#v-offerte .page{margin:0;box-shadow:none}#v-offerte .blank{display:block}}#v-rechnung *{box-sizing:border-box;margin:0;padding:0}#v-rechnung input,#v-rechnung select{touch-action:manipulation}#v-rechnung .page{width:210mm;height:297mm;position:relative;background:#fff;margin:8mm auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18);break-after:page}#v-rechnung .blank{display:none}#v-rechnung .logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}#v-rechnung .hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}#v-rechnung .hd::after{content:"Tel. +41 78 345 80 72\Ainfo@mservice.ch";white-space:pre;position:absolute;left:43mm;top:17.2mm;font-size:9pt;line-height:1.45}#v-rechnung .f::after,#v-rechnung .l::after{content:"";position:absolute;left:18mm;right:15mm;border-top:1.8pt solid var(--b)}#v-rechnung .f::after{top:90mm}#v-rechnung .l::after{top:37mm}#v-rechnung .title{position:absolute;left:18mm;top:43mm;font:bold 20pt/1 Arial;color:var(--n)}#v-rechnung .sub{position:absolute;left:18mm;top:53.2mm;font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm}#v-rechnung .meta{position:absolute;left:18mm;top:63.4mm;width:82mm}#v-rechnung .meta div{display:flex;align-items:flex-end;height:7.2mm}#v-rechnung .meta input{flex:1;width:auto}#v-rechnung .meta label{width:27mm;font-weight:bold;font-size:8.6pt;color:var(--n);padding-bottom:1mm}#v-rechnung .win{position:absolute;left:118mm;top:48.5mm;width:80mm}#v-rechnung .win::before{content:"Mejstrik Transport & Reinigung Service · CH-8586 Ennetaach";display:block;font-size:6.2pt;color:var(--g);border-bottom:.3pt solid var(--g);width:max-content;padding-bottom:.6mm;margin:1mm 0 1.6mm;height:3.4mm}#v-rechnung .win input:not([type=x]){display:block;width:80mm;height:5.4mm;font-size:10.5pt;border:0;color:#000}@media screen{#v-rechnung .win input:not([type=x]){border-bottom:1px dotted #c3cad6}}@media print{#v-rechnung input::placeholder{color:transparent}}#v-rechnung .cr{position:absolute;left:116mm;top:48.5mm;width:83mm;height:27.5mm;background:
-linear-gradient(#C9CED6,#C9CED6) 0 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 0/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 100% 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 0/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 0 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 100%/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 100%/.4pt 3mm;background-repeat:no-repeat}#v-rechnung input:not([type=checkbox]){font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:6mm;padding:0 1px}#v-rechnung input:not([type=checkbox]):focus{background:rgba(45,108,181,.08)}#v-rechnung input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.4mm;height:3.4mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative;cursor:pointer}#v-rechnung input[type=checkbox]:checked::after{content:"";position:absolute;left:.9mm;top:.1mm;width:1.1mm;height:2.2mm;border:solid #000;border-width:0 .5mm .5mm 0;transform:rotate(45deg)}#v-rechnung .body{position:absolute;left:18mm;right:15mm}#v-rechnung .first{top:94mm}#v-rechnung .later{top:43mm}#v-rechnung .intro{margin-bottom:6pt}#v-rechnung .contact{display:grid;grid-template-columns:34mm 1fr 34mm 1fr;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 5pt 1mm 4pt}#v-rechnung .contact>label{font-weight:bold;font-size:8pt;color:var(--n);line-height:1.2;padding:1.2mm 0}#v-rechnung .contact>.m{padding-left:8pt}#v-rechnung .contact .w,#v-rechnung .contact .cb{grid-column:2/5}#v-rechnung .cb{display:flex;align-items:center;font-size:8.3pt;height:6mm}#v-rechnung .cb label{display:flex;align-items:center;gap:2.2mm;white-space:nowrap;margin-right:5mm}#v-rechnung .cb input:not([type=checkbox]){flex:1;min-width:30mm}#v-rechnung h2{font-size:10.5pt;color:var(--n);margin:11pt 0 5pt;padding-bottom:1pt;border-bottom:.6pt solid var(--bd)}#v-rechnung h2.t{margin-top:0}#v-rechnung .hint{font-size:8pt;color:var(--g);margin-bottom:4pt}#v-rechnung table{width:100%;border-collapse:collapse}#v-rechnung th{background:var(--b);color:#fff;text-align:left;padding:4.5pt 6pt;font-size:8.8pt}#v-rechnung td{padding:4.2pt 6pt 4.6pt;vertical-align:top;border-bottom:.5pt solid var(--bd)}#v-rechnung tr:nth-child(even) td{background:var(--l)}#v-rechnung td.a{font-weight:bold;width:44mm}#v-rechnung .ck{width:8mm;padding-right:0}#v-rechnung .price{background:#EAF3FC;border:.9pt solid #8FC0EE;padding:5pt 8pt;display:grid;grid-template-columns:1fr 55mm;align-items:center;row-gap:4pt}#v-rechnung .price b,#v-rechnung .price label{font-size:9.5pt;color:var(--n)}#v-rechnung .price label{display:flex;align-items:center;gap:2.2mm;font-weight:bold}#v-rechnung .price input:not([type=checkbox]){color:var(--b);font-size:12.5pt;height:7.5mm}#v-rechnung .price .big input{font-size:16pt;height:9.5mm}#v-rechnung .note{border:.5pt solid var(--bd);border-left:3pt solid var(--o);background:#FFF8E8;padding:7pt 9pt 5pt 10pt}#v-rechnung .ok{background:#EFFAF2;border-left-color:#2E9E5B}#v-rechnung .info{background:var(--l);border-left-color:#2D6CB5}#v-rechnung .note .t{font-weight:bold;font-size:9pt;margin-bottom:3pt;color:#C0600A}#v-rechnung .ok .t{color:#1F7A44}#v-rechnung .info .t{color:var(--n)}#v-rechnung .note p{margin-bottom:3pt}#v-rechnung .note ul{list-style:none}#v-rechnung .note li{position:relative;padding-left:11pt;margin-bottom:2.5pt}#v-rechnung .note li::before{content:"\2022";position:absolute;left:2pt}#v-rechnung .closing{margin-top:12pt}#v-rechnung .sign{display:grid;grid-template-columns:1fr 1fr;align-items:end;margin-top:20pt;column-gap:14pt}#v-rechnung .sml{font-size:8pt;color:var(--g)}#v-rechnung .sl{border-top:.7pt solid #7F94B5;margin-top:16pt;padding-top:2pt}#v-rechnung .foot{position:absolute;left:18mm;right:15mm;bottom:0;height:16.5mm;font-size:7.5pt;border-top:.6pt solid var(--bd)}#v-rechnung .foot::before{content:attr(data-p);position:absolute;right:0;top:-4.2mm;color:#7B93B8}#v-rechnung .foot::after{content:"Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch | www.mservice.ch\A Es gelten unsere Allgemeinen Geschäftsbedingungen: www.mservice.ch/agb";white-space:pre;position:absolute;left:0;right:0;top:3.2mm;text-align:center;color:#444;line-height:4mm}@media screen and (pointer:coarse){#v-rechnung input:not([type=checkbox]),#v-rechnung select{font-size:16px!important}}@media print{#v-rechnung .page{margin:0;box-shadow:none}#v-rechnung .blank{display:block}}#v-rechnung select{font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:6mm;appearance:none;-webkit-appearance:none;padding:0 1px;cursor:pointer}#v-rechnung select:focus{background:rgba(45,108,181,.08)}#v-rechnung .rt input:not([type=checkbox]){border:0;height:5.8mm;padding:0 2px}#v-rechnung .rt td{padding:1.6pt 4pt;vertical-align:middle}#v-rechnung .rt th{padding:4pt}#v-rechnung .rt .p{width:8mm;text-align:center;color:var(--g)}#v-rechnung .rt th.p{color:#fff}#v-rechnung .rt .m{width:15mm}#v-rechnung .rt .e{width:25mm}#v-rechnung .rt .pr{width:24mm}#v-rechnung .rt .b{width:28mm}#v-rechnung .r{text-align:right}#v-rechnung .rt input.r{text-align:right}#v-rechnung .rt td.b input{font-weight:bold}#v-rechnung .two{display:grid;grid-template-columns:1fr 72mm;gap:6mm;margin-top:8pt;align-items:start}#v-rechnung .pay{display:grid;grid-template-columns:33mm 1fr;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 5pt 1mm 4pt}#v-rechnung .pay label{font-weight:bold;font-size:8pt;color:var(--n);padding:1mm 0;line-height:1.2}#v-rechnung .tot{display:grid;grid-template-columns:1fr 26mm;align-items:center;row-gap:1.2mm;font-size:9pt}#v-rechnung .tot>*:nth-child(odd){color:var(--n);font-weight:bold}#v-rechnung .tot span{text-align:right;padding-right:2px}#v-rechnung .tot select{height:5.6mm;font-size:8.8pt;font-weight:bold;color:var(--n)}#v-rechnung .tot input{text-align:right;height:5.6mm}#v-rechnung .tot .sum{grid-column:1/3;background:#EAF3FC;border:.9pt solid #8FC0EE;display:grid;grid-template-columns:1fr auto;align-items:center;padding:2mm 3mm;margin-top:1mm}#v-rechnung .tot .sum b{font-size:11pt;color:var(--n)}#v-rechnung .tot .sum input{font-size:15pt;font-weight:bold;color:var(--b);border:0;width:42mm;height:8mm;padding:0}#v-rechnung .cb.s label{margin-right:3mm}#v-rechnung .ctr{margin-top:6pt;font-size:8.8pt}#v-rapport *{box-sizing:border-box;margin:0;padding:0}#v-rapport input,#v-rapport select{touch-action:manipulation}#v-rapport .page{width:210mm;height:297mm;position:relative;background:#fff;margin:8mm auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18);break-after:page}#v-rapport .blank{display:none}#v-rapport .logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}#v-rapport .hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}#v-rapport .hd::after{content:"Tel. +41 78 345 80 72\Ainfo@mservice.ch";white-space:pre;position:absolute;left:43mm;top:17.2mm;font-size:9pt;line-height:1.45}#v-rapport .f::after,#v-rapport .l::after{content:"";position:absolute;left:18mm;right:15mm;border-top:1.8pt solid var(--b)}#v-rapport .f::after{top:90mm}#v-rapport .l::after{top:37mm}#v-rapport .title{position:absolute;left:18mm;top:43mm;font:bold 20pt/1 Arial;color:var(--n)}#v-rapport .sub{position:absolute;left:18mm;top:53.2mm;font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm}#v-rapport .meta{position:absolute;left:18mm;top:63.4mm;width:82mm}#v-rapport .meta div{display:flex;align-items:flex-end;height:7.2mm}#v-rapport .meta input{flex:1;width:auto}#v-rapport .meta label{width:27mm;font-weight:bold;font-size:8.6pt;color:var(--n);padding-bottom:1mm}#v-rapport .win{position:absolute;left:118mm;top:48.5mm;width:80mm}#v-rapport .win::before{content:"Mejstrik Transport & Reinigung Service · CH-8586 Ennetaach";display:block;font-size:6.2pt;color:var(--g);border-bottom:.3pt solid var(--g);width:max-content;padding-bottom:.6mm;margin:1mm 0 1.6mm;height:3.4mm}#v-rapport .win input:not([type=x]){display:block;width:80mm;height:5.4mm;font-size:10.5pt;border:0;color:#000}@media screen{#v-rapport .win input:not([type=x]){border-bottom:1px dotted #c3cad6}}@media print{#v-rapport input::placeholder{color:transparent}}#v-rapport .cr{position:absolute;left:116mm;top:48.5mm;width:83mm;height:27.5mm;background:
-linear-gradient(#C9CED6,#C9CED6) 0 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 0/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 100% 0/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 0/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 0 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 0 100%/.4pt 3mm,
-linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9CED6) 100% 100%/.4pt 3mm;background-repeat:no-repeat}#v-rapport input:not([type=checkbox]){font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:6mm;padding:0 1px}#v-rapport input:not([type=checkbox]):focus{background:rgba(45,108,181,.08)}#v-rapport input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.4mm;height:3.4mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative;cursor:pointer}#v-rapport .body{position:absolute;left:18mm;right:15mm}#v-rapport .first{top:94mm}#v-rapport .later{top:43mm}#v-rapport .intro{margin-bottom:6pt}#v-rapport .contact{display:grid;grid-template-columns:34mm 1fr 34mm 1fr;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 5pt 1mm 4pt}#v-rapport .contact>label{font-weight:bold;font-size:8pt;color:var(--n);line-height:1.2;padding:1.2mm 0}#v-rapport .contact>.m{padding-left:8pt}#v-rapport .contact .w,#v-rapport .contact .cb{grid-column:2/5}#v-rapport .cb{display:flex;align-items:center;font-size:8.3pt;height:6mm}#v-rapport .cb label{display:flex;align-items:center;gap:2.2mm;white-space:nowrap;margin-right:5mm}#v-rapport .cb input:not([type=checkbox]){flex:1;min-width:30mm}#v-rapport h2{font-size:10.5pt;color:var(--n);margin:11pt 0 5pt;padding-bottom:1pt;border-bottom:.6pt solid var(--bd)}#v-rapport h2.t{margin-top:0}#v-rapport .hint{font-size:8pt;color:var(--g);margin-bottom:4pt}#v-rapport table{width:100%;border-collapse:collapse}#v-rapport th{background:var(--b);color:#fff;text-align:left;padding:4.5pt 6pt;font-size:8.8pt}#v-rapport td{padding:4.2pt 6pt 4.6pt;vertical-align:top;border-bottom:.5pt solid var(--bd)}#v-rapport tr:nth-child(even) td{background:var(--l)}#v-rapport td.a{font-weight:bold;width:44mm}#v-rapport .ck{width:8mm;padding-right:0}#v-rapport .price{background:#EAF3FC;border:.9pt solid #8FC0EE;padding:5pt 8pt;display:grid;grid-template-columns:1fr 55mm;align-items:center;row-gap:4pt}#v-rapport .price b,#v-rapport .price label{font-size:9.5pt;color:var(--n)}#v-rapport .price label{display:flex;align-items:center;gap:2.2mm;font-weight:bold}#v-rapport .price input:not([type=checkbox]){color:var(--b);font-size:12.5pt;height:7.5mm}#v-rapport .price .big input{font-size:16pt;height:9.5mm}#v-rapport .note{border:.5pt solid var(--bd);border-left:3pt solid var(--o);background:#FFF8E8;padding:7pt 9pt 5pt 10pt}#v-rapport .ok{background:#EFFAF2;border-left-color:#2E9E5B}#v-rapport .info{background:var(--l);border-left-color:#2D6CB5}#v-rapport .note .t{font-weight:bold;font-size:9pt;margin-bottom:3pt;color:#C0600A}#v-rapport .ok .t{color:#1F7A44}#v-rapport .info .t{color:var(--n)}#v-rapport .note p{margin-bottom:3pt}#v-rapport .note ul{list-style:none}#v-rapport .note li{position:relative;padding-left:11pt;margin-bottom:2.5pt}#v-rapport .note li::before{content:"\2022";position:absolute;left:2pt}#v-rapport .closing{margin-top:12pt}#v-rapport .sign{display:grid;grid-template-columns:1fr 1fr;align-items:end;margin-top:20pt;column-gap:14pt}#v-rapport .sml{font-size:8pt;color:var(--g)}#v-rapport .sl{border-top:.7pt solid #7F94B5;margin-top:16pt;padding-top:2pt}#v-rapport .foot{position:absolute;left:18mm;right:15mm;bottom:0;height:16.5mm;font-size:7.5pt;border-top:.6pt solid var(--bd)}#v-rapport .foot::before{content:attr(data-p);position:absolute;right:0;top:-4.2mm;color:#7B93B8}#v-rapport .foot::after{content:"Mejstrik Transport & Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch | www.mservice.ch";top:5.4mm}#v-rapport .dt{font:bold 20pt/1 Arial;color:var(--n);letter-spacing:.3pt}#v-rapport .ds{font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm;margin:2.4mm 0 4mm}#v-rapport .hdr{display:grid;grid-template-columns:30mm 1fr 24mm 40mm;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:1mm 4mm}#v-rapport .hdr>label{font-weight:bold;font-size:8pt;color:var(--n);padding:1.3mm 0}#v-rapport .hdr>label.m{padding-left:6mm}#v-rapport .hdr .w{grid-column:2/5}#v-rapport .rp{margin-top:4mm}#v-rapport .rp th{padding:3.2pt 4pt;font-size:8.2pt}#v-rapport .rp td{padding:0 3pt;height:5.85mm;vertical-align:middle}#v-rapport .rp input:not([type=checkbox]){border:0;height:5.7mm;padding:0 2px;font-size:9.3pt}#v-rapport .rp td+td{border-left:.5pt solid var(--bd)}#v-rapport .rp .d{width:21mm}#v-rapport .rp .tm{width:17mm}#v-rapport .rp .hh{width:19mm}#v-rapport .rp .r,#v-rapport .rp input.r{text-align:right}#v-rapport .rp td.hh input{font-weight:bold;color:var(--n)}#v-rapport .sum2{display:grid;grid-template-columns:1fr 70mm;column-gap:8mm;margin-top:4mm;align-items:start}#v-rapport .sum2 .nt{font-size:8pt;color:var(--g);line-height:1.4}#v-rapport .tt{display:grid;grid-template-columns:1fr 30mm;row-gap:1.2mm;align-items:center;font-size:9pt}#v-rapport .tt>div:nth-child(odd){font-weight:bold;color:var(--n)}#v-rapport .tt input{text-align:right}#v-rapport .tt .big{grid-column:1/3;background:#EAF3FC;border:.9pt solid #8FC0EE;display:grid;grid-template-columns:1fr auto;align-items:center;padding:1.6mm 3mm;margin-top:.8mm}#v-rapport .tt .big b{font-size:10.5pt;color:var(--n)}#v-rapport .tt .big input{border:0;border-bottom:.6pt solid var(--ln);font-size:14pt;font-weight:bold;color:var(--b);width:34mm;height:7mm;padding:0}#v-rapport .sg3{display:grid;grid-template-columns:1fr 1fr;column-gap:10mm;margin-top:5mm}#v-rapport .sg3 .box{border:.6pt solid var(--bd);background:var(--l);padding:2.2mm 4mm}#v-rapport .sg3 .k{font-weight:bold;font-size:8.6pt;color:var(--n);margin-bottom:1mm}#v-rapport .sg3 .r2{display:grid;grid-template-columns:20mm 1fr;align-items:center}#v-rapport .sg3 .r2 label{font-weight:bold;font-size:7.8pt;color:var(--n)}#v-rapport .sg3 .ln2{border-bottom:.7pt solid #7F94B5;height:11mm}#v-rapport .sg3 .sm{font-size:7.6pt;color:var(--g);margin-top:.8mm}@media print{#v-rapport .page{margin:0;box-shadow:none}}#v-buch *{box-sizing:border-box;margin:0;padding:0}#v-buch .logo{width:50px;height:44.7px;flex:none}#v-buch .top{position:sticky;top:0;z-index:10;background:#fff;border-bottom:3px solid var(--b);box-shadow:0 2px 10px rgba(0,0,0,.08)}#v-buch .top .in{max-width:1080px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}#v-buch .brand b{display:block;color:var(--br);font-size:16px}#v-buch .brand span{font-size:12px;color:var(--g)}#v-buch .act{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}#v-buch button,#v-buch .btn{font:bold 13px Arial;border:1px solid var(--bd);background:#fff;color:var(--n);border-radius:8px;padding:8px 12px;cursor:pointer}#v-buch button:hover{background:var(--l)}#v-buch button.pri{background:var(--b);color:#fff;border-color:var(--b)}#v-buch .tabs{max-width:1080px;margin:0 auto;display:flex;gap:4px;padding:0 14px;overflow-x:auto}#v-buch .tabs button{border:0;border-radius:8px 8px 0 0;background:transparent;padding:10px 14px;font-size:14px;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px}#v-buch .tabs button.on{background:var(--l);border-bottom-color:var(--o);color:var(--br)}#v-buch .wrap{max-width:1080px;margin:14px auto 40px;padding:0 14px}#v-buch .sec{display:none;background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.07);padding:18px 18px 22px;border-top:5px solid var(--o)}#v-buch .sec.on{display:block}#v-buch h1{font-size:22px;color:var(--n);margin-bottom:4px}#v-buch .hint{font-size:12.5px;color:var(--g);margin-bottom:12px}#v-buch h2{font-size:15px;color:var(--n);margin:20px 0 8px;padding-bottom:3px;border-bottom:2px solid var(--bd)}#v-buch .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0 4px}#v-buch .kpi div{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:10px;text-align:center}#v-buch .kpi small{display:block;font-size:11px;font-weight:bold;color:var(--g);text-transform:uppercase;letter-spacing:.4px}#v-buch .kpi b{font-size:20px;color:var(--n)}#v-buch .kpi .g b{color:var(--o)}#v-buch .kpi .r b{color:var(--bad)}#v-buch table{width:100%;border-collapse:collapse}#v-buch th{background:var(--b);color:#fff;text-align:left;padding:7px 6px;font-size:12px}#v-buch td{padding:4px 5px;border-bottom:1px solid var(--bd);vertical-align:middle}#v-buch tr:nth-child(even) td{background:var(--l)}#v-buch tr.inactive td{opacity:0.45;background:#f0f0f0!important}#v-buch td.r,#v-buch th.r{text-align:right}#v-buch td.c,#v-buch th.c{text-align:center}#v-buch .tot td{background:var(--n)!important;color:#fff;font-weight:bold;padding:6px 8px}#v-buch input,#v-buch select{font:13.5px Arial;color:#0A2A8A;border:0;border-bottom:1px solid #b9c6d9;background:transparent;width:100%;padding:5px 2px;border-radius:0;outline:0}#v-buch select{-webkit-appearance:none;appearance:none;cursor:pointer;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238FA3BF'/%3E%3C/svg%3E") right 4px center no-repeat;padding-right:14px}#v-buch input:focus,#v-buch select:focus{background:rgba(45,108,181,.09);border-bottom-color:var(--b)}#v-buch input.r{text-align:right}#v-buch input[type="checkbox"]{width:auto;cursor:pointer;transform:scale(1.15)}#v-buch .x{border:0;background:transparent;color:#b00;font-size:18px;padding:2px 6px;line-height:1;cursor:pointer}#v-buch .btn-sm{font-size:11px;padding:3px 6px;border-radius:4px;background:var(--l);border:1px solid var(--bd);color:var(--n);cursor:pointer;white-space:nowrap}#v-buch .btn-sm:hover{background:var(--b);color:#fff}#v-buch .warn td{background:#FFF1DC!important}#v-buch .bar{height:8px;background:#e6ecf5;border-radius:4px;position:relative;margin:2px 0}#v-buch .bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}#v-buch .bar .e{background:#2E9E5B}#v-buch .bar .a{background:#d8665a}#v-buch .st{font-size:11px;font-weight:bold;padding:2px 6px;border-radius:8px;display:inline-block}#v-buch .st.bezahlt{background:#E3F4EA;color:var(--ok)}#v-buch .st.offen{background:#FFF4C2;color:#8A6D00}#v-buch .st.ueberfaellig{background:#FBE3E0;color:var(--bad)}#v-buch .bar2{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}#v-buch .bar2 label{font-weight:bold;font-size:12px;color:var(--n)}#v-buch .bar2 select,#v-buch .bar2 input{width:auto;border:1px solid var(--bd);border-radius:6px;padding:4px 6px;background:#fff}#v-buch .bar2 select{padding-right:20px}#v-buch .note{background:#FFF8E8;border-left:4px solid var(--o);padding:8px 12px;font-size:12px;margin-top:14px}#v-buch .warnbox{background:#FBE3E0;border-left:4px solid var(--bad);padding:8px 12px;font-size:13px;margin-bottom:10px;display:none}#v-buch .ph{display:none}#v-buch .pd{display:none}#v-buch .pw,#v-buch .pw>tbody,#v-buch .pw>tbody>tr,#v-buch .pw>tbody>tr>td{display:block;padding:0;border:0;background:none}#v-buch .pw>thead{display:none}#v-buch .pt{display:none}#v-buch .deduct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;background:#f4f7fb;padding:8px;border-radius:6px;border:1px solid var(--bd);margin-bottom:10px;font-size:11.5px}#v-buch .deduct-grid label{display:flex;align-items:center;gap:4px;cursor:pointer;font-weight:normal}#v-buch .deduct-grid input[type="number"]{width:55px;padding:2px 4px;font-size:11px;border:1px solid var(--bd);background:#fff;border-radius:4px}#v-buch .print-deduct-summary{display:none}#v-buch #lohn-print-area{display:none}@media (max-width:760px){#v-buch .kpi{grid-template-columns:1fr 1fr}#v-buch .brand span{display:none}#v-buch .lst thead{display:none}#v-buch .lst,#v-buch .lst tbody,#v-buch .lst tfoot,#v-buch .lst tr,#v-buch .lst td{display:block;width:100%}#v-buch .lst td.r,#v-buch .lst td.c{text-align:left}#v-buch .lst tr{border:1px solid var(--bd);border-radius:8px;margin-bottom:10px;padding:6px 10px;background:#fff}#v-buch .lst td{border:0;padding:3px 0;display:grid;grid-template-columns:105px 1fr;align-items:center;background:none!important}#v-buch .lst td::before{content:attr(data-l);font-size:11px;font-weight:bold;color:var(--n)}#v-buch .lst td.dl{display:block;text-align:right}#v-buch .lst td.dl::before{content:none}#v-buch .lst tr.tot{background:var(--n);color:#fff}#v-buch .lst tr.tot td{grid-template-columns:1fr auto;padding:3px 0}#v-buch .lst tr.tot td[colspan="2"]{display:none}#v-buch .lst .pd{display:none!important}#v-buch .mt .bc{display:none}}@media print{#v-buch .top,#v-buch .noprint,#v-buch .x,#v-buch .btn-sm,#v-buch .bar2,#v-buch .dl,#v-buch .warnbox{display:none!important}#v-buch .wrap{max-width:none;margin:0;padding:0}#v-buch .pw{display:table;width:100%}#v-buch .pw>thead{display:table-header-group}#v-buch .pw>tbody{display:table-row-group}#v-buch .pw>tbody>tr{display:table-row}#v-buch .pw>tbody>tr>td{display:table-cell}#v-buch .ph{display:flex;align-items:center;gap:4mm;border-bottom:1pt solid var(--b);padding:0 0 1.5mm;margin-bottom:3mm}#v-buch .ph .logo{width:10mm;height:9mm}#v-buch .ph b{display:block;color:var(--br);font-size:9.5pt}#v-buch .ph span{font-size:7pt;color:#444}#v-buch .ph .r2{margin-left:auto;text-align:right;font-size:7pt;color:#777}#v-buch .sec{display:block!important;box-shadow:none;border:0!important;padding:0;border-radius:0;break-before:page}#v-buch .sec.first{break-before:auto}body.only #v-buch .sec{display:none!important}body.only #v-buch .sec.prt{display:block!important;break-before:auto}#v-buch .pt{display:block;font-size:12pt;font-weight:bold;color:var(--n);border-left:1mm solid var(--o);padding-left:2mm;margin-bottom:2mm}#v-buch h1,#v-buch .hint,#v-buch .deduct-grid{display:none!important}#v-buch th{padding:2.5pt 4pt;font-size:7.5pt;background:#2D6CB5!important;color:#fff!important}#v-buch td{padding:2pt 4pt;font-size:8pt;border-bottom:0.5pt solid #ccc}#v-buch tr:nth-child(even) td{background:#f9f9f9!important}#v-buch .lst th:nth-child(1),#v-buch .lst td:nth-child(1){display:none!important}#v-buch tr.inactive{display:none!important}#v-buch .deduct-checkboxes{display:none!important}#v-buch .print-deduct-summary{display:inline-block!important;font-size:7.5pt}#v-buch input,#v-buch select{color:#000!important;border:0!important;padding:0!important;font-size:7.5pt!important;background:none!important;-webkit-appearance:none!important;appearance:none!important}#v-buch select{background-image:none!important}#v-buch input[type="checkbox"]{display:none!important}#v-buch .pd{display:none!important}#v-buch .lst tr.empty{display:none!important}#v-buch tr{break-inside:avoid;page-break-inside:avoid}#v-buch .kpi{margin:1.5mm 0;gap:4px}#v-buch .kpi div{padding:2pt 4pt}#v-buch .kpi b{font-size:9.5pt}#v-buch .kpi small{font-size:6.5pt}#v-buch h2{margin:2mm 0 1mm;font-size:8.5pt;break-after:avoid}#v-buch .note{font-size:6.5pt;margin-top:2mm;padding:2pt 4pt}#v-buch .bar{height:4px}#v-buch #s-ue h2:nth-of-type(2){ break-before: page !important; page-break-before: always !important; }#v-buch #s-ue h2:nth-of-type(3){ break-before: avoid !important; page-break-before: avoid !important; }body.print-lohn #v-buch .top,body.print-lohn #v-buch .wrap,body.print-lohn #v-buch .pw{display:none!important}body.print-lohn #v-buch #lohn-print-area{display:block!important;padding:10mm;font-family:Arial,sans-serif}}</style>
+</style>
 <style>
-#app[data-t=set] .bd{display:none}
-.tab button{font-size:10px;padding-left:0;padding-right:0}
-#v-quittung *{box-sizing:border-box;margin:0;padding:0}
-#v-quittung input{touch-action:manipulation}
-#v-quittung .page{width:210mm;height:297mm;margin:8mm auto;background:#fff;padding:14mm 16mm;position:relative;box-shadow:0 0 8px rgba(0,0,0,.18);overflow:hidden;font:11pt Arial,Helvetica,sans-serif;line-height:normal;color:#222;break-after:page}
-#v-quittung .hd{display:flex;align-items:center;gap:12px;border-bottom:3px solid var(--n);padding-bottom:8px}
-#v-quittung .logo{width:69px;height:62px;flex:none}
-#v-quittung .hd .a b{display:block;font-size:20pt;color:var(--n);white-space:nowrap}
-#v-quittung .hd .a span{font-size:10pt;color:#333}
-#v-quittung .hd .r{margin-left:auto;text-align:right;font-size:9pt;color:#333}
-#v-quittung .qbar{margin-top:20px;background:var(--n);color:#fff;border-left:6px solid var(--o);padding:10px 16px;display:flex;justify-content:space-between;align-items:center}
-#v-quittung .qbar b{font-size:24pt;letter-spacing:2px}
-#v-quittung .qbar span{font-size:10pt}
-#v-quittung h4{font-size:9.5pt;color:var(--n);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--bd);margin:24px 0 10px;padding-bottom:3px}
-#v-quittung .row{display:flex;gap:22px;margin-bottom:14px}
-#v-quittung .f{flex:1}
-#v-quittung .f label{display:block;font-size:8.5pt;font-weight:bold;color:var(--n);margin-bottom:1px}
-#v-quittung input:not([type=checkbox]){width:100%;border:0;border-bottom:1.5px solid #5b6b80;background:transparent;font:inherit;font-size:12pt;color:#000;padding:4px 2px;border-radius:0;outline:none}
-#v-quittung input:not([type=checkbox]):focus{border-bottom-color:var(--o);background:#fffaf0}
-#v-quittung .amt{display:flex;align-items:flex-end;gap:10px}
-#v-quittung .amt span{font-weight:bold;color:var(--n);font-size:16pt;padding-bottom:4px}
-#v-quittung .amt input{font-size:20pt;font-weight:bold;text-align:right}
-#v-quittung .pay{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 14px}
-#v-quittung .pay label{display:flex;align-items:center;gap:8px;font-size:11pt;cursor:pointer}
-#v-quittung input[type=checkbox]{appearance:none;-webkit-appearance:none;width:18px;height:18px;flex:none;margin:0;border:1.5px solid #5C7399;background:#fff;position:relative;cursor:pointer}
-#v-quittung input[type=checkbox]:checked::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg)}
-#v-quittung .txt{font-size:10.5pt;line-height:1.5;color:#222;margin-top:6px}
-#v-quittung .sig{display:flex;gap:40px;margin-top:40px}
-#v-quittung .sig>div{flex:1}
-#v-quittung .sig .d{margin-bottom:8px}
-#v-quittung .sig .ln2{height:19mm;border-bottom:1.5px solid #000}
-#v-quittung .sig small{display:block;font-size:8.5pt;color:#333;margin-top:2px}
-#v-quittung .ft{position:absolute;left:16mm;right:16mm;bottom:10mm;border-top:1px solid var(--bd);padding-top:5px;text-align:center;font-size:8.5pt;color:#555}
-@media screen and (pointer:coarse){#v-quittung input:not([type=checkbox]){font-size:16px!important}#v-quittung .amt input{font-size:20pt!important}}
-#v-set{background:#eef1f5;font:15px/1.4 -apple-system,Arial,sans-serif;color:#2a2a2a}
-#v-set .st{padding:6px 14px 28px;max-width:560px;margin:0 auto}
-#v-set h2{font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--n);margin:18px 4px 8px}
-#v-set .card{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(30,58,109,.12);padding:14px}
-#v-set .prev{height:96px;border:1px dashed var(--ln);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--g);font-size:13px;margin-bottom:10px;overflow:hidden}
-#v-set .prev img{max-height:84px;max-width:90%}
-#v-set .btns{display:flex;gap:8px}
-#v-set button.b{flex:1;padding:12px;border:1px solid var(--bd);border-radius:12px;background:var(--l);color:var(--n);font:600 15px Arial}
-#v-set button.b.pri{background:var(--b);color:#fff;border-color:var(--b)}
-#v-set .hn{font-size:12.5px;color:var(--g);margin-top:14px}
-#v-set .sw{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-top:1px solid var(--bd);font-size:15px}
-#v-set .sw.nb{border-top:0;padding-top:0}
-#v-set .sw input{appearance:none;-webkit-appearance:none;width:46px;height:28px;border-radius:14px;background:#cbd5e1;position:relative;flex:none;margin:0;transition:background .15s;cursor:pointer}
-#v-set .sw input::after{content:"";position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .15s}
-#v-set .sw input:checked{background:var(--b)}
-#v-set .sw input:checked::after{transform:translateX(18px)}
-#v-set .fl{display:block;margin-top:12px;font-size:12px;font-weight:bold;color:var(--n)}
-#v-set .fl input{display:block;width:100%;font:16px Arial;color:#000;border:0;border-bottom:1.5px solid var(--ln);background:transparent;padding:6px 2px;border-radius:0;outline:0;margin-top:2px}
-#v-set .fl input:focus{border-bottom-color:var(--o)}
-.sg.ovl{left:0;transform:none;height:9mm}
+.bar #pr{width:auto;padding:0 13px;font:bold 14px Arial}
+/* Styl dokumentů */
+#v-offerte *,#v-rechnung *,#v-quittung *,#v-rapport *{box-sizing:border-box;margin:0;padding:0}
+.page{width:210mm;height:297mm;position:relative;background:#fff;margin:8mm auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18);break-after:page;padding:15mm 18mm}
+.logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}
+.hd::before{content:"M Transport & Reinigung Service";position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}
+.hd::after{content:"Tel. +41 78 345 80 72\Ainfo@mservice.ch";white-space:pre;position:absolute;left:43mm;top:17.2mm;font-size:9pt;line-height:1.45}
+.title{position:absolute;left:18mm;top:43mm;font:bold 20pt/1 Arial;color:var(--n)}
+.sub{position:absolute;left:18mm;top:53.2mm;font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm}
+.meta{position:absolute;left:18mm;top:63.4mm;width:82mm}
+.meta div{display:flex;align-items:flex-end;height:7.2mm}
+.meta label{width:27mm;font-weight:bold;font-size:8.6pt;color:var(--n);padding-bottom:1mm}
+.win{position:absolute;left:118mm;top:48.5mm;width:80mm}
+.win::before{content:"Mejstrik Transport & Reinigung Service · CH-8586 Ennetaach";display:block;font-size:6.2pt;color:var(--g);border-bottom:.3pt solid var(--g);width:max-content;padding-bottom:.6mm;margin:1mm 0 1.6mm;height:3.4mm}
+.win input{display:block;width:80mm;height:5.4mm;font-size:10.5pt;border:0;color:#000;border-bottom:1px dotted #c3cad6}
+input:not([type=checkbox]){font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:6mm;padding:0 1px}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.4mm;height:3.4mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative;cursor:pointer}
+input[type=checkbox]:checked::after{content:"";position:absolute;left:.9mm;top:.1mm;width:1.1mm;height:2.2mm;border:solid #000;border-width:0 .5mm .5mm 0;transform:rotate(45deg)}
+.body{position:absolute;left:18mm;right:15mm;top:94mm}
+table{width:100%;border-collapse:collapse}
+th{background:var(--b);color:#fff;text-align:left;padding:4.5pt 6pt;font-size:8.8pt}
+td{padding:4.2pt 6pt 4.6pt;vertical-align:top;border-bottom:.5pt solid var(--bd)}
+.cust-toolbar{background:#e3f2fd;padding:8px 12px;border-radius:6px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;border:1px solid #90caf9}
+.cust-toolbar button{background:var(--b);color:#fff;border:0;padding:6px 12px;border-radius:4px;font-weight:bold;cursor:pointer}
+</style>
+<style>
+/* Buchhaltung Styling podle zadaného dokumentu */
+#v-buch *{box-sizing:border-box;margin:0;padding:0}
+#v-buch .logo{width:50px;height:44.7px;flex:none}
+#v-buch .top{position:sticky;top:0;z-index:10;background:#fff;border-bottom:3px solid var(--b);box-shadow:0 2px 10px rgba(0,0,0,.08)}
+#v-buch .top .in{max-width:1080px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#v-buch .brand b{display:block;color:var(--br);font-size:16px}
+#v-buch .brand span{font-size:12px;color:var(--g)}
+#v-buch .act{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+#v-buch button,#v-buch .btn{font:bold 13px Arial;border:1px solid var(--bd);background:#fff;color:var(--n);border-radius:8px;padding:8px 12px;cursor:pointer}
+#v-buch button:hover{background:var(--l)}#v-buch button.pri{background:var(--b);color:#fff;border-color:var(--b)}
+#v-buch .tabs{max-width:1080px;margin:0 auto;display:flex;gap:4px;padding:0 14px;overflow-x:auto}
+#v-buch .tabs button{border:0;border-radius:8px 8px 0 0;background:transparent;padding:10px 14px;font-size:14px;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px}
+#v-buch .tabs button.on{background:var(--l);border-bottom-color:var(--o);color:var(--br)}
+#v-buch .wrap{max-width:1080px;margin:14px auto 40px;padding:0 14px}
+#v-buch .sec{display:none;background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.07);padding:18px 18px 22px;border-top:5px solid var(--o)}
+#v-buch .sec.on{display:block}
+#v-buch h1{font-size:22px;color:var(--n);margin-bottom:4px}
+#v-buch .hint{font-size:12.5px;color:var(--g);margin-bottom:12px}
+#v-buch h2{font-size:15px;color:var(--n);margin:20px 0 8px;padding-bottom:3px;border-bottom:2px solid var(--bd)}
+#v-buch .kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0 4px}
+#v-buch .kpi div{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:10px;text-align:center}
+#v-buch .kpi small{display:block;font-size:11px;font-weight:bold;color:var(--g);text-transform:uppercase;letter-spacing:.4px}
+#v-buch .kpi b{font-size:20px;color:var(--n)}#v-buch .kpi .g b{color:var(--o)}#v-buch .kpi .r b{color:var(--bad)}
+#v-buch table{width:100%;border-collapse:collapse}
+#v-buch th{background:var(--b);color:#fff;text-align:left;padding:7px 6px;font-size:12px}
+#v-buch td{padding:4px 5px;border-bottom:1px solid var(--bd);vertical-align:middle}
+#v-buch tr:nth-child(even) td{background:var(--l)}
+#v-buch tr.inactive td{opacity:0.45;background:#f0f0f0!important}
+#v-buch td.r,#v-buch th.r{text-align:right}
+#v-buch td.c,#v-buch th.c{text-align:center}
+#v-buch .tot td{background:var(--n)!important;color:#fff;font-weight:bold;padding:6px 8px}
+#v-buch input,#v-buch select{font:13.5px Arial;color:#0A2A8A;border:0;border-bottom:1px solid #b9c6d9;background:transparent;width:100%;padding:5px 2px;border-radius:0;outline:0}
+#v-buch input:focus,#v-buch select:focus{background:rgba(45,108,181,.09);border-bottom-color:var(--b)}
+#v-buch input.r{text-align:right}
+#v-buch input[type="checkbox"]{width:auto;cursor:pointer;transform:scale(1.15)}
+#v-buch .x{border:0;background:transparent;color:#b00;font-size:18px;padding:2px 6px;line-height:1;cursor:pointer}
+#v-buch .btn-sm{font-size:11px;padding:3px 6px;border-radius:4px;background:var(--l);border:1px solid var(--bd);color:var(--n);cursor:pointer;white-space:nowrap}
+#v-buch .bar2{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+#v-buch .bar2 label{font-weight:bold;font-size:12px;color:var(--n)}
+#v-buch .bar2 select,#v-buch .bar2 input{width:auto;border:1px solid var(--bd);border-radius:6px;padding:4px 6px;background:#fff}
+#v-buch .deduct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;background:#f4f7fb;padding:8px;border-radius:6px;border:1px solid var(--bd);margin-bottom:10px;font-size:11.5px}
+#v-buch .deduct-grid label{display:flex;align-items:center;gap:4px;cursor:pointer;font-weight:normal}
+#v-buch .deduct-grid input[type="number"]{width:55px;padding:2px 4px;font-size:11px;border:1px solid var(--bd);background:#fff;border-radius:4px}
+#v-buch .print-deduct-summary{display:none}
+#v-buch #lohn-print-area{display:none}
+@media print{
+#v-buch .top,#v-buch .noprint,#v-buch .x,#v-buch .btn-sm,#v-buch .bar2,#v-buch .dl,#v-buch .warnbox{display:none!important}
+#v-buch .wrap{max-width:none;margin:0;padding:0}
+#v-buch .sec{display:block!important;box-shadow:none;border:0!important;padding:0;border-radius:0;break-before:page}
+#v-buch .sec.first{break-before:auto}
+#v-buch h1,#v-buch .hint,#v-buch .deduct-grid{display:none!important}
+#v-buch th{padding:2.5pt 4pt;font-size:7.5pt;background:#2D6CB5!important;color:#fff!important}
+#v-buch td{padding:2pt 4pt;font-size:8pt;border-bottom:0.5pt solid #ccc}
+#v-buch tr:nth-child(even) td{background:#f9f9f9!important}
+#v-buch .lst th:nth-child(1),#v-buch .lst td:nth-child(1){display:none!important}
+#v-buch tr.inactive{display:none!important}
+#v-buch input,#v-buch select{color:#000!important;border:0!important;padding:0!important;font-size:7.5pt!important;background:none!important}
+body.print-lohn #v-buch .top,body.print-lohn #v-buch .wrap,body.print-lohn #v-buch .pw{display:none!important}
+body.print-lohn #v-buch #lohn-print-area{display:block!important;padding:10mm;font-family:Arial,sans-serif}
+}
 </style>
 </head>
 <body>
+
 <svg width="0" height="0" style="position:absolute">
   <symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol>
-  
   <symbol id="ic-home" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></symbol>
   <symbol id="ic-offerte" viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></symbol>
   <symbol id="ic-rechnung" viewBox="0 0 24 24"><path d="M18 17H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2zM3 22l1.5-1.5L6 22l1.5-1.5L9 22l1.5-1.5L12 22l1.5-1.5L15 22l1.5-1.5L18 22l1.5-1.5L21 22V2l-1.5 1.5L18 2l-1.5 1.5L15 2l-1.5 1.5L12 2l-1.5 1.5L9 2l-1.5 1.5L6 2l-1.5 1.5L3 2v20z"/></symbol>
@@ -157,12 +187,6 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
   <symbol id="ic-quittung" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6 2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zM10.5 16.2L6.8 12.5l1.4-1.4 2.3 2.3 5.3-5.3 1.4 1.4z"/></symbol>
   <symbol id="ic-set" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M9.96 4.89 L10.44 2.12 L13.56 2.12 L14.04 4.89 L15.59 5.53 L17.88 3.91 L20.09 6.12 L18.47 8.41 L19.11 9.96 L21.88 10.44 L21.88 13.56 L19.11 14.04 L18.47 15.59 L20.09 17.88 L17.88 20.09 L15.59 18.47 L14.04 19.11 L13.56 21.88 L10.44 21.88 L9.96 19.11 L8.41 18.47 L6.12 20.09 L3.91 17.88 L5.53 15.59 L4.89 14.04 L2.12 13.56 L2.12 10.44 L4.89 9.96 L5.53 8.41 L3.91 6.12 L6.12 3.91 L8.41 5.53Z M8.7 12a3.3 3.3 0 1 0 6.6 0a3.3 3.3 0 1 0-6.6 0Z"/></symbol>
 </svg>
-
-<div id="desktop-block" style="display:none; position:fixed; inset:0; z-index:10000; background:#1E3A6D; color:#fff; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px;">
-  <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#F57C00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:15px;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-  <h2 style="margin:0 0 10px; font-size:20px;">Pouze pro mobilní zařízení</h2>
-  <p style="margin:0; font-size:14px; color:#b9c8e6; max-width:320px;">Tato aplikace je určena výhradně pro mobilní telefony a tablety. Otevřete ji prosím na svém mobilním zařízení.</p>
-</div>
 
 <div id="lock">
   <div class="lbox">
@@ -183,6 +207,7 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
     <button class="bd" id="rs" aria-label="Zur&uuml;cksetzen">&#x21BA;</button>
     <button id="lk" aria-label="Sperren"><svg><use href="#ic-lock"/></svg></button>
   </header>
+  
   <main class="main">
     <section class="view on" id="v-home" data-ty="home" data-n="M Service">
       <div class="hero"><span class="lg big" data-lg></span><h1>M Transport &amp; Reinigung Service</h1><p>Mejstrik &middot; Ennetaach</p></div>
@@ -190,121 +215,130 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
         <button data-go="v-offerte"><svg><use href="#ic-offerte"/></svg><b>Offerte</b></button>
         <button data-go="v-rechnung"><svg><use href="#ic-rechnung"/></svg><b>Rechnung</b></button>
         <button data-go="v-quittung"><svg><use href="#ic-quittung"/></svg><b>Quittung</b></button>
-        <button data-go="v-rapport"><svg><use href="#ic-rapport"/></svg><b>Arbeitsrapport</b></button>
+        <button data-go="v-rapport"><svg><use href="#ic-rapport"/></svg><b>Rapport</b></button>
         <button data-go="v-buch"><svg><use href="#ic-buch"/></svg><b>Buchhaltung</b></button>
         <button data-go="v-set"><svg><use href="#ic-set"/></svg><b>Einstellungen</b></button>
       </div>
       <p class="fine">Alle Daten bleiben nur auf diesem Ger&auml;t gespeichert.</p>
     </section>
+
+    <!-- OFFERTE -->
     <section class="view doc" id="v-offerte" data-ty="doc" data-n="Offerte">
       <div class="seg" id="seg"><button class="on" data-g="0">Umzug</button><button data-g="1">Gebäude</button><button data-g="2">Unterhalt</button><button data-g="3">Grund</button></div>
-      <div class="zw"><div class="sc"><section data-g="0" class="page f" data-s="umzug"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="title">OFFERTE</div><div class="sub">Umzugsreinigung</div><div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input></div><div><label>Gültigkeit:</label><input></div></div><div class="cr"></div><div class="win"><input id=umzug_a1 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die Umzugsreinigung (Endreinigung bezugsfertig):</p><div class="contact"><label>Vorname:</label><input id="umzug_v"><label class="m">Nachname:</label><input id="umzug_n"><label>Telefon:</label><input><label class="m">E-Mail:</label><input><label>Objektadresse<br>(falls abweichend):</label><input class="w"></div><h2>1. UMFASSENDER LEISTUNGSUMFANG (UMZUGSREINIGUNG / ENDREINIGUNG BEZUGSFERTIG)</h2><table><tr><th>Bereich<th>Enthaltene Reinigungsarbeiten<tr><td class="a">Küche &amp; Geräte<td>Tiefenreinigung aller Küchenoberflächen, Schränke (innen/aussen), Kochfeld (Glaskeramik/Induktion bzw. Gussplatten/Gas), Backofen, Steamer, Dampfabzug, Geschirrspüler sowie Kühlschrank inkl. Gefrierfach.<tr><td class="a">Nasszellen / Bad &amp; WC<td>Gründliche Reinigung, Entkalkung und Desinfektion aller Badezimmer, Duschen und separaten (Gäste-)WCs, auch bei starken Kalkablagerungen. Säuberung von Badewanne, Duschkabine, Armaturen, Spiegeln, Fliesen und Sanitäranlagen.<tr><td class="a">Fenster &amp; Storen<td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen und Fensterbänken, auch grosse und atypische Fenster sowie Dachfenster, Balkonverglasung und Wintergarten (sofern vorhanden). Gründliches Abwischen aller Lamellenstoren, Rollläden und Klappläden.<tr><td class="a">Wohnräume &amp; Böden<td>Vollständige Säuberung und Pflege aller Bodenbeläge (Parkett/Laminat, Fliesen/Platten, Teppich, Naturstein), Saugen und Wischen aller Räume, Treppenaufgänge sowie Innenreinigung aller Einbauschränke, Türen und Fussleisten.<tr><td class="a">Nebennutzflächen<td>Gründliche Reinigung aller zugehörigen Nebenräume wie Keller/Souterrain, Estrich/Dachboden, Garage/Einstellplatz, Gartenhaus/Sitzplatz, Waschraum (inkl. Aussenreinigung von Waschmaschine &amp; Tumbler) sowie Balkon/Terrasse.<tr><td class="a">Material &amp; Anfahrt<td>Inklusive aller professionellen Reinigungsmittel, Spezialgeräte, Maschinen sowie sämtlicher Anfahrts- und Transportkosten.</table><h2>2. PREISZUSAMMENSTELLUNG</h2><div class="price"><b>Pauschalpreis Umzugsreinigung (inkl. Material &amp; Anfahrt):</b><div class=big><input value="ab CHF 0'000.-"></div></div></div><div class="foot" data-p="Seite 1 von 2"></div></section><section data-g="0" class="page l"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="body later"><h2 style="margin-top:0">3. VERBINDLICHE BESTIMMUNGEN &amp; ZUSATZVEREINBARUNGEN</h2><div class="note "><div class="t">Hinweis zur Preisangabe und Möblierung:</div><p>Der angegebene Pauschalpreis basiert auf Ihren Angaben im beigelegten Formular sowie dem Zustand und Umfang des Objekts zum Zeitpunkt der Besichtigung bzw. der Anfrage.</p><ul><li><b>Extremverschmutzung:</b> Sollte es im Zeitraum zwischen der Besichtigung und dem eigentlichen Reinigungstag zu einer aussergewöhnlichen oder extremen Verschmutzung kommen, behalten wir uns eine angemessene Preisanpassung vor.<li><b>Verbleibender Möbelbestand:</b> Die Offerte kalkuliert die im Formular angegebene Möblierung. Verbleibt am Reinigungstag eine unerwartet grosse Menge an Möbeln im Objekt, die gereinigt oder verschoben werden müssen, kann sich der Preis entsprechend anpassen.<li><b>Transparente Absprache:</b> Eventuelle Preisänderungen werden ausnahmslos und immer vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</ul></div><h2>4. GARANTIEREGELUNG</h2><div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><p>Da die Reinigung in diesem Modus ohne unsere persönliche Anwesenheit beim offiziellen Termin der Wohnungsübergabe stattfindet, bieten wir Ihnen unsere verlässliche 48-Stunden-Zufriedenheitsgarantie:</p><ul><li>Falls Sie oder die Liegenschaftsverwaltung innerhalb von 48 Stunden nach Beendigung der Reinigung Mängel feststellen sollten, werden diese von uns umgehend und vollkommen <b>kostenlos nachgebessert</b>.</ul></div><h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2><div class="note info"><div class="t">Es gelten unsere Allgemeinen Geschäftsbedingungen (AGB):</div><p>Für diese Offerte und alle damit verbundenen Leistungen gelten die AGB von Mejstrik Transport &amp; Reinigung Service. Sie sind jederzeit abrufbar unter <b>www.mservice.ch/agb</b>. Mit der Unterschrift nimmt der Kunde diese Offerte an und bestätigt, die AGB zur Kenntnis genommen zu haben und zu akzeptieren.</p></div><div class="closing"><p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p><p style="margin-top:12pt"><b>Freundliche Grüsse</b></p><div class="sign"><div><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</div><div><div class="sml">Ort, Datum:</div><input><div class="sl sml">Bestätigung / Kundenunterschrift</div></div></div></div></div><div class="foot" data-p="Seite 2 von 2"></div></section><section data-g="1" class="page f" data-s="gebaeude"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="title">OFFERTE</div><div class="sub">Gebäudereinigung</div><div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input></div><div><label>Gültigkeit:</label><input></div></div><div class="cr"></div><div class="win"><input id=gebaeude_a1 placeholder="Firma"><input id=gebaeude_a2 placeholder="z. Hd. Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die Gebäudereinigung (Liegenschaften, Treppenhäuser und Büroräume):</p><div class="contact"><label>Firma:</label><input class="w" id="gebaeude_f"><label>Vorname:</label><input id="gebaeude_v"><label class="m">Nachname:</label><input id="gebaeude_n"><label>Telefon:</label><input><label class="m">E-Mail:</label><input><label>Gebäudeadresse<br>(falls abweichend):</label><input class="w"></div><h2>1. UMFASSENDER LEISTUNGSUMFANG (GEBÄUDEREINIGUNG)</h2><div class="hint">Bitte die vereinbarten Bereiche ankreuzen. Nicht angekreuzte Bereiche sind nicht Teil dieser Offerte.</div><table><tr><th class="ck"><th>Bereich<th>Enthaltene Reinigungsarbeiten<tr><td class="ck"><input type="checkbox"><td class="a">Treppenhaus &amp; Eingangsbereich<td>Saugen und Nassreinigen von Treppen, Podesten und Eingangsbereich, Reinigung von Handläufen, Geländern, Türen, Briefkastenanlage, Lichtschaltern und Glasflächen.<tr><td class="ck"><input type="checkbox"><td class="a">Büroräume / Kanzlei<td>Reinigung aller Büros, Besprechungs- und Empfangsbereiche: Staubwischen von Arbeitsflächen, Mobiliar und Fensterbänken, Saugen und Wischen der Böden, Leeren der Abfalleimer.<tr><td class="ck"><input type="checkbox"><td class="a">WC &amp; Sanitärräume<td>Reinigung, Entkalkung und Desinfektion aller WCs, Lavabos, Armaturen, Spiegel und Böden.<tr><td class="ck"><input type="checkbox"><td class="a">Pausenraum / Teeküche<td>Reinigung der Arbeitsflächen, Spüle und Armaturen, Geräte aussen sowie Saugen und Wischen der Böden.<tr><td class="ck"><input type="checkbox"><td class="a">Waschküche, Keller &amp; Tiefgarage<td>Reinigung der gemeinschaftlichen Waschküche (inkl. Aussenreinigung von Maschinen) sowie der Keller- und Tiefgaragenbereiche.<tr><td class="ck"><input type="checkbox"><td class="a">Fenster &amp; Glasfronten<td>Reinigung von Fenstern, Glasfronten und Glastüren innen und aussen im vereinbarten Rhythmus.<tr><td class="ck"><input type="checkbox"><td class="a">Aussenbereich / Terrassen<td>Reinigung von Eingangsplatz, Aussenbereichen und Terrassen (Wischen/Kehren, Entfernen von Laub und Unrat).<tr><td class="ck"><td class="a">Material &amp; Anfahrt<td>Inklusive aller professionellen Reinigungsmittel, Spezialgeräte, Maschinen sowie sämtlicher Anfahrts- und Transportkosten.</table></div><div class="foot" data-p="Seite 1 von 2"></div></section><section data-g="1" class="page l"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="body later"><h2 style="margin-top:0">2. PREISZUSAMMENSTELLUNG</h2><div class="price"><b>Preis pro Reinigung (inkl. Material &amp; Anfahrt):</b><div class=big><input value="ab CHF 0'000.-"></div><b>Reinigungshäufigkeit:</b><div><input value=""></div><b>Monatspauschale (ca.):</b><div><input value="ab CHF 0'000.-"></div></div><h2>3. VERBINDLICHE BESTIMMUNGEN &amp; ZUSATZVEREINBARUNGEN</h2><div class="note "><div class="t">Hinweis zur Preisangabe und zum Leistungsumfang:</div><p>Der angegebene Preis basiert auf Ihren Angaben im beigelegten Formular (Fläche, Etagen, Sanitärräume, Büros) und der vereinbarten Reinigungshäufigkeit.</p><ul><li><b>Änderungen:</b> Wesentliche Änderungen an Fläche, Häufigkeit oder Leistungsumfang (z. B. zusätzliche Bereiche) führen zu einer angemessenen Preisanpassung.<li><b>Zusatzleistungen:</b> Leistungen ausserhalb des vereinbarten Umfangs (z. B. Grundreinigung oder Fensterreinigung ausserhalb des Rhythmus) werden separat offeriert.<li><b>Zutritt:</b> Der Zutritt zu den Räumlichkeiten ist zu den vereinbarten Reinigungszeiten sicherzustellen.<li><b>Transparente Absprache:</b> Eventuelle Preisänderungen werden ausnahmslos und immer vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</ul></div><h2>4. GARANTIEREGELUNG</h2><div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><ul><li>Falls Sie oder die Liegenschaftsverwaltung innerhalb von 48 Stunden nach Beendigung der Reinigung Mängel feststellen sollten, werden diese von uns umgehend und vollkommen <b>kostenlos nachgebessert</b>.</ul></div><h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2><div class="note info"><div class="t">Es gelten unsere Allgemeinen Geschäftsbedingungen (AGB):</div><p>Für diese Offerte und alle damit verbundenen Leistungen gelten die AGB von Mejstrik Transport &amp; Reinigung Service. Sie sind jederzeit abrufbar unter <b>www.mservice.ch/agb</b>. Mit der Unterschrift nimmt der Kunde diese Offerte an und bestätigt, die AGB zur Kenntnis genommen zu haben und zu akzeptieren.</p></div><div class="closing"><p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p><p style="margin-top:12pt"><b>Freundliche Grüsse</b></p><div class="sign"><div><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</div><div><div class="sml">Ort, Datum:</div><input><div class="sl sml">Bestätigung / Kundenunterschrift</div></div></div></div></div><div class="foot" data-p="Seite 2 von 2"></div></section><section data-g="2" class="page f" data-s="unterhalt"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="title">OFFERTE</div><div class="sub">Unterhaltsreinigung</div><div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input></div><div><label>Gültigkeit:</label><input></div></div><div class="cr"></div><div class="win"><input id=unterhalt_a1 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die regelmässige Unterhaltsreinigung:</p><div class="contact"><label>Vorname:</label><input id="unterhalt_v"><label class="m">Nachname:</label><input id="unterhalt_n"><label>Telefon:</label><input><label class="m">E-Mail:</label><input><label>Objektadresse<br>(falls abweichend):</label><input class="w"><label>Reinigungsmittel &amp; Geräte:</label><div class="cb"><label><input type="checkbox"> werden von uns mitgebracht</label><label><input type="checkbox"> werden vom Kunden gestellt</label></div></div><h2>1. UMFASSENDER LEISTUNGSUMFANG (UNTERHALTSREINIGUNG)</h2><div class="hint">Bitte die vereinbarten Bereiche ankreuzen. Nicht angekreuzte Bereiche sind nicht Teil dieser Offerte.</div><table><tr><th class="ck"><th>Bereich<th>Enthaltene Reinigungsarbeiten<tr><td class="ck"><input type="checkbox"><td class="a">Küche<td>Reinigung aller Arbeitsflächen, der Spüle und Armaturen, des Kochfelds sowie der Küchenfronten und Geräte aussen.<tr><td class="ck"><input type="checkbox"><td class="a">Backofen &amp; Kühlschrank (innen)<td>Innenreinigung von Backofen und Kühlschrank nach Absprache.<tr><td class="ck"><input type="checkbox"><td class="a">Bad &amp; WC<td>Reinigung und Desinfektion von Dusche/Badewanne, Lavabo, WC, Armaturen, Spiegeln und Fliesen inklusive Entfernen von Kalkablagerungen an den Oberflächen.<tr><td class="ck"><input type="checkbox"><td class="a">Wohn- &amp; Schlafzimmer<td>Staubwischen aller zugänglichen Flächen, Möbel, Fensterbänke und Türen; Saugen und Wischen aller Böden.<tr><td class="ck"><input type="checkbox"><td class="a">Eingang, Flur &amp; Treppen<td>Saugen und Wischen von Eingangsbereich, Fluren und Treppenaufgängen sowie Abwischen von Türrahmen, Handläufen und Lichtschaltern.<tr><td class="ck"><input type="checkbox"><td class="a">Abfall<td>Leeren der Abfalleimer und Bereitstellen des Abfalls am vereinbarten Ort.<tr><td class="ck"><input type="checkbox"><td class="a">Fenster &amp; Storen<td>Fensterreinigung und Abwischen der Storen auf Wunsch und nach Absprache.<tr><td class="ck"><td class="a">Material &amp; Anfahrt<td>Sämtliche Anfahrtskosten sind inbegriffen. Reinigungsmittel und Geräte gemäss der oben gewählten Option.</table></div><div class="foot" data-p="Seite 1 von 2"></div></section><section data-g="2" class="page l"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="body later"><h2 style="margin-top:0">2. PREISZUSAMMENSTELLUNG</h2><div class="hint">Bitte das gewünschte Reinigungsintervall ankreuzen.</div><div class="price"><label><input type="checkbox"> Wöchentlich: Preis pro Reinigung (inkl. Anfahrt)</label><div><input value="ab CHF 0'000.-"></div><label><input type="checkbox"> Alle 2 Wochen: Preis pro Reinigung (inkl. Anfahrt)</label><div><input value="ab CHF 0'000.-"></div><label><input type="checkbox"> Monatlich: Preis pro Reinigung (inkl. Anfahrt)</label><div><input value="ab CHF 0'000.-"></div></div><h2>3. VERBINDLICHE BESTIMMUNGEN &amp; ZUSATZVEREINBARUNGEN</h2><div class="note "><div class="t">Hinweis zur Preisangabe und zur regelmässigen Reinigung:</div><p>Der angegebene Preis basiert auf Ihren Angaben im beigelegten Formular (Grösse und Zustand des Objekts) und gilt für das angekreuzte Reinigungsintervall.</p><ul><li><b>Termine:</b> Die Wunschtage und die Tageszeit werden gemeinsam festgelegt. Verschiebungen oder Absagen teilen Sie uns bitte so früh wie möglich mit.<li><b>Zutritt &amp; Haustiere:</b> Schlüssel bzw. Zutritt sowie der Umgang mit Haustieren im Haushalt werden vorab abgesprochen.<li><b>Änderungen:</b> Ändern sich Grösse, Intervall oder Leistungsumfang, passen wir den Preis angemessen an.<li><b>Transparente Absprache:</b> Eventuelle Preisänderungen werden ausnahmslos und immer vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</ul></div><h2>4. GARANTIEREGELUNG</h2><div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><ul><li>Falls Sie innerhalb von 48 Stunden nach Beendigung der Reinigung Mängel feststellen sollten, werden diese von uns umgehend und vollkommen <b>kostenlos nachgebessert</b>.</ul></div><h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2><div class="note info"><div class="t">Es gelten unsere Allgemeinen Geschäftsbedingungen (AGB):</div><p>Für diese Offerte und alle damit verbundenen Leistungen gelten die AGB von Mejstrik Transport &amp; Reinigung Service. Sie sind jederzeit abrufbar unter <b>www.mservice.ch/agb</b>. Mit der Unterschrift nimmt der Kunde diese Offerte an und bestätigt, die AGB zur Kenntnis genommen zu haben und zu akzeptieren.</p></div><div class="closing"><p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p><p style="margin-top:12pt"><b>Freundliche Grüsse</b></p><div class="sign"><div><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</div><div><div class="sml">Ort, Datum:</div><input><div class="sl sml">Bestätigung / Kundenunterschrift</div></div></div></div></div><div class="foot" data-p="Seite 2 von 2"></div></section><section data-g="3" class="page f" data-s="grund"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="title">OFFERTE</div><div class="sub">Grundreinigung</div><div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input></div><div><label>Gültigkeit:</label><input></div></div><div class="cr"></div><div class="win"><input id=grund_a1 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen auf Grundlage Ihrer Angaben im beigelegten Formular folgende Offerte für die einmalige Grundreinigung:</p><div class="contact"><label>Vorname:</label><input id="grund_v"><label class="m">Nachname:</label><input id="grund_n"><label>Telefon:</label><input><label class="m">E-Mail:</label><input><label>Objektadresse<br>(falls abweichend):</label><input class="w"><label>Anlass:</label><div class="cb"><label><input type="checkbox"> Frühjahrsputz</label><label><input type="checkbox"> Renovation / Umbau</label><label><input type="checkbox"> Neubau</label><label><input type="checkbox"> Periodisch</label></div><label></label><div class="cb"><label><input type="checkbox"> Sonstiges:</label><input></div></div><h2>1. UMFASSENDER LEISTUNGSUMFANG (EINMALIGE GRUNDREINIGUNG)</h2><div class="hint">Bitte die vereinbarten Bereiche ankreuzen. Nicht angekreuzte Bereiche sind nicht Teil dieser Offerte.</div><table><tr><th class="ck"><th>Bereich<th>Enthaltene Reinigungsarbeiten<tr><td class="ck"><input type="checkbox"><td class="a">Gesamtes Objekt<td>Komplette Grundreinigung aller nachfolgend aufgeführten Bereiche.<tr><td class="ck"><input type="checkbox"><td class="a">Fenster &amp; Fensterrahmen<td>Beidseitige Fensterreinigung inklusive Rahmen, Rillen und Fensterbänken, Entfernen hartnäckiger Verschmutzungen.<tr><td class="ck"><input type="checkbox"><td class="a">Storen &amp; Läden<td>Gründliches Abwischen aller Lamellenstoren, Rollläden und Klappläden.<tr><td class="ck"><input type="checkbox"><td class="a">Badezimmer &amp; WC<td>Intensive Reinigung, Entkalkung und Desinfektion von Dusche, Badewanne, Armaturen, Spiegeln, Fliesen, Fugen und Sanitäranlagen.<tr><td class="ck"><input type="checkbox"><td class="a">Küche &amp; Küchengeräte<td>Tiefenreinigung aller Küchenoberflächen, Schränke (innen/aussen), Kochfeld, Backofen, Dampfabzug, Geschirrspüler und Kühlschrank.<tr><td class="ck"><input type="checkbox"><td class="a">Wohn- &amp; Schlafzimmer<td>Gründliche Reinigung aller Böden, Türen, Fussleisten, Fensterbänke und Einbauschränke (innen), Saugen und Wischen aller Räume.<tr><td class="ck"><input type="checkbox"><td class="a">Balkon / Terrasse / Sitzplatz<td>Gründliche Reinigung von Balkon, Terrasse und Sitzplatz.<tr><td class="ck"><input type="checkbox"><td class="a">Keller / Estrich / Waschküche<td>Reinigung der Nebenräume inklusive Waschküche (Aussenreinigung von Waschmaschine &amp; Tumbler).<tr><td class="ck"><input type="checkbox"><td class="a">Nach Renovation / Neubau<td>Entfernen von Bauschmutz, Staub, Farb- und Gipsresten von allen Oberflächen (nur bei entsprechendem Anlass).<tr><td class="ck"><td class="a">Material &amp; Anfahrt<td>Inklusive aller professionellen Reinigungsmittel, Spezialgeräte, Maschinen sowie sämtlicher Anfahrts- und Transportkosten.</table></div><div class="foot" data-p="Seite 1 von 2"></div></section><section data-g="3" class="page l"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="body later"><h2 style="margin-top:0">2. PREISZUSAMMENSTELLUNG</h2><div class="price"><b>Pauschalpreis Grundreinigung (inkl. Material &amp; Anfahrt):</b><div class=big><input value="ab CHF 0'000.-"></div></div><h2>3. VERBINDLICHE BESTIMMUNGEN &amp; ZUSATZVEREINBARUNGEN</h2><div class="note "><div class="t">Hinweis zur Preisangabe und zum Verschmutzungsgrad:</div><p>Der angegebene Pauschalpreis basiert auf Ihren Angaben im beigelegten Formular, dem Zustand des Objekts zum Zeitpunkt der Besichtigung bzw. der Anfrage und den oben angekreuzten Bereichen.</p><ul><li><b>Verschmutzungsgrad:</b> Bei aussergewöhnlicher oder extremer Verschmutzung (z. B. starker Bauschmutz) behalten wir uns eine angemessene Preisanpassung vor.<li><b>Umfang:</b> Zusätzliche, nicht angekreuzte Bereiche werden nur nach vorheriger Absprache gereinigt.<li><b>Transparente Absprache:</b> Eventuelle Preisänderungen werden ausnahmslos und immer vor Beginn der Reinigungsarbeiten direkt mit dem Kunden besprochen und abgestimmt. Keine überraschenden Kosten!</ul></div><h2>4. GARANTIEREGELUNG</h2><div class="note ok"><div class="t">48-Stunden-Zufriedenheitsgarantie (Kostenlose Nachbesserung):</div><ul><li>Falls Sie innerhalb von 48 Stunden nach Beendigung der Reinigung Mängel feststellen sollten, werden diese von uns umgehend und vollkommen <b>kostenlos nachgebessert</b>.</ul></div><h2>5. ALLGEMEINE GESCHÄFTSBEDINGUNGEN (AGB)</h2><div class="note info"><div class="t">Es gelten unsere Allgemeinen Geschäftsbedingungen (AGB):</div><p>Für diese Offerte und alle damit verbundenen Leistungen gelten die AGB von Mejstrik Transport &amp; Reinigung Service. Sie sind jederzeit abrufbar unter <b>www.mservice.ch/agb</b>. Mit der Unterschrift nimmt der Kunde diese Offerte an und bestätigt, die AGB zur Kenntnis genommen zu haben und zu akzeptieren.</p></div><div class="closing"><p>Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf eine erfolgreiche Zusammenarbeit.</p><p style="margin-top:12pt"><b>Freundliche Grüsse</b></p><div class="sign"><div><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</div><div><div class="sml">Ort, Datum:</div><input><div class="sl sml">Bestätigung / Kundenunterschrift</div></div></div></div></div><div class="foot" data-p="Seite 2 von 2"></div></section></div></div>
+      <div class="zw"><div class="sc">
+        <section data-g="0" class="page f" data-s="umzug">
+          <div class="hd"><svg class="logo"><use href="#lg"/></svg></div>
+          <div class="title">OFFERTE</div><div class="sub">Umzugsreinigung</div>
+          <div class="meta"><div><label>Datum:</label><input></div><div><label>Offerten-Nr.:</label><input></div><div><label>Gültigkeit:</label><input></div></div>
+          <div class="win"><input id="umzug_a1" placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div>
+          <div class="body first">
+            <p class="intro">Vielen Dank für Ihre Anfrage. Gerne unterbreiten wir Ihnen folgende Offerte für die Umzugsreinigung:</p>
+            <div class="contact"><label>Vorname:</label><input id="umzug_v"><label class="m">Nachname:</label><input id="umzug_n"></div>
+          </div>
+        </section>
+      </div></div>
     </section>
-    <section class="view doc" id="v-rechnung" data-ty="doc" data-n="Rechnung"><div class="zw"><div class="sc"><section class="page f"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="title">RECHNUNG</div><div class="sub">Dienstleistungen</div><div class="meta"><div><label>Rechnungs-Nr.:</label><input></div><div><label>Datum:</label><input></div><div><label>Zahlbar bis:</label><input></div></div><div class="cr"></div><div class="win"><input id=rg_a1 placeholder="Firma (optional)"><input id=rg_a2 placeholder="Vorname Nachname"><input placeholder="Strasse &amp; Nr."><input placeholder="PLZ &amp; Ort"></div><div class="body first"><p class="intro">Vielen Dank für Ihren Auftrag. Gerne stellen wir Ihnen folgende Leistungen in Rechnung:</p><div class="contact"><label>Leistungsdatum:</label><input><label class="m">Offerten-Nr.:</label><input><label>Objektadresse:</label><input class="w"><label>Leistung:</label><div class="cb s"><label><input type="checkbox"> Umzugsreinigung</label><label><input type="checkbox"> Gebäudereinigung</label><label><input type="checkbox"> Unterhaltsreinigung</label><label><input type="checkbox"> Grundreinigung</label></div><label></label><div class="cb"><label><input type="checkbox"> Sonstiges:</label><input></div></div><h2>1. LEISTUNGEN</h2><table class="rt"><tr><th class="p">Pos.<th>Beschreibung<th class="r m">Menge<th class="e">Einheit<th class="r pr">Preis CHF<th class="r b">Betrag CHF<tr class="row"><td class="p">1<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">2<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">3<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">4<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">5<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">6<td><input value=""><td class="m"><input class="r" value=""><td class="e"><input list="u" value=""><td class="pr"><input class="r" value=""><td class="b"><input class="r"></tr><tr class="row"><td class="p">7<td><input value="48 Stunden Reklamationsfrist"><td class="m"><input class="r" value="1"><td class="e"><input list="u" value="Pauschal"><td class="pr"><input class="r" value="0.00"><td class="b"><input class="r"></tr></table><datalist id="u"><option value="Pauschal"><option value="Std."><option value="Stk."><option value="m²"><option value="km"></datalist><div class="two"><div><h2 class="t" style="margin-top:0">2. ZAHLUNG</h2><div class="pay"><label>Zahlbar innert:</label><input value="10 Tagen netto"><label>IBAN:</label><input><label>Zahlungsempfänger:</label><input value="Daniel Mejstrik"><label>Bank:</label><input><label>Bemerkung:</label><input></div></div><div><h2 class="t" style="margin-top:0">&nbsp;</h2><div class="tot"><div>Zwischensumme</div><input id=rg_zs class="r"><div>Rabatt (CHF)</div><input id=rg_rab><select id=rg_mw><option value="0">Keine MWST</option><option value="8.1">MWST 8.1 %</option><option value="2.6">MWST 2.6 %</option><option value="3.8">MWST 3.8 %</option></select><input id=rg_mwb class="r"><div class="sum"><b>Total CHF</b><input id=rg_tot class="r"></div></div></div></div><div class="ctr"><p>Bitte geben Sie bei der Zahlung die Rechnungsnummer an. Es gelten unsere Allgemeinen Geschäftsbedingungen: <b>www.mservice.ch/agb</b>.</p><p style="margin-top:6pt">Wir bedanken uns herzlich für Ihr Vertrauen und freuen uns auf die weitere Zusammenarbeit.</p><p style="margin-top:6pt"><b>Freundliche Grüsse</b></p><p style="margin-top:9pt"><b>Daniel Mejstrik</b><br>Mejstrik Transport &amp; Reinigung Service</p></div></div><div class="foot" data-p="Seite 1 von 1"></div></section></div></div></section>
-    <section class="view doc" id="v-quittung" data-ty="doc" data-n="Quittung"><div class="zw"><div class="sc"><section class="page q">
-<div class="hd"><svg class="logo"><use href="#lg"/></svg><div class="a"><b>M Transport &amp; Reinigung Service</b><span>Tel. +41 78 345 80 72 &middot; info@mservice.ch</span></div><div class="r">Mejstrik Transport &amp; Reinigung Service<br>8586 Ennetaach</div></div>
-<div class="qbar"><b>QUITTUNG</b><span>Zahlungsbestätigung</span></div>
-<h4>Angaben zur Zahlung</h4>
-<div class="row"><div class="f"><label>Quittung / Rechnung Nr.</label><input type="text" id="qt_nr"></div><div class="f"><label>Datum</label><input type="text" id="qt_date" placeholder="TT.MM.JJJJ"></div></div>
-<div class="row"><div class="f"><label>Vorname des Kunden</label><input type="text"></div><div class="f"><label>Nachname des Kunden</label><input type="text"></div></div>
-<div class="row"><div class="f"><label>Adresse des Objekts (Strasse, PLZ, Ort)</label><input type="text"></div></div>
-<div class="f" style="margin-bottom:12px"><label>Leistung</label></div>
-<div class="pay" style="margin-bottom:4px">
-<label><input type="checkbox"> Umzugsreinigung</label>
-<label><input type="checkbox"> Gebäudereinigung</label>
-<label><input type="checkbox"> Unterhaltsreinigung</label>
-<label><input type="checkbox"> Grundreinigung</label>
-<label><input type="checkbox"> Nachreinigung</label>
-<label><input type="checkbox"> Andere:&nbsp;<input type="text" style="width:90px;font-size:10pt"></label>
-</div>
-<h4>Betrag</h4>
-<div class="row"><div class="f" style="max-width:50%"><div class="amt"><span>CHF</span><input type="text" inputmode="decimal" id="qt_amt" placeholder="0.00"></div></div></div>
-<div class="row"><div class="f"><label>Betrag in Worten (automatisch, änderbar)</label><input type="text" id="qt_wd"></div></div>
-<h4>Zahlungsart</h4>
-<div class="pay">
-<label><input type="checkbox"> Bar</label>
-<label><input type="checkbox"> TWINT</label>
-<label><input type="checkbox"> Banküberweisung</label>
-<label><input type="checkbox"> QR-Rechnung</label>
-<label><input type="checkbox"> Karte</label>
-<label><input type="checkbox"> Andere:&nbsp;<input type="text" style="width:90px;font-size:10pt"></label>
-</div>
-<p class="txt" style="margin-top:26px">Der oben genannte Betrag wurde vollständig bezahlt. Mejstrik Transport &amp; Reinigung Service bestätigt hiermit den Erhalt der Zahlung. Mit dieser Quittung ist die genannte Rechnung beglichen.</p>
-<div class="sig">
-<div><div class="d"><input type="text" id="qt_od1" placeholder="Ort, Datum"></div><div class="ln2"></div><small>Unterschrift Mejstrik Transport &amp; Reinigung Service</small></div>
-<div><div class="d"><input type="text" id="qt_od2" placeholder="Ort, Datum"></div><div class="ln2"></div><small>Unterschrift Kunde (Zahlung bestätigt)</small></div>
-</div>
-<div class="ft">Mejstrik Transport &amp; Reinigung Service &middot; Ennetaach &middot; Tel. +41 78 345 80 72 &middot; info@mservice.ch &middot; www.mservice.ch</div>
-</section></div></div></section>
-    <section class="view doc" id="v-rapport" data-ty="doc" data-n="Arbeitsrapport"><div class="zw"><div class="sc"><section class="page l"><div class="hd"><svg class="logo"><use href="#lg"/></svg></div><div class="body later"><div class="dt">ARBEITSRAPPORT</div><div class="ds">Erfassung der geleisteten Arbeitsstunden</div><div class="hdr"><label>Mitarbeiterin:</label><input class="w"><label>Monat / Jahr:</label><input><label class="m">Lohn CHF/h:</label><input id=rp_rate></div><table class="rp"><tr><th class="d">Datum<th>Kunde / Einsatzort<th class="r tm">Beginn<th class="r tm">Ende<th class="r tm">Pause (Min.)<th class="r hh">Stunden<tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr><tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="07:30"><td class="tm"><input class="r" placeholder="16:00"><td class="tm"><input class="r" placeholder="30"><td class="hh"><input class="r"></tr></table><div class="sum2"><div class="nt">Pro Einsatz eine Zeile (bei geteilten Einsätzen mehrere Zeilen). Uhrzeiten z. B. 07:30; Pause in Minuten (unbezahlt). Die Stunden werden automatisch berechnet und können überschrieben werden. Der Rapport wird täglich geführt und vom Arbeitgeber mindestens 5 Jahre aufbewahrt. Entschädigungen nach Vertrag Ziffer 5 werden in der Lohnabrechnung zusätzlich ausgewiesen.</div><div class="tt"><div>Total Stunden</div><input id=rp_tot><div class="big"><b>Bruttolohn CHF</b><input id=rp_lohn></div></div></div><div class="sg3"><div class="box"><div class="k">Arbeitnehmerin</div><div class="r2"><label>Datum:</label><input></div><div class="ln2"></div><div class="sm">Unterschrift</div></div><div class="box"><div class="k">Arbeitgeber (geprüft)</div><div class="r2"><label>Datum:</label><input></div><div class="ln2"></div><div class="sm">Daniel Mejstrik · Unterschrift</div></div></div></div><div class="foot" data-p="Seite 1 von 1"></div></section></div></div></section>
-    <section class="view" id="v-buch" data-ty="buch" data-n="Buchhaltung"><div class="top"><div class="in"><svg class="logo"><use href="#lg"/></svg><div class="brand"><b>M Transport &amp; Reinigung Service</b><span>Buchhaltung <span class="yy"></span></span></div>
-<div class="act noprint"><button id="p-one" type="button">Dieses Blatt as PDF</button><button id="p-all" type="button" class="pri">Alles als PDF</button><button id="b-save" type="button">Daten sichern</button><label class="btn" style="display:inline-block">Daten laden<input id="b-load" type="file" accept=".json,application/json" hidden></label></div></div>
-<div class="tabs noprint"><button data-t="s-ue" class="on">Übersicht</button><button data-t="s-ein">Einnahmen</button><button data-t="s-aus">Ausgaben</button><button data-t="s-lohn">Löhne / Aushilfe</button><button data-t="s-rg">Offene Rechnungen</button></div></div>
-<div class="wrap"><div class="warnbox" id="wb">Der Browser kann hier nichts speichern. Bitte regelmässig „Daten sichern“ verwenden.</div>
-<table class="pw"><thead><tr><td><div class="ph"><svg class="logo"><use href="#lg"/></svg><div><b>M Transport &amp; Reinigung Service</b><span>Ennetaach CH-8586 · Tel. +41 78 345 80 72 · info@mservice.ch</span></div><div class="r2">Mejstrik Transport &amp; Reinigung Service<br>Buchhaltung <span class="yy"></span></div></div></td></tr></thead><tbody><tr><td>
-<section class="sec on first" id="s-ue"><div class="pt">Übersicht <span class="yy"></span></div><h1>Übersicht <span class="yy"></span></h1>
-<div class="hint">Rechnet automatisch. Nur aktive (zaškrtnuté) položky se započítávají do zisku.</div>
-<div class="bar2 noprint"><label for="year">Jahr:</label><input id="year" type="number" min="2000" max="2099" step="1" style="width:90px"></div>
-<div class="kpi"><div><small>Einnahmen</small><b id="k-e"></b></div><div><small>Ausgaben (Inkl. Löhne)</small><b id="k-a"></b></div><div class="g"><small>Gewinn / Verlust</small><b id="k-g"></b></div><div class="r"><small>Offene Rechnungen</small><b id="k-o"></b></div></div>
-<div class="hint" style="margin-top:4px">Davon überfällig: CHF <span id="k-ov"></span></div>
-<h2>Monatsübersicht</h2><table class="mt"><thead><tr><th>Monat</th><th class="r">Einnahmen CHF</th><th class="r">Ausgaben CHF</th><th class="r">Gewinn / Verlust CHF</th><th class="bc"></th></tr></thead><tbody id="tb-mon"></tbody></table>
-<h2>Einnahmen nach Kategorie</h2><table><thead><tr><th>Kategorie</th><th class="r">Betrag CHF</th><th class="r">Anteil</th></tr></thead><tbody id="tb-ce"></tbody></table>
-<h2>Ausgaben nach Kategorie</h2><table><thead><tr><th>Kategorie</th><th class="r">Betrag CHF</th><th class="r">Anteil</th></tr></thead><tbody id="tb-ca"></tbody></table>
-<div class="note">Einfache Einnahmen-Ausgaben-Rechnung nach Art. 957 OR. Belege 10 Jahre aufbewahren (Art. 958f OR).</div></section>
 
-<section class="sec" id="s-ein"><div class="pt">Einnahmen <span class="yy"></span></div><h1>Einnahmen <span class="yy"></span></h1><div class="hint">Inaktive Zeilen (uncheck) werden nicht in die Buchhaltung und den Gewinn eingerechnet.</div>
-<div class="bar2 noprint"><label for="f-ein">Anzeigen:</label><select id="f-ein"></select></div>
-<table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:90px">Datum</th><th style="width:110px">Beleg / Nr.</th><th style="width:140px">Kunde</th><th>Beschreibung</th><th style="width:160px">Kategorie</th><th class="r" style="width:100px">Betrag CHF</th><th style="width:120px">Zahlungsart</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-ein"></tbody><tfoot><tr class="tot"><td colspan="6">Total CHF (nur aktive)</td><td class="r" id="tt-ein"></td><td colspan="2"></td></tr></tfoot></table>
-</section>
+    <!-- RECHNUNG -->
+    <section class="view doc" id="v-rechnung" data-ty="doc" data-n="Rechnung">
+      <div class="zw"><div class="sc">
+        <section class="page f">
+          <div class="cust-toolbar noprint">
+            <span>Kundenkartei / Zákazník:</span>
+            <button type="button" onclick="openCustModal('rechnung')">Aus Kartotik wählen</button>
+          </div>
+          <div class="hd"><svg class="logo"><use href="#lg"/></svg></div>
+          <div class="title">RECHNUNG</div>
+          <div class="meta">
+            <div><label>Rechnungs-Nr.:</label><input id="rg_num" onchange="autoFormatDocNum('rechnung')"></div>
+            <div><label>Datum:</label><input></div>
+          </div>
+          <div class="win">
+            <input id="rg_a2" placeholder="Vorname Nachname / Firma" onchange="autoFormatDocNum('rechnung')">
+            <input id="rg_addr" placeholder="Strasse &amp; Nr.">
+            <input id="rg_city" placeholder="PLZ &amp; Ort">
+          </div>
+          <div class="body first">
+            <h2>1. LEISTUNGEN</h2>
+            <table class="rt">
+              <tr><th>Pos.<th>Beschreibung<th class="r">Menge<th class="r">Preis CHF<th class="r">Betrag CHF
+              <tr class="row"><td>1<td><input value="Reinigungsservice"><td class="m"><input class="r" value="1"><td class="pr"><input class="r" value="0.00"><td class="b"><input class="r">
+            </table>
+          </div>
+        </section>
+      </div></div>
+    </section>
 
-<section class="sec" id="s-aus"><div class="pt">Ausgaben <span class="yy"></span></div><h1>Ausgaben <span class="yy"></span></h1><div class="hint">Jeden getätigten Ausgabenbetrag eintragen. Löhne fliessen automatisch hierhin.</div>
-<div class="bar2 noprint"><label for="f-aus">Anzeigen:</label><select id="f-aus"></select></div>
-<table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:90px">Datum</th><th style="width:170px">Empfänger / Personal / Grund</th><th style="width:160px">Kategorie</th><th class="r" style="width:100px">Betrag CHF</th><th style="width:140px">Zahlungsart</th><th>Beschreibung</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-aus"></tbody><tfoot><tr class="tot"><td colspan="4">Total CHF (nur aktive)</td><td class="r" id="tt-aus"></td><td colspan="3"></td></tr></tfoot></table>
-</section>
+    <!-- QUITTUNG -->
+    <section class="view doc" id="v-quittung" data-ty="doc" data-n="Quittung">
+      <div class="zw"><div class="sc">
+        <section class="page q">
+          <div class="cust-toolbar noprint">
+            <span>Kundenkartei / Zákazník:</span>
+            <button type="button" onclick="openCustModal('quittung')">Aus Kartotik wählen</button>
+          </div>
+          <div class="hd"><svg class="logo"><use href="#lg"/></svg><div class="a"><b>M Transport &amp; Reinigung Service</b></div></div>
+          <div class="qbar"><b>QUITTUNG</b></div>
+          <div class="row" style="margin-top:15px">
+            <div class="f"><label>Quittung Nr.</label><input type="text" id="qt_nr" onchange="autoFormatDocNum('quittung')"></div>
+            <div class="f"><label>Kunde (Name)</label><input type="text" id="qt_cust" onchange="autoFormatDocNum('quittung')"></div>
+          </div>
+        </section>
+      </div></div>
+    </section>
 
-<section class="sec" id="s-lohn"><div class="pt">Löhne / Aushilfe <span class="yy"></span></div><h1>Löhne &amp; Aushilfe (Aushilfslohn)</h1><div class="hint">Wählen Sie pro Person die anfallenden Abzüge aus. Die Sätze (% Arbeitnehmeranteil) lassen sich hier anpassen:</div>
+    <!-- RAPPORT (Mířen pouze na jednoho zákazníka + Tlačítko kartotéky) -->
+    <section class="view doc" id="v-rapport" data-ty="doc" data-n="Rapport">
+      <div class="zw"><div class="sc">
+        <section class="page l">
+          <div class="cust-toolbar noprint">
+            <span>Kunde (Zákazník):</span>
+            <button type="button" onclick="openCustModal('rapport')">Kundenkartei (Vybrat zákazníka)</button>
+          </div>
+          <div class="hd"><svg class="logo"><use href="#lg"/></svg></div>
+          <div class="body later">
+            <div class="dt">ARBEITSRAPPORT</div>
+            <div class="ds">Arbeitsrapport für Kunden (Jeden Rapport pro Kunde)</div>
+            <div class="hdr" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;background:var(--l);padding:8px;border:1px solid var(--bd);margin-bottom:10px;">
+              <div><label><b>Kunde (Zákazník):</b></label><input id="rp_cust_name" style="font-weight:bold;"></div>
+              <div><label><b>Adresse / Objekt:</b></label><input id="rp_cust_addr"></div>
+              <div><label>Mitarbeiterin:</label><input class="w"></div>
+              <div><label>Monat / Jahr:</label><input placeholder="MM / JJJJ"></div>
+            </div>
+            <table class="rp">
+              <tr><th class="d">Datum<th>Arbeiten / Beschreibung<th class="r tm">Beginn<th class="r tm">Ende<th class="r hh">Stunden
+              <tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="08:00"><td class="tm"><input class="r" placeholder="12:00"><td class="hh"><input class="r">
+              <tr class="row"><td class="d"><input placeholder="TT.MM."><td><input><td class="tm"><input class="r" placeholder="13:00"><td class="tm"><input class="r" placeholder="17:00"><td class="hh"><input class="r">
+            </table>
+          </div>
+        </section>
+      </div></div>
+    </section>
 
-<div class="deduct-grid noprint">
- <div><label>AHV/IV/EO (%):</label><input id="rate-ahv" type="number" step="0.01" value="5.15"></div>
- <div><label>ALV (%):</label><input id="rate-alv" type="number" step="0.01" value="0.15"></div>
- <div><label>ALV2 (%):</label><input id="rate-alv2" type="number" step="0.01" value="0.00"></div>
- <div><label>NBU (%):</label><input id="rate-nbu" type="number" step="0.01" value="0.00"></div>
- <div><label>KTG (%):</label><input id="rate-ktg" type="number" step="0.01" value="0.00"></div>
- <div><label>BVG (%):</label><input id="rate-bvg" type="number" step="0.01" value="0.00"></div>
-</div>
+    <!-- BUCHHALTUNG -->
+    <section class="view" id="v-buch" data-ty="buch" data-n="Buchhaltung">
+      <div class="top"><div class="in"><svg class="logo"><use href="#lg"/></svg><div class="brand"><b>M Transport &amp; Reinigung Service</b><span>Buchhaltung <span class="yy"></span></span></div>
+      <div class="act noprint"><button id="p-one" type="button">Dieses Blatt drucken</button><button id="p-all" type="button" class="pri">Alles drucken</button><button id="b-save" type="button">Daten sichern</button><label class="btn" style="display:inline-block">Daten laden<input id="b-load" type="file" accept=".json,application/json" hidden></label></div></div>
+      <div class="tabs noprint"><button data-t="s-ue" class="on">Übersicht</button><button data-t="s-ein">Einnahmen</button><button data-t="s-aus">Ausgaben</button><button data-t="s-lohn">Löhne / Aushilfe</button><button data-t="s-rg">Offene Rechnungen</button></div></div>
+      <div class="wrap"><div class="warnbox" id="wb">Der Browser kann hier nichts speichern. Bitte regelmässig „Daten sichern“ verwenden.</div>
+      <table class="pw"><thead><tr><td><div class="ph"><svg class="logo"><use href="#lg"/></svg><div><b>M Transport &amp; Reinigung Service</b></div></div></td></tr></thead>
+      <tbody><tr><td>
+        <section class="sec on first" id="s-ue"><div class="pt">Übersicht <span class="yy"></span></div><h1>Übersicht <span class="yy"></span></h1>
+        <div class="kpi"><div><small>Einnahmen</small><b id="k-e">0.00</b></div><div><small>Ausgaben</small><b id="k-a">0.00</b></div><div class="g"><small>Gewinn</small><b id="k-g">0.00</b></div><div class="r"><small>Offen</small><b id="k-o">0.00</b></div></div>
+        <h2>Monatsübersicht</h2><table class="mt"><thead><tr><th>Monat</th><th class="r">Einnahmen CHF</th><th class="r">Ausgaben CHF</th><th class="r">Gewinn CHF</th></tr></thead><tbody id="tb-mon"></tbody></table>
+        </section>
+      </td></tr></tbody></table></div>
+    </section>
 
-<div class="bar2 noprint"><label for="f-lohn">Anzeigen:</label><select id="f-lohn"></select></div>
-<table class="lst"><thead><tr><th class="c" style="width:35px">Aktiv</th><th style="width:85px">Datum</th><th style="width:130px">Name Person</th><th style="width:120px">Funktion</th><th class="r" style="width:90px">Brutto CHF</th><th class="c" style="width:190px">Abzüge (AHV/ALV/NBU...)</th><th class="r" style="width:90px">Netto CHF</th><th style="width:100px">Zahlart</th><th class="dl" style="width:100px">Aktion</th></tr></thead><tbody id="tb-lohn"></tbody><tfoot><tr class="tot"><td colspan="4">Total Bruttolohn / Ausgaben CHF (nur aktive)</td><td class="r" id="tt-lohn"></td><td colspan="4"></td></tr></tfoot></table>
-</section>
-
-<section class="sec" id="s-rg"><div class="pt">Offene Rechnungen <span class="yy"></span></div><h1>Offene Rechnungen</h1><div class="hint">Mit dem Datum „Bezahlt am“ gilt sie als bezahlt. Zahlungseingang zusätzlich unter „Einnahmen“ erfassen.</div>
-<div class="bar2 noprint"><label for="days">Zahlungsfrist (Tage):</label><input id="days" type="number" min="0" max="365" style="width:80px"></div>
-<table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:110px">Rechnungs-Nr.</th><th style="width:90px">Datum</th><th>Kunde</th><th class="r" style="width:100px">Betrag CHF</th><th style="width:90px">Zahlbar bis</th><th style="width:90px">Bezahlt am</th><th style="width:90px">Status</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-rg"></tbody></table></section>
-</td></tr></tbody></table></div>
-
-<div id="lohn-print-area"></div></section>
-    <section class="view" id="v-set" data-ty="set" data-n="Einstellungen"><div class="st">
-      <h2>Meine Unterschrift</h2>
-      <div class="card">
-        <div class="prev" id="st_prev"></div>
-        <div class="btns"><button type="button" class="b pri" id="st_sig">Unterschrift erfassen</button><button type="button" class="b" id="st_del">Löschen</button></div>
-        <p class="hn">Automatisch einfügen bei:</p>
-        <label class="sw"><span>Quittung (Mejstrik)</span><input type="checkbox" id="au_quittung"></label>
-        <label class="sw"><span>Arbeitsrapport (Arbeitgeber)</span><input type="checkbox" id="au_rapport"></label>
-        <label class="sw"><span>Offerte (über dem Namen)</span><input type="checkbox" id="au_offerte"></label>
-        <label class="sw"><span>Rechnung (über dem Namen)</span><input type="checkbox" id="au_rechnung"></label>
+    <!-- OPTIONEN -->
+    <section class="view" id="v-set" data-ty="set" data-n="Einstellungen">
+      <div style="padding:20px;max-width:500px;margin:0 auto;">
+        <h2>Einstellungen</h2>
+        <p>Aplikace je nyní plně dostupná i na PC i na mobilních zařízeních.</p>
       </div>
-      <h2>Standardwerte</h2>
-      <div class="card">
-        <label class="sw nb"><span>Datum automatisch (heute)</span><input type="checkbox" id="st_date"></label>
-        <label class="fl">Ort (für „Ort, Datum“)<input type="text" id="st_ort" autocomplete="off" placeholder="z. B. Ennetaach"></label>
-        <label class="fl">IBAN (Rechnung)<input type="text" id="st_iban" autocomplete="off" placeholder="CH00 0000 0000 0000 0000 0"></label>
-        <label class="fl">Bank (Rechnung)<input type="text" id="st_bank" autocomplete="off"></label>
-        <label class="fl">Stundenlohn CHF/h (Arbeitsrapport)<input type="text" id="st_rate" inputmode="decimal" autocomplete="off"></label>
-        <p class="hn" style="margin-top:12px">Die Werte werden nur in leere Felder eingetragen und bleiben auf diesem Gerät gespeichert.</p>
-      </div>
-    </div></section>
+    </section>
   </main>
+
   <nav class="tab" id="tab">
     <button data-go="v-home" class="on"><svg><use href="#ic-home"/></svg>Start</button>
     <button data-go="v-offerte"><svg><use href="#ic-offerte"/></svg>Offerte</button>
@@ -315,714 +349,136 @@ linear-gradient(#C9CED6,#C9CED6) 100% 100%/3mm .4pt,linear-gradient(#C9CED6,#C9C
     <button data-go="v-set"><svg><use href="#ic-set"/></svg>Optionen</button>
   </nav>
 </div>
-<div class="sheet" id="busy" hidden><div><h3>PDF wird erstellt &hellip;</h3></div></div>
-<div class="sheet" id="ready" hidden><div><h3 id="rname">PDF bereit</h3>
-  <button id="rshare">Drucken / Teilen / In Dateien sichern</button>
-  <button id="ropen">PDF &ouml;ffnen</button><button class="c" id="rclose">Schliessen</button></div></div>
-<script>var CALC={};</script><script>(function(){document.querySelectorAll('[data-s]').forEach(function(p){var s=p.dataset.s,t={},g=function(k){return document.getElementById(s+'_'+k)},v=function(k){return g(k)?g(k).value.trim():''},a=g('a1'),b=g('a2');
-[a,b].forEach(function(e){e.oninput=function(){t[e.id]=1}});
-function f(){var n=(v('v')+' '+v('n')).trim();if(g('f')){if(!t[a.id])a.value=v('f');if(!t[b.id])b.value=n}else if(!t[a.id])a.value=n}
-['v','n','f'].forEach(function(k){if(g(k))g(k).oninput=f})});
-})();</script><script>(function(){var V=document.getElementById('v-rechnung');function n(s){s=String(s||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(/[.,][-–]+$/,'').replace(',','.');var x=parseFloat(s);return isNaN(x)?0:x}
-function f(x){return x.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function g(i){return document.getElementById('rg_'+i)}
-function c(){var t=0;V.querySelectorAll('.rt tr.row').forEach(function(r){var i=r.querySelectorAll('input'),p=i[3].value.trim(),m=i[1].value.trim(),a=i[4];if(!a.dataset.man)a.value=p===''?'':f(n(p)*(m===''?1:n(m)));t+=n(a.value)});
-var zs=g('zs'),mb=g('mwb'),to=g('tot');if(!zs.dataset.man)zs.value=f(t);
-var base=n(zs.value)-n(g('rab').value),rt=parseFloat(g('mw').value);
-if(!mb.dataset.man)mb.value=rt?f(base*rt/100):'';
-if(!to.dataset.man)to.value=f(Math.round((base+n(mb.value))*20)/20)}
-function rs(){['zs','mwb','tot'].forEach(function(k){g(k).dataset.man=''})}
-function mn(e,after){e.addEventListener('input',function(){e.dataset.man=e.value.trim()===''?'':'1';after.forEach(function(k){g(k).dataset.man=''});c()})}
-V.querySelectorAll('.rt tr.row').forEach(function(r){var i=r.querySelectorAll('input'),a=i[4];
-[i[1],i[3]].forEach(function(e){e.addEventListener('input',function(){a.dataset.man='';rs();c()})});
-a.addEventListener('input',function(){a.dataset.man=a.value.trim()===''?'':'1';rs();c()})});
-['rab','mw'].forEach(function(k){g(k).addEventListener('input',function(){rs();c()});g(k).addEventListener('change',function(){rs();c()})});
-mn(g('zs'),['mwb','tot']);mn(g('mwb'),['tot']);mn(g('tot'),[]);
-V.querySelectorAll('input,select').forEach(function(e){e.addEventListener('input',c);e.addEventListener('change',c)});
-c();;CALC.rechnung=c;
-})();</script><script>(function(){var V=document.getElementById('v-rapport');function g(i){return document.getElementById('rp_'+i)}
-function n(s){s=String(s||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(/[.,][-–]+$/,'').replace(',','.');var x=parseFloat(s);return isNaN(x)?0:x}
-function f(x){return x.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function tm(s){var m=String(s||'').replace(/\s/g,'').match(/^(\d{1,2})(?:[:.,hH]?(\d{2}))?$/);if(!m)return null;var h=+m[1],i=+(m[2]||0);return h>24||i>59?null:h*60+i}
-function c(){var t=0;V.querySelectorAll('.rp tr.row').forEach(function(r){var i=r.querySelectorAll('input'),a=i[5],b=tm(i[2].value),e=tm(i[3].value);
-if(!a.dataset.man){if(b===null||e===null)a.value='';else{if(e<b)e+=1440;var d=(e-b-n(i[4].value))/60;a.value=f(Math.max(0,d))}}t+=n(a.value)});
-var T=g('tot'),R=g('rate'),L=g('lohn');if(!T.dataset.man)T.value=t?f(t):'';
-if(!L.dataset.man)L.value=n(T.value)&&n(R.value)?f(n(T.value)*n(R.value)):''}
-V.querySelectorAll('.rp tr.row').forEach(function(r){var i=r.querySelectorAll('input'),a=i[5];
-[i[2],i[3],i[4]].forEach(function(e){e.addEventListener('input',function(){a.dataset.man='';g('tot').dataset.man='';g('lohn').dataset.man='';c()})});
-a.addEventListener('input',function(){a.dataset.man=a.value.trim()===''?'':'1';g('tot').dataset.man='';g('lohn').dataset.man='';c()})});
-g('rate').addEventListener('input',function(){g('lohn').dataset.man='';c()});
-[['tot','lohn'],['lohn','']].forEach(function(k){g(k[0]).addEventListener('input',function(){g(k[0]).dataset.man=g(k[0]).value.trim()===''?'':'1';if(k[1])g(k[1]).dataset.man='';c()})});
-c();;CALC.rapport=c;
-})();</script><script>(function(){
-var U=["null","ein","zwei","drei","vier","fünf","sechs","sieben","acht","neun","zehn","elf","zwölf","dreizehn","vierzehn","fünfzehn","sechzehn","siebzehn","achtzehn","neunzehn"];
-var T=["","","zwanzig","dreissig","vierzig","fünfzig","sechzig","siebzig","achtzig","neunzig"];
-function b100(n){if(n<20)return U[n];var e=n%10,t=Math.floor(n/10);return e?U[e]+"und"+T[t]:T[t]}
-function b1000(n){var h=Math.floor(n/100),r=n%100,s="";if(h)s+=U[h]+"hundert";if(r)s+=b100(r);return s}
-function words(n){if(n===0)return"null";var s="",m=Math.floor(n/1000000),k=Math.floor(n/1000)%1000,r=n%1000;
-if(m)s+=(m===1?"eine Million":b1000(m)+" Millionen")+" ";if(k)s+=b1000(k)+"tausend";if(r)s+=b1000(r);return s.trim()}
-var a=document.getElementById('qt_amt'),d=document.getElementById('qt_wd');
-function pv(){return parseFloat(a.value.replace(/['’\s]/g,"").replace(",","."))}
-function w(){if(d.dataset.man)return;var v=pv();if(isNaN(v)||v<=0||v>=1e9){d.value="";return}
-var c=Math.round(v*100),f=Math.floor(c/100),r=c%100,t=words(f);if(f===1)t="ein";
-d.value=t.charAt(0).toUpperCase()+t.slice(1)+" Franken"+(r?" und "+b100(r)+" Rappen":"")}
-function fm(){var v=pv();if(!isNaN(v))a.value=v.toFixed(2);w()}
-a.addEventListener('input',w);a.addEventListener('blur',fm);
-d.addEventListener('input',function(){d.dataset.man=d.value?1:''});
-w();CALC.quittung=w;
-})();</script>
-<script>(function(){
-var K='mservice_buchhaltung_v1',
-CE=['Umzugsreinigung','Gebäudereinigung','Unterhaltsreinigung','Grundreinigung','Transport & Umzug','Sonstige Einnahmen'],
-CA=['Löhne & Aushilfshilfe','Material & Reinigungsmittel','Benzin & Transport','Geräte & Maschinen','Werbung & Website','Telefon & Internet','Versicherungen & Gebühren','Büro & Software','Sonstige Ausgaben'],
-PAY=['Bar','TWINT','Banküberweisung','Karte','Pauschal / Eigenverbrauch','Privat bezahlt'],
-MON=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
-S={year:2026,days:10,rates:{ahv:5.15,alv:0.15,alv2:0,nbu:0,ktg:0,bvg:0},ein:[],aus:[],lohn:[],rg:[]},ok=true;
 
-function g(i){return document.getElementById(i)}
-function el(t,a,c){var e=document.createElement(t);for(var k in a||{}){if(k==='text')e.textContent=a[k];else if(k==='cls')e.className=a[k];else e.setAttribute(k,a[k])}(c||[]).forEach(function(x){e.appendChild(x)});return e}
-function n(s){s=String(s||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(/[.,][-–]+$/,'').replace(',','.');var x=parseFloat(s);return isNaN(x)?0:x}
-function f(x){return x.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2})}
-function load(){try{var s=localStorage.getItem(K);if(s){var o=JSON.parse(s);for(var k in o)S[k]=o[k];if(!S.rates)S.rates={ahv:5.15,alv:0.15,alv2:0,nbu:0,ktg:0,bvg:0}}}catch(e){ok=false}}
-function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){ok=false}g('wb').style.display=ok?'none':'block'}
-
-var LST={
- ein:{tb:'tb-ein',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['nr','Beleg / Nr.','text'],['who','Kunde','text'],['desc','Beschreibung','text'],['cat','Kategorie',CE],['amt','Betrag CHF','amt'],['pay','Zahlungsart',PAY]]},
- aus:{tb:'tb-aus',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['who','Empfänger / Personal / Grund','text'],['cat','Kategorie',CA],['amt','Betrag CHF','amt'],['pay','Zahlungsart',PAY],['desc','Beschreibung','text']]},
- lohn:{tb:'tb-lohn',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['who','Name Person','text'],['desc','Funktion','text'],['amt','Brutto CHF','amt'],['deductionSet','Abzüge','deduct_select'],['netto','Netto CHF','calc_netto'],['pay','Zahlart',PAY]]},
- rg:{tb:'tb-rg',cols:[['act','Aktiv','check_act'],['nr','Rechnungs-Nr.','text'],['d','Datum','date'],['who','Kunde','text'],['amt','Betrag CHF','amt'],['due','Zahlbar bis','calc'],['paid','Bezahlt am','date'],['st','Status','calc']]}
-};
-
-function ps(c,r,pd){
-  var v=r[c[0]]||'';
-  if(c[2]==='date'&&v)v=v.slice(8,10)+'.'+v.slice(5,7)+'.'+v.slice(0,4);
-  pd.textContent=v;
-}
-
-function emptyRow(r){
-  for(var k in r){
-    if(k==='act') continue;
-    if(typeof r[k]==='object' && r[k]!==null){
-      for(var sub in r[k]) if(r[k][sub]) return false;
-    } else if(r[k]!==''&&r[k]!==false&&r[k]!==undefined) return false;
-  }
-  return true;
-}
-
-function sortData(key){
-  var a = S[key];
-  if(!a) return;
-  var filled = a.filter(function(r){ return !emptyRow(r); });
-  var empty = a.filter(function(r){ return emptyRow(r); });
-  filled.sort(function(x, y){
-    var dx = x.d || '', dy = y.d || '';
-    if (!dx && !dy) return 0;
-    if (!dx) return 1;
-    if (!dy) return -1;
-    return dx.localeCompare(dy);
-  });
-  S[key] = filled.concat(empty);
-}
-
-function getDeductDetails(r){
-  var gross = n(r.amt);
-  var set = r.deductionSet || {};
-  var res = { total: 0, items: [] };
-  var keys = ['ahv','alv','alv2','nbu','ktg','bvg'];
-  var names = {ahv:'AHV/IV/EO', alv:'ALV', alv2:'ALV2', nbu:'NBU', ktg:'KTG', bvg:'BVG'};
-
-  keys.forEach(function(k){
-    if(set[k]){
-      var rate = parseFloat(S.rates[k]) || 0;
-      var val = gross * (rate / 100);
-      res.total += val;
-      res.items.push({ key: k, name: names[k], rate: rate, val: val });
-    }
-  });
-  res.netto = gross - res.total;
-  return res;
-}
-
-function updateDeductSummaryText(r){
-  var details = getDeductDetails(r);
-  if(!details.items || details.items.length === 0) return 'Keine (befreit)';
-  return details.items.map(function(it){ return it.name; }).join(', ');
-}
-
-function mk(key,r){
- var L=LST[key],tr=el('tr'),cells={};
- if(r.act===undefined) r.act = true;
-
- if(!r.act) tr.classList.add('inactive');
-
- L.cols.forEach(function(c){
-  var td=el('td',{'data-l':c[1]}),inp,pd=null;
-  if(c[2]==='check_act'){
-    inp=el('input',{type:'checkbox'});
-    inp.checked = !!r.act;
-    td.className = 'c';
-  }
-  else if(c[2]==='calc'||c[2]==='calc_netto'){
-    inp=el('span',{cls:c[0]==='st'?'':'cc'});
-    if(c[2]==='calc_netto'){
-      inp.textContent = f(getDeductDetails(r).netto);
-      td.className = 'r';
-    }
-    td.appendChild(inp);
-    if(c[0]==='due')td.className='cd';
-  }
-  else if(c[2]==='deduct_select'){
-    inp = el('div',{cls:'deduct-checkboxes',style:'display:flex;gap:4px;flex-wrap:wrap;font-size:10px'});
-    if(!r.deductionSet) r.deductionSet = {};
-    var dKeys = ['ahv','alv','nbu','ktg','bvg'];
-    dKeys.forEach(function(dk){
-      var lbl = el('label',{style:'cursor:pointer'},[
-        el('input',{type:'checkbox'}),
-        el('span',{text:dk.toUpperCase()})
-      ]);
-      var cb = lbl.querySelector('input');
-      cb.checked = !!r.deductionSet[dk];
-      cb.addEventListener('change',function(){
-        r.deductionSet[dk] = cb.checked;
-        if(tr._c && tr._c.netto) tr._c.netto.textContent = f(getDeductDetails(r).netto);
-        if(tr._c && tr._c.deductSummary) tr._c.deductSummary.textContent = updateDeductSummaryText(r);
-        save(); refresh();
-      });
-      inp.appendChild(lbl);
-    });
-    var deductSummary = el('span',{cls:'print-deduct-summary',text:updateDeductSummaryText(r)});
-    td.appendChild(deductSummary);
-    cells['deductSummary'] = deductSummary;
-  }
-  else if(Array.isArray(c[2])){
-    inp=el('select');
-    inp.appendChild(el('option',{value:'',text:'\u00a0'}));
-    c[2].forEach(function(o){inp.appendChild(el('option',{value:o,text:o}))});
-    inp.value=r[c[0]]||'';
-  }
-  else{
-    inp=el('input',{type:c[2]==='date'?'date':'text'});
-    if(c[2]==='amt'){inp.setAttribute('inputmode','decimal');inp.className='r';td.className='r'}
-    inp.value=r[c[0]]||'';
-    if(c[2]==='text')inp.setAttribute('autocomplete','off');
-  }
-
-  if(c[2]!=='calc'&&c[2]!=='calc_netto'&&c[2]!=='deduct_select'){
-   var h=function(){
-    if(c[2]==='check_act'){
-      r.act = inp.checked;
-      tr.classList.toggle('inactive', !r.act);
-    } else {
-      r[c[0]] = inp.value;
-    }
-    if(key==='lohn'&&tr._c&&tr._c.netto){
-      tr._c.netto.textContent = f(getDeductDetails(r).netto);
-    }
-    if(c[2]!=='check_act') ps(c,r,pd);
-    grow(key);
-    save();
-    refresh();
-   };
-   inp.addEventListener('input',h);
-   inp.addEventListener('change',function(){
-    if(c[2]==='check_act'){
-      r.act = inp.checked;
-      tr.classList.toggle('inactive', !r.act);
-    } else {
-      r[c[0]] = inp.value;
-    }
-    if(c[2]!=='check_act') ps(c,r,pd);
-    grow(key);
-    sortData(key);
-    build(key);
-    save();
-    refresh();
-   });
-   if(c[2]==='amt')inp.addEventListener('blur',function(){if(String(inp.value).trim()!==''){inp.value=f(n(inp.value));r[c[0]]=inp.value;ps(c,r,pd);save();refresh()}})}
-  cells[c[0]]=inp;
-  td.appendChild(inp);
-  if(c[2]!=='calc'&&c[2]!=='calc_netto'&&c[2]!=='check_act'&&c[2]!=='deduct_select'){
-    pd=el('span',{cls:'pd'});td.appendChild(pd);cells[c[0]+'_p']=pd;ps(c,r,pd);
-  }
-  tr.appendChild(td);
- });
-
- var d=el('td',{cls:'dl'});
- if(key==='lohn'){
-   var btnPrint=el('button',{cls:'btn-sm',type:'button',text:'📄 Abrechnung'});
-   btnPrint.addEventListener('click',function(){ printLohnabrechnung(r); });
-   d.appendChild(btnPrint);
- }
- var x=el('button',{cls:'x',type:'button',title:'Zeile löschen','aria-label':'Zeile löschen',text:'×'});
- x.addEventListener('click',function(){var i=S[key].indexOf(r);S[key].splice(i,1);tr.remove();grow(key);save();refresh()});
- d.appendChild(x);
- tr.appendChild(d);
- tr._r=r;tr._c=cells;return tr;
-}
-
-function grow(key){
-  var a=S[key],tb=g(LST[key].tb);
-  if(!a) return;
-  if(!a.length||!emptyRow(a[a.length-1])){var r={act:true};a.push(r);tb.appendChild(mk(key,r))}
-}
-
-function build(key){
- var activeEl = document.activeElement;
- var activeData = null;
- if (activeEl && activeEl.tagName && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'SELECT')) {
-   var tr = activeEl.closest('tr');
-   if (tr && tr._r) {
-     activeData = {
-       row: tr._r,
-       key: Object.keys(tr._c).find(function(k){ return tr._c[k] === activeEl; })
-     };
-   }
- }
- var tb=g(LST[key].tb);
- if(!tb) return;
- tb.innerHTML='';
- (S[key]||[]).forEach(function(r){tb.appendChild(mk(key,r))});
- grow(key);
- if (activeData) {
-   Array.prototype.forEach.call(tb.children, function(tr){
-     if (tr._r === activeData.row && activeData.key && tr._c[activeData.key]) {
-       tr._c[activeData.key].focus();
-     }
-   });
- }
-}
-
-function inY(d){return d&&String(d).slice(0,4)===String(S.year)}
-
-function refresh(){
- var Y=S.year;g('year').value=Y;
- document.querySelectorAll('.yy').forEach(function(e){e.textContent=Y});
- var me=Array(12).fill(0),ma=Array(12).fill(0),ce={},ca={},te=0,ta=0;
- CE.forEach(function(c){ce[c]=0});CA.forEach(function(c){ca[c]=0});
-
- S.ein.forEach(function(r){
-   if(r.act!==false && inY(r.d)){
-     var v=n(r.amt);
-     var m=+r.d.slice(5,7)-1;if(m>=0&&m<12)me[m]+=v;te+=v;if(ce[r.cat]!==undefined)ce[r.cat]+=v
-   }
- });
- 
- S.aus.forEach(function(r){
-   if(r.act!==false && inY(r.d)){
-     var v=n(r.amt);
-     var m=+r.d.slice(5,7)-1;if(m>=0&&m<12)ma[m]+=v;ta+=v;if(ca[r.cat]!==undefined)ca[r.cat]+=v
-   }
- });
- 
- (S.lohn||[]).forEach(function(r){
-   if(r.act!==false && !emptyRow(r) && inY(r.d)){
-     var v=n(r.amt);
-     var m=+r.d.slice(5,7)-1;if(m>=0&&m<12)ma[m]+=v;ta+=v;
-     ca['Löhne & Aushilfshilfe'] = (ca['Löhne & Aushilfshilfe']||0) + v;
-   }
- });
-
- ['ein','aus','lohn','rg'].forEach(function(key){
-  var tb=g(LST[key].tb),fl=g('f-'+key)?g('f-'+key).value:'',sum=0;
-  if(!tb) return;
-  Array.prototype.forEach.call(tb.children,function(tr){
-   var r=tr._r,emp=emptyRow(r),show=true;
-   if(key!=='rg'){if(fl&&r.d&&r.d.slice(5,7)!==fl)show=false;if(fl&&r.d&&!inY(r.d))show=false}
-   tr.style.display=show?'':'none';tr.classList.toggle('empty',emp);
-   if(key!=='rg')tr.classList.toggle('warn',!!r.d&&!inY(r.d));
-   if(show&&!emp&&r.act!==false)sum+=n(r.amt);
-   if(key==='rg'){
-    var due='',st='';if(r.d){var dt=new Date(r.d+'T00:00:00');dt.setDate(dt.getDate()+S.days);due=dt.toISOString().slice(0,10)}
-    tr._c.due.textContent=due?due.slice(8,10)+'.'+due.slice(5,7)+'.'+due.slice(0,4):'';
-    var s=!emp&&(r.nr||r.amt)?(r.paid?'bezahlt':(due&&new Date()>new Date(due+'T23:59:59')?'überfällig':'offen')):'';
-    tr._c.st.innerHTML='';if(s)tr._c.st.appendChild(el('span',{cls:'st '+s.replace('ü','ue').replace('ä','ae'),text:s}));tr._rs=s
-   }
-  });
-  var t=g('tt-'+key);if(t)t.textContent=f(sum);
- });
-
- var open=0,over=0;S.rg.forEach(function(r){if(r.act!==false&&!emptyRow(r)&&!r.paid){var v=n(r.amt);open+=v;var dt=r.d?new Date(r.d+'T00:00:00'):null;if(dt){dt.setDate(dt.getDate()+S.days);if(new Date()>new Date(dt.toISOString().slice(0,10)+'T23:59:59'))over+=v}}});
- g('k-e').textContent=f(te);g('k-a').textContent=f(ta);g('k-g').textContent=f(te-ta);g('k-o').textContent=f(open);
- g('k-ov').textContent=f(over);
- var mx=Math.max.apply(null,me.concat(ma).concat([1])),h='';
- for(var m=0;m<12;m++)h+='<tr><td><b>'+MON[m]+'</b></td><td class="r">'+f(me[m])+'</td><td class="r">'+f(ma[m])+'</td><td class="r"><b>'+f(me[m]-ma[m])+'</b></td><td class="bc" style="width:26%"><div class="bar"><i class="e" style="width:'+(me[m]/mx*100)+'%"></i></div><div class="bar"><i class="a" style="width:'+(ma[m]/mx*100)+'%"></i></div></td></tr>';
- h+='<tr class="tot"><td>Total</td><td class="r">'+f(te)+'</td><td class="r">'+f(ta)+'</td><td class="r">'+f(te-ta)+'</td><td class="bc"></td></tr>';
- g('tb-mon').innerHTML=h;
- function cat(id,obj,tot){var h='',s=0,k;for(k in obj){s+=obj[k];h+='<tr><td>'+k.replace(/&/g,'&amp;')+'</td><td class="r">'+f(obj[k])+'</td><td class="r">'+(tot?Math.round(obj[k]/tot*100):0)+' %</td></tr>'}
-  var o=tot-s;h+='<tr><td><i>Ohne Kategorie</i></td><td class="r" style="'+(Math.abs(o)>0.004?'color:#C0392B;font-weight:bold':'')+'">'+f(o)+'</td><td class="r">'+(tot?Math.round(o/tot*100):0)+' %</td></tr><tr class="tot"><td>Total</td><td class="r">'+f(tot)+'</td><td></td></tr>';g(id).innerHTML=h}
- cat('tb-ce',ce,te);cat('tb-ca',ca,ta);
-}
-
-function fillMon(id){var s=g(id);if(!s) return;s.appendChild(el('option',{value:'',text:'Alle Monate'}));MON.forEach(function(m,i){s.appendChild(el('option',{value:('0'+(i+1)).slice(-2),text:m}))});s.addEventListener('change',refresh)}
-function tab(id){document.querySelectorAll('.sec').forEach(function(s){s.classList.toggle('on',s.id===id)});document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.t===id)});window.scrollTo(0,0)}
-
-function printLohnabrechnung(r){
-  var gross = n(r.amt);
-  var deductInfo = getDeductDetails(r);
-  var dateStr = r.d ? (r.d.slice(8,10)+'.'+r.d.slice(5,7)+'.'+r.d.slice(0,4)) : new Date().toLocaleDateString('de-CH');
-
-  var deductRowsHTML = '';
-  if(deductInfo.items.length === 0){
-    deductRowsHTML = `<tr><td style="padding:6px;border-bottom:1px solid #eee">Sozialversicherungen Abzüge</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right">Befreit / Keine</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right">0.00</td></tr>`;
-  } else {
-    deductInfo.items.forEach(function(it){
-      deductRowsHTML += `<tr>
-        <td style="padding:6px;border-bottom:1px solid #eee">${it.name} Abzug</td>
-        <td style="padding:6px;border-bottom:1px solid #eee;text-align:right">${it.rate.toFixed(2)} %</td>
-        <td style="padding:6px;border-bottom:1px solid #eee;text-align:right;color:#C0392B">- ${f(it.val)}</td>
-      </tr>`;
-    });
-  }
-
-  var html = `
-    <div style="max-width:680px;margin:0 auto;border:1px solid #ccc;padding:20px;background:#fff;color:#000;font-family:Arial,sans-serif">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1E3A6D;padding-bottom:10px;margin-bottom:15px">
-        <div>
-          <h2 style="color:#1E3A6D;margin:0;font-size:16px">Mejstrik Transport & Reinigung Service</h2>
-          <p style="font-size:11px;color:#555;margin-top:2px">Ennetaach CH-8586 · Tel. +41 78 345 80 72 · info@mservice.ch</p>
-        </div>
-        <div style="text-align:right">
-          <h3 style="margin:0;color:#F57C00;font-size:15px">LOHNABRECHNUNG</h3>
-          <p style="font-size:11px;margin-top:2px"><b>Datum:</b> ${dateStr}</p>
-        </div>
-      </div>
-
-      <table style="width:100%;margin-bottom:15px;font-size:12px;border:0">
-        <tr><td style="width:130px"><b>Arbeitnehmer/in:</b></td><td>${r.who || '--------------------'}</td></tr>
-        <tr><td><b>Einsatz / Funktion:</b></td><td>${r.desc || 'Aushilfseinsatz / Reinigung / Transport'}</td></tr>
-        <tr><td><b>Auszahlungsart:</b></td><td>${r.pay || 'Bar / Überweisung'}</td></tr>
-      </table>
-
-      <table style="width:100%;border-collapse:collapse;margin-bottom:20px;font-size:12px">
-        <thead>
-          <tr style="background:#1E3A6D;color:#fff">
-            <th style="padding:6px;text-align:left">Bezeichnung</th>
-            <th style="padding:6px;text-align:right">Satz / Hinweis</th>
-            <th style="padding:6px;text-align:right">Betrag CHF</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding:6px;border-bottom:1px solid #eee"><b>Bruttolohn / Entschädigung</b></td>
-            <td style="padding:6px;border-bottom:1px solid #eee;text-align:right">Aushilfe</td>
-            <td style="padding:6px;border-bottom:1px solid #eee;text-align:right"><b>${f(gross)}</b></td>
-          </tr>
-          ${deductRowsHTML}
-          <tr style="background:#F4F7FB;font-weight:bold;font-size:13px">
-            <td style="padding:8px;border-top:2px solid #1E3A6D" colspan="2">Nettolohn / Auszahlung CHF</td>
-            <td style="padding:8px;border-top:2px solid #1E3A6D;text-align:right;color:#1F7A44">${f(deductInfo.netto)}</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div style="font-size:10px;color:#666;margin-bottom:30px;line-height:1.3">
-        * Abrechnung gemäss den gesetzlichen Bestimmungen. Die Abzüge entsprechen den ausgewählten Beitragsarten.
-      </div>
-
-      <div style="display:flex;justify-content:space-between;margin-top:40px;font-size:11px">
-        <div style="width:45%;border-top:1px solid #000;padding-top:4px;text-align:center">
-          Unterschrift Arbeitgeber
-        </div>
-        <div style="width:45%;border-top:1px solid #000;padding-top:4px;text-align:center">
-          Unterschrift Arbeitnehmer/in (Empfangsbestätigung)
-        </div>
-      </div>
+<!-- Modal Dialog pro Kartotéku Zákazníků -->
+<div id="cust-modal" hidden>
+  <div class="box">
+    <div class="hdr">
+      <h3>Kartotéka zákazníků</h3>
+      <button type="button" onclick="closeCustModal()" style="background:none;border:0;color:#fff;font-size:18px;cursor:pointer">&times;</button>
     </div>
-  `;
+    <div class="bdy">
+      <button class="btn-add" onclick="addNewCustomerPrompt()">+ Přidat nového zákazníka</button>
+      <ul id="cust-list"></ul>
+    </div>
+  </div>
+</div>
 
-  var printArea = g('lohn-print-area');
-  printArea.innerHTML = html;
-  document.body.classList.add('print-lohn');
-  window.print();
-  setTimeout(function(){
-    document.body.classList.remove('print-lohn');
-    printArea.innerHTML = '';
-  }, 300);
+<script>
+/* Kartotéka zákazníků & Paměť fakturaci */
+var DB_CUST_KEY = 'mservice_customers';
+var DB_DOC_COUNTER = 'mservice_doc_counters';
+
+function getCustomers() {
+  try { return JSON.parse(localStorage.getItem(DB_CUST_KEY)) || []; } catch(e) { return []; }
+}
+function saveCustomers(data) {
+  localStorage.setItem(DB_CUST_KEY, JSON.stringify(data));
+}
+function getCounters() {
+  try { return JSON.parse(localStorage.getItem(DB_DOC_COUNTER)) || {}; } catch(e) { return {}; }
+}
+function saveCounters(data) {
+  localStorage.setItem(DB_DOC_COUNTER, JSON.stringify(data));
 }
 
-function pr(id){var s=id?g(id):null;document.body.classList.toggle('only',!!id);document.querySelectorAll('.sec').forEach(function(x){x.classList.toggle('prt',x===s)});
- document.querySelectorAll('.sec').forEach(function(x){x.classList.remove('first')});
- if(!id){document.querySelector('.sec').classList.add('first')}
- setTimeout(function(){window.print()},60)}
-window.addEventListener('afterprint',function(){document.body.classList.remove('only');document.querySelectorAll('.sec').forEach(function(x){x.classList.remove('prt','first')})});
+var activeTargetDoc = '';
 
-function backup(){var b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),a=el('a',{href:URL.createObjectURL(b),download:'Buchhaltung_'+S.year+'_Sicherung.json'});document.body.appendChild(a);a.click();a.remove()}
-function restore(file){var r=new FileReader();r.onload=function(){try{var o=JSON.parse(r.result);if(!o||!Array.isArray(o.ein))throw 1;if(!confirm('Die aktuellen Daten werden durch die Sicherung ersetzt. Fortfahren?'))return;S=Object.assign({year:2026,days:10,rates:{ahv:5.15,alv:0.15,alv2:0,nbu:0,ktg:0,bvg:0},ein:[],aus:[],lohn:[],rg:[]},o);['ein','aus','lohn','rg'].forEach(function(k){ sortData(k); build(k); });save();refresh()}catch(e){alert('Die Datei ist keine gültige Sicherung.')}};r.readAsText(file)}
+function openCustModal(targetDoc) {
+  activeTargetDoc = targetDoc;
+  renderCustList();
+  document.getElementById('cust-modal').hidden = false;
+}
+function closeCustModal() {
+  document.getElementById('cust-modal').hidden = true;
+}
 
-document.addEventListener('DOMContentLoaded',function(){
- load();
- if(!S.lohn) S.lohn = [];
- if(!S.rates) S.rates = {ahv:5.15,alv:0.15,alv2:0,nbu:0,ktg:0,bvg:0};
- 
- var rateKeys = ['ahv','alv','alv2','nbu','ktg','bvg'];
- rateKeys.forEach(function(rk){
-   var inp = g('rate-'+rk);
-   if(inp){
-     inp.value = S.rates[rk] !== undefined ? S.rates[rk] : 0;
-     inp.addEventListener('input',function(){
-       S.rates[rk] = parseFloat(this.value) || 0;
-       save(); refresh(); build('lohn');
-     });
-   }
- });
+function renderCustList() {
+  var list = document.getElementById('cust-list');
+  list.innerHTML = '';
+  var custs = getCustomers();
+  if (custs.length === 0) {
+    list.innerHTML = '<li style="justify-content:center;color:#777">Žádní zákazníci v kartotéce</li>';
+    return;
+  }
+  custs.forEach(function(c, idx) {
+    var li = document.createElement('li');
+    li.innerHTML = '<div><b>' + c.name + '</b><br><small>' + (c.addr || '') + ' ' + (c.city || '') + '</small></div>' +
+                   '<button onclick="selectCustomer(' + idx + '); event.stopPropagation();" style="padding:4px 8px;background:var(--b);color:#fff;border:0;border-radius:4px">Vybrat</button>';
+    li.onclick = function() { selectCustomer(idx); };
+    list.appendChild(li);
+  });
+}
 
- ['ein','aus','lohn','rg'].forEach(function(k){ sortData(k); build(k); });
- fillMon('f-ein');fillMon('f-aus');fillMon('f-lohn');
- 
- g('year').addEventListener('input',function(){var v=parseInt(this.value,10);if(v>1999&&v<2100){S.year=v;save();refresh()}});
- g('days').value=S.days||10;g('days').addEventListener('input',function(){S.days=parseInt(this.value,10)||0;save();refresh()});
+function addNewCustomerPrompt() {
+  var name = prompt("Jméno a příjmení zákazníka / Firma:");
+  if (!name) return;
+  var addr = prompt("Ulice a č.p.:") || "";
+  var city = prompt("PSČ a Město:") || "";
+  var custs = getCustomers();
+  custs.push({ name: name, addr: addr, city: city });
+  saveCustomers(custs);
+  renderCustList();
+}
 
- document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){tab(b.dataset.t)})});
- g('p-all').addEventListener('click',function(){pr(null)});g('p-one').addEventListener('click',function(){pr(document.querySelector('.sec.on').id)});
- g('b-save').addEventListener('click',backup);g('b-load').addEventListener('change',function(){if(this.files[0])restore(this.files[0]);this.value=''});
- refresh();save();
-});
+function selectCustomer(idx) {
+  var c = getCustomers()[idx];
+  if (!c) return;
+  if (activeTargetDoc === 'rapport') {
+    document.getElementById('rp_cust_name').value = c.name;
+    document.getElementById('rp_cust_addr').value = (c.addr + ' ' + c.city).trim();
+  } else if (activeTargetDoc === 'rechnung') {
+    document.getElementById('rg_a2').value = c.name;
+    document.getElementById('rg_addr').value = c.addr;
+    document.getElementById('rg_city').value = c.city;
+    autoFormatDocNum('rechnung');
+  } else if (activeTargetDoc === 'quittung') {
+    document.getElementById('qt_cust').value = c.name;
+    autoFormatDocNum('quittung');
+  }
+  closeCustModal();
+}
 
-})();</script><script>(function(){
-var $=function(i){return document.getElementById(i)},Q=function(s,r){return [].slice.call((r||document).querySelectorAll(s))},T='msm_',HASH='5a145966d919002c07ec8df4a7ac8a3acbba6b8e44759bbfaf84d2173f9d70c4',SALT='msv-app-';
-function sha256(ascii){function rr(v,a){return(v>>>a)|(v<<(32-a))}var mp=Math.pow,mw=mp(2,32),L='length',i,j,r='',w=[],bl=ascii[L]*8,h=sha256.h=sha256.h||[],k=sha256.k=sha256.k||[],pc=k[L],ic={};
-for(var c=2;pc<64;c++){if(!ic[c]){for(i=0;i<313;i+=c)ic[i]=c;h[pc]=(mp(c,.5)*mw)|0;k[pc++]=(mp(c,1/3)*mw)|0}}
-ascii=unescape(encodeURIComponent(ascii))+'\x80';while(ascii[L]%64-56)ascii+='\x00';
-for(i=0;i<ascii[L];i++){j=ascii.charCodeAt(i);w[i>>2]|=j<<((3-i)%4)*8}
-w[w[L]]=(bl/mw)|0;w[w[L]]=bl;
-for(j=0;j<w[L];){var x=w.slice(j,j+=16),oh=h;h=h.slice(0,8);
-for(i=0;i<64;i++){var w15=x[i-15],w2=x[i-2],a=h[0],e=h[4];
-var t1=h[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&h[5])^((~e)&h[6]))+k[i]+(x[i]=(i<16)?x[i]:(x[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+x[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
-var t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&h[1])^(a&h[2])^(h[1]&h[2]));
-h=[(t1+t2)|0].concat(h);h[4]=(h[4]+t1)|0}
-for(i=0;i<8;i++)h[i]=(h[i]+oh[i])|0}
-for(i=0;i<8;i++)for(j=3;j+1;j--){var b=(h[i]>>(j*8))&255;r+=((b<16)?0:'')+b.toString(16)}
-return r}
-/* logos */
-function svgLogo(){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 420 376');s.innerHTML='<use href="#lg"/>';return s}
-Q('[data-lg]').forEach(function(s){var im=new Image();im.alt='';im.onerror=function(){im.replaceWith(svgLogo())};im.src='logo.PNG';s.appendChild(im)});
-var pi=new Image();pi.onerror=function(){try{var cv=document.createElement('canvas');cv.width=cv.height=180;var x=cv.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,180,180);
-var u='data:image/svg+xml;charset=utf-8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 376" width="420" height="376">'+$('lg').innerHTML+'</svg>'),im=new Image();
-im.onload=function(){x.drawImage(im,15,22,150,134);$('ati').href=cv.toDataURL('image/png')};im.src=u}catch(e){}};pi.src='logo.PNG';
-/* PIN lock */
-var pin='',lb=false;
-function dots(){Q('#dots i').forEach(function(d,i){d.classList.toggle('on',i<pin.length)})}
-function cd(){var u=+localStorage.getItem(T+'u')||0,s=Math.ceil((u-Date.now())/1000);if(s>0){$('lmsg').textContent='Gesperrt – bitte '+s+' s warten';lb=true;setTimeout(cd,500)}else{if(lb)$('lmsg').textContent='PIN eingeben';lb=false}}
-function press(d){if(lb||pin.length>=4)return;pin+=d;dots();if(pin.length==4)setTimeout(chk,120)}
-function chk(){if(sha256(SALT+pin)===HASH){localStorage.removeItem(T+'f');localStorage.removeItem(T+'u');unlock()}else{
-var f=(+localStorage.getItem(T+'f')||0)+1;localStorage.setItem(T+'f',f);$('dots').classList.add('bad');setTimeout(function(){$('dots').classList.remove('bad')},400);
-if(f>=5){localStorage.setItem(T+'u',Date.now()+Math.min(3600,30*Math.pow(2,f-5))*1000);cd()}else $('lmsg').textContent='Falscher PIN ('+(5-f)+' Versuche)';pin='';dots()}}
-var pad=$('pad');'123456789'.split('').concat(['e','0','x']).forEach(function(k){var b=document.createElement('button');b.type='button';b.className=k=='e'||k=='x'?k:'';var LT={2:'ABC',3:'DEF',4:'GHI',5:'JKL',6:'MNO',7:'PQRS',8:'TUV',9:'WXYZ'};b.innerHTML=k=='x'?'<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5h11a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H9l-6-7z"/><path d="M13 9.5l5 5M18 9.5l-5 5"/></svg>':(k=='e'?'':'<span>'+k+'</span><small>'+(LT[k]||'')+'</small>');
-b.onclick=function(){if(k=='x'){pin=pin.slice(0,-1);dots()}else if(k!='e')press(k)};pad.appendChild(b)});
-document.addEventListener('keydown',function(e){if(!$('lock').hidden){if(/^\d$/.test(e.key))press(e.key);else if(e.key=='Backspace'){pin=pin.slice(0,-1);dots()}}});
-function unlock(){$('lock').hidden=true;$('app').hidden=false;pin='';dots();$('lmsg').textContent='PIN eingeben';show('v-home')}
-function lock(){if(document.activeElement)document.activeElement.blur();$('app').hidden=true;$('lock').hidden=false;pin='';dots();cd()}
-var hid=0;document.addEventListener('visibilitychange',function(){if(document.hidden)hid=Date.now();else if(hid&&Date.now()-hid>30000&&!$('app').hidden)lock()});
-$('lk').onclick=lock;cd();
-/* navigation */
-var cur=$('v-home');
-function show(id){cur=$(id);Q('.view').forEach(function(v){v.classList.toggle('on',v===cur)});Q('#tab button').forEach(function(b){b.classList.toggle('on',b.dataset.go===id)});
-$('app').dataset.t=cur.dataset.ty;$('ttl').textContent=cur.dataset.n;cur.scrollTop=0;fit(cur);pg()}
-Q('[data-go]').forEach(function(b){b.onclick=function(){show(b.dataset.go)}});
-/* zoom & fit (A4 = 794px) */
-function fit(v){if(!v||!v.classList.contains('doc')||!v.classList.contains('on'))return;var sc=Q('.sc',v)[0],zw=Q('.zw',v)[0],base=(v.clientWidth-6)/794,s=base*(v._z||1);
-sc.style.transform='scale('+s+')';zw.style.width=794*s+'px';zw.style.height=sc.offsetHeight*s+'px';v._s=s;v._b=base}
-function zoom(v,z,cx,cy){var o=v._s;v._z=Math.max(1,Math.min(3.5,z));fit(v);if(cx!=null){var r=v._s/o;v.scrollLeft=(v.scrollLeft+cx)*r-cx;v.scrollTop=(v.scrollTop+cy)*r-cy}}
-$('zi').onclick=function(){zoom(cur,(cur._z||1)*1.3)};$('zo').onclick=function(){zoom(cur,(cur._z||1)/1.3)};
-Q('.doc').forEach(function(v){var d0=0,z0=1;function d(e){var a=e.touches[0],b=e.touches[1];return Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)}
-v.addEventListener('touchstart',function(e){if(e.touches.length==2){d0=d(e);z0=v._z||1}},{passive:true});
-v.addEventListener('touchmove',function(e){if(e.touches.length==2&&d0){e.preventDefault();var r=v.getBoundingClientRect();zoom(v,z0*d(e)/d0,(e.touches[0].clientX+e.touches[1].clientX)/2-r.left,(e.touches[0].clientY+e.touches[1].clientY)/2-r.top)}},{passive:false});
-v.addEventListener('touchend',function(e){if(e.touches.length<2)d0=0},{passive:true})});
-window.addEventListener('resize',function(){fit(cur)});window.addEventListener('orientationchange',function(){setTimeout(function(){fit(cur); window.scrollTo(0,0);},250)});
-/* Offerte: type switch */
-var vo=$('v-offerte');
-function og(n){Q('.page',vo).forEach(function(p){p.hidden=p.dataset.g!=n;p.classList.remove('plast')});var l=Q('.page',vo).filter(function(p){return!p.hidden}).pop();if(l)l.classList.add('plast');
-Q('#seg button').forEach(function(b){b.classList.toggle('on',b.dataset.g==n)});localStorage.setItem(T+'og',n);fit(vo)}
-Q('#seg button').forEach(function(b){b.onclick=function(){og(b.dataset.g);vo.scrollTop=0}});
-['v-rechnung','v-quittung','v-rapport'].forEach(function(i){Q('.page',$(i)).forEach(function(p){p.classList.add('plast')})});
-/* autosave of document forms */
-var DV=['v-offerte','v-rechnung','v-quittung','v-rapport'],tm;function st(i){return i=='v-rapport'?localStorage:sessionStorage}
-function ser(v){return Q('input,select',v).map(function(e){return[e.type=='checkbox'?+e.checked:e.value,e.dataset.man||'']})}
-function des(v,a){var l=Q('input,select',v);a.forEach(function(x,i){var e=l[i];if(!e)return;if(e.type=='checkbox')e.checked=!!x[0];else e.value=x[0];if(x[1])e.dataset.man=x[1]})}
-function sv(){clearTimeout(tm);tm=setTimeout(function(){try{DV.forEach(function(i){st(i).setItem(T+i,JSON.stringify(ser($(i))))})}catch(e){}},300)}
-DV.forEach(function(i){var v=$(i);try{var s=st(i).getItem(T+i);if(s)des(v,JSON.parse(s))}catch(e){}v.addEventListener('input',sv);v.addEventListener('change',sv)});
-Object.keys(CALC).forEach(function(k){CALC[k]()});
-og(+localStorage.getItem(T+'og')||0);
-$('rs').onclick=function(){var v=cur;if(!confirm('Dieses Formular zurücksetzen? Alle Eingaben werden gelöscht.'))return;
-Q('input,select',v).forEach(function(e){if(e.type=='checkbox')e.checked=e.defaultChecked;else if(e.tagName=='SELECT')Q('option',e).forEach(function(o){o.selected=o.defaultSelected});else e.value=e.defaultValue;delete e.dataset.man});
-var k=v.id.replace('v-','');if(CALC[k])CALC[k]();st(v.id).removeItem(T+v.id);fit(v)};
-/* print / PDF */
-function pg(){}
-var pdfFile,blobUrl,NM={'v-offerte':'Offerte','v-rechnung':'Rechnung','v-quittung':'Quittung','v-rapport':'Arbeitsrapport'};
-function lib(){if(window.jspdf&&window.html2canvas)return Promise.resolve();return new Promise(function(res,rej){var n=0;['html2canvas/1.4.1/html2canvas.min.js','jspdf/2.5.1/jspdf.umd.min.js'].forEach(function(u){var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/'+u;s.onload=function(){if(++n==2)res()};s.onerror=function(){rej(new Error('lib'))};document.head.appendChild(s)})})}
-function svgFull(w,h){return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 376" width="'+w+'" height="'+h+'">'+$('lg').innerHTML+'</svg>'}
-function busy(o){$('busy').hidden=!o}
-function fail(e){busy(false);var m=e&&(e.message||e);alert(m&&m!=='lib'?'PDF-Fehler: '+m:'PDF konnte nicht erstellt werden. Bitte Internetverbindung prüfen (nur beim ersten Mal nötig).')}
-function ready(pdf,name){var bl=pdf.output('blob');pdfFile=new File([bl],name,{type:'application/pdf'});blobUrl=URL.createObjectURL(bl);$('rname').textContent=name;busy(false);$('ready').hidden=false}
-$('rshare').onclick=function(){if(navigator.canShare&&navigator.canShare({files:[pdfFile]}))navigator.share({files:[pdfFile],title:pdfFile.name}).catch(function(){});else window.open(blobUrl,'_blank')};
-$('ropen').onclick=function(){window.open(blobUrl,'_blank')};$('rclose').onclick=function(){$('ready').hidden=true};
-function shot(p){var vid=p.closest('.view').id;p.setAttribute('data-pdf','1');
-return html2canvas(p,{scale:2,backgroundColor:'#fff',logging:false,windowWidth:900,windowHeight:1300,onclone:function(d){
-var v=d.getElementById(vid),t=d.querySelector('[data-pdf]');v.style.cssText='position:static;overflow:visible;display:block';
-d.getElementById('app').style.cssText='position:static;display:block';d.querySelector('.main').style.overflow='visible';
-d.documentElement.style.cssText=d.body.style.cssText='overflow:visible;height:auto';
-d.querySelector('#'+vid+' .sc').style.cssText='position:static;transform:none;width:794px';d.querySelector('#'+vid+' .zw').style.cssText='width:794px;height:auto;margin:0';
-t.hidden=false;t.removeAttribute('data-pdf');[].forEach.call(t.querySelectorAll('.cr'),function(c){c.style.background='none';[['left','top'],['right','top'],['left','bottom'],['right','bottom']].forEach(function(p){[[11,1],[1,11]].forEach(function(z){var b=d.createElement('div');b.style.cssText='position:absolute;background:#C9CED6;width:'+z[0]+'px;height:'+z[1]+'px;'+p[0]+':0;'+p[1]+':0';c.appendChild(b)})})});
-var o=Q('input,select',p),k=[].slice.call(t.querySelectorAll('input,select'));
-o.forEach(function(e,i){var c=k[i];if(!c)return;if(e.type=='checkbox')c.checked=e.checked;else{c.value=e.value;c.setAttribute('value',e.value)}if(e.tagName=='SELECT')c.selectedIndex=e.selectedIndex;if(e.type!='checkbox'&&e.value===e.defaultValue&&/^ab CHF 0.000/.test(e.value)){c.value='';c.setAttribute('value','')}c.removeAttribute('placeholder')});
-var st=d.createElement('style');st.textContent='.win input{border-bottom:0!important}input:focus{background:none!important}';d.head.appendChild(st);
-[].forEach.call(d.querySelectorAll('svg.logo'),function(s){s.setAttribute('viewBox','0 0 420 376');s.innerHTML=$('lg').innerHTML})}
-}).then(function(c){p.removeAttribute('data-pdf');return c})}
-function mkPdf(pages,name){busy(true);lib().then(function(){var pdf=new window.jspdf.jsPDF({unit:'mm',format:'a4',compress:true}),i=0;
-function next(){if(i>=pages.length){ready(pdf,name);return}return shot(pages[i]).then(function(c){if(i)pdf.addPage();pdf.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,210,297);i++;return next()})}
-return next()}).catch(fail)}
-function pagesOf(ids,all){var r=[];ids.forEach(function(i){Q('.page',$(i)).forEach(function(p){if(all||!p.hidden)r.push(p)})});return r}
-function doPrint(){var d=new Date().toISOString().slice(0,10),n=NM[cur.id],x='';
-if(cur.id=='v-offerte')n+='_'+Q('#seg button.on')[0].textContent;
-else if(cur.id=='v-rechnung')x=Q('.meta input',cur)[0].value;else if(cur.id=='v-quittung')x=Q('input',cur)[0].value;else x=Q('.hdr input',cur)[1].value;
-mkPdf(pagesOf([cur.id]),(n+(x?'_'+x:'')+'_'+d).replace(/[^\w.-]+/g,'_')+'.pdf')}
-$('pr').onclick=doPrint;
-function esc(x){return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-function buchHtml(ids){var S=JSON.parse(localStorage.getItem('mservice_buchhaltung_v1')||'{}'),Y=S.year,
-fm=function(v){var x=parseFloat(String(v||'').replace(/CHF|[’'\s]/gi,'').replace(',','.'));return isNaN(x)?0:x},
-f=function(x){return x.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2})},
-fd=function(d){return d?d.slice(8,10)+'.'+d.slice(5,7)+'.'+d.slice(0,4):''},
-yr=function(r){return r.act!==false&&r.d&&r.d.slice(0,4)==Y&&(r.amt||r.who||r.desc)},
-tb=function(t,h,rs,ai,sum){return '<h2>'+t+'</h2><table><tr>'+h.map(function(x,i){return '<th'+(i==ai?' class="r"':'')+'>'+x+'</th>'}).join('')+'</tr>'+rs.map(function(r){return '<tr>'+r.map(function(x,i){return '<td'+(i==ai?' class="r"':'')+'>'+esc(x)+'</td>'}).join('')+'</tr>'}).join('')+(sum==null?'':'<tr class="t"><td colspan="'+ai+'">Total CHF</td><td class="r">'+f(sum)+'</td>'+'<td></i>'.repeat(h.length-ai-1)+'</tr>')+'</table>'},
-dt=function(id,h){var rs=[].map.call($(id).rows,function(r){return [].slice.call(r.cells,0,h.length).map(function(c){return c.textContent})});return '<table><tr>'+h.map(function(x,i){return '<th'+(i?' class="r"':'')+'>'+x+'</th>'}).join('')+'</tr>'+rs.map(function(r,n){return '<tr'+(n==rs.length-1?' class="t"':'')+'>'+r.map(function(x,i){return '<td'+(i?' class="r"':'')+'>'+esc(x)+'</td>'}).join('')+'</tr>'}).join('')+'</table>'},
-sm=function(a){return a.reduce(function(s,r){return s+fm(r.amt)},0)},o='';
-ids.forEach(function(id){
-if(id=='s-ue')o+='<h2>Übersicht '+Y+'</h2><div class="kp"><div>Einnahmen<b>'+$('k-e').textContent+'</b></div><div>Ausgaben (inkl. Löhne)<b>'+$('k-a').textContent+'</b></div><div>Gewinn / Verlust<b>'+$('k-g').textContent+'</b></div><div>Offene Rechnungen<b>'+$('k-o').textContent+'</b></div></div><h2>Monatsübersicht</h2>'+dt('tb-mon',['Monat','Einnahmen CHF','Ausgaben CHF','Gewinn / Verlust CHF'])+'<h2>Einnahmen nach Kategorie</h2>'+dt('tb-ce',['Kategorie','Betrag CHF','Anteil'])+'<h2>Ausgaben nach Kategorie</h2>'+dt('tb-ca',['Kategorie','Betrag CHF','Anteil']);
-if(id=='s-ein'){var a=(S.ein||[]).filter(yr);o+=tb('Einnahmen '+Y,['Datum','Beleg','Kunde','Beschreibung','Kategorie','Betrag CHF','Zahlungsart'],a.map(function(r){return[fd(r.d),r.nr,r.who,r.desc,r.cat,f(fm(r.amt)),r.pay]}),5,sm(a))}
-if(id=='s-aus'){var a=(S.aus||[]).filter(yr);o+=tb('Ausgaben '+Y,['Datum','Empfänger / Grund','Kategorie','Betrag CHF','Zahlungsart','Beschreibung'],a.map(function(r){return[fd(r.d),r.who,r.cat,f(fm(r.amt)),r.pay,r.desc]}),3,sm(a))}
-if(id=='s-lohn'){var a=(S.lohn||[]).filter(yr);o+=tb('Löhne / Aushilfe '+Y,['Datum','Name','Funktion','Brutto CHF','Zahlart'],a.map(function(r){return[fd(r.d),r.who,r.desc,f(fm(r.amt)),r.pay]}),3,sm(a))}
-if(id=='s-rg'){var a=(S.rg||[]).filter(function(r){return r.act!==false&&(r.nr||r.amt)});o+=tb('Offene Rechnungen',['Rechnungs-Nr.','Datum','Kunde','Betrag CHF','Bezahlt am'],a.map(function(r){return[r.nr,fd(r.d),r.who,f(fm(r.amt)),r.paid?fd(r.paid):'offen']}),3,sm(a.filter(function(r){return!r.paid})))}});
-return '<style>.rep{padding:40px 44px;color:#222;font-family:Arial,sans-serif}.rep h2{font-size:15px;color:#1E3A6D;margin:18px 0 6px;border-bottom:2px solid #D6DFEA;padding-bottom:3px}.rep table{width:100%;border-collapse:collapse;font-size:11px}.rep th{background:#2D6CB5;color:#fff;text-align:left;padding:5px 6px}.rep td{padding:4px 6px;border-bottom:1px solid #D6DFEA}.rep .r{text-align:right}.rep tr.t td{background:#1E3A6D;color:#fff;font-weight:bold}.rep .kp{display:flex;gap:8px;margin:8px 0}.rep .kp div{flex:1;background:#F4F7FB;border:1px solid #D6DFEA;border-radius:6px;padding:6px;text-align:center;font-size:10px;color:#666}.rep .kp b{display:block;font-size:15px;color:#1E3A6D}</style><div class="rep"><div style="display:flex;align-items:center;gap:12px;border-bottom:2px solid #2D6CB5;padding-bottom:8px">'+svgFull(46,41)+'<div><b style="font-size:16px;color:#1F4EA8">M Transport &amp; Reinigung Service</b><br><span style="font-size:10px;color:#555">Ennetaach CH-8586 &middot; Tel. +41 78 345 80 72 &middot; info@mservice.ch &mdash; Buchhaltung '+Y+'</span></div></div>'+o+'</div>'}
-function slices(s){return html2canvas(s,{scale:2,backgroundColor:'#fff',logging:false,windowWidth:794}).then(function(c){
-var PH=1060,t0=s.getBoundingClientRect().top,bl=[].map.call(s.querySelectorAll('tr,h2,.kp'),function(e){var r=e.getBoundingClientRect();return[r.top-t0,r.bottom-t0]}),H=s.offsetHeight,br=[0],st=0;
-while(H-st>PH){var lim=st+PH,cut=lim;bl.forEach(function(b){if(b[0]<lim&&b[1]>lim)cut=Math.min(cut,b[0])});if(cut<=st+60)cut=lim;br.push(cut);st=cut}
-br.push(H);var pdf=new window.jspdf.jsPDF({unit:'mm',format:'a4',compress:true});
-for(var i=0;i<br.length-1;i++){var h=Math.round((br[i+1]-br[i])*2),t=document.createElement('canvas');t.width=c.width;t.height=2246;var x=t.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,t.width,t.height);x.drawImage(c,0,Math.round(br[i]*2),c.width,h,0,60,c.width,h);if(i)pdf.addPage();pdf.addImage(c.toDataURL('image/jpeg',.92),'JPEG',0,0,210,297)}
-s.remove();return pdf})}
-function buchPdf(){var b=document.body,lohn=b.classList.contains('print-lohn'),h=lohn?$('lohn-print-area').innerHTML:'',ids;
-if(!lohn){var sc=Q('#v-buch .sec.prt')[0]||Q('#v-buch .sec.on')[0];ids=b.classList.contains('only')?[sc.id]:['s-ue','s-ein','s-aus','s-lohn','s-rg']}
-busy(true);lib().then(function(){var s=document.createElement('div');s.style.cssText='position:fixed;left:-9999px;top:0;width:794px;background:#fff;color:#000;font:12px Arial'+(lohn?';padding:30px':'');s.innerHTML=lohn?h:buchHtml(ids);document.body.appendChild(s);return slices(s)})
-.then(function(pdf){ready(pdf,(lohn?'Lohnabrechnung':'Buchhaltung')+'_'+new Date().toISOString().slice(0,10)+'.pdf')}).catch(fail);
-setTimeout(function(){window.dispatchEvent(new Event('afterprint'))},400)}
-window.print=function(){if(cur.id=='v-buch')buchPdf();else doPrint()};
-['gesturestart','gesturechange'].forEach(function(n){document.addEventListener(n,function(e){e.preventDefault()})});
-})();
-</script>
-<script>
-(function(){
-var css=document.createElement('style');
-css.textContent=
-'.sl,.ln2{position:relative;cursor:pointer}'+
-'.sl .sz{position:absolute;left:0;right:0;bottom:100%;height:6mm}'+
-'.sg{position:absolute;left:50%;transform:translateX(-50%);bottom:100%;height:12mm;max-width:100%;pointer-events:none}'+
-'.ln2 .sg{left:0;transform:none;bottom:0;width:100%;height:100%;object-fit:contain;object-position:center}'+'html,body{background:#1E3A6D!important}'+'#lock{background:#1E3A6D!important}'+
-'#sgm{position:fixed;inset:0;z-index:120;background:rgba(15,35,71,.6);display:flex;align-items:flex-end}'+
-'#sgm[hidden]{display:none}'+
-'#sgm>div{width:100%;background:#fff;border-radius:18px 18px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom));font-family:-apple-system,Arial}'+
-'#sgm h3{margin:0 0 8px;text-align:center;color:#1E3A6D;font-size:16px}'+
-'#sgc{width:100%;height:38vh;border:1px dashed #8FA3BF;border-radius:10px;touch-action:none;background:#fff;display:block}'+
-'#sgm span{display:flex;gap:8px;margin-top:10px}'+
-'#sgm button{flex:1;padding:13px;border:1px solid #D6DFEA;border-radius:12px;background:#F4F7FB;color:#1E3A6D;font:600 15px Arial}'+
-'#sgm button.ok{background:#2D6CB5;color:#fff;border-color:#2D6CB5}';
-document.head.appendChild(css);
-var Q=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
-var cv,cx,dr=false,has=false,tg=null;
-function stg(v){return v.id=='v-rapport'?localStorage:sessionStorage}
-function key(e){var v=e.closest('.view');return 'msm_sig_'+v.id+'_'+Q('.sl,.ln2',v).indexOf(e)}
-var m=document.createElement('div');m.id='sgm';m.hidden=true;
-m.innerHTML='<div><h3>Unterschrift</h3><canvas id="sgc"></canvas><span><button id="sgx">Abbrechen</button><button id="sgd">Löschen</button><button id="sgo" class="ok">Übernehmen</button></span></div>';
-document.body.appendChild(m);cv=document.getElementById('sgc');
-function init(){var r=window.devicePixelRatio||1;cv.width=cv.clientWidth*r;cv.height=cv.clientHeight*r;cx=cv.getContext('2d');cx.lineWidth=3*r;cx.lineCap=cx.lineJoin='round';cx.strokeStyle='#000';has=false}
-function pos(e){var r=cv.getBoundingClientRect();return[(e.clientX-r.left)*cv.width/r.width,(e.clientY-r.top)*cv.height/r.height]}
-cv.addEventListener('pointerdown',function(e){e.preventDefault();cv.setPointerCapture(e.pointerId);dr=has=true;var p=pos(e);cx.beginPath();cx.moveTo(p[0],p[1]);cx.lineTo(p[0]+.1,p[1]+.1);cx.stroke()});
-cv.addEventListener('pointermove',function(e){if(!dr)return;var p=pos(e);cx.lineTo(p[0],p[1]);cx.stroke()});
-['pointerup','pointercancel'].forEach(function(n){cv.addEventListener(n,function(){dr=false})});
-function trim(){var w=cv.width,h=cv.height,d=cx.getImageData(0,0,w,h).data,x0=w,y0=h,x1=0,y1=0,x,y;for(y=0;y<h;y++)for(x=0;x<w;x++)if(d[(y*w+x)*4+3]>10){if(x<x0)x0=x;if(x>x1)x1=x;if(y<y0)y0=y;if(y>y1)y1=y}if(x1<x0)return cv.toDataURL('image/png');var p=6,c=document.createElement('canvas');x0=Math.max(0,x0-p);y0=Math.max(0,y0-p);x1=Math.min(w-1,x1+p);y1=Math.min(h-1,y1+p);c.width=x1-x0+1;c.height=y1-y0+1;c.getContext('2d').drawImage(cv,x0,y0,c.width,c.height,0,0,c.width,c.height);return c.toDataURL('image/png')}
-function put(e,u){var o=e.querySelector('.sg');if(o)o.remove();if(!u)return;var im=new Image();im.className='sg';im.src=u;e.appendChild(im)}
-document.getElementById('sgx').onclick=function(){window.msmPadCb=null;m.hidden=true};
-document.getElementById('sgd').onclick=function(){cx.clearRect(0,0,cv.width,cv.height);has=false};
-document.getElementById('sgo').onclick=function(){if(has){var u=trim();if(window.msmPadCb){var cb=window.msmPadCb;window.msmPadCb=null;cb(u)}else{put(tg,u);try{stg(tg.closest('.view')).setItem(key(tg),u)}catch(e){}}}m.hidden=true};
-window.msmPad=function(cb){window.msmPadCb=cb;m.hidden=false;init()};
-Q('.sl').forEach(function(s){var z=document.createElement('span');z.className='sz';s.appendChild(z)});
-Q('.sl,.ln2').forEach(function(e){try{var u=stg(e.closest('.view')).getItem(key(e));if(u)put(e,u)}catch(x){}
-e.addEventListener('click',function(){tg=e;m.hidden=true;init()}); // wait, fixing click handler to open m instead of hiding it!
-e.addEventListener('click',function(){window.msmPadCb=null;tg=e;m.hidden=false;init()})});
-document.getElementById('rs').addEventListener('click',function(){var v=Q('.view.on')[0];if(!v)return;setTimeout(function(){
-if(!Q('input',v).some(function(i){return i.type!='checkbox'&&i.value&&i.value!=i.defaultValue})){
-Q('.sg',v).forEach(function(i){i.remove()});try{var s=stg(v);Object.keys(s).forEach(function(k){if(k.indexOf('msm_sig_'+v.id)==0)s.removeItem(k)})}catch(e){}}},0)});
-var lk=document.getElementById('lock');function sy(){document.documentElement.classList.toggle('locked',!lk.hidden)}sy();new MutationObserver(sy).observe(lk,{attributes:true,attributeFilter:['hidden']});
-})();
-</script>
-<script>
-(function(){
-var $=function(i){return document.getElementById(i)},Q=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
-var SK='msm_mysig',AK='msm_auto',DK='msm_def',AUTO0={offerte:true,rechnung:true,rapport:true,quittung:true},DEF0={ort:'',date:true,iban:'',bank:'',rate:''};
-function lg(k){try{return localStorage.getItem(k)||''}catch(e){return ''}}
-function sg(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-function jo(k,d){var o={};try{o=JSON.parse(lg(k)||'{}')}catch(e){}return Object.assign({},d,o)}
-function ev(e){e.dispatchEvent(new Event('input',{bubbles:true}))}
-function today(){var d=new Date();return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear()}
-function fill(e,v){if(e&&v&&!e.value.trim()){e.value=v;ev(e)}}
-function applyDef(){var d=jo(DK,DEF0),t=d.date?today():'',od=[d.ort,t].filter(Boolean).join(', ');
-Q('#v-offerte .meta').forEach(function(m){fill(m.querySelector('input'),t)});
-fill(Q('#v-rechnung .meta input')[1],t);
-var p=Q('#v-rechnung .pay input');fill(p[1],d.iban);fill(p[3],d.bank);
-fill($('rp_rate'),d.rate);fill($('qt_date'),t);fill($('qt_od1'),od);fill($('qt_od2'),od)}
-function targets(){return [['quittung',Q('#v-quittung .ln2')[0],'f'],['rapport',Q('#v-rapport .ln2')[1],'f']]
-.concat(Q('#v-offerte .sign > div:first-child').map(function(e){return['offerte',e,'o']}))
-.concat(Q('#v-rechnung .ctr p:last-child').map(function(e){return['rechnung',e,'o']}))}
-function applyOwn(){var u=lg(SK),a=jo(AK,AUTO0);
-targets().forEach(function(t){var e=t[1];if(!e)return;var old=e.querySelector('.sg.own');if(old)old.remove();
-if(!u||!a[t[0]])return;if(t[2]=='f'&&e.querySelector('.sg'))return;
-var im=new Image();im.className='sg own'+(t[2]=='o'?' ovl':'');im.src=u;if(t[2]=='o')e.style.position='relative';e.appendChild(im)})}
-function ui(){var u=lg(SK),pv=$('st_prev');pv.innerHTML='';if(u){var im=new Image();im.src=u;pv.appendChild(im)}else pv.textContent='Noch keine Unterschrift gespeichert'}
-$('st_sig').onclick=function(){if(window.msmPad)window.msmPad(function(u){sg(SK,u);ui();applyOwn()})};
-$('st_del').onclick=function(){if(!lg(SK)||!confirm('Gespeicherte Unterschrift löschen?'))return;try{localStorage.removeItem(SK)}catch(e){}ui();applyOwn()};
-var a0=jo(AK,AUTO0);['offerte','rechnung','rapport','quittung'].forEach(function(k){var c=$('au_'+k);c.checked=!!a0[k];c.onchange=function(){var o=jo(AK,AUTO0);o[k]=c.checked;sg(AK,JSON.stringify(o));applyOwn()}});
-var d0=jo(DK,DEF0);$('st_ort').value=d0.ort;$('st_date').checked=!!d0.date;$('st_iban').value=d0.iban;$('st_bank').value=d0.bank;$('st_rate').value=d0.rate;
-function sd(){sg(DK,JSON.stringify({ort:$('st_ort').value.trim(),date:$('st_date').checked,iban:$('st_iban').value.trim(),bank:$('st_bank').value.trim(),rate:$('st_rate').value.trim()}));applyDef()}
-['st_ort','st_date','st_iban','st_bank','st_rate'].forEach(function(id){$(id).addEventListener('change',sd)});
-$('rs').addEventListener('click',function(){setTimeout(function(){applyOwn();applyDef()},30)});
-ui();applyOwn();applyDef();
-})();
-</script>
-<script>
-(function(){
-  function checkDeviceAndOrientation() {
-    var ua = navigator.userAgent;
-    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-    
-    // Zákaz vstupu pro počítače
-    var desktopBlock = document.getElementById('desktop-block');
-    if (!isMobile) {
-      desktopBlock.style.display = 'flex';
-      return;
-    } else {
-      desktopBlock.style.display = 'none';
-    }
-
-    // Pokus o hardwarové zamčení orientace na výšku (funguje na Androidu/Chrome)
-    if (screen.orientation && screen.orientation.lock) {
-      screen.orientation.lock('portrait').catch(function() {});
+/* Automatické přidávání čísla faktury/quittung s koncovkou -1, -2, -3 */
+function autoFormatDocNum(type) {
+  var custName = '';
+  var inputEl = null;
+  
+  if (type === 'rechnung') {
+    custName = document.getElementById('rg_a2').value.trim();
+    inputEl = document.getElementById('rg_num');
+  } else if (type === 'quittung') {
+    custName = document.getElementById('qt_cust').value.trim();
+    inputEl = document.getElementById('qt_nr');
+  }
+  
+  if (!custName || !inputEl) return;
+  
+  var counters = getCounters();
+  var key = type + '_' + custName.toLowerCase().replace(/\s+/g, '_');
+  
+  if (!counters[key]) {
+    counters[key] = 1;
+  } else {
+    // Pokud ještě neobsahuje příponu `-`, navýšíme
+    if (!inputEl.value.includes('-')) {
+      counters[key] += 1;
     }
   }
+  saveCounters(counters);
 
-  window.addEventListener('load', checkDeviceAndOrientation);
-  window.addEventListener('resize', function() {
-    checkDeviceAndOrientation();
-    setTimeout(function() {
-      if (typeof fit === 'function' && typeof cur !== 'undefined') {
-        fit(cur);
-      }
-    }, 100);
-  });
-  window.addEventListener('orientationchange', function() {
-    setTimeout(function() {
-      checkDeviceAndOrientation();
-      if (typeof fit === 'function' && typeof cur !== 'undefined') {
-        fit(cur);
-      }
-    }, 250);
+  var baseNum = inputEl.value.split('-')[0] || (type === 'rechnung' ? 'RE-2026-001' : 'QT-2026-001');
+  inputEl.value = baseNum + '-' + counters[key];
+}
+
+/* PIN Lock a Navigace */
+(function(){
+  document.querySelectorAll('[data-go]').forEach(function(b){
+    b.onclick = function(){
+      var id = b.dataset.go;
+      document.querySelectorAll('.view').forEach(function(v){ v.classList.toggle('on', v.id === id); });
+      document.querySelectorAll('#tab button').forEach(function(tb){ tb.classList.toggle('on', tb.dataset.go === id); });
+    };
   });
 })();
 </script>
