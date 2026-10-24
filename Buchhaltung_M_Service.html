@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="de-CH"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buchhaltung 2027 - Mejstrik Transport &amp; Reinigung Service</title><style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--g:#666;--ok:#1F7A44;--bad:#C0392B}
+html{-webkit-text-size-adjust:100%;background:#eef1f5}
+body{font:14px/1.4 Arial,Helvetica,sans-serif;color:#2a2a2a;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.logo{width:50px;height:44.7px;flex:none}
+.top{position:sticky;top:0;z-index:10;background:#fff;border-bottom:3px solid var(--b);box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.top .in{max-width:1080px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand b{display:block;color:var(--br);font-size:16px}.brand span{font-size:12px;color:var(--g)}
+.act{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}
+button,.btn{font:bold 13px Arial;border:1px solid var(--bd);background:#fff;color:var(--n);border-radius:8px;padding:8px 12px;cursor:pointer}
+button:hover{background:var(--l)}button.pri{background:var(--b);color:#fff;border-color:var(--b)}
+.tabs{max-width:1080px;margin:0 auto;display:flex;gap:4px;padding:0 14px;overflow-x:auto}
+.tabs button{border:0;border-radius:8px 8px 0 0;background:transparent;padding:10px 14px;font-size:14px;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-3px}
+.tabs button.on{background:var(--l);border-bottom-color:var(--o);color:var(--br)}
+.wrap{max-width:1080px;margin:14px auto 40px;padding:0 14px}
+.sec{display:none;background:#fff;border-radius:10px;box-shadow:0 2px 14px rgba(0,0,0,.07);padding:18px 18px 22px;border-top:5px solid var(--o)}
+.sec.on{display:block}
+h1{font-size:22px;color:var(--n);margin-bottom:4px}
+.hint{font-size:12.5px;color:var(--g);margin-bottom:12px}
+h2{font-size:15px;color:var(--n);margin:20px 0 8px;padding-bottom:3px;border-bottom:2px solid var(--bd)}
+.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0 4px}
+.kpi div{background:var(--l);border:1px solid var(--bd);border-radius:8px;padding:10px;text-align:center}
+.kpi small{display:block;font-size:11px;font-weight:bold;color:var(--g);text-transform:uppercase;letter-spacing:.4px}
+.kpi b{font-size:20px;color:var(--n)}.kpi .g b{color:var(--o)}.kpi .r b{color:var(--bad)}
+table{width:100%;border-collapse:collapse}
+th{background:var(--b);color:#fff;text-align:left;padding:7px 6px;font-size:12px}
+td{padding:4px 5px;border-bottom:1px solid var(--bd);vertical-align:middle}
+tr:nth-child(even) td{background:var(--l)}
+tr.inactive td{opacity:0.45;background:#f0f0f0!important}
+td.r,th.r{text-align:right}
+td.c,th.c{text-align:center}
+.tot td{background:var(--n)!important;color:#fff;font-weight:bold;padding:6px 8px}
+input,select{font:13.5px Arial;color:#0A2A8A;border:0;border-bottom:1px solid #b9c6d9;background:transparent;width:100%;padding:5px 2px;border-radius:0;outline:0}
+select{-webkit-appearance:none;appearance:none;cursor:pointer;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%238FA3BF'/%3E%3C/svg%3E") right 4px center no-repeat;padding-right:14px}
+input:focus,select:focus{background:rgba(45,108,181,.09);border-bottom-color:var(--b)}
+input.r{text-align:right}
+input[type="checkbox"]{width:auto;cursor:pointer;transform:scale(1.15)}
+.x{border:0;background:transparent;color:#b00;font-size:18px;padding:2px 6px;line-height:1;cursor:pointer}
+.btn-sm{font-size:11px;padding:3px 6px;border-radius:4px;background:var(--l);border:1px solid var(--bd);color:var(--n);cursor:pointer;white-space:nowrap}
+.btn-sm:hover{background:var(--b);color:#fff}
+.warn td{background:#FFF1DC!important}
+.bar{height:8px;background:#e6ecf5;border-radius:4px;position:relative;margin:2px 0}.bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.bar .e{background:#2E9E5B}.bar .a{background:#d8665a}
+.st{font-size:11px;font-weight:bold;padding:2px 6px;border-radius:8px;display:inline-block}
+.st.bezahlt{background:#E3F4EA;color:var(--ok)}.st.offen{background:#FFF4C2;color:#8A6D00}.st.ueberfaellig{background:#FBE3E0;color:var(--bad)}
+.bar2{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+.bar2 label{font-weight:bold;font-size:12px;color:var(--n)}.bar2 select,.bar2 input{width:auto;border:1px solid var(--bd);border-radius:6px;padding:4px 6px;background:#fff}
+.bar2 select{padding-right:20px}
+.note{background:#FFF8E8;border-left:4px solid var(--o);padding:8px 12px;font-size:12px;margin-top:14px}
+.warnbox{background:#FBE3E0;border-left:4px solid var(--bad);padding:8px 12px;font-size:13px;margin-bottom:10px;display:none}
+.ph{display:none}.pd{display:none}
+.pw,.pw>tbody,.pw>tbody>tr,.pw>tbody>tr>td{display:block;padding:0;border:0;background:none}
+.pw>thead{display:none}
+.pt{display:none}
+
+.deduct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;background:#f4f7fb;padding:8px;border-radius:6px;border:1px solid var(--bd);margin-bottom:10px;font-size:11.5px}
+.deduct-grid label{display:flex;align-items:center;gap:4px;cursor:pointer;font-weight:normal}
+.deduct-grid input[type="number"]{width:55px;padding:2px 4px;font-size:11px;border:1px solid var(--bd);background:#fff;border-radius:4px}
+
+.print-deduct-summary{display:none}
+#lohn-print-area{display:none}
+
+@media (max-width:760px){
+ .kpi{grid-template-columns:1fr 1fr}
+ .brand span{display:none}
+ .lst thead{display:none}
+ .lst,.lst tbody,.lst tfoot,.lst tr,.lst td{display:block;width:100%}
+ .lst td.r,.lst td.c{text-align:left}
+ .lst tr{border:1px solid var(--bd);border-radius:8px;margin-bottom:10px;padding:6px 10px;background:#fff}
+ .lst td{border:0;padding:3px 0;display:grid;grid-template-columns:105px 1fr;align-items:center;background:none!important}
+ .lst td::before{content:attr(data-l);font-size:11px;font-weight:bold;color:var(--n)}
+ .lst td.dl{display:block;text-align:right}.lst td.dl::before{content:none}
+ .lst tr.tot{background:var(--n);color:#fff}.lst tr.tot td{grid-template-columns:1fr auto;padding:3px 0}.lst tr.tot td[colspan="2"]{display:none}.lst .pd{display:none!important}
+ .mt .bc{display:none}
+}
+
+@media print{
+ @page{size:A4;margin:8mm 8mm 10mm;@bottom-center{content:"Mejstrik Transport & Reinigung Service · Seite " counter(page) " / " counter(pages);font:7pt Arial;color:#777}}
+ html,body{background:#fff}body{font-size:8pt;line-height:1.2}
+ .top,.noprint,.x,.btn-sm,.bar2,.dl,.warnbox{display:none!important}
+ .wrap{max-width:none;margin:0;padding:0}
+ .pw{display:table;width:100%}.pw>thead{display:table-header-group}.pw>tbody{display:table-row-group}.pw>tbody>tr{display:table-row}.pw>tbody>tr>td{display:table-cell}
+ .ph{display:flex;align-items:center;gap:4mm;border-bottom:1pt solid var(--b);padding:0 0 1.5mm;margin-bottom:3mm}
+ .ph .logo{width:10mm;height:9mm}.ph b{display:block;color:var(--br);font-size:9.5pt}.ph span{font-size:7pt;color:#444}.ph .r2{margin-left:auto;text-align:right;font-size:7pt;color:#777}
+ .sec{display:block!important;box-shadow:none;border:0!important;padding:0;border-radius:0;break-before:page}
+ .sec.first{break-before:auto}
+ body.only .sec{display:none!important}body.only .sec.prt{display:block!important;break-before:auto}
+ .pt{display:block;font-size:12pt;font-weight:bold;color:var(--n);border-left:1mm solid var(--o);padding-left:2mm;margin-bottom:2mm}
+ h1,.hint,.deduct-grid{display:none!important}
+ th{padding:2.5pt 4pt;font-size:7.5pt;background:#2D6CB5!important;color:#fff!important}
+ td{padding:2pt 4pt;font-size:8pt;border-bottom:0.5pt solid #ccc}
+ tr:nth-child(even) td{background:#f9f9f9!important}
+ 
+ /* Skrytí sloupce Aktiv a neaktivních řádků při tisku */
+ .lst th:nth-child(1), .lst td:nth-child(1){display:none!important}
+ tr.inactive{display:none!important}
+
+ .deduct-checkboxes{display:none!important}
+ .print-deduct-summary{display:inline-block!important;font-size:7.5pt}
+
+ input,select{color:#000!important;border:0!important;padding:0!important;font-size:7.5pt!important;background:none!important;-webkit-appearance:none!important;appearance:none!important}
+ select{background-image:none!important}
+ input[type="checkbox"]{display:none!important}
+ .pd{display:none!important}
+ .lst tr.empty{display:none!important}
+
+ tr{break-inside:avoid;page-break-inside:avoid}
+ .kpi{margin:1.5mm 0;gap:4px}.kpi div{padding:2pt 4pt}.kpi b{font-size:9.5pt}.kpi small{font-size:6.5pt}
+ h2{margin:2mm 0 1mm;font-size:8.5pt;break-after:avoid}
+ .note{font-size:6.5pt;margin-top:2mm;padding:2pt 4pt}
+ .bar{height:4px}
+
+ #s-ue h2:nth-of-type(2) { break-before: page !important; page-break-before: always !important; }
+ #s-ue h2:nth-of-type(3) { break-before: avoid !important; page-break-before: avoid !important; }
+
+ body.print-lohn .top, body.print-lohn .wrap, body.print-lohn .pw {display:none!important}
+ body.print-lohn #lohn-print-area {display:block!important;padding:10mm;font-family:Arial,sans-serif}
+}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
+<div class="top"><div class="in"><svg class="logo"><use href="#lg"/></svg><div class="brand"><b>M Transport &amp; Reinigung Service</b><span>Buchhaltung <span class="yy"></span></span></div>
+<div class="act noprint"><button id="p-one" type="button">Dieses Blatt drucken</button><button id="p-all" type="button" class="pri">Alles drucken</button><button id="b-save" type="button">Daten sichern</button><label class="btn" style="display:inline-block">Daten laden<input id="b-load" type="file" accept=".json,application/json" hidden></label></div></div>
+<div class="tabs noprint"><button data-t="s-ue" class="on">Übersicht</button><button data-t="s-ein">Einnahmen</button><button data-t="s-aus">Ausgaben</button><button data-t="s-lohn">Löhne / Aushilfe</button><button data-t="s-rg">Offene Rechnungen</button></div></div>
+<div class="wrap"><div class="warnbox" id="wb">Der Browser kann hier nichts speichern. Bitte regelmässig „Daten sichern“ verwenden.</div>
+<table class="pw"><thead><tr><td><div class="ph"><svg class="logo" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg><div><b>M Transport &amp; Reinigung Service</b><span>Ennetaach CH-8586 · Tel. +41 78 345 80 72 · info@mservice.ch</span></div><div class="r2">Mejstrik Transport &amp; Reinigung Service<br>Buchhaltung <span class="yy"></span></div></div></td></tr></thead><tbody><tr><td>
+<section class="sec on first" id="s-ue"><div class="pt">Übersicht <span class="yy"></span></div><h1>Übersicht <span class="yy"></span></h1>
+<div class="hint">Rechnet automatisch. Nur aktive (zaškrtnuté) položky se započítávají do zisku.</div>
+<div class="bar2 noprint"><label for="year">Jahr:</label><input id="year" type="number" min="2000" max="2099" step="1" style="width:90px"></div>
+<div class="kpi"><div><small>Einnahmen</small><b id="k-e"></b></div><div><small>Ausgaben (Inkl. Löhne)</small><b id="k-a"></b></div><div class="g"><small>Gewinn / Verlust</small><b id="k-g"></b></div><div class="r"><small>Offene Rechnungen</small><b id="k-o"></b></div></div>
+<div class="hint" style="margin-top:4px">Davon überfällig: CHF <span id="k-ov"></span></div>
+<h2>Monatsübersicht</h2><table class="mt"><thead><tr><th>Monat</th><th class="r">Einnahmen CHF</th><th class="r">Ausgaben CHF</th><th class="r">Gewinn / Verlust CHF</th><th class="bc"></th></tr></thead><tbody id="tb-mon"></tbody></table>
+<h2>Einnahmen nach Kategorie</h2><table><thead><tr><th>Kategorie</th><th class="r">Betrag CHF</th><th class="r">Anteil</th></tr></thead><tbody id="tb-ce"></tbody></table>
+<h2>Ausgaben nach Kategorie</h2><table><thead><tr><th>Kategorie</th><th class="r">Betrag CHF</th><th class="r">Anteil</th></tr></thead><tbody id="tb-ca"></tbody></table>
+<div class="note">Einfache Einnahmen-Ausgaben-Rechnung nach Art. 957 OR. Belege 10 Jahre aufbewahren (Art. 958f OR).</div></section>
+
+<section class="sec" id="s-ein"><div class="pt">Einnahmen <span class="yy"></span></div><h1>Einnahmen <span class="yy"></span></h1><div class="hint">Inaktive Zeilen (uncheck) werden nicht in die Buchhaltung und den Gewinn eingerechnet.</div>
+<div class="bar2 noprint"><label for="f-ein">Anzeigen:</label><select id="f-ein"></select></div>
+<table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:90px">Datum</th><th style="width:110px">Beleg / Nr.</th><th style="width:140px">Kunde</th><th>Beschreibung</th><th style="width:160px">Kategorie</th><th class="r" style="width:100px">Betrag CHF</th><th style="width:120px">Zahlungsart</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-ein"></tbody><tfoot><tr class="tot"><td colspan="6">Total CHF (nur aktive)</td><td class="r" id="tt-ein"></td><td colspan="2"></td></tr></tfoot></table>
+</section>
+
+<section class="sec" id="s-aus"><div class="pt">Ausgaben <span class="yy"></span></div><h1>Ausgaben <span class="yy"></span></h1><div class="hint">Jeden getätigten Ausgabenbetrag eintragen. Löhne fliessen automatisch hierhin.</div>
+<div class="bar2 noprint"><label for="f-aus">Anzeigen:</label><select id="f-aus"></select></div>
+<table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:90px">Datum</th><th style="width:170px">Empfänger / Personal / Grund</th><th style="width:160px">Kategorie</th><th class="r" style="width:100px">Betrag CHF</th><th style="width:140px">Zahlungsart</th><th>Beschreibung</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-aus"></tbody><tfoot><tr class="tot"><td colspan="4">Total CHF (nur aktive)</td><td class="r" id="tt-aus"></td><td colspan="3"></td></tr></tfoot></table>
+</section>
+
+<section class="sec" id="s-lohn"><div class="pt">Löhne / Aushilfe <span class="yy"></span></div><h1>Löhne &amp; Aushilfe (Aushilfslohn)</h1><div class="hint">Wählen Sie pro Person die anfallenden Abzüge aus. Die Sätze (% Arbeitnehmeranteil) lassen sich hier anpassen:</div>
+
+<div class="deduct-grid noprint">
+ <div><label>AHV/IV/EO (%):</label><input id="rate-ahv" type="number" step="0.01" value="5.15"></div>
+ <div><label>ALV (%):</label><input id="rate-alv" type="number" step="0.01" value="0.15"></div>
+ <div><label>ALV2 (%):</label><input id="rate-alv2" type="number" step="0.01" value="0.00"></div>
+ <div><label>NBU (%):</label><input id="rate-nbu" type="number" step="0.01" value="0.00"></div>
+ <div><label>KTG (%):</label><input id="rate-ktg" type="number" step="0.01" value="0.00"></div>
+ <div><label>BVG (%):</label><input id="rate-bvg" type="number" step="0.01" value="0.00"></div>
+</div>
+
+<div class="bar2 noprint"><label for="f-lohn">Anzeigen:</label><select id="f-lohn"></select></div>
+<table class="lst"><thead><tr><th class="c" style="width:35px">Aktiv</th><th style="width:85px">Datum</th><th style="width:130px">Name Person</th><th style="width:120px">Funktion</th><th class="r" style="width:90px">Brutto CHF</th><th class="c" style="width:190px">Abzüge (AHV/ALV/NBU...)</th><th class="r" style="width:90px">Netto CHF</th><th style="width:100px">Zahlart</th><th class="dl" style="width:100px">Aktion</th></tr></thead><tbody id="tb-lohn"></tbody><tfoot><tr class="tot"><td colspan="4">Total Bruttolohn / Ausgaben CHF (nur aktive)</td><td class="r" id="tt-lohn"></td><td colspan="4"></td></tr></tfoot></table>
+</section>
+
+<section class="sec" id="s-rg"><div class="pt">Offene Rechnungen <span class="yy"></span></div><h1>Offene Rechnungen</h1><div class="hint">Mit dem Datum „Bezahlt am“ gilt sie als bezahlt. Zahlungseingang zusätzlich unter „Einnahmen“ erfassen.</div>
+<div class="bar2 noprint"><label for="days">Zahlungsfrist (Tage):</label><input id="days" type="number" min="0" max="365" style="width:80px"></div>
+<table class="lst"><thead><tr><th class="c" style="width:40px">Aktiv</th><th style="width:110px">Rechnungs-Nr.</th><th style="width:90px">Datum</th><th>Kunde</th><th class="r" style="width:100px">Betrag CHF</th><th style="width:90px">Zahlbar bis</th><th style="width:90px">Bezahlt am</th><th style="width:90px">Status</th><th class="dl" style="width:30px"></th></tr></thead><tbody id="tb-rg"></tbody></table></section>
+</td></tr></tbody></table></div>
+
+<div id="lohn-print-area"></div>
+
+<script>
+var K='mservice_buchhaltung_v1',
+CE=['Umzugsreinigung','Gebäudereinigung','Unterhaltsreinigung','Grundreinigung','Transport & Umzug','Sonstige Einnahmen'],
+CA=['Löhne & Aushilfshilfe','Material & Reinigungsmittel','Benzin & Transport','Geräte & Maschinen','Werbung & Website','Telefon & Internet','Versicherungen & Gebühren','Büro & Software','Sonstige Ausgaben'],
+PAY=['Bar','TWINT','Banküberweisung','Karte','Pauschal / Eigenverbrauch','Privat bezahlt'],
+MON=['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
+S={year:2026,days:10,rates:{ahv:5.15,alv:0.15,alv2:0,nbu:0,ktg:0,bvg:0},ein:[],aus:[],lohn:[],rg:[]},ok=true;
+
+function g(i){return document.getElementById(i)}
+function el(t,a,c){var e=document.createElement(t);for(var k in a||{}){if(k==='text')e.textContent=a[k];else if(k==='cls')e.className=a[k];else e.setAttribute(k,a[k])}(c||[]).forEach(function(x){e.appendChild(x)});return e}
+function n(s){s=String(s||'').replace(/CHF/gi,'').replace(/[’'\s]/g,'').replace(/[.,][-–]+$/,'').replace(',','.');var x=parseFloat(s);return isNaN(x)?0:x}
+function f(x){return x.toLocaleString('de-CH',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function load(){try{var s=localStorage.getItem(K);if(s){var o=JSON.parse(s);for(var k in o)S[k]=o[k];if(!S.rates)S.rates={ahv:5.15,alv:0.15,alv2:0,nbu:0,ktg:0,bvg:0}}}catch(e){ok=false}}
+function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){ok=false}g('wb').style.display=ok?'none':'block'}
+
+var LST={
+ ein:{tb:'tb-ein',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['nr','Beleg / Nr.','text'],['who','Kunde','text'],['desc','Beschreibung','text'],['cat','Kategorie',CE],['amt','Betrag CHF','amt'],['pay','Zahlungsart',PAY]]},
+ aus:{tb:'tb-aus',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['who','Empfänger / Personal / Grund','text'],['cat','Kategorie',CA],['amt','Betrag CHF','amt'],['pay','Zahlungsart',PAY],['desc','Beschreibung','text']]},
+ lohn:{tb:'tb-lohn',cols:[['act','Aktiv','check_act'],['d','Datum','date'],['who','Name Person','text'],['desc','Funktion','text'],['amt','Brutto CHF','amt'],['deductionSet','Abzüge','deduct_select'],['netto','Netto CHF','calc_netto'],['pay','Zahlart',PAY]]},
+ rg:{tb:'tb-rg',cols:[['act','Aktiv','check_act'],['nr','Rechnungs-Nr.','text'],['d','Datum','date'],['who','Kunde','text'],['amt','Betrag CHF','amt'],['due','Zahlbar bis','calc'],['paid','Bezahlt am','date'],['st','Status','calc']]}
+};
+
+function ps(c,r,pd){
+  var v=r[c[0]]||'';
+  if(c[2]==='date'&&v)v=v.slice(8,10)+'.'+v.slice(5,7)+'.'+v.slice(0,4);
+  pd.textContent=v;
+}
+
+function emptyRow(r){
+  for(var k in r){
+    if(k==='act') continue;
+    if(typeof r[k]==='object' && r[k]!==null){
+      for(var sub in r[k]) if(r[k][sub]) return false;
+    } else if(r[k]!==''&&r[k]!==false&&r[k]!==undefined) return false;
+  }
+  return true;
+}
+
+function sortData(key){
+  var a = S[key];
+  if(!a) return;
+  var filled = a.filter(function(r){ return !emptyRow(r); });
+  var empty = a.filter(function(r){ return emptyRow(r); });
+  filled.sort(function(x, y){
+    var dx = x.d || '', dy = y.d || '';
+    if (!dx && !dy) return 0;
+    if (!dx) return 1;
+    if (!dy) return -1;
+    return dx.localeCompare(dy);
+  });
+  S[key] = filled.concat(empty);
+}
+
+function getDeductDetails(r){
+  var gross = n(r.amt);
+  var set = r.deductionSet || {};
+  var res = { total: 0, items: [] };
+  var keys = ['ahv','alv','alv2','nbu','ktg','bvg'];
+  var names = {ahv:'AHV/IV/EO', alv:'ALV', alv2:'ALV2', nbu:'NBU', ktg:'KTG', bvg:'BVG'};
+
+  keys.forEach(function(k){
+    if(set[k]){
+      var rate = parseFloat(S.rates[k]) || 0;
+      var val = gross * (rate / 100);
+      res.total += val;
+      res.items.push({ key: k, name: names[k], rate: rate, val: val });
+    }
+  });
+  res.netto = gross - res.total;
+  return res;
+}
+
+function updateDeductSummaryText(r){
+  var details = getDeductDetails(r);
+  if(!details.items || details.items.length === 0) return 'Keine (befreit)';
+  return details.items.map(function(it){ return it.name; }).join(', ');
+}
+
+function mk(key,r){
+ var L=LST[key],tr=el('tr'),cells={};
+ if(r.act===undefined) r.act = true; // default aktiv
+
+ if(!r.act) tr.classList.add('inactive');
+
+ L.cols.forEach(function(c){
+  var td=el('td',{'data-l':c[1]}),inp,pd=null;
+  if(c[2]==='check_act'){
+    inp=el('input',{type:'checkbox'});
+    inp.checked = !!r.act;
+    td.className = 'c';
+  }
+  else if(c[2]==='calc'||c[2]==='calc_netto'){
+    inp=el('span',{cls:c[0]==='st'?'':'cc'});
+    if(c[2]==='calc_netto'){
+      inp.textContent = f(getDeductDetails(r).netto);
+      td.className = 'r';
+    }
+    td.appendChild(inp);
+    if(c[0]==='due')td.className='cd';
+  }
+  else if(c[2]==='deduct_select'){
+    inp = el('div',{cls:'deduct-checkboxes',style:'display:flex;gap:4px;flex-wrap:wrap;font-size:10px'});
+    if(!r.deductionSet) r.deductionSet = {};
+    var dKeys = ['ahv','alv','nbu','ktg','bvg'];
+    dKeys.forEach(function(dk){
+      var lbl = el('label',{style:'cursor:pointer'},[
+        el('input',{type:'checkbox'}),
+        el('span',{text:dk.toUpperCase()})
+      ]);
+      var cb = lbl.querySelector('input');
+      cb.checked = !!r.deductionSet[dk];
+      cb.addEventListener('change',function(){
+        r.deductionSet[dk] = cb.checked;
+        if(tr._c && tr._c.netto) tr._c.netto.textContent = f(getDeductDetails(r).netto);
+        if(tr._c && tr._c.deductSummary) tr._c.deductSummary.textContent = updateDeductSummaryText(r);
+        save(); refresh();
+      });
+      inp.appendChild(lbl);
+    });
+    var deductSummary = el('span',{cls:'print-deduct-summary',text:updateDeductSummaryText(r)});
+    td.appendChild(deductSummary);
+    cells['deductSummary'] = deductSummary;
+  }
+  else if(Array.isArray(c[2])){
+    inp=el('select');
+    inp.appendChild(el('option',{value:'',text:'\u00a0'}));
+    c[2].forEach(function(o){inp.appendChild(el('option',{value:o,text:o}))});
+    inp.value=r[c[0]]||'';
+  }
+  else{
+    inp=el('input',{type:c[2]==='date'?'date':'text'});
+    if(c[2]==='amt'){inp.setAttribute('inputmode','decimal');inp.className='r';td.className='r'}
+    inp.value=r[c[0]]||'';
+    if(c[2]==='text')inp.setAttribute('autocomplete','off');
+  }
+
+  if(c[2]!=='calc'&&c[2]!=='calc_netto'&&c[2]!=='deduct_select'){
+   var h=function(){
+    if(c[2]==='check_act'){
+      r.act = inp.checked;
+      tr.classList.toggle('inactive', !r.act);
+    } else {
+      r[c[0]] = inp.value;
+    }
+    if(key==='lohn'&&tr._c&&tr._c.netto){
+      tr._c.netto.textContent = f(getDeductDetails(r).netto);
+    }
+    if(c[2]!=='check_act') ps(c,r,pd);
+    grow(key);
+    save();
+    refresh();
+   };
+   inp.addEventListener('input',h);
+   inp.addEventListener('change',function(){
+    if(c[2]==='check_act'){
+      r.act = inp.checked;
+      tr.classList.toggle('inactive', !r.act);
+    } else {
+      r[c[0]] = inp.value;
+    }
+    if(c[2]!=='check_act') ps(c,r,pd);
+    grow(key);
+    sortData(key);
+    build(key);
+    save();
+    refresh();
+   });
+   if(c[2]==='amt')inp.addEventListener('blur',function(){if(String(inp.value).trim()!==''){inp.value=f(n(inp.value));r[c[0]]=inp.value;ps(c,r,pd);save();refresh()}})}
+  cells[c[0]]=inp;
+  td.appendChild(inp);
+  if(c[2]!=='calc'&&c[2]!=='calc_netto'&&c[2]!=='check_act'&&c[2]!=='deduct_select'){
+    pd=el('span',{cls:'pd'});td.appendChild(pd);cells[c[0]+'_p']=pd;ps(c,r,pd);
+  }
+  tr.appendChild(td);
+ });
+
+ var d=el('td',{cls:'dl'});
+ if(key==='lohn'){
+   var btnPrint=el('button',{cls:'btn-sm',type:'button',text:'📄 Abrechnung'});
+   btnPrint.addEventListener('click',function(){ printLohnabrechnung(r); });
+   d.appendChild(btnPrint);
+ }
+ var x=el('button',{cls:'x',type:'button',title:'Zeile löschen','aria-label':'Zeile löschen',text:'×'});
+ x.addEventListener('click',function(){var i=S[key].indexOf(r);S[key].splice(i,1);tr.remove();grow(key);save();refresh()});
+ d.appendChild(x);
+ tr.appendChild(d);
+ tr._r=r;tr._c=cells;return tr;
+}
+
+function grow(key){
+  var a=S[key],tb=g(LST[key].tb);
+  if(!a) return;
+  if(!a.length||!emptyRow(a[a.length-1])){var r={act:true};a.push(r);tb.appendChild(mk(key,r))}
+}
+
+function build(key){
+ var activeEl = document.activeElement;
+ var activeData = null;
+ if (activeEl && activeEl.tagName && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'SELECT')) {
+   var tr = activeEl.closest('tr');
+   if (tr && tr._r) {
+     activeData = {
+       row: tr._r,
+       key: Object.keys(tr._c).find(function(k){ return tr._c[k] === activeEl; })
+     };
+   }
+ }
+ var tb=g(LST[key].tb);
+ if(!tb) return;
+ tb.innerHTML='';
+ (S[key]||[]).forEach(function(r){tb.appendChild(mk(key,r))});
+ grow(key);
+ if (activeData) {
+   Array.prototype.forEach.call(tb.children, function(tr){
+     if (tr._r === activeData.row && activeData.key && tr._c[activeData.key]) {
+       tr._c[activeData.key].focus();
+     }
+   });
+ }
+}
+
+function inY(d){return d&&String(d).slice(0,4)===String(S.year)}
+
+function refresh(){
+ var Y=S.year;g('year').value=Y;document.title='Buchhaltung '+Y+' - Mejstrik Transport & Reinigung Service';
+ document.querySelectorAll('.yy').forEach(function(e){e.textContent=Y});
+ var me=Array(12).fill(0),ma=Array(12).fill(0),ce={},ca={},te=0,ta=0;
+ CE.forEach(function(c){ce[c]=0});CA.forEach(function(c){ca[c]=0});
+
+ S.ein.forEach(function(r){
+   if(r.act!==false && inY(r.d)){
+     var v=n(r.amt);
+     var m=+r.d.slice(5,7)-1;if(m>=0&&m<12)me[m]+=v;te+=v;if(ce[r.cat]!==undefined)ce[r.cat]+=v
+   }
+ });
+ 
+ S.aus.forEach(function(r){
+   if(r.act!==false && inY(r.d)){
+     var v=n(r.amt);
+     var m=+r.d.slice(5,7)-1;if(m>=0&&m<12)ma[m]+=v;ta+=v;if(ca[r.cat]!==undefined)ca[r.cat]+=v
+   }
+ });
+ 
+ (S.lohn||[]).forEach(function(r){
+   if(r.act!==false && !emptyRow(r) && inY(r.d)){
+     var v=n(r.amt); // gross lohn
+     var m=+r.d.slice(5,7)-1;if(m>=0&&m<12)ma[m]+=v;ta+=v;
+     ca['Löhne & Aushilfshilfe'] = (ca['Löhne & Aushilfshilfe']||0) + v;
+   }
+ });
+
+ ['ein','aus','lohn','rg'].forEach(function(key){
+  var tb=g(LST[key].tb),fl=g('f-'+key)?g('f-'+key).value:'',sum=0;
+  if(!tb) return;
+  Array.prototype.forEach.call(tb.children,function(tr){
+   var r=tr._r,emp=emptyRow(r),show=true;
+   if(key!=='rg'){if(fl&&r.d&&r.d.slice(5,7)!==fl)show=false;if(fl&&r.d&&!inY(r.d))show=false}
+   tr.style.display=show?'':'none';tr.classList.toggle('empty',emp);
+   if(key!=='rg')tr.classList.toggle('warn',!!r.d&&!inY(r.d));
+   if(show&&!emp&&r.act!==false)sum+=n(r.amt);
+   if(key==='rg'){
+    var due='',st='';if(r.d){var dt=new Date(r.d+'T00:00:00');dt.setDate(dt.getDate()+S.days);due=dt.toISOString().slice(0,10)}
+    tr._c.due.textContent=due?due.slice(8,10)+'.'+due.slice(5,7)+'.'+due.slice(0,4):'';
+    var s=!emp&&(r.nr||r.amt)?(r.paid?'bezahlt':(due&&new Date()>new Date(due+'T23:59:59')?'überfällig':'offen')):'';
+    tr._c.st.innerHTML='';if(s)tr._c.st.appendChild(el('span',{cls:'st '+s.replace('ü','ue').replace('ä','ae'),text:s}));tr._rs=s
+   }
+  });
+  var t=g('tt-'+key);if(t)t.textContent=f(sum);
+ });
+
+ var open=0,over=0;S.rg.forEach(function(r){if(r.act!==false&&!emptyRow(r)&&!r.paid){var v=n(r.amt);open+=v;var dt=r.d?new Date(r.d+'T00:00:00'):null;if(dt){dt.setDate(dt.getDate()+S.days);if(new Date()>new Date(dt.toISOString().slice(0,10)+'T23:59:59'))over+=v}}});
+ g('k-e').textContent=f(te);g('k-a').textContent=f(ta);g('k-g').textContent=f(te-ta);g('k-o').textContent=f(open);
+ g('k-ov').textContent=f(over);
+ var mx=Math.max.apply(null,me.concat(ma).concat([1])),h='';
+ for(var m=0;m<12;m++)h+='<tr><td><b>'+MON[m]+'</b></td><td class="r">'+f(me[m])+'</td><td class="r">'+f(ma[m])+'</td><td class="r"><b>'+f(me[m]-ma[m])+'</b></td><td class="bc" style="width:26%"><div class="bar"><i class="e" style="width:'+(me[m]/mx*100)+'%"></i></div><div class="bar"><i class="a" style="width:'+(ma[m]/mx*100)+'%"></i></div></td></tr>';
+ h+='<tr class="tot"><td>Total</td><td class="r">'+f(te)+'</td><td class="r">'+f(ta)+'</td><td class="r">'+f(te-ta)+'</td><td class="bc"></td></tr>';
+ g('tb-mon').innerHTML=h;
+ function cat(id,obj,tot){var h='',s=0,k;for(k in obj){s+=obj[k];h+='<tr><td>'+k.replace(/&/g,'&amp;')+'</td><td class="r">'+f(obj[k])+'</td><td class="r">'+(tot?Math.round(obj[k]/tot*100):0)+' %</td></tr>'}
+  var o=tot-s;h+='<tr><td><i>Ohne Kategorie</i></td><td class="r" style="'+(Math.abs(o)>0.004?'color:#C0392B;font-weight:bold':'')+'">'+f(o)+'</td><td class="r">'+(tot?Math.round(o/tot*100):0)+' %</td></tr><tr class="tot"><td>Total</td><td class="r">'+f(tot)+'</td><td></td></tr>';g(id).innerHTML=h}
+ cat('tb-ce',ce,te);cat('tb-ca',ca,ta);
+}
+
+function fillMon(id){var s=g(id);if(!s) return;s.appendChild(el('option',{value:'',text:'Alle Monate'}));MON.forEach(function(m,i){s.appendChild(el('option',{value:('0'+(i+1)).slice(-2),text:m}))});s.addEventListener('change',refresh)}
+function tab(id){document.querySelectorAll('.sec').forEach(function(s){s.classList.toggle('on',s.id===id)});document.querySelectorAll('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.t===id)});window.scrollTo(0,0)}
+
+function printLohnabrechnung(r){
+  var gross = n(r.amt);
+  var deductInfo = getDeductDetails(r);
+  var dateStr = r.d ? (r.d.slice(8,10)+'.'+r.d.slice(5,7)+'.'+r.d.slice(0,4)) : new Date().toLocaleDateString('de-CH');
+
+  var deductRowsHTML = '';
+  if(deductInfo.items.length === 0){
+    deductRowsHTML = `<tr><td style="padding:6px;border-bottom:1px solid #eee">Sozialversicherungen Abzüge</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right">Befreit / Keine</td><td style="padding:6px;border-bottom:1px solid #eee;text-align:right">0.00</td></tr>`;
+  } else {
+    deductInfo.items.forEach(function(it){
+      deductRowsHTML += `<tr>
+        <td style="padding:6px;border-bottom:1px solid #eee">${it.name} Abzug</td>
+        <td style="padding:6px;border-bottom:1px solid #eee;text-align:right">${it.rate.toFixed(2)} %</td>
+        <td style="padding:6px;border-bottom:1px solid #eee;text-align:right;color:#C0392B">- ${f(it.val)}</td>
+      </tr>`;
+    });
+  }
+
+  var html = `
+    <div style="max-width:680px;margin:0 auto;border:1px solid #ccc;padding:20px;background:#fff;color:#000;font-family:Arial,sans-serif">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #1E3A6D;padding-bottom:10px;margin-bottom:15px">
+        <div>
+          <h2 style="color:#1E3A6D;margin:0;font-size:16px">Mejstrik Transport & Reinigung Service</h2>
+          <p style="font-size:11px;color:#555;margin-top:2px">Ennetaach CH-8586 · Tel. +41 78 345 80 72 · info@mservice.ch</p>
+        </div>
+        <div style="text-align:right">
+          <h3 style="margin:0;color:#F57C00;font-size:15px">LOHNABRECHNUNG</h3>
+          <p style="font-size:11px;margin-top:2px"><b>Datum:</b> ${dateStr}</p>
+        </div>
+      </div>
+
+      <table style="width:100%;margin-bottom:15px;font-size:12px;border:0">
+        <tr><td style="width:130px"><b>Arbeitnehmer/in:</b></td><td>${r.who || '--------------------'}</td></tr>
+        <tr><td><b>Einsatz / Funktion:</b></td><td>${r.desc || 'Aushilfseinsatz / Reinigung / Transport'}</td></tr>
+        <tr><td><b>Auszahlungsart:</b></td><td>${r.pay || 'Bar / Überweisung'}</td></tr>
+      </table>
+
+      <table style="width:100%;border-collapse:collapse;margin-bottom:20px;font-size:12px">
+        <thead>
+          <tr style="background:#1E3A6D;color:#fff">
+            <th style="padding:6px;text-align:left">Bezeichnung</th>
+            <th style="padding:6px;text-align:right">Satz / Hinweis</th>
+            <th style="padding:6px;text-align:right">Betrag CHF</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:6px;border-bottom:1px solid #eee"><b>Bruttolohn / Entschädigung</b></td>
+            <td style="padding:6px;border-bottom:1px solid #eee;text-align:right">Aushilfe</td>
+            <td style="padding:6px;border-bottom:1px solid #eee;text-align:right"><b>${f(gross)}</b></td>
+          </tr>
+          ${deductRowsHTML}
+          <tr style="background:#F4F7FB;font-weight:bold;font-size:13px">
+            <td style="padding:8px;border-top:2px solid #1E3A6D" colspan="2">Nettolohn / Auszahlung CHF</td>
+            <td style="padding:8px;border-top:2px solid #1E3A6D;text-align:right;color:#1F7A44">${f(deductInfo.netto)}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="font-size:10px;color:#666;margin-bottom:30px;line-height:1.3">
+        * Abrechnung gemäss den gesetzlichen Bestimmungen. Die Abzüge entsprechen den ausgewählten Beitragsarten.
+      </div>
+
+      <div style="display:flex;justify-content:space-between;margin-top:40px;font-size:11px">
+        <div style="width:45%;border-top:1px solid #000;padding-top:4px;text-align:center">
+          Unterschrift Arbeitgeber
+        </div>
+        <div style="width:45%;border-top:1px solid #000;padding-top:4px;text-align:center">
+          Unterschrift Arbeitnehmer/in (Empfangsbestätigung)
+        </div>
+      </div>
+    </div>
+  `;
+
+  var printArea = g('lohn-print-area');
+  printArea.innerHTML = html;
+  document.body.classList.add('print-lohn');
+  window.print();
+  setTimeout(function(){
+    document.body.classList.remove('print-lohn');
+    printArea.innerHTML = '';
+  }, 300);
+}
+
+function pr(id){var s=id?g(id):null;document.body.classList.toggle('only',!!id);document.querySelectorAll('.sec').forEach(function(x){x.classList.toggle('prt',x===s)});
+ document.querySelectorAll('.sec').forEach(function(x){x.classList.remove('first')});
+ if(!id){document.querySelector('.sec').classList.add('first')}
+ setTimeout(function(){window.print()},60)}
+window.addEventListener('afterprint',function(){document.body.classList.remove('only');document.querySelectorAll('.sec').forEach(function(x){x.classList.remove('prt','first')})});
+
+function backup(){var b=new Blob([JSON.stringify(S,null,1)],{type:'application/json'}),a=el('a',{href:URL.createObjectURL(b),download:'Buchhaltung_'+S.year+'_Sicherung.json'});document.body.appendChild(a);a.click();a.remove()}
+function restore(file){var r=new FileReader();r.onload=function(){try{var o=JSON.parse(r.result);if(!o||!Array.isArray(o.ein))throw 1;if(!confirm('Die aktuellen Daten werden durch die Sicherung ersetzt. Fortfahren?'))return;S=Object.assign({year:2026,days:10,rates:{ahv:5.15,alv:0.15,alv2:0,nbu:0,ktg:0,bvg:0},ein:[],aus:[],lohn:[],rg:[]},o);['ein','aus','lohn','rg'].forEach(function(k){ sortData(k); build(k); });save();refresh()}catch(e){alert('Die Datei ist keine gültige Sicherung.')}};r.readAsText(file)}
+
+document.addEventListener('DOMContentLoaded',function(){
+ load();
+ if(!S.lohn) S.lohn = [];
+ if(!S.rates) S.rates = {ahv:5.15,alv:0.15,alv2:0,nbu:0,ktg:0,bvg:0};
+ 
+ var rateKeys = ['ahv','alv','alv2','nbu','ktg','bvg'];
+ rateKeys.forEach(function(rk){
+   var inp = g('rate-'+rk);
+   if(inp){
+     inp.value = S.rates[rk] !== undefined ? S.rates[rk] : 0;
+     inp.addEventListener('input',function(){
+       S.rates[rk] = parseFloat(this.value) || 0;
+       save(); refresh(); build('lohn');
+     });
+   }
+ });
+
+ ['ein','aus','lohn','rg'].forEach(function(k){ sortData(k); build(k); });
+ fillMon('f-ein');fillMon('f-aus');fillMon('f-lohn');
+ 
+ g('year').addEventListener('input',function(){var v=parseInt(this.value,10);if(v>1999&&v<2100){S.year=v;save();refresh()}});
+ g('days').value=S.days||10;g('days').addEventListener('input',function(){S.days=parseInt(this.value,10)||0;save();refresh()});
+
+ document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){tab(b.dataset.t)})});
+ g('p-all').addEventListener('click',function(){pr(null)});g('p-one').addEventListener('click',function(){pr(document.querySelector('.sec.on').id)});
+ g('b-save').addEventListener('click',backup);g('b-load').addEventListener('change',function(){if(this.files[0])restore(this.files[0]);this.value=''});
+ refresh();save();
+});
+</script></body></html>
