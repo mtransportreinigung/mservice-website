@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reklamationsformular – M Transport &amp; Reinigung Service</title>
+<meta name="description" content="Mängel nach der Reinigung melden: Reklamationsformular von M Transport &amp; Reinigung Service. Online ausfüllen, speichern oder ausdrucken.">
+<style>
+  :root {
+    --n: #1E3A6D;
+    --b: #2D6CB5;
+    --br: #1F4EA8;
+    --o: #F57C00;
+    --l: #F4F7FB;
+    --bd: #D6DFEA;
+    --ln: #8FA3BF;
+    --g: #666;
+    --gruen: #2E9E5B;
+    --gruen-hell: #EFFAF2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: #e9edf3;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    line-height: 1.45;
+    color: #2a2a2a;
+  }
+
+  .sheet {
+    width: 100%;
+    max-width: 820px;
+    margin: 24px auto;
+    padding: 28px 36px 20px;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(0,0,0,.15);
+  }
+
+  /* Kopf */
+  .kopf {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid var(--b);
+  }
+  .kopf .logo { width: 72px; height: 64px; flex: none; }
+  .kopf .firma { font-size: 20px; font-weight: 700; color: var(--br); line-height: 1.2; }
+  .kopf .kontakt { font-size: 14px; line-height: 1.5; margin-top: 3px; }
+  .kopf a { color: inherit; text-decoration: none; }
+  .kopf a:hover { text-decoration: underline; }
+
+  .titelzeile {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 14px 24px;
+    margin: 18px 0 6px;
+  }
+  h1 { margin: 0; font-size: 30px; line-height: 1; color: var(--n); letter-spacing: .3px; }
+  .sub {
+    margin-top: 10px;
+    padding-left: 9px;
+    border-left: 5px solid var(--o);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--br);
+    line-height: 1.3;
+  }
+  .nr {
+    display: grid;
+    grid-template-columns: 105px minmax(130px, 200px);
+    gap: 6px 8px;
+    align-items: end;
+  }
+  .nr label { font-weight: 700; font-size: 13px; color: var(--n); padding-bottom: 3px; }
+
+  /* Hinweis */
+  .note {
+    margin: 16px 0 4px;
+    padding: 10px 14px;
+    background: var(--gruen-hell);
+    border: 1px solid var(--bd);
+    border-left: 4px solid var(--gruen);
+    font-size: 14px;
+  }
+  .note b { color: #1F7A44; }
+
+  h2 {
+    margin: 22px 0 10px;
+    padding-bottom: 4px;
+    font-size: 15px;
+    letter-spacing: .3px;
+    color: var(--n);
+    border-bottom: 1px solid var(--bd);
+  }
+
+  /* Felder */
+  input[type="text"], input[type="email"], input[type="tel"], textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 6px 4px;
+    font: inherit;
+    font-size: 16px; /* verhindert Zoom auf iPhone */
+    color: #000;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--ln);
+    border-radius: 0;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  textarea { resize: vertical; line-height: 1.5; background: #fff; border: 1px solid var(--ln); padding: 8px; min-height: 96px; }
+  input.gesperrt { background: #eef2f7; color: #1E3A6D; font-weight: 700; cursor: not-allowed; pointer-events: none; }
+  input:focus, textarea:focus { background: rgba(45,108,181,.08); border-color: var(--b); }
+  ::placeholder { color: #a6b3c6; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--l);
+    border: 1px solid var(--bd);
+  }
+  .f label, .f .lbl { display: block; margin-bottom: 1px; font-weight: 700; font-size: 13px; color: var(--n); }
+  .f.full { grid-column: 1 / -1; }
+  @media (min-width: 640px) {
+    .grid { grid-template-columns: 1fr 1fr; gap: 12px 24px; }
+  }
+
+  /* Checkboxen */
+  .check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    line-height: 1.3;
+  }
+  .check input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: none;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    border: 1.5px solid #5C7399;
+    border-radius: 3px;
+    background: #fff;
+    position: relative;
+    cursor: pointer;
+  }
+  .check input[type="checkbox"]:checked { background: var(--b); border-color: var(--b); }
+  .check input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 6.5px;
+    top: 1.5px;
+    width: 6px;
+    height: 12px;
+    border: solid #fff;
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+  }
+  .check input[type="checkbox"]:focus-visible { outline: 3px solid rgba(245,124,0,.6); outline-offset: 2px; }
+
+  /* Bereiche */
+  .bereiche { border: 1px solid var(--bd); }
+  .bereiche .kopfzeile {
+    display: none;
+    background: var(--b);
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 7px 12px;
+  }
+  .bereich {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--bd);
+    align-items: center;
+  }
+  .bereich:last-child { border-bottom: 0; }
+  .bereich:nth-child(odd) { background: var(--l); }
+  .bereich .check { font-weight: 700; color: var(--n); }
+  @media (min-width: 640px) {
+    .bereiche .kopfzeile { display: grid; grid-template-columns: 230px 1fr; gap: 12px; }
+    .bereich { grid-template-columns: 230px 1fr; gap: 12px; }
+  }
+
+  .zusatz-label { margin: 14px 0 4px; font-weight: 700; font-size: 13px; color: var(--n); }
+  .foto { margin-top: 12px; }
+
+  /* Lösung */
+  .loesung {
+    display: grid;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--l);
+    border: 1px solid var(--bd);
+  }
+  .loesung .check { font-weight: 700; color: var(--n); }
+
+  /* Unterschrift */
+  .unterschrift {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 22px;
+    align-items: end;
+  }
+  .sigbox {
+    height: 90px;
+    border-bottom: 1px solid #7F94B5;
+    background: #fff;
+    position: relative;
+    touch-action: none;
+  }
+  .sigbox canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
+  .sigcap { margin-top: 3px; font-size: 12px; color: var(--g); display: flex; justify-content: space-between; gap: 10px; }
+  .sigcap button {
+    font: inherit; font-size: 12px; background: none; border: 0; color: var(--b);
+    cursor: pointer; padding: 0; text-decoration: underline;
+  }
+  @media (min-width: 640px) { .unterschrift { grid-template-columns: 1fr 1fr; gap: 36px; } }
+
+  /* Aktionen */
+  .aktionen {
+    margin-top: 26px;
+    padding: 16px;
+    background: var(--l);
+    border: 1px solid var(--bd);
+  }
+  .aktionen p { margin: 0 0 12px; font-size: 14px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn {
+    font: inherit;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 11px 18px;
+    border-radius: 4px;
+    border: 2px solid var(--b);
+    background: var(--b);
+    color: #fff;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--br); border-color: var(--br); }
+  .btn.zweit { background: #fff; color: var(--b); }
+  .btn.zweit:hover { background: var(--l); }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+  .check.ds { align-items: flex-start; margin-bottom: 8px; font-size: 14px; }
+  .check.ds input { margin-top: 1px; }
+  .check.ds a { color: var(--b); }
+  .dshint { color: #B25E00; font-weight: 700; }
+  .dshint.ok { display: none; }
+  .btn.text { border-color: transparent; background: none; color: var(--g); font-weight: 400; text-decoration: underline; }
+  .btn.text:hover { background: none; color: var(--n); }
+
+  .fuss {
+    margin-top: 24px;
+    padding-top: 10px;
+    border-top: 1px solid var(--bd);
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #444;
+  }
+  .fuss a { color: inherit; }
+
+  @media (max-width: 480px) {
+    .sheet { margin: 0; padding: 18px 14px 14px; box-shadow: none; }
+    h1 { font-size: 26px; }
+    .kopf .logo { width: 56px; height: 50px; }
+    .kopf .firma { font-size: 17px; }
+    .nr { width: 100%; grid-template-columns: 100px 1fr; }
+    .btn { width: 100%; }
+  }
+
+  /* ============ DRUCK: nur die A4-Vorlage (iframe) ============ */
+  #pf { display: block; position: fixed; left: -300mm; top: 0; width: 210mm; height: 297mm; border: 0; background: #fff; pointer-events: none; }
+  @page { size: A4 portrait; margin: 0; }
+  @media print {
+    html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; width: 210mm; height: 297mm; overflow: hidden; }
+    .sheet { display: none !important; }
+    #pf { position: absolute; left: 0; top: 0; width: 210mm; height: 297mm; margin: 0; padding: 0; border: 0; overflow: hidden; }
+    html:not(.ok) #pf { display: none !important; }
+    html:not(.ok) body::before { content: "Bitte zuerst im Formular die Datenschutz-Bestätigung abhaken."; display: block; padding: 20mm; font: 14pt Arial; color: #000; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
+
+<form class="sheet" id="formular" onsubmit="return false" autocomplete="on">
+
+  <header class="kopf">
+    <svg class="logo" viewBox="0 0 420 376" role="img" aria-label="M Transport &amp; Reinigung Service"><use href="#lg"/></svg>
+    <div>
+      <div class="firma">M Transport &amp; Reinigung Service</div>
+      <div class="kontakt">
+        <a href="tel:+41783458072">Tel. +41 78 345 80 72</a><br>
+        <a href="mailto:info@mservice.ch">info@mservice.ch</a> &nbsp;|&nbsp; <a href="https://www.mservice.ch">www.mservice.ch</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="titelzeile">
+    <div>
+      <h1>REKLAMATION</h1>
+      <div class="sub">Meldung von Mängeln nach der Reinigung</div>
+    </div>
+    <div class="nr">
+      <label for="datum">Datum:</label>
+      <input type="text" id="datum" name="datum" readonly tabindex="-1" aria-readonly="true" class="gesperrt">
+      <label for="auftragsnr">Auftrags-Nr.:</label>
+      <input type="text" id="auftragsnr" name="auftragsnr">
+    </div>
+  </div>
+
+  <div class="note">
+    <b>48-Stunden-Zufriedenheitsgarantie:</b> Bitte melden Sie Mängel innerhalb von 48 Stunden nach Beendigung der Reinigung. Wir bessern diese umgehend und kostenlos nach.
+  </div>
+
+  <h2>1. KUNDE &amp; OBJEKT</h2>
+  <div class="grid">
+    <div class="f"><label for="vorname">Vorname:</label><input type="text" id="vorname" name="vorname" autocomplete="given-name"></div>
+    <div class="f"><label for="nachname">Nachname:</label><input type="text" id="nachname" name="nachname" autocomplete="family-name"></div>
+    <div class="f full"><label for="firma">Firma (optional):</label><input type="text" id="firma" name="firma" autocomplete="organization"></div>
+    <div class="f"><label for="telefon">Telefon:</label><input type="tel" id="telefon" name="telefon" inputmode="tel" autocomplete="tel"></div>
+    <div class="f"><label for="email">E-Mail:</label><input type="email" id="email" name="email" inputmode="email" autocomplete="email"></div>
+    <div class="f full"><label for="adresse">Objektadresse:</label><input type="text" id="adresse" name="adresse" autocomplete="street-address"></div>
+    <div class="f"><label for="reinigungsdatum">Reinigungsdatum:</label><input type="text" id="reinigungsdatum" name="reinigungsdatum" placeholder="TT.MM.JJJJ"></div>
+    <div class="f"><label for="uebergabe">Übergabe am:</label><input type="text" id="uebergabe" name="uebergabe" placeholder="TT.MM.JJJJ"></div>
+    <div class="f"><label for="festgestellt">Mängel festgestellt am:</label><input type="text" id="festgestellt" name="festgestellt" placeholder="TT.MM.JJJJ"></div>
+    <div class="f"><label for="uhrzeit">Uhrzeit:</label><input type="text" id="uhrzeit" name="uhrzeit" placeholder="HH:MM"></div>
+  </div>
+
+  <h2>2. BEANSTANDETE BEREICHE</h2>
+  <div class="bereiche">
+    <div class="kopfzeile"><span>Bereich</span><span>Beschreibung des Mangels</span></div>
+    <div class="bereich"><label class="check"><input type="checkbox" name="b_kueche"> Küche &amp; Geräte</label><input type="text" name="t_kueche" aria-label="Beschreibung Küche &amp; Geräte"></div>
+    <div class="bereich"><label class="check"><input type="checkbox" name="b_nass"> Nasszellen / Bad &amp; WC</label><input type="text" name="t_nass" aria-label="Beschreibung Nasszellen, Bad &amp; WC"></div>
+    <div class="bereich"><label class="check"><input type="checkbox" name="b_fenster"> Fenster &amp; Storen</label><input type="text" name="t_fenster" aria-label="Beschreibung Fenster &amp; Storen"></div>
+    <div class="bereich"><label class="check"><input type="checkbox" name="b_wohn"> Wohnräume &amp; Böden</label><input type="text" name="t_wohn" aria-label="Beschreibung Wohnräume &amp; Böden"></div>
+    <div class="bereich"><label class="check"><input type="checkbox" name="b_neben"> Nebennutzflächen</label><input type="text" name="t_neben" aria-label="Beschreibung Nebennutzflächen"></div>
+    <div class="bereich"><label class="check"><input type="checkbox" name="b_sonst"> Sonstiges</label><input type="text" name="t_sonst" aria-label="Beschreibung Sonstiges"></div>
+  </div>
+
+  <div class="zusatz-label">Weitere Angaben zu den Mängeln:</div>
+  <textarea id="weitere" name="weitere" rows="3" aria-label="Weitere Angaben zu den Mängeln"></textarea>
+
+  <div class="foto">
+    <label class="check"><input type="checkbox" name="fotos"> Fotos der Mängel sind beigelegt / per E-Mail gesendet</label>
+  </div>
+
+  <h2>3. GEWÜNSCHTE LÖSUNG</h2>
+  <div class="loesung">
+    <label class="check"><input type="checkbox" name="l_nachbesserung"> Kostenlose Nachbesserung der beanstandeten Stellen</label>
+    <label class="check"><input type="checkbox" name="l_rueckruf"> Rückruf zur Besprechung des weiteren Vorgehens</label>
+    <div class="f"><label for="termin">Möglicher Termin für die Nachbesserung / Zutritt:</label><input type="text" id="termin" name="termin"></div>
+  </div>
+
+  <div class="unterschrift">
+    <div class="f">
+      <label for="ortdatum">Ort, Datum:</label>
+      <input type="text" id="ortdatum" name="ortdatum">
+    </div>
+    <div>
+      <div class="sigbox"><canvas id="sig" aria-label="Unterschrift Kunde"></canvas></div>
+      <div class="sigcap"><span>Unterschrift Kunde</span><button type="button" id="sigclear" class="no-print">Löschen</button></div>
+    </div>
+  </div>
+
+  <div class="aktionen no-print">
+    <label class="check ds"><input type="checkbox" id="ds" name="ds"> <span>Ich habe die <a href="https://www.mservice.ch/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Reklamation verwendet werden.</span></label>
+    <p class="dshint" id="dshint">Bitte bestätigen Sie zuerst die Datenschutzerklärung. Erst dann sind Drucken, Speichern und Senden möglich.</p>
+    <p><strong>Formular fertig?</strong> Speichern Sie es als PDF (im Druckdialog «Als PDF speichern» wählen), drucken Sie es aus oder senden Sie es per E-Mail. Fotos der Mängel können Sie der E-Mail direkt anhängen. Im Druckdialog bitte <em>Format A4</em>, <em>Skalierung 100 %</em> wählen und <em>Kopf- und Fusszeilen</em> ausschalten.</p>
+    <div class="btns">
+      <button type="button" class="btn" id="druck">Drucken / Als PDF speichern</button>
+      <button type="button" class="btn zweit" id="mail">Per E-Mail senden</button>
+      <button type="button" class="btn text" id="reset">Formular leeren</button>
+    </div>
+  </div>
+
+  <footer class="fuss">
+    Mejstrik Transport &amp; Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | <a href="mailto:info@mservice.ch">info@mservice.ch</a> | <a href="https://www.mservice.ch">www.mservice.ch</a><br>
+    Es gelten unsere Allgemeinen Geschäftsbedingungen: <a href="https://www.mservice.ch/agb">www.mservice.ch/agb</a>
+  </footer>
+</form>
+
+<iframe id="pf" title="Druckvorlage A4" aria-hidden="true" tabindex="-1" srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;de-CH&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=794&quot;&gt;
+&lt;meta name=&quot;robots&quot; content=&quot;noindex,nofollow&quot;&gt;
+&lt;title&gt;Reklamationsformular – M Transport &amp;amp; Reinigung Service&lt;/title&gt;
+&lt;style&gt;
+:root{--n:#1E3A6D;--b:#2D6CB5;--br:#1F4EA8;--o:#F57C00;--l:#F4F7FB;--bd:#D6DFEA;--ln:#8FA3BF;--g:#666}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#e9edf3}
+body{font:9pt/1.35 Arial,Helvetica,sans-serif;color:#2a2a2a;-webkit-text-size-adjust:100%}
+.page{width:210mm;height:297mm;position:relative;background:#fff;margin:8mm auto;overflow:hidden;box-shadow:0 0 8px rgba(0,0,0,.18)}
+.logo{position:absolute;left:18mm;top:10mm;width:21mm;height:18.8mm}
+.hd::before{content:&quot;M Transport &amp; Reinigung Service&quot;;position:absolute;left:43mm;top:10.6mm;font:bold 12.5pt Arial;color:var(--br);white-space:nowrap}
+.hd::after{content:&quot;Tel. +41 78 345 80 72\Ainfo@mservice.ch&quot;;white-space:pre;position:absolute;left:43mm;top:17.2mm;font-size:9pt;line-height:1.45}
+.page::after{content:&quot;&quot;;position:absolute;left:18mm;right:15mm;top:34mm;border-top:1.8pt solid var(--b)}
+.title{position:absolute;left:18mm;top:38mm;font:bold 20pt/1 Arial;color:var(--n)}
+.sub{position:absolute;left:18mm;top:47.4mm;font:bold 11.5pt/5mm Arial;color:var(--br);border-left:1.3mm solid var(--o);padding-left:2.1mm}
+.nr{position:absolute;left:128mm;right:15mm;top:39mm;display:grid;grid-template-columns:24mm 1fr;row-gap:1mm;align-items:end}
+.nr label{font-weight:bold;font-size:8.3pt;color:var(--n);padding-bottom:1mm}
+.body{position:absolute;left:18mm;right:15mm;top:56mm;bottom:19mm}
+input[type=text]{font:9.5pt Arial;color:#000;border:0;border-bottom:.6pt solid var(--ln);background:transparent;outline:0;border-radius:0;width:100%;height:5.4mm;padding:0 1px;-webkit-appearance:none;appearance:none}
+input[type=text]:focus{background:rgba(45,108,181,.08)}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;width:3.6mm;height:3.6mm;flex:none;margin:0;border:.7pt solid #5C7399;background:#fff;position:relative;cursor:pointer}
+input[type=checkbox]:checked::after{content:&quot;&quot;;position:absolute;left:.95mm;top:.1mm;width:1.1mm;height:2.3mm;border:solid #000;border-width:0 .5mm .5mm 0;transform:rotate(45deg)}
+h2{font-size:10pt;color:var(--n);margin:6pt 0 3pt;padding-bottom:1pt;border-bottom:.6pt solid var(--bd);letter-spacing:.2pt}
+h2:first-child{margin-top:0}
+.grid{display:grid;grid-template-columns:30mm 1fr 26mm 1fr;align-items:center;background:var(--l);border:.6pt solid var(--bd);padding:.6mm 4pt}
+.grid&gt;label{font-weight:bold;font-size:8pt;color:var(--n);line-height:1.2;padding:.8mm 0}
+.grid&gt;label.m{padding-left:8pt}
+.grid .w{grid-column:2/5}
+.cb{display:flex;align-items:center;flex-wrap:wrap;font-size:8.3pt;min-height:5.4mm;gap:1mm 3.4mm}
+.cb label{display:flex;align-items:center;gap:2mm;white-space:nowrap;cursor:pointer}
+.cb input[type=text]{flex:1;min-width:26mm;width:auto}
+.txt{margin-bottom:3pt;line-height:1.35}
+table{width:100%;border-collapse:collapse}
+th{background:var(--b);color:#fff;text-align:left;padding:3.2pt 6pt;font-size:8.4pt}
+td{padding:1.6pt 6pt;vertical-align:middle;border-bottom:.5pt solid var(--bd);font-size:8.6pt}
+tr:nth-child(even) td{background:var(--l)}
+td.a{font-weight:bold;width:40mm}
+td.c,th.c{width:20mm;text-align:center}
+td.c input{display:inline-block;vertical-align:middle}
+td input[type=text]{height:5mm;font-size:8.6pt}
+.note{border:.5pt solid var(--bd);border-left:3pt solid #2E9E5B;background:#EFFAF2;padding:5pt 8pt 4pt 9pt;font-size:8.6pt}
+.note b{color:#1F7A44}
+.key{background:var(--l);border:.6pt solid var(--bd);padding:1.6mm 4pt}
+.key .opt{display:flex;align-items:center;gap:2.4mm;min-height:5.4mm;font-size:9pt;font-weight:bold;color:var(--n);cursor:pointer}
+.key .opt span.n{font-weight:normal;color:#2a2a2a}
+.key .opt input[type=text]{flex:1;width:auto;font-weight:normal}
+.ln input[type=text]{display:block;height:6.4mm}
+
+.sl{border-top:.7pt solid #7F94B5;padding-top:2pt;font-size:8pt;color:var(--g)}
+.sign .who{font-weight:bold;font-size:8.6pt;color:#2a2a2a;margin-bottom:1mm}
+.sign .dt span{white-space:nowrap}.sign .dt{display:flex;align-items:flex-end;gap:2mm;font-size:8pt;color:var(--g);margin-bottom:1mm}
+.foot{position:absolute;left:18mm;right:15mm;bottom:0;height:16.5mm;font-size:7.5pt;border-top:.6pt solid var(--bd)}
+.foot::before{content:&quot;Seite 1 von 1&quot;;position:absolute;right:0;top:-4.2mm;color:#7B93B8}
+.foot::after{content:&quot;Mejstrik Transport &amp; Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | info@mservice.ch | www.mservice.ch\A Es gelten unsere Allgemeinen Geschäftsbedingungen: www.mservice.ch/agb&quot;;white-space:pre;position:absolute;left:0;right:0;top:3.2mm;text-align:center;color:#444;line-height:4mm}
+@media screen and (max-width:230mm){html{background:#fff}.page{margin:0;box-shadow:none}}
+@page{size:A4;margin:0}
+@media print{html,body{background:#fff;width:210mm;height:297mm;overflow:hidden}.page{margin:0!important;box-shadow:none;zoom:1!important;break-inside:avoid;page-break-after:avoid}input::placeholder{color:transparent}input,textarea{-webkit-print-color-adjust:exact;print-color-adjust:exact}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+.area td.c,.area th.c{width:17mm}
+.area td.a{width:44mm}
+.two{display:grid;grid-template-columns:1fr 1fr;column-gap:10pt}
+.int{border:.6pt dashed var(--ln);background:#fff;padding:1.4mm 4pt}
+.int .grid{background:#fff;border:0;padding:0}
+.int .t{font-weight:bold;font-size:8pt;color:var(--g);margin-bottom:.6mm}
+.sign{display:grid;grid-template-columns:1fr 1fr;column-gap:12pt;margin-top:4mm}
+.sign&gt;div{padding:0!important}
+.sbox{height:20mm;border:0;border-bottom:.7pt solid #7F94B5;position:relative;margin-top:1.5mm}
+.sbox span{position:absolute;left:0;top:100%;margin-top:.8mm;font-size:8pt;color:var(--g);white-space:nowrap}
+.sign .dt{margin:0}
+.sign .who{margin-top:1mm}
+.wl{position:relative;overflow:hidden}.wl .ln{height:6.4mm;border-bottom:.6pt solid var(--ln)}.wl .wt{position:absolute;left:1px;right:0;top:0;white-space:pre-wrap;word-break:break-word;font:9.5pt/6.4mm Arial;color:#000}
+.sbox img{position:absolute;left:0;bottom:0;max-width:100%;max-height:100%;display:none}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+&lt;svg width=&quot;0&quot; height=&quot;0&quot; style=&quot;position:absolute&quot;&gt;&lt;symbol id=&quot;lg&quot; viewBox=&quot;0 0 420 376&quot;&gt;&lt;defs&gt;&lt;linearGradient id=&quot;og&quot; gradientUnits=&quot;userSpaceOnUse&quot; x1=&quot;10&quot; y1=&quot;0&quot; x2=&quot;410&quot; y2=&quot;0&quot;&gt;&lt;stop offset=&quot;0&quot; stop-color=&quot;#ff5200&quot;/&gt;&lt;stop offset=&quot;.5&quot; stop-color=&quot;#ff7f00&quot;/&gt;&lt;stop offset=&quot;1&quot; stop-color=&quot;#ffa800&quot;/&gt;&lt;/linearGradient&gt;&lt;/defs&gt;&lt;path fill=&quot;#013286&quot; d=&quot;M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z&quot;/&gt;&lt;path fill=&quot;#002263&quot; d=&quot;M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z&quot;/&gt;&lt;path fill=&quot;#013185&quot; d=&quot;M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z&quot;/&gt;&lt;path fill=&quot;#023c9f&quot; d=&quot;M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z&quot;/&gt;&lt;path fill=&quot;#054bc2&quot; d=&quot;M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z&quot;/&gt;&lt;path fill=&quot;url(#og)&quot; d=&quot;M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z&quot;/&gt;&lt;/symbol&gt;&lt;/svg&gt;
+&lt;div class=&quot;page&quot;&gt;
+&lt;div class=&quot;hd&quot;&gt;&lt;svg class=&quot;logo&quot;&gt;&lt;use href=&quot;#lg&quot;/&gt;&lt;/svg&gt;&lt;/div&gt;
+&lt;div class=&quot;title&quot;&gt;REKLAMATION&lt;/div&gt;
+&lt;div class=&quot;sub&quot;&gt;Meldung von Mängeln nach der Reinigung&lt;/div&gt;
+&lt;div class=&quot;nr&quot;&gt;&lt;label&gt;Datum:&lt;/label&gt;&lt;input name=&quot;datum&quot; type=&quot;text&quot;&gt;&lt;label&gt;Auftrags-Nr.:&lt;/label&gt;&lt;input name=&quot;auftragsnr&quot; type=&quot;text&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;body&quot;&gt;
+&lt;h2&gt;1. KUNDE &amp;amp; OBJEKT&lt;/h2&gt;
+&lt;div class=&quot;grid&quot;&gt;
+&lt;label&gt;Vorname:&lt;/label&gt;&lt;input name=&quot;vorname&quot; type=&quot;text&quot;&gt;&lt;label class=&quot;m&quot;&gt;Nachname:&lt;/label&gt;&lt;input name=&quot;nachname&quot; type=&quot;text&quot;&gt;
+&lt;label&gt;Firma (optional):&lt;/label&gt;&lt;input name=&quot;firma&quot; type=&quot;text&quot; class=&quot;w&quot;&gt;
+&lt;label&gt;Telefon:&lt;/label&gt;&lt;input name=&quot;telefon&quot; type=&quot;text&quot; inputmode=&quot;tel&quot;&gt;&lt;label class=&quot;m&quot;&gt;E-Mail:&lt;/label&gt;&lt;input name=&quot;email&quot; type=&quot;text&quot; inputmode=&quot;email&quot;&gt;
+&lt;label&gt;Objektadresse:&lt;/label&gt;&lt;input name=&quot;adresse&quot; type=&quot;text&quot; class=&quot;w&quot;&gt;
+&lt;label&gt;Reinigungsdatum:&lt;/label&gt;&lt;input name=&quot;reinigungsdatum&quot; type=&quot;text&quot;&gt;&lt;label class=&quot;m&quot;&gt;Übergabe am:&lt;/label&gt;&lt;input name=&quot;uebergabe&quot; type=&quot;text&quot;&gt;
+&lt;label&gt;Mängel festgestellt am:&lt;/label&gt;&lt;input name=&quot;festgestellt&quot; type=&quot;text&quot;&gt;&lt;label class=&quot;m&quot;&gt;Uhrzeit:&lt;/label&gt;&lt;input name=&quot;uhrzeit&quot; type=&quot;text&quot;&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;2. BEANSTANDETE BEREICHE&lt;/h2&gt;
+&lt;table class=&quot;area&quot;&gt;
+&lt;tr&gt;&lt;th&gt;Bereich&lt;/th&gt;&lt;th class=&quot;c&quot;&gt;Mangel&lt;/th&gt;&lt;th&gt;Beschreibung des Mangels&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;a&quot;&gt;Küche &amp;amp; Geräte&lt;/td&gt;&lt;td class=&quot;c&quot;&gt;&lt;input name=&quot;b_kueche&quot; type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;input name=&quot;t_kueche&quot; type=&quot;text&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;a&quot;&gt;Nasszellen / Bad &amp;amp; WC&lt;/td&gt;&lt;td class=&quot;c&quot;&gt;&lt;input name=&quot;b_nass&quot; type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;input name=&quot;t_nass&quot; type=&quot;text&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;a&quot;&gt;Fenster &amp;amp; Storen&lt;/td&gt;&lt;td class=&quot;c&quot;&gt;&lt;input name=&quot;b_fenster&quot; type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;input name=&quot;t_fenster&quot; type=&quot;text&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;a&quot;&gt;Wohnräume &amp;amp; Böden&lt;/td&gt;&lt;td class=&quot;c&quot;&gt;&lt;input name=&quot;b_wohn&quot; type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;input name=&quot;t_wohn&quot; type=&quot;text&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;a&quot;&gt;Nebennutzflächen&lt;/td&gt;&lt;td class=&quot;c&quot;&gt;&lt;input name=&quot;b_neben&quot; type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;input name=&quot;t_neben&quot; type=&quot;text&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td class=&quot;a&quot;&gt;Sonstiges&lt;/td&gt;&lt;td class=&quot;c&quot;&gt;&lt;input name=&quot;b_sonst&quot; type=&quot;checkbox&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;input name=&quot;t_sonst&quot; type=&quot;text&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;div style=&quot;margin-top:4pt;font-size:8pt;font-weight:bold;color:var(--n)&quot;&gt;Weitere Angaben zu den Mängeln:&lt;/div&gt;
+&lt;div class=&quot;wl&quot;&gt;&lt;div id=&quot;wlines&quot;&gt;&lt;/div&gt;&lt;div class=&quot;wt&quot; id=&quot;weitere&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;cb&quot; style=&quot;margin-top:2pt&quot;&gt;&lt;label&gt;&lt;input name=&quot;fotos&quot; type=&quot;checkbox&quot;&gt;Fotos der Mängel sind beigelegt / per E-Mail gesendet&lt;/label&gt;&lt;/div&gt;
+
+&lt;h2&gt;3. GEWÜNSCHTE LÖSUNG&lt;/h2&gt;
+&lt;div class=&quot;key&quot;&gt;
+&lt;label class=&quot;opt&quot;&gt;&lt;input name=&quot;l_nachbesserung&quot; type=&quot;checkbox&quot;&gt;Kostenlose Nachbesserung der beanstandeten Stellen&lt;/label&gt;
+&lt;label class=&quot;opt&quot;&gt;&lt;input name=&quot;l_rueckruf&quot; type=&quot;checkbox&quot;&gt;Rückruf zur Besprechung des weiteren Vorgehens&lt;/label&gt;
+&lt;div class=&quot;opt&quot; style=&quot;cursor:default&quot;&gt;&lt;span class=&quot;n&quot;&gt;Möglicher Termin für die Nachbesserung / Zutritt:&lt;/span&gt;&lt;input name=&quot;termin&quot; type=&quot;text&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;sign&quot;&gt;
+&lt;div&gt;&lt;div class=&quot;dt&quot;&gt;&lt;span&gt;Ort, Datum:&lt;/span&gt;&lt;input name=&quot;ortdatum&quot; type=&quot;text&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div&gt;&lt;div class=&quot;sbox&quot; style=&quot;height:24mm&quot;&gt;&lt;img id=&quot;sigimg&quot; alt=&quot;&quot;&gt;&lt;span&gt;Unterschrift Kunde&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;foot&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/body&gt;&lt;/html&gt;"></iframe>
+
+<script>
+(function () {
+  var f = document.getElementById('formular');
+
+  // Heutiges Datum vorausfüllen
+  var d = new Date(), p = function (n) { return (n < 10 ? '0' : '') + n; };
+  var heute = p(d.getDate()) + '.' + p(d.getMonth() + 1) + '.' + d.getFullYear();
+  var dat = document.getElementById('datum');
+  if (!dat.value) dat.value = heute;
+  dat.addEventListener('keydown', function (e) { e.preventDefault(); });
+  dat.addEventListener('focus', function () { dat.blur(); });
+
+  // Unterschrift (Maus / Touch / Stift)
+  var cv = document.getElementById('sig'), ctx = cv.getContext('2d'), zeichnet = false, leer = true;
+  function groesse() {
+    var r = cv.getBoundingClientRect(), s = window.devicePixelRatio || 1;
+    if (!r.width) return;
+    var bild = leer ? null : cv.toDataURL();
+    cv.width = Math.round(r.width * s); cv.height = Math.round(r.height * s);
+    ctx.setTransform(s, 0, 0, s, 0, 0);
+    ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#000';
+    if (bild) { var im = new Image(); im.onload = function () { ctx.drawImage(im, 0, 0, r.width, r.height); }; im.src = bild; }
+  }
+  function pos(e) { var r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }
+  cv.addEventListener('pointerdown', function (e) {
+    zeichnet = true; leer = false; cv.setPointerCapture(e.pointerId);
+    var q = pos(e); ctx.beginPath(); ctx.moveTo(q.x, q.y); ctx.lineTo(q.x + .1, q.y + .1); ctx.stroke(); e.preventDefault();
+  });
+  cv.addEventListener('pointermove', function (e) {
+    if (!zeichnet) return; var q = pos(e); ctx.lineTo(q.x, q.y); ctx.stroke(); e.preventDefault();
+  });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(function (n) { cv.addEventListener(n, function () { zeichnet = false; }); });
+  document.getElementById('sigclear').addEventListener('click', function () {
+    ctx.clearRect(0, 0, cv.width, cv.height); leer = true; sync();
+  });
+  window.addEventListener('load', groesse);
+  window.addEventListener('resize', groesse);
+  groesse();
+
+  // Druckvorlage (A4-iframe) laufend mit den Eingaben abgleichen
+  var pf = document.getElementById('pf');
+  function sync() {
+    var d = pf.contentDocument;
+    if (!d || !d.body) return;
+    var ins = d.querySelectorAll('input[name]');
+    for (var k = 0; k < ins.length; k++) {
+      var s = f.elements[ins[k].name];
+      if (!s) continue;
+      if (ins[k].type === 'checkbox') ins[k].checked = s.checked; else ins[k].value = s.value;
+    }
+    var w = d.getElementById('weitere'), wl = d.getElementById('wlines');
+    if (w && wl) {
+      w.textContent = f.elements['weitere'].value;
+      var lh = 6.4 * 96 / 25.4, n = Math.max(3, Math.ceil((w.scrollHeight - 1) / lh));
+      if (wl.children.length !== n) {
+        wl.innerHTML = '';
+        for (var j = 0; j < n; j++) { var ln = d.createElement('div'); ln.className = 'ln'; wl.appendChild(ln); }
+      }
+    }
+    var im = d.getElementById('sigimg');
+    if (im) {
+      if (leer) { im.removeAttribute('src'); im.style.display = 'none'; }
+      else {
+        var t = document.createElement('canvas'); t.width = cv.width; t.height = cv.height;
+        var tc = t.getContext('2d'); tc.fillStyle = '#fff'; tc.fillRect(0, 0, t.width, t.height); tc.drawImage(cv, 0, 0);
+        im.src = t.toDataURL('image/jpeg', 0.92); im.style.display = 'block';
+      }
+    }
+  }
+  pf.addEventListener('load', sync);
+  f.addEventListener('input', sync);
+  f.addEventListener('change', sync);
+  cv.addEventListener('pointerup', sync);
+  window.addEventListener('beforeprint', sync);
+
+  // Datenschutz-Bestaetigung
+  var ok = document.getElementById('ds'), hint = document.getElementById('dshint');
+  var bd = document.getElementById('druck'), bm = document.getElementById('mail');
+  function pruefen() {
+    var a = ok.checked;
+    document.documentElement.classList.toggle('ok', a);
+    bd.disabled = !a; bm.disabled = !a; hint.classList.toggle('ok', a);
+  }
+  ok.addEventListener('change', pruefen); pruefen();
+
+  // Drucken / PDF
+  bd.addEventListener('click', function () { if (!ok.checked) return; sync(); window.print(); });
+
+  // Zurücksetzen
+  document.getElementById('reset').addEventListener('click', function () {
+    if (!confirm('Alle Eingaben löschen?')) return;
+    f.reset(); dat.value = heute; ok.checked = false; pruefen(); ctx.clearRect(0, 0, cv.width, cv.height); leer = true; sync();
+  });
+
+  // Per E-Mail senden (öffnet das E-Mail-Programm mit vorbereitetem Text)
+  function v(id) { var e = document.getElementById(id); return e && e.value ? e.value.trim() : ''; }
+  function c(n) { var e = f.elements[n]; return e && e.checked; }
+  bm.addEventListener('click', function () {
+    if (!ok.checked) return;
+    var bereiche = [
+      ['b_kueche', 't_kueche', 'Küche & Geräte'],
+      ['b_nass', 't_nass', 'Nasszellen / Bad & WC'],
+      ['b_fenster', 't_fenster', 'Fenster & Storen'],
+      ['b_wohn', 't_wohn', 'Wohnräume & Böden'],
+      ['b_neben', 't_neben', 'Nebennutzflächen'],
+      ['b_sonst', 't_sonst', 'Sonstiges']
+    ];
+    var z = [];
+    z.push('REKLAMATION – Meldung von Mängeln nach der Reinigung', '');
+    z.push('Datum: ' + v('datum'), 'Auftrags-Nr.: ' + v('auftragsnr'), '');
+    z.push('KUNDE & OBJEKT');
+    z.push('Name: ' + v('vorname') + ' ' + v('nachname'));
+    if (v('firma')) z.push('Firma: ' + v('firma'));
+    z.push('Telefon: ' + v('telefon'), 'E-Mail: ' + v('email'), 'Objektadresse: ' + v('adresse'));
+    z.push('Reinigungsdatum: ' + v('reinigungsdatum'), 'Übergabe am: ' + v('uebergabe'));
+    z.push('Mängel festgestellt am: ' + v('festgestellt') + ' ' + v('uhrzeit'), '');
+    z.push('BEANSTANDETE BEREICHE');
+    var any = false;
+    bereiche.forEach(function (b) {
+      var t = f.elements[b[1]].value.trim();
+      if (c(b[0]) || t) { any = true; z.push('- ' + b[2] + (t ? ': ' + t : '')); }
+    });
+    if (!any) z.push('-');
+    if (v('weitere')) z.push('', 'Weitere Angaben: ' + v('weitere'));
+    z.push('', 'Fotos beigelegt: ' + (c('fotos') ? 'Ja' : 'Nein'), '');
+    z.push('GEWÜNSCHTE LÖSUNG');
+    if (c('l_nachbesserung')) z.push('- Kostenlose Nachbesserung der beanstandeten Stellen');
+    if (c('l_rueckruf')) z.push('- Rückruf zur Besprechung des weiteren Vorgehens');
+    if (v('termin')) z.push('Möglicher Termin / Zutritt: ' + v('termin'));
+    z.push('', 'Ort, Datum: ' + v('ortdatum'), '', 'Datenschutzerklärung gelesen und akzeptiert: Ja');
+    var betreff = 'Reklamation' + (v('auftragsnr') ? ' Auftrag ' + v('auftragsnr') : '') + (v('nachname') ? ' – ' + v('nachname') : '');
+    location.href = 'mailto:info@mservice.ch?subject=' + encodeURIComponent(betreff) + '&body=' + encodeURIComponent(z.join('\n'));
+  });
+})();
+</script>
+</body>
+</html>
