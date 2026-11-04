@@ -338,104 +338,68 @@
   }
 
   /* ============ DRUCK / PDF ============
-     Layout wie die A4-Vorlage, aber ohne feste Seitenhöhe:
-     längere Texte verlängern die Seite, bei Bedarf folgt eine zweite. */
-  @page {
-    size: A4 portrait;
-    margin: 12mm 14mm;
-    @bottom-right { content: "Seite " counter(page) " von " counter(pages); font: 7.5pt Arial, Helvetica, sans-serif; color: #7B93B8; }
-  }
+     A4 hochkant, genau eine Seite. Seitenrand 0 => der Browser hat keinen Platz
+     für Kopf-/Fusszeilen (Datum, URL, Seitenzahl). Der Rand steckt im Layout.
+     Die Druckregeln gelten nur mit Klasse html.druck, die das Skript beim Drucken setzt. */
+  @page { size: A4 portrait; margin: 0; }
+  html.druck, html.druck body { margin: 0; padding: 0; background: #fff; width: 210mm; height: 296mm; overflow: hidden; }
+  html.druck body { font-size: 9pt; line-height: 1.35; }
+  html.druck * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html.druck .sheet { position: relative; width: 210mm; max-width: none; height: 296mm; margin: 0; padding: 10.5mm 15mm 0 18mm; overflow: hidden; box-shadow: none; background: #fff; }
+  html.druck .inhalt { transform-origin: top left; }
+  html.druck .no-print, html.druck .sigmodal, html.druck .sigph, html.druck .wwwp, html.druck .note, html.druck .aktionen { display: none !important; }
+  html.druck input::placeholder { color: transparent; }
+  html.druck .kopf { gap: 4mm; padding-bottom: 5mm; border-bottom: 1.8pt solid var(--b); }
+  html.druck .kopf .logo { width: 21mm; height: 18.8mm; }
+  html.druck .kopf .firma { font-size: 12.5pt; }
+  html.druck .kopf .kontakt { font-size: 9pt; line-height: 1.45; margin-top: 1.5mm; }
+  html.druck .titelzeile { margin: 4mm 0 1mm; align-items: flex-start; flex-wrap: nowrap; }
+  html.druck h1 { font-size: 20pt; }
+  html.druck .sub { font-size: 11.5pt; margin-top: 3mm; border-left-width: 1.3mm; padding-left: 2.1mm; }
+  html.druck .nr { width: auto; grid-template-columns: 24mm 45mm; gap: 1mm 2mm; }
+  html.druck .nr label { font-size: 8.3pt; }
+  html.druck h2 { font-size: 10pt; margin: 5mm 0 2mm; padding-bottom: 1pt; }
+  html.druck input[type="text"], html.druck input[type="email"], html.druck input[type="tel"] { font-size: 9.5pt; height: 5.4mm; padding: 0 1px; }
+  html.druck textarea.auto { display: none !important; }
+  html.druck .pm { display: block; min-height: 5.4mm; padding: .4mm 1px; font-size: 9.5pt; line-height: 1.4; color: #000; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; border-bottom: .6pt solid var(--ln); }
+  html.druck .grid { grid-template-columns: 30mm 1fr 26mm 1fr; gap: 0; align-items: center; padding: .6mm 4pt; }
+  html.druck .grid .f { display: contents; }
+  html.druck .grid .f label { margin: 0; padding: .8mm 0; font-size: 8pt; line-height: 1.2; }
+  html.druck .grid .f.r label { padding-left: 8pt; }
+  html.druck .grid .f.full .pm { grid-column: 2 / 5; }
+  html.druck .bereiche { border: 0; }
+  html.druck .bereiche .kopfzeile { display: grid !important; grid-template-columns: 44mm 17mm 1fr; column-gap: 0; padding: 3.2pt 6pt; font-size: 8.4pt; }
+  html.druck .kc { display: block !important; text-align: center; }
+  html.druck .bereich { grid-template-columns: 44mm 17mm 1fr; column-gap: 0; align-items: center; padding: 1.1mm 6pt; border-bottom: .5pt solid var(--bd); }
+  html.druck .bereiche .bereich { background: #fff !important; }
+  html.druck .bereiche .bereich:nth-child(even) { background: var(--l) !important; }
+  html.druck .bereich .check { display: contents; }
+  html.druck .bereich .check span { order: 1; font-weight: 700; font-size: 8.6pt; color: #2a2a2a; }
+  html.druck .bereich .check input { order: 2; justify-self: center; margin: 0; }
+  html.druck .bereich .pm { order: 3; }
+  html.druck .zusatz-label { margin: 3mm 0 1mm; font-size: 8pt; }
+  html.druck .pm.box { min-height: 19.2mm; padding: 0; border: 0; line-height: 6.4mm; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(6.4mm - .6pt), var(--ln) calc(6.4mm - .6pt), var(--ln) 6.4mm); }
+  html.druck .foto { margin-top: 2mm; }
+  html.druck .foto .check { font-size: 8.6pt; gap: 2mm; }
+  html.druck .check input[type="checkbox"] { width: 3.6mm; height: 3.6mm; border: .7pt solid #5C7399; border-radius: 0; background: #fff !important; }
+  html.druck .check input[type="checkbox"]:checked { border-color: #5C7399; }
+  html.druck .check input[type="checkbox"]:checked::after { left: .95mm; top: .1mm; width: 1.1mm; height: 2.3mm; border-color: #000; border-width: 0 .5mm .5mm 0; }
+  html.druck .loesung { padding: 1.6mm 4pt; gap: 0; }
+  html.druck .loesung .check { font-size: 9pt; min-height: 5.4mm; gap: 2.4mm; }
+  html.druck .loesung .f { display: flex; align-items: flex-end; gap: 2.4mm; min-height: 5.4mm; }
+  html.druck .loesung .f label { margin: 0; font-weight: 400; font-size: 9pt; color: #2a2a2a; white-space: nowrap; }
+  html.druck .loesung .f .pm { flex: 1; }
+  html.druck .unterschrift { display: block; width: 58%; margin-top: 5mm; }
+  html.druck .unterschrift .f { display: flex; align-items: flex-end; gap: 2mm; }
+  html.druck .unterschrift .f label { margin: 0; padding-bottom: 1mm; font-weight: 400; font-size: 8pt; color: var(--g); white-space: nowrap; }
+  html.druck .unterschrift > div + div { margin-top: 5mm; }
+  html.druck .sigbox { height: 24mm; border-bottom: .7pt solid #7F94B5; background: #fff; }
+  html.druck .sigcap { font-size: 8pt; color: var(--g); }
+  html.druck .fuss { position: absolute; left: 18mm; right: 15mm; bottom: 0; height: 16.5mm; margin: 0; padding-top: 3.2mm; font-size: 7.5pt; line-height: 4mm; color: #444; border-top: .6pt solid var(--bd); }
+  html.druck .fuss::before { content: "Seite 1 von 1"; position: absolute; right: 0; top: -4.2mm; color: #7B93B8; line-height: 1; }
+
   @media print {
-    html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; width: auto; height: auto; overflow: visible; }
-    body { font-size: 9pt; line-height: 1.35; }
-    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .sheet { position: relative; max-width: none; width: 100%; margin: 0; padding: 0 0 17mm; box-shadow: none; min-height: min(262mm, calc(100vh - 8mm)); }
-    .no-print, .sigmodal, .sigph, .wwwp, .note { display: none !important; }
-    input::placeholder { color: transparent; }
-
-    /* Kopf */
-    .kopf { gap: 4mm; padding-bottom: 3.5mm; border-bottom: 1.8pt solid var(--b); }
-    .kopf .logo { width: 21mm; height: 18.8mm; }
-    .kopf .firma { font-size: 12.5pt; }
-    .kopf .kontakt { font-size: 9pt; line-height: 1.45; margin-top: 1.5mm; }
-    .titelzeile { margin: 4mm 0 1mm; align-items: flex-start; }
-    h1 { font-size: 20pt; }
-    .sub { font-size: 11.5pt; margin-top: 3mm; border-left-width: 1.3mm; padding-left: 2.1mm; }
-    .nr { grid-template-columns: 24mm 45mm; gap: 1mm 2mm; }
-    .nr label { font-size: 8.3pt; }
-
-    h2 { font-size: 10pt; margin: 5mm 0 2mm; padding-bottom: 1pt; break-after: avoid; page-break-after: avoid; }
-    .grid, .bereich, .loesung, .unterschrift, .foto, .fuss { break-inside: avoid; page-break-inside: avoid; }
-
-    /* Eingabefelder und Druckkopien der Textfelder */
-    input[type="text"], input[type="email"], input[type="tel"] { font-size: 9.5pt; height: 5.4mm; padding: 0 1px; }
-    textarea.auto { display: none !important; }
-    .pm {
-      display: block;
-      min-height: 5.4mm;
-      padding: .4mm 1px;
-      font-size: 9.5pt;
-      line-height: 1.4;
-      color: #000;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      word-break: break-word;
-      border-bottom: .6pt solid var(--ln);
-    }
-
-    /* 1. Kunde & Objekt: Bezeichnung links, Feld rechts */
-    .grid { grid-template-columns: 30mm 1fr 26mm 1fr; gap: 0; align-items: center; padding: .6mm 4pt; }
-    .grid .f { display: contents; }
-    .grid .f label { margin: 0; padding: .8mm 0; font-size: 8pt; line-height: 1.2; }
-    .grid .f.r label { padding-left: 8pt; }
-    .grid .f.full .pm { grid-column: 2 / 5; }
-
-    /* 2. Bereiche als Tabelle */
-    .bereiche { border: 0; }
-    .bereiche .kopfzeile { display: grid !important; grid-template-columns: 44mm 17mm 1fr; column-gap: 0; padding: 3.2pt 6pt; font-size: 8.4pt; }
-    .kc { display: block !important; text-align: center; }
-    .bereich { grid-template-columns: 44mm 17mm 1fr; column-gap: 0; align-items: center; padding: 1.1mm 6pt; border-bottom: .5pt solid var(--bd); }
-    .bereiche .bereich { background: #fff !important; }
-    .bereiche .bereich:nth-child(even) { background: var(--l) !important; }
-    .bereich .check { display: contents; }
-    .bereich .check span { order: 1; font-weight: 700; font-size: 8.6pt; color: #2a2a2a; }
-    .bereich .check input { order: 2; justify-self: center; margin: 0; }
-    .bereich .pm { order: 3; }
-
-    .zusatz-label { margin: 3mm 0 1mm; font-size: 8pt; }
-    .pm.box {
-      min-height: 19.2mm;
-      padding: 0;
-      border: 0;
-      line-height: 6.4mm;
-      background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(6.4mm - .6pt), var(--ln) calc(6.4mm - .6pt), var(--ln) 6.4mm);
-    }
-    .foto { margin-top: 2mm; }
-    .foto .check { font-size: 8.6pt; gap: 2mm; }
-
-    /* Checkboxen: weisses Kästchen, schwarzes Häkchen */
-    .check input[type="checkbox"] { width: 3.6mm; height: 3.6mm; border: .7pt solid #5C7399; border-radius: 0; background: #fff !important; }
-    .check input[type="checkbox"]:checked { border-color: #5C7399; }
-    .check input[type="checkbox"]:checked::after { left: .95mm; top: .1mm; width: 1.1mm; height: 2.3mm; border-color: #000; border-width: 0 .5mm .5mm 0; }
-
-    /* 3. Lösung */
-    .loesung { padding: 1.6mm 4pt; gap: 0; }
-    .loesung .check { font-size: 9pt; min-height: 5.4mm; gap: 2.4mm; }
-    .loesung .f { display: flex; align-items: flex-end; gap: 2.4mm; min-height: 5.4mm; }
-    .loesung .f label { margin: 0; font-weight: 400; font-size: 9pt; color: #2a2a2a; white-space: nowrap; }
-    .loesung .f .pm { flex: 1; }
-
-    /* Unterschrift */
-    .unterschrift { display: block; width: 58%; margin-top: 5mm; }
-    .unterschrift .f { display: flex; align-items: flex-end; gap: 2mm; }
-    .unterschrift .f label { margin: 0; padding-bottom: 1mm; font-weight: 400; font-size: 8pt; color: var(--g); white-space: nowrap; }
-    .unterschrift > div + div { margin-top: 5mm; }
-    .sigbox { height: 24mm; border-bottom: .7pt solid #7F94B5; background: #fff; }
-    .sigcap { font-size: 8pt; color: var(--g); }
-
-    /* Fusszeile am Seitenende */
-    .fuss { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding-top: 3mm; font-size: 7.5pt; line-height: 4mm; color: #444; border-top: .6pt solid var(--bd); }
-
+    .no-print, .sigmodal { display: none !important; }
     html:not(.ok) .sheet { display: none !important; }
     html:not(.ok) body::before { content: "Bitte zuerst im Formular die Datenschutz-Bestätigung abhaken."; display: block; padding: 20mm; font: 14pt Arial; color: #000; }
   }
@@ -446,6 +410,7 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
 
 <form class="sheet" id="formular" onsubmit="return false" autocomplete="on">
+<div class="inhalt" id="inhalt">
 
   <header class="kopf">
     <svg class="logo" viewBox="0 0 420 376" role="img" aria-label="M Transport &amp; Reinigung Service"><use href="#lg"/></svg>
@@ -528,10 +493,12 @@
     </div>
   </div>
 
+</div>
+
   <div class="aktionen no-print">
     <label class="check ds"><input type="checkbox" id="ds" name="ds"> <span>Ich habe die <a href="https://www.mservice.ch/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Reklamation verwendet werden.</span></label>
     <p class="dshint" id="dshint">Bitte bestätigen Sie zuerst die Datenschutzerklärung. Erst dann sind Drucken, Speichern und Senden möglich.</p>
-    <p><strong>Formular fertig?</strong> Speichern Sie es als PDF (im Druckdialog «Als PDF speichern» wählen), drucken Sie es aus oder senden Sie es per E-Mail. Fotos der Mängel können Sie der E-Mail direkt anhängen. Im Druckdialog bitte <em>Skalierung 100 %</em> wählen und <em>Kopf- und Fusszeilen</em> ausschalten.</p>
+    <p><strong>Formular fertig?</strong> Speichern Sie es als PDF (im Druckdialog «Als PDF speichern» wählen), drucken Sie es aus oder senden Sie es per E-Mail. Fotos der Mängel können Sie der E-Mail direkt anhängen. Das Formular wird automatisch auf eine A4-Seite ohne Kopf- und Fusszeilen des Browsers gesetzt. Im Druckdialog bitte <em>Format A4</em> und <em>Skalierung 100 %</em> belassen.</p>
     <div class="btns">
       <button type="button" class="btn" id="druck">Drucken / Als PDF speichern</button>
       <button type="button" class="btn zweit" id="mail">Per E-Mail senden</button>
@@ -567,6 +534,8 @@
   var heute = p(d.getDate()) + '.' + p(d.getMonth() + 1) + '.' + d.getFullYear();
   var dat = document.getElementById('datum');
   if (!dat.value) dat.value = heute;
+  var od = document.getElementById('ortdatum');
+  if (od && !od.value) od.value = 'Ennetaach, ' + heute;
   dat.addEventListener('keydown', function (e) { e.preventDefault(); });
   dat.addEventListener('focus', function () { dat.blur(); });
 
@@ -588,7 +557,6 @@
   f.addEventListener('input', function (e) { if (e.target.classList && e.target.classList.contains('auto')) wachsen(e.target); });
   window.addEventListener('resize', alleWachsen);
   window.addEventListener('load', alleWachsen);
-  window.addEventListener('beforeprint', alleWachsen);
   alleWachsen();
 
   // ---------- Unterschrift im Fenster ----------
@@ -665,12 +633,30 @@
   ok.addEventListener('change', pruefen); pruefen();
 
   // ---------- Drucken / PDF ----------
-  bd.addEventListener('click', function () { if (!ok.checked) return; alleWachsen(); window.print(); });
+  bd.addEventListener('click', function () { if (!ok.checked) return; window.print(); });
+
+  // Druckvorbereitung: Druck-Layout aktivieren, bei sehr langen Texten auf eine Seite verkleinern
+  var inh = document.getElementById('inhalt'), root = document.documentElement;
+  function vorbereiten() {
+    alleWachsen();
+    inh.style.transform = '';
+    root.classList.add('druck');
+    var frei = (296 - 10.5 - 23) * 96 / 25.4, h = inh.offsetHeight;
+    if (h > frei) inh.style.transform = 'scale(' + (frei / h).toFixed(4) + ')';
+  }
+  function aufraeumen() { root.classList.remove('druck'); inh.style.transform = ''; alleWachsen(); }
+  window.addEventListener('beforeprint', vorbereiten);
+  window.addEventListener('afterprint', aufraeumen);
+  if (window.matchMedia) {
+    var mq = window.matchMedia('print');
+    var mh = function (e) { if (e.matches) vorbereiten(); else aufraeumen(); };
+    if (mq.addEventListener) mq.addEventListener('change', mh); else if (mq.addListener) mq.addListener(mh);
+  }
 
   // ---------- Zurücksetzen ----------
   document.getElementById('reset').addEventListener('click', function () {
     if (!confirm('Alle Eingaben löschen?')) return;
-    f.reset(); dat.value = heute; ok.checked = false; pruefen();
+    f.reset(); dat.value = heute; od.value = 'Ennetaach, ' + heute; ok.checked = false; pruefen();
     gespeichert = false; anzeigen(); alleWachsen();
   });
 
