@@ -6,401 +6,176 @@
 <title>Reklamationsformular – M Transport &amp; Reinigung Service</title>
 <meta name="description" content="Mängel nach der Reinigung melden: Reklamationsformular von M Transport &amp; Reinigung Service. Online ausfüllen, speichern oder ausdrucken.">
 <style>
-  :root {
-    --n: #1E3A6D;
-    --b: #2D6CB5;
-    --br: #1F4EA8;
-    --o: #F57C00;
-    --l: #F4F7FB;
-    --bd: #D6DFEA;
-    --ln: #8FA3BF;
-    --g: #666;
-    --gruen: #2E9E5B;
-    --gruen-hell: #EFFAF2;
-  }
-
+  :root { --navy:#013286; --blue:#2D6CB5; --br:#1F4EA8; --o:#F57C00; --l:#F4F7FB; --bd:#D6DFEA; --ln:#A9B8CE; --g:#5B6B82; --tx:#1B2A41; --gruen:#2E9E5B; }
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    background: #e9edf3;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    line-height: 1.45;
-    color: #2a2a2a;
-  }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body { margin: 0; background: #F5F8FC; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; font-size: 16px; line-height: 1.5; color: var(--tx); }
+  a { color: var(--blue); }
+  .in { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
-  .sheet {
-    width: 100%;
-    max-width: 820px;
-    margin: 24px auto;
-    padding: 28px 36px 20px;
-    background: #fff;
-    box-shadow: 0 2px 14px rgba(0,0,0,.15);
-  }
+  /* Kopf der Website */
+  .top { position: sticky; top: 0; z-index: 50; background: #fff; box-shadow: 0 1px 0 var(--bd), 0 4px 14px rgba(1,50,134,.06); }
+  .top .in { display: flex; align-items: center; gap: 12px 24px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--navy); font-weight: 700; font-size: 17px; line-height: 1.2; }
+  .brand svg { width: 46px; height: 41px; flex: none; }
+  .top nav { margin-left: auto; display: flex; gap: 2px; }
+  .top nav a { padding: 8px 13px; border-radius: 8px; color: var(--tx); text-decoration: none; font-weight: 600; font-size: 15px; white-space: nowrap; }
+  .top nav a:hover { background: var(--l); color: var(--blue); }
+  @media (max-width: 720px) { .top nav { width: 100%; margin-left: 0; overflow-x: auto; } .brand { font-size: 15px; } }
 
-  /* Kopf */
-  .kopf {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding-bottom: 14px;
-    border-bottom: 2px solid var(--b);
-  }
-  .kopf .logo { width: 72px; height: 64px; flex: none; }
-  .kopf .firma { font-size: 20px; font-weight: 700; color: var(--br); line-height: 1.2; }
-  .kopf .kontakt { font-size: 14px; line-height: 1.5; margin-top: 3px; }
-  .kopf a { color: inherit; text-decoration: none; }
-  .kopf a:hover { text-decoration: underline; }
+  /* Hero */
+  .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: #fff; padding: 46px 0 78px; }
+  .hero h1 { margin: 0 0 8px; font-size: 38px; line-height: 1.1; letter-spacing: .2px; }
+  .hero p { margin: 0 0 18px; max-width: 640px; font-size: 18px; opacity: .95; }
+  .badge { display: inline-block; padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); font-weight: 600; font-size: 15px; }
+  @media (max-width: 480px) { .hero { padding: 32px 0 64px; } .hero h1 { font-size: 30px; } .hero p { font-size: 16px; } }
 
-  .titelzeile {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 14px 24px;
-    margin: 18px 0 6px;
-  }
-  h1 { margin: 0; font-size: 30px; line-height: 1; color: var(--n); letter-spacing: .3px; }
-  .sub {
-    margin-top: 10px;
-    padding-left: 9px;
-    border-left: 5px solid var(--o);
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--br);
-    line-height: 1.3;
-  }
-  .nr {
-    display: grid;
-    grid-template-columns: 105px minmax(130px, 200px);
-    gap: 6px 8px;
-    align-items: end;
-  }
-  .nr label { font-weight: 700; font-size: 13px; color: var(--n); padding-bottom: 3px; }
+  /* Formular als Karte */
+  .sheet { width: calc(100% - 24px); max-width: 860px; margin: -48px auto 48px; padding: 8px 32px 28px; background: #fff; border-radius: 16px; box-shadow: 0 10px 34px rgba(1,50,134,.14); position: relative; }
+  @media (max-width: 480px) { .sheet { width: calc(100% - 16px); padding: 4px 16px 20px; border-radius: 12px; } }
+  h2 { margin: 30px 0 14px; padding-left: 12px; border-left: 4px solid var(--o); font-size: 18px; line-height: 1.3; color: var(--navy); }
 
-  /* Hinweis */
-  .note {
-    margin: 16px 0 4px;
-    padding: 10px 14px;
-    background: var(--gruen-hell);
-    border: 1px solid var(--bd);
-    border-left: 4px solid var(--gruen);
-    font-size: 14px;
-  }
-  .note b { color: #1F7A44; }
-
-  h2 {
-    margin: 22px 0 10px;
-    padding-bottom: 4px;
-    font-size: 15px;
-    letter-spacing: .3px;
-    color: var(--n);
-    border-bottom: 1px solid var(--bd);
-  }
-
-  /* Felder */
   input[type="text"], input[type="email"], input[type="tel"], textarea {
-    display: block;
-    width: 100%;
-    min-width: 0;
-    margin: 0;
-    padding: 6px 4px;
-    font: inherit;
-    font-size: 16px; /* verhindert Zoom auf iPhone */
-    color: #000;
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid var(--ln);
-    border-radius: 0;
-    outline: none;
-    -webkit-appearance: none;
-    appearance: none;
+    display: block; width: 100%; min-width: 0; margin: 0; padding: 10px 12px;
+    font: inherit; font-size: 16px; color: #000; background: #fff;
+    border: 1px solid var(--ln); border-radius: 8px; outline: none;
+    -webkit-appearance: none; appearance: none; transition: border-color .15s, box-shadow .15s;
   }
-  textarea { resize: vertical; line-height: 1.5; background: #fff; border: 1px solid var(--ln); padding: 8px; min-height: 96px; }
-  /* mitwachsende Felder: zeigen immer den kompletten Text */
-  textarea.auto { min-height: 0; overflow: hidden; resize: none; line-height: 1.4; background: transparent; border: 0; border-bottom: 1px solid var(--ln); padding: 6px 4px; }
-  textarea#weitere.auto { min-height: 96px; background: #fff; border: 1px solid var(--ln); padding: 8px; line-height: 1.5; }
-  .kc { display: none; }
-  .pm { display: none; } /* Druckkopie der Textfelder */
-  input.gesperrt { background: #eef2f7; color: #1E3A6D; font-weight: 700; cursor: not-allowed; pointer-events: none; }
-  input:focus, textarea:focus { background: rgba(45,108,181,.08); border-color: var(--b); }
-  ::placeholder { color: #a6b3c6; }
+  textarea { resize: vertical; line-height: 1.45; min-height: 96px; }
+  textarea.auto { min-height: 0; overflow: hidden; resize: none; }
+  textarea#weitere.auto { min-height: 110px; }
+  input.gesperrt { background: #EEF2F7; color: var(--navy); font-weight: 700; cursor: not-allowed; pointer-events: none; }
+  input:focus, textarea:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(45,108,181,.18); }
+  ::placeholder { color: #9AA9BF; }
 
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 14px 16px;
-    background: var(--l);
-    border: 1px solid var(--bd);
-  }
-  .f label, .f .lbl { display: block; margin-bottom: 1px; font-weight: 700; font-size: 13px; color: var(--n); }
+  .grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .f label, .f .lbl { display: block; margin-bottom: 4px; font-weight: 600; font-size: 14px; color: var(--navy); }
   .f.full { grid-column: 1 / -1; }
-  @media (min-width: 640px) {
-    .grid { grid-template-columns: 1fr 1fr; gap: 12px 24px; }
-  }
+  @media (min-width: 640px) { .grid { grid-template-columns: 1fr 1fr; gap: 14px 22px; } }
 
-  /* Checkboxen */
-  .check {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    line-height: 1.3;
-  }
-  .check input[type="checkbox"] {
-    -webkit-appearance: none;
-    appearance: none;
-    flex: none;
-    width: 22px;
-    height: 22px;
-    margin: 0;
-    border: 1.5px solid #5C7399;
-    border-radius: 3px;
-    background: #fff;
-    position: relative;
-    cursor: pointer;
-  }
-  .check input[type="checkbox"]:checked { background: var(--b); border-color: var(--b); }
-  .check input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    left: 6.5px;
-    top: 1.5px;
-    width: 6px;
-    height: 12px;
-    border: solid #fff;
-    border-width: 0 2.5px 2.5px 0;
-    transform: rotate(45deg);
-  }
+  .check { display: flex; align-items: center; gap: 10px; cursor: pointer; line-height: 1.3; }
+  .check input[type="checkbox"] { -webkit-appearance: none; appearance: none; flex: none; width: 22px; height: 22px; margin: 0; border: 1.5px solid #5C7399; border-radius: 5px; background: #fff; position: relative; cursor: pointer; }
+  .check input[type="checkbox"]:checked { background: var(--blue); border-color: var(--blue); }
+  .check input[type="checkbox"]:checked::after { content: ""; position: absolute; left: 6.5px; top: 1.5px; width: 6px; height: 12px; border: solid #fff; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg); }
   .check input[type="checkbox"]:focus-visible { outline: 3px solid rgba(245,124,0,.6); outline-offset: 2px; }
 
-  /* Bereiche */
-  .bereiche { border: 1px solid var(--bd); }
-  .bereiche .kopfzeile {
-    display: none;
-    background: var(--b);
-    color: #fff;
-    font-weight: 700;
-    font-size: 13px;
-    padding: 7px 12px;
-  }
-  .bereich {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--bd);
-    align-items: start;
-  }
+  .bereiche { border: 1px solid var(--bd); border-radius: 12px; overflow: hidden; }
+  .bereiche .kopfzeile { display: none; background: var(--blue); color: #fff; font-weight: 700; font-size: 14px; padding: 9px 14px; }
+  .kc { display: none; }
+  .bereich { display: grid; grid-template-columns: 1fr; gap: 8px; padding: 12px 14px; border-bottom: 1px solid var(--bd); align-items: start; }
   .bereich:last-child { border-bottom: 0; }
   .bereich:nth-child(odd) { background: var(--l); }
-  .bereich .check { font-weight: 700; color: var(--n); min-height: 34px; }
+  .bereich .check { font-weight: 600; color: var(--navy); min-height: 40px; }
   @media (min-width: 640px) {
     .bereiche .kopfzeile { display: grid; grid-template-columns: 230px 1fr; gap: 12px; }
     .bereich { grid-template-columns: 230px 1fr; gap: 12px; }
   }
 
-  .zusatz-label { margin: 14px 0 4px; font-weight: 700; font-size: 13px; color: var(--n); }
-  .foto { margin-top: 12px; }
+  .zusatz-label { margin: 18px 0 6px; font-weight: 600; font-size: 14px; color: var(--navy); }
+  .foto { margin-top: 14px; }
+  .loesung { display: grid; gap: 14px; padding: 16px; background: var(--l); border: 1px solid var(--bd); border-radius: 12px; }
+  .loesung .check { font-weight: 600; color: var(--navy); }
 
-  /* Lösung */
-  .loesung {
-    display: grid;
-    gap: 12px;
-    padding: 14px 16px;
-    background: var(--l);
-    border: 1px solid var(--bd);
-  }
-  .loesung .check { font-weight: 700; color: var(--n); }
-
-  /* Unterschrift (Feld im Formular, gezeichnet wird im Fenster) */
-  .unterschrift {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-    margin-top: 22px;
-    align-items: end;
-  }
-  .sigbox {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 90px;
-    margin: 0;
-    padding: 0;
-    font: inherit;
-    background: #fff;
-    border: 0;
-    border-bottom: 1px solid #7F94B5;
-    cursor: pointer;
-  }
+  /* Unterschrift */
+  .unterschrift { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 26px; align-items: end; }
+  .sigbox { display: block; position: relative; width: 100%; height: 96px; margin: 0; padding: 0; font: inherit; background: #fff; border: 0; border-bottom: 1px solid #7F94B5; cursor: pointer; }
   .sigbox:focus-visible { outline: 3px solid rgba(245,124,0,.6); outline-offset: 2px; }
-  .sigbox .sigph {
-    position: absolute; inset: 0;
-    display: flex; align-items: center; justify-content: center;
-    color: var(--b); font-size: 14px; font-weight: 700;
-    background: var(--l);
-    border: 1px dashed var(--ln);
-  }
+  .sigbox .sigph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 15px; font-weight: 600; background: var(--l); border: 1px dashed var(--ln); border-radius: 8px; }
   .sigbox img { position: absolute; left: 0; bottom: 0; max-width: 100%; max-height: 100%; }
   .sigbox.signiert .sigph { display: none; }
-  .sigcap { margin-top: 3px; font-size: 12px; color: var(--g); display: flex; justify-content: space-between; gap: 10px; }
-  .sigcap button {
-    font: inherit; font-size: 12px; background: none; border: 0; color: var(--b);
-    cursor: pointer; padding: 0; text-decoration: underline;
-  }
+  .sigcap { margin-top: 4px; font-size: 13px; color: var(--g); display: flex; justify-content: space-between; gap: 10px; }
+  .sigcap button { font: inherit; font-size: 13px; background: none; border: 0; color: var(--blue); cursor: pointer; padding: 0; text-decoration: underline; }
   .sigcap button[hidden] { display: none; }
   @media (min-width: 640px) { .unterschrift { grid-template-columns: 1fr 1fr; gap: 36px; } }
 
-  /* Unterschrift-Fenster */
-  .sigmodal {
-    position: fixed; inset: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: center;
-    padding: 12px;
-    background: rgba(20,30,50,.65);
-    overscroll-behavior: contain;
-  }
+  .sigmodal { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; padding: 12px; background: rgba(10,25,60,.68); overscroll-behavior: contain; }
   .sigmodal[hidden] { display: none; }
-  .sigdlg {
-    width: 100%; max-width: 600px;
-    padding: 16px;
-    background: #fff;
-    border-radius: 6px;
-    box-shadow: 0 8px 30px rgba(0,0,0,.35);
-  }
-  .sigtitle { margin: 0 0 10px; font-size: 17px; font-weight: 700; color: var(--n); }
-  .sigpad {
-    position: relative;
-    height: 260px;
-    max-height: 46vh;
-    background: #fff;
-    border: 1px solid var(--ln);
-    touch-action: none;
-  }
+  .sigdlg { width: 100%; max-width: 600px; padding: 18px; background: #fff; border-radius: 14px; box-shadow: 0 12px 40px rgba(0,0,0,.35); }
+  .sigtitle { margin: 0 0 10px; font-size: 18px; font-weight: 700; color: var(--navy); }
+  .sigpad { position: relative; height: 260px; max-height: 46vh; background: #fff; border: 1px solid var(--ln); border-radius: 8px; touch-action: none; }
   .sigpad::after { content: ""; position: absolute; left: 16px; right: 16px; bottom: 36px; border-top: 1px solid var(--bd); pointer-events: none; }
   .sigpad canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; touch-action: none; }
   .sigdlg .btns { margin-top: 12px; }
   .sigdlg .btn { flex: 1 1 0; padding: 11px 10px; }
 
   /* Aktionen */
-  .aktionen {
-    margin-top: 26px;
-    padding: 16px;
-    background: var(--l);
-    border: 1px solid var(--bd);
-  }
+  .aktionen { margin-top: 30px; padding: 18px; background: var(--l); border: 1px solid var(--bd); border-radius: 12px; }
   .aktionen p { margin: 0 0 12px; font-size: 14px; }
   .btns { display: flex; flex-wrap: wrap; gap: 10px; }
-  .btn {
-    font: inherit;
-    font-weight: 700;
-    font-size: 15px;
-    padding: 11px 18px;
-    border-radius: 4px;
-    border: 2px solid var(--b);
-    background: var(--b);
-    color: #fff;
-    cursor: pointer;
-  }
+  .btn { font: inherit; font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 10px; border: 2px solid var(--blue); background: var(--blue); color: #fff; cursor: pointer; transition: background .15s; }
   .btn:hover { background: var(--br); border-color: var(--br); }
-  .btn.zweit { background: #fff; color: var(--b); }
+  .btn.zweit { background: #fff; color: var(--blue); }
   .btn.zweit:hover { background: var(--l); }
   .btn:disabled { opacity: .45; cursor: not-allowed; }
-  .check.ds { align-items: flex-start; margin-bottom: 8px; font-size: 14px; }
+  .check.ds { align-items: flex-start; margin-bottom: 10px; font-size: 14px; }
   .check.ds input { margin-top: 1px; }
-  .check.ds a { color: var(--b); }
   .dshint { color: #B25E00; font-weight: 700; }
   .dshint.ok { display: none; }
   .btn.text { border-color: transparent; background: none; color: var(--g); font-weight: 400; text-decoration: underline; }
-  .btn.text:hover { background: none; color: var(--n); }
+  .btn.text:hover { background: none; color: var(--navy); }
+  @media (max-width: 480px) { .btn { width: 100%; } .sigdlg .btn { width: auto; } }
 
-  .fuss {
-    margin-top: 24px;
-    padding-top: 10px;
-    border-top: 1px solid var(--bd);
-    text-align: center;
-    font-size: 12px;
-    line-height: 1.6;
-    color: #444;
-  }
-  .fuss a { color: inherit; }
+  /* Fuss der Website */
+  .site-foot { background: #0E2349; color: #CBD7EB; padding: 34px 0 28px; text-align: center; font-size: 14px; }
+  .site-foot a { color: #fff; text-decoration: none; }
+  .site-foot a:hover { text-decoration: underline; }
+  .site-foot .soc { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-bottom: 14px; font-weight: 600; }
+  .site-foot .legal { margin-bottom: 8px; }
+  .site-foot .copy { opacity: .75; }
 
-  @media (max-width: 480px) {
-    .sheet { margin: 0; padding: 18px 14px 14px; box-shadow: none; }
-    h1 { font-size: 26px; }
-    .kopf .logo { width: 56px; height: 50px; }
-    .kopf .firma { font-size: 17px; }
-    .nr { width: 100%; grid-template-columns: 100px 1fr; }
-    .btn { width: 100%; }
-    .sigdlg .btn { width: auto; }
-  }
 
-  /* ============ DRUCK / PDF ============
-     A4 hochkant, genau eine Seite. Seitenrand 0 => der Browser hat keinen Platz
-     für Kopf-/Fusszeilen (Datum, URL, Seitenzahl). Der Rand steckt im Layout.
-     Die Druckregeln gelten nur mit Klasse html.druck, die das Skript beim Drucken setzt. */
+  /* ===== Papier-Optik: Formular wie ein ausgedrucktes A4-Blatt zum Ausfüllen ===== */
+  body { background: #E9EDF3; font-family: Arial, Helvetica, sans-serif; }
+  .sheet { width: calc(100% - 24px); max-width: 820px; margin: 24px auto; padding: 26px 38px 30px; background: #fff; border-radius: 2px; box-shadow: 0 2px 14px rgba(0,0,0,.18); }
+  .kopfzeile-papier { padding-bottom: 12px; border-bottom: 2px solid var(--blue); }
+  .logo-link { display: inline-block; line-height: 0; }
+  .logo-link svg { width: 88px; height: 79px; }
+  .titel { margin: 18px 0 4px; }
+  .titel h1 { margin: 0; font: bold 30px/1 Arial, Helvetica, sans-serif; letter-spacing: .3px; color: #1E3A6D; }
+  .titel .sub { margin-top: 10px; padding-left: 9px; border-left: 5px solid var(--o); font-size: 17px; font-weight: 700; line-height: 1.3; color: var(--br); }
+  .note { margin: 16px 0 0; padding: 10px 14px; font-size: 14px; background: #EFFAF2; border: 1px solid var(--bd); border-left: 4px solid var(--gruen); }
+  .note strong { color: #1F7A44; }
+  h2 { margin: 26px 0 10px; padding: 0 0 4px; border-left: 0; font-size: 15px; letter-spacing: .3px; color: #1E3A6D; border-bottom: 1px solid var(--bd); }
+  input[type="text"], input[type="email"], input[type="tel"], textarea { padding: 7px 3px; background: transparent; border: 0; border-bottom: 1px solid #8FA3BF; border-radius: 0; box-shadow: none; }
+  input:focus, textarea:focus { background: rgba(45,108,181,.08); border-color: var(--blue); box-shadow: none; }
+  input.gesperrt { background: #EEF2F7; border-bottom-color: #8FA3BF; }
+  .grid { padding: 14px 16px; background: var(--l); border: 1px solid var(--bd); }
+  .f label, .f .lbl { font-size: 13px; color: #1E3A6D; }
+  .bereiche, .loesung { border-radius: 0; }
+  .bereiche .kopfzeile { padding: 8px 12px; }
+  .bereich .check { color: #1E3A6D; }
+  .check input[type="checkbox"] { border-radius: 2px; background: #fff; border: 1.5px solid #5C7399; }
+  .check input[type="checkbox"]:checked { background: #fff; border-color: #5C7399; }
+  .check input[type="checkbox"]:checked::after { border-color: #000; }
+  textarea#weitere { padding: 0 3px; border: 0; line-height: 28px; min-height: 112px; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 27px, #B7C4D8 27px, #B7C4D8 28px); background-attachment: local; }
+  textarea#weitere.auto { min-height: 112px; }
+  .sigbox .sigph { background: transparent; border: 0; border-radius: 0; color: #7a8aa3; font-weight: 400; }
+  .sigbox:hover .sigph { color: var(--blue); }
+  .aktionen { margin-top: 34px; background: transparent; border: 1px dashed #9AAAC2; border-radius: 0; }
+  .btn { border-radius: 4px; }
+  @media (max-width: 480px) { .sheet { width: 100%; margin: 0; padding: 16px 14px 22px; box-shadow: none; } .titel h1 { font-size: 26px; } }
+
+  /* ============ DRUCK: einfache Textseite, A4, eine Seite ============
+     Nur die ausgefüllten Angaben als Text. Kein Logo, keine Kopf-/Fusszeile.
+     Seitenrand 0 => der Browser druckt keine eigenen Kopf-/Fusszeilen. */
+  #druckblatt { position: absolute; left: -10000px; top: 0; visibility: hidden; width: 210mm; height: 296mm; overflow: hidden; padding: 16mm 18mm 14mm; background: #fff; color: #000; font: 10.5pt/1.4 Arial, Helvetica, sans-serif; }
+  .db { transform-origin: top left; }
+  .dt { margin: 0; font-size: 20pt; line-height: 1.1; }
+  .ds2 { margin: 1mm 0 5mm; font-size: 11pt; color: #333; }
+  .dh { margin: 6mm 0 2mm; padding-bottom: 1mm; font-size: 10.5pt; border-bottom: .6pt solid #000; }
+  .dr { display: grid; grid-template-columns: 48mm 1fr; gap: 0 4mm; padding: .7mm 0; }
+  .dl { font-weight: 700; }
+  .dv { white-space: pre-wrap; overflow-wrap: anywhere; }
+  .dsig { position: relative; width: 70mm; height: 24mm; margin-top: 6mm; border-bottom: .6pt solid #000; }
+  .dsig img { position: absolute; left: 0; bottom: 0; max-width: 100%; max-height: 100%; }
+  .dcap { margin-top: 1mm; font-size: 8.5pt; color: #444; }
   @page { size: A4 portrait; margin: 0; }
-  html.druck, html.druck body { margin: 0; padding: 0; background: #fff; width: 210mm; height: 296mm; overflow: hidden; }
-  html.druck body { font-size: 9pt; line-height: 1.35; }
-  html.druck * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-  html.druck .sheet { position: relative; width: 210mm; max-width: none; height: 296mm; margin: 0; padding: 10.5mm 15mm 0 18mm; overflow: hidden; box-shadow: none; background: #fff; }
-  html.druck .inhalt { transform-origin: top left; }
-  html.druck .no-print, html.druck .sigmodal, html.druck .sigph, html.druck .wwwp, html.druck .note, html.druck .aktionen { display: none !important; }
-  html.druck input::placeholder { color: transparent; }
-  html.druck .kopf { gap: 4mm; padding-bottom: 5mm; border-bottom: 1.8pt solid var(--b); }
-  html.druck .kopf .logo { width: 21mm; height: 18.8mm; }
-  html.druck .kopf .firma { font-size: 12.5pt; }
-  html.druck .kopf .kontakt { font-size: 9pt; line-height: 1.45; margin-top: 1.5mm; }
-  html.druck .titelzeile { margin: 4mm 0 1mm; align-items: flex-start; flex-wrap: nowrap; }
-  html.druck h1 { font-size: 20pt; }
-  html.druck .sub { font-size: 11.5pt; margin-top: 3mm; border-left-width: 1.3mm; padding-left: 2.1mm; }
-  html.druck .nr { width: auto; grid-template-columns: 24mm 45mm; gap: 1mm 2mm; }
-  html.druck .nr label { font-size: 8.3pt; }
-  html.druck h2 { font-size: 10pt; margin: 5mm 0 2mm; padding-bottom: 1pt; }
-  html.druck input[type="text"], html.druck input[type="email"], html.druck input[type="tel"] { font-size: 9.5pt; height: 5.4mm; padding: 0 1px; }
-  html.druck textarea.auto { display: none !important; }
-  html.druck .pm { display: block; min-height: 5.4mm; padding: .4mm 1px; font-size: 9.5pt; line-height: 1.4; color: #000; white-space: pre-wrap; overflow-wrap: anywhere; word-break: break-word; border-bottom: .6pt solid var(--ln); }
-  html.druck .grid { grid-template-columns: 30mm 1fr 26mm 1fr; gap: 0; align-items: center; padding: .6mm 4pt; }
-  html.druck .grid .f { display: contents; }
-  html.druck .grid .f label { margin: 0; padding: .8mm 0; font-size: 8pt; line-height: 1.2; }
-  html.druck .grid .f.r label { padding-left: 8pt; }
-  html.druck .grid .f.full .pm { grid-column: 2 / 5; }
-  html.druck .bereiche { border: 0; }
-  html.druck .bereiche .kopfzeile { display: grid !important; grid-template-columns: 44mm 17mm 1fr; column-gap: 0; padding: 3.2pt 6pt; font-size: 8.4pt; }
-  html.druck .kc { display: block !important; text-align: center; }
-  html.druck .bereich { grid-template-columns: 44mm 17mm 1fr; column-gap: 0; align-items: center; padding: 1.1mm 6pt; border-bottom: .5pt solid var(--bd); }
-  html.druck .bereiche .bereich { background: #fff !important; }
-  html.druck .bereiche .bereich:nth-child(even) { background: var(--l) !important; }
-  html.druck .bereich .check { display: contents; }
-  html.druck .bereich .check span { order: 1; font-weight: 700; font-size: 8.6pt; color: #2a2a2a; }
-  html.druck .bereich .check input { order: 2; justify-self: center; margin: 0; }
-  html.druck .bereich .pm { order: 3; }
-  html.druck .zusatz-label { margin: 3mm 0 1mm; font-size: 8pt; }
-  html.druck .pm.box { min-height: 19.2mm; padding: 0; border: 0; line-height: 6.4mm; background-image: repeating-linear-gradient(to bottom, transparent 0, transparent calc(6.4mm - .6pt), var(--ln) calc(6.4mm - .6pt), var(--ln) 6.4mm); }
-  html.druck .foto { margin-top: 2mm; }
-  html.druck .foto .check { font-size: 8.6pt; gap: 2mm; }
-  html.druck .check input[type="checkbox"] { width: 3.6mm; height: 3.6mm; border: .7pt solid #5C7399; border-radius: 0; background: #fff !important; }
-  html.druck .check input[type="checkbox"]:checked { border-color: #5C7399; }
-  html.druck .check input[type="checkbox"]:checked::after { left: .95mm; top: .1mm; width: 1.1mm; height: 2.3mm; border-color: #000; border-width: 0 .5mm .5mm 0; }
-  html.druck .loesung { padding: 1.6mm 4pt; gap: 0; }
-  html.druck .loesung .check { font-size: 9pt; min-height: 5.4mm; gap: 2.4mm; }
-  html.druck .loesung .f { display: flex; align-items: flex-end; gap: 2.4mm; min-height: 5.4mm; }
-  html.druck .loesung .f label { margin: 0; font-weight: 400; font-size: 9pt; color: #2a2a2a; white-space: nowrap; }
-  html.druck .loesung .f .pm { flex: 1; }
-  html.druck .unterschrift { display: block; width: 58%; margin-top: 5mm; }
-  html.druck .unterschrift .f { display: flex; align-items: flex-end; gap: 2mm; }
-  html.druck .unterschrift .f label { margin: 0; padding-bottom: 1mm; font-weight: 400; font-size: 8pt; color: var(--g); white-space: nowrap; }
-  html.druck .unterschrift > div + div { margin-top: 5mm; }
-  html.druck .sigbox { height: 24mm; border-bottom: .7pt solid #7F94B5; background: #fff; }
-  html.druck .sigcap { font-size: 8pt; color: var(--g); }
-  html.druck .fuss { position: absolute; left: 18mm; right: 15mm; bottom: 0; height: 16.5mm; margin: 0; padding-top: 3.2mm; font-size: 7.5pt; line-height: 4mm; color: #444; border-top: .6pt solid var(--bd); }
-  html.druck .fuss::before { content: "Seite 1 von 1"; position: absolute; right: 0; top: -4.2mm; color: #7B93B8; line-height: 1; }
-
   @media print {
-    .no-print, .sigmodal { display: none !important; }
-    html:not(.ok) .sheet { display: none !important; }
+    html, body { margin: 0; padding: 0; background: #fff; width: 210mm; height: 296mm; overflow: hidden; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body > *:not(#druckblatt) { display: none !important; }
+    #druckblatt { position: static; visibility: visible; }
+    html:not(.ok) #druckblatt { display: none !important; }
     html:not(.ok) body::before { content: "Bitte zuerst im Formular die Datenschutz-Bestätigung abhaken."; display: block; padding: 20mm; font: 14pt Arial; color: #000; }
   }
 </style>
@@ -409,39 +184,15 @@
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="lg" viewBox="0 0 420 376"><defs><linearGradient id="og" gradientUnits="userSpaceOnUse" x1="10" y1="0" x2="410" y2="0"><stop offset="0" stop-color="#ff5200"/><stop offset=".5" stop-color="#ff7f00"/><stop offset="1" stop-color="#ffa800"/></linearGradient></defs><path fill="#013286" d="M368 253 364 254 346 269 319 287 283 305 282 335 376 352ZM48 271 67 279 85 283 140 283 145 154 149 154 209 238 211 238 274 154 279 155 282 244 288 243 324 223 345 208 372 182 372 180 365 181 363 175 350 31 282 40 214 133 210 133 144 40 72 31Z"/><path fill="#002263" d="M282 315 283 327 294 338 361 350 367 349 375 340 373 318 359 331 348 331 338 323 322 299 323 285 291 302ZM286 140 279 149 281 230 288 238 296 239 317 225 306 215 298 146 293 140ZM261 71 219 127 209 130 214 159 225 160 269 112 271 101 262 84ZM83 32 70 45 49 262 57 274 68 279 95 284 128 284 139 274 141 259 125 278 115 278 111 273 120 142 124 131 136 131 144 152 151 156 204 229 213 231 220 224 214 222 210 215 209 165 200 164 86 46 88 33Z"/><path fill="#013185" d="M369 269 358 284 347 290 332 292 329 282 322 290 322 297 334 316 350 331 364 327 373 311ZM142 219 128 235 114 232 111 272 117 278 128 275 139 258ZM254 179 227 199 212 196 211 215 214 221 223 223ZM359 130 346 153 328 170 311 173 302 166 307 215 316 224 322 224 342 210 365 186ZM141 43 154 66 163 99 162 111 154 115 200 163 212 170 212 165 219 160 212 154 205 126 151 50ZM299 38 280 45 263 66 262 81 271 97 271 108 299 78 300 68 295 56Z"/><path fill="#023c9f" d="M367 266 356 261 329 281 330 290 340 291 358 283 366 274ZM144 174 131 190 118 187 116 229 121 235 127 235 140 218ZM283 140 252 152 244 152 241 144 224 162 214 164 213 194 221 200 226 199 267 164ZM115 36 125 48 128 71 119 78 152 112 160 112 161 94 146 51 131 38ZM339 33 302 38 294 49 300 64 300 77 313 66 323 66 327 70 323 87 286 137 298 142 302 162 313 173 333 165 353 142 357 129 350 42Z"/><path fill="#054bc2" d="M127 132 122 139 119 181 124 190 131 190 142 173 144 155 136 134ZM326 70 314 66 251 133 241 151 252 151 285 137 322 87ZM88 37 87 45 116 75 126 73 126 54 117 40 102 34Z"/><path fill="url(#og)" d="M406 120 390 104 378 98 378 100 387 109 393 118 397 130 396 153 392 164 384 178 377 187 359 205 336 223 304 243 280 255 256 265 209 280 160 290 133 293 98 293 72 289 55 284 41 277 34 272 22 258 19 250 19 237 25 222 31 214 31 212 29 212 17 225 7 242 4 252 4 268 7 278 13 288 24 299 33 305 53 313 76 317 126 316 159 311 201 300 204 301 204 303 201 305 178 313 152 320 125 325 108 327 93 327 92 328 66 327 54 325 51 352 89 353 134 347 186 334 231 318 257 307 293 289 319 274 350 252 381 223 401 197 410 180 414 168 416 155 415 141 412 131Z"/></symbol></svg>
 
+
 <form class="sheet" id="formular" onsubmit="return false" autocomplete="on">
-<div class="inhalt" id="inhalt">
-
-  <header class="kopf">
-    <svg class="logo" viewBox="0 0 420 376" role="img" aria-label="M Transport &amp; Reinigung Service"><use href="#lg"/></svg>
-    <div>
-      <div class="firma">M Transport &amp; Reinigung Service</div>
-      <div class="kontakt">
-        <a href="tel:+41783458072">Tel. +41 78 345 80 72</a><br>
-        <a href="mailto:info@mservice.ch">info@mservice.ch</a><span class="wwwp"> &nbsp;|&nbsp; <a href="https://www.mservice.ch">www.mservice.ch</a></span>
-      </div>
-    </div>
-  </header>
-
-  <div class="titelzeile">
-    <div>
-      <h1>REKLAMATION</h1>
-      <div class="sub">Meldung von Mängeln nach der Reinigung</div>
-    </div>
-    <div class="nr">
-      <label for="datum">Datum:</label>
-      <input type="text" id="datum" name="datum" readonly tabindex="-1" aria-readonly="true" class="gesperrt">
-      <label for="auftragsnr">Auftrags-Nr.:</label>
-      <input type="text" id="auftragsnr" name="auftragsnr">
-    </div>
-  </div>
-
-  <div class="note">
-    <b>48-Stunden-Zufriedenheitsgarantie:</b> Bitte melden Sie Mängel innerhalb von 48 Stunden nach Beendigung der Reinigung. Wir bessern diese umgehend und kostenlos nach.
-  </div>
-
+  <div class="kopfzeile-papier"><a class="logo-link" href="https://www.mservice.ch/index.html" aria-label="Zur Startseite von M Transport &amp; Reinigung Service"><svg viewBox="0 0 420 376" role="img" aria-label="M Transport &amp; Reinigung Service"><use href="#lg"/></svg></a></div>
+  <div class="titel"><h1>REKLAMATION</h1><div class="sub">Meldung von Mängeln nach der Reinigung</div></div>
+  <p class="note"><strong>48-Stunden-Zufriedenheitsgarantie:</strong> Bitte melden Sie Mängel innerhalb von 48 Stunden nach Beendigung der Reinigung. Wir bessern diese umgehend und kostenlos nach.</p>
   <h2>1. KUNDE &amp; OBJEKT</h2>
   <div class="grid">
+    <div class="f"><label for="datum">Datum:</label><input type="text" id="datum" name="datum" readonly tabindex="-1" aria-readonly="true" class="gesperrt"></div>
+    <div class="f"><label for="auftragsnr">Auftrags-Nr.:</label><input type="text" id="auftragsnr" name="auftragsnr"></div>
     <div class="f"><label for="vorname">Vorname:</label><input type="text" id="vorname" name="vorname" autocomplete="given-name"></div>
     <div class="f r"><label for="nachname">Nachname:</label><input type="text" id="nachname" name="nachname" autocomplete="family-name"></div>
     <div class="f full"><label for="firma">Firma (optional):</label><textarea class="auto" rows="1" id="firma" name="firma" autocomplete="organization"></textarea></div>
@@ -493,24 +244,20 @@
     </div>
   </div>
 
-</div>
-
   <div class="aktionen no-print">
-    <label class="check ds"><input type="checkbox" id="ds" name="ds"> <span>Ich habe die <a href="https://www.mservice.ch/datenschutz" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Reklamation verwendet werden.</span></label>
+    <label class="check ds"><input type="checkbox" id="ds" name="ds"> <span>Ich habe die <a href="https://www.mservice.ch/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Reklamation verwendet werden.</span></label>
     <p class="dshint" id="dshint">Bitte bestätigen Sie zuerst die Datenschutzerklärung. Erst dann sind Drucken, Speichern und Senden möglich.</p>
-    <p><strong>Formular fertig?</strong> Speichern Sie es als PDF (im Druckdialog «Als PDF speichern» wählen), drucken Sie es aus oder senden Sie es per E-Mail. Fotos der Mängel können Sie der E-Mail direkt anhängen. Das Formular wird automatisch auf eine A4-Seite ohne Kopf- und Fusszeilen des Browsers gesetzt. Im Druckdialog bitte <em>Format A4</em> und <em>Skalierung 100 %</em> belassen.</p>
+    <p><strong>Formular fertig?</strong> Speichern Sie es als PDF (im Druckdialog «Als PDF speichern» wählen), drucken Sie es aus oder senden Sie es per E-Mail. Fotos der Mängel können Sie der E-Mail direkt anhängen. Gedruckt wird eine einfache Textseite (A4, eine Seite) mit allen Ihren Angaben, ohne Logo sowie ohne Kopf- und Fusszeile.</p>
     <div class="btns">
       <button type="button" class="btn" id="druck">Drucken / Als PDF speichern</button>
       <button type="button" class="btn zweit" id="mail">Per E-Mail senden</button>
       <button type="button" class="btn text" id="reset">Formular leeren</button>
     </div>
   </div>
-
-  <footer class="fuss">
-    Mejstrik Transport &amp; Reinigung Service | 8586 Ennetaach | +41 78 345 80 72 | <a href="mailto:info@mservice.ch">info@mservice.ch</a> | <a href="https://www.mservice.ch">www.mservice.ch</a><br>
-    Es gelten unsere Allgemeinen Geschäftsbedingungen: <a href="https://www.mservice.ch/agb">www.mservice.ch/agb</a>
-  </footer>
 </form>
+
+<div id="druckblatt" aria-hidden="true"></div>
+
 
 <!-- Unterschrift-Fenster -->
 <div class="sigmodal" id="sigmodal" hidden role="dialog" aria-modal="true" aria-labelledby="sigtitle">
@@ -534,24 +281,15 @@
   var heute = p(d.getDate()) + '.' + p(d.getMonth() + 1) + '.' + d.getFullYear();
   var dat = document.getElementById('datum');
   if (!dat.value) dat.value = heute;
-  var od = document.getElementById('ortdatum');
-  if (od && !od.value) od.value = 'Ennetaach, ' + heute;
   dat.addEventListener('keydown', function (e) { e.preventDefault(); });
   dat.addEventListener('focus', function () { dat.blur(); });
 
   // ---------- Mitwachsende Textfelder + Druckkopie ----------
   var autos = Array.prototype.slice.call(f.querySelectorAll('textarea.auto'));
-  autos.forEach(function (t) {
-    var m = document.createElement('div');
-    m.className = 'pm' + (t.id === 'weitere' ? ' box' : '');
-    t.parentNode.insertBefore(m, t.nextSibling);
-    t._pm = m;
-  });
   function wachsen(t) {
     t.style.height = 'auto';
     var extra = t.offsetHeight - t.clientHeight;
     t.style.height = (t.scrollHeight + extra) + 'px';
-    t._pm.textContent = t.value;
   }
   function alleWachsen() { autos.forEach(wachsen); }
   f.addEventListener('input', function (e) { if (e.target.classList && e.target.classList.contains('auto')) wachsen(e.target); });
@@ -633,30 +371,64 @@
   ok.addEventListener('change', pruefen); pruefen();
 
   // ---------- Drucken / PDF ----------
-  bd.addEventListener('click', function () { if (!ok.checked) return; window.print(); });
+  bd.addEventListener('click', function () { if (!ok.checked) return; vorbereiten(); window.print(); });
 
-  // Druckvorbereitung: Druck-Layout aktivieren, bei sehr langen Texten auf eine Seite verkleinern
-  var inh = document.getElementById('inhalt'), root = document.documentElement;
+  // Druckblatt: einfache Textseite mit allen Angaben (nur beim Drucken sichtbar)
+  var blatt = document.getElementById('druckblatt');
+  var BER = [['b_kueche','t_kueche','Küche & Geräte'],['b_nass','t_nass','Nasszellen / Bad & WC'],['b_fenster','t_fenster','Fenster & Storen'],['b_wohn','t_wohn','Wohnräume & Böden'],['b_neben','t_neben','Nebennutzflächen'],['b_sonst','t_sonst','Sonstiges']];
+  function E(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
   function vorbereiten() {
     alleWachsen();
-    inh.style.transform = '';
-    root.classList.add('druck');
-    var frei = (296 - 10.5 - 23) * 96 / 25.4, h = inh.offsetHeight;
-    if (h > frei) inh.style.transform = 'scale(' + (frei / h).toFixed(4) + ')';
+    blatt.textContent = '';
+    var db = E('div', 'db'); blatt.appendChild(db);
+    function sec(t) { db.appendChild(E('h2', 'dh', t)); }
+    function row(l, val) { var r = E('div', 'dr'); r.appendChild(E('span', 'dl', l)); r.appendChild(E('span', 'dv', val || '–')); db.appendChild(r); }
+    db.appendChild(E('h1', 'dt', 'REKLAMATION'));
+    db.appendChild(E('div', 'ds2', 'Meldung von Mängeln nach der Reinigung'));
+    row('Datum:', v('datum')); row('Auftrags-Nr.:', v('auftragsnr'));
+    sec('1. KUNDE & OBJEKT');
+    row('Name:', (v('vorname') + ' ' + v('nachname')).trim());
+    if (v('firma')) row('Firma:', v('firma'));
+    row('Telefon:', v('telefon')); row('E-Mail:', v('email')); row('Objektadresse:', v('adresse'));
+    row('Reinigungsdatum:', v('reinigungsdatum')); row('Übergabe am:', v('uebergabe'));
+    row('Mängel festgestellt am:', (v('festgestellt') + ' ' + v('uhrzeit')).trim());
+    sec('2. BEANSTANDETE BEREICHE');
+    var any = false;
+    BER.forEach(function (b) {
+      var t = f.elements[b[1]].value.trim();
+      if (c(b[0]) || t) { any = true; row(b[2] + ':', t || 'beanstandet'); }
+    });
+    if (!any) row('Bereiche:', '–');
+    if (v('weitere')) row('Weitere Angaben:', v('weitere'));
+    row('Fotos beigelegt:', c('fotos') ? 'Ja' : 'Nein');
+    sec('3. GEWÜNSCHTE LÖSUNG');
+    var l = [];
+    if (c('l_nachbesserung')) l.push('Kostenlose Nachbesserung der beanstandeten Stellen');
+    if (c('l_rueckruf')) l.push('Rückruf zur Besprechung des weiteren Vorgehens');
+    row('Gewünscht:', l.join('\n'));
+    if (v('termin')) row('Möglicher Termin / Zutritt:', v('termin'));
+    sec('ORT, DATUM, UNTERSCHRIFT');
+    row('Ort, Datum:', v('ortdatum'));
+    var sg = E('div', 'dsig');
+    if (gespeichert) { var im = E('img'); im.src = img.src; im.alt = ''; sg.appendChild(im); }
+    db.appendChild(sg); db.appendChild(E('div', 'dcap', 'Unterschrift Kunde'));
+    row('Datenschutz:', 'Datenschutzerklärung gelesen und akzeptiert');
+    // bei sehr viel Text auf eine Seite verkleinern
+    db.style.transform = '';
+    var frei = (296 - 30) * 96 / 25.4, h = db.offsetHeight;
+    if (h > frei) db.style.transform = 'scale(' + (frei / h).toFixed(4) + ')';
   }
-  function aufraeumen() { root.classList.remove('druck'); inh.style.transform = ''; alleWachsen(); }
   window.addEventListener('beforeprint', vorbereiten);
-  window.addEventListener('afterprint', aufraeumen);
   if (window.matchMedia) {
     var mq = window.matchMedia('print');
-    var mh = function (e) { if (e.matches) vorbereiten(); else aufraeumen(); };
+    var mh = function (e) { if (e.matches) vorbereiten(); };
     if (mq.addEventListener) mq.addEventListener('change', mh); else if (mq.addListener) mq.addListener(mh);
   }
 
   // ---------- Zurücksetzen ----------
   document.getElementById('reset').addEventListener('click', function () {
     if (!confirm('Alle Eingaben löschen?')) return;
-    f.reset(); dat.value = heute; od.value = 'Ennetaach, ' + heute; ok.checked = false; pruefen();
+    f.reset(); dat.value = heute; ok.checked = false; pruefen();
     gespeichert = false; anzeigen(); alleWachsen();
   });
 
