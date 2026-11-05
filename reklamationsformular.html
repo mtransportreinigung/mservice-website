@@ -155,26 +155,48 @@
   .btn { border-radius: 4px; }
   @media (max-width: 480px) { .sheet { width: 100%; margin: 0; padding: 16px 14px 22px; box-shadow: none; } .titel h1 { font-size: 26px; } }
 
-  /* ============ DRUCK: einfache Textseite, A4, eine Seite ============
-     Nur die ausgefüllten Angaben als Text. Kein Logo, keine Kopf-/Fusszeile.
-     Seitenrand 0 => der Browser druckt keine eigenen Kopf-/Fusszeilen. */
-  #druckblatt { position: absolute; left: -10000px; top: 0; visibility: hidden; width: 210mm; height: 296mm; overflow: hidden; padding: 16mm 18mm 14mm; background: #fff; color: #000; font: 10.5pt/1.4 Arial, Helvetica, sans-serif; }
-  .db { transform-origin: top left; }
-  .dt { margin: 0; font-size: 20pt; line-height: 1.1; }
-  .ds2 { margin: 1mm 0 5mm; font-size: 11pt; color: #333; }
-  .dh { margin: 6mm 0 2mm; padding-bottom: 1mm; font-size: 10.5pt; border-bottom: .6pt solid #000; }
-  .dr { display: grid; grid-template-columns: 48mm 1fr; gap: 0 4mm; padding: .7mm 0; }
-  .dl { font-weight: 700; }
-  .dv { white-space: pre-wrap; overflow-wrap: anywhere; }
-  .dsig { position: relative; width: 70mm; height: 24mm; margin-top: 6mm; border-bottom: .6pt solid #000; }
-  .dsig img { position: absolute; left: 0; bottom: 0; max-width: 100%; max-height: 100%; }
-  .dcap { margin-top: 1mm; font-size: 8.5pt; color: #444; }
+  /* ============ DRUCK: übersichtliche A4-Textseite ============
+     Seitenrand 0 => der Browser fügt keine eigene Kopf-/Fusszeile (URL, Datum, Seitenzahl) hinzu.
+     Der Rand wird über Abstandszeilen erzeugt; das Layout ist von der Papiergrösse unabhängig
+     und wächst bei viel Text auf eine zweite Seite, statt abgeschnitten zu werden. */
+  #druckblatt { position: absolute; left: -10000px; top: 0; visibility: hidden; width: 210mm; background: #fff; color: #000; font: 10pt/1.4 Arial, Helvetica, sans-serif; }
+  #druckblatt table.pg { width: 100%; border-collapse: collapse; }
+  #druckblatt thead { display: table-header-group; }
+  #druckblatt tfoot { display: table-footer-group; }
+  #druckblatt .sp { height: 12mm; }
+  #druckblatt td.pc { padding: 0 18mm; vertical-align: top; }
+  .dtop { display: flex; justify-content: space-between; align-items: flex-end; gap: 8mm; padding-bottom: 3mm; border-bottom: 1.6pt solid #2D6CB5; }
+  .dt { margin: 0; font-size: 22pt; line-height: 1.05; letter-spacing: .3pt; color: #1E3A6D; }
+  .ds2 { margin-top: 2mm; padding-left: 2.4mm; border-left: 1.2mm solid #F57C00; font-size: 11pt; font-weight: 700; color: #1F4EA8; }
+  .dtag { flex: none; text-align: right; font-size: 8pt; line-height: 1.4; color: #5B6B82; }
+  .dtag b { display: block; font-size: 8.5pt; color: #1E3A6D; }
+  .dh { margin: 4.5mm 0 2mm; padding: 1.3mm 3mm; background: #EAF0F8; border-left: 1.2mm solid #F57C00; font-size: 10pt; font-weight: 700; letter-spacing: .3pt; color: #1E3A6D; break-after: avoid; }
+  .dr { display: grid; grid-template-columns: 40mm 1fr; gap: 0 4mm; align-items: end; padding: .6mm 0; break-inside: avoid; }
+  .dr2 { display: grid; grid-template-columns: 40mm 1fr 26mm 1fr; gap: 0 4mm; align-items: end; padding: .6mm 0; break-inside: avoid; }
+  .dl { font-size: 9pt; font-weight: 700; color: #1E3A6D; }
+  .dv { min-height: 5.2mm; border-bottom: .5pt dotted #8FA3BF; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .dopt { display: grid; grid-template-columns: 4.6mm 44mm 1fr; align-items: start; gap: 0 3mm; padding: .5mm 0; break-inside: avoid; }
+  .dopt.l { grid-template-columns: 4.6mm 1fr; }
+  .dbox { display: block; width: 4mm; height: 4mm; margin-top: .6mm; border: .8pt solid #5C7399; position: relative; }
+  .dopt.on .dbox::after { content: ""; position: absolute; left: 1.15mm; top: -.1mm; width: 1.2mm; height: 2.6mm; border: solid #000; border-width: 0 .55mm .55mm 0; transform: rotate(45deg); }
+  .dot { font-weight: 700; color: #1E3A6D; }
+  .dopt.l .dot { font-weight: 400; color: #000; }
+  .dopt.on .dot { color: #000; }
+  .dd { min-height: 5mm; border-bottom: .5pt dotted #8FA3BF; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .dbig { min-height: 15mm; padding: 2mm 3mm; border: .6pt solid #B7C4D8; background: #F8FAFD; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .dkeep { break-inside: avoid; }
+  .dsg { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10mm; align-items: end; margin-top: 4mm; }
+  .dsig { position: relative; height: 22mm; border-bottom: .8pt solid #1E3A6D; }
+  .dsig img { position: absolute; left: 0; bottom: 1pt; max-width: 100%; max-height: 100%; }
+  .dcap { margin-top: 1mm; font-size: 8.5pt; color: #5B6B82; }
+  .dort { border-bottom: .8pt solid #1E3A6D; min-height: 8mm; padding-top: 4mm; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .dds { margin-top: 4mm; display: grid; grid-template-columns: 4.6mm 1fr; gap: 0 3mm; font-size: 8.5pt; color: #333; }
   @page { size: A4 portrait; margin: 0; }
   @media print {
-    html, body { margin: 0; padding: 0; background: #fff; width: 210mm; height: 296mm; overflow: hidden; }
+    html, body { margin: 0; padding: 0; background: #fff; width: auto; height: auto; overflow: visible; }
     * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body > *:not(#druckblatt) { display: none !important; }
-    #druckblatt { position: static; visibility: visible; }
+    #druckblatt { position: static; left: auto; visibility: visible; width: auto; }
     html:not(.ok) #druckblatt { display: none !important; }
     html:not(.ok) body::before { content: "Bitte zuerst im Formular die Datenschutz-Bestätigung abhaken."; display: block; padding: 20mm; font: 14pt Arial; color: #000; }
   }
@@ -202,7 +224,7 @@
     <div class="f"><label for="reinigungsdatum">Reinigungsdatum:</label><input type="text" id="reinigungsdatum" name="reinigungsdatum" placeholder="TT.MM.JJJJ"></div>
     <div class="f r"><label for="uebergabe">Übergabe am:</label><input type="text" id="uebergabe" name="uebergabe" placeholder="TT.MM.JJJJ"></div>
     <div class="f"><label for="festgestellt">Mängel festgestellt am:</label><input type="text" id="festgestellt" name="festgestellt" placeholder="TT.MM.JJJJ"></div>
-    <div class="f r"><label for="uhrzeit">Uhrzeit:</label><input type="text" id="uhrzeit" name="uhrzeit" placeholder="HH:MM"></div>
+    <div class="f r"><label for="uhrzeit">Uhrzeit:</label><input type="text" id="uhrzeit" name="uhrzeit"></div>
   </div>
 
   <h2>2. BEANSTANDETE BEREICHE</h2>
@@ -247,7 +269,7 @@
   <div class="aktionen no-print">
     <label class="check ds"><input type="checkbox" id="ds" name="ds"> <span>Ich habe die <a href="https://www.mservice.ch/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Reklamation verwendet werden.</span></label>
     <p class="dshint" id="dshint">Bitte bestätigen Sie zuerst die Datenschutzerklärung. Erst dann sind Drucken, Speichern und Senden möglich.</p>
-    <p><strong>Formular fertig?</strong> Speichern Sie es als PDF (im Druckdialog «Als PDF speichern» wählen), drucken Sie es aus oder senden Sie es per E-Mail. Fotos der Mängel können Sie der E-Mail direkt anhängen. Gedruckt wird eine einfache Textseite (A4, eine Seite) mit allen Ihren Angaben, ohne Logo sowie ohne Kopf- und Fusszeile.</p>
+    <p><strong>Formular fertig?</strong> Speichern Sie es als PDF (im Druckdialog «Als PDF speichern» wählen), drucken Sie es aus oder senden Sie es per E-Mail. Fotos der Mängel können Sie der E-Mail direkt anhängen. Gedruckt wird eine übersichtliche A4-Seite mit allen Ihren Angaben, ohne Logo sowie ohne Kopf- und Fusszeile des Browsers.</p>
     <div class="btns">
       <button type="button" class="btn" id="druck">Drucken / Als PDF speichern</button>
       <button type="button" class="btn zweit" id="mail">Per E-Mail senden</button>
@@ -256,7 +278,7 @@
   </div>
 </form>
 
-<div id="druckblatt" aria-hidden="true"></div>
+<div id="druckblatt" aria-hidden="true"><table class="pg"><thead><tr><td><div class="sp"></div></td></tr></thead><tbody><tr><td class="pc"><div class="db"></div></td></tr></tbody><tfoot><tr><td><div class="sp"></div></td></tr></tfoot></table></div>
 
 
 <!-- Unterschrift-Fenster -->
@@ -350,15 +372,15 @@
     if (!leer) {
       var t = document.createElement('canvas'); t.width = cv.width; t.height = cv.height;
       var tc = t.getContext('2d'); tc.fillStyle = '#fff'; tc.fillRect(0, 0, t.width, t.height); tc.drawImage(cv, 0, 0);
-      img.src = t.toDataURL('image/jpeg', 0.92);
+      img.src = t.toDataURL('image/png');
       gespeichert = true; anzeigen();
     }
-    schliessen();
+    schliessen(); planen();
   });
   modal.addEventListener('click', function (e) { if (e.target === modal) schliessen(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) schliessen(); });
   window.addEventListener('resize', function () { if (!modal.hidden) groesse(); });
-  clr.addEventListener('click', function () { gespeichert = false; anzeigen(); });
+  clr.addEventListener('click', function () { gespeichert = false; anzeigen(); planen(); });
 
   // ---------- Datenschutz-Bestätigung ----------
   var ok = document.getElementById('ds'), hint = document.getElementById('dshint');
@@ -373,63 +395,76 @@
   // ---------- Drucken / PDF ----------
   bd.addEventListener('click', function () { if (!ok.checked) return; vorbereiten(); window.print(); });
 
-  // Druckblatt: einfache Textseite mit allen Angaben (nur beim Drucken sichtbar)
+  // Druckblatt: uebersichtliche Textseite mit allen Angaben (wird laufend aktuell gehalten)
   var blatt = document.getElementById('druckblatt');
   var BER = [['b_kueche','t_kueche','Küche & Geräte'],['b_nass','t_nass','Nasszellen / Bad & WC'],['b_fenster','t_fenster','Fenster & Storen'],['b_wohn','t_wohn','Wohnräume & Böden'],['b_neben','t_neben','Nebennutzflächen'],['b_sonst','t_sonst','Sonstiges']];
   function E(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
   function vorbereiten() {
-    alleWachsen();
-    blatt.textContent = '';
-    var db = E('div', 'db'); blatt.appendChild(db);
-    function sec(t) { db.appendChild(E('h2', 'dh', t)); }
-    function row(l, val) { var r = E('div', 'dr'); r.appendChild(E('span', 'dl', l)); r.appendChild(E('span', 'dv', val || '–')); db.appendChild(r); }
-    db.appendChild(E('h1', 'dt', 'REKLAMATION'));
-    db.appendChild(E('div', 'ds2', 'Meldung von Mängeln nach der Reinigung'));
-    row('Datum:', v('datum')); row('Auftrags-Nr.:', v('auftragsnr'));
+    var db = blatt.querySelector('.db'); db.textContent = '';
+    function sec(t) { db.appendChild(E('div', 'dh', t)); }
+    function row(l, val) { var r = E('div', 'dr'); r.appendChild(E('span', 'dl', l)); r.appendChild(E('span', 'dv', val)); db.appendChild(r); }
+    function opt(label, on, desc) {
+      var r = E('div', 'dopt' + (on ? ' on' : '') + (desc === undefined ? ' l' : ''));
+      r.appendChild(E('span', 'dbox')); r.appendChild(E('span', 'dot', label));
+      if (desc !== undefined) r.appendChild(E('span', 'dd', desc));
+      db.appendChild(r);
+    }
+    var top = E('div', 'dtop'), tl = E('div');
+    tl.appendChild(E('h1', 'dt', 'REKLAMATION')); tl.appendChild(E('div', 'ds2', 'Meldung von Mängeln nach der Reinigung'));
+    var tg = E('div', 'dtag'); tg.appendChild(E('b', null, 'Online ausgefüllt')); tg.appendChild(document.createTextNode('www.mservice.ch/reklamationsformular'));
+    top.appendChild(tl); top.appendChild(tg); db.appendChild(top);
+
+    function pair(l1, v1, l2, v2) {
+      var r = E('div', 'dr2');
+      r.appendChild(E('span', 'dl', l1)); r.appendChild(E('span', 'dv', v1)); r.appendChild(E('span', 'dl', l2)); r.appendChild(E('span', 'dv', v2));
+      db.appendChild(r);
+    }
     sec('1. KUNDE & OBJEKT');
+    pair('Datum:', v('datum'), 'Auftrags-Nr.:', v('auftragsnr'));
     row('Name:', (v('vorname') + ' ' + v('nachname')).trim());
-    if (v('firma')) row('Firma:', v('firma'));
-    row('Telefon:', v('telefon')); row('E-Mail:', v('email')); row('Objektadresse:', v('adresse'));
-    row('Reinigungsdatum:', v('reinigungsdatum')); row('Übergabe am:', v('uebergabe'));
-    row('Mängel festgestellt am:', (v('festgestellt') + ' ' + v('uhrzeit')).trim());
+    row('Firma:', v('firma'));
+    pair('Telefon:', v('telefon'), 'E-Mail:', v('email'));
+    row('Objektadresse:', v('adresse'));
+    pair('Reinigungsdatum:', v('reinigungsdatum'), 'Übergabe am:', v('uebergabe'));
+    pair('Mängel festgestellt am:', v('festgestellt'), 'Uhrzeit:', v('uhrzeit'));
     sec('2. BEANSTANDETE BEREICHE');
-    var any = false;
-    BER.forEach(function (b) {
-      var t = f.elements[b[1]].value.trim();
-      if (c(b[0]) || t) { any = true; row(b[2] + ':', t || 'beanstandet'); }
-    });
-    if (!any) row('Bereiche:', '–');
-    if (v('weitere')) row('Weitere Angaben:', v('weitere'));
-    row('Fotos beigelegt:', c('fotos') ? 'Ja' : 'Nein');
+    BER.forEach(function (b) { var t = f.elements[b[1]].value.trim(); opt(b[2], c(b[0]) || !!t, t); });
+    var wl = E('div', 'dl', 'Weitere Angaben zu den Mängeln:'); wl.style.margin = '3mm 0 1mm'; db.appendChild(wl);
+    db.appendChild(E('div', 'dbig', v('weitere')));
+    var fo = E('div'); fo.style.marginTop = '2mm'; db.appendChild(fo);
+    opt('Fotos der Mängel sind beigelegt / per E-Mail gesendet', c('fotos'));
     sec('3. GEWÜNSCHTE LÖSUNG');
-    var l = [];
-    if (c('l_nachbesserung')) l.push('Kostenlose Nachbesserung der beanstandeten Stellen');
-    if (c('l_rueckruf')) l.push('Rückruf zur Besprechung des weiteren Vorgehens');
-    row('Gewünscht:', l.join('\n'));
-    if (v('termin')) row('Möglicher Termin / Zutritt:', v('termin'));
-    sec('ORT, DATUM, UNTERSCHRIFT');
-    row('Ort, Datum:', v('ortdatum'));
-    var sg = E('div', 'dsig');
-    if (gespeichert) { var im = E('img'); im.src = img.src; im.alt = ''; sg.appendChild(im); }
-    db.appendChild(sg); db.appendChild(E('div', 'dcap', 'Unterschrift Kunde'));
-    row('Datenschutz:', 'Datenschutzerklärung gelesen und akzeptiert');
-    // bei sehr viel Text auf eine Seite verkleinern
-    db.style.transform = '';
-    var frei = (296 - 30) * 96 / 25.4, h = db.offsetHeight;
-    if (h > frei) db.style.transform = 'scale(' + (frei / h).toFixed(4) + ')';
+    opt('Kostenlose Nachbesserung der beanstandeten Stellen', c('l_nachbesserung'));
+    opt('Rückruf zur Besprechung des weiteren Vorgehens', c('l_rueckruf'));
+    row('Möglicher Termin / Zutritt:', v('termin'));
+    var keep = E('div', 'dkeep'); db.appendChild(keep);
+    var hd = E('div', 'dh', 'ORT, DATUM, UNTERSCHRIFT'); keep.appendChild(hd);
+    var sg = E('div', 'dsg');
+    var l = E('div'); l.appendChild(E('div', 'dort', v('ortdatum'))); l.appendChild(E('div', 'dcap', 'Ort, Datum'));
+    var r = E('div'), box = E('div', 'dsig');
+    if (gespeichert && img.src) { var im = E('img'); im.src = img.src; im.alt = ''; box.appendChild(im); }
+    r.appendChild(box); r.appendChild(E('div', 'dcap', 'Unterschrift Kunde'));
+    sg.appendChild(l); sg.appendChild(r); keep.appendChild(sg);
+    var ds = E('div', 'dds'); ds.appendChild(E('span', 'dbox')); ds.lastChild.parentNode.classList.add('dopt', 'on');
+    ds.appendChild(E('span', null, 'Die Datenschutzerklärung (www.mservice.ch/datenschutz.html) wurde gelesen und akzeptiert.'));
+    keep.appendChild(ds);
   }
+  var _t = null;
+  function planen() { clearTimeout(_t); _t = setTimeout(vorbereiten, 120); }
+  f.addEventListener('input', planen); f.addEventListener('change', planen);
   window.addEventListener('beforeprint', vorbereiten);
   if (window.matchMedia) {
     var mq = window.matchMedia('print');
     var mh = function (e) { if (e.matches) vorbereiten(); };
     if (mq.addEventListener) mq.addEventListener('change', mh); else if (mq.addListener) mq.addListener(mh);
   }
+  vorbereiten();
 
   // ---------- Zurücksetzen ----------
   document.getElementById('reset').addEventListener('click', function () {
     if (!confirm('Alle Eingaben löschen?')) return;
     f.reset(); dat.value = heute; ok.checked = false; pruefen();
-    gespeichert = false; anzeigen(); alleWachsen();
+    gespeichert = false; anzeigen(); alleWachsen(); vorbereiten();
   });
 
   // ---------- Per E-Mail senden (öffnet das E-Mail-Programm mit vorbereitetem Text) ----------
