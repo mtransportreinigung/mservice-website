@@ -173,7 +173,7 @@
   <div class="aktionen">
     <label class="check ds"><input type="checkbox" id="ds" name="ds"> <span>Ich habe die <a href="https://www.mservice.ch/datenschutz.html" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und bin damit einverstanden, dass meine Angaben zur Bearbeitung meiner Reklamation verwendet werden.</span></label>
     <p class="dshint" id="dshint">Bitte bestätigen Sie zuerst die Datenschutzerklärung. Erst dann sind Speichern und Senden möglich.</p>
-    <p><strong>Formular fertig?</strong> «Als PDF speichern» erstellt ein fertiges A4-Blatt (eine Seite) mit allen Ihren Angaben. Fotos der Mängel können Sie der E-Mail direkt anhängen.</p>
+    <p><strong>Formular fertig?</strong> «Als PDF speichern» erstellt ein fertiges A4-Blatt (eine Seite, bei Bedarf zwei) mit allen Ihren Angaben. Fotos der Mängel können Sie der E-Mail direkt anhängen.</p>
     <div class="btns">
       <button type="button" class="btn" id="pdf">Als PDF speichern (A4)</button>
       <button type="button" class="btn zweit" id="mail">Per E-Mail senden</button>
@@ -219,7 +219,7 @@
     else w = w.replace(/\s*\n\s*/g, ' ');
     if (w !== t.value) t.value = w;
   }
-  function zaehlen() { var l = v('weitere').length, e = document.getElementById('weitere'); zl.textContent = e.value.length + ' / 300'; zl.classList.toggle('voll', e.value.length >= 300); }
+  function zaehlen() { var e = document.getElementById('weitere'); zl.textContent = e.value.length + ' / 300'; zl.classList.toggle('voll', e.value.length >= 300); }
   f.addEventListener('input', function (e) {
     if (e.target.classList && e.target.classList.contains('auto')) { begrenzen(e.target); wachsen(e.target); zaehlen(); }
   });
@@ -445,7 +445,8 @@
     ol.forEach(function (l, i) { txt(ML + 0.5, top + 22 - 1.8 - (ol.length - 1 - i) * 4.6, l, 0, 10, '#000'); });
     poly([[ML, top + 22], [ML + bw, top + 22]], 0.8, NAVY); txt(ML, top + 26.2, 'Ort, Datum', 0, 8.5, GRAY);
     if (sj) {
-      var bwp = bw * K, bhp = 21 * K, sc = Math.min(bwp / sj.w, bhp / sj.h), iw = sj.w * sc, ih = sj.h * sc;
+      // FIX: eigene Variable "ss" (vorher "sc" hat den Seiten-Massstab überschrieben -> Miniatur-PDF)
+      var bwp = bw * K, bhp = 21 * K, ss = Math.min(bwp / sj.w, bhp / sj.h), iw = sj.w * ss, ih = sj.h * ss;
       o.push('q ' + iw.toFixed(2) + ' 0 0 ' + ih.toFixed(2) + ' ' + P(rx) + ' ' + PY(top + 21.7) + ' cm /Im1 Do Q');
     }
     poly([[rx, top + 22], [rx + bw, top + 22]], 0.8, NAVY); txt(rx, top + 26.2, 'Unterschrift Kunde', 0, 8.5, GRAY);
@@ -464,7 +465,9 @@
 
   function pdfBlob() {
     var sj = sigJpeg(), pages, parts = [], len = 0, offs = [];
-    [1, .95, .9, .85, .8, .75, .7, .65, .6, .55, .5].some(function (sc) { pages = layout(sj, sc); return pages.length === 1; });
+    // FIX: höchstens auf 90 % verkleinern, sonst normale Schrift auf 2 Seiten
+    var fitted = [1, .95, .9].some(function (sc) { pages = layout(sj, sc); return pages.length === 1; });
+    if (!fitted) pages = layout(sj, 1);
     function put(x) {
       if (typeof x === 'string') { var u = new Uint8Array(x.length); for (var i = 0; i < x.length; i++) u[i] = x.charCodeAt(i) & 255; x = u; }
       parts.push(x); len += x.length;
