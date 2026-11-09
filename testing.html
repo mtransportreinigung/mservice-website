@@ -111,32 +111,35 @@
     </script>
 
     <style>
-    * { 
+    *, *::before, *::after { 
       box-sizing: border-box; 
       margin: 0; 
       padding: 0; 
       -webkit-tap-highlight-color: transparent;
     }
 
-    html, body {
+    html {
       width: 100%;
-      max-width: 100%;
       overflow-x: hidden;
       background-color: #002266;
       scroll-behavior: smooth;
     }
 
-    body.menu-open {
-      overflow: hidden !important;
-      touch-action: none;
-    }
-
     body {
+      width: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
       font-family: Arial, Helvetica, sans-serif;
       color: #333333;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       padding-top: 75px;
+      background-color: #f4f6f9;
+    }
+
+    body.menu-open {
+      overflow: hidden !important;
+      touch-action: none;
     }
 
     a:focus-visible,
@@ -151,6 +154,7 @@
       display: flex;
       flex-direction: column;
       background-color: #f4f6f9;
+      overflow-x: hidden;
     }
 
     /* Pevná horní lišta */
@@ -178,6 +182,7 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
+      min-width: 0;
     }
 
     .logo-img {
@@ -196,6 +201,7 @@
       font-weight: bold;
       color: #002266;
       letter-spacing: -0.3px;
+      white-space: nowrap;
     }
 
     /* Horní menu (PC) */
@@ -238,6 +244,7 @@
       border-radius: 8px;
       cursor: pointer;
       z-index: 2001;
+      flex-shrink: 0;
     }
 
     .menu-toggle svg {
@@ -250,6 +257,7 @@
       color: #ffffff;
       text-align: center;
       padding: 40px 20px 45px 20px;
+      width: 100%;
     }
 
     .hero-section h1 {
@@ -295,6 +303,7 @@
       padding: 35px 30px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.06);
       border-top: 6px solid #FF6A00;
+      width: 100%;
     }
 
     .section-title {
@@ -318,6 +327,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
+      width: 100%;
     }
 
     .service-card {
@@ -432,6 +442,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
+      width: 100%;
     }
 
     .benefit-card {
@@ -469,6 +480,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
+      width: 100%;
     }
 
     .step-card {
@@ -512,6 +524,7 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 16px;
+      width: 100%;
     }
 
     .aktuell-card {
@@ -543,13 +556,14 @@
       background: #ffffff;
     }
 
-    /* SEO Lokální sekce v identické designové kartě s oranžovým okrajem a primární prioritou pro Google */
+    /* SEO Lokální sekce */
     .seo-local-section {
       background: #ffffff;
       border-radius: 10px;
       padding: 35px 30px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.06);
       border-top: 6px solid #FF6A00;
+      width: 100%;
     }
 
     .seo-local-content {
@@ -825,7 +839,7 @@
   <!-- Hlavní obsah -->
   <main class="content-container">
     
-    <!-- SEO Lokální sekce (Prioritní karta nahoře hned pod službami nebo jako hlavní pilíř) -->
+    <!-- SEO Lokální sekce -->
     <div class="seo-local-section">
       <h2 class="section-title">Professionelle Reinigungen für Liegenschaften &amp; Gewerbe im Thurgau</h2>
       <div class="seo-local-content">
