@@ -17,8 +17,8 @@
     <link rel="apple-touch-icon" href="/favicony.png">
 
     <!-- SEO & Metadata pro vyhledávače a Google -->
-    <meta name="description" content="Professionelle Umzugsreinigung, Endreinigung & Gebäudereinigung im Kanton Thurgau (Frauenfeld, Kreuzlingen, Arbon, Romanshorn, Amriswil). Mit Abgabegarantie & 48h Reklamationsfrist. Jetzt Gratis-Offerte!">
-    <meta name="keywords" content="Umzugsreinigung Thurgau, Endreinigung Thurgau, Wohnungsreinigung Frauenfeld, Reinigungsfirma Kreuzlingen, Gebäudereinigung Arbon, Abgabegarantie Thurgau, M Service">
+    <meta name="description" content="Professionelle Umzugsreinigung, Gebäudereinigung, Unterhaltsreinigung & Grundreinigung im Kanton Thurgau. Für Privatkunden, Immobilienverwaltungen & Gewerbe. 48h Reklamationsfrist!">
+    <meta name="keywords" content="Umzugsreinigung Thurgau, Gebäudereinigung, Unterhaltsreinigung, Grundreinigung, Reinigungsfirma Immobilienverwaltung Frauenfeld Kreuzlingen Arbon, M Service">
     <meta name="author" content="M Transport &amp; Reinigung Service">
 
     <!-- Náhled při sdílení odkazu (WhatsApp, Facebook, ...) -->
@@ -26,7 +26,7 @@
     <meta property="og:locale" content="de_CH">
     <meta property="og:site_name" content="M Transport &amp; Reinigung Service">
     <meta property="og:title" content="M Transport &amp; Reinigung Service | Umzugsreinigung Thurgau">
-    <meta property="og:description" content="Professionelle Umzugsreinigung, Endreinigung & Gebäudereinigung im Kanton Thurgau mit Abgabegarantie. Jetzt unverbindliche Offerte anfordern!">
+    <meta property="og:description" content="Professionelle Reinigungsdienstleistungen im Kanton Thurgau für Privatkunden, Immobilienverwaltungen und Gewerbe. Jetzt unverbindliche Offerte anfordern!">
     <meta property="og:url" content="https://www.mservice.ch/">
     <meta property="og:image" content="https://www.mservice.ch/logo.PNG">
 
@@ -34,7 +34,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://www.mservice.ch/">
     <meta name="twitter:title" content="M Transport &amp; Reinigung Service | Umzugsreinigung Thurgau">
-    <meta name="twitter:description" content="Professionelle Umzugsreinigung, Endreinigung & Gebäudereinigung im Kanton Thurgau mit Abgabegarantie. Jetzt unverbindliche Offerte anfordern!">
+    <meta name="twitter:description" content="Professionelle Reinigungsdienstleistungen im Kanton Thurgau für Privatkunden, Immobilienverwaltungen und Gewerbe. Jetzt unverbindliche Offerte anfordern!">
     <meta name="twitter:image" content="https://www.mservice.ch/logo.PNG">
 
     <!-- Strukturovaná data pro Google (LocalBusiness + Služby + Lokality) -->
@@ -77,14 +77,21 @@
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Umzugsreinigung mit Abgabegarantie"
+              "name": "Umzugsreinigung"
             }
           },
           {
             "@type": "Offer",
             "itemOffered": {
               "@type": "Service",
-              "name": "Gebäudereinigung und Unterhaltsreinigung"
+              "name": "Gebäudereinigung"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Unterhaltsreinigung"
             }
           },
           {
@@ -281,7 +288,7 @@
       gap: 25px;
     }
 
-    /* Jednotlivé karty sekcí */
+    /* Jednotlivé karty sekcí s oranžovým horním označením */
     .document-card {
       background: #ffffff;
       border-radius: 10px;
@@ -536,27 +543,27 @@
       background: #ffffff;
     }
 
-    /* SEO Lokální sekce (skrytá vizuálně nebo decentně zakomponovaná pro vyhledávače) */
+    /* SEO Lokální sekce v identické designové kartě s oranžovým okrajem */
     .seo-local-section {
       background: #ffffff;
       border-radius: 10px;
-      padding: 25px 30px;
+      padding: 35px 30px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-      border-top: 6px solid #0051C7;
-      font-size: 13.5px;
+      border-top: 6px solid #FF6A00;
+    }
+
+    .seo-local-content {
+      font-size: 14px;
       color: #475569;
       line-height: 1.6;
     }
 
-    .seo-local-section h3 {
-      font-size: 16px;
-      color: #002266;
-      margin-bottom: 10px;
-      font-weight: bold;
+    .seo-local-content p {
+      margin-bottom: 12px;
     }
 
-    .seo-local-section p {
-      margin-bottom: 10px;
+    .seo-local-content p:last-child {
+      margin-bottom: 0;
     }
 
     /* Patička (PC) */
@@ -810,8 +817,8 @@
 
   <!-- Hero Banner -->
   <section class="hero-section">
-    <h1>Umzugsreinigung &amp; Endreinigung im Kanton Thurgau</h1>
-    <p>Zuverlässig, gründlich und termingerecht mit Abgabegarantie. Für Privatkunden und Gewerbe in der ganzen Region.</p>
+    <h1>Reinigung &amp; Endreinigung im Kanton Thurgau</h1>
+    <p>Zuverlässig, gründlich und termingerecht. Für Privatkunden, Immobilienverwaltungen und Gewerbe.</p>
     <div class="service-badge">✓ 48 Stunden kostenlose Reklamationsfrist</div>
   </section>
 
@@ -834,7 +841,7 @@
               </svg>
             </span>
             <h3 class="service-title">Umzugsreinigung</h3>
-            <p class="service-desc">Gründliche Endreinigung Ihrer Wohnung oder Ihres Hauses für eine erfolgreiche Wohnungsabgabe mit Abgabegarantie.</p>
+            <p class="service-desc">Gründliche Endreinigung Ihrer Wohnung oder Ihres Hauses für eine erfolgreiche Wohnungsabgabe.</p>
           </div>
           <span class="card-link-btn">Offerte anfordern &rarr;</span>
         </a>
@@ -855,7 +862,7 @@
               </svg>
             </span>
             <h3 class="service-title">Gebäudereinigung</h3>
-            <p class="service-desc">Regelmässige oder einmalige Reinigung von Liegenschaften, Treppenhäusern oder Büros im Thurgau.</p>
+            <p class="service-desc">Regelmässige oder einmalige Reinigung von Liegenschaften, Treppenhäusern und Gewerbeimmobilien.</p>
           </div>
           <span class="card-link-btn">Offerte anfordern &rarr;</span>
         </a>
@@ -870,7 +877,7 @@
               </svg>
             </span>
             <h3 class="service-title">Unterhaltsreinigung</h3>
-            <p class="service-desc">Fortlaufende, periodische Wohnungsreinigung nach Ihren individuellen Wünschen.</p>
+            <p class="service-desc">Fortlaufende, periodische Wohnungs- und Büroreinigung nach Ihren individuellen Wünschen.</p>
           </div>
           <span class="card-link-btn">Offerte anfordern &rarr;</span>
         </a>
@@ -884,7 +891,7 @@
               </svg>
             </span>
             <h3 class="service-title">Grundreinigung</h3>
-            <p class="service-desc">Intensive Tiefenreinigung oder Frühlingsputz für hartnäckige Verschmutzungen im Objekt.</p>
+            <p class="service-desc">Intensive Tiefenreinigung, Frühlingsputz oder Bauendreinigung für Gebäude und Wohnungen.</p>
           </div>
           <span class="card-link-btn">Offerte anfordern &rarr;</span>
         </a>
@@ -925,11 +932,14 @@
       </div>
     </div>
 
-    <!-- Nová SEO Lokální sekce (Perfektní pro dohledatelnost měst na Googlu) -->
+    <!-- SEO Lokální sekce v identické designové kartě s oranžovým okrajem -->
     <div class="seo-local-section">
-      <h3>Ihr zuverlässiger Partner für Reinigungen im Kanton Thurgau</h3>
-      <p>Wir bieten professionelle Reinigungsdienstleistungen inklusive Abgabegarantie in der gesamten Region an. Egal ob <strong>Umzugsreinigung in Frauenfeld</strong>, <strong>Endreinigung in Kreuzlingen</strong>, Wohnungsabgabe in <strong>Arbon</strong>, <strong>Romanshorn</strong>, <strong>Amriswil</strong>, <strong>Weinfelden</strong> oder <strong>Bischofszell</strong> – M Transport &amp; Reinigung Service steht für höchste Gründlichkeit und Zuverlässigkeit.</p>
-      <p>Profitieren Sie von unserer fairen Preisgestaltung, professionellen Reinigungsmitteln und der 48-Stunden-Reklamationsfrist direkt bei der Wohnungsübergabe.</p>
+      <h2 class="section-title">Professionelle Reinigungen für Immobilien &amp; Gebäude im Thurgau</h2>
+      <div class="seo-local-content">
+        <p>M Transport &amp; Reinigung Service ist Ihr zuverlässiger Partner für sämtliche Reinigungsarbeiten im Kanton Thurgau. Wir unterstützen Privatkunden, Immobilienverwaltungen, Hauswartungen und Firmen bei der professionellen Betreuung von Wohnungen und Liegenschaften.</p>
+        <p>Unser umfassendes Dienstleistungsangebot umfasst die professionelle <strong>Umzugsreinigung</strong>, die gründliche <strong>Gebäudereinigung</strong> für Büros und Gewerbeobjekte, die regelmässige <strong>Unterhaltsreinigung</strong> sowie die intensive <strong>Grundreinigung</strong> von Räumlichkeiten.</p>
+        <p>Wir sind in der gesamten Region – inklusive Frauenfeld, Kreuzlingen, Arbon, Romanshorn, Amriswil, Weinfelden und Bischofszell – im Einsatz und überzeugen durch höchste Zuverlässigkeit und eine faire 48-Stunden-Reklamationsfrist.</p>
+      </div>
     </div>
 
     <!-- 2. Karta: Výhody -->
