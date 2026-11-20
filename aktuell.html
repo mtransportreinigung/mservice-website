@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktuell | M Transport &amp; Reinigung Service</title>
+
+    <link rel="canonical" href="https://www.mservice.ch/aktuell">
+
+    <script>
+    var p = location.pathname.replace(/index\.html$/, '').replace(/\.html$/, '');
+    if (p !== location.pathname) history.replaceState(null, '', p + location.search + location.hash);
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicony.png">
+    <link rel="apple-touch-icon" href="/favicony.png">
+
+    <!-- SEO & Metadata -->
+    <meta name="description" content="Aktuelle Angebote von M Transport &amp; Reinigung Service im Kanton Thurgau: Umzugsreinigung, Gebäudereinigung, Unterhaltsreinigung und Grundreinigung. 48 Stunden kostenlose Reklamationsfrist.">
+    <meta name="author" content="M Transport &amp; Reinigung Service">
+
+    <!-- Link-Vorschau -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_CH">
+    <meta property="og:site_name" content="M Transport &amp; Reinigung Service">
+    <meta property="og:title" content="Aktuell | M Transport &amp; Reinigung Service">
+    <meta property="og:description" content="Unsere Angebote im Überblick: Umzugsreinigung, Gebäudereinigung, Unterhaltsreinigung und Grundreinigung im Kanton Thurgau.">
+    <meta property="og:url" content="https://www.mservice.ch/aktuell">
+    <meta property="og:image" content="https://www.mservice.ch/logo.PNG">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://www.mservice.ch/aktuell">
+    <meta name="twitter:title" content="Aktuell | M Transport &amp; Reinigung Service">
+    <meta name="twitter:description" content="Unsere Angebote im Überblick: Umzugsreinigung, Gebäudereinigung, Unterhaltsreinigung und Grundreinigung im Kanton Thurgau.">
+    <meta name="twitter:image" content="https://www.mservice.ch/logo.PNG">
+
+    <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background-color: #002266;
+      scroll-behavior: smooth;
+    }
+
+    body.menu-open {
+      overflow: hidden !important;
+      touch-action: none;
+    }
+
+    html.lb-open,
+    html.lb-open body {
+      overflow: hidden;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #333333;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding-top: 75px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #FF6A00;
+      outline-offset: 2px;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      min-height: calc(100vh - 75px);
+      display: flex;
+      flex-direction: column;
+      background-color: #f4f6f9;
+    }
+
+    /* Icon-Sprite (unsichtbar) */
+    .svg-sprite {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    /* Feste obere Leiste */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 28px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 75px;
+      z-index: 1000;
+      border-bottom: 3px solid #0051C7;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.2s ease;
+    }
+
+    .brand-container:hover .logo-img {
+      transform: scale(1.04);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #002266;
+      letter-spacing: -0.3px;
+    }
+
+    /* Hauptmenü (PC) */
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      color: #002266;
+      padding: 9px 14px;
+      border-radius: 6px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-link:hover {
+      background-color: #e0f2fe;
+      color: #0051C7;
+    }
+
+    .nav-link.active {
+      color: #0051C7;
+      background-color: #e0f2fe;
+      box-shadow: inset 0 -3px 0 #FF6A00;
+    }
+
+    /* Hamburger-Button (nur Mobile) */
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 2001;
+    }
+
+    .menu-toggle svg {
+      stroke: #002266;
+    }
+
+    /* Hero */
+    .hero-section {
+      background: linear-gradient(135deg, #0051C7 0%, #002266 100%);
+      color: #ffffff;
+      text-align: center;
+      padding: 40px 20px 45px 20px;
+    }
+
+    .hero-section h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .hero-section p {
+      font-size: 15px;
+      opacity: 0.95;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .service-badge {
+      background-color: #FFA000;
+      color: #002266;
+      padding: 6px 18px;
+      font-weight: bold;
+      border-radius: 50px;
+      display: inline-block;
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    /* Hauptinhalt */
+    .content-container {
+      max-width: 950px;
+      margin: 30px auto 50px auto;
+      padding: 0 20px;
+      width: 100%;
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .document-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 35px 30px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      border-top: 6px solid #FF6A00;
+    }
+
+    .section-title {
+      font-size: 18px;
+      color: #002266;
+      font-weight: bold;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .gallery-hint {
+      text-align: center;
+      font-size: 13.5px;
+      color: #64748b;
+      margin: -6px auto 24px auto;
+      max-width: 560px;
+    }
+
+    /* =====================================================
+       FLYER (alle im gleichen Design, skaliert mit cqw)
+       ===================================================== */
+    .flyers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px 24px;
+    }
+
+    .flyer-card {
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      text-decoration: none;
+      color: #002266;
+      border: 2px solid #e2e8f0;
+      box-shadow: 0 10px 28px rgba(0, 34, 102, 0.16);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      cursor: zoom-in;
+    }
+
+    .flyer-card:hover {
+      transform: translateY(-5px);
+      border-color: #FF6A00;
+      box-shadow: 0 16px 34px rgba(255, 106, 0, 0.25);
+    }
+
+    .flyer-card.blur-flyer {
+      filter: blur(3px);
+      opacity: 0.55;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      cursor: default;
+    }
+
+    .card-cap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 16px;
+      border-top: 3px solid #FF6A00;
+      background: #ffffff;
+    }
+
+    .card-cap strong {
+      font-size: 15px;
+      color: #002266;
+    }
+
+    .card-cap span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: bold;
+      color: #0051C7;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .flyer-card:hover .card-cap span {
+      color: #FF6A00;
+    }
+
+    .flyer-art {
+      container-type: inline-size;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 210 / 297;
+      overflow: hidden;
+      background: #002266;
+    }
+
+    .art {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 7.5cqw 8cqw 0 8cqw;
+      color: #ffffff;
+      background: linear-gradient(165deg, #0a5fe0 0%, #0051C7 28%, #002266 70%, #001640 100%);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.2;
+      text-align: left;
+    }
+
+    .art::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1.8cqw;
+      background: linear-gradient(90deg, #FF6A00, #FFA000);
+    }
+
+    .a-ring {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .a-ring-1 {
+      top: -30cqw;
+      right: -30cqw;
+      width: 80cqw;
+      height: 80cqw;
+      border: 1.4cqw solid rgba(255, 255, 255, 0.07);
+    }
+
+    .a-ring-2 {
+      bottom: 6cqw;
+      left: -42cqw;
+      width: 92cqw;
+      height: 92cqw;
+      border: 1cqw solid rgba(255, 160, 0, 0.12);
+    }
+
+    .a-water {
+      position: absolute;
+      right: -16cqw;
+      bottom: 14cqw;
+      width: 84cqw;
+      height: 84cqw;
+      color: #ffffff;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+
+    .a-top {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3cqw;
+    }
+
+    .a-brand {
+      display: flex;
+      align-items: center;
+      gap: 2.4cqw;
+      min-width: 0;
+    }
+
+    .a-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 10cqw;
+      padding: 1.2cqw 2cqw;
+      background: #ffffff;
+      border-radius: 2cqw;
+      flex-shrink: 0;
+    }
+
+    .a-logo img {
+      display: block;
+      height: 100%;
+      width: auto;
+      max-width: 22cqw;
+      object-fit: contain;
+    }
+
+    .a-brandtext {
+      font-size: 2.5cqw;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      line-height: 1.3;
+      max-width: 28cqw;
+    }
+
+    .a-tag {
+      background: #FFA000;
+      color: #002266;
+      font-size: 2.6cqw;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 1.5cqw 3.2cqw;
+      border-radius: 50cqw;
+      white-space: nowrap;
+    }
+
+    .a-icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 21cqw;
+      height: 21cqw;
+      margin-top: 4cqw;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.10);
+      border: 0.9cqw solid #FF6A00;
+      color: #ffffff;
+    }
+
+    .a-icon svg {
+      width: 11cqw;
+      height: 11cqw;
+    }
+
+    .a-seal {
+      position: absolute;
+      top: 18cqw;
+      right: 7cqw;
+      width: 27cqw;
+      height: 27cqw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 25%, #FFC24D 0%, #FFA000 60%, #F58A00 100%);
+      color: #002266;
+      transform: rotate(-10deg);
+      outline: 0.8cqw dashed #002266;
+      outline-offset: -1.7cqw;
+      box-shadow: 0 1.5cqw 3cqw rgba(0, 0, 0, 0.28);
+    }
+
+    .a-seal b {
+      font-size: 9cqw;
+      font-weight: 900;
+      line-height: 0.95;
+    }
+
+    .a-seal b.sm {
+      font-size: 5.8cqw;
+      line-height: 1.05;
+    }
+
+    .a-seal b.sm + i {
+      font-size: 2.7cqw;
+      letter-spacing: 0.02em;
+      text-transform: none;
+    }
+
+    .a-seal i {
+      font-style: normal;
+      font-size: 3cqw;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.15;
+    }
+
+    .a-seal em {
+      font-style: normal;
+      font-size: 2.2cqw;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .a-title {
+      position: relative;
+      margin-top: 3.5cqw;
+      font-weight: normal;
+    }
+
+    .a-kicker {
+      display: block;
+      font-size: 7.6cqw;
+      font-weight: 900;
+      color: #FFA000;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      line-height: 1.05;
+    }
+
+    .a-main {
+      display: block;
+      font-size: 13cqw;
+      font-weight: 900;
+      color: #ffffff;
+      text-transform: capitalize;
+      letter-spacing: -0.02em;
+      line-height: 1.02;
+    }
+
+    .a-sub {
+      position: relative;
+      margin-top: 2.5cqw;
+      font-size: 3.4cqw;
+      line-height: 1.38;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .a-list {
+      position: relative;
+      list-style: none;
+      margin-top: 3.5cqw;
+      display: flex;
+      flex-direction: column;
+      gap: 2cqw;
+    }
+
+    .a-list li {
+      display: flex;
+      align-items: center;
+      gap: 3cqw;
+      height: 8cqw;
+      padding: 0 3cqw;
+      font-size: 3.6cqw;
+      font-weight: bold;
+      background: rgba(255, 255, 255, 0.09);
+      border-radius: 2cqw;
+      white-space: nowrap;
+    }
+
+    .a-check {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.8cqw;
+      height: 4.8cqw;
+      border-radius: 50%;
+      background: #FF6A00;
+      color: #ffffff;
+    }
+
+    .a-check svg {
+      width: 2.9cqw;
+      height: 2.9cqw;
+    }
+
+    .a-foot {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 22cqw;
+      padding: 6.4cqw 8cqw 0 8cqw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 4cqw;
+      color: #002266;
+      background: linear-gradient(100deg, #FF6A00 0%, #FF8A00 55%, #FFA000 100%);
+      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .a-foot-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6cqw;
+      min-width: 0;
+    }
+
+    .a-cta {
+      font-size: 4.6cqw;
+      font-weight: 900;
+      line-height: 1.15;
+    }
+
+    .a-phone {
+      font-size: 3.6cqw;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .a-web {
+      font-size: 2.9cqw;
+      font-weight: bold;
+      line-height: 1.2;
+      opacity: 0.9;
+    }
+
+    .a-go {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 10.5cqw;
+      height: 10.5cqw;
+      border-radius: 50%;
+      background: #002266;
+      color: #ffffff;
+    }
+
+    .a-go svg {
+      width: 5cqw;
+      height: 5cqw;
+    }
+
+    .badge-disabled {
+      background-color: #94a3b8;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 50px;
+      display: inline-block;
+    }
+
+    /* =====================================================
+       VOLLBILD-GALERIE
+       ===================================================== */
+    .lb {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      flex-direction: column;
+      background-color: rgba(0, 12, 36, 0.96);
+      color: #ffffff;
+      touch-action: none;
+      overscroll-behavior: contain;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .lb.open {
+      display: flex;
+      animation: lbIn 0.25s ease both;
+    }
+
+    @keyframes lbIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .lb-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: max(12px, env(safe-area-inset-top, 0px)) 16px 6px 16px;
+      min-height: 60px;
+    }
+
+    .lb-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .lb-title {
+      font-size: 16px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .lb-counter {
+      font-size: 12.5px;
+      opacity: 0.75;
+    }
+
+    .lb-icon-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .lb-icon-btn:hover {
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    .lb-icon-btn svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .lb-stage {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+      cursor: grab;
+    }
+
+    .lb-stage:active {
+      cursor: grabbing;
+    }
+
+    .lb-track {
+      display: flex;
+      height: 100%;
+      will-change: transform;
+      transition: transform 0.35s cubic-bezier(0.22, 0.8, 0.3, 1);
+    }
+
+    .lb-slide {
+      flex: 0 0 100%;
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 0;
+    }
+
+    .lb-art {
+      width: min(94vw, calc((100vh - 176px) * 0.7071));
+      width: min(94vw, calc((100dvh - 176px) * 0.7071));
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+      pointer-events: none;
+    }
+
+    .lb-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 52px;
+      height: 52px;
+    }
+
+    .lb-prev { left: 16px; }
+    .lb-next { right: 16px; }
+
+    .lb-nav[hidden] { display: none; }
+
+    .lb-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 8px 16px max(14px, env(safe-area-inset-bottom, 0px)) 16px;
+    }
+
+    .lb-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 44px;
+      padding: 0 20px;
+      border-radius: 50px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .lb-btn:hover {
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    .lb-btn svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .lb-btn.primary {
+      background: #FF6A00;
+    }
+
+    .lb-btn.primary:hover {
+      background: #FFA000;
+      color: #002266;
+    }
+
+    .lb-btn[hidden] { display: none; }
+
+    .lb-toast {
+      position: absolute;
+      left: 50%;
+      bottom: 86px;
+      transform: translate(-50%, 10px);
+      background: #ffffff;
+      color: #002266;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 10px 18px;
+      border-radius: 50px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 5;
+    }
+
+    .lb-toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    /* =====================================================
+       AKTUELL-KACHELN
+       ===================================================== */
+    .aktuell-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .aktuell-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 22px 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #333333;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: all 0.25s ease;
+    }
+
+    .aktuell-card.partner-card:hover {
+      border-color: #FF6A00;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 106, 0, 0.15);
+    }
+
+    .card-link-btn {
+      background-color: #0051C7;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 50px;
+      display: inline-block;
+      transition: background-color 0.2s ease;
+      margin-top: auto;
+    }
+
+    .aktuell-card.partner-card:hover .card-link-btn {
+      background-color: #FF6A00;
+    }
+
+    .card-content-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .service-icon {
+      margin-bottom: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+    }
+
+    .service-title {
+      font-size: 16.5px;
+      font-weight: bold;
+      color: #002266;
+      margin-bottom: 8px;
+    }
+
+    .service-desc {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.4;
+      margin-bottom: 20px;
+    }
+
+    /* Fusszeile (PC) */
+    .footer-section {
+      background-color: #002266;
+      color: #ffffff;
+      text-align: center;
+      padding: 35px 20px;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .footer-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .social-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn-social {
+      padding: 12px 25px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 15px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .btn-social:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    .btn-facebook { background-color: #1877F2; }
+    .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+
+    .legal-links {
+      margin-top: 18px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .legal-text-link {
+      color: #ffffff;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s ease, text-decoration 0.2s ease;
+    }
+
+    .legal-text-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .legal-separator {
+      color: #ffffff;
+      opacity: 0.5;
+    }
+
+    /* Mobiles Menü */
+    @media (max-width: 768px) {
+      .menu-toggle { display: inline-flex; }
+
+      .main-nav {
+        display: none;
+        position: fixed;
+        top: 75px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: calc(100vh - 75px);
+        height: calc(100dvh - 75px);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: #ffffff;
+        padding: 6px 16px 30px 16px;
+        box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+        border-bottom: 3px solid #0051C7;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        z-index: 2000;
+      }
+
+      .main-nav.open { display: flex; }
+
+      .nav-link {
+        padding: 15px 12px;
+        font-size: 16px;
+        border-radius: 0;
+        border-bottom: 1px solid #e2e8f0;
+        flex-shrink: 0;
+      }
+
+      .mobile-menu-footer {
+        margin-top: auto;
+        padding-top: 25px;
+        padding-bottom: 15px;
+        border-top: 1px solid #cbd5e1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        flex-shrink: 0;
+      }
+
+      .mobile-menu-socials {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .mobile-social-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        text-decoration: none;
+        transition: transform 0.2s ease, opacity 0.2s ease;
+      }
+
+      .mobile-fb { background-color: #1877F2; }
+      .mobile-ig { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+      .mobile-wa { background-color: #25D366; }
+      .mobile-mail { background-color: #0051C7; }
+
+      .mobile-menu-legal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+      }
+
+      .mobile-legal-link {
+        color: #002266;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .document-card { padding: 25px 20px; }
+      .aktuell-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (min-width: 769px) {
+      .mobile-menu-footer { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .flyers-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (hover: none) {
+      .lb-nav { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding-top: 65px; }
+      .top-header { height: 65px; padding: 10px 12px; }
+
+      .main-nav {
+        top: 65px;
+        height: calc(100vh - 65px);
+        height: calc(100dvh - 65px);
+      }
+
+      .logo-img { height: 36px; }
+      .brand-title { display: none; }
+
+      .hero-section h1 { font-size: 24px; }
+      .lb-btn { padding: 0 14px; font-size: 13px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lb-track { transition: none; }
+      .lb.open { animation: none; }
+      .flyer-card, .flyer-card:hover { transition: none; transform: none; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- SVG-Icon-Sprite -->
+<svg class="svg-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24">
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </symbol>
+    <symbol id="i-home" viewBox="0 0 24 24">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <path d="M8.5 15.5l2.5 2.5 4.5-5.5" stroke="#FF6A00" stroke-width="2.4"></path>
+    </symbol>
+    <symbol id="i-building" viewBox="0 0 24 24">
+      <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+      <line x1="9" y1="6" x2="9" y2="6.01"></line>
+      <line x1="15" y1="6" x2="15" y2="6.01"></line>
+      <line x1="9" y1="10" x2="9" y2="10.01"></line>
+      <line x1="15" y1="10" x2="15" y2="10.01"></line>
+      <line x1="9" y1="14" x2="9" y2="14.01"></line>
+      <line x1="15" y1="14" x2="15" y2="14.01"></line>
+      <line x1="9" y1="18" x2="15" y2="18"></line>
+    </symbol>
+    <symbol id="i-cycle" viewBox="0 0 24 24">
+      <path d="M12 3v3m0 12v3M3 12h3m12 0h3m-2.6-6.4l-2.1 2.1m-8.6 8.6l-2.1 2.1m0-12.8l2.1 2.1m8.6 8.6l2.1 2.1"></path>
+      <circle cx="12" cy="12" r="4"></circle>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+    </symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24">
+      <rect x="1" y="3" width="15" height="13"></rect>
+      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+      <circle cx="5.5" cy="18.5" r="2.5"></circle>
+      <circle cx="18.5" cy="18.5" r="2.5"></circle>
+    </symbol>
+    <symbol id="i-people" viewBox="0 0 24 24">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+      <circle cx="9" cy="7" r="4"></circle>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24">
+      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+    </symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24">
+      <path fill="currentColor" stroke="none" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+    </symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24">
+      <polyline points="15 3 21 3 21 9"></polyline>
+      <polyline points="9 21 3 21 3 15"></polyline>
+      <line x1="21" y1="3" x2="14" y2="10"></line>
+      <line x1="3" y1="21" x2="10" y2="14"></line>
+    </symbol>
+    <symbol id="i-share" viewBox="0 0 24 24">
+      <circle cx="18" cy="5" r="3"></circle>
+      <circle cx="6" cy="12" r="3"></circle>
+      <circle cx="18" cy="19" r="3"></circle>
+      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+    </symbol>
+    <symbol id="i-link" viewBox="0 0 24 24">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <line x1="5" y1="5" x2="19" y2="19"></line>
+      <line x1="19" y1="5" x2="5" y2="19"></line>
+    </symbol>
+    <symbol id="i-chev-l" viewBox="0 0 24 24">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </symbol>
+    <symbol id="i-chev-r" viewBox="0 0 24 24">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="page-wrapper">
+
+  <!-- Kopfzeile -->
+  <header class="top-header">
+    <a href="index.html" class="brand-container">
+      <img src="/logo.PNG" alt="M Transport &amp; Reinigung Service" class="logo-img" height="48">
+      <span class="brand-title">M Transport &amp; Reinigung Service</span>
+    </a>
+
+    <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">
+      <svg id="menu-icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+        <line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <svg id="menu-icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" aria-hidden="true" style="display:none;">
+        <line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line>
+      </svg>
+    </button>
+
+    <nav class="main-nav" id="main-nav" aria-label="Hauptnavigation">
+      <a href="index.html" class="nav-link">Startseite</a>
+      <a href="ueberuns.html" class="nav-link">Über uns</a>
+      <a href="preise.html" class="nav-link">Preise</a>
+      <a href="offerte.html" class="nav-link">Offerte</a>
+      <a href="kontakt.html" class="nav-link">Kontakt</a>
+
+      <!-- Fusszeile im mobilen Menü -->
+      <div class="mobile-menu-footer">
+        <div class="mobile-menu-socials">
+          <a href="https://www.facebook.com/m.transportreinigung" class="mobile-social-icon mobile-fb" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/m.transportreinigung" class="mobile-social-icon mobile-ig" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/41783458072" class="mobile-social-icon mobile-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+          <a href="mailto:info@mservice.ch" class="mobile-social-icon mobile-mail" aria-label="E-Mail">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+        </div>
+        <div class="mobile-menu-legal">
+          <a href="impressum.html" class="mobile-legal-link">Impressum</a>
+          <span style="color: #cbd5e1;">|</span>
+          <a href="datenschutz.html" class="mobile-legal-link">Datenschutz</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero-section">
+    <h1>Aktuell</h1>
+    <p>Unsere Angebote, Partnerschaften und Neuigkeiten auf einen Blick.</p>
+    <div class="service-badge">&#10003; 48 Stunden kostenlose Reklamationsfrist</div>
+  </section>
+
+  <!-- Hauptinhalt -->
+  <main class="content-container">
+
+    <!-- 1. Karte: Flyer -->
+    <div class="document-card">
+      <h2 class="section-title">Unsere Angebote</h2>
+      <p class="gallery-hint">Tippen Sie auf einen Flyer, um ihn gross anzusehen, durch alle Flyer zu blättern und den Link zu teilen.</p>
+
+      <div class="flyers-grid">
+
+        <!-- Flyer 1: Umzugsreinigung -->
+        <a href="#umzugsreinigung" class="flyer-card" data-flyer="umzugsreinigung" data-title="Umzugsreinigung" data-cta="offerte.html?service=umzug" data-cta-label="Offerte anfordern" data-share="Umzugsreinigung im Kanton Thurgau: gründliche Endreinigung für eine erfolgreiche Wohnungsabgabe. 48 Stunden kostenlose Reklamationsfrist." aria-label="Umzugsreinigung: Flyer vergrössern">
+          <div class="flyer-art"><div class="art">
+            <span class="a-ring a-ring-1"></span><span class="a-ring a-ring-2"></span>
+            <svg class="a-water" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-home"></use></svg>
+            <div class="a-top">
+              <span class="a-brand"><span class="a-logo"><img src="/logo.PNG" alt=""></span><span class="a-brandtext">M Transport &amp; Reinigung Service</span></span>
+              <span class="a-tag">Wohnungsabgabe</span>
+            </div>
+            <span class="a-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-home"></use></svg></span>
+            <span class="a-seal"><b>48</b><i>Stunden</i><em>kostenlose</em><em>Reklamationsfrist</em></span>
+            <h3 class="a-title" aria-label="Umzugsreinigung"><span class="a-kicker">Umzugs</span><span class="a-main">reinigung</span></h3>
+            <p class="a-sub">Gründliche Endreinigung Ihrer Wohnung oder Ihres Hauses für eine erfolgreiche Wohnungsabgabe.</p>
+            <ul class="a-list">
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Wohnung oder Haus komplett</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Pünktlich zum vereinbarten Termin</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Profi-Mittel und Geräte inklusive</li>
+            </ul>
+            <div class="a-foot">
+              <div class="a-foot-text"><span class="a-cta">Jetzt Offerte anfordern</span><span class="a-phone">+41 78 345 80 72</span><span class="a-web">info@mservice.ch | mservice.ch</span></div>
+              <span class="a-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
+            </div>
+          </div></div>
+          <div class="card-cap"><strong>Umzugsreinigung</strong><span>Ansehen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-expand"></use></svg></span></div>
+        </a>
+
+        <!-- Flyer 2: Gebäudereinigung -->
+        <a href="#gebaeudereinigung" class="flyer-card" data-flyer="gebaeudereinigung" data-title="Gebäudereinigung" data-cta="offerte.html?service=gebaeude" data-cta-label="Offerte anfordern" data-share="Gebäudereinigung im Kanton Thurgau: regelmässige oder einmalige Reinigung von Liegenschaften, Treppenhäusern und Büros." aria-label="Gebäudereinigung: Flyer vergrössern">
+          <div class="flyer-art"><div class="art">
+            <span class="a-ring a-ring-1"></span><span class="a-ring a-ring-2"></span>
+            <svg class="a-water" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-building"></use></svg>
+            <div class="a-top">
+              <span class="a-brand"><span class="a-logo"><img src="/logo.PNG" alt=""></span><span class="a-brandtext">M Transport &amp; Reinigung Service</span></span>
+              <span class="a-tag">Liegenschaften</span>
+            </div>
+            <span class="a-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-building"></use></svg></span>
+            <span class="a-seal"><b>48</b><i>Stunden</i><em>kostenlose</em><em>Reklamationsfrist</em></span>
+            <h3 class="a-title" aria-label="Gebäudereinigung"><span class="a-kicker">Gebäude</span><span class="a-main">reinigung</span></h3>
+            <p class="a-sub">Regelmässige oder einmalige Reinigung von Liegenschaften, Treppenhäusern oder Büros.</p>
+            <ul class="a-list">
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Treppenhäuser und Büros</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Regelmässig oder einmalig</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Für Privatkunden und Gewerbe</li>
+            </ul>
+            <div class="a-foot">
+              <div class="a-foot-text"><span class="a-cta">Jetzt Offerte anfordern</span><span class="a-phone">+41 78 345 80 72</span><span class="a-web">info@mservice.ch | mservice.ch</span></div>
+              <span class="a-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
+            </div>
+          </div></div>
+          <div class="card-cap"><strong>Gebäudereinigung</strong><span>Ansehen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-expand"></use></svg></span></div>
+        </a>
+
+        <!-- Flyer 3: Unterhaltsreinigung -->
+        <a href="#unterhaltsreinigung" class="flyer-card" data-flyer="unterhaltsreinigung" data-title="Unterhaltsreinigung" data-cta="offerte.html?service=unterhalt" data-cta-label="Offerte anfordern" data-share="Unterhaltsreinigung im Kanton Thurgau: fortlaufende, periodische Wohnungsreinigung nach Ihren individuellen Wünschen." aria-label="Unterhaltsreinigung: Flyer vergrössern">
+          <div class="flyer-art"><div class="art">
+            <span class="a-ring a-ring-1"></span><span class="a-ring a-ring-2"></span>
+            <svg class="a-water" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-cycle"></use></svg>
+            <div class="a-top">
+              <span class="a-brand"><span class="a-logo"><img src="/logo.PNG" alt=""></span><span class="a-brandtext">M Transport &amp; Reinigung Service</span></span>
+              <span class="a-tag">Regelmässig</span>
+            </div>
+            <span class="a-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-cycle"></use></svg></span>
+            <span class="a-seal"><b>48</b><i>Stunden</i><em>kostenlose</em><em>Reklamationsfrist</em></span>
+            <h3 class="a-title" aria-label="Unterhaltsreinigung"><span class="a-kicker">Unterhalts</span><span class="a-main">reinigung</span></h3>
+            <p class="a-sub">Fortlaufende, periodische Wohnungsreinigung nach Ihren individuellen Wünschen.</p>
+            <ul class="a-list">
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Periodisch nach Ihrem Rhythmus</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Individuell auf Ihre Wünsche</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Profi-Mittel und Geräte inklusive</li>
+            </ul>
+            <div class="a-foot">
+              <div class="a-foot-text"><span class="a-cta">Jetzt Offerte anfordern</span><span class="a-phone">+41 78 345 80 72</span><span class="a-web">info@mservice.ch | mservice.ch</span></div>
+              <span class="a-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
+            </div>
+          </div></div>
+          <div class="card-cap"><strong>Unterhaltsreinigung</strong><span>Ansehen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-expand"></use></svg></span></div>
+        </a>
+
+        <!-- Flyer 4: Grundreinigung -->
+        <a href="#grundreinigung" class="flyer-card" data-flyer="grundreinigung" data-title="Grundreinigung" data-cta="offerte.html?service=grund" data-cta-label="Offerte anfordern" data-share="Grundreinigung im Kanton Thurgau: intensive Tiefenreinigung oder Frühlingsputz für hartnäckige Verschmutzungen." aria-label="Grundreinigung: Flyer vergrössern">
+          <div class="flyer-art"><div class="art">
+            <span class="a-ring a-ring-1"></span><span class="a-ring a-ring-2"></span>
+            <svg class="a-water" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-star"></use></svg>
+            <div class="a-top">
+              <span class="a-brand"><span class="a-logo"><img src="/logo.PNG" alt=""></span><span class="a-brandtext">M Transport &amp; Reinigung Service</span></span>
+              <span class="a-tag">Tiefenreinigung</span>
+            </div>
+            <span class="a-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-star"></use></svg></span>
+            <span class="a-seal"><b>48</b><i>Stunden</i><em>kostenlose</em><em>Reklamationsfrist</em></span>
+            <h3 class="a-title" aria-label="Grundreinigung"><span class="a-kicker">Grund</span><span class="a-main">reinigung</span></h3>
+            <p class="a-sub">Intensive Tiefenreinigung oder Frühlingsputz für hartnäckige Verschmutzungen im Objekt.</p>
+            <ul class="a-list">
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Intensive Tiefenreinigung</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Ideal als Frühlingsputz</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Auch bei hartnäckigem Schmutz</li>
+            </ul>
+            <div class="a-foot">
+              <div class="a-foot-text"><span class="a-cta">Jetzt Offerte anfordern</span><span class="a-phone">+41 78 345 80 72</span><span class="a-web">info@mservice.ch | mservice.ch</span></div>
+              <span class="a-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
+            </div>
+          </div></div>
+          <div class="card-cap"><strong>Grundreinigung</strong><span>Ansehen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-expand"></use></svg></span></div>
+        </a>
+
+        <!-- Flyer 5: Transport & Räumung (inaktiv, unscharf, nicht indexierbar) -->
+        <div class="noindex" data-nosnippet translate="no" style="display: contents;">
+          <div class="flyer-card blur-flyer" aria-hidden="true">
+            <div class="flyer-art"><div class="art">
+              <span class="a-ring a-ring-1"></span><span class="a-ring a-ring-2"></span>
+              <svg class="a-water" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-truck"></use></svg>
+              <div class="a-top">
+                <span class="a-brand"><span class="a-logo"><img src="/logo.PNG" alt=""></span><span class="a-brandtext">M Transport &amp; Reinigung Service</span></span>
+                <span class="a-tag">Demnächst</span>
+              </div>
+              <span class="a-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-truck"></use></svg></span>
+              <span class="a-seal"><b class="sm">Bald</b><i>verfügbar</i></span>
+              <h3 class="a-title"><span class="a-kicker">Transport</span><span class="a-main">&amp; Räumung</span></h3>
+              <p class="a-sub">Sichere Umzüge, Warentransporte sowie fachgerechte Entrümpelungen und Räumungen.</p>
+              <ul class="a-list">
+                <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Sichere Umzüge</li>
+                <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Warentransporte</li>
+                <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Entrümpelungen und Räumungen</li>
+              </ul>
+              <div class="a-foot">
+                <div class="a-foot-text"><span class="a-cta">Demnächst verfügbar</span><span class="a-phone">+41 78 345 80 72</span><span class="a-web">info@mservice.ch | mservice.ch</span></div>
+                <span class="a-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
+              </div>
+            </div></div>
+            <div class="card-cap"><strong>Transport &amp; Räumung</strong><span class="badge-disabled" style="color:#ffffff;">Demnächst verfügbar</span></div>
+          </div>
+        </div>
+
+        <!-- Flyer 6: WhatsApp -->
+        <a href="#whatsapp" class="flyer-card" data-flyer="whatsapp" data-title="Direkt per WhatsApp" data-cta="https://wa.me/41783458072" data-cta-label="WhatsApp öffnen" data-cta-external="1" data-share="Schreiben Sie M Transport &amp; Reinigung Service unkompliziert per WhatsApp für eine schnelle Auskunft oder Offerte." aria-label="Direkt per WhatsApp: Flyer vergrössern">
+          <div class="flyer-art"><div class="art">
+            <span class="a-ring a-ring-1"></span><span class="a-ring a-ring-2"></span>
+            <svg class="a-water" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-whatsapp"></use></svg>
+            <div class="a-top">
+              <span class="a-brand"><span class="a-logo"><img src="/logo.PNG" alt=""></span><span class="a-brandtext">M Transport &amp; Reinigung Service</span></span>
+              <span class="a-tag">Kontakt</span>
+            </div>
+            <span class="a-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-whatsapp"></use></svg></span>
+            <span class="a-seal"><b class="sm">Offerte</b><i>unverbindlich</i></span>
+            <h3 class="a-title" aria-label="Direkt per WhatsApp"><span class="a-kicker">Direkt per</span><span class="a-main">WhatsApp</span></h3>
+            <p class="a-sub">Schreiben Sie uns unkompliziert über WhatsApp für eine schnelle Auskunft oder Offerte.</p>
+            <ul class="a-list">
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Schnelle Auskunft</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Offerte direkt anfragen</li>
+              <li><span class="a-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-check"></use></svg></span>Persönlich und unkompliziert</li>
+            </ul>
+            <div class="a-foot">
+              <div class="a-foot-text"><span class="a-cta">Jetzt schreiben</span><span class="a-phone">+41 78 345 80 72</span><span class="a-web">info@mservice.ch | mservice.ch</span></div>
+              <span class="a-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
+            </div>
+          </div></div>
+          <div class="card-cap"><strong>Direkt per WhatsApp</strong><span>Ansehen <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-expand"></use></svg></span></div>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- 2. Karte: Aktuell (bisherige Kacheln von der Startseite) -->
+    <div class="document-card">
+      <h2 class="section-title">Aktuell</h2>
+      <div class="aktuell-grid">
+
+        <!-- Partner -->
+        <a href="partner.html" class="aktuell-card partner-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" fill="none" stroke="#0051C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-people"></use></svg>
+            </span>
+            <h3 class="service-title">Partner werden</h3>
+            <p class="service-desc">Für Umzugsunternehmen, Hauswartungen und Immobilienverwaltungen. Werden Sie unser B2B-Partner!</p>
+          </div>
+          <span class="card-link-btn">Partnerschaft anfragen &rarr;</span>
+        </a>
+
+        <!-- Jobs -->
+        <div class="aktuell-card">
+          <div class="card-content-top">
+            <span class="service-icon">
+              <svg width="34" height="34" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-briefcase"></use></svg>
+            </span>
+            <h3 class="service-title">Offene Stellen</h3>
+            <p class="service-desc">Zurzeit haben wir leider keine offenen Stellen zu besetzen. Schauen Sie später wieder vorbei.</p>
+          </div>
+          <div>
+            <span class="badge-disabled">Keine offenen Stellen</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Fusszeile (PC) -->
+  <footer class="footer-section">
+    <div class="footer-title">Folgen Sie uns auf</div>
+    <div class="social-buttons">
+      <a href="https://www.facebook.com/m.transportreinigung" class="btn-social btn-facebook" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+        <span>Facebook</span>
+      </a>
+
+      <a href="https://www.instagram.com/m.transportreinigung" class="btn-social btn-instagram" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex-shrink:0;">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+        </svg>
+        <span>Instagram</span>
+      </a>
+    </div>
+
+    <div class="legal-links">
+      <a href="ueberuns.html" class="legal-text-link">Über uns</a>
+      <span class="legal-separator">|</span>
+      <a href="impressum.html" class="legal-text-link">Impressum</a>
+      <span class="legal-separator">|</span>
+      <a href="datenschutz.html" class="legal-text-link">Datenschutz</a>
+      <span class="legal-separator">|</span>
+      <a href="agb.html" class="legal-text-link">AGB</a>
+    </div>
+    <div style="margin-top: 30px; font-size: 13px; opacity: 0.7;">
+      &copy; 2026 M Transport &amp; Reinigung Service.
+    </div>
+  </footer>
+
+</div>
+
+<!-- Vollbild-Galerie -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-labelledby="lb-title">
+  <div class="lb-top">
+    <div class="lb-info">
+      <span class="lb-title" id="lb-title"></span>
+      <span class="lb-counter" id="lb-counter" aria-live="polite"></span>
+    </div>
+    <button type="button" class="lb-icon-btn" id="lb-close" aria-label="Schliessen">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+  </div>
+
+  <div class="lb-stage" id="lb-stage">
+    <div class="lb-track" id="lb-track"></div>
+    <button type="button" class="lb-icon-btn lb-nav lb-prev" id="lb-prev" aria-label="Vorheriger Flyer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-l"></use></svg>
+    </button>
+    <button type="button" class="lb-icon-btn lb-nav lb-next" id="lb-next" aria-label="Nächster Flyer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-chev-r"></use></svg>
+    </button>
+  </div>
+
+  <div class="lb-bar">
+    <button type="button" class="lb-btn" id="lb-copy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-link"></use></svg>
+      Link kopieren
+    </button>
+    <button type="button" class="lb-btn" id="lb-share" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-share"></use></svg>
+      Teilen
+    </button>
+    <a class="lb-btn primary" id="lb-cta" href="offerte.html">
+      <span id="lb-cta-label">Offerte anfordern</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow"></use></svg>
+    </a>
+  </div>
+
+  <div class="lb-toast" id="lb-toast" role="status">Link kopiert</div>
+</div>
+
+<script>
+  // Mobiles Menü (Hamburger)
+  (function () {
+    var toggle = document.getElementById('menu-toggle');
+    var nav = document.getElementById('main-nav');
+    var iconOpen = document.getElementById('menu-icon-open');
+    var iconClose = document.getElementById('menu-icon-close');
+
+    function setMenu(open) {
+      if (open) {
+        document.body.classList.add('menu-open');
+      } else {
+        document.body.classList.remove('menu-open');
+      }
+
+      nav.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Menü schliessen' : 'Menü öffnen');
+      iconOpen.style.display = open ? 'none' : '';
+      iconClose.style.display = open ? '' : 'none';
+    }
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setMenu(!nav.classList.contains('open'));
+    });
+
+    nav.querySelectorAll('.nav-link, .mobile-legal-link, .mobile-social-icon').forEach(function (a) {
+      a.addEventListener('click', function () { setMenu(false); });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setMenu(false);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open')) {
+        setMenu(false);
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768 && nav.classList.contains('open')) {
+        setMenu(false);
+      }
+    });
+  })();
+
+  // Flyer-Galerie (Vollbild, Wischen, eigene Links pro Flyer)
+  (function () {
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.flyer-card[data-flyer]'));
+    if (!cards.length) return;
+
+    var lb = document.getElementById('lb');
+    var stage = document.getElementById('lb-stage');
+    var track = document.getElementById('lb-track');
+    var counter = document.getElementById('lb-counter');
+    var titleEl = document.getElementById('lb-title');
+    var btnClose = document.getElementById('lb-close');
+    var btnPrev = document.getElementById('lb-prev');
+    var btnNext = document.getElementById('lb-next');
+    var btnCopy = document.getElementById('lb-copy');
+    var btnShare = document.getElementById('lb-share');
+    var cta = document.getElementById('lb-cta');
+    var ctaLabel = document.getElementById('lb-cta-label');
+    var toast = document.getElementById('lb-toast');
+
+    var flyers = cards.map(function (c) {
+      return {
+        id: c.getAttribute('data-flyer'),
+        title: c.getAttribute('data-title'),
+        cta: c.getAttribute('data-cta'),
+        ctaLabel: c.getAttribute('data-cta-label'),
+        external: c.getAttribute('data-cta-external') === '1',
+        share: c.getAttribute('data-share'),
+        art: c.querySelector('.flyer-art')
+      };
+    });
+
+    var last = flyers.length - 1;
+    var index = 0;
+    var isOpen = false;
+    var pushed = false;
+    var lastFocus = null;
+    var drag = null;
+    var toastTimer = null;
+
+    flyers.forEach(function (f, i) {
+      var slide = document.createElement('div');
+      slide.className = 'lb-slide';
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'Flyer');
+      slide.setAttribute('aria-label', (i + 1) + ' von ' + flyers.length);
+      var wrap = document.createElement('div');
+      wrap.className = 'lb-art';
+      wrap.appendChild(f.art.cloneNode(true));
+      slide.appendChild(wrap);
+      track.appendChild(slide);
+      f.slide = slide;
+    });
+
+    if (navigator.share) btnShare.hidden = false;
+
+    function setOffset(dx, animate) {
+      track.style.transition = animate ? '' : 'none';
+      track.style.transform = 'translate3d(calc(' + (-index * 100) + '% + ' + dx + 'px),0,0)';
+    }
+
+    function shareUrl(id) {
+      return location.origin + location.pathname + '#' + id;
+    }
+
+    function updateUI(skipHistory) {
+      var f = flyers[index];
+      counter.textContent = (index + 1) + ' / ' + flyers.length;
+      titleEl.textContent = f.title;
+      btnPrev.hidden = index === 0;
+      btnNext.hidden = index === last;
+      ctaLabel.textContent = f.ctaLabel;
+      cta.setAttribute('href', f.cta);
+      if (f.external) {
+        cta.setAttribute('target', '_blank');
+        cta.setAttribute('rel', 'noopener');
+      } else {
+        cta.removeAttribute('target');
+        cta.removeAttribute('rel');
+      }
+      flyers.forEach(function (x, i) {
+        x.slide.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+      });
+      if (isOpen && !skipHistory) {
+        try { history.replaceState(history.state, '', '#' + f.id); } catch (e) {}
+      }
+    }
+
+    function goTo(i, animate, skipHistory) {
+      if (i < 0) i = 0;
+      if (i > last) i = last;
+      index = i;
+      setOffset(0, animate);
+      updateUI(skipHistory);
+    }
+
+    function openAt(i, push) {
+      lastFocus = document.activeElement;
+      isOpen = true;
+      lb.style.backgroundColor = '';
+      lb.classList.add('open');
+      document.documentElement.classList.add('lb-open');
+      goTo(i, false, push);
+      if (push) {
+        try { history.pushState({ flyer: flyers[index].id }, '', '#' + flyers[index].id); pushed = true; } catch (e) {}
+      }
+      btnClose.focus();
+    }
+
+    function closeLb(manual) {
+      if (!isOpen) return;
+      isOpen = false;
+      lb.classList.remove('open');
+      lb.style.backgroundColor = '';
+      document.documentElement.classList.remove('lb-open');
+      if (lastFocus && lastFocus.focus) {
+        try { lastFocus.focus({ preventScroll: true }); } catch (e) {}
+      }
+      if (manual) {
+        if (pushed) {
+          pushed = false;
+          history.back();
+        } else if (location.hash) {
+          try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+        }
+      } else {
+        pushed = false;
+      }
+    }
+
+    function sync() {
+      var id = location.hash.replace('#', '');
+      var i = -1;
+      for (var k = 0; k < flyers.length; k++) {
+        if (flyers[k].id === id) { i = k; break; }
+      }
+      if (i >= 0) {
+        if (!isOpen) openAt(i, false);
+        else if (i !== index) goTo(i, true, true);
+      } else if (isOpen) {
+        closeLb(false);
+      }
+    }
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 1800);
+    }
+
+    function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
+      }
+      return Promise.resolve(legacyCopy(text));
+    }
+
+    function legacyCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      return ok;
+    }
+
+    btnCopy.addEventListener('click', function () {
+      var url = shareUrl(flyers[index].id);
+      Promise.resolve(copyText(url)).then(function (ok) {
+        showToast(ok ? 'Link kopiert' : 'Kopieren nicht möglich');
+      });
+    });
+
+    btnShare.addEventListener('click', function () {
+      var f = flyers[index];
+      var data = { title: f.title + ' | M Transport & Reinigung Service', text: f.share, url: shareUrl(f.id) };
+      if (navigator.share) {
+        navigator.share(data).catch(function () {});
+      }
+    });
+
+    cards.forEach(function (c, i) {
+      c.addEventListener('click', function (e) {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+        e.preventDefault();
+        openAt(i, true);
+      });
+    });
+
+    btnClose.addEventListener('click', function () { closeLb(true); });
+    btnPrev.addEventListener('click', function () { goTo(index - 1, true); });
+    btnNext.addEventListener('click', function () { goTo(index + 1, true); });
+
+    // Wischen / Ziehen
+    stage.addEventListener('pointerdown', function (e) {
+      if (!isOpen) return;
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      if (e.target.closest && e.target.closest('.lb-nav')) return;
+      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, t: Date.now(), dx: 0, dy: 0, axis: null, target: e.target };
+    });
+
+    stage.addEventListener('pointermove', function (e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      drag.dx = e.clientX - drag.x;
+      drag.dy = e.clientY - drag.y;
+      if (!drag.axis) {
+        if (Math.abs(drag.dx) > 8 || Math.abs(drag.dy) > 8) {
+          drag.axis = Math.abs(drag.dx) > Math.abs(drag.dy) ? 'x' : 'y';
+          try { stage.setPointerCapture(e.pointerId); } catch (err) {}
+        } else {
+          return;
+        }
+      }
+      if (drag.axis === 'x') {
+        var dx = drag.dx;
+        if ((index === 0 && dx > 0) || (index === last && dx < 0)) dx = dx * 0.35;
+        setOffset(dx, false);
+      } else if (drag.dy > 0) {
+        var dy = drag.dy;
+        track.style.transition = 'none';
+        track.style.transform = 'translate3d(' + (-index * 100) + '%,' + dy + 'px,0) scale(' + (1 - Math.min(dy / 1200, 0.1)) + ')';
+        lb.style.backgroundColor = 'rgba(0,12,36,' + (0.96 * (1 - Math.min(dy / 500, 0.6))) + ')';
+      }
+    });
+
+    function endDrag(e) {
+      if (!drag || e.pointerId !== drag.id) return;
+      var d = drag;
+      drag = null;
+      try { stage.releasePointerCapture(e.pointerId); } catch (err) {}
+      var w = stage.clientWidth || 1;
+      var dt = Math.max(Date.now() - d.t, 1);
+      if (d.axis === 'x') {
+        var v = d.dx / dt;
+        if ((d.dx < -w * 0.18 || v < -0.45) && index < last) goTo(index + 1, true);
+        else if ((d.dx > w * 0.18 || v > 0.45) && index > 0) goTo(index - 1, true);
+        else setOffset(0, true);
+      } else if (d.axis === 'y') {
+        if (d.dy > 110 || (d.dy > 40 && d.dy / dt > 0.6)) {
+          closeLb(true);
+        } else {
+          lb.style.backgroundColor = '';
+          setOffset(0, true);
+        }
+      } else if (e.type === 'pointerup') {
+        if (d.target.closest && !d.target.closest('.lb-art')) closeLb(true);
+      }
+    }
+
+    stage.addEventListener('pointerup', endDrag);
+    stage.addEventListener('pointercancel', endDrag);
+
+    // Tastatur
+    document.addEventListener('keydown', function (e) {
+      if (!isOpen) return;
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeLb(true);
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goTo(index - 1, true);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goTo(index + 1, true);
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goTo(0, true);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goTo(last, true);
+      } else if (e.key === 'Tab') {
+        var items = Array.prototype.slice.call(lb.querySelectorAll('button, a[href]')).filter(function (el) {
+          return !el.hidden && el.offsetParent !== null && getComputedStyle(el).display !== 'none';
+        });
+        if (!items.length) return;
+        var first = items[0];
+        var lastEl = items[items.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          lastEl.focus();
+        } else if (!e.shiftKey && document.activeElement === lastEl) {
+          e.preventDefault();
+          first.focus();
+        } else if (!lb.contains(document.activeElement)) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    window.addEventListener('popstate', sync);
+    window.addEventListener('hashchange', sync);
+
+    // Direktlink auf einen Flyer (z. B. aktuell#umzugsreinigung)
+    sync();
+  })();
+</script>
+
+</body>
+</html>
